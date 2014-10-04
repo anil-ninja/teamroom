@@ -36,7 +36,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 			var etac = $("#c_etac").val();
 			var etad = $("#c_etad").val();
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',challenge)) + '&opentime='+ (open_time*60+open) + 
+			var dataString = 'challange='+ replaceAll('  ','<s>',replaceAll('\n','<br>',challenge)) + '&opentime='+ (open_time*60+open) + 
 			'&challange_eta='+ (((eta*30+etab)*24+etac)*60+etad) ;
 			//alert(dataString);
 			if(challenge==''){
