@@ -452,7 +452,7 @@ body {
   margin-left: 8px;
   color: #333;
   line-height: 15px;
-  width: 400px;
+  width: auto;
 }
 
 .info {
