@@ -11,7 +11,7 @@
                             while ($displayrow = mysqli_fetch_array($display)) {
                                     echo "<div class='panel-body'>
                                                 <div class='list-group'>
-													<div class='list-group-item'>";
+                                                    <div class='list-group-item'>";
                                         $chalangest = $displayrow['challenge'] ;
                                         $chalangetime = $displayrow['challenge_creation'] ;
                                         $idb = $displayrow['challenge_id'] ;

@@ -6,13 +6,14 @@ return str.replace(new RegExp(find, 'g'), replace);
 		$("#create_project").click(function(){
 			var project_title = $("#project_title").val() ;
 			var project_stmt = $("#project_stmt").val();
-			var eta = $("#eta").val();
-			var etab = $("#etab").val();
-			var etac = $("#etac").val();
-			var etad = $("#etad").val();
+			var eta = parseInt($("#eta").val());
+			var etab = parseInt($("#etab").val());
+			var etac = parseInt($("#etac").val());
+			var etad = parseInt($("#etad").val());
+			var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'project_title='+ project_title + '&project_stmt='+ replaceAll(' ','<s>',replaceAll('\n','<br>',project_stmt)) + 
-			'&project_eta='+ (((eta*30+etab)*24+etac)*60+etad) ;
+			var dataString = 'project_title='+ project_title + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',project_stmt)) + 
+			'&project_eta='+ (project_eta+='') ;
 			//alert(dataString);
 			if(project_title==''){
 				alert("Please Enter Something !!!");
