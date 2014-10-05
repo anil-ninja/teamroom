@@ -62,7 +62,7 @@
                     </form><br/><br/>
                 </div>
               </div>
-                <div class='content'>
+                <div class='panel-body'>
 		<?php
 				$user_id = $_SESSION['user_id'];
 				$open_chalange = mysqli_query($db_handle, "select a.challenge_id,a.challenge_creation, a.challenge,a.user_id,a.challenge_ETA,a.challenge_status,b.first_name,b.last_name, b.contact_no,b.email
