@@ -27,7 +27,9 @@ return str.replace(new RegExp(find, 'g'), replace);
 }
 	
 	$(document).ready(function(){
+    
 		$("#submit_ch").click(function(){
+      $("#submit_ch").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;
 			var open_time = $("#open_time").val();
 			var open = $("#open").val();
@@ -41,6 +43,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 			//alert(dataString);
 			if(challenge==''){
 				alert("Please Enter Something !!!");
+        
 			}
 			else
 			{
@@ -60,11 +63,12 @@ return str.replace(new RegExp(find, 'g'), replace);
 						$("#c_etab").val("");
 						$("#c_etac").val("");
 						$("#c_etad").val("");
-					
+					 
 					}
 				}
 			});
 			}
+      $("#submit_ch").removeAttr('disabled');
 			return false;
 		});
 	});
