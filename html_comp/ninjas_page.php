@@ -201,7 +201,7 @@
 								echo str_repeat('&nbsp;', 2) .$commenterRow['response_ch'] ."
 											</div>
 										</div>
-									</div></div><div class='list-group-item'>";
+									</div>";
 								}
 								echo "<div class='comments clearfix'>
 									       <div class='pull-left lh-fix'>
