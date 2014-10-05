@@ -88,6 +88,10 @@ if (isset($_POST['create_team'])) {
     $team_name = $_POST['team_name'];
    if (strlen($team_name)>0) {
     $email = $_POST['email'];
+    $respon = mysqli_query($db_handle, "SELECT email FROM user_info WHERE user_id = '$user_id';");
+    $responrow = mysqli_fetch_array($respon) ;
+    $emailid = $responrow['email'] ;
+  if ($emailid != $email) {  
     $pro_id = $_SESSION['project_id'] ;
     $respo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE email = '$email';");
     $row = mysqli_num_rows($respo);
@@ -131,7 +135,8 @@ if (isset($_POST['create_team'])) {
                     </div>
                 </div>
             </div>";
-        }
+        } }
+        else { echo "<script>alert('Enter Friend's Email ID !!!')</script>"; }
 	}  else { echo "<script>alert('Enter Team Name!')</script>"; }
 }	
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");

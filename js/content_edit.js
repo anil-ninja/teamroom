@@ -1,10 +1,10 @@
 	$(document).ready(function(){
 				$(".edit_tr").click(function(){
-					var ID=$(this).attr('id') ;
+					if(var ID=$(this).attr('id')) {
 					if ( ID != null){
 						$("#project_"+ID).hide();
 						$("#project_input_"+ID).show();
-					} 
+					} }
 					if (var ID_res=$(this).attr('id_res')) {
 						if(ID_res !=null){
 							$("#projectres_"+ID_res).hide();
@@ -19,10 +19,10 @@
 								if(ID_res !=null){
 								$("#challengeres_"+ID_res).hide();
 								$("#challengeres_input_"+ID_res).show();
-							}	
+							}	}
 					
 						}).change(function(){
-								var ID=$(this).attr('id') ;
+								if(var ID=$(this).attr('id')) {
 								if ( ID != null){
 									var project=$("#project_input_"+ID).val();
 								
@@ -42,7 +42,7 @@
 										}
 										});
 										}} }
-								if (var ID_res=$(this).attr('id_res')) {
+								 if (var ID_res=$(this).attr('id_res')) {
 										if (ID_res != null){
 											var projectres=$("#projectres_input_"+ID_res).val();
 									
@@ -88,7 +88,7 @@
 											else alert('Enter something.');
 										}
 									
-									if(var ID_res=$(this).attr('id_res')) {
+									 if(var ID_res=$(this).attr('id_res')) {
 										//challange
 										if (ID_res != null){
 											var challengeres=$("#challengeres_input_"+ID_res).val();

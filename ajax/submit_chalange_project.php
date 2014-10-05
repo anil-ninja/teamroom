@@ -7,7 +7,7 @@ if($_POST['challange']){
 	$pro_id = $_SESSION['project_id'] ;
 	$challange = $_POST['challange'] ;
 	$opentime = $_POST['opentime'] ;
-	$challange_eta = $_POST['challange_eta'] ;
+	$challange_eta = $_POST['challange_eta'] ; 
 	$type = $_POST['type'] ;
 if($type==2) {
 	mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge, challenge_open_time, challenge_ETA, challenge_type) 

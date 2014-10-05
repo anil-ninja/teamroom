@@ -75,8 +75,21 @@ include_once 'project.inc.php';
                                 $teamowners = mysqli_query($db_handle, ("SELECT DISTINCT team_owner FROM teams where  team_name = '$teamname' and team_owner != '0' ;")) ;
                                  $teamownersrow = mysqli_fetch_array($teamowners) ;
                                  $owner = $teamownersrow['team_owner'] ;
+								 echo "Team Name : ".$teamname."<br/>
+										<div class='dropdown'>
+                                          <input class='btn btn-success btn-xs dropdown-toggle' id='dropdownMenu1' value='Add Member' data-toggle='dropdown'/>
+                                            <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
+                                            <li>
+                                                <form role='form' method='POST' action = ''>
+                                                    <input type='email' class='form-control' name='email' placeholder='Enter member Email'>
+                                                    <input type='hidden' name='team_name' value='" .$teamname. "'/>
+                                                    <input type='hidden' name='project_id' value='" .$pro_id. "'/>
+                                                    <input type='submit' class='btn-success btn-sm' name='member' value='Add '/>
+                                                </form>
+                                            </li></ul></div><br/><p align='center'>Members</p><br/>" ;
+                               
                                if ($owner == $user_id) { 
-                                echo "Team Name : ".$teamname."<br/><br/>Members" ;
+                               
                                 $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
                                                                     a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;")) ;
                                 while ($memberrow = mysqli_fetch_array($member)) {
@@ -88,18 +101,17 @@ include_once 'project.inc.php';
 									$rank = $memberrow['rank'] ;
 									$profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
 							echo "<form role='form' method='POST' onsubmit=\"return confirm('Really, Remove this Friend !!!')\">
-                                   <button type='button' class='btn btn-info btn-sm' data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'><p align='center'>"
-                                    .ucfirst($firstname)." ".ucfirst($lastname)."</p></button>
+                                   <button type='button' class='btn btn-info btn-sm' data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'><p align='center'>
+                                    <p align='center'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></button>
                                      <input type='hidden' name='deleteid' value='".$memid."'/>
                                      <button type='submit' class='btn btn-warning btn-sm' name='delete'>
                                           <span class='glyphicon glyphicon-trash'></span>
                                               </button>
                                             <br/><br/>
-                                        </form>" ;
+                                        </form></p>" ;
 
                                     header('Location: project.php');
                                 } } else { 
-									 echo "Team Name : ".$teamname."<br/><br/>Members" ;
                                 $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
                                                                     a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;")) ;
                                 while ($memberrow = mysqli_fetch_array($member)) {
@@ -110,17 +122,7 @@ include_once 'project.inc.php';
 
                                     header('Location: project.php');
 								} }
-                                echo "<br/><div class='dropdown'>
-                                        <input class='btn btn-success btn-xs dropdown-toggle' id='dropdownMenu1' value='Add Member' data-toggle='dropdown'/>
-                                            <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
-                                            <li>
-                                                <form role='form' method='POST' action = ''>
-                                                    <input type='email' class='form-control' name='email' placeholder='Enter member Email'>
-                                                    <input type='hidden' name='team_name' value='" .$teamname. "'/>
-                                                    <input type='hidden' name='project_id' value='" .$pro_id. "'/>
-                                                    <input type='submit' class='btn-success btn-sm' name='member' value='Add '/>
-                                                </form>
-                                            </li>" ;											
+                                											
                             }
                             if (isset($_POST['delete'])) {
                                 $memid = $_POST['deleteid'] ;

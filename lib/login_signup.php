@@ -2,13 +2,13 @@
 
 function signup(){
 	include_once "db_connect.php";
-	$firstname = mysql_real_escape_string($_POST['firstname']);
-	$lastname = mysql_real_escape_string($_POST['lastname']);
-	$email = mysql_real_escape_string($_POST['email']);
-	$phone = mysql_real_escape_string($_POST['phone']);
-	$username = mysql_real_escape_string($_POST['username']);
-	$pas = mysql_real_escape_string($_POST['password']) ;
-	$awe = mysql_real_escape_string($_POST['password2']) ;
+	$firstname = mysqli_real_escape_string($db_handle, $_POST['firstname']);
+	$lastname = mysqli_real_escape_string($db_handle, $_POST['lastname']);
+	$email = mysqli_real_escape_string($db_handle, $_POST['email']);
+	$phone = mysqli_real_escape_string($db_handle, $_POST['phone']);
+	$username = mysqli_real_escape_string($db_handle, $_POST['username']);
+	$pas = mysqli_real_escape_string($db_handle, $_POST['password']) ;
+	$awe = mysqli_real_escape_string($db_handle, $_POST['password2']) ;
 	
 	if ( $pas == $awe ) {
             $already_registered = mysqli_query($db_handle, "SELECT email, username FROM user_info WHERE email = '$email' OR username = '$username';");
@@ -35,9 +35,9 @@ function signup(){
 
 function login(){
 	include_once "db_connect.php";
-	$username = mysql_real_escape_string($_POST['username']);
-	$email = mysql_real_escape_string($_POST['email']); 
-	$password = mysql_real_escape_string($_POST['password']);
+	$username = mysqli_real_escape_string($db_handle, $_POST['username']);
+	$email = mysqli_real_escape_string($db_handle, $_POST['email']); 
+	$password = mysqli_real_escape_string($db_handle, $_POST['password']);
 	$response = mysqli_query($db_handle,"select * from user_info where (username = '$username' OR email = '$username') AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
 	if ( $num_rows){

@@ -184,7 +184,7 @@
 						
 					break;
 			}
-				echo "<tr> <br> <br>";
+				echo "<tr><br> <br>";
 				echo $chelange. "<br> <br>";
 					$commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name	FROM response_challenge as a
 															JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id ORDER BY response_ch_creation ASC;"));

@@ -1,35 +1,38 @@
 <?php
 session_start();
 $error = "";
-
 include_once "controllers/login_controller.php";
 ?>
 
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-	<title>TeamRoom.com</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Billing, Sharing, budget">
-    <meta name="author" content="Anil">
-    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="css/bootswatch.css">
-
-  </head>
-  <body>
-	<div class="row">  
-    <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-inner">
-		  <a class="btn-default" href="index.php"><h4>Ninja.com</a>
-         <div class="span3 pull-right">
-            <ul class="list-inline">
-              <a class="btn-default" href="#">About</a>&nbsp;&nbsp;&nbsp;
-              <a class="btn-default" href="#">Contact</h4></a></ul> 
-          </div></div>
+<html lang="en">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+	<title>TeamRoom</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Billing, Sharing, budget">
+        <meta name="author" content="Anil">
+        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+        <link rel="stylesheet" href="css/bootswatch.css">
+        
+        
+    </head>
+    <body>
+        <div class="row">  
+            <div class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-inner">
+                        <a class="btn-default" href="index.php"><h4>Ninjas</a>
+                        <div class="span3 pull-right">
+                            <ul class="list-inline">
+                                <a class="btn-default" href="#">About</a>&nbsp;&nbsp;&nbsp;
+                                <a class="btn-default" href="#">Contact</h4></a></ul> 
+                        </div></div>
+                </div>
+            </div>
         </div>
-</div></div>
+
 
         <div class="row">
             <div class = "col-xs-3 col-ls-"></div>	
@@ -72,56 +75,86 @@ include_once "controllers/login_controller.php";
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                             <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
                         </div>
-
                         <div class="modal-body">
-
                             <form role="form" method="POST" id="tablef" onsubmit="return validateSignupFormOnSubmit(this)">
                                 <table>							
                                     <tr><div class="input-group" >
-                                        <td>						<span class="input-group-addon">First Name</span>
-                                        </td><td>						<input type="text" class="form-control" name="firstname" placeholder="Enter your first name" onkeyup="nospaces(this)">
-                                        </td>						</div>
+                                            <td>						
+                                                <span class="input-group-addon">First Name</span>
+                                            </td>
+                                            <td>						
+                                                <input type="text" class="form-control" name="firstname" placeholder="Enter your first name" onkeyup="nospaces(this)">
+                                            </td>	
+                                        </div>
+                                    </tr>
+                                    <tr>
+                                        <div class="input-group" >
+                                            <td>
+                                                <span class="input-group-addon">Last Name</span>
+                                            </td> 
+                                            <td>	
+                                                <input type="text" class="form-control" name="lastname" placeholder="Enter your last name" onkeyup="nospaces(this)">
+                                            </td>
+                                        </div>
 
                                     </tr>
-                                    <tr><div class="input-group" >
-                                        <td>						<span class="input-group-addon">Last Name</span>
-                                        </td><td>								<input type="text" class="form-control" name="lastname" placeholder="Enter your last name" onkeyup="nospaces(this)">
-                                        </td>						</div>
-
+                                    <tr>
+                                        <div class="input-group" >
+                                            <td>
+                                                <span class="input-group-addon">Email ID</span>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="email" placeholder="Enter your Email" onkeyup="nospaces(this)" id="email"> <span id="status_email"></span>
+                                            </td>
+                                        </div>
                                     </tr>
-                                    <tr><div class="input-group" >
-                                        <td>						<span class="input-group-addon">Email ID</span>
-                                        </td><td>								<input type="text" class="form-control" name="email" placeholder="Enter your Email" onkeyup="nospaces(this)">
-                                        </td>						</div>
-
+                                    <tr>
+                                        <div class="input-group" >
+                                            <td>
+                                                <span class="input-group-addon">Mobile No</span>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="phone" placeholder="Enter your Mobile Number" onkeyup="nospaces(this)">
+                                            </td>
+                                        </div>
                                     </tr>
-                                    <tr><div class="input-group" >
-                                        <td>					<span class="input-group-addon">Mobile No</span>
-                                        </td><td>								<input type="text" class="form-control" name="phone" placeholder="Enter your Mobile Number" onkeyup="nospaces(this)">
-                                        </td>						</div>
-
+                                    <tr>
+                                        <div class="input-group" >
+                                            <td>
+                                                <span class="input-group-addon">Username</span>
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" name="username" placeholder="Enter your user name" onkeyup="nospaces(this)" id="username"> <span id="status"></span>
+                                            </td>
+                                        </div>
                                     </tr>
-                                    <tr><div class="input-group" >
-                                        <td>					<span class="input-group-addon">Username</span>
-                                        </td><td>								<input type="text" class="form-control" name="username" placeholder="Enter your user name" onkeyup="nospaces(this)">
-                                        </td>						</div>
-
+                                    <tr>
+                                        <div class="input-group" >
+                                            <td>
+                                                <span class="input-group-addon">Password </span>
+                                            </td>
+                                            <td>	
+                                                <input type="password" class="form-control" name="password" placeholder="Enter your password">
+                                            </td>
+                                        </div>
                                     </tr>
-                                    <tr><div class="input-group" >
-                                        <td>					<span class="input-group-addon">Password </span>
-                                        </td><td>								<input type="password" class="form-control" name="password" placeholder="Enter your password">
-                                        </td>						</div>
-
+                                    <tr>
+                                        <div class="input-group" >
+                                            <td>
+                                                <span class="input-group-addon">re-enter Password</span>
+                                            </td>
+                                            <td>
+                                                <input type="password" class="form-control" name="password2" placeholder="Enter your password">
+                                            </td>
+                                        </div>
                                     </tr>
-                                    <tr><div class="input-group" >
-                                        <td>					<span class="input-group-addon">re-enter Password</span>
-                                        </td><td>								<input type="password" class="form-control" name="password2" placeholder="Enter your password">
-                                        </td>						</div>
-
+                                    <tr>
+                                        <td>
+                                            <input type="submit" class="btn btn-primary" name = "request" value = "Signup" >
+                                        </td>
                                     </tr>
-
-                                    <tr><td>                                <input type="submit" class="btn btn-primary" name = "request" value = "Signup" >
-                                        </td></tr>				</table></form>
+                                </table>
+                            </form>
                         </div>
                         <div class  ="modal-footer">
                             <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -145,7 +178,11 @@ include_once "controllers/login_controller.php";
                     }
                 }
             </script>
- <script type="text/javascript" src="js/signupValidation.js"></script>
+
+            <script src="js/jquery.js"></script>
+            <script src="js/bootstrap.min.js"></script>
+           
+            <script type="text/javascript" src="js/signupValidation.js"></script>
             <script type="text/javascript" src="js/loginValidation.js"></script>
                 
             <script type="text/javascript">
@@ -202,11 +239,7 @@ include_once "controllers/login_controller.php";
         }
     };
 </script>
-            <script src="js/jquery.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/validation.js"></script>
-                
-       <?php
+            <?php
             if (isset($_GET['status'])) {
                 if ($_GET['status'] == 2) {
                     echo "<script> 
@@ -235,6 +268,5 @@ include_once "controllers/login_controller.php";
                 }
             }
             ?>
-
     </body>
-</html> 
+</html>
