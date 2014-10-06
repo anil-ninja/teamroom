@@ -77,6 +77,24 @@ return str.replace(new RegExp(find, 'g'), replace);
       $("#submit_ch").removeAttr('disabled');
 			return false;
 		});
+$("#delChallenge").click(function(e){
+    e.preventDefault();//this will prevent the link trying to navigate to another page
+    var href = $(this).attr("href");//get the href so we can navigate later
+    if(confirm("Do u really want to delete this challenge?")){
+        var dataString = 'challangeID='+ href;
+        $.ajax({
+        type: "POST",
+        url: "ajax/delete_chalange.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+          alert(result);
+          if(result=='Challange posted succesfully!'){
+          
+           
+          }
+        }
+        });
 	});
  function getDateTime() {
     var now     = new Date(); 
