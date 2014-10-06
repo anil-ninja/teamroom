@@ -90,9 +90,23 @@
 				echo "<div class='panel-body'>
 						<div class='list-group'>";
 				echo "<div class='list-group-item'>";
+				$dropDown = "<div class='pull-right'>
+								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+              					<ul class='dropdown-menu' aria-labelledby='themes'>
+                					<li><a href='http://bootswatch.com/default/'>Edit Challenge</a></li>
+                					<li><a href='http://bootswatch.com/cerulean/'>Delete Challenge</a></li>
+                					<li><a href='http://bootswatch.com/cosmo/'>Report Spam</a></li>
+                              	</ul>
+                            </div>";
 				switch($challenge_status){
 				case 1:
-						echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" . ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </span> &nbsp Created On : ".$times. "<br/> ETA : ".$remaining_time."</font>" ;
+						echo "<font color = '#F1AE1E'> 
+								Created by &nbsp 
+								<span class='color strong' style= 'color :#CAF11E;'>" 
+									. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
+								</span> &nbsp Created On : ".$times. "<br/> ETA : ".$remaining_time.
+							"</font> 
+							".$dropDown ;
 						echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 								<input type='hidden' name='challenge_id' value='" . $chelangeid . "'/>
 									Your ETA : 
@@ -180,7 +194,14 @@
 					break;
 			
 				case 2:
-					   echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" . ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </span> &nbsp This challenge is already owned </font>";
+					   echo "<font color = '#F1AE1E'> 
+					   				Created by &nbsp 
+					   				<span class='color strong' style= 'color :#CAF11E;'>" 
+					   						. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
+									</span> &nbsp 
+									This challenge is already owned 
+							</font>
+							".$dropDown;
 						
 					break;
 			}
@@ -207,14 +228,17 @@
 									       <div class='pull-left lh-fix'>
 												<img src='img/default.gif'>
 										   </div>
-											<form action='' method='POST'>
-												<table>
-													<tr><td><input type='hidden' name='user_id' value='$user_id'/></td></tr>
-													<tr><td><input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
-													<tr><td><input type='text' STYLE='border: 1px solid #bdc7d8; height: 30px; padding: 3px; width: 350px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/></td></tr>
-													<tr><td> <br/><input type='submit' style='display:none;' class='btn btn-success btn-sm' name='public_chl_response' value='Post'></td></tr>
-												</table>
-											</form>
+										   <div class='comment-text'>
+												<form action='' method='POST'>
+													
+														<input type='hidden' name='user_id' value='$user_id'/></td></tr>
+														<input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
+											    		<div class='input-group'>
+															<input type='text' class='form-control' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
+														</div>
+														<input type='submit' style='display:none;' class='btn btn-success btn-sm' name='public_chl_response' value='Post'></td></tr>
+												</form>
+											</div>
 										</div>";
 					echo " </div> </div></div> ";
 				}
