@@ -4,7 +4,7 @@
                                 <h3 class="panel-title" >Your Challenges</h3>
                             </div>
                         </div>
-                        <div class='content'>
+                        
                             <?php 
                                
                                 $challange_display = mysqli_query($db_handle, ("SELECT * FROM challenges WHERE user_id=$user_id and challenge_type = '1' ORDER BY challenge_creation DESC;"));
@@ -70,4 +70,4 @@
                                     echo '</tr> </div> </div> </div>';
                                     }
                                 ?>
-                            </div>
+                            

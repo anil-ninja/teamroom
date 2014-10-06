@@ -3,7 +3,7 @@
                                 <h3 class="panel-title">Your Owned Challenges</h3>
                             </div>
                         </div>
-                        <div class="content">
+                        
                             <?php 
                                 $owned_challenges = mysqli_query($db_handle, ("SELECT a.challenge_id, a.challenge, a.user_id, b.ownership_creation, b.comp_ch_ETA, c.first_name, c.last_name
                                                                         FROM challenges as a 
@@ -84,4 +84,4 @@
 
                             }
                             ?>
-                        </div>
+                        
