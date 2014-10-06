@@ -5,7 +5,7 @@ include_once 'ninjas.inc.php';
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta http-equiv="refresh" content="30" >
+<meta http-equiv="refresh" content="60" >
     <meta charset="utf-8">
 	<title>TeamRoom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
