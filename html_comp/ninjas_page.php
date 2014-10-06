@@ -97,7 +97,7 @@
 								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
               					<ul class='dropdown-menu' aria-labelledby='themes'>
                 					<li><a href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-                					<li><a href='http://bootswatch.com/cerulean/'>Delete Challenge</a></li>
+                					<li><button id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</button></li>
                 					<li><a href='http://bootswatch.com/cosmo/'>Report Spam</a></li>
                               	</ul>
                             </div>";
