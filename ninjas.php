@@ -137,7 +137,6 @@ $('.tree-toggle').click(function () {
   
     //e.preventDefault();//this will prevent the link trying to navigate to another page
     //var href = $(this).attr("cID");//get the href so we can navigate later
-    alert(href);
     if(confirm("Do u really want to delete this challenge?")){
         var dataString = 'challengeID='+ href;
         $.ajax({
