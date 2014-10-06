@@ -5,6 +5,7 @@ include_once 'ninjas.inc.php';
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta http-equiv="refresh" content="10" >
     <meta charset="utf-8">
 	<title>TeamRoom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -104,26 +105,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 </script>
   </head>
   <body>
-       <div class="row">
-          <div class="col-lg-12">
-              <div class="navbar navbar-default navbar-fixed-top">
-                <div class="navbar-header">
-				   <a class="navbar-brand" href="ninjas.php">Ninjas</a>
-                  <div class=" col-md-offset-3">
-                  <form class="navbar-text navbar-left" method="POST" action="">
-                    <input class="inline-form" placeholder="Search" type="text"><button type="submit" name="search" class="glyphicon glyphicon-search btn-primary btn-xs"></button>
-                <ul class="nav navbar-nav navbar-right  navbar-user">
-					<li><a data-toggle="modal"  data-target="#myModal" style="cursor:pointer; color:white">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-edit"></i>Create New Project</a></li>
-				  <li><a href="challenges.php" >Your Challenges</a></li>
-				  <li><p class="navbar-text">Your rank :  <?php echo $rank ; ?></p></li>
-                    <li><p class="navbar-text"><span class="glyphicon glyphicon-user"></span> Hello <?php echo ucfirst($name); ?></p></li>                              
-					<li><p class="navbar-text" ><span id="demo"></span></p></li>                   
-                   <li><p class="navbar-text"><button type="submit" class="btn btn-danger btn-xs" name="logout" ><span class="glyphicon glyphicon-off"></span></button></p>
-                   </li></ul></form> 
-               </div></div>
-          </div>
-        </div>
-      </div>
+       <?php include_once 'html_comp/navbar_homepage.php'; ?>
 
         <div class="row-fluid">
           <div class="col-lg-3" style="width:300px;">

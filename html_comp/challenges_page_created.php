@@ -4,7 +4,7 @@
                                 <h3 class="panel-title" >Your Challenges</h3>
                             </div>
                         </div>
-                        <div class='content'>
+                        
                             <?php 
                                
                                 $challange_display = mysqli_query($db_handle, ("SELECT * FROM challenges WHERE user_id=$user_id and challenge_type = '1' ORDER BY challenge_creation DESC;"));
@@ -25,8 +25,7 @@
 														$hour = floor($daysec/(60*60)) ;
 														$hoursec = $daysec%(60*60) ;
 														$minute = floor($hoursec/60) ;
-														$sec = $hoursec%60 ;
-														$remainingtime = $day.":".$hour.":".$minute.":".$sec." "."Minutes" ;
+														$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
                                                         $challange_own_user = mysqli_query($db_handle, ("Select * from user_info where user_id = '$challenge_owner';"));
                                                         $challange_own_userRow = mysqli_fetch_array($challange_own_user);
                                                         echo "<font color = '#F1AE1E'> Owned by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($challange_own_userRow['first_name']). '&nbsp'. ucfirst($challange_own_userRow['last_name']). " </span> &nbsp on &nbsp".$challange_ownedRow['ownership_creation']. " &nbsp with ETA in &nbsp".$remainingtime. " </font>" ;
@@ -70,4 +69,4 @@
                                     echo '</tr> </div> </div> </div>';
                                     }
                                 ?>
-                            </div>
+                            

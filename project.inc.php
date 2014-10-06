@@ -31,7 +31,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
 		$sec = $hoursec%60 ;
-		$remaining_time = $day.":".$hour.":".$minute.":".$sec." "."Minutes" ;
+		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 }		
 
 if (isset($_POST['resp_project'])) {
@@ -90,7 +90,7 @@ if (isset($_POST['create_team'])) {
    if (strlen($team_name)>0) {
     $emailid = $_POST['email'];
   if ($emailid == $email) {  
-	  echo "<script>alert('Please, Enter friend's Email !!!')</script>";
+	  echo "<script>alert('Please, Enter friends Email !!!')</script>";
   } else {
     $pro_id = $_SESSION['project_id'] ;
     $respo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE email = '$emailid';");

@@ -6,7 +6,7 @@ if($_POST['challange']){
 	$challange = $_POST['challange'] ;
 	$opentime = $_POST['opentime'] ;
 	$challange_eta = $_POST['challange_eta'] ;
-	mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge, challenge_open_time, challenge_ETA) 
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge, challenge_open_time, challenge_ETA) 
                                     VALUES ('$user_id', '$challange', '$opentime', '$challange_eta') ; ") ;
 	
 	if(mysqli_error($db_handle)) echo "Failed to Post Challange!";

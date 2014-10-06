@@ -30,8 +30,7 @@
 								$hour = floor($daysec/(60*60)) ;
 								$hoursec = $daysec%(60*60) ;
 								$minute = floor($hoursec/60) ;
-								$sec = $hoursec%60 ;
-								$remaining_time = "ETA : ".$day.":".$hour.":".$minute.":".$sec." "."Minutes" ;
+								$remaining_time = "ETA : ".$day." Days :".$hour." Hours :".$minute." Min" ;
 								$title = "Project Created ON : ".$p_time." ".$remaining_time ;			
                                 echo "<li><form method='POST' action=''>
                                 <input type='hidden' name='project_title' value='".$p_title."'/>

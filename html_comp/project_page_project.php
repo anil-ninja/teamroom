@@ -3,7 +3,7 @@
                                 <h3 class="panel-title">Project : <?php echo $title ; ?></h3>
                             </div>
                             </div>
-                            <div class='content'>
+                            
                           <?php
                                $title = $_SESSION['project_title'] ;
                                $project_id = mysqli_query($db_handle, "(SELECT user_id, project_id, project_ETA, project_creation, project_stmt FROM projects WHERE project_title = '$title' and project_blob_id = '0')
@@ -20,8 +20,7 @@
 										$hour = floor($daysec/(60*60)) ;
 										$hoursec = $daysec%(60*60) ;
 										$minute = floor($hoursec/60) ;
-										$sec = $hoursec%60 ;
-										$projectETA = $day.":".$hour.":".$minute.":".$sec ;
+										$projectETA = $day." Days :".$hour." Hours :".$minute." Min" ;
 										
 								   echo "<div class='panel-body'>
                                             <div class='list-group'>
@@ -81,4 +80,4 @@
 										</table>
 									</div></div></div> </div>"								  
                     ?>
-                    </div>
+                    

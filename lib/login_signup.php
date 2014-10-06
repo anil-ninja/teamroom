@@ -50,7 +50,7 @@ function login(){
 		exit;
 	}
 	else {
-		header('Location: ./index.php?status=2');
+		header('Location: ./index.php?status=2');      
 	}
 	mysqli_close($db_handle);
 }

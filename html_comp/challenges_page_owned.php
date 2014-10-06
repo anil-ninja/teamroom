@@ -3,7 +3,7 @@
                                 <h3 class="panel-title">Your Owned Challenges</h3>
                             </div>
                         </div>
-                        <div class="content">
+                        
                             <?php 
                                 $owned_challenges = mysqli_query($db_handle, ("SELECT a.challenge_id, a.challenge, a.user_id, b.ownership_creation, b.comp_ch_ETA, c.first_name, c.last_name
                                                                         FROM challenges as a 
@@ -19,8 +19,7 @@
 									$hour = floor($daysec/(60*60)) ;
 									$hoursec = $daysec%(60*60) ;
 									$minute = floor($hoursec/60) ;
-									$sec = $hoursec%60 ;
-									$remainingtime = $day.":".$hour.":".$minute.":".$sec." "."Minutes" ;
+									$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
 									$starttimestr = (string) $time ;
 									$initialtime = strtotime($starttimestr) ;
 									$totaltime = $initialtime+$ETA ;
@@ -34,16 +33,13 @@
 									$hoursec = $daysec%(60*60) ;
 									$minute = floor($hoursec/60) ;
 									$sec = $hoursec%60 ;
-									$remaining_time = $day.":".$hour.":".$minute.":".$sec." "."Minutes" ;
+									$remaining_time = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 								}
                             echo "<div class='panel-body'>
                                     <div class='list-group'>";
                                     echo '<tr>'. "<div class='list-group-item'>";
                             echo "<font color = '#F1AE1E'> Challenge by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> &nbsp on &nbsp".$time. " &nbsp to accomplish in &nbsp".$remainingtime. "&nbsp&nbsp&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time."</font>" ;       
 
-
-                            //echo '</tr> </table>  </div>';
-                            //echo "<div class='list-group-item'>";
                             echo "<td> <br> <br>". str_replace("<s>","&nbsp;",$owned_challengesRow['challenge']). "</td> <br> <br>";
                             echo '</tr>';
                             $commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name 
@@ -84,4 +80,4 @@
 
                             }
                             ?>
-                        </div>
+                        

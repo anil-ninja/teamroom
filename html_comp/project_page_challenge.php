@@ -3,7 +3,7 @@
                             <h3 class="panel-title"> Remaining Time : <?php echo $remaining_time ; ?></h3>
                         </div>
                     </div>
-                    <div class='content'>
+                    
                         <?php                                                                                  
                             $display = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.user_id, a.challenge_ETA, a.challenge, a.challenge_creation,
                                                                 b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b where
@@ -26,8 +26,7 @@
 										$hour = floor($daysec/(60*60)) ;
 										$hoursec = $daysec%(60*60) ;
 										$minute = floor($hoursec/60) ;
-										$sec = $hoursec%60 ;
-										$remainingtime = $day.":".$hour.":".$minute.":".$sec." "."Minutes" ;
+										$remainingtime =$day." Days :".$hour." Hours :".$minute." Min" ;
 										$starttimestr = (string) $chalangetime ;
 										$initialtime = strtotime($starttimestr) ;
 										$totaltime = $initialtime+$ETA ;
@@ -41,7 +40,7 @@
 										$hoursec = $daysec%(60*60) ;
 										$minute = floor($hoursec/60) ;
 										$sec = $hoursec%60 ;
-										$remaining_time = $day.":".$hour.":".$minute.":".$sec." "."Minutes" ;
+										$remaining_time = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 									}
                               echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' <span class='color strong' style= 'color :#CAF11E;'>
 										: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
@@ -101,4 +100,4 @@
                             echo "</div> </div> </div>";
                             }
                         ?>
-                    </div>
+                    
