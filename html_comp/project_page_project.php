@@ -3,7 +3,7 @@
                                 <h3 class="panel-title">Project : <?php echo $title ; ?></h3>
                             </div>
                             </div>
-                            <div class='content'>
+                            
                           <?php
                                $title = $_SESSION['project_title'] ;
                                $project_id = mysqli_query($db_handle, "(SELECT user_id, project_id, project_ETA, project_creation, project_stmt FROM projects WHERE project_title = '$title' and project_blob_id = '0')
@@ -81,4 +81,4 @@
 										</table>
 									</div></div></div> </div>"								  
                     ?>
-                    </div>
+                    

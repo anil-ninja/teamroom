@@ -59,13 +59,13 @@ include_once 'project.inc.php';
                 <div class="col-xs-12 col-sm-5">
                     <div class="row" style="visibility: visible; position: relative;">
                        <?php include_once 'html_comp/project_page_project.php'; ?>
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-5">
-                <div class="row" style="visibility: visible; position: relative;">
-					<?php include_once 'html_comp/project_page_challenge.php'; ?>
-				</div>
-            </div>	
+                <div class="col-xs-12 col-sm-5">
+                    <div class="row" style="visibility: visible; position: relative;">
+					   <?php include_once 'html_comp/project_page_challenge.php'; ?>
+				    </div>
+                </div>	
             <div class="col-lg-2" STYLE="font-size: 11pt;">
 				<?php   include_once 'html_comp/right_panel_project.php';      ?>
             </div> 

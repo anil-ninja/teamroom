@@ -3,7 +3,7 @@
                             <h3 class="panel-title"> Remaining Time : <?php echo $remaining_time ; ?></h3>
                         </div>
                     </div>
-                    <div class='content'>
+                    
                         <?php                                                                                  
                             $display = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.user_id, a.challenge_ETA, a.challenge, a.challenge_creation,
                                                                 b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b where
@@ -101,4 +101,4 @@
                             echo "</div> </div> </div>";
                             }
                         ?>
-                    </div>
+                    
