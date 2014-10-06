@@ -5,7 +5,6 @@ include_once 'project.inc.php';
 <html lang="en">
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta http-equiv="refresh" content="60" >
         <meta charset="utf-8">
             <title>Projects</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -131,7 +130,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 						$("#c_etac").val("");
 						$("#c_etad").val("");
 						$("#type").val("");
-					
+						location.reload();
 					}
 				}
 			});

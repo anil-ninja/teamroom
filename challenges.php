@@ -4,7 +4,6 @@ include_once "challenges.inc.php";
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="refresh" content="60" >
         <title>Challenges</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Billing, Sharing, budget">
@@ -103,7 +102,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 						$("#c_etab").val("");
 						$("#c_etac").val("");
 						$("#c_etad").val("");
-					
+					location.reload();
 					}
 				}
 			});
