@@ -172,6 +172,9 @@ include_once 'project.inc.php';
             </div>
             <div class="modal-body">
                 <form >
+					<div class="input-group-addon">
+                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
+                    </div><br>
                     <div class="input-group-addon">
                         <textarea rows="3" class="form-control" id="challange" placeholder="Details of Challange"></textarea>
                     </div><br>

@@ -57,7 +57,10 @@
                     <h4 class="modal-title" id="myModalLabel">Create Challenge</h4>
                 </div>
                 <div class="modal-body">
-                          <form ><br/>
+                          <form >
+                        <div class="input-group-addon">
+                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
+                         </div><br>
                         <div class="input-group-addon">
                         <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea>
                         </div><br>
@@ -79,7 +82,7 @@
                             <option value='30' >30</option>
                             <option value='40'  >40</option>
                             <option value='50' >50</option>
-                        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETA
+                        </select><br/><br/>ETA
                         <select class="btn btn-default btn-xs" id= "c_eta" >	
                             <option value='0' selected >Month</option>
                             <?php

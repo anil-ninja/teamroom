@@ -1,5 +1,8 @@
                <div class="panel-body">
-                  <form ><br/>
+                  <form >
+						<div class="input-group-addon">
+                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
+                         </div><br>
                         <div class="input-group-addon">
                         <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea>
                         </div><br>

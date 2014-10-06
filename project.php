@@ -89,7 +89,9 @@ return str.replace(new RegExp(find, 'g'), replace);
 	
 	$(document).ready(function(){
 		$("#create_challange_pb_pr").click(function(){
+			$("#create_challange_pb_pr").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;
+			var challenge_title = $("#challange_title").val() ;
 			var open_time = parseInt($("#open_time").val());
 			var open = parseInt($("#open").val());
 			var opentime = parseInt(open_time*60+open) ;
@@ -100,10 +102,13 @@ return str.replace(new RegExp(find, 'g'), replace);
 			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',challenge)) + '&opentime='+ (opentime+='') + 
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',challenge)) + '&challenge_title='+ challenge_title + '&opentime='+ (opentime+='') + 
 			'&challange_eta='+ (challange_eta+='') + '&type='+ type ;
 			//alert(dataString);
 			if(challenge==''){
+				alert("Please Enter Something !!!");
+			}
+			else if(challenge_title==''){
 				alert("Please Enter Something !!!");
 			}
 			else
@@ -118,6 +123,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 					alert(result);
 					if(result=='Challange posted succesfully!'){
 						$("#challange").val("");
+						$("#challange_title").val("");
 						$("#open_time").val("");
 						$("#open").val("");
 						$("#c_eta").val("");
