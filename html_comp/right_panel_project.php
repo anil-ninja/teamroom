@@ -90,10 +90,11 @@ include_once 'project.inc.php';
                                
                                if ($owner == $user_id) { 
                                
-                                $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
+                                $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status,b.last_name,b.rank, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
                                                                     a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;")) ;
                                 while ($memberrow = mysqli_fetch_array($member)) {
                                     $memid = $memberrow['id'] ;
+                                    $memberid = $memberrow['user_id'] ;
                                     $firstname = $memberrow['first_name'] ;
 									$lastname = $memberrow['last_name'] ;
 									$email = $memberrow['email'] ;
@@ -101,16 +102,17 @@ include_once 'project.inc.php';
 									$rank = $memberrow['rank'] ;
 									$profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
 							echo "<form role='form' method='POST' onsubmit=\"return confirm('Really, Remove this Friend !!!')\">
-                                   <button type='button' class='btn btn-info btn-sm' data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'><p align='center'>
-                                    <p align='center'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></button>
+                                   <a data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'>
+                                    <p align='center'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></a>
                                      <input type='hidden' name='deleteid' value='".$memid."'/>
+                                     <input type='hidden' name='delid' value='".$memberid."'/>
                                      <button type='submit' class='btn btn-warning btn-sm' name='delete'>
                                           <span class='glyphicon glyphicon-trash'></span>
                                               </button>
                                             <br/><br/>
                                         </form></p>" ;
 
-                                    header('Location: project.php');
+                                    //header('Location: project.php');
                                 } } else { 
                                 $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
                                                                     a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;")) ;
@@ -120,16 +122,22 @@ include_once 'project.inc.php';
                                                 Name : ".strtoupper($memberrow['first_name'])."
                                             </li><br/>" ;
 
-                                    header('Location: project.php');
+                                   // header('Location: project.php');
 								} }
                                 											
                             }
                             if (isset($_POST['delete'])) {
                                 $memid = $_POST['deleteid'] ;
+                                $memberid = $_POST['delid'] ;
+                              if ($memberid == $user_id) { 
+								  echo "<script>alert('Can't Delete Team Owner !!!')</script>" ;
+								   }
+							else {	  
                                 $a = date("y-m-d H:i:s") ;
                                 mysqli_query($db_handle,"UPDATE teams SET member_status='2', leave_team='$a' WHERE id = '$memid' ; ") ;
                                 //header('Location: project.php');
                                 }
+							}
                             if (isset($_POST['member'])) {
                                 $team_name = $_POST['team_name'];
                                 $email = $_POST['email'];
@@ -287,7 +295,7 @@ include_once 'project.inc.php';
                                 </form>
                             </div>
                             <div class="modal-footer">
-                                <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                                <button id="newuser" type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                             </div>
                         </div>
                     </div>

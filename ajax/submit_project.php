@@ -9,9 +9,9 @@ if($_POST['project_title']){
 	$project_eta = $_POST['project_eta'] ;
 if (strlen($project_st) < 1000) {
         mysqli_query($db_handle, "INSERT INTO projects (user_id, project_title, project_stmt, project_ETA) 
-                                VALUES ('$user_id', '$project_title', '$project_st', '$project_eta');");
+                                  VALUES ('$user_id', '$project_title', '$project_st', '$project_eta');");
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
-	else { echo "Challange posted succesfully!"; }
+	else { echo "Project posted succesfully!"; }
 }
     else {
         mysqli_query($db_handle, "INSERT INTO projects_blob (project_blob_id, project_stmt) 
@@ -21,7 +21,7 @@ if (strlen($project_st) < 1000) {
         mysqli_query($db_handle, "INSERT INTO projects (user_id, project_blob_id, project_title, project_stmt, project_ETA) 
                                 VALUES ('$user_id', '$id', '$project_title', ' ', '$project_eta');");
 	if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
-	else { echo "Challange posted succesfully!"; }
+	else { echo "Project posted succesfully!"; }
 }
 	mysqli_close($db_handle);
 }

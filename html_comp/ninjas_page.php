@@ -62,7 +62,7 @@
                     </form><br/><br/>
                 </div>
               </div>
-                <div class='content'>
+                <div class='panel-body'>
 		<?php
 				$user_id = $_SESSION['user_id'];
 				$open_chalange = mysqli_query($db_handle, "select a.challenge_id,a.challenge_creation, a.challenge,a.user_id,a.challenge_ETA,a.challenge_status,b.first_name,b.last_name, b.contact_no,b.email
@@ -184,8 +184,8 @@
 						
 					break;
 			}
-				echo "<tr><br> <br>";
-				echo $chelange. "<br> <br>";
+				echo "</div><div class='list-group-item'>";
+				echo $chelange. "</div><div class='list-group-item'>";
 					$commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name	FROM response_challenge as a
 															JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id ORDER BY response_ch_creation ASC;"));
 						while($commenterRow = mysqli_fetch_array($commenter)) {
@@ -194,27 +194,29 @@
 											<div class='pull-left lh-fix'>
 												<img src='img/default.gif'>
 											</div>
-											<div class='comment-text'><span class='pull-left color strong'>";
-								echo "&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."</span> ";
+											<div class='comment-text'>
+												<span class='pull-left color strong'>";
+								echo "&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."
+												</span> ";
 								echo str_repeat('&nbsp;', 2) .$commenterRow['response_ch'] ."
 											</div>
 										</div>
 									</div>";
 								}
 								echo "<div class='comments clearfix'>
-								       <div class='pull-left lh-fix'>
-										<img src='img/default.gif'>
-									   </div>
-										<form action='' method='POST'>
-										<table>
-											<tr><td><input type='hidden' name='user_id' value='$user_id'/></td></tr>
-											<tr><td><input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
-											<tr><td><input type='text' STYLE='border: 1px solid #bdc7d8; height: 30px; padding: 3px; width: 350px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/></td></tr>
-											<tr><td> <br/><input type='submit' style='display:none;' class='btn btn-success btn-sm' name='public_chl_response' value='Post'></td></tr>
-										</table>
-										</form>
+									       <div class='pull-left lh-fix'>
+												<img src='img/default.gif'>
+										   </div>
+											<form action='' method='POST'>
+												<table>
+													<tr><td><input type='hidden' name='user_id' value='$user_id'/></td></tr>
+													<tr><td><input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
+													<tr><td><input type='text' STYLE='border: 1px solid #bdc7d8; height: 30px; padding: 3px; width: 350px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/></td></tr>
+													<tr><td> <br/><input type='submit' style='display:none;' class='btn btn-success btn-sm' name='public_chl_response' value='Post'></td></tr>
+												</table>
+											</form>
 										</div>";
-					echo "</tr> </div> </div></div> ";
+					echo " </div> </div></div> ";
 				}
 			?>
 			
