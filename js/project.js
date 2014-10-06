@@ -38,7 +38,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 						$("#etab").val("");
 						$("#etac").val("");
 						$("#etad").val("");
-					
+						location.reload();
 					}
 				}
 			});

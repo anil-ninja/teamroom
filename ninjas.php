@@ -129,15 +129,15 @@ $("#delChallenge").click(function(e){
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
 
         <div class="row-fluid">
-          <div class="col-lg-3" style="width:300px;">
+          <div class="col-lg-2" style="width:200px;">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
-          <div class="col-lg-6">
+          <div class="col-lg-8">
               <div class="panel-primary">
 			<?php include_once 'html_comp/ninjas_page.php'   ?>
 	</div>
 	</div>
-	<div class="col-lg-3" style="width:300px;">
+	<div class="col-lg-2" style="width:200px;">
            <?php include_once 'html_comp/right_panel_ninjas.php'   ?> 
 </div></div>
     <script src="js/jquery-1.js"></script>

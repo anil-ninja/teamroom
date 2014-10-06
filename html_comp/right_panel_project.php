@@ -44,8 +44,8 @@ include_once 'project.inc.php';
                                 echo "<li><form method='POST' action=''>
                                 <input type='hidden' name='project_title' value='" . $p_title . "'/>
                                 <input type='hidden' name='project_id' value='" . $project_title_displayRow['project_id'] . "'/>
-                                <p align='left'><button type='submit' class='btn btn-default' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='" . $title . "'>" . $p_title . "</button></p></form></li>";
+                                <p align='center' ><input type='submit' class='btn btn-default' name='projectphp' data-toggle='tooltip' 
+                                data-placement='bottom' data-original-title='".$title."' value='".ucfirst($p_title)."' style='white-space: normal;'/></p></form></li>";
                             }
                             ?>
                         </ul></div>
@@ -61,7 +61,7 @@ include_once 'project.inc.php';
 										<li><form role='form' method='POST' action = ''>
                                         <input type='hidden' name='team_name' value='" . $teams . "'/>
                                         <input type='hidden' name='project_id' value='" . $pro_id . "'/>
-                                        <input type='submit' class='form-control' name='view' value='" . $teams . "'/></form></li></ul><br/>";
+                                        <p align='center' ><input type='submit' class='btn btn-default' name='view' value='".ucfirst($teams)."' style='white-space: normal;'/></p></form></li></ul><br/>";
                             }
                             ?>
 
@@ -76,7 +76,7 @@ include_once 'project.inc.php';
                                 $teamowners = mysqli_query($db_handle, ("SELECT DISTINCT team_owner FROM teams where  team_name = '$teamname' and team_owner != '0' ;")) ;
                                  $teamownersrow = mysqli_fetch_array($teamowners) ;
                                  $owner = $teamownersrow['team_owner'] ;
-								 echo "Team Name : ".$teamname."<br/>
+								 echo "Team Name : <p align='center' style='white-space: normal;' >".ucfirst($teamname)."</p><br/>
 										<div class='dropdown'>
                                           <input class='btn btn-success btn-xs dropdown-toggle' id='dropdownMenu1' value='Add Member' data-toggle='dropdown'/>
                                             <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
@@ -104,7 +104,7 @@ include_once 'project.inc.php';
 									$profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
 							echo "<form role='form' method='POST' onsubmit=\"return confirm('Really, Remove this Friend !!!')\">
                                    <a data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'>
-                                    <p align='center'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></a>
+                                    <p align='center' style='white-space: normal;'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></a>
                                      <input type='hidden' name='deleteid' value='".$memid."'/>
                                      <input type='hidden' name='delid' value='".$memberid."'/>
                                      <button type='submit' class='btn btn-warning btn-sm' name='delete'>
@@ -127,7 +127,7 @@ include_once 'project.inc.php';
 									$rank = $memberrow['rank'] ;
 									$profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
 							echo "<a data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'>
-                                    <p align='center'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></a><br/><br/>" ;
+                                    <p align='center' style='white-space: normal;'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></a><br/><br/>" ;
 								} }
                                 											
                             }

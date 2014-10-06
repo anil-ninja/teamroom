@@ -12,6 +12,7 @@
                                     echo "<div class='panel-body'>
                                             <div class='list-group'>";
                                                 $chall_id = $challange_displayRow['challenge_id'];
+                                                $ch_title = $challange_displayRow['challenge_title'];
                                                 $challenge_owner_status = $challange_displayRow['challenge_status'];
                                                 echo "<div class='list-group-item'>";
                                                
@@ -33,7 +34,7 @@
                                                 if ($challenge_owner_status == '1') {
                                                         echo "<font color = '#F1AE1E'> Ownership is not claimed till now </font> ";
                                                     }
-                                        echo '<tr> <br> <br>';
+                                        echo "<tr> <br><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
                                         echo str_replace("<s>","&nbsp;",$challange_displayRow['challenge']). "<br> <br>";
                                         $commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name 
                                                                                 FROM response_challenge as a 

@@ -5,7 +5,7 @@
                     </div>
                     
                         <?php                                                                                  
-                            $display = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.user_id, a.challenge_ETA, a.challenge, a.challenge_creation,
+                            $display = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.challenge, a.challenge_creation,
                                                                 b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b where
                                                                 a.project_id = '$p_id'	and a.user_id = b.user_id ORDER BY challenge_creation DESC;");
                             while ($displayrow = mysqli_fetch_array($display)) {
@@ -15,6 +15,7 @@
                                         $chalangest = $displayrow['challenge'] ;
                                         $chalangetime = $displayrow['challenge_creation'] ;
                                         $idb = $displayrow['challenge_id'] ;
+                                        $ch_title = $displayrow['challenge_title'] ;
                                         $chalangeeta = $displayrow['challenge_ETA'] ;
                                         $fname = $displayrow['first_name'] ;
                                         $lname = $displayrow['last_name'];
@@ -45,7 +46,8 @@
                               echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' <span class='color strong' style= 'color :#CAF11E;'>
 										: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
 										ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font> <br>
-										<br><table>
+										<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>
+										<table>
                                             <tr cha_smt='".$idb."' class='edit_tr'>
                                                 <td class='edit_td'>
                                                     <span id='cha_smt_".$idb."' class='text' ><small>".str_replace("<s>","&nbsp;",$chalangest)."</small></span>

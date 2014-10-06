@@ -5,13 +5,14 @@
                         </div>
                         
                             <?php 
-                                $owned_challenges = mysqli_query($db_handle, ("SELECT a.challenge_id, a.challenge, a.user_id, b.ownership_creation, b.comp_ch_ETA, c.first_name, c.last_name
+                                $owned_challenges = mysqli_query($db_handle, ("SELECT a.challenge_id, a.challenge, a.challenge_title, a.user_id, b.ownership_creation, b.comp_ch_ETA, c.first_name, c.last_name
                                                                         FROM challenges as a 
                                                                             JOIN challenge_ownership as b 
                                                                                 JOIN user_info as c 
                                                                                     where (a.challenge_id = b.challenge_id AND b.user_id = $user_id) AND a.user_id =c.user_id ORDER BY challenge_creation DESC;"));
                                 while ($owned_challengesRow = mysqli_fetch_array($owned_challenges)) {
 									$eta = $owned_challengesRow['comp_ch_ETA'];
+									$ch_title = $owned_challengesRow['challenge_title'];
 									$time = $owned_challengesRow['ownership_creation'] ;
 									$ETA = $eta*60 ;
 									$day = floor($ETA/(24*60*60)) ;
@@ -40,7 +41,9 @@
                                     echo '<tr>'. "<div class='list-group-item'>";
                             echo "<font color = '#F1AE1E'> Challenge by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> &nbsp on &nbsp".$time. " &nbsp to accomplish in &nbsp".$remainingtime. "&nbsp&nbsp&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time."</font>" ;       
 
-                            echo "<td> <br> <br>". str_replace("<s>","&nbsp;",$owned_challengesRow['challenge']). "</td> <br> <br>";
+                            echo "<td> <br> 
+									<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p>
+									<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['challenge']). "</td> <br> <br>";
                             echo '</tr>';
                             $commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name 
                                                                     FROM response_challenge as a 

@@ -13,7 +13,7 @@
                             while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                     $team_name = $teams_name_displayRow['team_name'] ;
                                     echo " <li>
-												<label class='tree-toggle nav-header btn btn-default'>".$team_name."<br/></label>
+												<label class='tree-toggle nav-header btn btn-default' style='white-space: normal; align:center;'>".ucfirst($team_name)."<br/></label>
 													<ul class='nav tree' style='display: none;'><br/>" ;
                                                                                         
 								$teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
@@ -25,7 +25,9 @@
                                                     $phone = $teams_names_displayRow['contact_no'] ;
                                                     $rank = $teams_names_displayRow['rank'] ;
                                                     $profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
-                                            echo "<li><p align='center'><a data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a></p></li><br/>" ;
+                                            echo "<li><p align='center' ><input type='submit' class='btn btn-default' name='projectphp' data-toggle='tooltip' 
+                                                  data-placement='bottom' data-original-title='".$profile."' value='".ucfirst($firstname)." ".ucfirst($lastname)."' 
+                                                  style='white-space: normal;'/></p></li><br/>" ;
                                     }
                                     echo "</ul></li><br/>" ;
                             }
