@@ -39,7 +39,7 @@ if (isset($_POST['resp_project'])) {
 	$pro_id = $_SESSION['project_id'] ;
 	$pr_respon = $_POST['pr_resp'] ;
   if(strlen($pr_respon)>1) {
-	mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, response_pr) VALUES ('$user_id', '$pro_id', '$pr_respon') ; ") ;
+	mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$pro_id', '$pr_respon') ; ") ;
 	header('Location: #');
 	} else { echo "<script>alert('Enter something!')</script>"; }
 	}
@@ -49,7 +49,7 @@ if (isset($_POST['resp_project'])) {
         $challenge_of_pr_id = $_POST['challenge_of_project_id'];
         $ch_of_pr_resp = $_POST['challenge_of_pr_resp'];
       if(strlen($ch_of_pr_resp)>1) {
-        mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, response_ch) VALUES ('$user_id', '$challenge_of_pr_id', '$ch_of_pr_resp') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$challenge_of_pr_id', '$ch_of_pr_resp') ; ") ;
 
         header('Location: #');
         } else { echo "<script>alert('Enter something!')</script>";; }

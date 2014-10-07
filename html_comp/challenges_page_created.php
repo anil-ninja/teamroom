@@ -35,8 +35,8 @@
                                                         echo "<font color = '#F1AE1E'> Ownership is not claimed till now </font> ";
                                                     }
                                         echo "<tr> <br><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
-                                        echo str_replace("<s>","&nbsp;",$challange_displayRow['challenge']). "<br> <br>";
-                                        $commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name 
+                                        echo str_replace("<s>","&nbsp;",$challange_displayRow['stmt']). "<br> <br>";
+                                        $commenter = mysqli_query ($db_handle, ("SELECT a.stmt, a.challenge_id, a.user_id, b.first_name, b.last_name 
                                                                                 FROM response_challenge as a 
                                                                                 JOIN user_info as b 
                                                                                 WHERE a.challenge_id = $chall_id AND a.user_id = b.user_id ORDER BY response_ch_creation ASC;"));
@@ -50,7 +50,7 @@
                                                             <span class='pull-left color strong'>";
                                                                 echo "&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
                                                             "</span> ";
-                                                                echo str_repeat('&nbsp;', 2) .$commenterRow['response_ch'] ."
+                                                                echo str_repeat('&nbsp;', 2) .$commenterRow['stmt'] ."
                                                         </div>
                                                     </div> 
                                                 </div>";

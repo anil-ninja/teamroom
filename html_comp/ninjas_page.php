@@ -68,11 +68,11 @@
                 <div class='panel-body'>
 		<?php
 				$user_id = $_SESSION['user_id'];
-				$open_chalange = mysqli_query($db_handle, "select a.challenge_id,a.challenge_creation,a.challenge_title, a.challenge,a.user_id,a.challenge_ETA,a.challenge_status,b.first_name,b.last_name, b.contact_no,b.email
+				$open_chalange = mysqli_query($db_handle, "select a.challenge_id,a.challenge_creation,a.challenge_title, a.stmt,a.user_id,a.challenge_ETA,a.challenge_status,b.first_name,b.last_name, b.contact_no,b.email
 															from challenges as a join user_info as b where a.user_id = b.user_id
 															and a.challenge_type = '1' ORDER BY challenge_creation DESC;");
 			while ($open_chalangerow = mysqli_fetch_array($open_chalange)){
-					$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['challenge']) ;
+					$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
 					$ETA = $open_chalangerow['challenge_ETA'] ;
 					$ch_title = $open_chalangerow['challenge_title'] ;
 					$frstname = $open_chalangerow['first_name'] ;
@@ -210,7 +210,7 @@
 			}
 				echo "</div><div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
 				echo $chelange. "</div><div class='list-group-item'>";
-					$commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name	FROM response_challenge as a
+					$commenter = mysqli_query ($db_handle, ("SELECT a.stmt, a.challenge_id, a.user_id, b.first_name, b.last_name	FROM response_challenge as a
 															JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id ORDER BY response_ch_creation ASC;"));
 						while($commenterRow = mysqli_fetch_array($commenter)) {
 								echo "<div id='commentscontainer'>
@@ -222,7 +222,7 @@
 												<span class='pull-left color strong'>";
 								echo "&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."
 												</span> ";
-								echo str_repeat('&nbsp;', 2) .$commenterRow['response_ch'] ."
+								echo str_repeat('&nbsp;', 2) .$commenterRow['stmt'] ."
 											</div>
 										</div>
 									</div>";

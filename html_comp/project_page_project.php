@@ -6,13 +6,13 @@
                             
                           <?php
                                $title = $_SESSION['project_title'] ;
-                               $project_id = mysqli_query($db_handle, "(SELECT user_id, project_id, project_ETA, project_creation, project_stmt FROM projects WHERE project_title = '$title' and project_blob_id = '0')
+                               $project_id = mysqli_query($db_handle, "(SELECT user_id, project_id, project_ETA, project_creation, stmt FROM projects WHERE project_title = '$title' and project_blob_id = '0')
                                                                         UNION
-                                                                        (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.project_stmt FROM projects as a
+                                                                        (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt FROM projects as a
                                                                         join projects_blob as b WHERE a.project_title = '$title' and a.project_blob_id = b.project_blob_id);");
                                $project_idrow = mysqli_fetch_array($project_id) ;
 										$p_id = $project_idrow['project_id'] ;
-										$projectst = $project_idrow['project_stmt'];
+										$projectst = $project_idrow['stmt'];
 										$project_own_id = $project_idrow['user_id'];
 										$projecteta = $project_idrow['project_ETA'];
 										$day = floor(($projecteta*60)/(24*60*60)) ;
@@ -40,14 +40,14 @@
 												</tr>
 											 <br> <br>";
 												}
-								$displayb = mysqli_query($db_handle, "SELECT DISTINCT a.response_pr, a.response_pr_id, a.response_pr_creation, b.first_name,b.contact_no,b.email 
+								$displayb = mysqli_query($db_handle, "SELECT DISTINCT a.stmt, a.response_pr_id, a.response_pr_creation, b.first_name,b.contact_no,b.email 
 												from response_project as a join user_info as b where a.project_id = '$p_id' and a.user_id = b.user_id  ;");	
 								while ( $displayrowc = mysqli_fetch_array($displayb)) {
 									$frstnam = $displayrowc['first_name'] ;
 									$phonenum = $displayrowc['contact_no'] ;
 									$emailid = $displayrowc['email'] ;
 									$ida = $displayrowc['response_pr_id'] ;
-									$projectres = $displayrowc['response_pr'] ;
+									$projectres = $displayrowc['stmt'] ;
 									$projectrestime = $displayrowc['response_pr_creation'] ;
 									echo "<div id='commentscontainer'>
 											<div class='comments clearfix'>
@@ -85,11 +85,11 @@
         <div class='list-group-item'> 
         <p align='center' style='font-size: 14pt;'>Important Notes about Project</p>   
 <?php
-		 $display = mysqli_query($db_handle, "select DISTINCT a.challenge_title, a.user_id, a.challenge, b.first_name, b.last_name from challenges as a 
+		 $display = mysqli_query($db_handle, "select DISTINCT a.challenge_title, a.user_id, a.stmt, b.first_name, b.last_name from challenges as a 
 												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6'	and a.user_id = b.user_id 
 												ORDER BY challenge_creation DESC;");
           while ($displayrow = mysqli_fetch_array($display)) {
-			  $notes = str_replace("<s>","&nbsp;",$displayrow['challenge']) ;
+			  $notes = str_replace("<s>","&nbsp;",$displayrow['stmt']) ;
 			  $fname = $displayrow['first_name'] ;
 			  $lname = $displayrow['last_name'] ;
 			  echo "<div id='commentscontainer'>

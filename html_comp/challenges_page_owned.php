@@ -5,7 +5,7 @@
                         </div>
                         
                             <?php 
-                                $owned_challenges = mysqli_query($db_handle, ("SELECT a.challenge_id, a.challenge, a.challenge_title, a.user_id, b.ownership_creation, b.comp_ch_ETA, c.first_name, c.last_name
+                                $owned_challenges = mysqli_query($db_handle, ("SELECT a.challenge_id, a.stmt, a.challenge_title, a.user_id, b.ownership_creation, b.comp_ch_ETA, c.first_name, c.last_name
                                                                         FROM challenges as a 
                                                                             JOIN challenge_ownership as b 
                                                                                 JOIN user_info as c 
@@ -43,9 +43,9 @@
 
                             echo "<td> <br> 
 									<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p>
-									<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['challenge']). "</td> <br> <br>";
+									<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['stmt']). "</td> <br> <br>";
                             echo '</tr>';
-                            $commenter = mysqli_query ($db_handle, ("SELECT a.response_ch, a.challenge_id, a.user_id, b.first_name, b.last_name 
+                            $commenter = mysqli_query ($db_handle, ("SELECT a.stmt, a.challenge_id, a.user_id, b.first_name, b.last_name 
                                                                     FROM response_challenge as a 
                                                                     JOIN user_info as b 
                                                                     WHERE a.challenge_id = ".$owned_challengesRow['challenge_id']." AND a.user_id = b.user_id ORDER BY response_ch_creation ASC;"));
@@ -60,7 +60,7 @@
                                                             <span class='pull-left color strong'>";
                                                                 echo "&nbsp". ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
                                                             "</span> ";
-                                                                echo str_repeat('&nbsp;', 2) .$commenterRow['response_ch'] ."
+                                                                echo str_repeat('&nbsp;', 2) .$commenterRow['stmt'] ."
                                                     </div>
                                             </div> 
                                         </div>";
