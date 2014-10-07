@@ -16,34 +16,34 @@
                                         $chalangetime = $displayrow['challenge_creation'] ;
                                         $idb = $displayrow['challenge_id'] ;
                                         $ch_title = $displayrow['challenge_title'] ;
-                                        $chalangeeta = $displayrow['challenge_ETA'] ;
+                                        $ETA = $displayrow['challenge_ETA'] ;
                                         $fname = $displayrow['first_name'] ;
                                         $lname = $displayrow['last_name'];
                                         $phonenom = $displayrow['contact_no'] ;
                                         $eid = $displayrow['email'] ;							
-										$ETA = $chalangeeta*60 ;
-										$day = floor($ETA/(24*60*60)) ;
-										$daysec = $ETA%(24*60*60) ;
+										$eta = $ETA*60 ;
+										$day = floor($eta/(24*60*60)) ;
+										$daysec = $eta%(24*60*60) ;
 										$hour = floor($daysec/(60*60)) ;
 										$hoursec = $daysec%(60*60) ;
 										$minute = floor($hoursec/60) ;
-										$remainingtime =$day." Days :".$hour." Hours :".$minute." Min" ;
+										$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
 										$starttimestr = (string) $chalangetime ;
 										$initialtime = strtotime($starttimestr) ;
-										$totaltime = $initialtime+$ETA ;
+										$totaltime = $initialtime+$eta ;
 										$completiontime = time() ;
 									if ($completiontime > $totaltime) { 
 										$remaining_time = "Time over" ; }
-								else {	$remainingtime = ($totaltime-$completiontime) ;
-										$day = floor($remainingtime/(24*60*60)) ;
-										$daysec = $remainingtime%(24*60*60) ;
+								else {	$remaintime = ($totaltime-$completiontime) ;
+										$day = floor($remaintime/(24*60*60)) ;
+										$daysec = $remaintime%(24*60*60) ;
 										$hour = floor($daysec/(60*60)) ;
 										$hoursec = $daysec%(60*60) ;
 										$minute = floor($hoursec/60) ;
 										$sec = $hoursec%60 ;
 										$remaining_time = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 									}
-                              echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' <span class='color strong' style= 'color :#CAF11E;'>
+                              echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
 										: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
 										ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font> <br>
 										<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>
