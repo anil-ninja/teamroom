@@ -142,8 +142,9 @@ return str.replace(new RegExp(find, 'g'), replace);
 		$("#create_notes").click(function(){
 			$("#create_notes").attr('disabled','disabled');
 			var notes = $("#notes").val() ;
+			var notes_title = $("#notes_title").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes))  ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes)) + '&notes_title='+ notes_title ;
 			//alert(dataString);
 			if(notes==''){
 				alert("Please Enter Something !!!");

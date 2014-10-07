@@ -5,6 +5,7 @@ if($_POST['notes']){
 	$user_id = $_SESSION['user_id'];
 	$pro_id = $_SESSION['project_id'] ;
 	$notes = $_POST['notes'] ;
+	$notes_title = $_POST['notes_title'] ;
 	$notes_title = "Notes" ;
 	$opentime = 1 ;
 	$challange_eta = 1 ;

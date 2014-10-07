@@ -90,14 +90,20 @@
 												ORDER BY challenge_creation DESC;");
           while ($displayrow = mysqli_fetch_array($display)) {
 			  $notes = str_replace("<s>","&nbsp;",$displayrow['stmt']) ;
+			  $title = $displayrow['challenge_title'] ;
 			  $fname = $displayrow['first_name'] ;
 			  $lname = $displayrow['last_name'] ;
+			  echo "<p align='center' style='font-size: 14pt;'>".$title."</p>
+					<span class='pull-left color strong'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span>
+					<small>".$notes."</small>" ;
+			  
+			  
 			  echo "<div id='commentscontainer'>
 						<div class='comments clearfix'>
 							<div class='pull-left lh-fix'>
 							 <div class='comment-text'>
 								<span class='pull-left color strong'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span> 
-									<small>".$notes."</small>
+									
 								</div>
 							</div> 
 						</div>

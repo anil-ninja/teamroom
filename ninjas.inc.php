@@ -28,6 +28,7 @@ if (isset($_POST['logout'])) {
     unset($_SESSION['user_id']);
     unset($_SESSION['first_name']);
     session_destroy();
+    exit ;
 }   
 
 if (isset($_POST['chlange'])) {

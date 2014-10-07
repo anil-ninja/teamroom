@@ -173,6 +173,9 @@ include_once 'project.inc.php';
             </div>
             <div class="modal-body">
                 <form >
+					<div class="input-group-addon">
+                        <input type='text' class="form-control" id="notes_title" placeholder="Title"/>
+                    </div><br>
                     <div class="input-group-addon">
                         <textarea rows="3" class="form-control" id="notes" placeholder="Notes about Project or Importent Things about Project"></textarea>
                     </div><br><br>

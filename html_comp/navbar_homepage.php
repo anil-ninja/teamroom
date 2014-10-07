@@ -21,7 +21,7 @@
     </ul>
    
     <ul class="nav navbar-nav navbar-right">
-      <li>
+      <li><form method="POST" >
           <?php 
             if($requestedPage == "ninjas.php") 
               echo "<p class='navbar-text'>
@@ -35,7 +35,7 @@
           <p class="navbar-text"><a href="challenges.php" style='cursor:pointer; color:white'>Your Challenges</a></p>
           <p class="navbar-text">&nbsp;Your rank :  <?php echo $rank ; ?></p>
           <p class="navbar-text"><span class="glyphicon glyphicon-user"></span>&nbsp; Hello <?php echo ucfirst($name); ?></p>                              
-          <p class="navbar-text"><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></p>
+          <p class="navbar-text"><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></p></form>
       </li>
                    <li> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </li>
     </ul>

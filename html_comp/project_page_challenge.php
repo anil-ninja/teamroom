@@ -4,9 +4,15 @@
                         </div>
                     </div>
 <?php                                                                                  
-      $display = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
-                                           b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b where
-                                            a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and a.challenge_status != '2' and a.user_id = b.user_id ORDER BY challenge_creation DESC;");
+      $display = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
+                                            b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b where
+											a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and challenge_blob_id = '0' and
+											a.challenge_status != '2' and a.user_id = b.user_id ORDER BY challenge_creation DESC )
+											UNION
+											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
+											b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b
+											join projects_blob as c WHERE a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and 
+											a.challenge_blob_id = c.project_blob_id and  a.challenge_status != '2'  and a.user_id = b.user_id ORDER BY challenge_creation DESC) ;");
       while ($displayrow = mysqli_fetch_array($display)) {
 			$chalangest = $displayrow['stmt'] ;
 			$chalangetime = $displayrow['challenge_creation'] ;
@@ -46,7 +52,7 @@
 				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
 				ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font> <br>";
 	  echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-		<input type='hidden' name='challenge_id' value='" . $chelangeid . "'/><br/>
+		<input type='hidden' name='challenge_id' value='" . $idb . "'/><br/>
 			Your ETA : 
 				<select class='btn btn-default btn-xs' name = 'y_eta' >	
 					<option value='0' selected >Month</option>
