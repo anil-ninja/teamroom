@@ -13,6 +13,7 @@ include_once 'project.inc.php';
                     <input class="btn btn-default btn-sm" type="submit" name="submit" value="Submit"><br>
                 </form>
                 <br>
+                <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Enter Notes</a><br/><br/>
                 <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a><br/><br/>
                 <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#createProject" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Project</a><br/><br/>
                 <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#create_team_new" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Team</a><br/><br/>
@@ -162,6 +163,30 @@ include_once 'project.inc.php';
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="createnotes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Create Notes</h4>
+            </div>
+            <div class="modal-body">
+                <form >
+                    <div class="input-group-addon">
+                        <textarea rows="3" class="form-control" id="notes" placeholder="Notes about Project or Importent Things about Project"></textarea>
+                    </div><br><br>
+                        <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
+                        <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button name="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div></div></div>
+<!--end modle-->
 <!-- Modal -->
 <div class="modal fade" id="createChallenge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

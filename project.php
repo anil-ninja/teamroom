@@ -138,6 +138,36 @@ return str.replace(new RegExp(find, 'g'), replace);
 			return false;
 		});
 	});
+	$(document).ready(function(){
+		$("#create_notes").click(function(){
+			$("#create_notes").attr('disabled','disabled');
+			var notes = $("#notes").val() ;
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes))  ;
+			//alert(dataString);
+			if(notes==''){
+				alert("Please Enter Something !!!");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+			$.ajax({
+				type: "POST",
+				url: "ajax/submit_notes.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					alert(result);
+					if(result=='Notes posted succesfully!'){
+						$("#notes").val("");
+						location.reload();
+					}
+				}
+			});
+			}
+			return false;
+		});
+	});
 </script>
         </body>
     </html>

@@ -80,4 +80,30 @@
 										</table>
 									</div></div></div> </div>"								  
                     ?>
-                    
+    <div class='panel-body'>
+       <div class='list-group'>
+        <div class='list-group-item'> 
+        <p align='center' style='font-size: 14pt;'>Important Notes about Project</p>   
+<?php
+		 $display = mysqli_query($db_handle, "select DISTINCT a.challenge_title, a.user_id, a.challenge, b.first_name, b.last_name from challenges as a 
+												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6'	and a.user_id = b.user_id 
+												ORDER BY challenge_creation DESC;");
+          while ($displayrow = mysqli_fetch_array($display)) {
+			  $notes = str_replace("<s>","&nbsp;",$displayrow['challenge']) ;
+			  $fname = $displayrow['first_name'] ;
+			  $lname = $displayrow['last_name'] ;
+			  echo "<div id='commentscontainer'>
+						<div class='comments clearfix'>
+							<div class='pull-left lh-fix'>
+							 <div class='comment-text'>
+								<span class='pull-left color strong'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span> 
+									<small>".$notes."</small>
+								</div>
+							</div> 
+						</div>
+					</div>" ;	
+	}
+?>
+</div>	
+</div>
+</div>		
