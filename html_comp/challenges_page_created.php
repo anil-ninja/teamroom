@@ -36,11 +36,12 @@
                                                     }
                                         echo "<tr> <br><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
                                         echo str_replace("<s>","&nbsp;",$challange_displayRow['stmt']). "<br> <br>";
-                                        $commenter = mysqli_query ($db_handle, ("SELECT a.stmt, a.challenge_id, a.user_id, b.first_name, b.last_name 
+                                        $commenter = mysqli_query ($db_handle, ("SELECT a.stmt,a.response_ch_id, a.challenge_id, a.user_id, b.first_name, b.last_name 
                                                                                 FROM response_challenge as a 
                                                                                 JOIN user_info as b 
                                                                                 WHERE a.challenge_id = $chall_id AND a.user_id = b.user_id ORDER BY response_ch_creation ASC;"));
                                             while($commenterRow = mysqli_fetch_array($commenter)) {
+                                                $comment_id = $commenterRow['response_ch_id'];
                                             echo "<div id='commentscontainer'>
                                                     <div class='comments clearfix'>
                                                         <div class='pull-left lh-fix'>
@@ -50,6 +51,9 @@
                                                             <span class='pull-left color strong'>";
                                                                 echo "&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
                                                             "</span> ";
+                                                                if ($commenterRow['user_id'] == $user_id) {
+                                                    dropDown_delete($comment_id);
+                                                    }
                                                                 echo str_repeat('&nbsp;', 2) .$commenterRow['stmt'] ."
                                                         </div>
                                                     </div> 

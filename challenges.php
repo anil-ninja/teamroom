@@ -1,5 +1,6 @@
 <?php
 include_once "challenges.inc.php";
+include_once 'functions/delete_comment.php';
 ?>
 <html lang="en">
     <head>
@@ -51,6 +52,27 @@ include_once "challenges.inc.php";
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootswatch.js"></script>
+<script type="text/javascript">
+    function delcomment(href){
+  
+    //e.preventDefault();//this will prevent the link trying to navigate to another page
+    //var href = $(this).attr("cID");//get the href so we can navigate later
+    if(confirm("Do u really want to delete this comment?")){
+        var dataString = 'commentID='+ href;
+        $.ajax({
+        type: "POST",
+        url: "ajax/ajax.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+          alert(result);
+          location.reload();
+          
+        }
+        });
+      }
+  }
+</script>
 <script>
 $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);
