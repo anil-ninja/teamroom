@@ -1,5 +1,6 @@
 <?php
 include_once 'ninjas.inc.php';
+include_once 'functions/delete_comment.php';
 ?>
 
 <!DOCTYPE html>
@@ -20,6 +21,8 @@ include_once 'ninjas.inc.php';
         <script src="js/jquery.js"> </script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
+    <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
+        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
 
 <script type="text/javascript">
 	function replaceAll(find, replace, str) {

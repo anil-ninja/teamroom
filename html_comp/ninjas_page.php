@@ -210,9 +210,10 @@
 			}
 				echo "</div><div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
 				echo $chelange. "</div><div class='list-group-item'>";
-					$commenter = mysqli_query ($db_handle, ("SELECT a.stmt, a.challenge_id, a.user_id, b.first_name, b.last_name	FROM response_challenge as a
+					$commenter = mysqli_query ($db_handle, ("SELECT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name	FROM response_challenge as a
 															JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id ORDER BY response_ch_creation ASC;"));
 						while($commenterRow = mysqli_fetch_array($commenter)) {
+                                                   $del_comment_ch = $commenterRow['response_ch_id'];
 								echo "<div id='commentscontainer'>
 										<div class='comments clearfix'>
 											<div class='pull-left lh-fix'>
@@ -222,6 +223,9 @@
 												<span class='pull-left color strong'>";
 								echo "&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."
 												</span> ";
+                                                                if ($commenterRow['user_id'] == $user_id) {
+                                                                    dropDown_delete_comment_challenge($del_comment_ch);
+                                                                }
 								echo str_repeat('&nbsp;', 2) .$commenterRow['stmt'] ."
 											</div>
 										</div>

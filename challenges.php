@@ -1,5 +1,6 @@
 <?php
 include_once "challenges.inc.php";
+include_once 'functions/delete_comment.php';
 ?>
 <html lang="en">
     <head>
@@ -51,6 +52,7 @@ include_once "challenges.inc.php";
 
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootswatch.js"></script>
+<script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
 <script>
 $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);
