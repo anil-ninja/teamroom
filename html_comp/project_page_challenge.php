@@ -183,17 +183,15 @@
 		</div>";
 		}
 		echo "<div class='comments clearfix'>
-				<div class='pull-left lh-fix'>
-					<img src='img/default.gif'> 
-				</div>
+                        <div class='pull-left'>
+                            <img src='img/default.gif'> &nbsp
+                        </div>
 			<form class='inline-form' action='' method='POST'>
-				<table>
-					<tr><td><input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' /></td></tr>
-					<tr><td><input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px;' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/></td></tr>
-					<tr><td> <input type='submit' id='challenge_of_project_response' value='Post'></td></tr>
-				</table>
+                            <input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' />
+                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/>
+                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='challenge_of_project_response'></button>
 			</form>
-		</div>";
+                    </div>";
 	echo "</div> </div> </div>";
 	}
 ?>

@@ -65,14 +65,12 @@
                                         }
                                     echo "<div class='comments clearfix'>
                                             <div class='pull-left lh-fix'>
-                                                <img src='img/default.gif'>
+                                                <img src='img/default.gif'>&nbsp
                                             </div>
-                                            <form action='' method='POST'>
-                                                <table>
-                                                    <tr><td><input type='hidden' value='".$chall_id."' name='challen_id' /></td></tr>
-                                                    <tr><td><input type='text' STYLE='border: 1px solid #bdc7d8; width: 350px;' name='ch_response' placeholder='Whats on your mind about this Challenge'/></td></tr>
-                                                    <tr><td><input type='submit' style='display:none;' name='chl_response' value='Post'></td></tr>
-                                                </table>
+                                            <form action='' method='POST' class='inline-form'>
+                                                <input type='hidden' value='".$chall_id."' name='challen_id' />
+                                                <input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='ch_response' placeholder='Whats on your mind about this Challenge'/>
+                                                <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='chl_response' value='Post'></buton>
                                             </form>
                                         </div>";
                                     echo '</tr> </div> </div> </div>';

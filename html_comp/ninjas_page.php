@@ -1,4 +1,4 @@
-<div class="panel-body">
+               <div class="panel-body">
                   <form >
 						<div class="input-group-addon">
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
@@ -226,16 +226,14 @@
 								}
 								echo "<div class='comments clearfix'>
                                                                         <div class='pull-left lh-fix'>
-                                                                            <img src='img/default.gif'>
+                                                                            <img src='img/default.gif'>&nbsp
                                                                         </div>
                                                                             <div class='comment-text'>
                                                                                 <form action='' method='POST' class='inline-form'>
                                                                                     <input type='hidden' name='user_id' value='$user_id'/></td></tr>
                                                                                     <input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
-                                                                                    <div class='input-group'>
-                                                                                        <input type='text' class='form-control' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                                                                                    </div>
-                                                                                        <input type='submit' class='btn btn-success btn-sm' name='public_chl_response' value='Post'></td></tr>
+                                                                                    <input type='text' STYLE='height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                                                                                    <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                                                                                 </form>
                                                                             </div>
                                                                         </div>";

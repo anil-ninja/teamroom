@@ -70,14 +70,14 @@
 	}
 	echo "<div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
-			<img src='img/default.gif'>
+			<img src='img/default.gif'>&nbsp
 			</div>
-			<table>
-				<form method='POST'>
-					<tr><td><input type='text' STYLE='border: 1px solid #bdc7d8; width: 300px;' name='pr_resp' placeholder='Whats on your mind about this project' /></td></tr>
-					<tr><td><input type='submit' name='resp_project' value='Post'></td></tr>
+			
+				<form method='POST' class='inline-form'>
+					<input type='text' STYLE='border: 1px solid #bdc7d8; width: 300px; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this project' />
+					<button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
 			  </form>
-			</table>
+			
 		</div></div></div> </div>"								  
 	
 ?><br/><br/>
@@ -103,7 +103,7 @@
 							<span class='pull-left color strong' style= 'color :#CAF11E;'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span> 
 							<small>".$notes."</small><br/><br/>";
 			$displaya = mysqli_query($db_handle, "select DISTINCT a.challenge_id, b.user_id, b.stmt, b.response_ch_id, b.response_ch_creation, c.first_name,
-										c.last_name rom challenges as a join response_challenge as b join user_info as c where a.project_id = '$p_id' and
+										c.last_name FROM challenges as a join response_challenge as b join user_info as c where a.project_id = '$p_id' and
 										 a.challenge_id = b.challenge_id and b.challenge_id = ".$displayrow['challenge_id']." and b.user_id = c.user_id ;");		
 		while ($displayrowb = mysqli_fetch_array($displaya)) {	
 				$fstname = $displayrowb['first_name'] ;
@@ -132,14 +132,12 @@
 		}
 		echo "<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='img/default.gif'> 
+					<img src='img/default.gif'>&nbsp
 				</div>
 				<form class='inline-form' action='' method='POST'>
-					<table>
-						<tr><td><input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' /></td></tr>
-						<tr><td><input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px;' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/></td></tr>
-						<tr><td> <input type='submit' id='challenge_of_project_response' value='Post'></td></tr>
-					</table>
+                                    <input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' />
+                                    <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/>
+                                    <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='challenge_of_project_response'> </button>
 				</form>
 			</div></div></div></div>" ;
 	}
