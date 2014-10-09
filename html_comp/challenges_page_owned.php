@@ -40,7 +40,8 @@
                                     <div class='list-group'>";
                                     echo '<tr>'. "<div class='list-group-item'>";
                             echo "<font color = '#F1AE1E'> Challenge by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> &nbsp on &nbsp".$time. " &nbsp".$remainingtime. "&nbsp&nbsp&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time."</font>" ;       
-
+                       //dropdown fro challenge functionaities added with function
+                            dropDown_challenge($db_handle, $owned_challengesRow['challenge_id']);
                             echo "<td> <br> 
 									<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p>
 									<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['stmt']). "</td> <br> <br>";
@@ -62,7 +63,7 @@
                                                                 echo "&nbsp". ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
                                                             "</span> ";
                                                                 if ($commenterRow['user_id'] == $user_id) {
-                                                                    dropDown_delete_comment_challenge($comment_owned_id);
+                                                                    dropDown_delete_comment_challenge($db_handle, $comment_owned_id);
                                                                 }
                                                                 echo str_repeat('&nbsp;', 2) .$commenterRow['stmt'] ."
                                                     </div>

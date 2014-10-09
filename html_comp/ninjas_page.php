@@ -1,4 +1,4 @@
-               <div class="panel-body">
+<div class="panel-body">
                   <form >
 						<div class="input-group-addon">
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
@@ -93,14 +93,7 @@
 				echo "<div class='panel-body'>
 						<div class='list-group'>";
 				echo "<div class='list-group-item'>";
-				$dropDown = "<div class='pull-right'>
-								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-              					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                					<li><button class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</button></li>
-                					<li><button class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</button></li>
-                					<li><button class='btn btn-default' href='http://bootswatch.com/cosmo/'>Report Spam</button></li>
-                              	</ul>
-                            </div>";
+				
 				switch($challenge_status){
 				case 1:
 						echo "<font color = '#F1AE1E'> 
@@ -109,7 +102,7 @@
 									. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
 								</span> <br/> Created On : ".$times. "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time.
 							"</font> 
-							".$dropDown ;
+							".dropDown_challenge($db_handle, $chelangeid) ;
 						echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 								<input type='hidden' name='challenge_id' value='" . $chelangeid . "'/><br/>
 									Your ETA : 
@@ -204,8 +197,8 @@
 									</span> &nbsp 
 									This challenge is already owned 
 							</font>
-							".$dropDown;
-						
+							";
+						dropDown_challenge($db_handle, $chelangeid);
 					break;
 			}
 				echo "</div><div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
@@ -232,22 +225,20 @@
 									</div>";
 								}
 								echo "<div class='comments clearfix'>
-									       <div class='pull-left lh-fix'>
-												<img src='img/default.gif'>
-										   </div>
-										   <div class='comment-text'>
-												<form action='' method='POST'>
-													
-														<input type='hidden' name='user_id' value='$user_id'/></td></tr>
-														<input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
-											    		<div class='input-group'>
-															<input type='text' class='form-control' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
-														</div>
-														<input type='submit' style='display:none;' class='btn btn-success btn-sm' name='public_chl_response' value='Post'></td></tr>
-												</form>
-											</div>
-										</div>";
-					echo " </div> </div></div> ";
-				}
-			?>
-			
+                                                                        <div class='pull-left lh-fix'>
+                                                                            <img src='img/default.gif'>
+                                                                        </div>
+                                                                            <div class='comment-text'>
+                                                                                <form action='' method='POST' class='inline-form'>
+                                                                                    <input type='hidden' name='user_id' value='$user_id'/></td></tr>
+                                                                                    <input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
+                                                                                    <div class='input-group'>
+                                                                                        <input type='text' class='form-control' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                                                                                    </div>
+                                                                                        <input type='submit' class='btn btn-success btn-sm' name='public_chl_response' value='Post'></td></tr>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>";
+                                                            echo " </div> </div></div> ";
+                                        }
+                                ?>

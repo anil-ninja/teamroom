@@ -51,6 +51,7 @@
 	  echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
 				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
 				ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font><br/>";
+          
 	  echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 		<input type='hidden' name='challenge_id' value='" . $idb . "'/><br/>
 			Your ETA : 
