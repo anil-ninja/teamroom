@@ -48,6 +48,7 @@
 	echo "<div class='panel-body'>
 					<div class='list-group'>
 						<div class='list-group-item'>";
+        dropDown_challenge($db_handle, $idb);
 	  echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
 				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
 				ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font><br/>";
