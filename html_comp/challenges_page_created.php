@@ -30,9 +30,13 @@
                                                         $challange_own_user = mysqli_query($db_handle, ("Select * from user_info where user_id = '$challenge_owner';"));
                                                         $challange_own_userRow = mysqli_fetch_array($challange_own_user);
                                                         echo "<font color = '#F1AE1E'> Owned by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($challange_own_userRow['first_name']). '&nbsp'. ucfirst($challange_own_userRow['last_name']). " </span> &nbsp on &nbsp".$challange_ownedRow['ownership_creation']. " &nbsp with ETA in &nbsp".$remainingtime. " </font>" ;
+                                            //dropdown fro challenge functionaities added with function
+                                                        dropDown_challenge($chall_id);
                                                     }
                                                 if ($challenge_owner_status == '1') {
                                                         echo "<font color = '#F1AE1E'> Ownership is not claimed till now </font> ";
+                                        //dropdown fro challenge functionaities added with function
+                                                       dropDown_challenge($chall_id);
                                                     }
                                         echo "<tr> <br><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
                                         echo str_replace("<s>","&nbsp;",$challange_displayRow['stmt']). "<br> <br>";

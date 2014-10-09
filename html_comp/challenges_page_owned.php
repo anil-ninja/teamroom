@@ -40,7 +40,8 @@
                                     <div class='list-group'>";
                                     echo '<tr>'. "<div class='list-group-item'>";
                             echo "<font color = '#F1AE1E'> Challenge by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> &nbsp on &nbsp".$time. " &nbsp".$remainingtime. "&nbsp&nbsp&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time."</font>" ;       
-
+                       //dropdown fro challenge functionaities added with function
+                            dropDown_challenge($owned_challengesRow['challenge_id']);
                             echo "<td> <br> 
 									<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p>
 									<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['stmt']). "</td> <br> <br>";

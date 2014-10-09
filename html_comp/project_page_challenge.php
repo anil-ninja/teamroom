@@ -45,20 +45,16 @@
 			$sec = $hoursec%60 ;
 			$remaining_time = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 		}	
-	$dropDown = "<div class='pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-     				<ul class='dropdown-menu' aria-labelledby='themes'>
-           				<li><button class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</button></li>
-						<li><button class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</button></li>
-                		<li><button class='btn btn-default' href='http://bootswatch.com/cosmo/'>Report Spam</button></li>
-                    </ul>
-                </div>";
+	
 	echo "<div class='panel-body'>
 					<div class='list-group'>
 						<div class='list-group-item'>";
+    // dropdown functionalities for challenge of project added with function
+        dropDown_challenge($idb);
 	  echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
 				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
 				ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font><br/>";
+          
 	  echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 		<input type='hidden' name='challenge_id' value='" . $idb . "'/><br/>
 			Your ETA : 

@@ -25,14 +25,15 @@
 	echo "<div class='panel-body'>
 			<div class='list-group'>
 				<div class='list-group-item'>";
-								   
+    // dropdown functionalities for challenge of project added with function
+        dropDown_project($p_id);					   
 		 $project_own_user = mysqli_query ($db_handle, ("SELECT * FROM user_info WHERE user_id = ".$project_own_id.";"));      
 	while ($project_own_userRow = mysqli_fetch_array($project_own_user)) {
 			echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" 
 					.ucfirst($project_own_userRow['first_name']). '&nbsp'.ucfirst($project_own_userRow['last_name'])
 					. " </span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. "&nbsp 
 					Days</font> <br> <br>";
-			echo "<tr id='".$p_id."' class='edit_tr'>
+                        echo "<tr id='".$p_id."' class='edit_tr'>
 					<td class='edit_td'>
 						<span id='project_".$p_id."' class='text' ><small>".str_replace("<s>","&nbsp;",$projectst)."</small></span>
 						<input type='text' value='".$projectst."' class='editbox' id= 'project_input_".$p_id."' />
