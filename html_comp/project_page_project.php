@@ -7,10 +7,10 @@
  <?php
 	   $title = $_SESSION['project_title'] ;
 	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name FROM
-												projects as a join user_info as b WHERE project_title = '$title' and blob_id = '0' and a.user_id = b.user_id)
+												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id)
                                                 UNION
                                                 (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name FROM projects as a
-                                                join blobs as b join user_info as c WHERE a.project_title = '$title' and a.blob_id = b.blob_id and a.user_id = b.user_id);");
+                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
 	   $project_idrow = mysqli_fetch_array($project_id) ;
 		$p_id = $project_idrow['project_id'] ;
 		$projectst = $project_idrow['stmt'];
@@ -42,7 +42,7 @@
 	echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" 
 				.ucfirst($fname). '&nbsp'.ucfirst($lname)
 				. " </span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. "</font>
-				 <br> <br>".str_replace("<s>","&nbsp;",$projectst) ;
+				 <br> <br>".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id, b.first_name, b.last_name from response_project as a join user_info as b 
 											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1' ORDER BY response_pr_creation ASC)
@@ -63,8 +63,7 @@
 					<div class='comment-text'>
 						<span class='pull-left color strong'>".ucfirst($frstnam)." ".ucfirst($lnam)."&nbsp</span> 
 						<small>".$projectres."</small>
-						<div class='pull-right'>
-				<div class='list-group-item'>
+				<div class='list-group-item pull-right'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                      <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
@@ -72,7 +71,7 @@
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>
-            </div>
+       
 					</div>
 				</div> 
 			</div>";
@@ -97,9 +96,13 @@
       </div>
  </div>          
 <?php
-		 $display = mysqli_query($db_handle, "select DISTINCT a.challenge_title,a.challenge_id, a.user_id, a.stmt, b.first_name, b.last_name from challenges as a 
-												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6'	and a.user_id = b.user_id 
-												ORDER BY challenge_creation DESC;");
+		 $display = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.user_id, a.stmt, b.first_name, b.last_name from challenges as a 
+												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 
+												ORDER BY challenge_creation DESC)
+												UNION
+												(select DISTINCT a.challenge_title,a.challenge_id, a.user_id, c.stmt, b.first_name, b.last_name from challenges as a 
+												join user_info as b join blobs as c where a.project_id = '$p_id' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
+												ORDER BY challenge_creation DESC);");
           while ($displayrow = mysqli_fetch_array($display)) {
 			  $notes = str_replace("<s>","&nbsp;",$displayrow['stmt']) ;
 			  $title = $displayrow['challenge_title'] ;
@@ -108,12 +111,26 @@
 			  echo "<div class='panel-body'>
 						<div class='list-group'>
 							<div class='list-group-item'>
+							   <div class='pull-right'>
+								<div class='list-group-item'>
+									<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+									<ul class='dropdown-menu' aria-labelledby='dropdown'>
+									 <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
+									 <li><a class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>                  
+									 <li><a class='btn btn-default' >Report Spam</a></li>
+								   </ul>
+							  </div>
+							</div>
 							<p align='center' style='font-size: 14pt;'>".$title."</p>
 							<span class='pull-left color strong' style= 'color :#CAF11E;'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span> 
 							<small>".$notes."</small><br/><br/>";
-			$displaya = mysqli_query($db_handle, "select DISTINCT a.challenge_id, b.user_id, b.stmt, b.response_ch_id, b.response_ch_creation, c.first_name,
-										c.last_name FROM challenges as a join response_challenge as b join user_info as c where a.project_id = '$p_id' and
-										 a.challenge_id = b.challenge_id and b.challenge_id = ".$displayrow['challenge_id']." and b.user_id = c.user_id ;");		
+			$displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name 
+													FROM response_challenge as a join user_info as b where a.challenge_id = ".$displayrow['challenge_id']." 
+													and a.user_id = b.user_id and a.blob_id = '0')
+													UNION
+													(select DISTINCT a.user_id, c.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name
+													 FROM response_challenge as a join user_info as b join blobs as c where a.challenge_id = ".$displayrow['challenge_id']."
+													  and a.user_id = b.user_id and a.blob_id = c.blob_id);");		
 		while ($displayrowb = mysqli_fetch_array($displaya)) {	
 				$fstname = $displayrowb['first_name'] ;
 				$lstname = $displayrowb['last_name'] ;
@@ -127,14 +144,15 @@
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp". ucfirst($fstname)." ".ucfirst($lstname)."&nbsp</span> 
-						<table>
-							<tr id_res='".$idc."' class='edit_tr'>
-								<td class='edit_td'>
-									<span id='challengeres_".$idc."' class='text' ><small>".$chalangeres."</small></span>
-									<input type='text' value='".$chalangeres."' class='editbox' id= 'challengeres_input_".$idc."' />
-								</td>
-							</tr>
-						</table>
+						".$chalangeres."
+						<div class='list-group-item pull-right'>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+					<ul class='dropdown-menu' aria-labelledby='dropdown'>
+                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
+                     <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
+                     <li><a class='btn btn-default' >Report Spam</a></li>
+                   </ul>
+              </div>
 					</div>
 				</div> 
 			</div>";
