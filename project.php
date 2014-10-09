@@ -169,6 +169,36 @@ return str.replace(new RegExp(find, 'g'), replace);
 			return false;
 		});
 	});
+	$(document).ready(function(){
+		$("#challenge_of_project_response").click(function(){
+			$("#challenge_of_project_response").attr('disabled','disabled');
+			var notes = $("#challenge_of_pr_resp").val() ;
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'challenge_of_pr_resp='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes)) ;
+			//alert(dataString);
+			if(challenge_of_pr_resp==''){
+				alert("Please Enter Something !!!");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+			$.ajax({
+				type: "POST",
+				url: "ajax/submit_project_challenge_response.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					alert(result);
+					if(result=='Comment posted succesfully!'){
+						$("#challenge_of_pr_resp").val("");
+						location.reload();
+					}
+				}
+			});
+			}
+			return false;
+		});
+	});
 </script>
         </body>
     </html>

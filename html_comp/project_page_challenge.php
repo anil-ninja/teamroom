@@ -44,13 +44,21 @@
 			$minute = floor($hoursec/60) ;
 			$sec = $hoursec%60 ;
 			$remaining_time = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
-		}
+		}	
+	$dropDown = "<div class='pull-right'>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+     				<ul class='dropdown-menu' aria-labelledby='themes'>
+           				<li><button class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</button></li>
+						<li><button class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</button></li>
+                		<li><button class='btn btn-default' href='http://bootswatch.com/cosmo/'>Report Spam</button></li>
+                    </ul>
+                </div>";
 	echo "<div class='panel-body'>
 					<div class='list-group'>
 						<div class='list-group-item'>";
 	  echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
 				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
-				ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font> <br>";
+				ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font><br/>";
 	  echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 		<input type='hidden' name='challenge_id' value='" . $idb . "'/><br/>
 			Your ETA : 
@@ -133,7 +141,7 @@
 					<option value='45' >45</option>
 			  </select>
 		<input type='submit' class='btn btn-success btn-sm' name = 'chlange' value = 'Accept' ></small>
-	  </form>";
+	  </form><br/>";
 		echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>
 				<table>
 					<tr cha_smt='".$idb."' class='edit_tr'>
@@ -182,8 +190,8 @@
 			<form class='inline-form' action='' method='POST'>
 				<table>
 					<tr><td><input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' /></td></tr>
-					<tr><td><input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px;' name='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/></td></tr>
-					<tr><td> <input type='submit' style='display:none;' name='challenge_of_project_response' value='Post'></td></tr>
+					<tr><td><input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px;' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/></td></tr>
+					<tr><td> <input type='submit' id='challenge_of_project_response' value='Post'></td></tr>
 				</table>
 			</form>
 		</div>";

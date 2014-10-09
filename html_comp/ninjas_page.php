@@ -95,7 +95,7 @@
 				echo "<div class='list-group-item'>";
 				$dropDown = "<div class='pull-right'>
 								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-              					<ul class='dropdown-menu' aria-labelledby='themes'>
+              					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                 					<li><button class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</button></li>
                 					<li><button class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</button></li>
                 					<li><button class='btn btn-default' href='http://bootswatch.com/cosmo/'>Report Spam</button></li>
