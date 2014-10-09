@@ -62,7 +62,7 @@
                                                                 echo "&nbsp". ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
                                                             "</span> ";
                                                                 if ($commenterRow['user_id'] == $user_id) {
-                                                                    dropDown_delete_challenge($comment_owned_id);
+                                                                    dropDown_delete_comment_challenge($comment_owned_id);
                                                                 }
                                                                 echo str_repeat('&nbsp;', 2) .$commenterRow['stmt'] ."
                                                     </div>

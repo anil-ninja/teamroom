@@ -67,7 +67,6 @@ include_once 'functions/delete_comment.php';
         success: function(result){
           alert(result);
           location.reload();
-          
         }
         });
       }

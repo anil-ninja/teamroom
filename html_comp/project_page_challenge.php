@@ -162,8 +162,11 @@
 				<div class='comment-text'>
 					<span class='pull-left color strong'>
 						&nbsp". ucfirst($fstname)."&nbsp".
-					"</span> 
-					<table>
+					"</span>";
+                                        if ($displayrowb['user_id'] == $user_id) {
+                                            dropDown_delete_comment_challenge($idc);
+                                        }
+					echo "<table>
 						<tr id_res='".$idc."' class='edit_tr'>
 							<td class='edit_td'>
 								<span id='challengeres_".$idc."' class='text' ><small>".$chalangeres."</small></span>

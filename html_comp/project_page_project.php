@@ -40,7 +40,7 @@
 												</tr>
 											 <br> <br>";
 												}
-								$displayb = mysqli_query($db_handle, "SELECT DISTINCT a.stmt, a.response_pr_id, a.response_pr_creation, b.first_name,b.contact_no,b.email 
+								$displayb = mysqli_query($db_handle, "SELECT DISTINCT a.stmt,a.user_id, a.response_pr_id, a.response_pr_creation, b.first_name,b.contact_no,b.email 
 												from response_project as a join user_info as b where a.project_id = '$p_id' and a.user_id = b.user_id  ;");	
 								while ( $displayrowc = mysqli_fetch_array($displayb)) {
 									$frstnam = $displayrowc['first_name'] ;
@@ -55,8 +55,11 @@
 													<img src='img/default.gif'>
 												</div>
 												<div class='comment-text'>
-													<span class='pull-left color strong'>".ucfirst($frstnam)."&nbsp</span> 
-													<table>
+													<span class='pull-left color strong'>".ucfirst($frstnam)."&nbsp</span> ";
+                                                                                                            if ($displayrowc['user_id'] == $user_id) {
+                                                                                                                dropDown_delete_comment_project($ida);
+                                                                                                                }
+                                                                                                echo "<table>
 														<tr id_res='".$ida."' class='edit_tr'>
 															<td class='edit_td'>
 																<span id='projectres_".$ida."' class='text' ><small>".$projectres."</small></span>
@@ -85,7 +88,7 @@
         <div class='list-group-item'> 
         <p align='center' style='font-size: 14pt;'>Important Notes about Project</p>   
 <?php
-		 $display = mysqli_query($db_handle, "select DISTINCT a.challenge_title, a.user_id, a.stmt, b.first_name, b.last_name from challenges as a 
+		 $display = mysqli_query($db_handle, "select DISTINCT a.challenge_title, a.user_id,a.challenge_id, a.stmt, b.first_name, b.last_name from challenges as a 
 												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6'	and a.user_id = b.user_id 
 												ORDER BY challenge_creation DESC;");
           while ($displayrow = mysqli_fetch_array($display)) {
