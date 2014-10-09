@@ -1,4 +1,6 @@
 <?php 
+//include_once './lib/db_connect.php';
+
 function dropDown_delete_comment_challenge($deleteid) {
     echo  "<div class='pull-right'>
             <div class='list-group-item'>
@@ -21,16 +23,28 @@ function dropDown_delete_comment_project($deleteid) {
             </div>
         </div>";
 }
-function dropDown_challenge($challenge_ID) {
+function dropDown_challenge($db_handle, $challenge_ID) {
+    //echo $challenge_ID;
         echo "<div class='pull-right'>
             <div class='list-group-item'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                    <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
+                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                $challenge_status_display = mysqli_query($db_handle, ("SELECT challenge_status FROM challenges WHERE challenge_id = '$challenge_ID';"));
+                    $challenge_status_displayRow = mysqli_fetch_array($challenge_status_display);
+                    $challenge_status_accept_OR_submit = $challenge_status_displayRow['challenge_status'];
+                    //echo $challenge_status_accept_OR_submit;
+                            if ($challenge_status_accept_OR_submit == 1) {
+                        echo "<li><a class='btn btn-default' >Accept</a></li>";
+                    } else {
+                        echo "<li><a class='btn btn-default' >Submit</a></li>";
+                    }
+                  echo "<li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
                     <li><a class='btn btn-default' id='delChallenge' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete Challenge</a></li>
                     <li><a class='btn btn-default' >Change ETA</a></li>                    
-                    <li><a class='btn btn-default' >Report Spam</a></li>
-                </ul>
+                    <li><a class='btn btn-default' >Report Spam</a></li>";
+                   
+                    
+        echo "</ul>
             </div>
             </div>";
 }

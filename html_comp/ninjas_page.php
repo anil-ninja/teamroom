@@ -1,4 +1,4 @@
-               <div class="panel-body">
+<div class="panel-body">
                   <form >
 						<div class="input-group-addon">
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
@@ -102,7 +102,7 @@
 									. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
 								</span> <br/> Created On : ".$times. "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time.
 							"</font> 
-							".dropDown_challenge($chelangeid) ;
+							".dropDown_challenge($db_handle, $chelangeid) ;
 						echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 								<input type='hidden' name='challenge_id' value='" . $chelangeid . "'/><br/>
 									Your ETA : 
@@ -198,7 +198,7 @@
 									This challenge is already owned 
 							</font>
 							";
-						dropDown_challenge($chelangeid);
+						dropDown_challenge($db_handle, $chelangeid);
 					break;
 			}
 				echo "</div><div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>";
@@ -229,7 +229,7 @@
                                                                             <img src='img/default.gif'>
                                                                         </div>
                                                                             <div class='comment-text'>
-                                                                                <form action='' method='POST'>
+                                                                                <form action='' method='POST' class='inline-form'>
                                                                                     <input type='hidden' name='user_id' value='$user_id'/></td></tr>
                                                                                     <input type='hidden' value='".$chelangeid."' name='public_challen_id' /></td></tr>
                                                                                     <div class='input-group'>

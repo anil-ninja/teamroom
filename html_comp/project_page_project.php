@@ -7,9 +7,9 @@
  <?php
 	   $title = $_SESSION['project_title'] ;
 	   $project_id = mysqli_query($db_handle, "(SELECT user_id, project_id, project_ETA, project_creation, stmt FROM projects WHERE project_title = '$title' and project_blob_id = '0')
-												UNION
-											(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt FROM projects as a
-											join projects_blob as b WHERE a.project_title = '$title' and a.project_blob_id = b.project_blob_id);");
+                                                            UNION
+                                                    (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt FROM projects as a
+                                                    join projects_blob as b WHERE a.project_title = '$title' and a.project_blob_id = b.project_blob_id);");
 	   $project_idrow = mysqli_fetch_array($project_id) ;
 		$p_id = $project_idrow['project_id'] ;
 		$projectst = $project_idrow['stmt'];
