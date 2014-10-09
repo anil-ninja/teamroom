@@ -197,7 +197,7 @@
 							  </form>
 			  </div>
 			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
-			   $chelange. "</div><div class='list-group-item'>";
+			   $chelange. "<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
 												   UNION
@@ -290,7 +290,7 @@
 			  "<br/>Owned By : <span class='color strong' style= 'color :#CAF11E;'>"
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
 			  "</font><br/><br/><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
-			   $stmt. "</div>";
+			   $stmt."<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $ch_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
 												   UNION
@@ -298,8 +298,7 @@
 													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);");
 	while($commenterRow = mysqli_fetch_array($commenter)) {
               $comment_id = $commenterRow['response_ch_id'];
-		echo "<div class='list-group-item'>
-			   <div id='commentscontainer'>
+		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
 					<img src='img/default.gif'>
