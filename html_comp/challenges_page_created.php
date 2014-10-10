@@ -44,8 +44,8 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
+                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
+                     <li><a class='btn btn-default' id='delChallenge' cID='".$chall_id."' onclick='delChallenge(".$chall_id.");'>Delete Challenge</a></li>
                      <li><a class='btn btn-default' >Change ETA</a></li>                    
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
