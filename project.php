@@ -51,9 +51,6 @@ include_once 'functions/delete_comment.php';
         <script src="js/content_edit.js"> </script>
         <script src="js/project.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-        <script type="text/javascript">
-           
-    </script>
     </head>
     <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
@@ -79,7 +76,7 @@ include_once 'functions/delete_comment.php';
        <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootswatch.js"></script>
-    <script src="js/poject_page.js"></script>
+    <script src="js/project_page.js"></script>
         </body>
     </html>
 <?php

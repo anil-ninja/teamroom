@@ -1,14 +1,4 @@
-$('.tree-toggle').click(function () {
-	$(this).parent().children('ul.tree').toggle(200);
-});	
-            $('#example')
-            .removeClass( 'display' )
-            .addClass('table table-striped table-bordered');
-            
-    function replaceAll(find, replace, str) {
-return str.replace(new RegExp(find, 'g'), replace);
-}
-	
+
 	$(document).ready(function(){
 		$("#create_challange_pb_pr").click(function(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
@@ -121,4 +111,15 @@ return str.replace(new RegExp(find, 'g'), replace);
 			}
 			return false;
 		});
+		     $('.tree-toggle').click(function () {
+	$(this).parent().children('ul.tree').toggle(200);
+});	
+            $('#example')
+            .removeClass( 'display' )
+            .addClass('table table-striped table-bordered');
+            
+    function replaceAll(find, replace, str) {
+return str.replace(new RegExp(find, 'g'), replace);
+}
+	
 	});

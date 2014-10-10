@@ -31,22 +31,22 @@ include_once 'project.inc.php';
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id)  
                                                                                 UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id');"));
                             while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
-                                $p_title = $project_title_displayRow['project_title'];
-                                $p_eta = $project_title_displayRow['project_ETA'];
-                                $p_time = $project_title_displayRow['project_creation'];
-                                $eta = $p_eta * 60;
-                                $day = floor($eta / (24 * 60 * 60));
-                                $daysec = $eta % (24 * 60 * 60);
-                                $hour = floor($daysec / (60 * 60));
-                                $hoursec = $daysec % (60 * 60);
-                                $minute = floor($hoursec / 60);
-                                $remaining_time = "ETA : " . $day . " Days:" . $hour . "Hours:" . $minute . ": Min";
-                                $title = "Project Created ON : " . $p_time . " " . $remaining_time;
-                                echo "<li><form method='POST' action=''>
-                                <input type='hidden' name='project_title' value='" . $p_title . "'/>
-                                <input type='hidden' name='project_id' value='" . $project_title_displayRow['project_id'] . "'/>
+                                $p_title = $project_title_displayRow['project_title'] ;
+                                $p_eta = $project_title_displayRow['project_ETA'] ;
+                                $p_time = $project_title_displayRow['project_creation'] ;
+                                $eta = $p_eta*60 ;
+								$day = floor($eta/(24*60*60)) ;
+								$daysec = $eta%(24*60*60) ;
+								$hour = floor($daysec/(60*60)) ;
+								$hoursec = $daysec%(60*60) ;
+								$minute = floor($hoursec/60) ;
+								$remaining_time = "ETA : ".$day." Days :".$hour." Hours :".$minute." Min" ;
+								$title = "Project Created ON : ".$p_time." ".$remaining_time ;			
+                                echo "<form method='POST' action=''>
+                                <input type='hidden' name='project_title' value='".$p_title."'/>
+                                <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
                                 <p align='center' ><input type='submit' class='btn btn-default' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' value='".ucfirst($p_title)."' style='white-space: normal;'/></p></form></li>";
+                                data-placement='bottom' data-original-title='".$title."' value='".$p_title."' style='white-space: normal;'/></p></form><br/>" ;
                             }
                             ?>
                         </ul></div>
@@ -62,7 +62,7 @@ include_once 'project.inc.php';
 										<li><form role='form' method='POST' action = ''>
                                         <input type='hidden' name='team_name' value='" . $teams . "'/>
                                         <input type='hidden' name='project_id' value='" . $pro_id . "'/>
-                                        <p align='center' ><input type='submit' class='btn btn-default' name='view' value='".ucfirst($teams)."' style='white-space: normal;'/></p></form></li></ul><br/>";
+                                        <p align='center' ><input type='submit' class='btn btn-default' name='view' value='".ucfirst($teams)."' style='white-space: normal;'/></p></form></li></ul>";
                             }
                             ?>
 
