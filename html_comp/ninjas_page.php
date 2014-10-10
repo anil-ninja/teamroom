@@ -256,7 +256,7 @@
 			$id = $owned_challengesRow['user_id'];
 			$namefirst = $owned_challengesRow['first_name'];
 			$namelast = $owned_challengesRow['last_name'];
-			$time = $owned_challengesRow['last_name'] ;
+			$time = $owned_challengesRow['ownership_creation'];
 			$ETA = $eta*60 ;
 			$day = floor($ETA/(24*60*60)) ;
 			$daysec = $ETA%(24*60*60) ;
