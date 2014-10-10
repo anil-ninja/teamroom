@@ -31,8 +31,8 @@
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
+                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
+                     <li><a class='btn btn-default' id='delChallenge' cID='".$p_id."' onclick='delChallenge(".$p_id.");'>Delete Challenge</a></li>
                      <li><a class='btn btn-default' >Change ETA</a></li>                    
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
@@ -52,7 +52,7 @@
 	while ( $displayrowc = mysqli_fetch_array($displayb)) {
 			$frstnam = $displayrowc['first_name'] ;
 			$lnam = $displayrowc['last_name'] ;
-			$emailid = $displayrowc['email'] ;
+			//$emailid = $displayrowc['email'] ;
 			$ida = $displayrowc['response_pr_id'] ;
 			$projectres = $displayrowc['stmt'] ;
 		echo "<div id='commentscontainer'>
@@ -66,8 +66,8 @@
 				<div class='list-group-item pull-right'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
+                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
+                     <li><a class='btn btn-default' id='delChallenge' cID='".$ida."' onclick='delChallenge(".$ida.");'>Delete Challenge</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>
@@ -108,6 +108,7 @@
 			  $title = $displayrow['challenge_title'] ;
 			  $fname = $displayrow['first_name'] ;
 			  $lname = $displayrow['last_name'] ;
+                          $note_ID = $displayrow['challenge_id'];
 			  echo "<div class='panel-body'>
 						<div class='list-group'>
 							<div class='list-group-item'>
@@ -115,8 +116,8 @@
 								<div class='list-group-item'>
 									<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 									<ul class='dropdown-menu' aria-labelledby='dropdown'>
-									 <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-									 <li><a class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>                  
+									 <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
+									 <li><a class='btn btn-default' id='delChallenge' cID='".$note_ID."' onclick='delChallenge(".$note_ID.");'>Delete Challenge</a></li>                  
 									 <li><a class='btn btn-default' >Report Spam</a></li>
 								   </ul>
 							  </div>

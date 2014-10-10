@@ -5,6 +5,7 @@
                         </div>
                         
 		<?php 
+
 			$owned_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.stmt, a.challenge_creation, c.comp_ch_ETA, c.ownership_creation,
                                             b.first_name, b.last_name from challenges as a join user_info as b join challenge_ownership as c where
 											a.user_id = '$user_id' and a.blob_id = '0' and a.challenge_id = c.challenge_id and c.status = '1' and
@@ -14,11 +15,12 @@
 											b.first_name, b.last_name from challenges as a join user_info as b join blobs as c join challenge_ownership as d
 											 WHERE a.user_id = '$user_id' and  a.challenge_id = d.challenge_id and d.status = '1' and
 											a.blob_id = c.blob_id and  a.challenge_status = '2'  and a.user_id = b.user_id ORDER BY challenge_creation DESC);");
+
 			while ($owned_challengesRow = mysqli_fetch_array($owned_challenges)) {
-				$eta = $owned_challengesRow['comp_ch_ETA'];
+				$eta = $owned_challengesRow['challenge_ETA'];
 				$ch_title = $owned_challengesRow['challenge_title'];
 				$ch_id = $owned_challengesRow['challenge_id'];
-				$time = $owned_challengesRow['ownership_creation'] ;
+				//$time = $owned_challengesRow['ownership_creation'] ;
 				$ETA = $eta*60 ;
 				$day = floor($ETA/(24*60*60)) ;
 				$daysec = $ETA%(24*60*60) ;
