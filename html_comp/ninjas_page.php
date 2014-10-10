@@ -75,7 +75,7 @@
 											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name from challenges as a join user_info as b join blobs as c 
 											WHERE a.challenge_type = '1' and a.blob_id = c.blob_id and a.user_id = b.user_id and a.challenge_status = '1') ORDER BY challenge_creation DESC ;");
-	while ($open_chalangerow = mysqli_fetch_array($open_chalange)){
+	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
 		$ETA = $open_chalangerow['challenge_ETA'] ;
 		$ch_title = $open_chalangerow['challenge_title'] ;
@@ -98,7 +98,7 @@
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
+                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
                      <li><a class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
                      <li><a class='btn btn-default' >Change ETA</a></li>                    
                      <li><a class='btn btn-default' >Report Spam</a></li>
@@ -217,7 +217,7 @@
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
+                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
                      <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
@@ -283,14 +283,14 @@
 			<div class='list-group'>
 				<div class='list-group-item'>";	
 		
-		echo "<font color = '#F1AE1E'> 
+		/* echo "<font color = '#F1AE1E'> 
 				Created by &nbsp 
 				<span class='color strong' style= 'color :#CAF11E;'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). "</span> &nbsp&nbsp&nbsp Created On : ".$times. "&nbsp&nbsp&nbsp ETA : ".$remaining_time. 
-			  "<br/>Owned By : <span class='color strong' style= 'color :#CAF11E;'>"
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). "</span> &nbsp&nbsp&nbsp Created On : ".$times. "&nbsp&nbsp&nbsp ETA : ".$remaining_time.  */
+			echo  "<font color = '#F1AE1E'> <br/>Owned By : <span class='color strong' style= 'color :#CAF11E;'>"
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
 			  "</font><br/><br/><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
-			   $stmt."<br/><br/>";
+			   $stmt."<br/><br/> </font>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $ch_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
 												   UNION
@@ -310,7 +310,7 @@
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
+                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
                      <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
@@ -319,13 +319,13 @@
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>
-                     <img src='img/default.gif'>
+                     <img src='img/default.gif'>&nbsp
                   </div>
-                  <div class='comment-text'>
+                  <div class='comment-text' class='inline-form'>
                       <form action='' method='POST' class='inline-form'>
-                          <input type='hidden' value='".$ch_id."' name='public_challen_id' />
-						  <input type='text' class='form-control' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                          <input type='submit' class='btn btn-success btn-sm' name='public_chl_response' value='Post'>
+                            <input type='hidden' value='".$ch_id."' name='public_challen_id' />
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                       </form>
                   </div>
              </div>";
