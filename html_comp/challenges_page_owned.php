@@ -6,15 +6,15 @@
                         
 		<?php 
 
-			$owned_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.stmt, a.challenge_creation, c.comp_ch_ETA, c.ownership_creation,
+			$owned_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.stmt, a.challenge_creation,a.challenge_ETA, c.comp_ch_ETA, c.ownership_creation,
                                             b.first_name, b.last_name from challenges as a join user_info as b join challenge_ownership as c where
 											a.user_id = '$user_id' and a.blob_id = '0' and a.challenge_id = c.challenge_id and c.status = '1' and
-											a.challenge_status = '2' and c.user_id = b.user_id ORDER BY challenge_creation DESC )
+											a.challenge_status = '2' and c.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_title,  c.stmt, a.challenge_creation, d.comp_ch_ETA, d.ownership_creation,
+											(SELECT DISTINCT a.challenge_id, a.challenge_title,a.challenge_ETA, c.stmt, a.challenge_creation, d.comp_ch_ETA, d.ownership_creation,
 											b.first_name, b.last_name from challenges as a join user_info as b join blobs as c join challenge_ownership as d
 											 WHERE a.user_id = '$user_id' and  a.challenge_id = d.challenge_id and d.status = '1' and
-											a.blob_id = c.blob_id and  a.challenge_status = '2'  and a.user_id = b.user_id ORDER BY challenge_creation DESC);");
+											a.blob_id = c.blob_id and  a.challenge_status = '2'  and a.user_id = b.user_id) ORDER BY challenge_creation DESC;");
 
 			while ($owned_challengesRow = mysqli_fetch_array($owned_challenges)) {
 				$eta = $owned_challengesRow['challenge_ETA'];
@@ -69,8 +69,8 @@
 										<div class='list-group-item pull-right'>
 											<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 											<ul class='dropdown-menu' aria-labelledby='dropdown'>
-											 <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-											 <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
+											 <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
+											 <li><a class='btn btn-default' id='delComment' cID='".$comment_owned_id."' onclick='delcomment(".$comment_owned_id.");'>Delete Comment</a></li>                   
 											 <li><a class='btn btn-default' >Report Spam</a></li>
 										   </ul>
 									  </div>

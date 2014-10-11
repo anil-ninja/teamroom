@@ -1,13 +1,15 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
-
-$userID = $_SESSION['user_id'];
+if(isset($_SESSION['user_id']))
+    $userID = $_SESSION['user_id'];
+else 
+    header ('location:../index.php');
 
 
 //echo $challengeID . $userID;
-if(isset($_POST['challengeID'])){
-	$challengeID = $_POST['challengeID'];
+if(isset($_POST['cID'])){
+	$challengeID = $_POST['cID'];
 
 	$sql = "UPDATE challenges SET challenge_type = '3' WHERE challenge_id = '$challengeID' and user_id = '$userID';";
 	mysqli_query($db_handle, $sql);
