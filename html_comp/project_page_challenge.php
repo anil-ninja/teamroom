@@ -47,7 +47,11 @@
 		}	
 	echo "<div class='panel-body'>
 					<div class='list-group'>
-						<div class='list-group-item'>";
+						<div class='list-group-item'>
+						<form method='POST' class='inline-form pull-right'>
+					<input type='hidden' name='id' value='".$id."'/>
+					<input class='btn btn-success btn-sm' type='submit' name='accept' value='Accept Challenge'/>
+					</form>";
       echo "<div class='pull-right'>
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
@@ -60,93 +64,9 @@
               </div>
             </div>";
 	  echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
-				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span>&nbsp&nbsp&nbsp ETA : ".$remainingtime." &nbsp Challenge Created 
-				ON :".$chalangetime. "&nbsp and Remaining Time : ".$remaining_time."</font><br/>";
-          
-	  echo "<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-		<input type='hidden' name='challenge_id' value='" . $idb . "'/><br/>
-			Your ETA : 
-				<select class='btn btn-default btn-xs' name = 'y_eta' >	
-					<option value='0' selected >Month</option>
-					<option value='1'>1</option>
-					<option value='2'>2</option>
-					<option value='3'>3</option>
-					<option value='4'>4</option>
-					<option value='5'>5</option>
-					<option value='6'>6</option>
-					<option value='7'>7</option>
-					<option value='8'>8</option>
-					<option value='9'>9</option>
-					<option value='10'>10</option>
-					<option value='11'>11</option>
-				</select>
-				<select class='btn btn-default btn-xs' name = 'y_etab' >	
-					<option value='0' selected >Days</option>
-					<option value='1'>1</option>
-					<option value='2'>2</option>
-					<option value='3'>3</option>
-					<option value='4'>4</option>
-					<option value='5'>5</option>
-					<option value='6'>6</option>
-					<option value='7'>7</option>
-					<option value='8'>8</option>
-					<option value='9'>9</option>
-					<option value='10'>10</option>
-					<option value='11'>11</option>
-					<option value='12'>12</option>
-					<option value='13'>13</option>
-					<option value='14'>14</option>
-					<option value='15'>15</option>
-					<option value='16'>16</option>
-					<option value='17'>17</option>
-					<option value='18'>18</option>
-					<option value='19'>19</option>
-					<option value='20'>20</option>
-					<option value='21'>21</option>
-					<option value='22'>22</option>
-					<option value='23'>23</option>
-					<option value='24'>24</option>
-					<option value='25'>25</option>
-					<option value='26'>26</option>
-					<option value='27'>27</option>
-					<option value='28'>28</option>
-					<option value='29'>29</option>
-					<option value='30'>30</option>
-			</select>
-			<select class='btn btn-default btn-xs' name = 'y_etac' >
-					<option value='0' selected >hours</option>
-					<option value='1'>1</option>
-					<option value='2'>2</option>
-					<option value='3'>3</option>
-					<option value='4'>4</option>
-					<option value='5'>5</option>
-					<option value='6'>6</option>
-					<option value='7'>7</option>
-					<option value='8'>8</option>
-					<option value='9'>9</option>
-					<option value='10'>10</option>
-					<option value='11'>11</option>
-					<option value='12'>12</option>
-					<option value='13'>13</option>
-					<option value='14'>14</option>
-					<option value='15'>15</option>
-					<option value='16'>16</option>
-					<option value='17'>17</option>
-					<option value='18'>18</option>
-					<option value='19'>19</option>
-					<option value='20'>20</option>
-					<option value='21'>21</option>
-					<option value='22'>22</option>
-					<option value='23'>23</option>
-			  </select>&nbsp;
-			  <select class='btn btn-default btn-xs' name = 'y_etad' >	
-					<option value='15' selected >minute</option>
-					<option value='30' >30</option>
-					<option value='45' >45</option>
-			  </select>
-		<input type='submit' class='btn btn-success btn-sm' name = 'chlange' value = 'Accept' ></small>
-	  </form><br/>";
-		echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>
+				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span><br/> ETA : ".$remainingtime." <br/> Challenge Created 
+				ON :".$chalangetime. "<br/> and Remaining Time : ".$remaining_time."</font><br/>";
+   	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>
 				<small>".str_replace("<s>","&nbsp;",$chalangest)."</small><br> <br>";
 		$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 												JOIN user_info as b WHERE a.challenge_id = '$idb' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
@@ -184,9 +104,9 @@
                             <img src='img/default.gif'> &nbsp
                         </div>
 			<form class='inline-form' action='' method='POST'>
-                            <input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' />
-                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='challenge_of_project_response'></button>
+                            <input type='hidden' value='".$idb."' name='challenge_id' />
+                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
+                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='response'></button>
 			</form>
                     </div>";
 	echo "</div> </div> </div>";
@@ -287,9 +207,9 @@
                             <img src='img/default.gif'> &nbsp
                         </div>
 			<form class='inline-form' action='' method='POST'>
-                            <input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' />
-                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='challenge_of_project_response'></button>
+                            <input type='button' value='".$idd."' id='challenge_id' />
+                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
+                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='response'></button>
 			</form>
                     </div>";
 	echo "</div> </div> </div>";

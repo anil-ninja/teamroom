@@ -83,14 +83,14 @@
 		});
 	});
 	$(document).ready(function(){
-		$("#challenge_of_project_response").click(function(){
-			$("#challenge_of_project_response").attr('disabled','disabled');
-			var notes = $("#challenge_of_pr_resp").val() ;
+		$("#response").click(function(){
+			var notes = $("#pr_resp").val() ;
+			var id = $("#challenge_id").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challenge_of_pr_resp='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes)) ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes)) + '&id='+ id ;
 			//alert(dataString);
-			if(challenge_of_pr_resp==''){
-				alert("Please Enter Something !!!");
+			if(notes==''){
+				alert(id);
 			}
 			else
 			{

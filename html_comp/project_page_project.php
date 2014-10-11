@@ -108,7 +108,7 @@
 			  $title = $displayrow['challenge_title'] ;
 			  $fname = $displayrow['first_name'] ;
 			  $lname = $displayrow['last_name'] ;
-                          $note_ID = $displayrow['challenge_id'];
+              $note_ID = $displayrow['challenge_id'];
 			  echo "<div class='panel-body'>
 						<div class='list-group'>
 							<div class='list-group-item'>
@@ -163,9 +163,9 @@
 					<img src='img/default.gif'>&nbsp
 				</div>
 				<form class='inline-form' action='' method='POST'>
-                                    <input type='hidden' value='".$displayrow['challenge_id']."' name='challenge_of_project_id' />
-                                    <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px' id='challenge_of_pr_resp' placeholder='Whats on your mind about this challenge'/>
-                                    <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='challenge_of_project_response'> </button>
+                                    <input type='hidden' value='".$note_ID."' id='challenge_id' />
+                                    <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
+                                    <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='response'> </button>
 				</form>
 			</div></div></div></div>" ;
 	}
