@@ -13,7 +13,7 @@
                             while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                     $team_name = $teams_name_displayRow['team_name'] ;
                                     echo " <li>
-												<label class='tree-toggle nav-header btn btn-default' style='white-space: normal; align:center;'>".ucfirst($team_name)."<br/></label>
+											<label class='tree-toggle nav-header btn btn-default' style='white-space: normal; align:center;'>".ucfirst($team_name)."<br/></label>
 													<ul class='nav tree' style='display: none;'><br/>" ;
                                                                                         
 								$teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info

@@ -93,17 +93,23 @@
 
 		echo "<div class='panel-body'>
 			<div class='list-group'>
-				<div class='list-group-item'>";	
+				<div class='list-group-item'>
+				<form method='POST' class='inline-form pull-right'>
+					<input type='hidden' name='id' value='".$chelangeid."'/>
+					<input class='btn btn-success btn-sm' type='submit' name='accept' value='Accept Challenge'/>
+					</form>";	
 		echo "<div class='pull-right'>
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
+					<form method='POST' class='inline-form'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
                      <li><a class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
-                     <li><a class='btn btn-default' >Change ETA</a></li>                    
+                     <input type='hidden' name='id' value='".$chelangeid."'/>
+                     <li><p align='center'><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></p></li>                    
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
-              </div>
+              </div></form>
             </div>";
 		
 		echo "<font color = '#F1AE1E'> 
@@ -111,90 +117,7 @@
 				<span class='color strong' style= 'color :#CAF11E;'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
 				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time.
-			  "</font><br/>
-			<form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-					<input type='hidden' name='challenge_id' value='" . $chelangeid . "'/><br/>
-									Your ETA : 
-										<select class='btn btn-default btn-xs' name = 'y_eta' >	
-											<option value='0' selected >Month</option>
-											<option value='1'>1</option>
-											<option value='2'>2</option>
-											<option value='3'>3</option>
-											<option value='4'>4</option>
-											<option value='5'>5</option>
-											<option value='6'>6</option>
-											<option value='7'>7</option>
-											<option value='8'>8</option>
-											<option value='9'>9</option>
-											<option value='10'>10</option>
-											<option value='11'>11</option>
-                            			</select>
-										<select class='btn btn-default btn-xs' name = 'y_etab' >	
-											<option value='0' selected >Days</option>
-											<option value='1'>1</option>
-											<option value='2'>2</option>
-											<option value='3'>3</option>
-											<option value='4'>4</option>
-											<option value='5'>5</option>
-											<option value='6'>6</option>
-											<option value='7'>7</option>
-											<option value='8'>8</option>
-											<option value='9'>9</option>
-											<option value='10'>10</option>
-											<option value='11'>11</option>
-											<option value='12'>12</option>
-											<option value='13'>13</option>
-											<option value='14'>14</option>
-											<option value='15'>15</option>
-											<option value='16'>16</option>
-											<option value='17'>17</option>
-											<option value='18'>18</option>
-											<option value='19'>19</option>
-											<option value='20'>20</option>
-											<option value='21'>21</option>
-											<option value='22'>22</option>
-											<option value='23'>23</option>
-											<option value='24'>24</option>
-											<option value='25'>25</option>
-											<option value='26'>26</option>
-											<option value='27'>27</option>
-											<option value='28'>28</option>
-											<option value='29'>29</option>
-											<option value='30'>30</option>
-									</select>
-									<select class='btn btn-default btn-xs' name = 'y_etac' >
-											<option value='0' selected >hours</option>
-											<option value='1'>1</option>
-											<option value='2'>2</option>
-											<option value='3'>3</option>
-											<option value='4'>4</option>
-											<option value='5'>5</option>
-											<option value='6'>6</option>
-											<option value='7'>7</option>
-											<option value='8'>8</option>
-											<option value='9'>9</option>
-											<option value='10'>10</option>
-											<option value='11'>11</option>
-											<option value='12'>12</option>
-											<option value='13'>13</option>
-											<option value='14'>14</option>
-											<option value='15'>15</option>
-											<option value='16'>16</option>
-											<option value='17'>17</option>
-											<option value='18'>18</option>
-											<option value='19'>19</option>
-											<option value='20'>20</option>
-											<option value='21'>21</option>
-											<option value='22'>22</option>
-											<option value='23'>23</option>
-                                      </select>&nbsp;
-									  <select class='btn btn-default btn-xs' name = 'y_etad' >	
-											<option value='15' selected >minute</option>
-											<option value='30' >30</option>
-											<option value='45' >45</option>
-									  </select>
-								<input type='submit' class='btn btn-success btn-sm' name = 'chlange' value = 'Accept' ></small>
-							  </form>
+			  "</font>
 			  </div>
 			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
@@ -205,24 +128,24 @@
 													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chelangeid' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);");
 	while($commenterRow = mysqli_fetch_array($commenter)) {
               $comment_id = $commenterRow['response_ch_id'];
+              $ch_id = $commenterRow['challenge_id'];
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
 					<img src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
-						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."</span>
+						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</span>
 						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."
-						<div class='pull-right'>
-				<div class='list-group-item'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+				<div class='list-group-item pull-right' >
+					<button class='dropdown-toggle btn-default btn-xs' data-toggle='dropdown' id='themes'><span class='caret'></span></button>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
                      <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>
-            </div></div></div></div>";
+            </div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>
@@ -230,7 +153,7 @@
                   </div>
                   <div class='comment-text'>
                       <form action='' method='POST' class='inline-form'>
-                            <input type='hidden' value='".$ch_id."' name='public_challen_id' />
+                            <input type='hidden' value='".$chelangeid."' name='id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
                             <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                       </form>
