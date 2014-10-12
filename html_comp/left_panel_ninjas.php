@@ -24,9 +24,10 @@
                                                     $phone = $teams_names_displayRow['contact_no'] ;
                                                     $rank = $teams_names_displayRow['rank'] ;
                                                     $profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
-                                            echo "<li><p align='center' ><input type='submit' class='btn btn-default' name='projectphp' data-toggle='tooltip' 
-                                                  data-placement='bottom' data-original-title='".$profile."' value='".ucfirst($firstname)." ".ucfirst($lastname)."' 
-                                                  style='white-space: normal;'/></p></li><br/>" ;
+                                            echo "<li><p align='center' >
+                                                    <button class='btn-link' name='projectphp' data-toggle='tooltip' 
+                                                        data-placement='bottom' data-original-title='".$profile."' 
+                                                  style='white-space: normal;'/>".ucfirst($firstname)." ".ucfirst($lastname)."</button></p></li><br/>" ;
                                     }
                                     echo "</ul></li><br/>" ;
                             }

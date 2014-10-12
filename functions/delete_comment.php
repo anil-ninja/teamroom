@@ -33,12 +33,12 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
                     $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                     if($challenge_dropdown_userID == $user_ID) {
                         echo "
-                        <li><button class='btn btn-link' href='#'>Edit Challenge</button></li>
-                        <li><button class='btn btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete Challenge</button></li>
+                        <li><button class='btn-link' href='#'>Edit</button></li>
+                        <li><button class='btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete</button></li>
                         <li><form method='POST' class='inline-form'>";                    
                         if($remaining_time_ETA_over == 'Time over') {        
                             echo "<input type='hidden' name='id' value='".$challenge_ID."'/>
-                                <input class='btn btn-link' type='submit' name='eta' value='Change ETA'/>";
+                                <input class='btn-link' type='submit' name='eta' value='Change ETA'/>";
                             }                                    
                        echo "</form></li>";
                     }
