@@ -1,8 +1,8 @@
-<div class="panel panel-success">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Your Owned Challenges</h3>
-                            </div>
-                        </div>
+<div class="panel panel">
+    <div class="panel-heading">
+        <h3 class="panel-title"><font color="silver">Your Owned Challenges</font></h3>
+    </div>
+</div>
                         
 		<?php 
 

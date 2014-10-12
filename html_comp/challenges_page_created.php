@@ -1,7 +1,7 @@
 
-<div class="panel panel-info" >
+<div class="panel panel" >
 	<div class="panel-heading" >
-		<h3 class="panel-title" >Your Challenges</h3>
+		<h3 class="panel-title" ><font color="silver">Your Challenges</font></h3>
 	</div>
 </div>
                         

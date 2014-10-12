@@ -1,5 +1,5 @@
                <div class="panel-body">
-                  <form >
+                  <form>
 						<div class="input-group-addon">
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
                          </div><br>
@@ -111,22 +111,8 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 					<input type='hidden' name='id' value='".$chelangeid."'/>
 					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept Challenge'/>
 					</form>";	
-		echo "<div class='pull-right'>
-				<div class='list-group-item'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-					<form method='POST' class='inline-form'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>";
-            if($remaining_time_own == "Time over") {        
-                   echo  "<input type='hidden' name='id' value='".$chelangeid."'/>
-                     <li><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></li>" ;
-				 }                    
-                   echo "<li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div></form>
-            </div>";
 		
+		dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
 		echo "<font color = '#F1AE1E'> 
 				Created by &nbsp 
 				<span class='color strong' style= 'color :#CAF11E;'>" 

@@ -1,5 +1,6 @@
 <?php
 include_once 'ninjas.inc.php';
+include_once 'functions/delete_comment.php';
 ?>
 
 <!DOCTYPE html>
