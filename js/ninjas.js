@@ -1,12 +1,31 @@
 function replaceAll(find, replace, str) {
 return str.replace(new RegExp(find, 'g'), replace);
 }
+function url_domain(data) {
+  var    a      = document.createElement('a');
+         a.href = data;
+
+  return a.hostname;
+}
+function getVedioId(str) {
+    return str.split('=')[1];
+}
 	
 	$(document).ready(function(){
     
 		$("#submit_ch").click(function(){
-      $("#submit_ch").attr('disabled','disabled');
+      		$("#submit_ch").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;
+			var domain = url_domain(challenge);
+			//alert(domain);
+			if (domain == "www.youtube.com"){
+				var linkId = getVedioId(challenge);
+				//alert(linkId);
+				challenge = "<iframe src=\"//www.youtube.com/embed/";
+				challenge = challenge.concat(linkId);
+				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen style=\"width: 100% important; height: auto   !important; max-width: 100%;min-width: 100%;\"></iframe>");
+			}
+			//alert(challenge);
 			var challenge_title = $("#challange_title").val() ;
 			var open_time = parseInt($("#open_time").val());
 			var open = parseInt($("#open").val());
