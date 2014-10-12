@@ -8,7 +8,7 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="ninjas.php">Ninjas</a>
+    <a class="navbar-brand" href="ninjas.php">Collgo</a>
   </div>
   
   <div class="navbar-collapse collapse navbar-responsive-collapse">
@@ -21,18 +21,16 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
 		<li>
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Teams</a>
-              <ul class="dropdown-menu">
-				<li>
-					<div class="well">
-						<ul class="nav">
-						<?php 
+		  <div class="dropdown">
+            <a data-toggle="dropdown"><p class="navbar-text">Your Teams<span class="caret"></span></p></a>
+    		<ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
+              <?php 
                             $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;")) ;
                             while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                     $team_name = $teams_name_displayRow['team_name'] ;
-                                    echo " <li>
-											<label class='tree-toggle nav-header' style='white-space: normal; align:center;'>".ucfirst($team_name)."<br/></label>
-													<ul class='nav tree' style='display: none;'>" ;
+                                    echo " <li class='dropdown-submenu'>
+											<a style='white-space: normal;'>".ucfirst($team_name)."<br/></a>
+													<ul class='dropdown-menu'>" ;
                                                                                         
 								$teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
                                                                                     as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
@@ -50,8 +48,9 @@
                                     echo "</ul></li><br/>" ;
                             }
                           ?>
-						</ul></div></li></ul>
-		</li>
+            </ul>
+        </div>
+      </li>
       <li><form method="POST" >
           <?php 
             if($requestedPage == "ninjas.php") 

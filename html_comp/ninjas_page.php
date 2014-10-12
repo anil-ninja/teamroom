@@ -1,4 +1,6 @@
-               <div class="panel-body">
+        
+				   <div class='list-group'>
+				<div class='list-group-item'>
                   <form>
 						<div class="input-group-addon">
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
@@ -62,8 +64,8 @@
                         </select><br/><br/>                          
                         <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                         </div>
-                    </form><br/><br/>
-                </div>
+                    </form><br/>
+                </div></div>
 		<?php
 	$user_id = $_SESSION['user_id'];
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
@@ -113,14 +115,12 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 					</form>";	
 		
 		dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-		echo "<font color = '#F1AE1E'> 
-				Created by &nbsp 
-				<span class='color strong' style= 'color :#CAF11E;'>" 
+		echo "Created by &nbsp 
+				<span class='color strong' style= 'color :lightblue;'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
 				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time."<br/>Remaining Time : ".$remaining_time_own.
-			  "</font>
-			  </div>
-			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+			  "</div>
+			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -206,9 +206,9 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
   echo "<div class='list-group'>
 				<div class='list-group-item'>";	
 		
-	echo  "<font color = '#F1AE1E'> <br/>Owned By : <span class='color strong' style= 'color :#CAF11E;'>"
+	echo  "Owned By : <span class='color strong' style= 'color :lightblue;'>"
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
-			  "</font><br/><br/><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+			  "<br/></div><div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $stmt."<br/><br/> </font>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $ch_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -248,6 +248,6 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
                       </form>
                   </div>
              </div>";
-          echo " </div> </div> ";
+          echo " </div></div> ";
 	  }
 ?>

@@ -49,8 +49,7 @@ include_once 'functions/delete_comment.php';
 $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);
 });	
-  document.getElementById("demo").innerHTML = String(getDateTime());
-
+document.getElementById("demo").innerHTML = String(getDateTime());
   </script>
 
 
