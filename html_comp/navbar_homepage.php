@@ -25,14 +25,14 @@
           <?php 
             if($requestedPage == "ninjas.php") 
               echo "<p class='navbar-text'>
-                      <a data-toggle='modal'  data-target='#myModal' style='cursor:pointer; color:white'>
+                      <a data-toggle='modal'  data-target='#myModal' style='cursor:pointer;'>
                             
                             <i class='glyphicon glyphicon-edit'>
                             </i>Create New Project
 						</a>
                     </p>";
           ?>
-          <p class="navbar-text"><a href="challenges.php" style='cursor:pointer; color:white'>Your Challenges</a></p>
+          <p class="navbar-text"><a href="challenges.php" style='cursor:pointer;'>Your Challenges</a></p>
           <p class="navbar-text">&nbsp;Your rank :  <?php echo $rank ; ?></p>
           <p class="navbar-text"><span class="glyphicon glyphicon-user"></span>&nbsp; Hello <?php echo ucfirst($name); ?></p>                              
           <p class="navbar-text"><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></p></form>

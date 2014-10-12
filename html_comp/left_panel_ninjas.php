@@ -1,10 +1,9 @@
  <div class="bs-component">
-              <div class="modal">
-                  <div class="modal-content">
-                    <div class="modal-header">
+              
+                    
                       <p align="center"><font size="5"  color="silver">Your Teams</font></p>
-                    </div>  
-                    <div class="modal-body">
+                      
+                    
 						<div class="well">
 							<ul class="nav">
 								
@@ -13,7 +12,7 @@
                             while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                     $team_name = $teams_name_displayRow['team_name'] ;
                                     echo " <li>
-											<label class='tree-toggle nav-header btn btn-default' style='white-space: normal; align:center;'>".ucfirst($team_name)."<br/></label>
+											<label class='tree-toggle nav-header' style='white-space: normal; align:center;'>".ucfirst($team_name)."<br/></label>
 													<ul class='nav tree' style='display: none;'><br/>" ;
                                                                                         
 								$teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
@@ -33,9 +32,5 @@
                             }
                           ?>
                         </ul></div> 
-                       </div>
-                    <div class="modal-footer">
-                  </div>
-                </div>
+                       
               </div>
-            </div>

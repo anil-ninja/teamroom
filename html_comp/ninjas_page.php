@@ -60,12 +60,10 @@
                             <option value='30' >30</option>
                             <option value='45'  >45</option>
                         </select><br/><br/>                          
-                        <input id="submit_ch" class="btn btn-success" type="button" value="Create Challange"/>
+                        <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                         </div>
                     </form><br/><br/>
                 </div>
-              </div>
-                <div class='panel-body'>
 		<?php
 	$user_id = $_SESSION['user_id'];
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
@@ -91,12 +89,11 @@
 		$minute = floor($hoursec/60) ;
 		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
 
-		echo "<div class='panel-body'>
-			<div class='list-group'>
+		echo "<div class='list-group'>
 				<div class='list-group-item'>
 				<form method='POST' class='inline-form pull-right'>
 					<input type='hidden' name='id' value='".$chelangeid."'/>
-					<input class='btn btn-success btn-sm' type='submit' name='accept' value='Accept Challenge'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept Challenge'/>
 					</form>";	
 		echo "<div class='pull-right'>
 				<div class='list-group-item'>
@@ -137,8 +134,8 @@
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</span>
 						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."
-				<div class='list-group-item pull-right' >
-					<button class='dropdown-toggle btn-default btn-xs' data-toggle='dropdown' id='themes'><span class='caret'></span></button>
+				<div class='list-group-item pull-right'>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
                      <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
@@ -155,11 +152,11 @@
                       <form action='' method='POST' class='inline-form'>
                             <input type='hidden' value='".$chelangeid."' name='public_ch_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                       </form>
                   </div>
              </div>";
-          echo " </div> </div></div> ";    
+          echo " </div> </div> ";    
   }
   $owned_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.stmt, c.user_id, c.ownership_creation, c.comp_ch_ETA, 
 											b.first_name, b.last_name from challenges as a join user_info as b join challenge_ownership 
@@ -202,8 +199,7 @@
 			$sec = $hoursec%60 ;
 			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 		}
-  echo "<div class='panel-body'>
-			<div class='list-group'>
+  echo "<div class='list-group'>
 				<div class='list-group-item'>";	
 		
 	echo  "<font color = '#F1AE1E'> <br/>Owned By : <span class='color strong' style= 'color :#CAF11E;'>"
@@ -244,10 +240,10 @@
                       <form action='' method='POST' class='inline-form'>
                             <input type='hidden' value='".$ch_id."' name='public_challen_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                       </form>
                   </div>
              </div>";
-          echo " </div> </div></div> ";
+          echo " </div> </div> ";
 	  }
 ?>
