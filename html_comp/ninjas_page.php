@@ -104,7 +104,7 @@
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
 					<form method='POST' class='inline-form'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
+                     <li><a class='btn btn-default' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
                      <input type='hidden' name='id' value='".$chelangeid."'/>
                      <li><p align='center'><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></p></li>                    
                      <li><a class='btn btn-default' >Report Spam</a></li>
