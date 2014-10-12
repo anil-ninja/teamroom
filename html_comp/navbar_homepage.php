@@ -20,8 +20,9 @@
         </form></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-		<li><a class='tree-toggle' data-toggle='dropdown'>Your Teams</a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
+		<li>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Your Teams</a>
+              <ul class="dropdown-menu">
 				<li>
 					<div class="well">
 						<ul class="nav">
