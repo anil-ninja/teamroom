@@ -13,11 +13,11 @@ include_once 'project.inc.php';
                     <input class="btn btn-default btn-sm" type="submit" name="submit" value="Submit"><br>
                 </form>
                 <br>
-                <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Enter Notes</a><br/><br/>
-                <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a><br/><br/>
-                <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#createProject" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Project</a><br/><br/>
-                <a data-toggle="modal" class="btn btn-default btn-sm" data-target="#create_team_new" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Team</a><br/><br/>
-                <a href="challenges.php" class="btn btn-default btn-sm" >Your Challenges</a><br/></p>	
+                <a data-toggle="modal" class="btn btn-link" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Enter Notes</a><br/><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a><br/><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#createProject" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Project</a><br/><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#create_team_new" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Team</a><br/><br/>
+                <a href="challenges.php" class="btn btn-link" >Your Challenges</a><br/></p>	
                 </font> 
                 </p>
             </div>  

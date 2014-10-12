@@ -60,19 +60,17 @@
                             <option value='30' >30</option>
                             <option value='45'  >45</option>
                         </select><br/><br/>                          
-                        <input id="submit_ch" class="btn btn-success" type="button" value="Create Challange"/>
+                        <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                         </div>
                     </form><br/><br/>
                 </div>
-              </div>
-                <div class='panel-body'>
 		<?php
 	$user_id = $_SESSION['user_id'];
-	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
+	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
                                             b.first_name, b.last_name from challenges as a join user_info as b where a.challenge_type = '1'
                                              and blob_id = '0' and a.user_id = b.user_id and a.challenge_status = '1')
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
+											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name from challenges as a join user_info as b join blobs as c 
 											WHERE a.challenge_type = '1' and a.blob_id = c.blob_id and a.user_id = b.user_id and a.challenge_status = '1') ORDER BY challenge_creation DESC ;");
 	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
@@ -83,6 +81,7 @@
 		$lstname = $open_chalangerow['last_name'] ;
 		$chelangeid = $open_chalangerow['challenge_id'] ;
 		$times = $open_chalangerow['challenge_creation'] ;
+		$timeopen = $open_chalangerow['challenge_open_time'] ;
 		$eta = $ETA*60 ;
 		$day = floor($eta/(24*60*60)) ;
 		$daysec = $eta%(24*60*60) ;
@@ -90,13 +89,27 @@
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
 		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
-
-		echo "<div class='panel-body'>
-			<div class='list-group'>
+		$starttimestr = (string) $times ;
+		$open = $timeopen*60 ;
+        $initialtime = strtotime($starttimestr) ;
+		$totaltime = $initialtime+$eta+$open ;
+		$completiontime = time() ;
+if ($completiontime > $totaltime) { 
+	$remaining_time_own = "Time over" ; }
+else {	$remainingtime = ($totaltime-$completiontime) ;
+		$day = floor($remainingtime/(24*60*60)) ;
+		$daysec = $remainingtime%(24*60*60) ;
+		$hour = floor($daysec/(60*60)) ;
+		$hoursec = $daysec%(60*60) ;
+		$minute = floor($hoursec/60) ;
+		$sec = $hoursec%60 ;
+		$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+}
+		echo "<div class='list-group'>
 				<div class='list-group-item'>
 				<form method='POST' class='inline-form pull-right'>
 					<input type='hidden' name='id' value='".$chelangeid."'/>
-					<input class='btn btn-success btn-sm' type='submit' name='accept' value='Accept Challenge'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept Challenge'/>
 					</form>";	
 		echo "<div class='pull-right'>
 				<div class='list-group-item'>
@@ -104,10 +117,12 @@
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
 					<form method='POST' class='inline-form'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
-                     <input type='hidden' name='id' value='".$chelangeid."'/>
-                     <li><p align='center'><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></p></li>                    
-                     <li><a class='btn btn-default' >Report Spam</a></li>
+                     <li><a class='btn btn-default' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>";
+            if($remaining_time_own == "Time over") {        
+                   echo  "<input type='hidden' name='id' value='".$chelangeid."'/>
+                     <li><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></li>" ;
+				 }                    
+                   echo "<li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div></form>
             </div>";
@@ -116,7 +131,7 @@
 				Created by &nbsp 
 				<span class='color strong' style= 'color :#CAF11E;'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
-				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time.
+				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time."<br/>Remaining Time : ".$remaining_time_own.
 			  "</font>
 			  </div>
 			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
@@ -137,8 +152,8 @@
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</span>
 						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."
-				<div class='list-group-item pull-right' >
-					<button class='dropdown-toggle btn-default btn-xs' data-toggle='dropdown' id='themes'><span class='caret'></span></button>
+				<div class='list-group-item pull-right'>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
                      <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
@@ -155,11 +170,11 @@
                       <form action='' method='POST' class='inline-form'>
                             <input type='hidden' value='".$chelangeid."' name='public_ch_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                       </form>
                   </div>
              </div>";
-          echo " </div> </div></div> ";    
+          echo " </div> </div> ";    
   }
   $owned_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.stmt, c.user_id, c.ownership_creation, c.comp_ch_ETA, 
 											b.first_name, b.last_name from challenges as a join user_info as b join challenge_ownership 
@@ -202,8 +217,7 @@
 			$sec = $hoursec%60 ;
 			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 		}
-  echo "<div class='panel-body'>
-			<div class='list-group'>
+  echo "<div class='list-group'>
 				<div class='list-group-item'>";	
 		
 	echo  "<font color = '#F1AE1E'> <br/>Owned By : <span class='color strong' style= 'color :#CAF11E;'>"
@@ -244,10 +258,10 @@
                       <form action='' method='POST' class='inline-form'>
                             <input type='hidden' value='".$ch_id."' name='public_challen_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                       </form>
                   </div>
              </div>";
-          echo " </div> </div></div> ";
+          echo " </div> </div> ";
 	  }
 ?>

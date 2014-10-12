@@ -1,10 +1,8 @@
 <div class="bs-component">
-              <div class="modal">
-                  <div class="modal-content">
-                    <div class="modal-header">
+              
                       <p align="center"><font size="5"  color="silver">Your Projects</font></p>
-                    </div>  
-                    <div class="modal-body">
+                      
+                    <div class="well">
                        <?php
                             $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id)  
@@ -24,16 +22,12 @@
                                 echo "<form method='POST' action=''>
                                 <input type='hidden' name='project_title' value='".$p_title."'/>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
-                                <p align='center' ><input type='submit' class='btn btn-default' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' value='".$p_title."' style='white-space: normal;'/></p></form>" ;
+                                <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button><br/><br/></form>" ;
                             }
                         ?>
                     </div>
-                    <div class="modal-footer">
-                     
-                    </div>
-                  </div>
-                </div>
+                    
               </div>
 <!-- Modal -->
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
