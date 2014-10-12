@@ -37,7 +37,7 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
                         <li><button class='btn btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete Challenge</button></li>
                         <li><form method='POST' class='inline-form'>";                    
                         if($remaining_time_ETA_over == 'Time over') {        
-                            echo "<input type='hidden' name='id' value='".$chelangeid."'/>
+                            echo "<input type='hidden' name='id' value='".$challenge_ID."'/>
                                 <input class='btn btn-link' type='submit' name='eta' value='Change ETA'/>";
                             }                                    
                        echo "</form></li>";
