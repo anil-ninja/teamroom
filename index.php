@@ -18,7 +18,7 @@ include_once "controllers/login_controller.php";
         
         
     </head>
-    <body>
+    <body >
         <div class="row">  
             <div class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
@@ -34,16 +34,15 @@ include_once "controllers/login_controller.php";
         </div>
 
 
-        <div class="row">
-            <div class = "col-xs-3 col-ls-"></div>	
-            <div class = "col-xs-3 col-ls-6" style="width:600px; height:500px">
+        <div class="row" style="background-image: url(img/collaboration.jpg); height: 570px; max-width: 100%;">
+            <div class = "col-xs-7 col-ls-8"></div>	
+            <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px">
                 <div class="bs-component">
                     <div class="modal">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <p align="center"><font size="5"  color="silver">Don't Punch Someone,
-                                        <br/> Come to Ninjas and Kickasses</font></p>
+                                    <p align="center"><font size="5" >Collaborations</font></p>
                                 </div>
                                 <div class="modal-body">
                                     <form role="form" method="POST" class="form-horizontal" onsubmit="return validateLoginFormOnSubmit(this)">
