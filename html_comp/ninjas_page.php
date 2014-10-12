@@ -66,11 +66,11 @@
                 </div>
 		<?php
 	$user_id = $_SESSION['user_id'];
-	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
+	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
                                             b.first_name, b.last_name from challenges as a join user_info as b where a.challenge_type = '1'
                                              and blob_id = '0' and a.user_id = b.user_id and a.challenge_status = '1')
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
+											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name from challenges as a join user_info as b join blobs as c 
 											WHERE a.challenge_type = '1' and a.blob_id = c.blob_id and a.user_id = b.user_id and a.challenge_status = '1') ORDER BY challenge_creation DESC ;");
 	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
@@ -81,6 +81,7 @@
 		$lstname = $open_chalangerow['last_name'] ;
 		$chelangeid = $open_chalangerow['challenge_id'] ;
 		$times = $open_chalangerow['challenge_creation'] ;
+		$timeopen = $open_chalangerow['challenge_open_time'] ;
 		$eta = $ETA*60 ;
 		$day = floor($eta/(24*60*60)) ;
 		$daysec = $eta%(24*60*60) ;
@@ -88,7 +89,22 @@
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
 		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
-
+		$starttimestr = (string) $times ;
+		$open = $timeopen*60 ;
+        $initialtime = strtotime($starttimestr) ;
+		$totaltime = $initialtime+$eta+$open ;
+		$completiontime = time() ;
+if ($completiontime > $totaltime) { 
+	$remaining_time_own = "Time over" ; }
+else {	$remainingtime = ($totaltime-$completiontime) ;
+		$day = floor($remainingtime/(24*60*60)) ;
+		$daysec = $remainingtime%(24*60*60) ;
+		$hour = floor($daysec/(60*60)) ;
+		$hoursec = $daysec%(60*60) ;
+		$minute = floor($hoursec/60) ;
+		$sec = $hoursec%60 ;
+		$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+}
 		echo "<div class='list-group'>
 				<div class='list-group-item'>
 				<form method='POST' class='inline-form pull-right'>
@@ -101,10 +117,12 @@
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
 					<form method='POST' class='inline-form'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
-                     <input type='hidden' name='id' value='".$chelangeid."'/>
-                     <li><p align='center'><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></p></li>                    
-                     <li><a class='btn btn-default' >Report Spam</a></li>
+                     <li><a class='btn btn-default' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>";
+            if($remaining_time_own == "Time over") {        
+                   echo  "<input type='hidden' name='id' value='".$chelangeid."'/>
+                     <li><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></li>" ;
+				 }                    
+                   echo "<li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div></form>
             </div>";
@@ -113,7 +131,7 @@
 				Created by &nbsp 
 				<span class='color strong' style= 'color :#CAF11E;'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
-				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time.
+				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time."<br/>Remaining Time : ".$remaining_time_own.
 			  "</font>
 			  </div>
 			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
