@@ -9,7 +9,7 @@ include_once "controllers/login_controller.php";
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-	<title>TeamRoom</title>
+	<title>Collgo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Billing, Sharing, budget">
         <meta name="author" content="Anil">
@@ -23,11 +23,11 @@ include_once "controllers/login_controller.php";
             <div class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-inner">
-                        <a class="btn-default" href="index.php"><h4>Ninjas</a>
+                        <a class="btn-default" href="index.php"><h4>Collgo</a>
                         <div class="span3 pull-right">
                             <ul class="list-inline">
-                                <a class="btn-default" href="#">About</a>&nbsp;&nbsp;&nbsp;
-                                <a class="btn-default" href="#">Contact</h4></a></ul> 
+                                <a class="btn-default" href="http://dpower4.com/">About</a>&nbsp;&nbsp;&nbsp;
+                                <a class="btn-default" href="http://dpower4.com/">Contact</h4></a></ul> 
                         </div></div>
                 </div>
             </div>
