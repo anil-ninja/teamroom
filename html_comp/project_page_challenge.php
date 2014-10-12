@@ -1,6 +1,6 @@
-<div class="panel panel-success">
+<div class="panel panel">
                         <div class="panel-heading">
-                            <h3 class="panel-title"> Remaining Time : <?php echo $remaining_time ; ?></h3>
+                            <h3 class="panel-title"> <font color="silver">Remaining Time : <?php echo $remaining_time ; ?> </font></h3>
                         </div>
                     </div>
 <?php                                                                                  
@@ -50,20 +50,12 @@
 						<div class='list-group-item'>
 						<form method='POST' class='inline-form pull-right'>
 					<input type='hidden' name='id' value='".$idb."'/>
-					<input class='btn btn-success btn-sm' type='submit' name='accept' value='Accept Challenge'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept Challenge'/>
 					</form>";
-      echo "<div class='pull-right'>
-				<div class='list-group-item'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$idb."' onclick='delChallenge(".$idb.");'>Delete Challenge</a></li>
-                     <li><a class='btn btn-default' >Change ETA</a></li>                    
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-            </div>";
-	  echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
+        // ANIl update $remaining_time with remaining time ETA in function below AND DELETE this comment after doing this..hope you do so...
+      dropDown_challenge($db_handle, $idb, $user_id, $remaining_time);
+	  
+      echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>
 				: ".ucfirst($fname). '&nbsp'.ucfirst($lname)." </span><br/> ETA : ".$remainingtime." <br/> Challenge Created 
 				ON :".$chalangetime. "<br/> and Remaining Time : ".$remaining_time."</font><br/>";
    	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>
@@ -106,7 +98,7 @@
 			<form class='inline-form' action='' method='POST'>
                             <input type='hidden' value='".$idb."' name='challenge_id' />
                             <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='response'></button>
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='response'></button>
 			</form>
                     </div>";
 	echo "</div> </div> </div>";
