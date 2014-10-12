@@ -59,7 +59,7 @@ include_once "controllers/login_controller.php";
                                         <button type="submit" class="btn btn-success" name="request" value='login'>Log in</button>
                                     </form></div>
                                 <div class="modal-footer">
-                                    <a data-toggle="modal" class="btn-default" data-target="#myModal" style="float: right; cursor:pointer;">Sign Up Now</a>
+                                    <a data-toggle="modal" class="btn-link" data-target="#myModal" style="float: right; cursor:pointer;">Sign Up Now</a>
                                 </div>
                             </div>
                         </div>
@@ -69,9 +69,12 @@ include_once "controllers/login_controller.php";
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content">
+                    <div class="modal-content" style="width:350px; height:500px">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
                             <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
                         </div>
                         <div class="modal-body">
