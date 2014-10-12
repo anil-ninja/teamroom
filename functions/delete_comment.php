@@ -19,15 +19,22 @@ function dropDown_delete_comment_challenge($db_handle, $deleteid, $user_ID) {
                 echo "</ul>
         </div>";
 }
-function dropDown_delete_comment_project($deleteid) {
-    echo  "<div class='pull-right'>
-            <div class='list-group-item'>
-                <a class='dropdown-toggle' data-toggle='dropdown' href='#'><span class='caret'></span></a>
-                <ul class='dropdown-menu' aria-labelledby='themes'>
-                    <li><a href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-                    <li><a href='#' id='comment_projectID' comment_projectID='".$deleteid."' onclick='del_project_comment(".$deleteid.");' class='delete color'>Delete</a></li>            
-                </ul>
-            </div>
+function dropDown_delete_comment_project($db_handle, $deleteid, $user_ID) {
+    echo  "<div class='list-group-item pull-right'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+            
+            $project_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_project WHERE response_pr_id = '$deleteid' AND user_id='$user_ID';"));
+                    $project_dropdown_commentRow = mysqli_fetch_array($project_dropdown_comment);
+                    $project_dropdown_comment_userID = $project_dropdown_commentRow['user_id'];
+                    if($project_dropdown_comment_userID == $user_ID) {
+                        echo "
+                        <li><button class='btn-link' href='#'>Edit</button></li>
+                        <li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
+                    } else {
+                       echo "<li><button class='btn-link' >Report Spam</button></li>";
+                    }
+                echo "</ul>
         </div>";
 }
 
