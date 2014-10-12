@@ -121,11 +121,11 @@
 			  </div>
 			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
-		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
-													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
+		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name FROM response_challenge as a
+													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chelangeid' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);");
+												   (SELECT DISTINCT a.challenge_id, a.response_ch_id,a.response_ch_creation, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
+													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chelangeid' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
 	while($commenterRow = mysqli_fetch_array($commenter)) {
               $comment_id = $commenterRow['response_ch_id'];
               $challenge_ID = $commenterRow['challenge_id'];
@@ -153,7 +153,7 @@
                   </div>
                   <div class='comment-text'>
                       <form action='' method='POST' class='inline-form'>
-                            <input type='hidden' value='".$chelangeid."' name='id' />
+                            <input type='hidden' value='".$chelangeid."' name='public_ch_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='public_ch_response' placeholder='Whats on your mind about this Challenge'/>
                             <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='public_chl_response'> </button>
                       </form>
