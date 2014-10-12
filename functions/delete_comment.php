@@ -49,18 +49,4 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
               </div>
             </div>";
 }
-
-function dropDown_project($project_ID) {
-    echo  "<div class='pull-right'>
-            <div class='list-group-item'>
-                <a class='dropdown-toggle' data-toggle='dropdown' href='#'><span class='caret'></span></a>
-                <ul class='dropdown-menu' aria-labelledby='themes'>
-                    <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Project</a></li>
-                    <li><a class='btn btn-default' href='#' id='delProject' pID='".$project_ID."' onclick='delProject(".$project_ID.");' class='delete color'>Delete Project</a></li>         
-                    <li><a class='btn btn-default' >Change ETA</a></li>                    
-                    <li><a class='btn btn-default' >Report Spam</a></li>
-                </ul>
-            </div>
-        </div>";
-}
 ?>

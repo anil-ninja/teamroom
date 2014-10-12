@@ -45,6 +45,22 @@ function delChallenge(href) {
     });
     }
 }
+function delProject(href) {
+    if(confirm("Do u really want to delete this Project? Challenges no longer will be there!!!")){
+        
+    var dataString = 'pID='+ href;
+    $.ajax({
+        type: "POST",
+        url: "ajax/delete_chalange.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+            alert(result);
+            location.reload();
+        }
+    });
+    }
+}
 function delNote(href) {
     if(confirm("Do u really want to delete this Note?")){
 
