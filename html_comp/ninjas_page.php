@@ -137,16 +137,10 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."
-				<div class='list-group-item pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-            </div></div></div>";
+						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."";
+				
+                dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+         echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>
@@ -224,17 +218,9 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."</span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."
-						<div class='pull-right'>
-				<div class='list-group-item'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-            </div></div></div></div>";
+						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."";
+						dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+          echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>

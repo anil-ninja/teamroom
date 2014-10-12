@@ -1,7 +1,7 @@
 function del_project_comment(href){
     
     if(confirm("Do u really want to delete this comment?")){
-        var dataString = 'project_comment_ID='+ href;
+        var dataString = 'pID='+ href;
         $.ajax({
             type: "POST",
             url: "ajax/ajax.php",

@@ -37,17 +37,17 @@
                     $project_dropdown_userID = $project_dropdown_displayRow['user_id'];
                     if($project_dropdown_userID == $user_id) {
                         echo "
-                        <li><button class='btn btn-link' href='#'>Edit Project</button></li>
-                         <li><button class='btn btn-link' pID='".$p_id."' onclick='delProject(".$p_id.");'>Delete Project</button></li>
+                        <li><button class='btn-link' href='#'>Edit Project</button></li>
+                        <li><button class='btn-link' pID='".$p_id."' onclick='delProject(".$p_id.");'>Delete Project</button></li>
                         <li><form method='POST' class='inline-form'>";                    
                         if($projectETA == 'Time over') {        
                             echo "<input type='hidden' name='id' value='".$p_id."'/>
-                                <input class='btn btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
+                                <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
                             }                                    
                        echo "</form></li>";
                     }
                     else {
-                       echo "<li><button class='btn btn-link' >Report Spam</button></li>";
+                       echo "<li><button class='btn-link' >Report Spam</button></li>";
                     } 
                echo "</ul>
               </div>
@@ -75,17 +75,10 @@
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>".ucfirst($frstnam)." ".ucfirst($lnam)."&nbsp</span> 
-						<small>".$projectres."</small>
-				<div class='list-group-item pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' project_comment_ID='".$ida."' onclick='del_project_comment(".$ida.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
+						<small>".$projectres."</small>";
+				dropDown_delete_comment_project($db_handle, $ida, $user_id);
        
-					</div>
+				echo "</div>
 				</div> 
 			</div>";
 	}
@@ -158,16 +151,10 @@
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp". ucfirst($fstname)." ".ucfirst($lstname)."&nbsp</span> 
-						".$chalangeres."
-						<div class='list-group-item pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Comment</a></li>
-                     <li><a class='btn btn-default' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-					</div>
+						".$chalangeres."";
+                 dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+						
+				echo "</div>
 				</div> 
 			</div>";
 		}
