@@ -44,11 +44,11 @@
 				. " </span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. "</font>
 				 <br> <br>".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
-	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id, b.first_name, b.last_name from response_project as a join user_info as b 
-											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1' ORDER BY response_pr_creation ASC)
+	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name from response_project as a join user_info as b 
+											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
 											UNION
-											(SELECT DISTINCT c.stmt, a.response_pr_id, b.first_name, b.last_name from response_project as a join user_info as b join blobs as c 
-											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_pr_creation ASC);");	
+											(SELECT DISTINCT c.stmt, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name from response_project as a join user_info as b join blobs as c 
+											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_pr_creation ASC;");	
 	while ( $displayrowc = mysqli_fetch_array($displayb)) {
 			$frstnam = $displayrowc['first_name'] ;
 			$lnam = $displayrowc['last_name'] ;
@@ -67,7 +67,7 @@
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$ida."' onclick='delChallenge(".$ida.");'>Delete Challenge</a></li>                   
+                     <li><a class='btn btn-default' project_comment_ID='".$ida."' onclick='del_project_comment(".$ida.");'>Delete Comment</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>
@@ -96,13 +96,13 @@
       </div>
  </div>          
 <?php
-		 $display = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.user_id, a.stmt, b.first_name, b.last_name from challenges as a 
+		 $display = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name from challenges as a 
 												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 
-												ORDER BY challenge_creation DESC)
+												)
 												UNION
-												(select DISTINCT a.challenge_title,a.challenge_id, a.user_id, c.stmt, b.first_name, b.last_name from challenges as a 
+												(select DISTINCT a.challenge_title,a.challenge_id,a.challenge_creation, a.user_id, c.stmt, b.first_name, b.last_name from challenges as a 
 												join user_info as b join blobs as c where a.project_id = '$p_id' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
-												ORDER BY challenge_creation DESC);");
+												) ORDER BY challenge_creation DESC;");
           while ($displayrow = mysqli_fetch_array($display)) {
 			  $notes = str_replace("<s>","&nbsp;",$displayrow['stmt']) ;
 			  $title = $displayrow['challenge_title'] ;
@@ -116,8 +116,8 @@
 								<div class='list-group-item'>
 									<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 									<ul class='dropdown-menu' aria-labelledby='dropdown'>
-									 <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-									 <li><a class='btn btn-default' id='delChallenge' cID='".$note_ID."' onclick='delChallenge(".$note_ID.");'>Delete Challenge</a></li>                  
+									 <li><a class='btn btn-default' href='#'>Edit Note</a></li>
+									 <li><a class='btn btn-default' noteID='".$note_ID."' onclick='delNote(".$note_ID.");'>Delete Note</a></li>                  
 									 <li><a class='btn btn-default' >Report Spam</a></li>
 								   </ul>
 							  </div>
@@ -149,8 +149,8 @@
 						<div class='list-group-item pull-right'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='http://bootswatch.com/default/'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
+                     <li><a class='btn btn-default' href='#'>Edit Comment</a></li>
+                     <li><a class='btn btn-default' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete Comment</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>

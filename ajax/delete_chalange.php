@@ -18,7 +18,19 @@ if(isset($_POST['cID'])){
 	else echo "Deleted succesfully!"; 
 
 } 
-else echo "Access Denied";
+//else echo "Access Denied";
 
+if(isset($_POST['noteID'])){
+	$noteID = $_POST['noteID'];
+        echo 'DFVJHVFDJHV';
+        //echo $challengeID;
+	$sql = "UPDATE challenges SET challenge_type = '3' WHERE challenge_id = '$noteID' and user_id = '$userID';";
+	mysqli_query($db_handle, $sql);
+
+    if(mysqli_error($db_handle)) echo "Failed to delete Note!"; 
+	else echo "Deleted succesfully!"; 
+
+} 
+else echo "Access Denied";
 mysqli_close($db_handle);
 ?>

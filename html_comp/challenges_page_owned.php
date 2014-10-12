@@ -20,7 +20,7 @@
 				$eta = $owned_challengesRow['challenge_ETA'];
 				$ch_title = $owned_challengesRow['challenge_title'];
 				$ch_id = $owned_challengesRow['challenge_id'];
-				//$time = $owned_challengesRow['ownership_creation'] ;
+				$time = $owned_challengesRow['ownership_creation'] ;
 				$ETA = $eta*60 ;
 				$day = floor($ETA/(24*60*60)) ;
 				$daysec = $ETA%(24*60*60) ;

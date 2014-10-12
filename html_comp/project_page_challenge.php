@@ -7,12 +7,12 @@
       $display = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
                                             b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b where
 											a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and blob_id = '0' and
-											a.challenge_status != '2' and a.user_id = b.user_id ORDER BY challenge_creation DESC )
+											a.challenge_status != '2' and a.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b
 											join blobs as c WHERE a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and 
-											a.blob_id = c.blob_id and  a.challenge_status != '2'  and a.user_id = b.user_id ORDER BY challenge_creation DESC) ;");
+											a.blob_id = c.blob_id and  a.challenge_status != '2'  and a.user_id = b.user_id) ORDER BY challenge_creation DESC  ;");
       while ($displayrow = mysqli_fetch_array($display)) {
 			$chalangest = $displayrow['stmt'] ;
 			$chalangetime = $displayrow['challenge_creation'] ;
@@ -49,7 +49,7 @@
 					<div class='list-group'>
 						<div class='list-group-item'>
 						<form method='POST' class='inline-form pull-right'>
-					<input type='hidden' name='id' value='".$id."'/>
+					<input type='hidden' name='id' value='".$idb."'/>
 					<input class='btn btn-success btn-sm' type='submit' name='accept' value='Accept Challenge'/>
 					</form>";
       echo "<div class='pull-right'>
@@ -68,11 +68,11 @@
 				ON :".$chalangetime. "<br/> and Remaining Time : ".$remaining_time."</font><br/>";
    	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>
 				<small>".str_replace("<s>","&nbsp;",$chalangest)."</small><br> <br>";
-		$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
-												JOIN user_info as b WHERE a.challenge_id = '$idb' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
+		$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name FROM response_challenge as a
+												JOIN user_info as b WHERE a.challenge_id = '$idb' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$idb' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);");		
+												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
+													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$idb' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");		
 		while ($displayrowb = mysqli_fetch_array($displaya)) {	
 				$fstname = $displayrowb['first_name'] ;
 				$idc = $displayrowb['response_ch_id'] ;
@@ -90,8 +90,8 @@
 					<div class='list-group-item pull-right'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
+                     <li><a class='btn btn-default' href='#'>Edit Comment</a></li>
+                     <li><a class='btn btn-default' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete Comment</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>
@@ -105,8 +105,8 @@
                         </div>
 			<form class='inline-form' action='' method='POST'>
                             <input type='hidden' value='".$idb."' name='challenge_id' />
-                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='response'></button>
+                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this challenge'/>
+                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='response'></button>
 			</form>
                     </div>";
 	echo "</div> </div> </div>";
@@ -114,12 +114,12 @@
 	 $displayd = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
                                             b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b where
 											a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and blob_id = '0' and
-											a.challenge_status = '2' and a.user_id = b.user_id ORDER BY challenge_creation DESC )
+											a.challenge_status = '2' and a.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.contact_no,b.email from challenges as a join user_info as b
 											join blobs as c WHERE a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and 
-											a.blob_id = c.blob_id and  a.challenge_status = '2'  and a.user_id = b.user_id ORDER BY challenge_creation DESC) ;");
+											a.blob_id = c.blob_id and  a.challenge_status = '2'  and a.user_id = b.user_id) ORDER BY challenge_creation DESC ;");
       while ($displayrowd = mysqli_fetch_array($displayd)) {
 			$stmt = $displayrowd['stmt'] ;
 			$chalangetime = $displayrowd['challenge_creation'] ;
@@ -172,10 +172,10 @@
 			   $stmt. "</font><br/>" ;
 			   
 		$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
-												JOIN user_info as b WHERE a.challenge_id = '$idd' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
+												JOIN user_info as b WHERE a.challenge_id = '$idd' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION
 												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$idd' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);");		
+													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$idd' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");		
 		while ($displayrowb = mysqli_fetch_array($displaya)) {	
 				$fstname = $displayrowb['first_name'] ;
 				$idc = $displayrowb['response_ch_id'] ;

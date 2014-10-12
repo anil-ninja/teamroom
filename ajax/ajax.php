@@ -15,8 +15,8 @@ if(isset($_POST['cID'])){
 	else echo "Deleted succesfully!"; 
 } 
 //else echo "Access Denied";
-if(isset($_POST['comment_projectID'])){
-	$ida = $_POST['comment_projectID'];
+if(isset($_POST['project_comment_ID'])){
+	$ida = $_POST['project_comment_ID'];
 	$sql = "DELETE FROM response_project WHERE response_pr_id = '$ida' and user_id = '$userID';";
 	mysqli_query($db_handle, $sql);
     if(mysqli_error($db_handle)) echo "Failed to delete Challange!"; 

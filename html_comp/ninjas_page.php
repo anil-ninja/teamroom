@@ -104,7 +104,7 @@
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
 					<form method='POST' class='inline-form'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
+                     <li><a class='btn btn-default' onclick='delChallenge(".$chelangeid.");'>Delete Challenge</a></li>
                      <input type='hidden' name='id' value='".$chelangeid."'/>
                      <li><p align='center'><input class='btn btn-default btn-sm' type='submit' name='eta' value='Change ETA'/></p></li>                    
                      <li><a class='btn btn-default' >Report Spam</a></li>
@@ -128,7 +128,7 @@
 													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chelangeid' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);");
 	while($commenterRow = mysqli_fetch_array($commenter)) {
               $comment_id = $commenterRow['response_ch_id'];
-              $ch_id = $commenterRow['challenge_id'];
+              $challenge_ID = $commenterRow['challenge_id'];
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
@@ -141,7 +141,7 @@
 					<button class='dropdown-toggle btn-default btn-xs' data-toggle='dropdown' id='themes'><span class='caret'></span></button>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
+                     <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>
@@ -210,11 +210,11 @@
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
 			  "</font><br/><br/><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $stmt."<br/><br/> </font>";
-		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
-													JOIN user_info as b WHERE a.challenge_id = $ch_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
+		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name FROM response_challenge as a
+													JOIN user_info as b WHERE a.challenge_id = $ch_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);");
+												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
+													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
 	while($commenterRow = mysqli_fetch_array($commenter)) {
               $comment_id = $commenterRow['response_ch_id'];
 		echo "<div id='commentscontainer'>
@@ -230,7 +230,7 @@
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>
                      <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
+                     <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
                      <li><a class='btn btn-default' >Report Spam</a></li>
                    </ul>
               </div>
