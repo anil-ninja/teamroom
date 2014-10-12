@@ -20,7 +20,7 @@ if(isset($_POST['cID'])){
 } 
 //else echo "Access Denied";
 
-if(isset($_POST['noteID'])){
+else if(isset($_POST['noteID'])){
 	$noteID = $_POST['noteID'];
         echo 'DFVJHVFDJHV';
         //echo $challengeID;

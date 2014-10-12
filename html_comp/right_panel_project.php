@@ -24,7 +24,7 @@ include_once 'project.inc.php';
             <div class="modal-body">
                 <div class="well">
                     <ul class="nav">
-                        <label class='tree-toggle nav-header btn-default btn-xs' ><p align="center">Your Projects</p><br/></label>
+                        <label class='tree-toggle nav-header btn btn-link' ><p align="center">Your Projects</p><br/></label>
                         <ul class='nav tree' style='display: none;'>
                             <?php
                             $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 

@@ -31,7 +31,7 @@ function delcomment(href) {
             }
 function delChallenge(href) {
     if(confirm("Do u really want to delete this challenge?")){
-
+        
     var dataString = 'cID='+ href;
     $.ajax({
         type: "POST",
