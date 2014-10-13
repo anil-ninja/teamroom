@@ -1,5 +1,8 @@
 <?php
 include_once 'ninjas.inc.php';
+if (!isset($_SESSION['first_name'])) {
+    header('Location: index.php');
+}
 
 if(isset($_POST['chl_response'])) {
     $user_id = $_SESSION['user_id'];

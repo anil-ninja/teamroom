@@ -124,7 +124,57 @@ span.tags
 </head>
 
 <body>
-    <?php include_once 'html_comp/navbar_homepage.php'; ?>
+    <div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="ninjas.php">Collgo</a>
+  </div>
+  
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+		<li><form method="POST" class="navbar-text" action = "">
+          <input type="text" placeholder="search"/>
+            <button type="submit" name="search" class="glyphicon glyphicon-search btn-primary btn-xs">
+            </button>
+        </form></li>
+    </ul>
+       <ul class='nav navbar-nav navbar-right'>
+		<li>
+		  <div class='dropdown'>
+            <a data-toggle='dropdown'><p class='navbar-text'>Your Projects<span class='caret'></span></p></a>
+    		<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+			<?php
+					$username = $_GET['username'] ;
+					$user_info = mysqli_query($db_handle, ("SELECT user_id FROM user_info WHERE username = '$username';"));
+					$user_infoRow =  mysqli_fetch_array($user_info);
+					$user_id = $user_infoRow['user_id'];
+					$project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title FROM teams as a join projects 
+																		as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
+																		UNION (SELECT DISTINCT project_id, project_title FROM projects WHERE user_id = '$user_id' and project_type= '1');"));
+			while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
+					$p_title = $project_title_displayRow['project_title'] ;		
+			echo "<li><form method='POST' action=''>
+					<input type='hidden' name='project_title' value='".$p_title."'/>
+					<input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
+					<button type='submit' class='btn-link' name='projectphp' style='white-space: pre-line;'>".$p_title."</button><br/><br/></form></li>" ;
+					}
+           ?>
+                        </ul>
+                      </div>
+                  </li>      
+      <li> <form method='POST'> 
+          <p class="navbar-text"><a href="challenges.php" style='cursor:pointer;'>Your Challenges</a></p>
+          <p class="navbar-text">Rank :  <?php $username = $_GET['username'] ; $user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';")); $user_infoRow =  mysqli_fetch_array($user_info); $rank = $user_infoRow['rank']; echo $rank ; ?></p>
+          <p class="navbar-text"><span class="glyphicon glyphicon-user"></span>Hello <?php $username = $_GET['username'] ; $user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';")); $user_infoRow =  mysqli_fetch_array($user_info); $f_name = $user_infoRow['first_name']; echo ucfirst($f_name); ?></p>                              
+          <p class="navbar-text"><form method="POST" ><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></form></p>
+      </li>
+    </ul>
+  </div>
+</div>
     <script type="text/javascript" src="scripts/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.wallform.js"></script>
     
