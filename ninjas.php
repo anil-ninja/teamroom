@@ -32,12 +32,12 @@ include_once 'functions/delete_comment.php';
           <div class="col-lg-2" style="width:200px;">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
-          <div class="col-lg-8">
+          <div class="col-lg-7">
               <div class="panel-primary">
 			<?php include_once 'html_comp/ninjas_page.php'   ?>
 	</div>
 	</div>
-	<div class="col-lg-2" style="width:200px;">
+	<div class="col-lg-3" style="width:200px;">
            <?php include_once 'html_comp/right_panel_ninjas.php'   ?> 
 </div></div>
     <script src="js/jquery-1.js"></script>

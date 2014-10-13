@@ -21,6 +21,10 @@ $total_project_created = mysqli_num_rows($project_created);
 $project_completed = mysqli_query($db_handle, ("SELECT project_id FROM projects WHERE user_id = $user_id and project_type = '2';"));
 $total_project_completed = mysqli_num_rows($project_completed);
 
+if (isset($_POST['logout'])) {
+    header('Location: index.php');
+    exit ;
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">

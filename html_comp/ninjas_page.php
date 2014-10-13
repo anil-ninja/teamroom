@@ -10,7 +10,7 @@
                         </div><br>
                         <div class="inline-form">
                         Challenge Open For 
-                        <select class="btn btn-default btn-xs"  id= "open_time" >	
+                        <select class="btn-info btn-xs"  id= "open_time" >	
                             <option value='0' selected >hour</option>
                             <?php
                                 $o = 1 ;
@@ -20,14 +20,14 @@
                                 }
                             ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "open" >	
+                        <select class="btn-info btn-xs" id= "open" >	
                             <option value='10' selected >minute</option>
                             <option value='20'  >20</option>
                             <option value='30' >30</option>
                             <option value='40'  >40</option>
                             <option value='50' >50</option>
                         </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETA
-                        <select class="btn btn-default btn-xs" id= "c_eta" >	
+                        <select class="btn-info btn-xs" id= "c_eta" >	
                             <option value='0' selected >Month</option>
                             <?php
                                 $m = 1 ;
@@ -37,7 +37,7 @@
                                 }
                             ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "c_etab" >	
+                        <select class="btn-info btn-xs" id= "c_etab" >	
                             <option value='0' selected >Days</option>
                             <?php
                                 $d = 1 ;
@@ -47,7 +47,7 @@
                                 }
                             ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "c_etac" >	
+                        <select class="btn-info btn-xs" id= "c_etac" >	
                             <option value='0' selected >hours</option>
                                 <?php
                                     $h = 1 ;
@@ -57,7 +57,7 @@
                                     }
                                 ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "c_etad" >	
+                        <select class="btn-info btn-xs" id= "c_etad" >	
                             <option value='15' selected >minute</option>
                             <option value='30' >30</option>
                             <option value='45'  >45</option>
