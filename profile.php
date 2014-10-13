@@ -13,14 +13,17 @@ $challenge_created = mysqli_query($db_handle, ("SELECT challenge_id FROM challen
 $total_challenge_created = mysqli_num_rows($challenge_created);
 
 
-$challenge_progress = mysqli_query($db_handle, ("SELECT status FROM challenge_ownership WHERE status = 1;"));
+$challenge_progress = mysqli_query($db_handle, ("SELECT status FROM challenge_ownership WHERE status = 1 and user_id = $user_id;"));
 $total_challenge_progress = mysqli_num_rows($challenge_progress);
 
-$challenge_completed = mysqli_query($db_handle, ("SELECT status FROM challenge_ownership WHERE status = 2;"));
+$challenge_completed = mysqli_query($db_handle, ("SELECT status FROM challenge_ownership WHERE status = 2 and user_id = $user_id;"));
 $total_challenge_completed = mysqli_num_rows($challenge_completed);
 
 $project_created = mysqli_query($db_handle, ("SELECT project_id FROM projects WHERE user_id = $user_id;"));
 $total_project_created = mysqli_num_rows($project_created);
+
+$project_completed = mysqli_query($db_handle, ("SELECT project_id FROM projects WHERE user_id = $user_id and project_type = '2';"));
+$total_project_completed = mysqli_num_rows($project_completed);
 
 ?>
 <!DOCTYPE html>
@@ -196,6 +199,8 @@ span.tags
                         <p><small>challenges</small></p>
                         <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
                     </div>
+                </div>
+                <div class="col-xs-12 divider text-center">
                     <div class="col-xs-12 col-sm-4 emphasis">
                         <h2><strong><?php echo $total_project_created; ?></strong></h2>                    
                         <p><small>projects</small></p>
@@ -204,7 +209,7 @@ span.tags
                     
                     
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong> 0 </strong></h2>                    
+                        <h2><strong><?php echo $total_project_completed; ?> </strong></h2>                    
                         <p><small>projects</small></p>
                         <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
                     </div>
