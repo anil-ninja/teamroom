@@ -4,10 +4,6 @@ $username = $_GET['username'] ;
 $user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
 $user_infoRow =  mysqli_fetch_array($user_info);
 $user_id = $user_infoRow['user_id'];
-$f_name = $user_infoRow['first_name'];
-$l_name = $user_infoRow['last_name'];
-$email= $user_infoRow['email'];
-$phone = $user_infoRow['contact_no'];
 
 $challenge_created = mysqli_query($db_handle, ("SELECT challenge_id FROM challenges WHERE user_id = $user_id;"));
 $total_challenge_created = mysqli_num_rows($challenge_created);
@@ -140,8 +136,7 @@ span.tags
                         <div class="col-xs-12 col-sm-8">
 					<?php
 							$username = $_GET['username'] ;
-							echo $username ;
-							$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = $username;"));
+							$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
 							$user_infoRow =  mysqli_fetch_array($user_info);
 							$f_name = $user_infoRow['first_name'];
 							$l_name = $user_infoRow['last_name'];
