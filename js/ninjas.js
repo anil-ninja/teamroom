@@ -8,7 +8,15 @@ function url_domain(data) {
   return a.hostname;
 }
 function getVedioId(str) {
-    return str.split('=')[1];
+    return str.split('v=')[1];
+}
+
+function refineVedioId(str){
+
+	if(str.indexOf('&') === -1){
+		return str;
+	}
+	return str.split('&')[0];
 }
 	
 	$(document).ready(function(){
@@ -19,7 +27,7 @@ function getVedioId(str) {
 			var domain = url_domain(challenge);
 			//alert(domain);
 			if (domain == "www.youtube.com"){
-				var linkId = getVedioId(challenge);
+				var linkId = refineVedioId(getVedioId(challenge));
 				//alert(linkId);
 				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
