@@ -1,5 +1,6 @@
 <?php 
   $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+ // include_once 'ninjas.inc.php';
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="navbar-header">
@@ -19,6 +20,9 @@
             </button>
         </form></li>
     </ul>
+    <ul class='nav navbar-nav navbar-right'><li><p class="navbar-text"><form method="POST" ><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></form></p>
+      </li>
+    </ul>
     <ul class='nav navbar-nav navbar-right'>
     <?php
     if($requestedPage == "ninjas.php"){
@@ -34,13 +38,14 @@
 						<a style='white-space: normal;'>".ucfirst($team_name)."<br/></a>
 								<ul class='dropdown-menu'>" ;
 																	
-			$teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
+			$teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
 																as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
 				while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
 								$firstname = $teams_names_displayRow['first_name'] ;
+								$username = $teams_names_displayRow['username'] ;
 								$lastname = $teams_names_displayRow['last_name'] ;
-						echo "<li><p align='center' ><form method='GET' value='".$username."' action='profile.php'><input type='submit' class='btn-link' value='".ucfirst($firstname)." ".ucfirst($lastname)."' 
-							  style='white-space: normal;'/></form></p></li>" ;
+						echo "<li><p align='center' ><form method='GET' action='profile.php'><button type='submit' name='username' class='btn-link'
+								value='".$username."'>".ucfirst($firstname)." ".ucfirst($lastname)."</button></form></p></li>" ;
 				}
 				echo "</ul></li>" ;
 			}
@@ -67,14 +72,12 @@
                         </ul>
                       </div>
                   </li>      
-      <li><form method="POST" > 
+      <li> <form method='GET' action='profile.php'>
           <p class="navbar-text"><a data-toggle="modal" class="btn-link" data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p>
           <p class="navbar-text"><a href="challenges.php" style='cursor:pointer;'>Your Challenges</a></p>
           <p class="navbar-text">&nbsp;Your rank :  <?php echo $rank ; ?></p>
-          <p class="navbar-text"><span class="glyphicon glyphicon-user"></span><a href="profile.php"> Hello <?php echo ucfirst($name); ?></a></p>                              
-          <p class="navbar-text"><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></p></form>
-      </li>
-    </ul>
+          <p class="navbar-text"><span class="glyphicon glyphicon-user"></span><button type='submit' name='username' class='btn-link' value='<?php $username = $_SESSION['username'] ; echo $username ; ?>'>Hello <?php echo ucfirst($name); ?></button></p></form></li></ul>                              
+          
   </div>
 </div>
 <!-- Modal -->

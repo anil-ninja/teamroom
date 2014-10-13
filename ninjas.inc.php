@@ -7,6 +7,7 @@ if(isset($_SESSION['user_id']))
 else 
     header ('location:index.php');
 $name = $_SESSION['first_name'];
+$username = $_SESSION['username'];
 $rank = $_SESSION['rank'];
 $email = $_SESSION['email'];
 
@@ -25,6 +26,7 @@ if(isset($_POST['public_chl_response'])) {
    else{ echo "<script>alert('Is your mind empty!')</script>";
 }
 }
+
 if(isset($_POST['accept'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='eye' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>

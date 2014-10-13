@@ -1,8 +1,9 @@
 <?php 
-include_once 'ninjas.inc.php';
-
-$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE user_id = $user_id;"));
+include_once 'lib/db_connect.php';
+$username = $_GET['username'] ;
+$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
 $user_infoRow =  mysqli_fetch_array($user_info);
+$user_id = $user_infoRow['user_id'];
 $f_name = $user_infoRow['first_name'];
 $l_name = $user_infoRow['last_name'];
 $email= $user_infoRow['email'];
@@ -134,15 +135,25 @@ span.tags
                 <div class="well profile">
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
-                            <h2><strong> <?php echo ucfirst($f_name). " ".ucfirst($l_name); ?> </strong></h2>
-                            <p><strong>Email-Id: </strong> <?php echo $email; ?> </p>
-                            <p><strong>Contact: </strong> <?php echo $phone; ?> </p>
+					<?php
+							$username = $_GET['username'] ;
+							echo $username ;
+							$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = $username;"));
+							$user_infoRow =  mysqli_fetch_array($user_info);
+							$f_name = $user_infoRow['first_name'];
+							$l_name = $user_infoRow['last_name'];
+							$email= $user_infoRow['email'];
+							$phone = $user_infoRow['contact_no'];
+                      echo "<h2><strong>".ucfirst($f_name). " ".ucfirst($l_name)."</strong></h2>
+                            <p><strong>Email-Id: </strong>".$email."</p>
+                            <p><strong>Contact: </strong>".$phone."</p>
                             <p><strong>Skills: </strong>
-                                <span class="tags">html5</span> 
-                                <span class="tags">css3</span>
-                                <span class="tags">jquery</span>
-                                <span class="tags">bootstrap3</span>
-                            </p>
+                                <span class='tags'>html5</span> 
+                                <span class='tags'>css3</span>
+                                <span class='tags'>jquery</span>
+                                <span class='tags'>bootstrap3</span>
+                            </p>" ;
+                            ?>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                         <figure>

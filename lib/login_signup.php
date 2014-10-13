@@ -45,6 +45,7 @@ function login(){
 		$responseRow = mysqli_fetch_array($response);
 		$_SESSION['user_id'] = $responseRow['user_id'];
 		$_SESSION['first_name'] = $responseRow['first_name'] ;
+		$_SESSION['username'] = $responseRow['username'] ;
 		$_SESSION['email'] = $responseRow['email'];
 		$_SESSION['rank'] = $responseRow['rank'];
 		exit;
