@@ -21,9 +21,9 @@ function getVedioId(str) {
 			if (domain == "www.youtube.com"){
 				var linkId = getVedioId(challenge);
 				//alert(linkId);
-				challenge = "<iframe src=\"//www.youtube.com/embed/";
+				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
-				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen style=\"width: 100% important; height: auto   !important; max-width: 100%;min-width: 100%;\"></iframe>");
+				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
 			//alert(challenge);
 			var challenge_title = $("#challange_title").val() ;

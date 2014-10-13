@@ -4132,6 +4132,25 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   border-color: #e7e7e7;
   max-height:68px ;
 }
+.youtube {
+	width: 100%;
+	max-width: 100%;
+	position: relative;
+	height:500px;
+	min-width: 100% important;
+	display: inline-block;
+    top: 0px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    
+}
+.youtube:before{
+	content:'';
+	display: block;
+	padding-top: 100%; 
+}
+
 .navbar-default .navbar-brand {
   color: #333333;
 }
