@@ -9,6 +9,30 @@ function url_domain(data) {
 }
 function getVedioId(str) {
     return str.split('v=')[1];
+<<<<<<< HEAD
+}
+
+function refineVedioId(str){
+	if(str.indexOf('&') === -1){
+		return str;
+		}
+		return str.split('&')[0];
+}
+
+$(document).ready(function(){
+	$("#submit_ch").click(function(){
+		$("#submit_ch").attr('disabled','disabled');
+		var challenge = $("#challange").val() ;
+		var domain = url_domain(challenge);
+		//alert(domain);
+		if (domain == "www.youtube.com"){
+			var linkId = refineVedioId(getVedioId(challenge));
+			//alert(linkId);
+			challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
+			challenge = challenge.concat(linkId);
+			challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
+		}
+=======
 }
 
 function refineVedioId(str){
@@ -33,6 +57,7 @@ function refineVedioId(str){
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
+>>>>>>> 791c788627f629331b64c3a2cedbe2c4d6f0aa6f
 			//alert(challenge);
 			var challenge_title = $("#challange_title").val() ;
 			var open_time = parseInt($("#open_time").val());
