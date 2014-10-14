@@ -1,5 +1,6 @@
 <?php 
 include_once 'lib/db_connect.php';
+include_once 'functions/delete_comment.php';
 $username = $_GET['username'] ;
 $user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
 $user_infoRow =  mysqli_fetch_array($user_info);
@@ -184,7 +185,7 @@ span.tags
     
     <div class="container">
 	<div class="row">
-            <div class="col-md-offset-2 col-md-8 col-lg-offset-2 col-lg-8">
+            <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
@@ -271,7 +272,30 @@ span.tags
                 </div>
             </div>
         </div>
-    </div>                 
-</div>
+            <div class="col-md-3 col-lg-3">
+                <div class="well profile">
+                    <p>  In-contact with Friends </p>
+                    <?php
+                       $userProjects = mysqli_query ($db_handle, ("SELECT * FROM user_info as a join 
+                                                            (SELECT DISTINCT b.user_id FROM teams as a join
+                                                            teams as b where a.user_id = '$user_id' and
+                                                            a.team_name = b.team_name and b.user_id != '$user_id')
+                                                            as b where a.user_id=b.user_id;"));
+               
+                        while ($userProjectsRow = mysqli_fetch_array($userProjects))  {
+                            $friend_f_name = $userProjectsRow['first_name'];
+                            $friend_l_name = $userProjectsRow['last_name'];
+                            $username_friends = $userProjectsRow['username'];
+                            echo "<form method='GET' action='profile.php'>
+                                    <button type='submit' name='username' class='btn-link' value='".$username_friends."'>
+                                        ".ucfirst($friend_f_name)." ".ucfirst($friend_l_name)."
+                                    </button>
+                                </form>";
+                        }
+                    ?>
+                </div>                 
+            </div>
+        </div>
+    </div>
 </body>
 </html>
