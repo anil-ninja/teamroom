@@ -1,25 +1,19 @@
 <div class="bs-component">
-    <div class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <p align="center">
-                    <font color="silver">
+                
+                   
                 <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
                     <label for="file">Upload file:</label>
-                    <input class="btn btn-default btn-sm" type="file" name="file" id="file"><br>
+                    <input class="btn btn-default btn-sm" type="file" name="file" id="file" style ="width: 100px;"><br>
                     <input class="btn btn-default btn-sm" type="submit" name="submit" value="Submit"><br>
                 </form>
                 <br>
-                <a data-toggle="modal" class="btn btn-link" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Enter Notes</a><br/><br/>
-                <a data-toggle="modal" class="btn btn-link" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a><br/><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Enter Notes</a><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a><br/>
                 <a data-toggle="modal" class="btn btn-link" data-target="#create_team_new" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Team</a><br/>
-                </font> 
-                </p>
-            </div>  
-            <div class="modal-body">
-                        <div class="well">
-                    <ul class="nav">
-                        <label class='tree-toggle nav-header btn-default btn-xs' ><p align="center">Your Teams</p><br/></label>
+                </div>  
+                <a class="tree-toggle btn btn-link" style="cursor:pointer;"><i class ="glyphicon glyphicon-user"></i>Your Teams</a><br/>
+                                   
+
                         <?php
                             $pro_id = $_SESSION['project_id'];
                             $team = mysqli_query($db_handle, ("SELECT DISTINCT team_name FROM teams where  project_id = '$pro_id' ;"));
@@ -32,12 +26,8 @@
                                         <p align='center' ><input type='submit' class='btn btn-default' name='view' value='".ucfirst($teams)."' style='white-space: normal;'/></p></form></li></ul>";
                             }
                             ?>
-
-                        </ul>
-                        </div>
-                       </div>
-                    <div class="modal-footer">
-                        <?php
+   
+                      <?php
                             if (isset($_POST['view'])) {
                                 $teamname = $_POST['team_name'] ;
                                 $pro_id = $_POST['project_id'] ;
@@ -59,7 +49,7 @@
                                
                                if ($owner == $user_id) { 
                                
-                                $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status,b.last_name,b.rank, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
+                                $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status,b.username, b.last_name,b.rank, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
                                                                     a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;")) ;
                                 while ($memberrow = mysqli_fetch_array($member)) {
                                     $memid = $memberrow['id'] ;
@@ -67,12 +57,13 @@
                                     $firstname = $memberrow['first_name'] ;
 									$lastname = $memberrow['last_name'] ;
 									$email = $memberrow['email'] ;
+                                                                        $username_profile = $memberrow['username'];
 									$phone = $memberrow['contact_no'] ;
 									$rank = $memberrow['rank'] ;
 									$profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
 							echo "<form role='form' method='POST' onsubmit=\"return confirm('Really, Remove this Friend !!!')\">
                                    <a data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'>
-                                    <p align='center' style='white-space: normal;'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></a>
+                                    <p align='center' style='white-space: normal;'><a href ='profile.php?username=".$username_profile."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a></p></a>
                                      <input type='hidden' name='deleteid' value='".$memid."'/>
                                      <input type='hidden' name='delid' value='".$memberid."'/>
                                      <button type='submit' class='btn btn-warning btn-sm' name='delete'>
@@ -130,10 +121,7 @@
                                 }
                                  }
                                 ?>
-        </div>
-        </div>
-    </div>
-</div>
+        
 
 <!-- Modal -->
 <div class="modal fade" id="createnotes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
