@@ -46,7 +46,11 @@
 		echo "<div class='panel-body'>
 				<div class='list-group'>
 				<div class='list-group-item'>";
-		echo "Challenge by &nbsp <span class='color strong' style= 'color :lightblue;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> &nbsp on &nbsp".$time. " &nbsp".$remainingtime. "&nbsp&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time."<br> 
+		echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+					<input type='hidden' name='id' value='".$idd."'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+					</form>";		
+		echo "Challenge by &nbsp <span class='color strong' style= 'color :lightblue;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> on ".$time. "<br/>".$remainingtime. "<br/> Remaining Time : ".$remaining_time."<br> 
 				<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p>
 				<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['stmt'])."<br> <br>";
 		$commenter = mysqli_query ($db_handle, ("(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a

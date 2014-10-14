@@ -4,8 +4,6 @@ include_once 'ninjas.inc.php';
 if (!isset($_SESSION['first_name'])) {
     header('Location: index.php');
 }
-
-$title = $_SESSION['project_title'] ;
 $user_id = $_SESSION['user_id'] ;
 $name = $_SESSION['first_name'];
 $rank = $_SESSION['rank'] ;
@@ -13,12 +11,12 @@ if (isset($_SESSION['project_id']))
     $pro_id = $_SESSION['project_id'] ;
 else 
     header ('location: ninjas.php');
-$email = $_SESSION['email'] ;
 
 
 $project_id = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
 $project_idrow = mysqli_fetch_array($project_id) ;
 $eta = $project_idrow['project_ETA'] ;
+$title = $project_idrow['project_title'] ;
 $starttime = $project_idrow['project_creation'] ;
 $starttimestr = (string) $starttime ;
 $initialtime = strtotime($starttimestr) ;
@@ -190,6 +188,10 @@ header('Location:project.php') ;
 }	
 	else { echo "<script>alert('Enter Your Answer!')</script>"; }
  
+}
+if (isset($_POST['closechallenge'])) {
+		$chalange = $_POST['cid'] ;
+    mysqli_query($db_handle,"UPDATE challenges SET challenge_type='5' WHERE challenge_id = $chalange ; ") ;
 }
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;

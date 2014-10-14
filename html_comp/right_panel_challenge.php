@@ -1,21 +1,17 @@
-<?php
-	include_once 'project.inc.php';
-?>
-
  <div class="bs-component">
-              <div class="modal">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <p align="center"><font color="silver">
-						  <a data-toggle="modal" class="btn-default btn-xs" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a></font></p>
-                    </div>  
-                    <div class="modal-body">
-                       </div>
-                    <div class="modal-footer">
-                  </div>
-                </div>
-              </div>
-            </div>
+    <div class="modal">
+      <div class="modal-content">
+         <div class="modal-header">
+            <p align="center"><font color="silver">
+				<a data-toggle="modal" class="btn-default btn-xs" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a></font></p>
+         </div>  
+         <div class="modal-body">
+         </div>
+         <div class="modal-footer">
+         </div>
+      </div>
+    </div>
+  </div>
 
 
     <!-- Modal -->

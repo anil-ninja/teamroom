@@ -118,9 +118,7 @@ header('Location: #');
 if(isset($_POST['projectphp'])){
 		 header('location: project.php') ;   
 		$_SESSION['user_id'] = $user_id;
-		$_SESSION['email'] = $email;
 		$_SESSION['first_name'] = $name;
-		$_SESSION['project_title'] = $_POST['project_title'] ;
 		$_SESSION['project_id'] = $_POST['project_id'] ;
 		$_SESSION['rank'] = $rank;
 		exit ;
