@@ -1,11 +1,23 @@
 <?php 
 include_once 'lib/db_connect.php';
 include_once 'functions/delete_comment.php';
+//change varible name
 $username = $_GET['username'] ;
 $user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
-$user_infoRow =  mysqli_fetch_array($user_info);
-$user_id = $user_infoRow['user_id'];
+//check no of rows is rows equal to "0" then show sorry page, show is decent way
+/*
+if(#row=0){
+    
+    include error page
+    exit;
+}
 
+*/
+$user_infoRow =  mysqli_fetch_array($user_info);
+
+//make variable name as profile_view_user_id
+$user_id = $user_infoRow['user_id'];
+//mysql conts
 $challenge_created = mysqli_query($db_handle, ("SELECT challenge_id FROM challenges WHERE user_id = $user_id;"));
 $total_challenge_created = mysqli_num_rows($challenge_created);
 
@@ -22,6 +34,7 @@ $total_project_created = mysqli_num_rows($project_created);
 $project_completed = mysqli_query($db_handle, ("SELECT project_id FROM projects WHERE user_id = $user_id and project_type = '2';"));
 $total_project_completed = mysqli_num_rows($project_completed);
 
+//remove it
 if (isset($_POST['logout'])) {
     header('Location: index.php');
     exit ;
@@ -153,10 +166,7 @@ span.tags
             <a data-toggle='dropdown'><p class='navbar-text'>Your Projects<span class='caret'></span></p></a>
     		<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
 			<?php
-					$username = $_GET['username'] ;
-					$user_info = mysqli_query($db_handle, ("SELECT user_id FROM user_info WHERE username = '$username';"));
-					$user_infoRow =  mysqli_fetch_array($user_info);
-					$user_id = $user_infoRow['user_id'];
+					//check its out
 					$project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title FROM teams as a join projects 
 																		as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
 																		UNION (SELECT DISTINCT project_id, project_title FROM projects WHERE user_id = '$user_id' and project_type= '1');"));
@@ -190,6 +200,7 @@ span.tags
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
 					<?php
+                            //check
 							$username = $_GET['username'] ;
 							$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
 							$user_infoRow =  mysqli_fetch_array($user_info);
