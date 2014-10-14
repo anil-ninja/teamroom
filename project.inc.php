@@ -143,6 +143,54 @@ if (isset($_POST['create_team'])) {
        } 
 	}  else { echo "<script>alert('Enter Team Name!')</script>"; }
 }	
+if(isset($_POST['submitchl'])) {
+	$id = $_POST['id'] ;
+	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
+			<div class='modal-dialog'> 
+				<div class='modal-content'>
+				 <div class='modal-header'> 
+				   <a href = 'project.php' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
+				   <h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
+				 </div> 
+				 <div class='modal-body'> 
+				  <form method='POST' ><br/>
+				  <div class='input-group-addon'>
+				  <textarea row='5' name='answer' class='form-control' placeholder='submit your answer'></textarea>
+				  </div><br/>
+				    <input type='hidden' name='cid' value='".$id."'>
+				    <input type='submit' class='btn btn-success btn-sm' name='answerch' value = 'Submit' ></small>
+				  </form>
+				</div> 
+				<div class='modal-footer'>
+				   <a type='button' href = 'project.php' class='btn btn-default' data-dismiss='modal'>Close</a>
+				</div>
+			</div> 
+		</div>
+	</div>" ;
+}
+if (isset($_POST['answerch'])) {
+		$user_id = $_SESSION['user_id'];
+		$chalange = $_POST['cid'] ;
+		$answer = $_POST['answer'] ;
+		$a = date("y-m-d H:i:s") ;
+	if (strlen($answer) > 1) { 
+		mysqli_query($db_handle,"UPDATE challenges SET challenge_type='4' WHERE challenge_id = $chalange ; ") ;
+		mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $chalange ; ") ;
+	 if (strlen($answer) < 1000) {
+        mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$chalange', '$answer', '2'); ") ;
+	}
+	else {
+        mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
+                                VALUES (default, '$challange');");
+        
+        $id = mysqli_insert_id($db_handle);
+        mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, blob_id, stmt, status) VALUES ('$user_id', '$chalange', '$id', '$answer', '2');");
+}
+header('Location:project.php') ;
+}	
+	else { echo "<script>alert('Enter Your Answer!')</script>"; }
+ 
+}
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;
 $con_no = $contactrow['contact_no'] ;

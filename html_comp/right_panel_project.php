@@ -1,6 +1,3 @@
-<?php
-include_once 'project.inc.php';
-?>
 <div class="bs-component">
     <div class="modal">
         <div class="modal-content">
@@ -36,10 +33,10 @@ include_once 'project.inc.php';
                             }
                             ?>
 
-                        </ul></div>
+                        </ul>
+                        </div>
                        </div>
                     <div class="modal-footer">
-						 <p align="center">
                         <?php
                             if (isset($_POST['view'])) {
                                 $teamname = $_POST['team_name'] ;
@@ -85,7 +82,9 @@ include_once 'project.inc.php';
                                         </form></p>" ;
 
                                     //header('Location: project.php');
-                                } } else { 
+                                }
+                                 }
+                                  else { 
                                 $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
                                                                     a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;")) ;
                                 while ($memberrow = mysqli_fetch_array($member)) {
@@ -99,9 +98,9 @@ include_once 'project.inc.php';
 									$profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
 							echo "<a data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'>
                                     <p align='center' style='white-space: normal;'>".ucfirst($firstname)." ".ucfirst($lastname)."</p></a><br/><br/>" ;
-								} }
-                                											
-                            }
+							}
+						 }
+                        }
                             if (isset($_POST['delete'])) {
                                 $memid = $_POST['deleteid'] ;
                                 $memberid = $_POST['delid'] ;
@@ -125,11 +124,14 @@ include_once 'project.inc.php';
                                         $uid = $responserow['user_id'];
                                         mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
                                         //header('Location: projct.php');
-                                } else { 
+                                } 
+                                else { 
                                     echo "Member Not Registered Yet" ;
-                                } }
+                                }
+                                 }
                                 ?>
-        </div></div>
+        </div>
+        </div>
     </div>
 </div>
 
@@ -175,7 +177,8 @@ include_once 'project.inc.php';
                     </div><br>
                     <div class="input-group-addon">
                         <textarea rows="3" class="form-control" id="challange" placeholder="Details of Challange"></textarea>
-                    </div><br>
+                    </div>
+                    <br>
                     <div class="inline-form">
                         Challange Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                             <option value='0' selected >hour</option>
@@ -186,7 +189,8 @@ include_once 'project.inc.php';
                                 $o++;
                             }
                             ?>
-                        </select><select class="btn btn-default btn-xs" id = "open" >	
+                        </select>
+                        <select class="btn btn-default btn-xs" id = "open" >	
                             <option value='10' selected >minute</option>
                             <option value='20'  >20</option>
                             <option value='30' >30</option>
@@ -202,7 +206,8 @@ include_once 'project.inc.php';
                                 $m++;
                             }
                             ?>
-                        </select><select class="btn btn-default btn-xs" id= "c_etab" >	
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etab" >	
                             <option value='0' selected >Days</option>
                             <?php
                             $d = 1;
@@ -211,7 +216,8 @@ include_once 'project.inc.php';
                                 $d++;
                             }
                             ?>
-                        </select><select class="btn btn-default btn-xs" id= "c_etac" >	
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etac" >	
                             <option value='0' selected >hours</option>
                             <?php
                             $h = 1;
@@ -220,17 +226,20 @@ include_once 'project.inc.php';
                                 $h++;
                             }
                             ?>
-                        </select><select class="btn btn-default btn-xs" id= "c_etad" >	
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etad" >	
                             <option value='15' selected >minute</option>
                             <option value='30' >30</option>
                             <option value='45'  >45</option>
-                        </select><br/><br/>
+                        </select>
+                        </div><br/><br/>
                         <div class="input-group">Challenge Type : 
                             <select class='btn-default btn-xs' id="type" >
                                 <option value=" 1" >Public</option>
                                 <option value=" 2" selected >Private</option>
                             </select>
-                        </div><br>
+                        </div>
+                        <br>
                         <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
                         <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
                 </form>
@@ -242,8 +251,8 @@ include_once 'project.inc.php';
     </div>
 </div>
 <!--end modle-->           
-
-<div class="modal fade" id="create_team_new" aria-hidden="true">
+<!-- Modal -->
+<div class="modal fade" id="create_team_new" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -252,7 +261,7 @@ include_once 'project.inc.php';
             </div>
             <div class="modal-body"  >
 
-                <form role="form" method="POST" id="tablef" >
+                <form role="form" method="POST">
                     <div class="input-group" >
                         <span class="input-group-addon">Team Name</span>
                         <input type="text" class="form-control" name="team_name" placeholder="Enter your team name">
@@ -273,3 +282,4 @@ include_once 'project.inc.php';
         </div>
     </div>
 </div>
+<!--end modle--> 
