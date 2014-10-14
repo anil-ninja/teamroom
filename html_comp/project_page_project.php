@@ -1,16 +1,16 @@
- <div class="panel panel-info">
+ <div class="panel panel">
 	<div class="panel-heading">
-		<h3 class="panel-title">Project : <?php echo $title ; ?></h3>
+		<h3 class="panel-title"><font color="silver">Project : <?php echo $title ; ?></font></h3>
 	</div>
 </div>
 				
  <?php
 	   $title = $_SESSION['project_title'] ;
 	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name FROM
-												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id)
+												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id AND a.project_type = '1')
                                                 UNION
                                                 (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name FROM projects as a
-                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
+                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' AND a.project_type = '1' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
 	   $project_idrow = mysqli_fetch_array($project_id) ;
 		$p_id = $project_idrow['project_id'] ;
 		$projectst = $project_idrow['stmt'];
@@ -27,18 +27,31 @@
 	echo "<div class='panel-body'>
 			<div class='list-group'>
 				<div class='list-group-item'>";
-   echo "<div class='pull-right'>
-				<div class='list-group-item'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$p_id."' onclick='delChallenge(".$p_id.");'>Delete Challenge</a></li>
-                     <li><a class='btn btn-default' >Change ETA</a></li>                    
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
+
+      echo "<div class='pull-right'>
+            <div class='list-group-item'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $project_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM projects WHERE project_id = '$p_id' AND user_id='$user_id';"));
+                    $project_dropdown_displayRow = mysqli_fetch_array($project_dropdown_display);
+                    $project_dropdown_userID = $project_dropdown_displayRow['user_id'];
+                    if($project_dropdown_userID == $user_id) {
+                        echo "
+                        <li><button class='btn-link' href='#'>Edit Project</button></li>
+                        <li><button class='btn-link' pID='".$p_id."' onclick='delProject(".$p_id.");'>Delete Project</button></li>
+                        <li><form method='POST' class='inline-form'>";                    
+                        if($projectETA == 'Time over') {        
+                            echo "<input type='hidden' name='id' value='".$p_id."'/>
+                                <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
+                            }                                    
+                       echo "</form></li>";
+                    }
+                    else {
+                       echo "<li><button class='btn-link' >Report Spam</button></li>";
+                    } 
+               echo "</ul>
               </div>
             </div>";
-      
 	echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" 
 				.ucfirst($fname). '&nbsp'.ucfirst($lname)
 				. " </span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. "</font>
@@ -62,17 +75,10 @@
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>".ucfirst($frstnam)." ".ucfirst($lnam)."&nbsp</span> 
-						<small>".$projectres."</small>
-				<div class='list-group-item pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' project_comment_ID='".$ida."' onclick='del_project_comment(".$ida.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
+						<small>".$projectres."</small>";
+				dropDown_delete_comment_project($db_handle, $ida, $user_id);
        
-					</div>
+				echo "</div>
 				</div> 
 			</div>";
 	}
@@ -83,7 +89,7 @@
 			
 				<form method='POST' class='inline-form'>
 					<input type='text' STYLE='border: 1px solid #bdc7d8; width: 300px; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this project' />
-					<button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
+					<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
 			  </form>
 			
 		</div></div></div> </div>"								  
@@ -145,16 +151,10 @@
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp". ucfirst($fstname)." ".ucfirst($lstname)."&nbsp</span> 
-						".$chalangeres."
-						<div class='list-group-item pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Comment</a></li>
-                     <li><a class='btn btn-default' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-					</div>
+						".$chalangeres."";
+                 dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+						
+				echo "</div>
 				</div> 
 			</div>";
 		}
@@ -165,7 +165,7 @@
 				<form class='inline-form' action='' method='POST'>
                                     <input type='hidden' value='".$note_ID."' id='challenge_id' />
                                     <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
-                                    <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='response'> </button>
+                                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' id='response'> </button>
 				</form>
 			</div></div></div></div>" ;
 	}

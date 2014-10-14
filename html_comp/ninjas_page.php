@@ -1,4 +1,6 @@
-               <div class="panel-body">
+        
+				   <div class='list-group'>
+				<div class='list-group-item'>
                   <form>
 						<div class="input-group-addon">
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
@@ -8,7 +10,7 @@
                         </div><br>
                         <div class="inline-form">
                         Challenge Open For 
-                        <select class="btn btn-default btn-xs"  id= "open_time" >	
+                        <select class="btn-info btn-xs"  id= "open_time" >	
                             <option value='0' selected >hour</option>
                             <?php
                                 $o = 1 ;
@@ -18,14 +20,14 @@
                                 }
                             ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "open" >	
+                        <select class="btn-info btn-xs" id= "open" >	
                             <option value='10' selected >minute</option>
                             <option value='20'  >20</option>
                             <option value='30' >30</option>
                             <option value='40'  >40</option>
                             <option value='50' >50</option>
                         </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETA
-                        <select class="btn btn-default btn-xs" id= "c_eta" >	
+                        <select class="btn-info btn-xs" id= "c_eta" >	
                             <option value='0' selected >Month</option>
                             <?php
                                 $m = 1 ;
@@ -35,7 +37,7 @@
                                 }
                             ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "c_etab" >	
+                        <select class="btn-info btn-xs" id= "c_etab" >	
                             <option value='0' selected >Days</option>
                             <?php
                                 $d = 1 ;
@@ -45,7 +47,7 @@
                                 }
                             ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "c_etac" >	
+                        <select class="btn-info btn-xs" id= "c_etac" >	
                             <option value='0' selected >hours</option>
                                 <?php
                                     $h = 1 ;
@@ -55,15 +57,15 @@
                                     }
                                 ?>
                         </select>&nbsp;
-                        <select class="btn btn-default btn-xs" id= "c_etad" >	
+                        <select class="btn-info btn-xs" id= "c_etad" >	
                             <option value='15' selected >minute</option>
                             <option value='30' >30</option>
                             <option value='45'  >45</option>
                         </select><br/><br/>                          
                         <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                         </div>
-                    </form><br/><br/>
-                </div>
+                    </form><br/>
+                </div></div>
 		<?php
 	$user_id = $_SESSION['user_id'];
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
@@ -113,14 +115,12 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 					</form>";	
 		
 		dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-		echo "<font color = '#F1AE1E'> 
-				Created by &nbsp 
-				<span class='color strong' style= 'color :#CAF11E;'>" 
+		echo "Created by &nbsp 
+				<span class='color strong' style= 'color :lightblue;'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
 				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time."<br/>Remaining Time : ".$remaining_time_own.
-			  "</font>
-			  </div>
-			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+			  "</div>
+			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -137,16 +137,10 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."
-				<div class='list-group-item pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-            </div></div></div>";
+						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."";
+				
+                dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+         echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>
@@ -206,9 +200,9 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
   echo "<div class='list-group'>
 				<div class='list-group-item'>";	
 		
-	echo  "<font color = '#F1AE1E'> <br/>Owned By : <span class='color strong' style= 'color :#CAF11E;'>"
+	echo  "Owned By : <span class='color strong' style= 'color :lightblue;'>"
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
-			  "</font><br/><br/><p align='center' style='font-size: 14pt; color :#CAF11E;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+			  "<br/></div><div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $stmt."<br/><br/> </font>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $ch_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -224,17 +218,9 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."</span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."
-						<div class='pull-right'>
-				<div class='list-group-item'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-            </div></div></div></div>";
+						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."";
+						dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+          echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>
@@ -248,6 +234,6 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
                       </form>
                   </div>
              </div>";
-          echo " </div> </div> ";
+          echo " </div></div> ";
 	  }
 ?>

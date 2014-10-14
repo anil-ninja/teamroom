@@ -40,17 +40,7 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 		} else {
 			echo "<font color = '#F1AE1E'> Ownership is not claimed till now </font> ";
 		}
-		echo "<div class='pull-right'>
-                        <div class='list-group-item'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                                <li><a class='btn btn-default'  cID='".$chall_id."' onclick='delChallenge(".$chall_id.");'>Delete Challenge</a></li>
-                                <li><a class='btn btn-default' >Change ETA</a></li>                    
-                                <li><a class='btn btn-default' >Report Spam</a></li>
-                            </ul>
-                        </div>
-                    </div>";
+		dropDown_challenge($db_handle, $chall_id, $user_id, $remainingtime);
 		echo "<br><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>".
 				str_replace("<s>","&nbsp;",$challange_displayRow['stmt']). "<br> <br>";
 		$commenter = mysqli_query ($db_handle, ("(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
@@ -68,16 +58,9 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 						<div class='comment-text'>
 							<span class='pull-left color strong'>";
 								echo "&nbsp".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
-							"</span>".$commenterRow['stmt'] ."
-							<div class='list-group-item pull-right'>
-								<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-								<ul class='dropdown-menu' aria-labelledby='dropdown'>
-								 <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-								 <li><a class='btn btn-default' id='delComment' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete Comment</a></li>                   
-								 <li><a class='btn btn-default' >Report Spam</a></li>
-							   </ul>
-						  </div>
-						</div>
+							"</span>".$commenterRow['stmt'] ."";
+                                       dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+                                            echo"</div>
 					</div> 
 				</div>";
 		}
