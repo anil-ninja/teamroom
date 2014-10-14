@@ -5,7 +5,6 @@
 </div>
 				
  <?php
-	   $title = $_SESSION['project_title'] ;
 	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id AND a.project_type = '1')
                                                 UNION
