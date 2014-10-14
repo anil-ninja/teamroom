@@ -1,57 +1,51 @@
 <?php 
 include_once 'lib/db_connect.php';
-include_once 'functions/delete_comment.php';
-//change varible name
-$username = $_GET['username'] ;
-$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
-//check no of rows is rows equal to "0" then show sorry page, show is decent way
-/*
-if(#row=0){
-    
-    include error page
+
+$UserName = $_GET['username'] ;
+$userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '$UserName';");
+$userInfoRows = mysqli_num_rows($userInfo);
+
+if($userInfoRows == 0) {
+    include_once '../html_comp/error.html';
     exit;
 }
 
-*/
-$user_infoRow =  mysqli_fetch_array($user_info);
+$user_InformationRow =  mysqli_fetch_array($userInfo);
+$profileViewFirstName = $user_InformationRow['first_name'];
+$profileViewLastName = $user_InformationRow['last_name'];
+$profileViewEmail= $user_InformationRow['email'];
+$profileViewPhone = $user_InformationRow['contact_no'];
+$profileViewUserID = $user_InformationRow['user_id'];
 
-//make variable name as profile_view_user_id
-$user_id = $user_infoRow['user_id'];
-//mysql conts
-$challenge_created = mysqli_query($db_handle, ("SELECT challenge_id FROM challenges WHERE user_id = $user_id;"));
-$total_challenge_created = mysqli_num_rows($challenge_created);
+$challengeCreated = mysqli_query($db_handle, "SELECT COUNT(challenge_id) FROM challenges WHERE user_id = $profileViewUserID;");
+$counter=mysqli_fetch_assoc($challengeCreated); 
+$totalChallengeCreated=$counter["COUNT(challenge_id)"];
 
+$challengeProgress = mysqli_query($db_handle, "SELECT COUNT(status) FROM challenge_ownership WHERE status = 1 and user_id = $profileViewUserID;");
+$counter = mysqli_fetch_assoc($challengeProgress);
+$totaLChallengeProgress = $counter["COUNT(status)"];
 
-$challenge_progress = mysqli_query($db_handle, ("SELECT status FROM challenge_ownership WHERE status = 1 and user_id = $user_id;"));
-$total_challenge_progress = mysqli_num_rows($challenge_progress);
+$challengeCompleted = mysqli_query($db_handle, "SELECT COUNT(status) FROM challenge_ownership WHERE status = 2 and user_id = $profileViewUserID;");
+$counter = mysqli_fetch_assoc($challengeCompleted);
+$totalChallengeCompleted= $counter["COUNT(status)"];
 
-$challenge_completed = mysqli_query($db_handle, ("SELECT status FROM challenge_ownership WHERE status = 2 and user_id = $user_id;"));
-$total_challenge_completed = mysqli_num_rows($challenge_completed);
+$projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID;");
+$counter = mysqli_fetch_assoc($projectCreated);
+$totalProjectCreated= $counter["COUNT(project_id)"];
 
-$project_created = mysqli_query($db_handle, ("SELECT project_id FROM projects WHERE user_id = $user_id;"));
-$total_project_created = mysqli_num_rows($project_created);
+$projectCompleted = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type = '2';");
+$counter = mysqli_fetch_assoc($projectCompleted);
+$totalProjectCompleted= $counter["COUNT(project_id)"];
 
-$project_completed = mysqli_query($db_handle, ("SELECT project_id FROM projects WHERE user_id = $user_id and project_type = '2';"));
-$total_project_completed = mysqli_num_rows($project_completed);
-
-//remove it
-if (isset($_POST['logout'])) {
-    header('Location: index.php');
-    exit ;
-} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
-    <head>
-
-    <meta charset="utf-8">
-    
-    <title>profile</title>
+   <head>
+        <meta charset="utf-8">
+        <title>profile</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-        
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <style type="text/css">    
 body
 {
     font-family: 'Lato', 'sans-serif';
@@ -142,54 +136,7 @@ span.tags
 </head>
 
 <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="ninjas.php">Collgo</a>
-  </div>
-  
-  <div class="navbar-collapse collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav">
-		<li><form method="POST" class="navbar-text" action = "">
-          <input type="text" placeholder="search"/>
-            <button type="submit" name="search" class="glyphicon glyphicon-search btn-primary btn-xs">
-            </button>
-        </form></li>
-    </ul>
-       <ul class='nav navbar-nav navbar-right'>
-		<li>
-		  <div class='dropdown'>
-            <a data-toggle='dropdown'><p class='navbar-text'>Your Projects<span class='caret'></span></p></a>
-    		<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
-			<?php
-					//check its out
-					$project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title FROM teams as a join projects 
-																		as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
-																		UNION (SELECT DISTINCT project_id, project_title FROM projects WHERE user_id = '$user_id' and project_type= '1');"));
-			while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
-					$p_title = $project_title_displayRow['project_title'] ;		
-			echo "<li><form method='POST' action=''>
-					<input type='hidden' name='project_title' value='".$p_title."'/>
-					<input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
-					<button type='submit' class='btn-link' name='projectphp' style='white-space: pre-line;'>".$p_title."</button><br/><br/></form></li>" ;
-					}
-           ?>
-                        </ul>
-                      </div>
-                  </li>      
-      <li> <form method='POST'> 
-          <p class="navbar-text"><a href="challenges.php" style='cursor:pointer;'>Your Challenges</a></p>
-          <p class="navbar-text">Rank :  <?php $username = $_GET['username'] ; $user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';")); $user_infoRow =  mysqli_fetch_array($user_info); $rank = $user_infoRow['rank']; echo $rank ; ?></p>
-          <p class="navbar-text"><span class="glyphicon glyphicon-user"></span>Hello <?php $username = $_GET['username'] ; $user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';")); $user_infoRow =  mysqli_fetch_array($user_info); $f_name = $user_infoRow['first_name']; echo ucfirst($f_name); ?></p>                              
-          <p class="navbar-text"><form method="POST" ><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></form></p>
-      </li>
-    </ul>
-  </div>
-</div>
+    <?php    include_once 'html_comp/navbar_homepage.php'; ?>
     <script type="text/javascript" src="scripts/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.wallform.js"></script>
     
@@ -199,29 +146,21 @@ span.tags
                 <div class="well profile">
                     <div class="col-sm-12">
                         <div class="col-xs-12 col-sm-8">
-					<?php
-                            //check
-							$username = $_GET['username'] ;
-							$user_info = mysqli_query($db_handle, ("SELECT * FROM user_info WHERE username = '$username';"));
-							$user_infoRow =  mysqli_fetch_array($user_info);
-							$f_name = $user_infoRow['first_name'];
-							$l_name = $user_infoRow['last_name'];
-							$email= $user_infoRow['email'];
-							$phone = $user_infoRow['contact_no'];
-                      echo "<h2><strong>".ucfirst($f_name). " ".ucfirst($l_name)."</strong></h2>
-                            <p><strong>Email-Id: </strong>".$email."</p>
-                            <p><strong>Contact: </strong>".$phone."</p>
-                            <p><strong>Skills: </strong>
-                                <span class='tags'>html5</span> 
-                                <span class='tags'>css3</span>
-                                <span class='tags'>jquery</span>
-                                <span class='tags'>bootstrap3</span>
-                            </p>" ;
+                            <?php
+                                echo "<h2><strong>".ucfirst($profileViewFirstName). " ".ucfirst($profileViewLastName)."</strong></h2>
+                                        <p><strong>Email-Id: </strong>".$profileViewEmail."</p>
+                                        <p><strong>Contact: </strong>".$profileViewPhone."</p>
+                                        <p><strong>Skills: </strong>
+                                            <span class='tags'>html5</span> 
+                                            <span class='tags'>css3</span>
+                                            <span class='tags'>jquery</span>
+                                            <span class='tags'>bootstrap3</span>
+                                        </p>" ;
                             ?>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                         <figure>
-                            <img src="img/default-user-icon-profile.png" alt="" class="img-circle img-responsive">
+                          <?php echo "<img src='uploads/profilePictures/$UserName.jpg'  alt='' class='img-circle img-responsive'>"; ?>
                                 <figcaption class="ratings">
                                     <p>Ratings
                                     <a href="#">
@@ -246,31 +185,31 @@ span.tags
                     </div>            
                 <div class="col-xs-12 divider text-center">
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong> <?php echo $total_challenge_created; ?> </strong></h2>                    
+                        <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
                         <p><small>challenges</small></p>
                         <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Created </button>
                     </div>
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong> <?php echo $total_challenge_completed; ?> </strong></h2>                    
+                        <h2><strong> <?php echo $totalChallengeCompleted; ?> </strong></h2>                    
                         <p><small>challenges</small></p>
                         <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
                     </div>
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong><?php echo $total_challenge_progress; ?> </strong></h2>                    
+                        <h2><strong><?php echo $totaLChallengeProgress; ?> </strong></h2>                    
                         <p><small>challenges</small></p>
                         <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
                     </div>
                 </div>
                 <div class="col-xs-12 divider text-center">
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong><?php echo $total_project_created; ?></strong></h2>                    
+                        <h2><strong><?php echo $totalProjectCreated; ?></strong></h2>                    
                         <p><small>projects</small></p>
                         <button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span> Created </button>
                     </div>
                     
                     
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong><?php echo $total_project_completed; ?> </strong></h2>                    
+                        <h2><strong><?php echo $totalProjectCompleted; ?> </strong></h2>                    
                         <p><small>projects</small></p>
                         <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
                     </div>
@@ -289,17 +228,17 @@ span.tags
                     <?php
                        $userProjects = mysqli_query ($db_handle, ("SELECT * FROM user_info as a join 
                                                             (SELECT DISTINCT b.user_id FROM teams as a join
-                                                            teams as b where a.user_id = '$user_id' and
-                                                            a.team_name = b.team_name and b.user_id != '$user_id')
+                                                            teams as b where a.user_id = '$profileViewUserID' and
+                                                            a.team_name = b.team_name and b.user_id != '$profileViewUserID')
                                                             as b where a.user_id=b.user_id;"));
                
                         while ($userProjectsRow = mysqli_fetch_array($userProjects))  {
-                            $friend_f_name = $userProjectsRow['first_name'];
-                            $friend_l_name = $userProjectsRow['last_name'];
-                            $username_friends = $userProjectsRow['username'];
+                            $friendFirstName = $userProjectsRow['first_name'];
+                            $friendLastName = $userProjectsRow['last_name'];
+                            $usernameFriends = $userProjectsRow['username'];
                             echo "<form method='GET' action='profile.php'>
-                                    <button type='submit' name='username' class='btn-link' value='".$username_friends."'>
-                                        ".ucfirst($friend_f_name)." ".ucfirst($friend_l_name)."
+                                    <button type='submit' name='username' class='btn-link' value='".$usernameFriends."'>
+                                        ".ucfirst($friendFirstName)." ".ucfirst($friendLastName)."
                                     </button>
                                 </form>";
                         }
