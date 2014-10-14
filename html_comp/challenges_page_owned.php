@@ -46,8 +46,8 @@
 		echo "<div class='panel-body'>
 				<div class='list-group'>
 				<div class='list-group-item'>";
-		echo "<font color = '#F1AE1E'> Challenge by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> &nbsp on &nbsp".$time. " &nbsp".$remainingtime. "&nbsp&nbsp&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time."</font> <br> 
-				<p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p>
+		echo "Challenge by &nbsp <span class='color strong' style= 'color :lightblue;'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). " </span> &nbsp on &nbsp".$time. " &nbsp".$remainingtime. "&nbsp&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time."<br> 
+				<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p>
 				<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['stmt'])."<br> <br>";
 		$commenter = mysqli_query ($db_handle, ("(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 												JOIN user_info as b WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)

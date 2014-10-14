@@ -52,10 +52,8 @@
                echo "</ul>
               </div>
             </div>";
-	echo "<font color = '#F1AE1E'> Created by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" 
-				.ucfirst($fname). '&nbsp'.ucfirst($lname)
-				. " </span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. "</font>
-				 <br> <br>".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
+	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."
+			</span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. " <br> <br>".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name from response_project as a join user_info as b 
 											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
@@ -96,7 +94,7 @@
 	
 ?><br/><br/>
 
- <div class="panel panel-info">
+ <div class="panel panel">
      <div class="panel-heading">    
         <h3 class="panel-title">Important Notes about Project</h3>
       </div>
@@ -129,7 +127,7 @@
 							  </div>
 							</div>
 							<p align='center' style='font-size: 14pt;'>".$title."</p>
-							<span class='pull-left color strong' style= 'color :#CAF11E;'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span> 
+							<span class='pull-left color strong' style= 'color :lightblue;'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span> 
 							<small>".$notes."</small><br/><br/>";
 			$displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name 
 													FROM response_challenge as a join user_info as b where a.challenge_id = ".$displayrow['challenge_id']." 

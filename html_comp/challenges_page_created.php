@@ -36,12 +36,12 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
 			$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
-			echo "<font color = '#F1AE1E'> Owned by &nbsp <span class='color strong' style= 'color :#CAF11E;'>" .ucfirst($fname). "&nbsp". ucfirst($lname). " </span> &nbsp on &nbsp".$time. " &nbsp with ETA in &nbsp".$remainingtime. " </font>" ;
+			echo "Owned by &nbsp <span class='color strong' style= 'color :lightblue;'>" .ucfirst($fname). "&nbsp". ucfirst($lname). " </span> &nbsp on &nbsp".$time. " &nbsp with ETA in &nbsp".$remainingtime ;
 		} else {
-			echo "<font color = '#F1AE1E'> Ownership is not claimed till now </font> ";
+			echo "Ownership is not claimed till now";
 		}
 		dropDown_challenge($db_handle, $chall_id, $user_id, $remainingtime);
-		echo "<br><p align='center' style='font-size: 14pt;'  ><span style= 'color :#CAF11E;'><b>".ucfirst($ch_title)."</b></span></p><br/>".
+		echo "<br><p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p><br/>".
 				str_replace("<s>","&nbsp;",$challange_displayRow['stmt']). "<br> <br>";
 		$commenter = mysqli_query ($db_handle, ("(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chall_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)

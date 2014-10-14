@@ -30,7 +30,10 @@ include_once 'functions/delete_comment.php';
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class="container-fluid">
-            <div class="row-fluid">          
+            <div class="row-fluid"> 
+				<div class="col-xs-12 col-sm-2" STYLE="font-size: 10pt;">
+                  <?php   include_once 'html_comp/right_panel_challenge.php';      ?>
+                </div>         
                 <div class="col-xs-12 col-sm-5">
                     <div class="row" style="visibility: visible; position: relative;">
                         <?php include_once 'html_comp/challenges_page_created.php';   ?>
@@ -41,9 +44,6 @@ include_once 'functions/delete_comment.php';
 						<?php include_once 'html_comp/challenges_page_owned.php';   ?>
 					</div> 
             </div>
-                <div class="col-xs-12 col-sm-2" STYLE="font-size: 10pt;">
-                  <?php   include_once 'html_comp/right_panel_challenge.php';      ?>
-                </div>
             </div>
     </div>
 

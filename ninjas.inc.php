@@ -100,7 +100,7 @@ if (isset($_POST['chlange'])) {
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ") ;
 		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$chalange', '$your_eta');") ;
-header('Location: ninjas.php');
+header('Location: #');
 }
 if (isset($_POST['change_eta'])) {
 		$user_id = $_SESSION['user_id'];
@@ -113,7 +113,7 @@ if (isset($_POST['change_eta'])) {
 		$your_eta = (($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
 		//echo "UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='default' WHERE challenge_id = $chalange" ;
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='$a' WHERE challenge_id = $chalange ; ") ;
-header('Location: ninjas.php');
+header('Location: #');
 }
 if(isset($_POST['projectphp'])){
 		 header('location: project.php') ;   

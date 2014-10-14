@@ -198,14 +198,13 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 		}
   echo "<div class='list-group'>
-				<div class='list-group-item'>";	
-		
+				<div class='list-group-item'>" ;
 	echo  "Owned By : <span class='color strong' style= 'color :lightblue;'>"
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
 			  "<br/></div><div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $stmt."<br/><br/> </font>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name FROM response_challenge as a
-													JOIN user_info as b WHERE a.challenge_id = $ch_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
+													JOIN user_info as b WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION
 												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
 													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");

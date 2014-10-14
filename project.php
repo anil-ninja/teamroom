@@ -26,7 +26,6 @@ include_once 'functions/delete_comment.php';
         </style>
 
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
-
             <style>
             body {
                     padding-top: 10px; /* 60px to make the container go all the way to the bottom of the topbar */
@@ -57,21 +56,20 @@ include_once 'functions/delete_comment.php';
 
         <div class="container-fluid">
             <div class="row-fluid">
-            
-                <div class="col-xs-12 col-sm-5">
+            <div class="col-lg-2" STYLE="font-size: 11pt;">
+				<?php   include_once 'html_comp/right_panel_project.php';      ?>
+            </div> 
+                <div class="col-lg-5">
                     <div class="row" style="visibility: visible; position: relative;">
                        <?php include_once 'html_comp/project_page_project.php'; ?>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-5">
+                <div class="col-lg-5">
                     <div class="row" style="visibility: visible; position: relative;">
 					   <?php include_once 'html_comp/project_page_challenge.php'; ?>
 				    </div>
                 </div>	
-            <div class="col-lg-2" STYLE="font-size: 11pt;">
-				<?php   include_once 'html_comp/right_panel_project.php';      ?>
-            </div> 
-    </div>
+           </div>
 </div>
        <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
