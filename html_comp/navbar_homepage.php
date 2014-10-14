@@ -41,8 +41,7 @@
 								$firstname = $teams_names_displayRow['first_name'] ;
 								$username = $teams_names_displayRow['username'] ;
 								$lastname = $teams_names_displayRow['last_name'] ;
-						echo "<li><p align='center' ><form method='GET' action='profile.php'><button type='submit' name='username' class='btn-link'
-								value='".$username."'>".ucfirst($firstname)." ".ucfirst($lastname)."</button></form></p></li>" ;
+						echo "<li><p align='center' ><a href ='profile.php?username=".$usernameFriends."'>".$username."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a></p></li>" ;
 				}
 				echo "</ul></li>" ;
 			}
@@ -151,5 +150,3 @@
     </div>
 </div>
 <!--end modle-->
-
-

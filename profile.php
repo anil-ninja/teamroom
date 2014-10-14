@@ -236,11 +236,9 @@ span.tags
                             $friendFirstName = $userProjectsRow['first_name'];
                             $friendLastName = $userProjectsRow['last_name'];
                             $usernameFriends = $userProjectsRow['username'];
-                            echo "<form method='GET' action='profile.php'>
-                                    <button type='submit' name='username' class='btn-link' value='".$usernameFriends."'>
+                            echo "<a href ='profile.php?username=".$usernameFriends."'>
                                         ".ucfirst($friendFirstName)." ".ucfirst($friendLastName)."
-                                    </button>
-                                </form>";
+                                   <br></a>";
                         }
                     ?>
                 </div>                 
