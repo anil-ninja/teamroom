@@ -8,23 +8,29 @@ function url_domain(data) {
   return a.hostname;
 }
 function getVedioId(str) {
-    return str.split('=')[1];
+    return str.split('v=')[1];
 }
-	
-	$(document).ready(function(){
-    
-		$("#submit_ch").click(function(){
-      		$("#submit_ch").attr('disabled','disabled');
-			var challenge = $("#challange").val() ;
-			var domain = url_domain(challenge);
-			//alert(domain);
-			if (domain == "www.youtube.com"){
-				var linkId = getVedioId(challenge);
-				//alert(linkId);
-				challenge = "<iframe src=\"//www.youtube.com/embed/";
-				challenge = challenge.concat(linkId);
-				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen style=\"width: 100% important; height: auto   !important; max-width: 100%;min-width: 100%;\"></iframe>");
-			}
+
+function refineVedioId(str){
+	if(str.indexOf('&') === -1){
+		return str;
+		}
+		return str.split('&')[0];
+}
+
+$(document).ready(function(){
+	$("#submit_ch").click(function(){
+		$("#submit_ch").attr('disabled','disabled');
+		var challenge = $("#challange").val() ;
+		var domain = url_domain(challenge);
+		//alert(domain);
+		if (domain == "www.youtube.com"){
+			var linkId = refineVedioId(getVedioId(challenge));
+			//alert(linkId);
+			challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
+			challenge = challenge.concat(linkId);
+			challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
+		}
 			//alert(challenge);
 			var challenge_title = $("#challange_title").val() ;
 			var open_time = parseInt($("#open_time").val());
