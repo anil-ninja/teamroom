@@ -97,7 +97,7 @@
 		$totaltime = $initialtime+$eta+$open ;
 		$completiontime = time() ;
 if ($completiontime > $totaltime) { 
-	$remaining_time_own = "Time over" ; }
+	$remaining_time_own = "Closed" ; }
 else {	$remainingtime = ($totaltime-$completiontime) ;
 		$day = floor($remainingtime/(24*60*60)) ;
 		$daysec = $remainingtime%(24*60*60) ;
@@ -105,20 +105,20 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
 		$sec = $hoursec%60 ;
-		$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+		$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
 }
 		echo "<div class='list-group'>
-				<div class='list-group-item'>
-				<form method='POST' class='inline-form pull-right'>
-					<input type='hidden' name='id' value='".$chelangeid."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept Challenge'/>
-					</form>";	
-		
+				<div class='list-group-item'>" ;
+				
 		dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
 		echo "Created by &nbsp 
 				<span class='color strong' style= 'color :lightblue;'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
-				</span> &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time."<br/>Remaining Time : ".$remaining_time_own.
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </span>
+					<form method='POST' class='inline-form pull-right'>
+						<input type='hidden' name='id' value='".$chelangeid."'/>
+						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+					</form>
+				 &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time."<br/>".$remaining_time_own.
 			  "</div>
 			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";

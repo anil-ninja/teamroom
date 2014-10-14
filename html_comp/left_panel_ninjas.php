@@ -1,6 +1,6 @@
 <div class="bs-component">
               
-                      <p align="center"><font size="5"  color="silver">Your Projects</font></p>
+                      <p align="center"><font size="4"  color="silver">Your Projects</font></p>
                       
                     <div class="well">
                        <?php

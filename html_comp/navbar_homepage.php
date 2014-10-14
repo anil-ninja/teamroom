@@ -20,15 +20,12 @@
             </button>
         </form></li>
     </ul>
-    <ul class='nav navbar-nav navbar-right'><li><p class="navbar-text"><form method="POST" ><button type="submit" class="btn btn-danger btn-sm" name="logout" ><span class="glyphicon glyphicon-off"></span></button></form></p>
-      </li>
-    </ul>
     <ul class='nav navbar-nav navbar-right'>
     <?php
     if($requestedPage == "ninjas.php"){
     echo "<li>
 		  <div class='dropdown'>
-            <a data-toggle='dropdown'><p class='navbar-text'>Your Teams<span class='caret'></span></p></a>
+            <a data-toggle='dropdown'><p class='navbar-text'><b>Your Teams</b><span class='caret'></span></p></a>
     		<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>" ;
     		 
 		$teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;")) ;
@@ -55,7 +52,7 @@
 			
 		<li>
 		  <div class='dropdown'>
-            <a data-toggle='dropdown'><p class='navbar-text'>Your Projects<span class='caret'></span></p></a>
+            <a data-toggle='dropdown'><p class='navbar-text'><b>Your Projects</b><span class='caret'></span></p></a>
     		<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
 			   <?php
                             $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
@@ -72,15 +69,27 @@
                         </ul>
                       </div>
                   </li>      
-      <li> <form method='GET' action='profile.php'>
-          <p class="navbar-text"><a data-toggle="modal" class="btn-link" data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p>
-          <p class="navbar-text"><a href="challenges.php" style='cursor:pointer;'>Your Challenges</a></p>
-          <p class="navbar-text">&nbsp;Your rank :  <?php echo $rank ; ?></p>
-          <p class="navbar-text"><span class="glyphicon glyphicon-user"></span><button type='submit' name='username' class='btn-link' value='<?php $username = $_SESSION['username'] ; echo $username ; ?>'>Hello <?php echo ucfirst($name); ?></button></p></form></li></ul>                              
-          
+      <li>
+          <p class="navbar-text"><a data-toggle="modal"  data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p>
+          <p class="navbar-text"><a href="challenges.php" ><b>Your Challenges</b></a></p>
+          <p class="navbar-text">&nbsp;<b>Your rank :  <?php echo $rank ; ?></b></p></li>
+         <li><div class="dropdown">
+			  <a data-toggle='dropdown'><p class='navbar-text'><span class="glyphicon glyphicon-user"></span>&nbsp;<b>Hello <?php echo ucfirst($name); ?></b></p></a>
+			  <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+				  <li><p class="navbar-text">
+					  <form method='GET' action='profile.php'>
+						<button type='submit' name='username' class='btn btn-link btn-sm' value='<?php $username = $_SESSION['username'] ; echo $username ; ?>'>View Profile</button></form></p>  
+				 <p class="navbar-text">
+				 <form method="POST" >
+					 <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out&nbsp;<span class="glyphicon glyphicon-off"></span></button></form></p>
+      
+				 </li>
+</ul></div>
+	</li>
+</ul>		  
   </div>
 </div>
-<!-- Modal -->
+<!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
