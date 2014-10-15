@@ -162,11 +162,11 @@
 				<div class='pull-left lh-fix'>
 					<img src='img/default.gif'>&nbsp
 				</div>
-				<form class='inline-form' action='' method='POST'>
-                                    <input type='hidden' value='".$note_ID."' id='challenge_id' />
-                                    <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
-                                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' id='response'> </button>
-				</form>
+				<form action='' method='POST' class='inline-form'>
+							<input type='hidden' value='".$note_ID."' name='own_challen_id' />
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
+						</form>
 			</div></div></div></div>" ;
 	}
 ?>

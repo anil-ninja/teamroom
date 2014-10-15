@@ -81,8 +81,7 @@
 							<img src='img/default.gif'>&nbsp
 						</div>
 						<form action='' method='POST' class='inline-form'>
-							<input type='hidden' value='$user_id'/></td></tr>
-							<input type='hidden' value='".$owned_challengesRow['challenge_id']."' name='own_challen_id' />
+							<input type='hidden' value='".$ch_id."' name='own_challen_id' />
 							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>

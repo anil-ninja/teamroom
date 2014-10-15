@@ -50,15 +50,14 @@
 		}	
 	echo "<div class='panel-body'>
 					<div class='list-group'>
-						<div class='list-group-item'>
-						<form method='POST' class='inline-form pull-right'>
-					<input type='hidden' name='id' value='".$idb."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
-					</form>";
+						<div class='list-group-item'>";
       dropDown_challenge($db_handle, $idb, $user_id, $remaining_time);
 	  
       echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
-				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><br/> ETA : ".$remainingtime." <br/> Challenge Created 
+				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><form method='POST' class='inline-form pull-right'>
+					<input type='hidden' name='id' value='".$idb."'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+					</form><br/> ETA : ".$remainingtime." <br/> Challenge Created 
 				ON :".$chalangetime. "<br/> and Remaining Time : ".$remaining_time."<br/>";
    	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p><br/>
 				<small>".str_replace("<s>","&nbsp;",$chalangest)."</small><br> <br>";
@@ -92,11 +91,11 @@
                         <div class='pull-left'>
                             <img src='img/default.gif'> &nbsp
                         </div>
-			<form class='inline-form' action='' method='POST'>
-                            <input type='hidden' value='".$idb."' name='challenge_id' />
-                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this challenge'/>
-                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='response'></button>
-			</form>
+						<form action='' method='POST' class='inline-form'>
+							<input type='hidden' value='".$idb."' name='own_challen_id' />
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
+						</form>
                     </div>";
 	echo "</div> </div> </div>";
 	}
@@ -144,13 +143,7 @@
 	echo "<div class='panel-body'>
 					<div class='list-group'>
 						<div class='list-group-item'>";
-	if($id==$user_id) {			
-			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='".$idd."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-					</form>";
-				}
-      echo "<div class='pull-right'>
+	      echo "<div class='pull-right'>
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>                   
@@ -158,6 +151,12 @@
                    </ul>
               </div>
             </div>";
+       if($id==$user_id) {			
+			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+					<input type='hidden' name='id' value='".$idd."'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+					</form>";
+				}
 	  echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><br/> Challenge Created 
 				ON :".$chalangetime. "<br/>Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_pr_ch."'>"
@@ -197,11 +196,11 @@
                         <div class='pull-left'>
                             <img src='img/default.gif'> &nbsp
                         </div>
-			<form class='inline-form' action='' method='POST'>
-                            <input type='hidden' value='".$idd."' id='challenge_id' />
-                            <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
-                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' id='response'></button>
-			</form>
+			<form action='' method='POST' class='inline-form'>
+							<input type='hidden' value='".$idd."' name='own_challen_id' />
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
+						</form>
                     </div>";
 	echo "</div> </div> </div>";
 	}

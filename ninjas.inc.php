@@ -14,17 +14,27 @@ $email = $_SESSION['email'];
 if (!isset($_SESSION['first_name'])) {
     header('Location: index.php');
 }
-if(isset($_POST['public_chl_response'])) {
+
+if(isset($_POST['own_chl_response'])) {
     $user_id = $_SESSION['user_id'];
-    $challenge_id_comment = $_POST['public_ch_id'] ; 
-    $ch_response = $_POST['public_ch_response'] ;
-   if(strlen($ch_response)>1){
+    $own_challenge_id_comment = $_POST['own_challen_id'] ;
+    $own_ch_response = $_POST['own_ch_response'] ;
+    if (strlen($own_ch_response)>1) {
+	if (strlen($own_ch_response)<1000) {	
     mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) 
-                                VALUES ('$user_id', '$challenge_id_comment', '$ch_response');") ;
-    header('Location: #');
-   }
-   else{ echo "<script>alert('Is your mind empty!')</script>";
+                                VALUES ('$user_id', '$own_challenge_id_comment', '$own_ch_response');") ;
+    header('Location: challenges.php');
 }
+else { mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
+                                VALUES (default, '$own_ch_response');");
+        
+        $id = mysqli_insert_id($db_handle);
+        mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) 
+                                VALUES ('$user_id', '$own_challenge_id_comment', ' ', '$id');") ;
+    header('Location: challenges.php');
+	}
+} 
+else { echo "<script>alert('Is your mind empty!')</script>"; }
 }
 
 if(isset($_POST['accept'])) {
@@ -111,7 +121,6 @@ if (isset($_POST['change_eta'])) {
 		$youretac = $_POST['y_etac'] ;
 		$youretad = $_POST['y_etad'] ;
 		$your_eta = (($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
-		//echo "UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='default' WHERE challenge_id = $chalange" ;
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='$a' WHERE challenge_id = $chalange ; ") ;
 header('Location: #');
 }
@@ -123,5 +132,4 @@ if(isset($_POST['projectphp'])){
 		$_SESSION['rank'] = $rank;
 		exit ;
 	}
-
 ?>
