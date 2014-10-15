@@ -89,7 +89,7 @@
 						</form>
 				</div>
 			";
-		echo '</tr> </div> </div> </div>';
+		echo '</div> </div> </div>';
 
 }
 ?>

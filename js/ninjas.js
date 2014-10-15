@@ -107,3 +107,10 @@ function refineVedioId(str){
     var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
      return dateTime;
 }
+
+function startTime() {
+    document.getElementById('demo').innerHTML = String(getDateTime());
+    t = setTimeout(function () {
+        startTime()
+    }, 500);
+}

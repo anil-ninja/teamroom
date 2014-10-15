@@ -34,7 +34,9 @@ include_once 'functions/delete_comment.php';
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
           <div class="col-lg-7">
-              <div class="panel-primary">
+			  <div class="panel-primary">
+				  <p id='home-ch'></p>
+				  <p id='home'></p>
 			<?php include_once 'html_comp/ninjas_page.php'   ?>
 	</div>
 	</div></div>
@@ -47,7 +49,8 @@ include_once 'functions/delete_comment.php';
 $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);
 });	
-document.getElementById("demo").innerHTML = String(getDateTime());
+startTime();
+
   </script>
 
 

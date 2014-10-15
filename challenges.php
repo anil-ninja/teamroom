@@ -35,14 +35,10 @@ include_once 'functions/delete_comment.php';
                   <?php   include_once 'html_comp/right_panel_challenge.php';      ?>
                 </div>         
                 <div class="col-lg-5">
-                    <div class="row" style="visibility: visible; position: relative;">
                         <?php include_once 'html_comp/challenges_page_created.php';   ?>
-                    </div> 
             </div>
               <div class="col-lg-5">
-                    <div class="row" style="visibility: visible; position: relative;">
 						<?php include_once 'html_comp/challenges_page_owned.php';   ?>
-					</div> 
             </div>
             </div>
     </div>

@@ -14,11 +14,11 @@
   
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-		<li><form>
+		<li>
           <input type="text" id="search" placeholder="search"/>
             <button type="submit" id="keyword"  class="glyphicon glyphicon-search btn-primary btn-xs">
             </button>
-        </form></li>
+        </li>
     </ul>
     <ul class='nav navbar-nav navbar-right'>
     <?php
@@ -71,7 +71,8 @@
       <li>
           <p class="navbar-text"><a data-toggle="modal"  data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p>
           <p class="navbar-text"><a href="challenges.php" ><b>Your Challenges</b></a></p>
-          <p class="navbar-text">&nbsp;<b>Your rank :  <?php echo $rank ; ?></b></p></li>
+          <p class="navbar-text">&nbsp;<b>Your rank :  <?php echo $rank ; ?></b></p>
+          <p class="navbar-text" id="demo"></p></li>
          <li><div class="dropdown">
 			  <a data-toggle='dropdown'><p class='navbar-text'><span class="glyphicon glyphicon-user"></span>&nbsp;<b>Hello <?php echo ucfirst($name); ?></b></p></a>
 			  <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
@@ -88,7 +89,52 @@
 </ul>		  
   </div>
 </div>
-
+<script>
+function show_search_results(challenges){
+	var resp = "";
+	for (var i = 0; i < challenges.length; i++) {
+		resp = resp + "<B>"+challenges[i].challenge_title+"</B><br>"+challenges[i].stmt+"<br>"; 
+	}
+	return resp;
+	}
+function show_search_results_id(challenges){
+	var id = "";
+	for (var i = 0; i < challenges.length; i++) {
+		id = id + challenges[i].challenge_id+"<br/>" ; 
+	}
+	return id;
+	}
+$(document).ready(function(){
+	$("#keyword").click(function(){
+		var keyword1 = $("#search").val() ;
+		//alert(keyword1);
+		var dataString = 'keyword='+ keyword1 ;
+		//alert(dataString);
+		if(keyword1==''){
+				alert("Please Enter Something !!!");
+	}	else {
+		$.ajax({
+				type: "GET",
+				url: "search.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					alert(result);
+					challenges = JSON.parse(result);
+					document.getElementById("home-ch").innerHTML = show_search_results(challenges);
+					document.getElementById("home").innerHTML = show_search_results_id(challenges);
+					//alert(show_search_results(challenges));
+					//alert(challenges[0].stmt);
+					
+				}
+			});
+		}
+		});
+		
+	});
+	
+	
+</script>
 <!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
