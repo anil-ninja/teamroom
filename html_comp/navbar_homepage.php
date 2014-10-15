@@ -85,7 +85,7 @@
       
 				 </li>
 </ul></div>
-	</li>
+	</li><li>&nbsp;&nbsp;</li>
 </ul>		  
   </div>
 </div>
@@ -131,9 +131,7 @@ $(document).ready(function(){
 		}
 		});
 		
-	});
-	
-	
+	});	
 </script>
 <!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

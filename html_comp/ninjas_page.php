@@ -105,8 +105,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		$hour = floor($daysec/(60*60)) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
-		$sec = $hoursec%60 ;
-		$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+		$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 }
 		echo "<div class='list-group'>
 				<div class='list-group-item'>" ;
@@ -197,8 +196,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$hour = floor($daysec/(60*60)) ;
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
-			$sec = $hoursec%60 ;
-			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min " ;
 		}
   echo "<div class='list-group'>
 				<div class='list-group-item'>" ;

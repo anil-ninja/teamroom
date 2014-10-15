@@ -31,8 +31,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		$hour = floor($daysec/(60*60)) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
-		$sec = $hoursec%60 ;
-		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
 }		
 
 if(isset($_POST['response'])) {

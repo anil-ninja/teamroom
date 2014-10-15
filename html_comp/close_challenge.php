@@ -35,8 +35,7 @@
 			$hour = floor($daysec/(60*60)) ;
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
-			$sec = $hoursec%60 ;
-			$timetaken = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+			$timetaken = $day." Days :".$hour." Hours :".$minute." Min :" ;
 			$answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$id' and blob_id = '0')
 												UNION
 												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$id' and a.blob_id = b.blob_id);") ;										
