@@ -49,7 +49,7 @@ include_once 'functions/delete_comment.php';
 <script src="js/bootstrap.min.js"></script>
 <script src="js/bootswatch.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-<script src="js/project.js"></script>
+<script src="js/ninjas.js"></script>
 <script>
 	startTime();
  function getDateTime() {

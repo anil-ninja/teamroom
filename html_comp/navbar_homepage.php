@@ -14,11 +14,11 @@
   
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-		<li>
+		<p class='navbar-text'><li>
           <input type="text" id="search" placeholder="search"/>
             <button type="submit" id="keyword"  class="glyphicon glyphicon-search btn-primary btn-xs">
             </button>
-        </li>
+        </li></p>
     </ul>
     <ul class='nav navbar-nav navbar-right'>
     <?php

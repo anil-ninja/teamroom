@@ -23,7 +23,7 @@ if(isset($_POST['own_chl_response'])) {
 	if (strlen($own_ch_response)<1000) {	
     mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) 
                                 VALUES ('$user_id', '$own_challenge_id_comment', '$own_ch_response');") ;
-    header('Location: challenges.php');
+    header('Location: #');
 }
 else { mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
                                 VALUES (default, '$own_ch_response');");
@@ -31,7 +31,7 @@ else { mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt)
         $id = mysqli_insert_id($db_handle);
         mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) 
                                 VALUES ('$user_id', '$own_challenge_id_comment', ' ', '$id');") ;
-    header('Location: challenges.php');
+    header('Location: #');
 	}
 } 
 else { echo "<script>alert('Is your mind empty!')</script>"; }
