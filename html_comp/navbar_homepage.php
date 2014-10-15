@@ -41,7 +41,7 @@
 								$firstname = $teams_names_displayRow['first_name'] ;
 								$username = $teams_names_displayRow['username'] ;
 								$lastname = $teams_names_displayRow['last_name'] ;
-						echo "<li><p align='center' ><a href ='profile.php?username=".$usernameFriends."'>".$username."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a></p></li>" ;
+						echo "<li><p align='center' ><a href ='profile.php?username=".$username."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a></p></li>" ;
 				}
 				echo "</ul></li>" ;
 			}

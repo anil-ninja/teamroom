@@ -58,7 +58,7 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
                        echo "</form></li>";
                     }
                     else {
-                       echo "<li><button class='btn btn-link' >Report Spam</button></li>";
+                       echo "<li><button class='btn-link'>Report Spam</button></li>";
                     } 
                echo "</ul>
               </div>

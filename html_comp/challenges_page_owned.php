@@ -12,7 +12,7 @@
 											a.challenge_status = '2' and c.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_title,a.challenge_ETA, c.stmt, a.challenge_creation, d.comp_ch_ETA, d.ownership_creation,
-											b.first_name, b.last_name from challenges as a join user_info as b join blobs as c join challenge_ownership as d
+											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join challenge_ownership as d
 											 WHERE a.user_id = '$user_id' and  a.challenge_id = d.challenge_id and d.status = '1' and
 											a.blob_id = c.blob_id and  a.challenge_status = '2'  and a.user_id = b.user_id) ORDER BY challenge_creation DESC;");
 
@@ -51,13 +51,13 @@
 					<input type='hidden' name='id' value='".$idd."'/>
 					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
 					</form>";		
-		echo "Challenge by &nbsp <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$usernameFriends."'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). "</a> </span> on ".$time. "<br/>".$remainingtime. "<br/> Remaining Time : ".$remaining_time."<br> 
+		echo "Challenge by &nbsp <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_owned_challenge."'>" .ucfirst($owned_challengesRow['first_name']). '&nbsp'. ucfirst($owned_challengesRow['last_name']). "</a> </span> on ".$time. "<br/>".$remainingtime. "<br/> Remaining Time : ".$remaining_time."<br> 
 				<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p>
 				<br/>". str_replace("<s>","&nbsp;",$owned_challengesRow['stmt'])."<br> <br>";
 		$commenter = mysqli_query ($db_handle, ("(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name,b.username FROM response_challenge as a
 												JOIN user_info as b WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
 												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name, c.stmt FROM response_challenge as a
+												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name,b.username, c.stmt FROM response_challenge as a
 													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);"));
 		while($commenterRow = mysqli_fetch_array($commenter)) {
 			$comment_owned_id = $commenterRow['response_ch_id'];
@@ -71,7 +71,7 @@
 								<div class='comment-text'>
 										<span class='pull-left color strong'>";
 											echo "&nbsp<a href ='profile.php?username=".$username_commenter_owned."'>". ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
-										"</a></span> &nbsp&nbsp&nbsp" .$commenterRow['stmt'] ."";
+										"</a></span> &nbsp" .$commenterRow['stmt'] ."";
 										dropDown_delete_comment_challenge($db_handle, $comment_owned_id, $user_id);
 							echo "	</div>
 						</div> 
