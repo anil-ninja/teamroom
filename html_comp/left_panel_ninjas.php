@@ -22,8 +22,8 @@
                                 echo "<form method='POST' action=''>
                                 <input type='hidden' name='project_title' value='".$p_title."'/>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
-                                <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button><br/><br/></form>" ;
+                                <p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button></p><br/></form>" ;
                             }
                         ?>
                     </div>
