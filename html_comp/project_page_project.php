@@ -5,16 +5,17 @@
 </div>
 				
  <?php
-	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name FROM
+	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id AND a.project_type = '1')
                                                 UNION
-                                                (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name FROM projects as a
+                                                (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
                                                 join blobs as b join user_info as c WHERE a.project_id = '$pro_id' AND a.project_type = '1' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
 	   $project_idrow = mysqli_fetch_array($project_id) ;
 		$p_id = $project_idrow['project_id'] ;
 		$projectst = $project_idrow['stmt'];
 		$fname = $project_idrow['first_name'];
 		$lname = $project_idrow['last_name'];
+                $username_project = $project_idrow['username'];
 		$projecteta = $project_idrow['project_ETA'];
 		$day = floor(($projecteta*60)/(24*60*60)) ;
 		$daysec = ($projecteta*60)%(24*60*60) ;
@@ -51,17 +52,18 @@
                echo "</ul>
               </div>
             </div>";
-	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."
+	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
 			</span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. " <br> <br>".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
-	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name from response_project as a join user_info as b 
+	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
 											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
 											UNION
-											(SELECT DISTINCT c.stmt, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name from response_project as a join user_info as b join blobs as c 
+											(SELECT DISTINCT c.stmt, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b join blobs as c 
 											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_pr_creation ASC;");	
 	while ( $displayrowc = mysqli_fetch_array($displayb)) {
 			$frstnam = $displayrowc['first_name'] ;
 			$lnam = $displayrowc['last_name'] ;
+                        $username_pr_comment = $displayrowc['username'];
 			//$emailid = $displayrowc['email'] ;
 			$ida = $displayrowc['response_pr_id'] ;
 			$projectres = $displayrowc['stmt'] ;
@@ -71,7 +73,7 @@
 					<img src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
-						<span class='pull-left color strong'>".ucfirst($frstnam)." ".ucfirst($lnam)."&nbsp</span> 
+						<span class='pull-left color strong'><a href ='profile.php?username=".$username_pr_comment."'>".ucfirst($frstnam)." ".ucfirst($lnam)."</a>&nbsp</span> 
 						<small>".$projectres."</small>";
 				dropDown_delete_comment_project($db_handle, $ida, $user_id);
        
@@ -99,11 +101,11 @@
       </div>
  </div>          
 <?php
-		 $display = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name from challenges as a 
+		 $display = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 
 												)
 												UNION
-												(select DISTINCT a.challenge_title,a.challenge_id,a.challenge_creation, a.user_id, c.stmt, b.first_name, b.last_name from challenges as a 
+												(select DISTINCT a.challenge_title,a.challenge_id,a.challenge_creation, a.user_id, c.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b join blobs as c where a.project_id = '$p_id' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
 												) ORDER BY challenge_creation DESC;");
           while ($displayrow = mysqli_fetch_array($display)) {
@@ -111,6 +113,7 @@
 			  $title = $displayrow['challenge_title'] ;
 			  $fname = $displayrow['first_name'] ;
 			  $lname = $displayrow['last_name'] ;
+                          $username_notes = $displayrow['username'];
               $note_ID = $displayrow['challenge_id'];
 			  echo "<div class='panel-body'>
 						<div class='list-group'>
@@ -126,18 +129,19 @@
 							  </div>
 							</div>
 							<p align='center' style='font-size: 14pt;'>".$title."</p>
-							<span class='pull-left color strong' style= 'color :lightblue;'>".ucfirst($fname)." ".ucfirst($lname)."&nbsp&nbsp&nbsp</span> 
+							<span class='pull-left color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_notes."'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp&nbsp&nbsp</span> 
 							<small>".$notes."</small><br/><br/>";
-			$displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name 
+			$displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
 													FROM response_challenge as a join user_info as b where a.challenge_id = ".$displayrow['challenge_id']." 
 													and a.user_id = b.user_id and a.blob_id = '0')
 													UNION
-													(select DISTINCT a.user_id, c.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name
+													(select DISTINCT a.user_id, c.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
 													 FROM response_challenge as a join user_info as b join blobs as c where a.challenge_id = ".$displayrow['challenge_id']."
 													  and a.user_id = b.user_id and a.blob_id = c.blob_id);");		
 		while ($displayrowb = mysqli_fetch_array($displaya)) {	
 				$fstname = $displayrowb['first_name'] ;
 				$lstname = $displayrowb['last_name'] ;
+                                $username_notes_comment = $displayrowb['username'];
 				$idc = $displayrowb['response_ch_id'] ;
 				$chalangeres = $displayrowb['stmt'] ;
 				
@@ -147,7 +151,7 @@
 					<img src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
-						<span class='pull-left color strong'>&nbsp". ucfirst($fstname)." ".ucfirst($lstname)."&nbsp</span> 
+						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_notes_comment."'>". ucfirst($fstname)." ".ucfirst($lstname)."</a>&nbsp</span> 
 						".$chalangeres."";
                  dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
 						

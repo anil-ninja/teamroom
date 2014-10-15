@@ -6,7 +6,7 @@ $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '
 $userInfoRows = mysqli_num_rows($userInfo);
 
 if($userInfoRows == 0) {
-    include_once '../html_comp/error.html';
+    include_once 'html_comp/error.html';
     exit;
 }
 
@@ -236,11 +236,9 @@ span.tags
                             $friendFirstName = $userProjectsRow['first_name'];
                             $friendLastName = $userProjectsRow['last_name'];
                             $usernameFriends = $userProjectsRow['username'];
-                            echo "<form method='GET' action='profile.php'>
-                                    <button type='submit' name='username' class='btn-link' value='".$usernameFriends."'>
+                            echo "<a href ='profile.php?username=".$usernameFriends."'>
                                         ".ucfirst($friendFirstName)." ".ucfirst($friendLastName)."
-                                    </button>
-                                </form>";
+                                   <br></a>";
                         }
                     ?>
                 </div>                 

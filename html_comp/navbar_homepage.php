@@ -41,8 +41,7 @@
 								$firstname = $teams_names_displayRow['first_name'] ;
 								$username = $teams_names_displayRow['username'] ;
 								$lastname = $teams_names_displayRow['last_name'] ;
-						echo "<li><p align='center' ><form method='GET' action='profile.php'><button type='submit' name='username' class='btn-link'
-								value='".$username."'>".ucfirst($firstname)." ".ucfirst($lastname)."</button></form></p></li>" ;
+						echo "<li><p align='center' ><a href ='profile.php?username=".$usernameFriends."'>".$username."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a></p></li>" ;
 				}
 				echo "</ul></li>" ;
 			}
@@ -89,29 +88,7 @@
 </ul>		  
   </div>
 </div>
-<script>
-$(document).ready(function(){
-	$("#keyword").click(function(){
-		var keyword1 = $("#search").val() ;
-		alert(keyword1);
-		var dataString = 'keyword='+ keyword1 ;
-		//alert(dataString);
-		$.ajax({
-				type: "GET",
-				url: "search.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					alert(result);
-				}
-			});
-			
-		});
-		
-	});
-	
-	
-</script>
+
 <!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -173,4 +150,3 @@ $(document).ready(function(){
         </div>
     </div>
 </div>
-<!--end modle-->
