@@ -60,7 +60,7 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 						<div class='comment-text'>
 							<span class='pull-left color strong'>";
 								echo "&nbsp<a href ='profile.php?username=".$username_commenter."'>".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) .
-							"</a></span>".$commenterRow['stmt'] ."";
+							"</a>&nbsp</span>".$commenterRow['stmt'] ."";
                                        dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
                                             echo"</div>
 					</div> 

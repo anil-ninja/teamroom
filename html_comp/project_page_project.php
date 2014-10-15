@@ -1,9 +1,8 @@
- <div class="panel panel">
+
 	<div class="panel-heading">
-		<h3 class="panel-title"><font color="silver">Project : <?php echo $title ; ?></font></h3>
+		<h3 class="panel-title"><font color="black">Project : <?php echo $title ; ?></font></h3>
 	</div>
-</div>
-				
+		
  <?php
 	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id AND a.project_type = '1')

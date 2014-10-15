@@ -1,8 +1,8 @@
-<div class="panel panel">
+
                         <div class="panel-heading">
-                            <h3 class="panel-title"> <font color="silver">Remaining Time : <?php echo $remaining_time ; ?> </font></h3>
+                            <h3 class="panel-title"> <font color="black">Remaining Time : <?php echo $remaining_time ; ?> </font></h3>
                         </div>
-                    </div>
+                   
 <?php    
 		include_once 'html_comp/close_challenge.php' ;
                                                                               
@@ -54,7 +54,7 @@
 						<div class='list-group-item'>
 						<form method='POST' class='inline-form pull-right'>
 					<input type='hidden' name='id' value='".$idb."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept Challenge'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>";
       dropDown_challenge($db_handle, $idb, $user_id, $remaining_time);
 	  
@@ -155,14 +155,14 @@
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 					<ul class='dropdown-menu' aria-labelledby='dropdown'>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
+                     <li><button class='btn-link' >Report Spam</button></li>
                    </ul>
               </div>
             </div>";
 	  echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><br/> Challenge Created 
-				ON :".$chalangetime. "<br/>Owned By : <span class='color strong' style= 'color :lightblue;'>"
-			  .ucfirst($fnamer). '&nbsp'. ucfirst($lnamer)."</span><br/>ETA taken : ".$remainingtimer. "<br/> Remaining Time : ".$remaining_time_own.
+				ON :".$chalangetime. "<br/>Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_pr_ch."'>"
+			  .ucfirst($fnamer). '&nbsp'. ucfirst($lnamer)."</a></span><br/>ETA taken : ".$remainingtimer. "<br/> Remaining Time : ".$remaining_time_own.
 			  "<br/><br/><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $stmt. "</font><br/>" ;
 			   
@@ -187,16 +187,10 @@
 				<div class='comment-text'>
 					<span class='pull-left color strong'>
 						&nbsp<a href ='profile.php?username=".$username_commenter_pr_ch_owned."'>". ucfirst($fstname)."&nbsp".ucfirst($lstname).
-					"&nbsp</a></span><small>".$chalangeres."</small>
-					<div class='list-group-item pull-right'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>
-                     <li><a class='btn btn-default' href='#'>Edit Challenge</a></li>
-                     <li><a class='btn btn-default' id='delChallenge' cID='".$comment_id."' onclick='delChallenge(".$comment_id.");'>Delete Challenge</a></li>                   
-                     <li><a class='btn btn-default' >Report Spam</a></li>
-                   </ul>
-              </div>
-				</div>
+					"&nbsp</a></span><small>".$chalangeres."</small>";
+					
+                        dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+			echo "</div>
 			</div> 
 		</div>";
 		}
@@ -207,7 +201,7 @@
 			<form class='inline-form' action='' method='POST'>
                             <input type='hidden' value='".$idd."' id='challenge_id' />
                             <input type='text' STYLE=' border: 1px solid #bdc7d8; width: 300px; height: 30px;' id='pr_resp' placeholder='Whats on your mind about this challenge'/>
-                            <button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' id='response'></button>
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' id='response'></button>
 			</form>
                     </div>";
 	echo "</div> </div> </div>";
