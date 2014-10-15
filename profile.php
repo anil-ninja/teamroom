@@ -6,7 +6,7 @@ $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '
 $userInfoRows = mysqli_num_rows($userInfo);
 
 if($userInfoRows == 0) {
-    include_once '../html_comp/error.html';
+    include_once 'html_comp/error.html';
     exit;
 }
 
