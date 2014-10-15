@@ -73,7 +73,7 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 			<form action='' method='POST' class='inline-form'>
 				<input type='hidden' value='".$chall_id."' name='challen_id' />
 				<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='ch_response' placeholder='Whats on your mind about this Challenge'/>
-				<button type='submit' class='btn-success btn-sm glyphicon glyphicon-play' name='chl_response' value='Post'></buton>
+				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='chl_response' value='Post'></buton>
 			</form>
 		</div>";
 	
