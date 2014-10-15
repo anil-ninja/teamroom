@@ -14,9 +14,9 @@
   
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-		<li><form method="POST" class="navbar-text" action = "">
-          <input type="text" placeholder="search"/>
-            <button type="submit" name="search" class="glyphicon glyphicon-search btn-primary btn-xs">
+		<li><form>
+          <input type="text" id="search" placeholder="search"/>
+            <button type="submit" id="keyword"  class="glyphicon glyphicon-search btn-primary btn-xs">
             </button>
         </form></li>
     </ul>
@@ -89,6 +89,29 @@
 </ul>		  
   </div>
 </div>
+<script>
+$(document).ready(function(){
+	$("#keyword").click(function(){
+		var keyword1 = $("#search").val() ;
+		alert(keyword1);
+		var dataString = 'keyword='+ keyword1 ;
+		//alert(dataString);
+		$.ajax({
+				type: "GET",
+				url: "search.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					alert(result);
+				}
+			});
+			
+		});
+		
+	});
+	
+	
+</script>
 <!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -151,5 +174,3 @@
     </div>
 </div>
 <!--end modle-->
-
-
