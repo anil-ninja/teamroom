@@ -62,8 +62,7 @@
 	while ( $displayrowc = mysqli_fetch_array($displayb)) {
 			$frstnam = $displayrowc['first_name'] ;
 			$lnam = $displayrowc['last_name'] ;
-                        $username_pr_comment = $displayrowc['username'];
-			//$emailid = $displayrowc['email'] ;
+            $username_pr_comment = $displayrowc['username'];
 			$ida = $displayrowc['response_pr_id'] ;
 			$projectres = $displayrowc['stmt'] ;
 		echo "<div id='commentscontainer'>

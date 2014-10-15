@@ -14,7 +14,8 @@ function dropDown_delete_comment_challenge($db_handle, $deleteid, $user_ID) {
                         <li><button class='btn-link' href='#'>Edit</button></li>
                         <li><button class='btn-link' cID='".$deleteid."' onclick='delcomment(".$deleteid.");'>Delete</button></li>";
                     } else {
-                       echo "<li><button class='btn-link' >Report Spam</button></li>";
+                       echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+								<button type='submit' name='spem' value='".$deleteid."' class='btn-link' >Report Spam</button></form></li>";
                     }
                 echo "</ul>
         </div>";
@@ -32,7 +33,8 @@ function dropDown_delete_comment_project($db_handle, $deleteid, $user_ID) {
                         <li><button class='btn-link' href='#'>Edit</button></li>
                         <li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
                     } else {
-                       echo "<li><button class='btn-link' >Report Spam</button></li>";
+                       echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+								<button type='submit' name='spem_prresp' value='".$deleteid."' class='btn-link' >Report Spam</button></form></li>";
                     }
                 echo "</ul>
         </div>";
@@ -58,7 +60,8 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
                        echo "</form></li>";
                     }
                     else {
-                       echo "<li><button class='btn-link'>Report Spam</button></li>";
+                       echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+								<button type='submit' name='pr_spem' value='".$challenge_ID."' class='btn-link' >Report Spam</button></form></li>";
                     } 
                echo "</ul>
               </div>

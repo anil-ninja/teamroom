@@ -71,6 +71,27 @@ if (isset($_POST['logout'])) {
     session_destroy();
     exit ;
 }   
+if(isset($_POST['spem'])) {
+	$id = $_POST['spem'] ;
+	$user_id = $_SESSION['user_id'];
+	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '2');") ;
+	mysqli_query($db_handle,"UPDATE response_challenge SET status='4' WHERE response_ch_id = '$id'; ") ;
+	header('Location: #');
+	}
+if(isset($_POST['spem_prresp'])) {
+	$id = $_POST['spem_prresp'] ;
+	$user_id = $_SESSION['user_id'];
+	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '3');") ;
+	mysqli_query($db_handle,"UPDATE response_project SET status='4' WHERE response_pr_id = '$id'; ") ;
+	header('Location: #');
+	}
+if(isset($_POST['pr_spem'])) {
+	$id = $_POST['pr_spem'] ;
+	$user_id = $_SESSION['user_id'];
+	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '1');") ;
+	mysqli_query($db_handle,"UPDATE challenges SET challenge_type='7' WHERE challenge_id = '$id'; ") ;
+	header('Location: #');
+	}
 if(isset($_POST['eta'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
