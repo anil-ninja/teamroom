@@ -1,6 +1,6 @@
 
                         <div class="panel-heading">
-                            <h3 class="panel-title"> <font color="black">Remaining Time : <?php echo $remaining_time ; ?> </font></h3>
+                            <h3 class="panel-title"> <font color="black"><?php echo $remaining_time ; ?> </font></h3>
                         </div>
                    
 <?php    
@@ -39,14 +39,14 @@
 			$totaltime = $initialtime+$eta+($opentime*60) ;
 			$completiontime = time() ;
 		if ($completiontime > $totaltime) { 
-			$remaining_time = "Time over" ; }
+			$remaining_time = "Closed" ; }
 	else {	$remaintime = ($totaltime-$completiontime) ;
 			$day = floor($remaintime/(24*60*60)) ;
 			$daysec = $remaintime%(24*60*60) ;
 			$hour = floor($daysec/(60*60)) ;
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
-			$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
+			$remaining_time = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}	
 	echo "<div class='panel-body'>
 					<div class='list-group'>
@@ -54,11 +54,12 @@
       dropDown_challenge($db_handle, $idb, $user_id, $remaining_time);
 	  
       echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
-				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><form method='POST' class='inline-form pull-right'>
+				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span>
+				<form method='POST' class='inline-form pull-right'>
 					<input type='hidden' name='id' value='".$idb."'/>
 					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form><br/> ETA : ".$remainingtime." <br/> Challenge Created 
-				ON :".$chalangetime. "<br/> and Remaining Time : ".$remaining_time."<br/>";
+				ON :".$chalangetime. "<br/>".$remaining_time."<br/>";
    	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p><br/>
 				<small>".str_replace("<s>","&nbsp;",$chalangest)."</small><br> <br>";
 		$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -130,7 +131,7 @@
 			$totaltime = $initialtime+$eta ;
 			$completiontime = time() ;
 		if ($completiontime > $totaltime) { 
-			$remaining_time_own = "Time over" ; }
+			$remaining_time_own = "Closed" ; }
 	else {	$remaintime = ($totaltime-$completiontime) ;
 			$day = floor($remaintime/(24*60*60)) ;
 			$daysec = $remaintime%(24*60*60) ;
@@ -138,7 +139,7 @@
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
 			$sec = $hoursec%60 ;
-			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min :".$sec." "."Secs" ;
+			$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}	
 	echo "<div class='panel-body'>
 					<div class='list-group'>
@@ -160,7 +161,7 @@
 	  echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><br/> Challenge Created 
 				ON :".$chalangetime. "<br/>Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_pr_ch."'>"
-			  .ucfirst($fnamer). '&nbsp'. ucfirst($lnamer)."</a></span><br/>ETA taken : ".$remainingtimer. "<br/> Remaining Time : ".$remaining_time_own.
+			  .ucfirst($fnamer). '&nbsp'. ucfirst($lnamer)."</a></span><br/>ETA taken : ".$remainingtimer. "<br/>".$remaining_time_own.
 			  "<br/><br/><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $stmt. "</font><br/>" ;
 			   

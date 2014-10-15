@@ -24,14 +24,14 @@ $ETA = $eta*60 ;
 $totaltime = $initialtime+$ETA ;
 $completiontime = time() ;
 if ($completiontime > $totaltime) { 
-	$remaining_time = "Time over" ; }
+	$remaining_time = "Closed" ; }
 else {	$remainingtime = ($totaltime-$completiontime) ;
 		$day = floor($remainingtime/(24*60*60)) ;
 		$daysec = $remainingtime%(24*60*60) ;
 		$hour = floor($daysec/(60*60)) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
-		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
+		$remaining_time ="Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 }		
 
 if (isset($_POST['resp_project'])) {

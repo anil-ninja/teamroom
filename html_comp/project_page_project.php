@@ -14,7 +14,7 @@
 		$projectst = $project_idrow['stmt'];
 		$fname = $project_idrow['first_name'];
 		$lname = $project_idrow['last_name'];
-                $username_project = $project_idrow['username'];
+        $username_project = $project_idrow['username'];
 		$projecteta = $project_idrow['project_ETA'];
 		$day = floor(($projecteta*60)/(24*60*60)) ;
 		$daysec = ($projecteta*60)%(24*60*60) ;
