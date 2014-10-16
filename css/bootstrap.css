@@ -4160,7 +4160,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-text {
-  color: #555555;
+  color: rgba(42, 40, 40, 1);
 }
 .navbar-default .navbar-nav > li > a {
   color: #999999;
