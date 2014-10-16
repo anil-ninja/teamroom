@@ -127,7 +127,7 @@
 <div class="modal fade" id="createnotes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header"><div class='alert_placeholder'></div>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Create Notes</h4>
             </div>
@@ -154,7 +154,7 @@
 <div class="modal fade" id="createChallenge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header"><div class='alert_placeholder'></div>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Create Challenge</h4>
             </div>

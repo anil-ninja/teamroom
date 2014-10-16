@@ -57,16 +57,10 @@ function bootstrap_alert(elem, message, timeout,type) {
 			'&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(challenge==''){
-				//alert("Please Enter Something !!!");
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 			}
 			else if(challenge_title==''){
-				//alert("Please Enter Something !!!");
-				
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-
-          
-
 			}
 			else
 			{

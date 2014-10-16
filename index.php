@@ -23,11 +23,10 @@ include_once "controllers/login_controller.php";
             <div class="navbar navbar-default navbar-fixed-top">
                 <div class="container">
                     <div class="navbar-inner">
-                        <a class="btn-default" href="index.php"><h4>Collgo</a>
+                        <a class="btn-link" href="index.php"><h4>Collgo</a>
                         <div class="span3 pull-right">
                             <ul class="list-inline">
-                                <a class="btn-default" href="http://dpower4.com/">About</a>&nbsp;&nbsp;&nbsp;
-                                <a class="btn-default" href="http://dpower4.com/">Contact</h4></a></ul> 
+                               Powered By :  <a class="btn-link" href="http://dpower4.com/">Dpower4.com</a></h4></ul> 
                         </div></div>
                 </div>
             </div>

@@ -28,7 +28,8 @@ include_once 'functions/delete_comment.php';
 
     </head>
     <body>
-        <?php include_once 'html_comp/navbar_homepage.php'; ?>
+		<?php include_once 'html_comp/navbar_homepage.php'; ?>
+       <div class='alert_placeholder'></div>
        <div class="container-fluid">
             <div class="row-fluid"> 
 				<div class="col-lg-2" STYLE="font-size: 10pt;">

@@ -1,9 +1,17 @@
 	function replaceAll(find, replace, str) {
 return str.replace(new RegExp(find, 'g'), replace);
 }
-	
+function bootstrap_alert(elem, message, timeout,type) {
+  $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
+  if (timeout || timeout === 0) {
+    setTimeout(function() { 
+      $(elem).show().html('');
+    }, timeout);    
+  }
+};	
 	$(document).ready(function(){
 		$("#create_project").click(function(){
+			$("#create_project").attr('disabled','disabled');
 			var project_title = $("#project_title").val() ;
 			var project_stmt = $("#project_stmt").val();
 			var eta = parseInt($("#eta").val());
@@ -16,10 +24,10 @@ return str.replace(new RegExp(find, 'g'), replace);
 			'&project_eta='+ (project_eta+='') ;
 			//alert(dataString);
 			if(project_title==''){
-				alert("Please Enter Something !!!");
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 			}
 			else if(project_stmt==''){
-				alert("Please Enter Something !!!");
+				bootstrap_alert(".alert_placeholder", "Project can not be empty", 5000,"alert-warning");
 			}
 			else
 			{
@@ -30,7 +38,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 				data: dataString,
 				cache: false,
 				success: function(result){
-					alert(result);
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result=='Project posted succesfully!'){
 						$("#project_title").val("");
 						$("#project_stmt").val("");
@@ -43,6 +51,7 @@ return str.replace(new RegExp(find, 'g'), replace);
 				}
 			});
 			}
+			$("#create_project").removeAttr('disabled');
 			return false;
 		});
 	});

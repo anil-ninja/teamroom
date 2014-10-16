@@ -53,9 +53,9 @@ include_once 'functions/delete_comment.php';
     </head>
     <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
-
         <div class="container-fluid">
             <div class="row-fluid">
+				<div class='alert_placeholder'></div>
             <div class="col-lg-2" STYLE="font-size: 11pt;">
 				<?php   include_once 'html_comp/right_panel_project.php';      ?>
             </div> 

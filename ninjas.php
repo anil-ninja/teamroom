@@ -26,9 +26,6 @@ include_once 'functions/delete_comment.php';
 		<script src="js/ninjas.js" type="text/javascript"></script>
   </head>
   <body>
-
-
-
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class='alert_placeholder'></div>
         <div class="row-fluid">

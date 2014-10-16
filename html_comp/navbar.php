@@ -8,8 +8,7 @@
           
           <div class="span3 pull-right">
             <ul class="list-inline">
-              <li><a href="about.php">About</a></li>
-              <li><a href="contact.php">Contact</h3></a></li>  
+              <li>Powered By : <a href="https://dpower4.com">Dpower4.com</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
