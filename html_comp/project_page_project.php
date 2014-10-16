@@ -120,9 +120,9 @@
 								<div class='list-group-item'>
 									<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 									<ul class='dropdown-menu' aria-labelledby='dropdown'>
-									 <li><a class='btn btn-default' href='#'>Edit Note</a></li>
-									 <li><a class='btn btn-default' noteID='".$note_ID."' onclick='delNote(".$note_ID.");'>Delete Note</a></li>                  
-									 <li><a class='btn btn-default' >Report Spam</a></li>
+									 <li><a class='btn-link' href='#'>Edit Note</a></li>
+									 <li><a class='btn-link' noteID='".$note_ID."' onclick='delNote(".$note_ID.");'>Delete Note</a></li>                  
+									 <li><a class='btn-link' >Report Spam</a></li>
 								   </ul>
 							  </div>
 							</div>
