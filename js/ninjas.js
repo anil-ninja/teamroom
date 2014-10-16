@@ -18,6 +18,16 @@ function refineVedioId(str){
 		return str.split('&')[0];
 }
 
+function bootstrap_alert(elem, message, timeout,type) {
+  $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
+
+  if (timeout || timeout === 0) {
+    setTimeout(function() { 
+      $(elem).show().html('');
+    }, timeout);    
+  }
+};
+
 	$(document).ready(function(){
     
 		$("#submit_ch").click(function(){
@@ -47,10 +57,16 @@ function refineVedioId(str){
 			'&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(challenge==''){
-				alert("Please Enter Something !!!");
+				//alert("Please Enter Something !!!");
+				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 			}
 			else if(challenge_title==''){
-				alert("Please Enter Something !!!");
+				//alert("Please Enter Something !!!");
+				
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+
+          
+
 			}
 			else
 			{
@@ -61,7 +77,8 @@ function refineVedioId(str){
 				data: dataString,
 				cache: false,
 				success: function(result){
-					alert(result);
+					//alert(result);
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result=='Challange posted succesfully!'){
 						$("#challange").val("");
 						$("#challange_title").val("");
