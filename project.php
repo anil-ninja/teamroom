@@ -9,7 +9,7 @@ include_once 'functions/delete_comment.php';
         <meta charset="utf-8">
             <title>Projects</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Billing, Sharing, budget">
+        <meta name="description" content="Challenges, Projects, Problem solving, problems">
         <meta name="author" content="Anil">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootswatch.css">

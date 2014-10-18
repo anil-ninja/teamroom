@@ -1,9 +1,8 @@
 
-<div class="panel panel" >
 	<div class="panel-heading" >
-		<h3 class="panel-title" ><font color="silver">Your Challenges</font></h3>
+		<h3 class="panel-title" ><font color="black">Your Challenges</font></h3>
 	</div>
-</div>
+
                         
 <?php 
 
@@ -45,10 +44,10 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 		echo "<br><p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p><br/>".
 				str_replace("<s>","&nbsp;",$challange_displayRow['stmt']). "<br> <br>";
 		$commenter = mysqli_query ($db_handle, ("(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name, b.username FROM response_challenge as a
-													JOIN user_info as b WHERE a.challenge_id = $chall_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
-												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name,b.username, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chall_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);"));
+                                                        JOIN user_info as b WHERE a.challenge_id = $chall_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1' ORDER BY response_ch_creation ASC)
+                                                    UNION
+                                                    (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.user_id, b.first_name, b.last_name,b.username, c.stmt FROM response_challenge as a
+                                                        JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chall_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1' ORDER BY response_ch_creation ASC);"));
 			while($commenterRow = mysqli_fetch_array($commenter)) {
 				$comment_id = $commenterRow['response_ch_id'];
                                 $username_commenter = $commenterRow['username'];
@@ -78,7 +77,6 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 		</div>";
 	
 	echo '</tr> </div> </div> </div>';
-	
-}
+    }
 ?>
 

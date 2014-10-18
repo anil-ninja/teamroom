@@ -7,7 +7,7 @@ include_once 'functions/delete_comment.php';
         <meta charset="utf-8">
         <title>Challenges</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Billing, Sharing, budget">
+        <meta name="description" content="Challenges, Projects, Problem solving, problems">
         <meta name="author" content="Rajnish">
 
         <!-- Le styles -->
@@ -39,7 +39,7 @@ include_once 'functions/delete_comment.php';
                         <?php include_once 'html_comp/challenges_page_created.php';   ?>
             </div>
               <div class="col-lg-5">
-						<?php include_once 'html_comp/challenges_page_owned.php';   ?>
+                        <?php include_once 'html_comp/challenges_page_owned.php';   ?>
             </div>
             </div>
     </div>
@@ -96,7 +96,7 @@ function startTime() {
             <div class="col-md-4 pull-right">
 
                 <ul class="list-inline">
-                    <li>Posted by: Mybill.com</li>
+                    <li>Powered by: Dpower4.com</li>
                     <li>Copyright @ 2014</li>
                 </ul>
             </div>
