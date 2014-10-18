@@ -1,6 +1,6 @@
 
 	<div class="panel-heading" >
-		<h3 class="panel-title" ><font color="black">Your Challenges</font></h3>
+		<h3 class="panel-title" >Your Challenges</h3>
 	</div>
 
                         
