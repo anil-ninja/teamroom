@@ -1003,10 +1003,10 @@ img {
   border-radius: 50%;
 }
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  border: 0;
-  border-top: 1px solid #eeeeee;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px;
+  border-top: 1px solid #D2D1D1;
 }
 .sr-only {
   position: absolute;
@@ -3203,7 +3203,7 @@ tbody.collapse.in {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #999999;
+  color: rgba(90, 81, 81, 1);
   white-space: nowrap;
 }
 .dropdown-menu > li > a:hover,

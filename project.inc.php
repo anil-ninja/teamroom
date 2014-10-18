@@ -16,6 +16,7 @@ else
 $project_id = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
 $project_idrow = mysqli_fetch_array($project_id) ;
 $eta = $project_idrow['project_ETA'] ;
+$creater_id = $project_idrow['user_id'] ;
 $title = $project_idrow['project_title'] ;
 $starttime = $project_idrow['project_creation'] ;
 $starttimestr = (string) $starttime ;

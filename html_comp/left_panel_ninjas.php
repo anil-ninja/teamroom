@@ -1,6 +1,6 @@
 <div class="bs-component">
               
-                      <p align="center"><font size="4"  color="silver">Your Projects</font></p>
+                      <p align="center"><font size="4">Your Projects</font></p>
                       
                     <div class="well">
                        <?php
@@ -23,7 +23,7 @@
                                 <input type='hidden' name='project_title' value='".$p_title."'/>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
                                 <p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button></p><br/></form>" ;
+                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button></p></form><hr/>" ;
                             }
                         ?>
                     </div>

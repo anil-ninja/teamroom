@@ -14,6 +14,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			$("#create_project").attr('disabled','disabled');
 			var project_title = $("#project_title").val() ;
 			var project_stmt = $("#project_stmt").val();
+			var type = $("#type").val();
 			var eta = parseInt($("#eta").val());
 			var etab = parseInt($("#etab").val());
 			var etac = parseInt($("#etac").val());
@@ -21,7 +22,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'project_title='+ project_title + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',project_stmt)) + 
-			'&project_eta='+ (project_eta+='') ;
+			'&project_eta='+ (project_eta+='') + '&type='+ type ;
 			//alert(dataString);
 			if(project_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");

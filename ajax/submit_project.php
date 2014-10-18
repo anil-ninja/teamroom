@@ -7,6 +7,7 @@ if($_POST['project_title']){
 	$project_title = $_POST['project_title'] ;
 	$project_st = htmlspecialchars(trim($_POST['project_stmt']), ENT_QUOTES);
 	$project_eta = $_POST['project_eta'] ;
+	$type = $_POST['type'] ;
 if (strlen($project_st) < 1000) {
         mysqli_query($db_handle, "INSERT INTO projects (user_id, project_title, stmt, project_ETA) 
                                   VALUES ('$user_id', '$project_title', '$project_st', '$project_eta');");

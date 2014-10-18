@@ -73,6 +73,7 @@ include_once 'functions/delete_comment.php';
 </div>
        <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
+    <script src="js/ninjas.js"></script>
     <script src="js/bootswatch.js"></script>
     <script src="js/project_page.js"></script>
     <script>

@@ -183,6 +183,11 @@ $(document).ready(function(){
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
                     </select>
+                    <br/><br/>Project Type 
+					  <select id= "type" >	
+                        <option value='2' selected >Private</option>
+                        <option value='1' >Public</option>
+                      </select>
                     <br/><br/>
                     <input type="button" class="btn btn-primary" id = "create_project" value = "Create Project" >
                 </form>

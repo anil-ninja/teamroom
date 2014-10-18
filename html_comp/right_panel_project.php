@@ -7,14 +7,17 @@
                     <input class="btn btn-default btn-sm" type="submit" name="submit" value="Submit"><br>
                 </form>
                 <br>
+                <?php 
+                if($creater_id == $user_id) {
+				echo "<a data-toggle='modal' class='btn btn-link' data-target='#assigntask' style='cursor:pointer;'><i class='glyphicon glyphicon-pencil'></i>Assign Tasks</a><br/>";	
+					}
+					?>
                 <a data-toggle="modal" class="btn btn-link" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-pencil"></i>Enter Notes</a><br/>
                 <a data-toggle="modal" class="btn btn-link" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a><br/>
                 <a data-toggle="modal" class="btn btn-link" data-target="#create_team_new" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Team</a><br/>
                 </div>  
                 <a class="tree-toggle btn btn-link" style="cursor:pointer;"><i class ="glyphicon glyphicon-user"></i>Your Teams</a><br/>
-                                   
-
-                        <?php
+                     <?php
                             $pro_id = $_SESSION['project_id'];
                             $team = mysqli_query($db_handle, ("SELECT DISTINCT team_name FROM teams where  project_id = '$pro_id' ;"));
                             while ($teamrow = mysqli_fetch_array($team)) {
@@ -141,6 +144,78 @@
                     </div><br><br>
                         <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
                         <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button name="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end modle-->
+<!-- Modal -->
+<div class="modal fade" id="assigntask" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><div class='alert_placeholder'></div>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Assign Tasks</h4>
+            </div>
+            <div class="modal-body">
+                <form >
+					<div class="input-group" >
+                        <span class="input-group-addon">Assign To : </span>
+                        <input type="email" class="form-control" id="email" placeholder="Enter email">
+                    </div><br/>
+					<div class="input-group">
+						<span class="input-group-addon">Title : </span>
+                        <input type="text" class="form-control" id="title" placeholder="Tilte"/>
+                    </div><br>
+                    <div class="input-group">
+						<span class="input-group-addon">Task : </span>
+                        <textarea rows="3" class="form-control" id="taskdetails" placeholder="Details of Tasks"></textarea>
+                    </div>
+                    <br>
+                    <div class="inline-form">
+                        ETA : 
+                        <select class="btn btn-default btn-xs" id = "c_eta" >	
+                            <option value='0' selected >Month</option>
+                            <?php
+                            $m = 1;
+                            while ($m <= 11) {
+                                echo "<option value='" . $m . "' >" . $m . "</option>";
+                                $m++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etab" >	
+                            <option value='0' selected >Days</option>
+                            <?php
+                            $d = 1;
+                            while ($d <= 30) {
+                                echo "<option value='" . $d . "' >" . $d . "</option>";
+                                $d++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etac" >	
+                            <option value='0' selected >hours</option>
+                            <?php
+                            $h = 1;
+                            while ($h <= 23) {
+                                echo "<option value='" . $h . "' >" . $h . "</option>";
+                                $h++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etad" >	
+                            <option value='15' selected >minute</option>
+                            <option value='30' >30</option>
+                            <option value='45'  >45</option>
+                        </select>
+                        </div><br/><br/>
+                         <input type='hidden' id='project_id' value="<?php echo $pro_id; ?>"/>
+                        <input type="button" value="Assign" class="btn btn-success" id="task"/>
                 </form>
             </div>
             <div class="modal-footer">
