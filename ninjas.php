@@ -1,5 +1,5 @@
 <?php
-include_once 'ninjas.inc.php';
+include_once 'ninjas.inc.php';  
 include_once 'functions/delete_comment.php';
 ?>
 
@@ -9,7 +9,7 @@ include_once 'functions/delete_comment.php';
     <meta charset="utf-8">
 	<title>TeamRoom</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Billing, Sharing, budget">
+    <meta name="description" content="Challenge, Project, Problem solving, problem">
     <meta name="author" content="Anil">
     <link rel="stylesheet" href="css/bootstrap.css" media="screen">
     <link rel="stylesheet" href="css/bootswatch.css">

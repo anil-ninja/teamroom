@@ -34,7 +34,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenges, Projects, Problem solving, problems">
         <meta name="author" content="Rajnish">
-
+        <script src="js/ninjas.js" type="text/javascript"></script>
         <!-- Le styles -->
         <link href="css/bootstrap.css" rel="stylesheet">
         <style>
@@ -257,28 +257,22 @@ function startTime() {
                     <span class="sr-only">Close</span>
                 </button>
                 <h4 class="modal-title" id="myModalLabel">Collaborations</h4>
+                <div class='alert_placeholder'></div>
             </div>
             <div class="modal-body">
-                <form method="POST" id="tablef" onsubmit="return validateLoginFormOnSubmit(this)">
-                    <table> 
-                        <tr>
-                            <div class="input-group">
-                                <td><span class="input-group-addon">Username</span></td>
-                                <td> <input type="text" class="form-control" name="username" placeholder="Enter email or username"></td>
-                            </div>
-                        </tr>
-                        <tr>
-                            <div class="input-group">
-                                <td> <span class="input-group-addon">Password</span> </td>
-                                <td> <input type="password" class="form-control" name="password" placeholder="Password"> </td>
-                            </div>
-                        </tr>
-                        <tr>
-                            
-                            <td> <button type="submit" class="btn btn-success" name="request" value='login'>Log in</button></td> 
-                        </tr>
-                    </table>
-                </form>
+                
+                                    <br/>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Username</span>
+                                        <input type="text" class="form-control" id="username" placeholder="Enter email or username">
+                                    </div>
+                                    <br>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Password</span>
+                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                    </div><br/>
+                                    <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
+        
             </div>
         
             <div class  ="modal-footer">
@@ -388,7 +382,7 @@ function startTime() {
     </div>
 </div>
 <!--end modle-->
-<script type="text/javascript" src="js/signinValidation.js"></script>
+<script type="text/javascript" src="js/loginValidation.js"></script>
 <script type="text/javascript" src="js/signupValidation.js"></script>
 <script type="text/javascript">
     function checkForm() {

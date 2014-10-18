@@ -41,7 +41,8 @@ function login(){
 	$response = mysqli_query($db_handle,"select * from user_info where (username = '$username' OR email = '$username') AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
 	if ( $num_rows){
-		header('Location: ninjas.php');
+		//echo "hi";
+		//header('Location: ninjas.php');
 		$responseRow = mysqli_fetch_array($response);
 		$_SESSION['user_id'] = $responseRow['user_id'];
 		$_SESSION['first_name'] = $responseRow['first_name'] ;
@@ -51,7 +52,7 @@ function login(){
 		exit;
 	}
 	else {
-		header('Location: ./index.php?status=2');      
+		echo "Sorry! Invalid username or password!";      
 	}
 	mysqli_close($db_handle);
 }

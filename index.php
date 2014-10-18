@@ -1,7 +1,12 @@
 <?php
 session_start();
-$error = "";
-include_once "controllers/login_controller.php";
+//$error = "";
+if (!isset($_SESSION['first_name'])) {
+    
+} else {
+	header('Location: ninjas.php');
+}
+//include_once "controllers/login_controller.php";
 ?>
 
 <!DOCTYPE html>
@@ -11,10 +16,11 @@ include_once "controllers/login_controller.php";
         <meta charset="utf-8">
 	        <title>Collgo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Billing, Sharing, budget">
+        <meta name="description" content="Challenge, Project, Problem solving, problem">
         <meta name="author" content="Anil">
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.css">
+
     </head>
     <body >
 	<div class="row">  
@@ -30,30 +36,33 @@ include_once "controllers/login_controller.php";
 			</div>
 		</div>
 	</div>
+	<div class='alert_placeholder'></div>
 	<div class="row" style="background-image: url(img/collaboration.jpg); height: 570px; max-width: 100%;">
 		<div class = "col-xs-7 col-ls-8"></div>	
 		<div class = "col-xs-2 col-ls-4" style="width:350px; height:500px">
+
 			<div class="bs-component">
 				<div class="modal">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
+							
 								<p align="center"><font size="5" >Collaborations</font></p>
 							</div>
 							<div class="modal-body">
-								<form role="form" method="POST" class="form-horizontal" onsubmit="return validateLoginFormOnSubmit(this)">
+								
 									<br/>
 									<div class="input-group">
 										<span class="input-group-addon">Username</span>
-										<input type="text" class="form-control" name="username" placeholder="Enter email or username">
+										<input type="text" class="form-control" id="username" placeholder="Enter email or username">
 									</div>
 									<br>
 									<div class="input-group">
 										<span class="input-group-addon">Password</span>
-										<input type="password" class="form-control" name="password" placeholder="Password">
+										<input type="password" class="form-control" id="password" placeholder="Password">
 									</div><br/>
-									<button type="submit" class="btn btn-success" name="request" value='login'>Log in</button>
-								</form></div>
+									<button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
+								</div>
 							<div class="modal-footer">
 								<a data-toggle="modal" class="btn-link" data-target="#myModal" style="float: right; cursor:pointer;">Sign Up Now</a>
 							</div>

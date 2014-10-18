@@ -1,7 +1,8 @@
 <?php
 
-
-include_once "./lib/login_signup.php";
+session_start();
+//include_once "./lib/login_signup.php";
+include_once "../lib/login_signup.php";
 $request = "";
 if(isset($_POST['request']))
 	$request = $_POST['request'];
