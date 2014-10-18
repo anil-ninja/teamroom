@@ -24,11 +24,23 @@ function signup(){
             else {
 		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, contact_no, username, password) VALUES 
 				('$firstname', '$lastname', '$email', '$phone', '$username', '$pas') ; ") ;
-		header('Location: ./index.php?status=0');
+		if(mysqli_error($db_handle)){
+			echo "Please try again";
+		} else {
+
+		$_SESSION['user_id'] = mysql_insert_id($db_handle);
+		$_SESSION['first_name'] = $firstname ;
+		$_SESSION['username'] = $username ;
+		$_SESSION['email'] = $email;
+		$_SESSION['rank'] = "dabbling";
+		exit;
+		}
+		//header('Location: ./index.php?status=0');
 	    }
         }
 	else {  
-		header('Location: ./index.php?status=1');
+		//header('Location: ./index.php?status=1');
+		echo "Password do not match, Try again";
         }
 	mysqli_close($db_handle);
 }
