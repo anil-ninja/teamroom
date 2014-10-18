@@ -1,19 +1,3 @@
- <div class="bs-component">
-    <div class="modal">
-      <div class="modal-content">
-         <div class="modal-header">
-            <p align="center"><font color="silver">
-				<a data-toggle="modal" class="btn-default btn-xs" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a></font></p>
-         </div>  
-         <div class="modal-body">
-         </div>
-         <div class="modal-footer">
-         </div>
-      </div>
-    </div>
-  </div>
-
-
     <!-- Modal -->
     <div class="modal fade" id="createChallenge" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">

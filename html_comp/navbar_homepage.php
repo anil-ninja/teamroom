@@ -23,6 +23,12 @@
     <ul class='nav navbar-nav navbar-right'>
     <?php
     if(isset($_SESSION['user_id'])) {  
+        if($requestedPage == "challenges.php") {
+            echo "<li><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>
+                <a data-toggle='modal' data-target='#createChallenge' style='cursor:pointer;'><i class='glyphicon glyphicon-edit'></i>Create Challenge</a></font></p>    
+                </li></li>";
+            }
+        
     if($requestedPage == "ninjas.php"){
     echo "<li>
 		  <div class='dropdown'>
