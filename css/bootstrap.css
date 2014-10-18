@@ -3166,7 +3166,7 @@ tbody.collapse.in {
 .dropdown-menu {
   position: absolute;
   top: 40px;
-  left: 0;
+  right: 0;
   z-index: 1000;
   display: none;
   float: right;
@@ -3176,7 +3176,7 @@ tbody.collapse.in {
   list-style: none;
   font-size: 14px;
   text-align: center;
-  background-color: #ffffff;
+  background-color: lightblue;
   border: 1px solid #cccccc;
   border: 1px solid #e7e7e7;
   border-radius: 4px;
