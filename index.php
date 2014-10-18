@@ -72,7 +72,7 @@ if (!isset($_SESSION['first_name'])) {
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-				<div class="modal-content" style="width:350px; height:500px">
+				<div class="modal-content" style="width:390px; height:500px">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span>
@@ -81,85 +81,20 @@ if (!isset($_SESSION['first_name'])) {
 						<h4 class="modal-title" id="myModalLabel">New User Registration</h4>
 					</div>
 					<div class="modal-body">
-							<table>							
-								<tr><div class="input-group" >
-										<td>						
-											<span class="input-group-addon">First Name</span>
-										</td>
-										<td>						
-											<input type="text" class="form-control" id="firstname" placeholder="Enter your first name" onkeyup="nospaces(this)">
-										</td>	
-									</div>
-								</tr>
-								<tr>
-									<div class="input-group" >
-										<td>
-											<span class="input-group-addon">Last Name</span>
-										</td> 
-										<td>	
-											<input type="text" class="form-control" id="lastname" placeholder="Enter your last name" onkeyup="nospaces(this)">
-										</td>
-									</div>
-
-								</tr>
-								<tr>
-									<div class="input-group" >
-										<td>
-											<span class="input-group-addon">Email ID</span>
-										</td>
-										<td>
-											<input type="text" class="form-control" id="email" placeholder="Enter your Email" onkeyup="nospaces(this)" id="email"> <span id="status_email"></span>
-										</td>
-									</div>
-								</tr>
-								<tr>
-									<div class="input-group" >
-										<td>
-											<span class="input-group-addon">Mobile No</span>
-										</td>
-										<td>
-											<input type="text" class="form-control" id="phone" placeholder="Enter your Mobile Number" onkeyup="nospaces(this)">
-										</td>
-									</div>
-								</tr>
-								<tr>
-									<div class="input-group" >
-										<td>
-											<span class="input-group-addon">Username</span>
-										</td>
-										<td>
-											<input type="text" class="form-control" id="usernameR" placeholder="Enter your user name" onkeyup="nospaces(this)" id="username"> <span id="status"></span>
-										</td>
-									</div>
-								</tr>
-								<tr>
-									<div class="input-group" >
-										<td>
-											<span class="input-group-addon">Password </span>
-										</td>
-										<td>	
-											<input type="password" class="form-control" id="passwordR" placeholder="Enter your password">
-										</td>
-									</div>
-								</tr>
-								<tr>
-									<div class="input-group" >
-										<td>
-											<span class="input-group-addon">re-enter Password</span>
-										</td>
-										<td>
-											<input type="password" class="form-control" id="password2R" placeholder="Enter your password">
-										</td>
-									</div>
-								</tr>
-								<tr>
-									<td>
+						<div class="inline-form">					
+											<input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
+											<input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
+						</div><br/>	
+						<div class="inline-form">				
+											<input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)" id="email"/> <span id="status_email"></span>
+											<input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
+						</div><br/>					
+											<input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)" id="username"/> <span id="status"></span>
+											<input type="password" class="form-control" id="passwordR" placeholder="password"/>
+											<input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
+										
 										<input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
-									</td>
-								</tr>
-							</table>
-						</form>
-					</div>
+									</div>
 					<div class  ="modal-footer">
 						<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
 					</div>

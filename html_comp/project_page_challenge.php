@@ -1,8 +1,3 @@
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title"> <font color="black"><?php echo $remaining_time ; ?> </font></h3>
-                        </div>
-                   
 <?php    
 		include_once 'html_comp/close_challenge.php' ;
 		$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
