@@ -32,7 +32,7 @@
 				$minute = floor($hoursec/60) ;
 				$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}
-				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)."On ".$time." ETA given : ".$remaining_time." ".$remaining_time_own ;			
+				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$time." ETA given : ".$remaining_time." ".$remaining_time_own ;			
 		echo "<form method='POST' action=''>
 				<input type='hidden' name='project_id' value='".$titlesrow['project_id']."'/>
 				<p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
