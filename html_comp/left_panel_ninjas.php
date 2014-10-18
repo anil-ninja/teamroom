@@ -18,12 +18,13 @@
 								$hoursec = $daysec%(60*60) ;
 								$minute = floor($hoursec/60) ;
 								$remaining_time = "ETA : ".$day." Days :".$hour." Hours :".$minute." Min" ;
-								$title = "Project Created ON : ".$p_time." ".$remaining_time ;			
+								$title = "Project Created ON : ".$p_time." ".$remaining_time ;	
+                                                                $time_for_project =  $day." Days :".$hour." Hours :".$minute." Min" ;
                                 echo "<form method='POST' action=''>
                                 <input type='hidden' name='project_title' value='".$p_title."'/>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
                                 <p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button></p><br/></form>" ;
+                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button></p><font size = 1> Time: ".$time_for_project."</font></form>" ;
                             }
                         ?>
                     </div>

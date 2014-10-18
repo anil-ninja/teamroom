@@ -25,7 +25,7 @@
     if($requestedPage == "ninjas.php"){
     echo "<li>
 		  <div class='dropdown'>
-            <a data-toggle='dropdown'><p class='navbar-text'>Your Teams<span class='caret'></span></p></a>
+            <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>Your Teams<span class='caret'></span></p></a>
     		<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>" ;
 		$teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;")) ;
 		while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
@@ -49,8 +49,8 @@
 			?>
 			
 		<li>
-		  <div class='dropdown'>
-            <a data-toggle='dropdown'><p class='navbar-text'>Your Projects<span class='caret'></span></p></a>
+                    <div class='dropdown'>
+                    <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; text-decoration: none;">Your Projects<span class='caret'></span></p></a>
     		<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
 			   <?php
                             $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
@@ -65,15 +65,14 @@
                             }
                         ?>
                         </ul>
-                      </div>
-                  </li>      
-      <li>
-          <p class="navbar-text"><a data-toggle="modal"  data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p>
-          <p class="navbar-text"><a href="challenges.php" >Your Challenges</a></p>
-          <p class="navbar-text">&nbsp;Your rank :  <?php echo $rank ; ?></p>
-          <p class="navbar-text" id="demo"></p></li>
-         <li><div class="dropdown">
-			  <a data-toggle='dropdown'><p class='navbar-text'><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php echo ucfirst($name); ?></p></a>
+                    </div>
+                    </li>      
+                    <li>   <p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal"  data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p></li>
+                    <li>   <p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php"> Your Challenges</a></p></li>
+                    <li>   <p class="navbar-text">&nbsp;Your rank :  <?php echo $rank ; ?></p></li>
+                    <li>   <p class="navbar-text" id="demo"></p></li>
+                    <li><div class="dropdown">
+			  <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php echo ucfirst($name); ?></p></a>
 			  <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
 				  <li><p class="navbar-text">
 					  <form method='GET' action='profile.php'>
