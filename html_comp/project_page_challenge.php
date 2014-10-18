@@ -109,7 +109,7 @@
 											join blobs as c WHERE a.project_id = '$p_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and 
 											a.blob_id = c.blob_id and  a.challenge_status != '2'  and a.user_id = b.user_id) ORDER BY challenge_creation DESC  ;");
       while ($displayrow = mysqli_fetch_array($display)) {
-          $username_pr_ch = $displayrow['username'];
+          $username_pr_ch_cr = $displayrow['username'];
 			$chalangest = $displayrow['stmt'] ;
 			$chalangetime = $displayrow['challenge_creation'] ;
 			$opentime = $displayrow['challenge_open_time,'] ;
@@ -146,7 +146,7 @@
       dropDown_challenge($db_handle, $idb, $user_id, $remaining_time);
 	  
       echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
-				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span>
+				: <a href ='profile.php?username=".$username_pr_ch_cr."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span>
 				<form method='POST' class='inline-form pull-right'>
 					<input type='hidden' name='id' value='".$idb."'/>
 					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
@@ -250,7 +250,7 @@
 					</form>";
 				}
 	  echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
-				: <a href ='profile.php?username=".$username_pr_ch."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><br/> Challenge Created 
+				: <a href ='profile.php?username=".$username_pr_ch_cr."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><br/> Challenge Created 
 				ON :".$chalangetime. "<br/>Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_pr_ch."'>"
 			  .ucfirst($fnamer). '&nbsp'. ucfirst($lnamer)."</a></span><br/>ETA taken : ".$remainingtimer. "<br/>".$remaining_time_own.
 			  "<br/><br/><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".

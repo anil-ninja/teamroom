@@ -5,7 +5,13 @@
     include_once 'lib/db_connect.php';
     session_start();
     $challengeSearchID = $_GET['challenge_id'];
-    
+    if (isset($_POST['logout'])) {
+        header('Location: challengesOpen.php?challenge_id='."$challengeSearchID");
+        unset($_SESSION['user_id']);
+        unset($_SESSION['first_name']);
+        session_destroy();
+        exit ;
+    }
     if(isset($_POST['own_chl_response'])) {
         $user_id = $_SESSION['user_id'];
         $own_challenge_id_comment = $_POST['own_challen_id'] ;
@@ -14,7 +20,7 @@
             if (strlen($own_ch_response)<1000) {	
                 mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) 
                                     VALUES ('$user_id', '$own_challenge_id_comment', '$own_ch_response');") ;
-                header('Location: #');
+                //header('Location: #');
             }
             else { 
                 mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
@@ -22,17 +28,18 @@
                 $id = mysqli_insert_id($db_handle);
                 mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) 
                                     VALUES ('$user_id', '$own_challenge_id_comment', ' ', '$id');") ;
-                header('Location: #');
+                //header('Location: #');
             }
         } 
     }
     if(isset($_POST['accept'])) {
 	$id = $_POST['id'] ;
+        $challengeSearchID = $_GET['challenge_id'];
 	echo "<div style='display: block;' class='modal fade in' id='eye' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
 			<div class='modal-dialog'> 
 				<div class='modal-content'>
 				 <div class='modal-header'> 
-				   <a href = 'ninjas.php' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
+				   <a href ='challengesOpen.php?challenge_id=".$challengeSearchID."' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
 				   <h4 class='modal-title' id='myModalLabel'>Accept Challenge</h4> 
 				 </div> 
 				 <div class='modal-body'> 
@@ -47,7 +54,7 @@
 				  </form>
 				</div> 
 				<div class='modal-footer'>
-				   <a type='button' href = 'ninjas.php' class='btn btn-default' data-dismiss='modal'>Close</a>
+				   <a href ='challengesOpen.php?challenge_id=".$challengeSearchID."' type='button' class='btn btn-default' data-dismiss='modal'>Close</a>
 				</div>
 			</div> 
 		</div>
@@ -65,7 +72,7 @@ if (isset($_POST['chlange'])) {
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ") ;
 		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$chalange', '$your_eta');") ;
-header('Location: #');
+//header('Location: #');
 }
 ?>
 <html lang="en">
@@ -159,36 +166,45 @@ header('Location: #');
                             $userID = $_SESSION['user_id'];
                             dropDown_challenge($db_handle, $chelangeid, $userID, $remaining_time_own);
                         }
+            $challenge_createdBY = "Created by &nbsp
+            <span class='color strong' style= 'color :lightblue;'>
+                <a href ='profile.php?username=".$username_ch_ninjas."'>" 
+                    . ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
+                </a> on ".$own_created."
+            </span>";
             switch ($challenge_status) {
                 case 1:
-                    echo "Created by &nbsp
-                        <span class='color strong' style= 'color :lightblue;'>
-                            <a href ='profile.php?username=".$username_ch_ninjas."'>" 
-                                . ucfirst($frstname). '&nbsp'. ucfirst($lstname). " 
-                            </a>
-                        </span>";
+                   echo $challenge_createdBY;
+                    if(isset($_SESSION['user_id'])) {
+                        echo "<form method='POST' class='inline-form pull-right'>
+                            <input type='hidden' name='id' value='".$chelangeid."'/>
+                            <input class='btn btn-primary btn-sm' type='submit' id = 'accept_challenge' name='accept' value='Accept'>
+                            </form>";
+                    }
+                    else {
+                        echo"<a data-toggle='modal' data-target='#SignIn'>
+                             <button class='btn btn-primary btn-sm pull-right' >Accept</button>
+                            </a>";
+                    }
                     break;
                 case 2:
-                    echo "Owned by &nbsp
-                        <span class='color strong' style= 'color :lightblue;'>
-                            <a href ='profile.php?username=".$owned_username."'>"
-                                ."$owned_f_name". "&nbsp".$owned_l_name."
-                            </a>
-                        </span>&nbsp on &nbsp".$own_created;
-            }
+                    if(isset($_SESSION['user_id'])) {
+                        echo "Owned by &nbsp
+                            <span class='color strong' style= 'color :lightblue;'>
+                                <a href ='profile.php?username=".$owned_username."'>"
+                                    ."$owned_f_name". "&nbsp".$owned_l_name."
+                                </a>
+                            </span>&nbsp on &nbsp".$own_created;
+                    }
+                    else {
+                        echo $challenge_createdBY;
+                        echo"<a data-toggle='modal' data-target='#SignIn'>
+                            <button class='btn btn-primary btn-sm pull-right' >Accept</button>
+                            </a>";
+                    }
+                }
             
-            if(isset($_SESSION['user_id'])) {
-                include_once 'ninjas.inc.php';
-                echo "<form method='POST' class='inline-form pull-right'>
-                        <input type='hidden' name='id' value='".$chelangeid."'/>
-                        <input class='btn btn-primary btn-sm' type='submit' id = 'accept_challenge' name='accept' value='Accept'>
-                    </form>";
-            }
-            else {
-                echo"<a data-toggle='modal' data-target='#SignIn'>
-                        <button class='btn btn-primary btn-sm pull-right' >Accept</button>
-                    </a>";
-            }
+            
             echo "<br><br></div>";
             echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
             $chelange. "<br/><br/>";
