@@ -2,11 +2,9 @@
   <p align="center"><font size="4">Your Tasks</font></p>
   <div class="well">
 <?php
-    $title_display = mysqli_query($db_handle, "SELECT DISTINCT challenge_id FROM challenge_ownership where user_id = '$user_id' and status='5';");
-		while ($title_displayRow = mysqli_fetch_array($title_display)) {
-				$id = $title_displayRow['challenge_id'] ;
-		$titles = mysqli_query($db_handle, "select DISTINCT a.challenge_title, a.project_id, a.user_id, a.challenge_creation, a.challenge_ETA, b.first_name, b.last_name from
-											challenges as a join user_info as b where a.challenge_id = '$id' and a.challenge_type = '8' and a.user_id = b.user_id order by challenge_creation DESC ;" ) ;
+		$titles = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.project_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
+											FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND a.challenge_type = '8'
+											AND c.user_id = b.user_id AND a.challenge_id = c.challenge_id ;" ) ;
 		while ($titlesrow =  mysqli_fetch_array($titles)) {		
 				$title = $titlesrow['challenge_title'] ;
 				$time = $titlesrow['challenge_creation'] ;
@@ -38,7 +36,7 @@
 				<p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;'><b>".ucfirst($title)."</b><br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>".$remaining_time_own."</p></button></p></form><hr/>" ;
       }
-  }
+  
 ?>
    </div>
 </div>

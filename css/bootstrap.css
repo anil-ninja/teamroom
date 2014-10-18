@@ -4133,7 +4133,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 	width: 100%;
 	max-width: 100%;
 	position: relative;
-	height:500px;
+	height:350px;
 	min-width: 100% important;
 	display: inline-block;
     top: 0px;

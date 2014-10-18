@@ -116,7 +116,12 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
-				 &nbsp&nbsp&nbsp On : ".$times. "&nbsp&nbsp&nbsp&nbsp ETA : ".$remaining_time."<br/>".$remaining_time_own.
+				 &nbsp&nbsp&nbsp On : ".$times."&nbsp&nbsp&nbsp ";
+		if($remaining_time_own != "Closed" ){
+			echo " ETA : ".$remaining_time ;
+			}		 
+				 
+			echo "<br/>".$remaining_time_own.
 			  "</div>
 			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
