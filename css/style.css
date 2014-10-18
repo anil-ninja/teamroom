@@ -74,7 +74,7 @@ a:focus { outline: thin dotted; }
 
 a:active, a:hover {
   outline: 0;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 /* ==========================================================================
