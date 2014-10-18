@@ -23,7 +23,7 @@ if (!isset($_SESSION['first_name'])) {
 
     </head>
     <body >
-	<div class="row">  
+	<div class="row">  <div class='alert_placeholder'></div>
 		<div class="navbar navbar-default navbar-fixed-top">
 			<div class="container">
 				<div class="navbar-inner">
@@ -36,12 +36,10 @@ if (!isset($_SESSION['first_name'])) {
 			</div>
 		</div>
 	</div>
-	<div class='alert_placeholder'></div>
 	<div class="row" style="background-image: url(img/collaboration.jpg); height: 570px; max-width: 100%;">
 		<div class = "col-xs-7 col-ls-8"></div>	
 		<div class = "col-xs-2 col-ls-4" style="width:350px; height:500px">
-
-			<div class="bs-component">
+         	<div class="bs-component">
 				<div class="modal">
 					<div class="modal-dialog">
 						<div class="modal-content">
@@ -83,14 +81,13 @@ if (!isset($_SESSION['first_name'])) {
 						<h4 class="modal-title" id="myModalLabel">New User Registration</h4>
 					</div>
 					<div class="modal-body">
-						<form role="form" method="POST" id="tablef" onsubmit="return validateSignupFormOnSubmit(this)">
 							<table>							
 								<tr><div class="input-group" >
 										<td>						
 											<span class="input-group-addon">First Name</span>
 										</td>
 										<td>						
-											<input type="text" class="form-control" name="firstname" placeholder="Enter your first name" onkeyup="nospaces(this)">
+											<input type="text" class="form-control" id="firstname" placeholder="Enter your first name" onkeyup="nospaces(this)">
 										</td>	
 									</div>
 								</tr>
@@ -100,7 +97,7 @@ if (!isset($_SESSION['first_name'])) {
 											<span class="input-group-addon">Last Name</span>
 										</td> 
 										<td>	
-											<input type="text" class="form-control" name="lastname" placeholder="Enter your last name" onkeyup="nospaces(this)">
+											<input type="text" class="form-control" id="lastname" placeholder="Enter your last name" onkeyup="nospaces(this)">
 										</td>
 									</div>
 
@@ -111,7 +108,7 @@ if (!isset($_SESSION['first_name'])) {
 											<span class="input-group-addon">Email ID</span>
 										</td>
 										<td>
-											<input type="text" class="form-control" name="email" placeholder="Enter your Email" onkeyup="nospaces(this)" id="email"> <span id="status_email"></span>
+											<input type="text" class="form-control" id="email" placeholder="Enter your Email" onkeyup="nospaces(this)" id="email"> <span id="status_email"></span>
 										</td>
 									</div>
 								</tr>
@@ -121,7 +118,7 @@ if (!isset($_SESSION['first_name'])) {
 											<span class="input-group-addon">Mobile No</span>
 										</td>
 										<td>
-											<input type="text" class="form-control" name="phone" placeholder="Enter your Mobile Number" onkeyup="nospaces(this)">
+											<input type="text" class="form-control" id="phone" placeholder="Enter your Mobile Number" onkeyup="nospaces(this)">
 										</td>
 									</div>
 								</tr>
@@ -131,7 +128,7 @@ if (!isset($_SESSION['first_name'])) {
 											<span class="input-group-addon">Username</span>
 										</td>
 										<td>
-											<input type="text" class="form-control" name="username" placeholder="Enter your user name" onkeyup="nospaces(this)" id="username"> <span id="status"></span>
+											<input type="text" class="form-control" id="usernameR" placeholder="Enter your user name" onkeyup="nospaces(this)" id="username"> <span id="status"></span>
 										</td>
 									</div>
 								</tr>
@@ -141,7 +138,7 @@ if (!isset($_SESSION['first_name'])) {
 											<span class="input-group-addon">Password </span>
 										</td>
 										<td>	
-											<input type="password" class="form-control" name="password" placeholder="Enter your password">
+											<input type="password" class="form-control" id="passwordR" placeholder="Enter your password">
 										</td>
 									</div>
 								</tr>
@@ -151,13 +148,13 @@ if (!isset($_SESSION['first_name'])) {
 											<span class="input-group-addon">re-enter Password</span>
 										</td>
 										<td>
-											<input type="password" class="form-control" name="password2" placeholder="Enter your password">
+											<input type="password" class="form-control" id="password2R" placeholder="Enter your password">
 										</td>
 									</div>
 								</tr>
 								<tr>
 									<td>
-										<input type="submit" class="btn btn-primary" name = "request" value = "Signup" >
+										<input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
 									</td>
 								</tr>
 							</table>

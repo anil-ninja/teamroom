@@ -28,7 +28,7 @@ function signup(){
 			echo "Please try again";
 		} else {
 
-		$_SESSION['user_id'] = mysql_insert_id($db_handle);
+		$_SESSION['user_id'] = mysqli_insert_id($db_handle);
 		$_SESSION['first_name'] = $firstname ;
 		$_SESSION['username'] = $username ;
 		$_SESSION['email'] = $email;
