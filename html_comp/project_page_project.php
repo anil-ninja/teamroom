@@ -23,8 +23,7 @@
 		$minute = floor($hoursec/60) ;
 		$projectETA = $day." Days :".$hour." Hours :".$minute." Min" ;
 					
-	echo "<div class='panel-body'>
-			<div class='list-group'>
+	echo "<div class='list-group'>
 				<div class='list-group-item'>";
 
       echo "<div class='pull-right'>
@@ -89,9 +88,9 @@
 					<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
 			  </form>
 			
-		</div></div></div> </div>"								  
+		</div></div></div>"								  
 	
-?><br/><br/>
+?>
 
  <div class="panel panel">
      <div class="panel-heading">    
@@ -113,8 +112,7 @@
 			  $lname = $displayrow['last_name'] ;
                           $username_notes = $displayrow['username'];
               $note_ID = $displayrow['challenge_id'];
-			  echo "<div class='panel-body'>
-						<div class='list-group'>
+			  echo "<div class='list-group'>
 							<div class='list-group-item'>
 							   <div class='pull-right'>
 								<div class='list-group-item'>
@@ -166,6 +164,6 @@
 							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
-			</div></div></div></div>" ;
+			</div></div></div>" ;
 	}
 ?>

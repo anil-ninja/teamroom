@@ -40,8 +40,7 @@
 												UNION
 												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$id' and a.blob_id = b.blob_id);") ;										
 			$answerrow = mysqli_fetch_array($answer) ;
-			echo "<div class='panel-body'>
-					<div class='list-group'>
+			echo "<div class='list-group'>
 					 <div class='list-group-item'>
 						Challenged by <span class='color strong' style= 'color :lightblue;'> You </span> On : ".$challangerow['challenge_creation'].
 						"<br/>ETA Given : ".$etagiven."</div><div class='list-group-item'>Accepted By <span class='color strong' style= 'color :lightblue;'>".ucfirst($challangerow['first_name'])." ".ucfirst($challangerow['last_name']).
@@ -71,7 +70,7 @@
 			   </div> 
 		     </div>";
 		}
-		echo "</div></div></div>" ;
+		echo "</div></div>" ;
 			} 
 			}
 ?>

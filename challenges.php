@@ -11,16 +11,11 @@ include_once 'functions/delete_comment.php';
         <meta name="author" content="Rajnish">
 
         <!-- Le styles -->
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <style>
-            body {
-                padding-top: 10px; /* 60px to make the container go all the way to the bottom of the topbar */
-            }             
-        </style>
-
+       <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+		<link rel="stylesheet" href="css/bootswatch.css">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
-            <link rel="stylesheet" href="css/bootswatch.css">
+        <link rel="stylesheet" href="css/bootswatch.css">
         <link href="css/font-awesome.css" rel="stylesheet">
         <script src="js/jquery.js"> </script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
@@ -30,7 +25,6 @@ include_once 'functions/delete_comment.php';
     <body>
 		<?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class='alert_placeholder'></div>
-       <div class="container-fluid">
             <div class="row-fluid"> 
 				<div class="col-lg-2" STYLE="font-size: 10pt;">
                   <?php   include_once 'html_comp/right_panel_challenge.php';      ?>
@@ -41,7 +35,7 @@ include_once 'functions/delete_comment.php';
               <div class="col-lg-5">
                         <?php include_once 'html_comp/challenges_page_owned.php';   ?>
             </div>
-            </div>
+          
     </div>
 
 <script src="js/jquery.js"></script>

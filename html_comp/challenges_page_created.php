@@ -13,8 +13,7 @@ $challange_display = mysqli_query($db_handle, ("(SELECT DISTINCT challenge_id, c
 											join blobs as b WHERE a.user_id = '$user_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and 
 											a.blob_id = b.blob_id ORDER BY challenge_creation DESC);"));
 while($challange_displayRow = mysqli_fetch_array($challange_display)) {
-	echo "<div class='panel-body'>
-			<div class='list-group'>
+	echo "<div class='list-group'>
 				<div class='list-group-item'>";
 			$chall_id = $challange_displayRow['challenge_id'];
 			$ch_title = $challange_displayRow['challenge_title'];
@@ -76,7 +75,7 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 						</form>
 		</div>";
 	
-	echo '</tr> </div> </div> </div>';
+	echo '</tr> </div> </div>';
     }
 ?>
 

@@ -42,8 +42,7 @@
 				$minute = floor($hoursec/60) ;
 				$remaining_time = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 			}
-		echo "<div class='panel-body'>
-				<div class='list-group'>
+		echo "<div class='list-group'>
 				<div class='list-group-item'>";
 		echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
 					<input type='hidden' name='id' value='".$idd."'/>
@@ -87,7 +86,7 @@
 						</form>
 				</div>
 			";
-		echo '</div> </div> </div>';
+		echo '</div> </div>';
 
 }
 ?>

@@ -48,8 +48,7 @@
 			$minute = floor($hoursec/60) ;
 			$remaining_time = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}	
-	echo "<div class='panel-body'>
-					<div class='list-group'>
+	echo "<div class='list-group'>
 						<div class='list-group-item'>";
       dropDown_challenge($db_handle, $idb, $user_id, $remaining_time);
 	  
@@ -98,7 +97,7 @@
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
                     </div>";
-	echo "</div> </div> </div>";
+	echo "</div> </div>";
 	}
 	 $displayd = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_creation, a.stmt, c.user_id, c.comp_ch_ETA ,c.ownership_creation,
                                             b.first_name, b.last_name,b.username, b.contact_no,b.email from challenges as a join user_info as b join challenge_ownership as c where a.challenge_id=c.challenge_id and
@@ -141,8 +140,7 @@
 			$sec = $hoursec%60 ;
 			$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}	
-	echo "<div class='panel-body'>
-					<div class='list-group'>
+	echo "<div class='list-group'>
 						<div class='list-group-item'>";
 	      echo "<div class='pull-right'>
 				<div class='list-group-item'>
@@ -187,8 +185,7 @@
 					<span class='pull-left color strong'>
 						&nbsp<a href ='profile.php?username=".$username_commenter_pr_ch_owned."'>". ucfirst($fstname)."&nbsp".ucfirst($lstname).
 					"&nbsp</a></span><small>".$chalangeres."</small>";
-					
-                        dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+	              dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
 			echo "</div>
 			</div> 
 		</div>";
@@ -203,7 +200,6 @@
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
                     </div>";
-	echo "</div> </div> </div>";
+	echo "</div> </div>";
 	}
 ?>
-
