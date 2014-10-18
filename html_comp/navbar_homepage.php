@@ -22,6 +22,7 @@
     </ul>
     <ul class='nav navbar-nav navbar-right'>
     <?php
+    if(isset($_SESSION['user_id'])) {  
     if($requestedPage == "ninjas.php"){
     echo "<li>
 		  <div class='dropdown'>
@@ -32,8 +33,7 @@
 				$team_name = $teams_name_displayRow['team_name'] ;
 				echo " <li class='dropdown-submenu'>
 						<a style='white-space: normal;'>".ucfirst($team_name)."<br/></a>
-								<ul class='dropdown-menu'>" ;
-																	
+								<ul class='dropdown-menu'>" ;																
 			$teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
 																as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
 				while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
@@ -47,7 +47,6 @@
 			echo "</ul></div></li>";
 			}
 			?>
-			
 		<li>
                     <div class='dropdown'>
                     <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; text-decoration: none;">Your Projects<span class='caret'></span></p></a>
@@ -86,6 +85,12 @@
 	</li><li>&nbsp;&nbsp;</li>
 </ul>		  
   </div>
+    <?php }
+        else {
+            echo "<li><p class='navbar-text'><b> <a href = 'index.php'>Sign In</a> </b></p></li>";
+            echo "<li><p class='navbar-text' style='cursor: pointer'><a data-toggle='modal' data-target='#SignUp'><b>Sign Up</b></a></p></li>";
+        }
+    ?>
 </div>
 <script>
 function show_search_results(challenges){
@@ -122,13 +127,11 @@ $(document).ready(function(){
 					document.getElementById("home-ch").innerHTML = show_search_results(challenges);
 					document.getElementById("home").innerHTML = show_search_results_id(challenges);
 					//alert(show_search_results(challenges));
-					//alert(challenges[0].stmt);
-					
+					//alert(challenges[0].stmt);			
 				}
 			});
 		}
 		});
-		
 	});	
 </script>
 <!-- Modal  -->
