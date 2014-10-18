@@ -181,12 +181,12 @@ header('Location: #');
                 include_once 'ninjas.inc.php';
                 echo "<form method='POST' class='inline-form pull-right'>
                         <input type='hidden' name='id' value='".$chelangeid."'/>
-                        <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'>
+                        <input class='btn btn-primary btn-sm' type='submit' id = 'accept_challenge' name='accept' value='Accept'>
                     </form>";
             }
             else {
                 echo"<a data-toggle='modal' data-target='#SignIn'>
-                        <button class='btn btn-primary btn-sm pull-right' id = 'accept_challenge'>Accept</button>
+                        <button class='btn btn-primary btn-sm pull-right' >Accept</button>
                     </a>";
             }
             echo "<br><br></div>";
