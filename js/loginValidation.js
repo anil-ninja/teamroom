@@ -9,11 +9,11 @@ function bootstrap_alert(elem, message, timeout,type) {
 };
 
 
-function validateLoginFormOnSubmit(theForm) {
+function validateLoginFormOnSubmit() {
     var reason = "";
     var username = $("#username").val() ;
     var password = $("#password").val() ;
-    
+    //accept_challenge
     //reason += validateUsername(username);
     //reason += validatePassword(password);
 
@@ -47,12 +47,18 @@ function validateLoginFormOnSubmit(theForm) {
 
              //return false;
             } else {
-                
+                //$("#accept_challenge").click() ;
                 location.reload();
+                
             }
         }
     });
 //return true;
+}
+function validateLogin1(){
+    validateLoginFormOnSubmit();
+    
+
 }
 function validateEmpty(fld) {
     var error = "";
