@@ -245,8 +245,10 @@ function startTime() {
         <li>Copyright @ 2014</li>
     </ul>
 </div>
+</div>
+</div>
 <!-- Modal -->
-<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content" style="width:auto; height:auto">
             <div class="modal-header">
@@ -285,8 +287,7 @@ function startTime() {
         </div>
     </div>
 </div>
-</div>
-</div>
+
 <!--end modle-->
 <!-- Modal -->
 <div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
