@@ -2,12 +2,10 @@
 				   <div class='list-group'>
 				<div class='list-group-item'>
                   <form>
-						<div class="input-group-addon">
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
-                         </div><br>
-                        <div class="input-group-addon">
+                         <br>
                         <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea>
-                        </div><br>
+                        <br>
                         <div class="inline-form">
                         Challenge Open For 
                         <select class="btn-info btn-xs"  id= "open_time" >	
