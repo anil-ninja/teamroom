@@ -136,12 +136,8 @@
             </div>
             <div class="modal-body">
                 <form >
-					<div class="input-group-addon">
-                        <input type='text' class="form-control" id="notes_title" placeholder="Title"/>
-                    </div><br>
-                    <div class="input-group-addon">
-                        <textarea rows="3" class="form-control" id="notes" placeholder="Notes about Project or Importent Things about Project"></textarea>
-                    </div><br><br>
+                        <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>
+                        <textarea rows="3" class="form-control" id="notes" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
                         <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
                         <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
                 </form>
@@ -163,19 +159,18 @@
             </div>
             <div class="modal-body">
                 <form >
-					<div class="input-group" >
+					 <div class="input-group" >
                         <span class="input-group-addon">Assign To : </span>
-                        <input type="email" class="form-control" id="email" placeholder="Enter email">
-                    </div><br/>
-					<div class="input-group">
-						<span class="input-group-addon">Title : </span>
+                         <input type="email" class="form-control" id="email" placeholder="Enter email">
+                      </div><br/>
+                      <div class="input-group" >
+                        <span class="input-group-addon">Title : </span>						
                         <input type="text" class="form-control" id="title" placeholder="Tilte"/>
-                    </div><br>
-                    <div class="input-group">
-						<span class="input-group-addon">Task : </span>
+                       </div><br>
+                       <div class="input-group" >
+                        <span class="input-group-addon">Task : </span>						
                         <textarea rows="3" class="form-control" id="taskdetails" placeholder="Details of Tasks"></textarea>
-                    </div>
-                    <br>
+                        </div><br>
                     <div class="inline-form">
                         ETA : 
                         <select class="btn btn-default btn-xs" id = "c_eta" >	
@@ -235,13 +230,8 @@
             </div>
             <div class="modal-body">
                 <form >
-					<div class="input-group-addon">
-                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
-                    </div><br>
-                    <div class="input-group-addon">
-                        <textarea rows="3" class="form-control" id="challange" placeholder="Details of Challange"></textarea>
-                    </div>
-                    <br>
+                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
+                        <textarea rows="3" class="form-control" id="challange" placeholder="Details of Challange"></textarea><br>
                     <div class="inline-form">
                         Challange Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                             <option value='0' selected >hour</option>

@@ -24,7 +24,7 @@ include_once 'functions/delete_comment.php';
     </head>
     <body>
 		<?php include_once 'html_comp/navbar_homepage.php'; ?>
-       <div class='alert_placeholder'></div>
+       
             <div class="row-fluid"> 
 				<div class="col-lg-2" STYLE="font-size: 10pt;">
                   <?php   include_once 'html_comp/right_panel_challenge.php';      ?>
@@ -34,7 +34,7 @@ include_once 'functions/delete_comment.php';
             </div>
               <div class="col-lg-5">
                         <?php include_once 'html_comp/challenges_page_owned.php';   ?>
-            </div>
+            </div><div class='alert_placeholder'></div>
           
     </div>
 
@@ -42,6 +42,7 @@ include_once 'functions/delete_comment.php';
 
 
 <script src="js/bootstrap.min.js"></script>
+<script src="js/project.js"></script>
 <script src="js/bootswatch.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
 <script src="js/ninjas.js"></script>

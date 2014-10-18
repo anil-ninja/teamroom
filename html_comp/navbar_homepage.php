@@ -150,14 +150,8 @@ $(document).ready(function(){
             </div>
             <div class="modal-body">
                 <form >
-                    <div class="input-group-addon" >
-                        <input type="text" class="form-control" id="project_title" placeholder="Enter Project Title">
-                    </div>
-                    <br>
-                    <div class="input-group-addon">
-                        <textarea rows="3" class="form-control" id="project_stmt" placeholder="Details about Project"></textarea>
-                    </div>
-                    <br/>
+                        <input type="text" class="form-control" id="project_title" placeholder="Enter Project Title"><br>
+                        <textarea rows="3" class="form-control" id="project_stmt" placeholder="Details about Project"></textarea><br/>
                     Estimated Time (ETA)
                     <select id = "eta" >	
                         <option value='0' selected >Month</option>

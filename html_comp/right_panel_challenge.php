@@ -8,12 +8,8 @@
                 </div>
                 <div class="modal-body">
                           <form >
-                        <div class="input-group-addon">
-                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
-                         </div><br>
-                        <div class="input-group-addon">
-                        <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea>
-                        </div><br>
+                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
+                        <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea><br/>
                         <div class="inline-form">
                         Challenge Open For 
                         <select class="btn btn-default btn-xs"  id= "open_time" >	

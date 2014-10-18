@@ -57,8 +57,8 @@
 					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
 					</form>";
 				}
-	echo "Assigned by &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($name)."</a></span> On ".$creation_task."<br/>
-			Assigned To &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a> </span>
+	echo "Task Assigned by &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($name)."</a></span> On ".$creation_task."<br/>
+			Task Assigned To &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a> </span>
 					<br/> ETA Given : ".$remainingtime." <br/>".$remaining_time."<br/>";
    	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($title_task)."</b></span></p><br/>
 				<small>".str_replace("<s>","&nbsp;",$stmt_task)."</small><br> <br>";
