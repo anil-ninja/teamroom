@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
-include_once '../project.inc.php';
+include_once '../ninjas.inc.php';
 if($_POST['project_title']){
 	$user_id = $_SESSION['user_id'];
 	$project_title = $_POST['project_title'] ;

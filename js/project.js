@@ -49,7 +49,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 						$("#etad").val("");
 						location.reload();
 					}
-				}
+				} 
 			});
 			}
 			$("#create_project").removeAttr('disabled');
