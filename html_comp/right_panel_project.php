@@ -1,12 +1,13 @@
 <div class="bs-component">
                 
                    
-                <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
+                <!-- <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
                     <label for="file">Upload file:</label>
                     <input class="btn btn-default btn-sm" type="file" name="file" id="file" style ="width: 100px;"><br>
                     <input class="btn btn-default btn-sm" type="submit" name="submit" value="Submit"><br>
                 </form>
-                <br>
+ -->                <a data-toggle="modal" class="btn btn-link" data-target="#managefiles" style="cursor:pointer;"><i class="glyphicon glyphicon-pencil"></i>Manage Files</a><br/>
+ <br>
                 <?php 
                 if($creater_id == $user_id) {
 				echo "<a data-toggle='modal' class='btn btn-link' data-target='#assigntask' style='cursor:pointer;'><i class='glyphicon glyphicon-pencil'></i>Assign Tasks</a><br/>";	
@@ -126,10 +127,24 @@
                                 ?>
         
 
+
+<div class="modal fade" id="managefiles" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:900px; height:550px">
+        
+            
+            <div class="modal-body">
+                <div id="elfinder"></div>
+            </div>
+            
+        
+    </div>
+</div>
+
+
 <!-- Modal -->
 <div class="modal fade" id="createnotes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content" >
             <div class="modal-header"><div class='alert_placeholder'></div>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Create Notes</h4>
