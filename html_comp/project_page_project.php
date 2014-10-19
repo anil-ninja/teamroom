@@ -160,7 +160,62 @@
 						</form>
 			</div></div></div>" ;
 	}
+
+echo "<div class='panel-heading'>    
+        <h3 class='panel-title'><p align='center'>Closed Challenges</p></h3>
+      </div>";
+      $closed = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, b.first_name, b.last_name, b.username
+											FROM challenges AS a JOIN user_info AS b WHERE a.challenge_type = '5' AND a.blob_id = '0' AND a.user_id = b.user_id )
+											UNION
+										 (SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, c.stmt, a.challenge_creation, b.first_name, b.last_name, b.username
+											FROM challenges AS a JOIN user_info AS b JOIN blobs AS c WHERE a.challenge_type = '5' AND a.blob_id = c.blob_id AND a.user_id = b.user_id);");
+      while($closedrow = mysqli_fetch_array($closed)) {
+				$CID = $closedrow['challenge_id'] ;
+				$CIDtitle = $closedrow['challenge_title'] ;
+				$CIDeta = $closedrow['challenge_ETA'] ;
+				$CIDstmt = $closedrow['stmt'] ;
+				$CIDtime = $closedrow['challenge_creation'] ;
+				$CIDfname = $closedrow['first_name'] ;
+				$CIDlname = $closedrow['last_name'] ;
+				$CIDname = $closedrow['user_name'] ;
+				$day = floor($CIDeta/(24*60)) ;
+				$daysec = $CIDeta%(24*60) ;
+				$hour = floor($daysec/(60)) ;
+				$minute = $daysec%(60) ;
+				$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
+		$complete = mysqli_query($db_handle, "select a.user_id, a.ownership_creation, a.time, b.first_name, b.last_name, b.user_name from challenge_ownership as a 
+											join user_info as b where a.challenge_id = '$CID' and a.user_id = b.user_id ";) ;		
+				$starttimestr = (string) $creation_task ;
+				$initialtime = strtotime($starttimestr) ;
+				$totaltime = $initialtime+($eta_task*60) ;
+				$completiontime = time() ;
+			if ($completiontime > $totaltime) { 
+				$remaining_time = "Closed" ; }
+		else {	$remaintime = ($totaltime-$completiontime) ;
+				$day = floor($remaintime/(24*60*60)) ;
+				$daysec = $remaintime%(24*60*60) ;
+				$hour = floor($daysec/(60*60)) ;
+				$hoursec = $daysec%(60*60) ;
+				$minute = floor($hoursec/60) ;
+				$remaining_time = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
+			}
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+  } 
 ?>
- <div class="panel-heading">    
-        <h3 class="panel-title"><p align='center'>Closed Challenges</p></h3>
-      </div>

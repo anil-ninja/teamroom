@@ -36,9 +36,9 @@ if (!isset($_SESSION['first_name'])) {
 			</div>
 		</div>
 	</div>
-	<div class="row" style="background-image: url(img/collaboration.jpg); height: 570px; max-width: 100%;">
+	<div class="row" style="background-image: url(img/collaboration.jpg); height: 670px; max-width: 100%;">
 		<div class = "col-xs-7 col-ls-8"></div>	
-		<div class = "col-xs-2 col-ls-4" style="width:350px; height:500px">
+		<div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
          	<div class="bs-component">
 				<div class="modal">
 					<div class="modal-dialog">
@@ -86,10 +86,10 @@ if (!isset($_SESSION['first_name'])) {
 											<input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
 						</div><br/>	
 						<div class="inline-form">				
-											<input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)" id="email"/> <span id="status_email"></span>
+											<input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
 											<input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
 						</div><br/>					
-											<input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)" id="username"/> <span id="status"></span>
+											<input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
 											<input type="password" class="form-control" id="passwordR" placeholder="password"/>
 											<input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
 										
