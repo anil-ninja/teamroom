@@ -200,9 +200,11 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
 			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min " ;
-		}
+		} 
+	if($id != $user_id) {
   echo "<div class='list-group'>
 				<div class='list-group-item'>" ;
+				
 	echo  "Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_owned_ch_ninjas."'>"
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</a></span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
 			  "<br/></div><div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
@@ -239,5 +241,6 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
                   </div>
              </div>";
           echo " </div></div> ";
+	  }
 	  }
 ?>
