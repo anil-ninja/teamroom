@@ -2,9 +2,9 @@
 include_once 'lib/db_connect.php';
 $UserName = $_GET['username'] ;
 session_start();
-
 $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '$UserName';");
 $userInfoRows = mysqli_num_rows($userInfo);
+$user_id = $userInfoRows['user_id'] ;
 
 if($userInfoRows == 0) {
     include_once 'html_comp/error.html';
@@ -44,13 +44,10 @@ $totalProjectCompleted= $counter["COUNT(project_id)"];
    <head>
         <meta charset="utf-8">
         <title>profile</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <style type="text/css">    
-body
-{
-    font-family: 'Lato', 'sans-serif';
-    }
+
 .profile 
 {
     min-height: 355px;
@@ -137,6 +134,7 @@ span.tags
 </head>
 
 <body>
+	
     <?php    include_once 'html_comp/navbar_homepage.php'; ?>
     <script type="text/javascript" src="scripts/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.wallform.js"></script>
@@ -240,29 +238,124 @@ span.tags
                                    <br></a>";
                         }
                     ?>
-                </div>                 
+                   </div>                 
             </div>
            </div>
            <div class="row">
             <div class="col-md-offset-1 col-md-10 col-lg-10">
                 <div class="well profile">
                     <div class="col-sm-12">
-                        <div class="col-xs-12 col-sm-8">
+                        <div class="col-xs-12 col-sm-12">
 							 <div class="col-xs-12 divider text-center">
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
-                        <p><small>challenges</small></p>
-                        Created fewhrh hehwhr jdqcr yucr hwyufgryf wwvuygfygf q vydgygd qygeuhn qyugcyurgf jhqhfgyugryf ewjhfgyuwrgf jhgyuqgvgyduw
+                        <h2><strong>Challenges Completed</strong></h2>                  
+   <p> <?php
+           $titles = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
+ 											FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND a.challenge_type = '8'
+											AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id;" ) ; 
+		while ($titlesrow =  mysqli_fetch_array($titles)) {		
+				$title = $titlesrow['challenge_title'] ;
+				$time = $titlesrow['challenge_creation'] ;
+				$eta = $titlesrow['challenge_ETA'] ;
+				$fname = $titlesrow['first_name'] ;
+				$lname = $titlesrow['last_name'] ;
+				$day = floor($eta/(24*60)) ;
+				$daysec = $eta%(24*60) ;
+				$hour = floor($daysec/(60)) ;
+				$minute = $daysec%(60) ;
+				$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
+				$starttimestr = (string) $time ;
+				$initialtime = strtotime($starttimestr) ;
+				$totaltime = $initialtime+($eta*60) ;
+				$completiontime = time() ;
+		if ($completiontime > $totaltime) { 
+			$remaining_time_own = "Closed" ; }
+		else {	$remainingtime = ($totaltime-$completiontime) ;
+				$day = floor($remainingtime/(24*60*60)) ;
+				$daysec = $remainingtime%(24*60*60) ;
+				$hour = floor($daysec/(60*60)) ;
+				$hoursec = $daysec%(60*60) ;
+				$minute = floor($hoursec/60) ;
+				$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
+		}
+				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$time." ETA given : ".$remaining_time." ".$remaining_time_own ;			
+		echo "<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;'><b>".ucfirst($title)."</b><br/>".$remaining_time_own."</p></button>" ;
+      }
+?></p>
                     </div>
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong> <?php echo $totalChallengeCompleted; ?> </strong></h2>                    
-                        <p><small>challenges</small></p>
-                        <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
-                    </div>
+                        <h2><strong>Challenges Owned</strong></h2> 
+     <p><?php 
+				$titles = mysqli_query($db_handle,"SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
+											      FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND (a.challenge_type = '1' OR a.challenge_type = '2') 
+											      and a.challenge_status = '2' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id ;" ) ;
+     
+           while ($titlesrow =  mysqli_fetch_array($titles)) {		
+				$title = $titlesrow['challenge_title'] ;
+				$time = $titlesrow['challenge_creation'] ;
+				$eta = $titlesrow['challenge_ETA'] ;
+				$fname = $titlesrow['first_name'] ;
+				$lname = $titlesrow['last_name'] ;
+				$day = floor($eta/(24*60)) ;
+				$daysec = $eta%(24*60) ;
+				$hour = floor($daysec/(60)) ;
+				$minute = $daysec%(60) ;
+				$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
+				$starttimestr = (string) $time ;
+				$initialtime = strtotime($starttimestr) ;
+				$totaltime = $initialtime+($eta*60) ;
+				$completiontime = time() ;
+		if ($completiontime > $totaltime) { 
+			$remaining_time_own = "Closed" ; }
+		else {	$remainingtime = ($totaltime-$completiontime) ;
+				$day = floor($remainingtime/(24*60*60)) ;
+				$daysec = $remainingtime%(24*60*60) ;
+				$hour = floor($daysec/(60*60)) ;
+				$hoursec = $daysec%(60*60) ;
+				$minute = floor($hoursec/60) ;
+				$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
+		}
+				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$time." ETA given : ".$remaining_time." ".$remaining_time_own ;			
+		echo "<p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;'><b>".ucfirst($title)."</b><br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>".$remaining_time_own."</p></button></p><hr/>" ;
+      }            
+  ?></p>                                         
+                </div>
                     <div class="col-xs-12 col-sm-4 emphasis">
-                        <h2><strong><?php echo $totaLChallengeProgress; ?> </strong></h2>                    
-                        <p><small>challenges</small></p>
-                        <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
+                        <h2><strong>Challenges Created</strong></h2> 
+        <p><?php
+        $challange_display = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_status, challenge_title, user_id, challenge_ETA, challenge_creation from challenges where
+											           user_id = '$user_id' and (challenge_type = '1' OR challenge_type = '2') ORDER BY challenge_creation DESC ;");
+while($challange_displayRow = mysqli_fetch_array($challange_display)) {
+			$chall_id = $challange_displayRow['challenge_id'];
+			$ch_title = $challange_displayRow['challenge_title'];
+			$status = $challange_displayRow['challenge_status'];
+		if ($status == '2') {
+			$challange_owned = mysqli_query($db_handle, "(SELECT DISTINCT  a.user_id, a.ownership_creation, a.comp_ch_ETA, b.first_name, b.last_name, b.username from 
+														challenge_ownership as a join user_info as b where a.challenge_id = '$chall_id' and a.user_id = b.user_id
+														ORDER BY ownership_creation DESC);") ;
+			$challange_ownedRow = mysqli_fetch_array($challange_owned) ;
+			$ch_eta = $challange_ownedRow['comp_ch_ETA'] ;
+			$fname = $challange_ownedRow['first_name'] ;
+			$lname = $challange_ownedRow['last_name'] ;
+                        $usename_link = $challange_ownedRow['username'];
+			$time = $challange_ownedRow['ownership_creation'] ;
+			$ETA = $ch_eta*60 ;
+			$day = floor($ETA/(24*60*60)) ;
+			$daysec = $ETA%(24*60*60) ;
+			$hour = floor($daysec/(60*60)) ;
+			$hoursec = $daysec%(60*60) ;
+			$minute = floor($hoursec/60) ;
+			$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
+			echo "Owned by &nbsp <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$usename_link."'>" .ucfirst($fname). "&nbsp". ucfirst($lname). "</a> </span> &nbsp on &nbsp".$time. " &nbsp with ETA in &nbsp".$remainingtime ;
+		} else {
+			echo "Ownership is not claimed till now";
+		}
+
+}        
+        
+        ?>                                   
                     </div>
                 </div>
                </div>
