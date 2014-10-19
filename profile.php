@@ -140,8 +140,6 @@ span.tags
     <?php    include_once 'html_comp/navbar_homepage.php'; ?>
     <script type="text/javascript" src="scripts/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/jquery.wallform.js"></script>
-    
-    <div class="container">
 	<div class="row">
             <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
@@ -223,7 +221,7 @@ span.tags
                 </div>
             </div>
         </div>
-            <div class="col-md-3 col-lg-3">
+            <div class="col-lg-3">
                 <div class="well profile">
                     <p>  In-contact with Friends </p>
                     <?php
@@ -244,8 +242,33 @@ span.tags
                     ?>
                 </div>                 
             </div>
-        </div>
-    </div>
+           </div>
+           <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-lg-10">
+                <div class="well profile">
+                    <div class="col-sm-12">
+                        <div class="col-xs-12 col-sm-8">
+							 <div class="col-xs-12 divider text-center">
+                    <div class="col-xs-12 col-sm-4 emphasis">
+                        <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
+                        <p><small>challenges</small></p>
+                        Created fewhrh hehwhr jdqcr yucr hwyufgryf wwvuygfygf q vydgygd qygeuhn qyugcyurgf jhqhfgyugryf ewjhfgyuwrgf jhgyuqgvgyduw
+                    </div>
+                    <div class="col-xs-12 col-sm-4 emphasis">
+                        <h2><strong> <?php echo $totalChallengeCompleted; ?> </strong></h2>                    
+                        <p><small>challenges</small></p>
+                        <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
+                    </div>
+                    <div class="col-xs-12 col-sm-4 emphasis">
+                        <h2><strong><?php echo $totaLChallengeProgress; ?> </strong></h2>                    
+                        <p><small>challenges</small></p>
+                        <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
+                    </div>
+                </div>
+               </div>
+              </div>
+         </div>
+      </div>          
     <script>
 		startTime();
      function getDateTime() {
