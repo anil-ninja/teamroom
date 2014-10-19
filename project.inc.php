@@ -12,7 +12,7 @@ if (isset($_SESSION['project_id']))
 else 
     header ('location: ninjas.php');
 
-
+$pro_idR = $pro_id;
 $project_id = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
 $project_idrow = mysqli_fetch_array($project_id) ;
 $eta = $project_idrow['project_ETA'] ;

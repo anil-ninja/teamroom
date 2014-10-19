@@ -50,6 +50,13 @@ include_once 'functions/delete_comment.php';
         <script src="js/content_edit.js"> </script>
         <script src="js/project.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
+
+
+
+
+
+
+
     </head>
     <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
@@ -112,6 +119,36 @@ function startTime() {
     }, 500);
 }
     </script>
+
+
+
+
+        <!-- jQuery and jQuery UI (REQUIRED) -->
+        <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+
+        <!-- elFinder CSS (REQUIRED) -->
+        <link rel="stylesheet" type="text/css" media="screen" href="css/elfinder.min.css">
+        <link rel="stylesheet" type="text/css" media="screen" href="css/theme.css">
+
+        <!-- elFinder JS (REQUIRED) -->
+        <script type="text/javascript" src="js/elfinder.min.js"></script>
+
+        <!-- elFinder translation (OPTIONAL) -->
+        <script type="text/javascript" src="js/i18n/elfinder.LANG.js"></script>
+
+        <!-- elFinder initialization (REQUIRED) -->
+        <script type="text/javascript" charset="utf-8">
+            $().ready(function() {
+                var temp = "<?php echo $titleR."_".$pro_idR; ?>";
+                var elf = $('#elfinder').elfinder({
+                    url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
+                    // lang: 'ru',             // language (OPTIONAL)
+                }).elfinder('instance');
+            });
+        </script>
+
         </body>
     </html>
 <?php

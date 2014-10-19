@@ -1,10 +1,9 @@
 <?php
 session_start();
-//$error = "";
 if (!isset($_SESSION['first_name'])) {
     
 } else {
-	header('Location: ninjas.php');
+    header('Location: ninjas.php');
 }
 //include_once "controllers/login_controller.php";
 ?>
@@ -14,7 +13,7 @@ if (!isset($_SESSION['first_name'])) {
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-	        <title>Collgo</title>
+        <title>Collgo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem">
         <meta name="author" content="Anil">
@@ -103,81 +102,81 @@ if (!isset($_SESSION['first_name'])) {
 		</div>
 		<!--end modle-->
 
-		<script src="js/jquery-1.js"></script>
-		<script src="js/bootstrap.js"></script>
+            <script src="js/jquery-1.js"></script>
+            <script src="js/bootstrap.js"></script>
 
-		<script type="text/javascript">
-			function checkForm() {
-				if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
-					return true;
-				}
-				else {
-					alert("Passwords don't match");
-					return false;
-				}
-			}
-		</script>
+            <script type="text/javascript">
+                function checkForm() {
+                    if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
+                        return true;
+                    }
+                    else {
+                        alert("Passwords don't match");
+                        return false;
+                    }
+                }
+            </script>
 
-		<script src="js/jquery.js"></script>
-		<script src="js/bootstrap.min.js"></script>
-	   
-		<script type="text/javascript" src="js/signupValidation.js"></script>
-		<script type="text/javascript" src="js/loginValidation.js"></script>
-			
-		<script type="text/javascript">
-			function nospaces(t){
-				if(t.value.match(/\s/g)){
-				alert('Sorry, you are not allowed to enter any spaces');
-				t.value=t.value.replace(/\s/g,'');
-				}
-			}
-		</script>
-		<!-----signup valiation ends -------------and login validation added here--->
-            
-<script type="text/javascript">
-    document.getElementById("username").onblur = function() {
+            <script src="js/jquery.js"></script>
+            <script src="js/bootstrap.min.js"></script>
 
-        var xmlhttp;
+            <script type="text/javascript" src="js/signupValidation.js"></script>
+            <script type="text/javascript" src="js/loginValidation.js"></script>
 
-        var username=document.getElementById("username");
-        if (username.value != ""){
-            if (window.XMLHttpRequest){
-                xmlhttp=new XMLHttpRequest();
+            <script type="text/javascript">
+                function nospaces(t){
+                    if(t.value.match(/\s/g)){
+                        alert('Sorry, you are not allowed to enter any spaces');
+                        t.value=t.value.replace(/\s/g,'');
+                    }
+                }
+            </script>
+            <!-----signup valiation ends -------------and login validation added here--->
 
-            } else {
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange=function(){
-                if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                    document.getElementById("status").innerHTML=xmlhttp.responseText;
-            }
-            };
-            xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
-            xmlhttp.send();
-        }
-    };
-    document.getElementById("email").onblur = function() {
+            <script type="text/javascript">
+                document.getElementById("username").onblur = function() {
 
-        var xmlhttp;
+                    var xmlhttp;
 
-        var email=document.getElementById("email");
-        if (email.value != ""){
-            if (window.XMLHttpRequest){
-                xmlhttp=new XMLHttpRequest();
+                    var username=document.getElementById("username");
+                    if (username.value != ""){
+                        if (window.XMLHttpRequest){
+                            xmlhttp=new XMLHttpRequest();
 
-            } else {
-                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-            }
-            xmlhttp.onreadystatechange=function(){
-                if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                    document.getElementById("status_email").innerHTML=xmlhttp.responseText;
-            }
-            };
-            xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
-            xmlhttp.send();
-        }
-    };
-</script>
+                        } else {
+                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        xmlhttp.onreadystatechange=function(){
+                            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                                document.getElementById("status").innerHTML=xmlhttp.responseText;
+                            }
+                        };
+                        xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
+                        xmlhttp.send();
+                    }
+                };
+                document.getElementById("email").onblur = function() {
+
+                    var xmlhttp;
+
+                    var email=document.getElementById("email");
+                    if (email.value != ""){
+                        if (window.XMLHttpRequest){
+                            xmlhttp=new XMLHttpRequest();
+
+                        } else {
+                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        xmlhttp.onreadystatechange=function(){
+                            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                                document.getElementById("status_email").innerHTML=xmlhttp.responseText;
+                            }
+                        };
+                        xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
+                        xmlhttp.send();
+                    }
+                };
+            </script>
             <?php
             if (isset($_GET['status'])) {
                 if ($_GET['status'] == 2) {
