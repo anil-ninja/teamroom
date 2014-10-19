@@ -1,9 +1,11 @@
 
+
 	<div class="panel-heading">
-		<h3 class="panel-title"><font color="black">Project : <?php echo $title ; ?></font></h3>
+		<h3 class="panel-title"><font color="black">Project : <?php echo $title ; $titleR = $title ;?></font></h3>
 	</div>
 		
  <?php
+
 	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id AND a.project_type = '1')
                                                 UNION
@@ -50,8 +52,10 @@
                echo "</ul>
               </div>
             </div>";
-	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
-			</span> &nbsp on &nbsp".$starttime. " &nbsp with ETA in &nbsp".$projectETA. " <br> <br>".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
+	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
+			<a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
+			</span>  on &nbsp".$starttime. " <br/> with ETA in &nbsp".$projectETA. " <br>".$remaining_time." <br>
+			<span class='color strong' style= 'color :lightblue;'><p align='center'>".$title."</p></span>".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
 											where a.project_id = '$p_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
@@ -91,12 +95,9 @@
 		</div></div></div>"								  
 	
 ?>
-
- <div class="panel panel">
      <div class="panel-heading">    
-        <h3 class="panel-title">Important Notes about Project</h3>
-      </div>
- </div>          
+        <h3 class="panel-title"><p align='center'> Notes</p></h3>
+      </div>          
 <?php
 		 $display = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b where a.project_id = '$p_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 
@@ -167,3 +168,6 @@
 			</div></div></div>" ;
 	}
 ?>
+ <div class="panel-heading">    
+        <h3 class="panel-title"><p align='center'>Closed Challenges</p></h3>
+      </div>
