@@ -1,7 +1,8 @@
 <?php 
 include_once 'lib/db_connect.php';
-
 $UserName = $_GET['username'] ;
+session_start();
+
 $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '$UserName';");
 $userInfoRows = mysqli_num_rows($userInfo);
 

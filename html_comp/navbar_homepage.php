@@ -74,10 +74,10 @@
                     </li>      
                     <li>   <p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal"  data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p></li>
                     <li>   <p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php"> Your Challenges</a></p></li>
-                    <li>   <p class="navbar-text">&nbsp;Your rank :  <?php echo $rank ; ?></p></li>
+                    <li>   <p class="navbar-text">&nbsp;Your rank :  <?php $rank = $_SESSION['rank']; echo $rank ; ?></p></li>
                     <li>   <p class="navbar-text" id="demo"></p></li>
                     <li><div class="dropdown">
-			  <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php echo ucfirst($name); ?></p></a>
+			  <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php $name = $_SESSION['first_name']; echo ucfirst($name); ?></p></a>
 			  <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
 				  <li><p class="navbar-text">
 					  <form method='GET' action='profile.php'>
@@ -93,7 +93,7 @@
   </div>
     <?php }
         else {
-            echo "<li><p class='navbar-text'><b> <a href = 'index.php'>Sign In</a> </b></p></li>";
+            echo "<li><p class='navbar-text' style='cursor: pointer'><b> <a data-toggle='modal' data-target='#SignIn'>Sign In</a> </b></p></li>";
             echo "<li><p class='navbar-text' style='cursor: pointer'><a data-toggle='modal' data-target='#SignUp'><b>Sign Up</b></a></p></li>";
         }
     ?>

@@ -1,6 +1,6 @@
 
 	<div class="panel-heading">
-		<h3 class="panel-title"><font color="black">Project : <?php echo $title ; $titleR = $title ;?></font></h3>
+		<h3 class="panel-title"><font color="black">Project : <?php echo $title ; ?></font></h3>
 	</div>
 		
  <?php
