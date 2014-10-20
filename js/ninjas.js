@@ -53,7 +53,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var etad = parseInt($("#c_etad").val());
 			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',challenge)) + '&challenge_title='+ challenge_title + '&opentime='+ (opentime+='') + 
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',challenge)) + '&challenge_title='+ challenge_title + '&opentime='+ (opentime+='') + 
 			'&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(challenge==''){
@@ -105,7 +105,7 @@ $(document).ready(function(){
 			var etad = parseInt($("#c_etad").val());
 			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',taskdetails)) + '&title='+ title + '&email='+ email + '&id='+ id +
+			var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&title='+ title + '&email='+ email + '&id='+ id +
 			'&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(email==''){

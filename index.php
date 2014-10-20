@@ -22,85 +22,85 @@ if (!isset($_SESSION['first_name'])) {
 
     </head>
     <body >
-        <div class="row">  <div class='alert_placeholder'></div>
-            <div class="navbar navbar-default navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-inner">
-                        <a class="btn-link" href="index.php"><h4>Collgo</a>
-                        <div class="span3 pull-right">
-                            <ul class="list-inline">
-                                Powered By :  <a class="btn-link" href="http://dpower4.com/">Dpower4.com</a></h4></ul> 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row" style="background-image: url(img/collaboration.jpg); height: 570px; max-width: 100%;">
-            <div class = "col-xs-7 col-ls-8"></div>	
-            <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px">
-                <div class="bs-component">
-                    <div class="modal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-
-                                    <p align="center"><font size="5" >Collaborations</font></p>
-                                </div>
-                                <div class="modal-body">
-
-                                    <br/>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Username</span>
-                                        <input type="text" class="form-control" id="username" placeholder="Enter email or username">
-                                    </div>
-                                    <br>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Password</span>
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
-                                    </div><br/>
-                                    <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
-                                </div>
-                                <div class="modal-footer">
-                                    <a data-toggle="modal" class="btn-link" data-target="#myModal" style="float: right; cursor:pointer;">Sign Up Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" style="width:390px; height:500px">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="inline-form">					
-                                <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
-                                <input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
-                            </div><br/>	
-                            <div class="inline-form">				
-                                <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)" /> <span id="status_email"></span>
-                                <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
-                            </div><br/>					
-                            <input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
-                            <input type="password" class="form-control" id="passwordR" placeholder="password"/>
-                            <input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
-
-                            <input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
-                        </div>
-                        <div class  ="modal-footer">
-                            <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end modle-->
+	<div class="row">  <div class='alert_placeholder'></div>
+		<div class="navbar navbar-default navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-inner">
+					<a class="btn-link" href="index.php"><h4>Collgo</a>
+					<div class="span3 pull-right">
+						<ul class="list-inline">
+						   Powered By :  <a class="btn-link" href="http://dpower4.com/">Dpower4.com</a></h4></ul> 
+					</div>
+				 </div>
+			</div>
+		</div>
+	</div>
+	<div class="row" style="background-image: url(img/collaboration.jpg); height: 670px; max-width: 100%;">
+		<div class = "col-xs-7 col-ls-8"></div>	
+		<div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
+         	<div class="bs-component">
+				<div class="modal">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+							
+								<p align="center"><font size="5" >Collaborations</font></p>
+							</div>
+							<div class="modal-body">
+								
+									<br/>
+									<div class="input-group">
+										<span class="input-group-addon">Username</span>
+										<input type="text" class="form-control" id="username" placeholder="Enter email or username">
+									</div>
+									<br>
+									<div class="input-group">
+										<span class="input-group-addon">Password</span>
+										<input type="password" class="form-control" id="password" placeholder="Password">
+									</div><br/>
+									<button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
+								</div>
+							<div class="modal-footer">
+								<a data-toggle="modal" class="btn-link" data-target="#myModal" style="float: right; cursor:pointer;">Sign Up Now</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content" style="width:370px; height:500px">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">&times;</span>
+							<span class="sr-only">Close</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">New User Registration</h4>
+					</div>
+					<div class="modal-body">
+						<div class="inline-form">					
+											<input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
+											<input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
+						</div><br/>	
+						<div class="inline-form">				
+											<input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
+											<input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
+						</div><br/>					
+											<input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
+											<input type="password" class="form-control" id="passwordR" placeholder="password"/>
+											<input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
+										
+										<input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
+									</div>
+					<div class  ="modal-footer">
+						<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--end modle-->
 
             <script src="js/jquery-1.js"></script>
             <script src="js/bootstrap.js"></script>

@@ -14,14 +14,14 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var open_time = parseInt($("#open_time").val());
 			var open = parseInt($("#open").val());
 			var opentime = parseInt(open_time*60+open) ;
-			var eta = parseInt($("#c_eta").val());
-			var etab = parseInt($("#c_etab").val());
-			var etac = parseInt($("#c_etac").val());
-			var etad = parseInt($("#c_etad").val());
+			var eta = parseInt($("#cc_eta").val());
+			var etab = parseInt($("#cc_etab").val());
+			var etac = parseInt($("#cc_etac").val());
+			var etad = parseInt($("#cc_etad").val());
 			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',challenge)) + '&challenge_title='+ challenge_title + '&opentime='+ (opentime+='') + 
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',challenge)) + '&challenge_title='+ challenge_title + '&opentime='+ (opentime+='') + 
 			'&challange_eta='+ (challange_eta+='') + '&type='+ type ;
 			//alert(dataString);
 			if(challenge==''){
@@ -65,7 +65,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var notes = $("#notes").val() ;
 			var notes_title = $("#notes_title").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes)) + '&notes_title='+ notes_title ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',notes)) + '&notes_title='+ notes_title ;
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
@@ -96,7 +96,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var notes = $("#pr_resp").val() ;
 			var id = $("#challenge_id").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',notes)) + '&id='+ id ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',notes)) + '&id='+ id ;
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");

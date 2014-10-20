@@ -51,12 +51,12 @@
 						.$answerrow['stmt']."<br/><form method='POST' onsubmit=\"return confirm('Really Close Challenge !!!')\"><div class='pull-right'><input type='hidden' name='cid' value='".$id."'/>
 						<button type='submit' class='btn-primary' name='closechallenge'>Close</button></div></form><br/>";
 						
-			$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, b.first_name FROM response_challenge as a JOIN user_info as b WHERE
+			$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, b.first_name, a.response_ch_creation FROM response_challenge as a JOIN user_info as b WHERE
 												  a.challenge_id = '$id' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												  UNION
-												  (SELECT DISTINCT b.first_name, c.stmt FROM response_challenge as a JOIN user_info as b JOIN 
-												  blobs as c WHERE a.challenge_id = '$id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");		
-		while ($displayrowb = mysqli_fetch_array($displaya)) {	
+												  (SELECT DISTINCT b.first_name, c.stmt, a.response_ch_creation FROM response_challenge as a JOIN user_info as b JOIN 
+												  blobs as c WHERE a.challenge_id = '$id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
+                        while ($displayrowb = mysqli_fetch_array($displaya)) {	
 				$fstname = $displayrowb['first_name'] ;
 				$chalangeres = $displayrowb['stmt'] ;
 		echo "<div id='commentscontainer'>

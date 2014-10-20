@@ -21,14 +21,14 @@ include_once 'functions/delete_comment.php';
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
         <style>
             body {
-                padding-top: 10px; /* 60px to make the container go all the way to the bottom of the topbar */
+                padding-top: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
             }             
         </style>
 
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
             <style>
             body {
-                    padding-top: 10px; /* 60px to make the container go all the way to the bottom of the topbar */
+                    padding-top: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
                 }             
                 .editbox{
                             display:none

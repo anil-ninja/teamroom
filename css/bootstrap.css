@@ -184,7 +184,7 @@ table {
 }
 td,
 th {
-  padding: 0;
+  padding: 1px;
 }
 @media print {
   * {
@@ -2391,7 +2391,7 @@ output {
 .form-control {
   display: block;
   width: 100%;
-  height: 38px;
+  height: 30px;
   padding: 7px 12px;
   font-size: 14px;
   line-height: 1.42857143;
@@ -5454,7 +5454,7 @@ button.close {
 }
 .modal-content {
   position: relative;
-  background-color: lightblue;
+  background-color: #BCAFDE;
   border: 1px solid #999999;
   height:auto;
   border: 1px solid rgba(0, 0, 0, 0.2);

@@ -17,8 +17,8 @@ if($_POST['challange']){
                                 VALUES (default, '$challange');");
         
         $id = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA) 
-                                VALUES ('$user_id', '$challenge_title', '$id', '$opentime', '$challange_eta');");
+        mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt) 
+                                VALUES ('$user_id', '$challenge_title', '$id', '$opentime', '$challange_eta', ' ');");
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Challange posted succesfully!"; }
 }

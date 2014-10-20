@@ -6,16 +6,15 @@
                     <input class="btn btn-default btn-sm" type="file" name="file" id="file" style ="width: 100px;"><br>
                     <input class="btn btn-default btn-sm" type="submit" name="submit" value="Submit"><br>
                 </form>
- -->                <a data-toggle="modal" class="btn btn-link" data-target="#managefiles" style="cursor:pointer;"><i class="glyphicon glyphicon-pencil"></i>Manage Files</a><br/>
- <br>
+ -->                <a data-toggle="modal" class="btn btn-link" data-target="#managefiles" style="cursor:pointer;"><i class="glyphicon glyphicon-hdd"></i> Manage Files</a><br/>
                 <?php 
                 if($creater_id == $user_id) {
-				echo "<a data-toggle='modal' class='btn btn-link' data-target='#assigntask' style='cursor:pointer;'><i class='glyphicon glyphicon-pencil'></i>Assign Tasks</a><br/>";	
+				echo "<a data-toggle='modal' class='btn btn-link' data-target='#assigntask' style='cursor:pointer;'><i class='glyphicon glyphicon-pushpin'></i> Assign Tasks</a><br/>";	
 					}
 					?>
-                <a data-toggle="modal" class="btn btn-link" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-pencil"></i>Enter Notes</a><br/>
-                <a data-toggle="modal" class="btn btn-link" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Challenge</a><br/>
-                <a data-toggle="modal" class="btn btn-link" data-target="#create_team_new" style="cursor:pointer;"><i class="glyphicon glyphicon-edit"></i>Create Team</a><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#createnotes" style="cursor:pointer;"><i class="glyphicon glyphicon-pencil"></i> Enter Notes</a><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#createChallenge" style="cursor:pointer;"><i class="glyphicon glyphicon-globe"></i> Create Challenge</a><br/>
+                <a data-toggle="modal" class="btn btn-link" data-target="#create_team_new" style="cursor:pointer;"><i class="glyphicon glyphicon-phone-alt"></i> Create Team</a><br/>
                 </div>  
                 <a class="tree-toggle btn btn-link" style="cursor:pointer;"><i class ="glyphicon glyphicon-user"></i>Your Teams</a><br/>
                      <?php
@@ -265,7 +264,7 @@
                             <option value='40'  >40</option>
                             <option value='50' >50</option>
                         </select><br/><br/>ETA : 
-                        <select class="btn btn-default btn-xs" id = "c_eta" >	
+                        <select class="btn btn-default btn-xs" id = "cc_eta" >	
                             <option value='0' selected >Month</option>
                             <?php
                             $m = 1;
@@ -275,7 +274,7 @@
                             }
                             ?>
                         </select>
-                        <select class="btn btn-default btn-xs" id= "c_etab" >	
+                        <select class="btn btn-default btn-xs" id= "cc_etab" >	
                             <option value='0' selected >Days</option>
                             <?php
                             $d = 1;
@@ -285,7 +284,7 @@
                             }
                             ?>
                         </select>
-                        <select class="btn btn-default btn-xs" id= "c_etac" >	
+                        <select class="btn btn-default btn-xs" id= "cc_etac" >	
                             <option value='0' selected >hours</option>
                             <?php
                             $h = 1;
@@ -295,7 +294,7 @@
                             }
                             ?>
                         </select>
-                        <select class="btn btn-default btn-xs" id= "c_etad" >	
+                        <select class="btn btn-default btn-xs" id= "cc_etad" >	
                             <option value='15' selected >minute</option>
                             <option value='30' >30</option>
                             <option value='45'  >45</option>

@@ -5,7 +5,7 @@ include_once 'lib/db_connect.php';
 session_start();
 $challengeSearchID = $_GET['challenge_id'];
 if (isset($_POST['logout'])) {
-    header('Location: challengesOpen.php?challenge_id=' . "$challengeSearchID");
+    header('Location: challengesOpen.php?challenge_id='."$challengeSearchID");
     unset($_SESSION['user_id']);
     unset($_SESSION['first_name']);
     session_destroy();
@@ -78,40 +78,35 @@ if (isset($_POST['chlange'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenges, Projects, Problem solving, problems">
         <meta name="author" content="Rajnish">
-        <script src="js/ninjas.js" type="text/javascript"></script>
-        <!-- Le styles -->
-        <link href="css/bootstrap.css" rel="stylesheet">
-        <style>
-            body {
-                padding-top: 10px; /* 60px to make the container go all the way to the bottom of the topbar */
-            }             
-        </style>
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="css/bootswatch.css">
-        <link href="css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="css/custom.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/bootswatch.css">
-        <link href="css/font-awesome.css" rel="stylesheet">
-        <script src="js/jquery.js"> </script>
-        <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="js/jquery.autosize.js"></script>
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-        <script src="js/bootstrap.js"></script>
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Challenge, Project, Problem solving, problem">
+    <meta name="author" content="Anil">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/bootswatch.css">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+	
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<script src="js/jquery.js"> </script>
+	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery.autosize.js"></script>
+<!-- script fro challenge comment delete, it is common for all challenges comments.  -->
+	<script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
+	
     </head>
     <body>
        
        
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
-        
         <div class="row">
             <div class="col-md-offset-2 col-lg-6">
                 <div class='alert_placeholder'></div>
                 <?php
                 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.*, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
-                                        WHERE (a.challenge_type = '1' OR a.challenge_type = '4' OR a.challenge_type = '6') AND blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
+                                        WHERE blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
                                     UNION
                                         (SELECT DISTINCT a.user_id, a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-                                        WHERE (a.challenge_type = '1' OR a.challenge_type = '4' OR a.challenge_type = '6') and a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
+                                        WHERE a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
                 $emptySearch = mysqli_num_rows($open_chalange);
                 if ($emptySearch == 0) {
                     echo "no match found";
@@ -127,6 +122,7 @@ if (isset($_POST['chlange'])) {
                     $times = $open_chalangerow['challenge_creation'];
                     $timeopen = $open_chalangerow['challenge_open_time'];
                     $challenge_status = $open_chalangerow['challenge_status'];
+                    $challenge_type = $open_chalangerow['challenge_type'];
                     $eta = $ETA * 60;
                     $day = floor($eta / (24 * 60 * 60));
                     $daysec = $eta % (24 * 60 * 60);
@@ -459,7 +455,5 @@ if (isset($_POST['chlange'])) {
                 }
             };
         </script>
-
-
     </body>
 </html>

@@ -65,14 +65,13 @@
                     </form><br/>
                 </div></div>
 		<?php
-	$user_id = $_SESSION['user_id'];
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
                                             b.first_name, b.last_name, b.username from challenges as a join user_info as b where a.challenge_type = '1'
-                                             and blob_id = '0' and a.user_id = b.user_id and a.challenge_status = '1')
+                                             and blob_id = '0' and a.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE a.challenge_type = '1' and a.blob_id = c.blob_id and a.user_id = b.user_id and a.challenge_status = '1') ORDER BY challenge_creation DESC ;");
+											WHERE a.challenge_type = '1' and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC ;");
 	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
 		$ETA = $open_chalangerow['challenge_ETA'] ;
@@ -89,7 +88,13 @@
 		$hour = floor($daysec/(60*60)) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
-		$remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ;
+		if($day == 0) {
+			if($hour == 0){
+				$remaining_time = $minute." mins" ;	
+			}
+			else { $remaining_time = $hour." hours:".$minute." Min" ;}
+		} 
+		else { $remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ; }
 		$starttimestr = (string) $times ;
 		$open = $timeopen*60 ;
         $initialtime = strtotime($starttimestr) ;
@@ -200,9 +205,11 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
 			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min " ;
-		}
+		} 
+	if($id != $user_id) {
   echo "<div class='list-group'>
 				<div class='list-group-item'>" ;
+				
 	echo  "Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_owned_ch_ninjas."'>"
 			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</a></span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
 			  "<br/></div><div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
@@ -239,5 +246,6 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
                   </div>
              </div>";
           echo " </div></div> ";
+	  }
 	  }
 ?>
