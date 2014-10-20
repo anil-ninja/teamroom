@@ -71,7 +71,7 @@ if (!isset($_SESSION['first_name'])) {
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-				<div class="modal-content" style="width:390px; height:500px">
+				<div class="modal-content" style="width:370px; height:500px">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal">
 							<span aria-hidden="true">&times;</span>

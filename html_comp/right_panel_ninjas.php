@@ -35,7 +35,7 @@
 				$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}
 				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$time." ETA given : ".$remaining_time." ".$remaining_time_own ;			
-		echo "<p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+		echo "<p align='left'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;'><b>".ucfirst($title)."</b><br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>".$remaining_time_own."</p></button></p><hr/>" ;
       }
   

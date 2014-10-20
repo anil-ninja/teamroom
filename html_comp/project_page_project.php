@@ -89,6 +89,73 @@
 		</div></div></div>"								  
 	
 ?>
+<div class='panel-heading'>    
+  <h3 class='panel-title'><p align='center'>Summary</p></h3>
+</div>
+<table class="table table-striped table-hover ">
+	<thead>
+		<tr>
+			<th>No.</th>
+			<th>Challenges</th>
+			<th>Time</th>
+			<th>Owned By</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+<?php 
+	 $summary = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, challenge_type, challenge_status, challenge_ETA, LEFT(stmt, 30) as stmt
+											FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
+											AND challenge_type != '7' AND blob_id = '0')
+											UNION
+										 (SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, a.challenge_ETA, a.challenge_status, LEFT(b.stmt, 30) as stmt
+										   FROM challenges AS a JOIN blobs AS b WHERE a.project_id = '$p_id' AND a.challenge_type != '3' AND a.challenge_type != '6' 
+										   AND a.challenge_type != '7' AND a.blob_id = b.blob_id );");
+      while($summaryrow = mysqli_fetch_array($summary)) {
+				$sid = $summaryrow['challenge_id'] ;
+				$sidtitle = $summaryrow['challenge_title'] ;
+				$sideta = $summaryrow['challenge_ETA'] ;
+				$sidstmt = $summaryrow['stmt']  ;
+				$sidtype = $summaryrow['challenge_type'] ;
+				$sidstatus = $summaryrow['challenge_status'] ;
+				$day = floor($sideta/(24*60)) ;
+				$daysec = $sideta%(24*60) ;
+				$hour = floor($daysec/(60)) ;
+				$minute = $daysec%(60) ;
+		if($day == 0) {
+			if($hour == 0){
+				$stime = $minute." mins" ;	
+			}
+			else { $stime = $hour." hours" ;}
+		} 
+		else { $stime = $day." days" ; }
+		if (($sidtype == 1 OR $sidtype == 2) AND $sidstatus == 1 )	{
+			$sstatus = "Not Owned" ;
+		}
+		else if (($sidtype == 1 OR $sidtype == 2) AND $sidstatus == 2 )	{
+			$sstatus = "IN Progress" ;
+		}	
+		else if ($sidtype == 4 OR $sidtype == 5)	{	
+			$sstatus = "Completed" ;
+		}
+		else { $sstatus = "Task" ; }
+		$owned = mysqli_query($db_handle, "select a.user_id, b.first_name, b.username from challenge_ownership as a join user_info as b where a.challenge_id = '$sid' and a.user_id = b.user_id ;") ;	
+		$ownedrow = mysqli_fetch_array($owned) ;
+		$sname = $ownedrow['username'] ;
+		$sfname = $ownedrow['first_name'] ;
+		$i++; 
+		echo "<tr>
+				<td>".$i."</td>
+				<td><a href ='challengesOpen.php?challenge_id=".$sid."'>".$sidtitle."<br/>".$sidstmt."</a></td>
+				<td>".$stime."</td>
+				<td><a href ='profile.php?username=".$sname."'>".$sfname."</a></td>
+				<td>".$sstatus."</td>
+			</tr>" ;
+	}
+				?>
+	</tbody>
+</table>
+
      <div class="panel-heading">    
         <h3 class="panel-title"><p align='center'> Notes</p></h3>
       </div>          

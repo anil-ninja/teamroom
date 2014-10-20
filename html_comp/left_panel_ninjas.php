@@ -19,12 +19,26 @@
 								$minute = floor($hoursec/60) ;
 								$remaining_time = "ETA : ".$day." Days :".$hour." Hours :".$minute." Min" ;
 								$title = "Project Created ON : ".$p_time." ".$remaining_time ;	
+								$starttimestr = (string) $p_time ;
+								$initialtime = strtotime($starttimestr) ;
+								$totaltime = $initialtime+($eta*60) ;
+								$completiontime = time() ;
+						if ($completiontime > $totaltime) { 
+							$remaining_time_own = "Closed" ; }
+						else {	$remainingtime = ($totaltime-$completiontime) ;
+								$day = floor($remainingtime/(24*60*60)) ;
+								$daysec = $remainingtime%(24*60*60) ;
+								$hour = floor($daysec/(60*60)) ;
+								$hoursec = $daysec%(60*60) ;
+								$minute = floor($hoursec/60) ;
+								$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
+						}
                                 $time_for_project =  $day." Days :".$hour." Hours :".$minute." Min" ;
                                 echo "<form method='POST' action=''>
                                 <input type='hidden' name='project_title' value='".$p_title."'/>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
-                                <p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."</button></p></form><hr/>" ;
+                                <p align='left'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>".$remaining_time_own."</p></button></p></form><hr/>" ;
                             }
                         ?>
                     </div>

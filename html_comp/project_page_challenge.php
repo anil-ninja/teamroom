@@ -112,7 +112,7 @@
           $username_pr_ch_cr = $displayrow['username'];
 			$chalangest = $displayrow['stmt'] ;
 			$chalangetime = $displayrow['challenge_creation'] ;
-			$opentime = $displayrow['challenge_open_time,'] ;
+			$opentime = $displayrow['challenge_open_time'] ;
 			$idb = $displayrow['challenge_id'] ;
 			$ch_title = $displayrow['challenge_title'] ;
 			$ETA = $displayrow['challenge_ETA'] ;
