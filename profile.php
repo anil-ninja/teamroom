@@ -9,7 +9,13 @@ if ($userInfoRows == 0) {
     include_once 'html_comp/error.html';
     exit;
 }
-
+if (isset($_POST['logout'])) {
+    header('Location: profile.php?username='."$UserName");
+    unset($_SESSION['user_id']);
+    unset($_SESSION['first_name']);
+    session_destroy();
+    exit;
+}
 $user_InformationRow = mysqli_fetch_array($userInfo);
 $profileViewFirstName = $user_InformationRow['first_name'];
 $profileViewLastName = $user_InformationRow['last_name'];
@@ -43,7 +49,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
         <meta charset="utf-8">
         <title>profile</title>
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+       
         <style type="text/css">    
 
             .profile 
@@ -124,19 +130,27 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
             }
         </style>
 
-        <script src="jquery-1.10.2.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="css/bootswatch.css">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/bootstrap-responsive.css" rel="stylesheet">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Challenge, Project, Problem solving, problem">
+    <meta name="author" content="Anil">
+    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+    <link rel="stylesheet" href="css/bootswatch.css">
+	<link href="css/bootstrap-responsive.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+	
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<script src="js/jquery.js"> </script>
+	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/jquery.autosize.js"></script>
+<!-- script fro challenge comment delete, it is common for all challenges comments.  -->
+	<script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
+	<script src="js/ninjas.js" type="text/javascript"></script>
     </head>
 
     <body>
 
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
-        <script type="text/javascript" src="scripts/jquery.min.js"></script>
-        <script type="text/javascript" src="scripts/jquery.wallform.js"></script>
+    
         <div class="row">
             <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
@@ -214,7 +228,9 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                         </div>
                     </div>
                 </div>
+                
             </div>
+        
             <div class="col-lg-3">
                 <div class="well profile">
                     <p>  In-contact with Friends </p>
@@ -237,6 +253,8 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 </div>                 
             </div>
         </div>
+        
+        
         <div class="row">
             <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
@@ -352,6 +370,93 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 </div>
             </div>
         </div>          
+            
+              <!-- Modal -->
+        <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:auto; height:auto">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Collaborations</h4>
+                        
+                        <div class='alert_placeholder'></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                        <?php 
+                            if (isset($_POST['login_comment'])) {
+                                echo 'Sign In for your comment!!!';
+                            }
+                        ?> 
+                        </div>
+                        <br/>
+                        <div class="input-group">
+                            <span class="input-group-addon">Username</span>
+                            <input type="text" class="form-control" id="username" placeholder="Enter email or username">
+                        </div>
+                        <br>
+                        <div class="input-group">
+                            <span class="input-group-addon">Password</span>
+                            <input type="password" class="form-control" id="password" placeholder="Password">
+                        </div><br/>
+                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLogin1()">Log in</button> &nbsp;&nbsp;
+                        <button class="btn btn-success" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
+                    </div>
+
+                    <div class  ="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--end modle-->
+         
+        <!-- Modal -->
+        <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                
+                <div class="modal-content" style="width:390px; height:500px">
+                   
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                         
+                        <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
+                    </div>
+                    <div class="modal-body">
+                            <div class="inline-form">					
+                                <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
+                                <input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
+                            </div><br/>	
+                            <div class="inline-form">				
+                                <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)" /> <span id="status_email"></span>
+                                <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
+                            </div><br/>					
+                            <input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
+                            <input type="password" class="form-control" id="passwordR" placeholder="password"/>
+                            <input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
+
+                            <input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
+                    </div>
+                    <div class  ="modal-footer">
+                        <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end modle-->
+        
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/bootswatch.js"></script>
+        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
+        <script src="js/project.js"></script>
         <script>
             startTime();
             function getDateTime() {
@@ -380,12 +485,83 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
                 return dateTime;
             }
+
             function startTime() {
                 document.getElementById('demo').innerHTML = String(getDateTime());
                 t = setTimeout(function () {
                     startTime()
                 }, 500);
             }
+        </script>
+        <script src="js/custom.js"></script>
+
+        
+
+        <script type="text/javascript" src="js/loginValidation.js"></script>
+        <script type="text/javascript" src="js/signupValidation.js"></script>
+        
+        <script type="text/javascript">
+            function checkForm() {
+                if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
+                    return true;
+                }
+                else {
+                    alert("Passwords don't match");
+                    return false;
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            function nospaces(t){
+                if(t.value.match(/\s/g)){
+                    alert('Sorry, you are not allowed to enter any spaces');
+                    t.value=t.value.replace(/\s/g,'');
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            document.getElementById("usernameR").onblur = function() {
+
+                var xmlhttp;
+
+                var username=document.getElementById("usernameR");
+                if (username.value != ""){
+                    if (window.XMLHttpRequest){
+                        xmlhttp=new XMLHttpRequest();
+
+                    } else {
+                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange=function(){
+                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                            document.getElementById("status").innerHTML=xmlhttp.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
+                    xmlhttp.send();
+                }
+            };
+            document.getElementById("email").onblur = function() {
+
+                var xmlhttp;
+
+                var email=document.getElementById("email");
+                if (email.value != ""){
+                    if (window.XMLHttpRequest){
+                        xmlhttp=new XMLHttpRequest();
+
+                    } else {
+                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+                    }
+                    xmlhttp.onreadystatechange=function(){
+                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                            document.getElementById("status_email").innerHTML=xmlhttp.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
+                    xmlhttp.send();
+                }
+            };
         </script>
     </body>
 </html>
