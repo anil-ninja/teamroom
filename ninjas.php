@@ -28,7 +28,7 @@ include_once 'functions/delete_comment.php';
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class='alert_placeholder'></div>
         <div class="row-fluid">
-          <div class="col-lg-2" style="width:200px;">
+          <div class="col-lg-3" style="width:300px;">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
           <div class="col-lg-6">
@@ -39,7 +39,7 @@ include_once 'functions/delete_comment.php';
 			<?php include_once 'html_comp/ninjas_page.php'   ?>
 	</div>
 	</div>
-	<div class="col-lg-4">
+	<div class="col-lg-3">
 		<?php include_once 'html_comp/right_panel_ninjas.php'   ?>
 		</div>
 	</div>

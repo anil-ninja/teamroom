@@ -175,7 +175,7 @@
                 <form >
 					 <div class="input-group" >
                         <span class="input-group-addon">Assign To : </span>
-                         <input type="email" class="form-control" id="email" placeholder="Enter email">
+                         <input type="text" class="form-control" id="email" placeholder="Enter email or Team name ">
                       </div><br/>
                       <div class="input-group" >
                         <span class="input-group-addon">Title : </span>						

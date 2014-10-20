@@ -34,7 +34,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 if ($requestedPage == "ninjas.php") {
                     echo "<li>
                             <div class='dropdown'>
-                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>Your Teams<span class='caret'></span></p></a>
+                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>Teams<span class='caret'></span></p></a>
                                 <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>";
                                     $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
                                     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
@@ -59,7 +59,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 ?>
                 <li>
                     <div class='dropdown'>
-                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; text-decoration: none;">Your Projects<span class='caret'></span></p></a>
+                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; text-decoration: none;">Projects<span class='caret'></span></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
                             <?php
                                             session_start();

@@ -82,17 +82,15 @@
 		$chelangeid = $open_chalangerow['challenge_id'] ;
 		$status = $open_chalangerow['challenge_status'] ;
 		$times = $open_chalangerow['challenge_creation'] ;
+		$timefunction = date("j F, g:i a",strtotime($times));
 		$timeopen = $open_chalangerow['challenge_open_time'] ;
-		$eta = $ETA*60 ;
-		$day = floor($eta/(24*60*60)) ;
-		$daysec = $eta%(24*60*60) ;
-		$hour = floor($daysec/(60*60)) ;
-		$hoursec = $daysec%(60*60) ;
-		$minute = floor($hoursec/60) ;
+		$day = floor($ETA/(24*60)) ;
+		$daysec = $ETA%(24*60) ;
+		$hour = floor($daysec/(60)) ;
+		$minute = $daysec%(60) ;
 		$starttimestr = (string) $times ;
-		$open = $timeopen*60 ;
         $initialtime = strtotime($starttimestr) ;
-		$totaltime = $initialtime+$eta+$open ;
+		$totaltime = $initialtime+($ETA+$timeopen)*60 ;
 		$completiontime = time() ;
 if ($completiontime > $totaltime) { 
 	$remaining_time_own = "Closed" ; }
@@ -116,7 +114,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
-				 &nbsp&nbsp&nbsp On : ".$times."&nbsp&nbsp&nbsp ";				 
+				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp ";				 
 			echo "<br/>".$remaining_time_own."</div>";
 		}
 		else {
@@ -125,14 +123,15 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$ownedbyrow = mysqli_fetch_array($ownedby) ;
 			$owneta = $ownedbyrow['comp_ch_ETA'] ;
 			$owntime = $ownedbyrow['ownership_creation'] ;
+			$timefunct = date("j F, g:i a",strtotime($owntime));
 			$ownfname = $ownedbyrow['first_name'] ;
 			$ownlname = $ownedbyrow['last_name'] ;
 			$ownname = $ownedbyrow['username'] ;
 			echo "Created by &nbsp 
 				<span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_ch_ninjas."'>"
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$times."<br/>
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				Owned By  <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$ownname."'>"
-				. ucfirst($ownfname). '&nbsp'. ucfirst($ownfname). " </a></span><br/>&nbsp&nbsp On : ".$owntime."</div>" ;
+				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct."</div>" ;
 			}
 			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
@@ -161,10 +160,10 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
                   <div class='pull-left lh-fix'>
                      <img src='img/default.gif'>
                   </div>
-                  <div class='comment-text'>
+                  <div class='comment-text' >
                       <form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$chelangeid."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 93.3%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
                   </div>
