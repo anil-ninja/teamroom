@@ -50,85 +50,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
         <title>profile</title>
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
        
-        <style type="text/css">    
-
-            .profile 
-            {
-                min-height: 355px;
-                display: inline-block;
-            }
-            figcaption.ratings
-            {
-                margin-top:20px;
-            }
-            figcaption.ratings a
-            {
-                color:#f1c40f;
-                font-size:11px;
-            }
-            figcaption.ratings a:hover
-            {
-                color:#f39c12;
-                text-decoration:none;
-            }
-            .divider 
-            {
-                border-top:1px solid rgba(0,0,0,0.1);
-            }
-            .emphasis 
-            {
-                border-top: 4px solid transparent;
-            }
-            .emphasis:hover 
-            {
-                border-top: 4px solid #1abc9c;
-            }
-            .emphasis h2
-            {
-                margin-bottom:0;
-            }
-            span.tags 
-            {
-                background: #1abc9c;
-                border-radius: 2px;
-                color: #f5f5f5;
-                font-weight: bold;
-                padding: 2px 4px;
-            }
-            .dropdown-menu 
-            {
-                background-color: #34495e;    
-                box-shadow: none;
-                -webkit-box-shadow: none;
-                width: 250px;
-                margin-left: -125px;
-                left: 50%;
-            }
-            .dropdown-menu .divider 
-            {
-                background:none;    
-            }
-            .dropdown-menu>li>a
-            {
-                color:#f5f5f5;
-            }
-            .dropup .dropdown-menu 
-            {
-                margin-bottom:10px;
-            }
-            .dropup .dropdown-menu:before 
-            {
-                content: "";
-                border-top: 10px solid #34495e;
-                border-right: 10px solid transparent;
-                border-left: 10px solid transparent;
-                position: absolute;
-                bottom: -10px;
-                left: 50%;
-                margin-left: -10px;
-                z-index: 10;
-            }
-        </style>
+        <link rel="stylesheet" href="css/profile_page_style.css">
 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Challenge, Project, Problem solving, problem">
@@ -299,7 +221,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                                 $minute = floor($hoursec / 60);
                                                 $remaining_time_own = "Remaining Time : " . $day . " Days :" . $hour . " Hours :" . $minute . " Min ";
                                             }
-                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_comp_ID_open_page . "'>" . ucfirst($title) . "</a></b><br/>" . $remaining_time_own . "<br></style>";
+                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_comp_ID_open_page . "'>" . ucfirst($title) . "</a></style><br/>" . $remaining_time_own . "<br><br>";
                                         }
                                     ?>
                                 </div>
@@ -342,8 +264,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                                 $remaining_time_own = "Remaining Time : " . $day . " Days :" . $hour . " Hours :" . $minute . " Min ";
                                             }
                                             $tooltip = "Assigned By : " . ucfirst($fname) . " " . ucfirst($lname) . " On " . $time . " ETA given : " . $remaining_time . " " . $remaining_time_own;
-                                            echo "<p align='center'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                        			data-placement='bottom' data-original-title='" . $tooltip . "' style='white-space: pre-line;'> </button><b><a href ='challengesOpen.php?challenge_id=" . $ch_owned_ID_open_page . "'>" . ucfirst($title) . "</a></b><br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>" . $remaining_time_own . "</p></p><hr/>";
+                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_owned_ID_open_page . "'>" . ucfirst($title) . "</a></style><br/>" . $remaining_time_own . "<br><br>";
                                         }
                                     ?>                                    
                                 </div>
@@ -360,7 +281,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                             $ch_title = $title_ch_createdRow['challenge_title'];
                                             $status = $title_ch_createdRow['challenge_status'];
                                             $ch_created_ID_open_page = $title_ch_createdRow['challenge_id'];
-                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_created_ID_open_page . "'>" . ucfirst($ch_title) . "</a></b><br></style>";
+                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_created_ID_open_page . "'>" . ucfirst($ch_title) . "</a></b><br><br></style>";
                                         }
                                     ?>                                   
                                 </div>
@@ -455,44 +376,9 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootswatch.js"></script>
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
+        <script src="js/date_time.js"></script>
         <script src="js/project.js"></script>
-        <script>
-            startTime();
-            function getDateTime() {
-                var now     = new Date(); 
-                var year    = now.getFullYear();
-                var month   = now.getMonth()+1; 
-                var day     = now.getDate();
-                var hour    = now.getHours();
-                var minute  = now.getMinutes();
-                var second  = now.getSeconds(); 
-                if(month.toString().length == 1) {
-                    var month = '0'+month;
-                }
-                if(day.toString().length == 1) {
-                    var day = '0'+day;
-                }   
-                if(hour.toString().length == 1) {
-                    var hour = '0'+hour;
-                }
-                if(minute.toString().length == 1) {
-                    var minute = '0'+minute;
-                }
-                if(second.toString().length == 1) {
-                    var second = '0'+second;
-                }   
-                var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
-                return dateTime;
-            }
-
-            function startTime() {
-                document.getElementById('demo').innerHTML = String(getDateTime());
-                t = setTimeout(function () {
-                    startTime()
-                }, 500);
-            }
-        </script>
+        
         <script src="js/custom.js"></script>
 
         
@@ -519,49 +405,6 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 }
             }
         </script>
-        <script type="text/javascript">
-            document.getElementById("usernameR").onblur = function() {
-
-                var xmlhttp;
-
-                var username=document.getElementById("usernameR");
-                if (username.value != ""){
-                    if (window.XMLHttpRequest){
-                        xmlhttp=new XMLHttpRequest();
-
-                    } else {
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange=function(){
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                            document.getElementById("status").innerHTML=xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
-                    xmlhttp.send();
-                }
-            };
-            document.getElementById("email").onblur = function() {
-
-                var xmlhttp;
-
-                var email=document.getElementById("email");
-                if (email.value != ""){
-                    if (window.XMLHttpRequest){
-                        xmlhttp=new XMLHttpRequest();
-
-                    } else {
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange=function(){
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                            document.getElementById("status_email").innerHTML=xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
-                    xmlhttp.send();
-                }
-            };
-        </script>
+        <script type="text/javascript" src="js/username_email_check.js"></script>
     </body>
 </html>
