@@ -5,7 +5,7 @@ include_once 'lib/db_connect.php';
 session_start();
 $challengeSearchID = $_GET['challenge_id'];
 if (isset($_POST['logout'])) {
-    header('Location: challengesOpen.php?challenge_id=' . "$challengeSearchID");
+    header('Location: challengesOpen.php?challenge_id='."$challengeSearchID");
     unset($_SESSION['user_id']);
     unset($_SESSION['first_name']);
     session_destroy();
