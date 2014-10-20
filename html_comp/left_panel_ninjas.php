@@ -38,8 +38,9 @@
                                 <input type='hidden' name='project_title' value='".$p_title."'/>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
                                 <p align='left'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;'>".$p_title."<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>".$remaining_time_own."</p></button></p></form><hr/>" ;
+                                data-placement='bottom' data-original-title='".$title."' style='white-space: pre-line;font-size:14px;'><b>".ucfirst($p_title)."</b><br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>".$remaining_time_own."</p></button></p></form>" ;
                             }
+                           echo "<a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Project</a>" ;
                         ?>
                     </div>
                     

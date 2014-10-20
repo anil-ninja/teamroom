@@ -21,7 +21,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var etad = parseInt($("#etad").val());
 			var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'project_title='+ project_title + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br>',project_stmt)) + 
+			var dataString = 'project_title='+ project_title + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',project_stmt)) + 
 			'&project_eta='+ (project_eta+='') + '&type='+ type ;
 			//alert(dataString);
 			if(project_title==''){
