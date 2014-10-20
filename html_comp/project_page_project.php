@@ -104,6 +104,7 @@
 	</thead>
 	<tbody>
 <?php 
+	$i = 0 ;
 	 $summary = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, challenge_type, challenge_status, challenge_ETA, LEFT(stmt, 90) as stmt
 											FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
 											AND challenge_type != '7' AND blob_id = '0')

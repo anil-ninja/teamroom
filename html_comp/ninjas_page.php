@@ -65,11 +65,11 @@
                     </form><br/>
                 </div></div>
 		<?php
-	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
+	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
                                             b.first_name, b.last_name, b.username from challenges as a join user_info as b where a.challenge_type = '1'
                                              and blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
+											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
 											WHERE a.challenge_type = '1' and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC ;");
 	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
@@ -80,6 +80,7 @@
 		$lstname = $open_chalangerow['last_name'] ;
         $username_ch_ninjas = $open_chalangerow['username'];
 		$chelangeid = $open_chalangerow['challenge_id'] ;
+		$status = $open_chalangerow['challenge_status'] ;
 		$times = $open_chalangerow['challenge_creation'] ;
 		$timeopen = $open_chalangerow['challenge_open_time'] ;
 		$eta = $ETA*60 ;
@@ -88,13 +89,6 @@
 		$hour = floor($daysec/(60*60)) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
-		if($day == 0) {
-			if($hour == 0){
-				$remaining_time = $minute." mins" ;	
-			}
-			else { $remaining_time = $hour." hours:".$minute." Min" ;}
-		} 
-		else { $remaining_time = $day." Days :".$hour." Hours :".$minute." Min" ; }
 		$starttimestr = (string) $times ;
 		$open = $timeopen*60 ;
         $initialtime = strtotime($starttimestr) ;
@@ -113,22 +107,34 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		echo "<div class='list-group'>
 				<div class='list-group-item'>" ;
 				
-		dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+		if($status == 1) {
 		echo "Created by &nbsp 
 				<span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>
-					<form method='POST' class='inline-form pull-right'>
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
+				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+			echo "<form method='POST' class='inline-form pull-right'>
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
-				 &nbsp&nbsp&nbsp On : ".$times."&nbsp&nbsp&nbsp ";
-		if($remaining_time_own != "Closed" ){
-			echo " ETA : ".$remaining_time ;
-			}		 
-				 
-			echo "<br/>".$remaining_time_own.
-			  "</div>
-			  <div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+				 &nbsp&nbsp&nbsp On : ".$times."&nbsp&nbsp&nbsp ";				 
+			echo "<br/>".$remaining_time_own."</div>";
+		}
+		else {
+			$ownedby = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
+												from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;") ;
+			$ownedbyrow = mysqli_fetch_array($ownedby) ;
+			$owneta = $ownedbyrow['comp_ch_ETA'] ;
+			$owntime = $ownedbyrow['ownership_creation'] ;
+			$ownfname = $ownedbyrow['first_name'] ;
+			$ownlname = $ownedbyrow['last_name'] ;
+			$ownname = $ownedbyrow['username'] ;
+			echo "Created by &nbsp 
+				<span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_ch_ninjas."'>"
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$times."<br/>
+				Owned By  <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$ownname."'>"
+				. ucfirst($ownfname). '&nbsp'. ucfirst($ownfname). " </a></span><br/>&nbsp&nbsp On : ".$owntime."</div>" ;
+			}
+			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -158,94 +164,10 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
                   <div class='comment-text'>
                       <form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$chelangeid."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 400px; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
                   </div>
              </div>";
           echo " </div> </div> ";    
   }
-  $owned_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.stmt, c.user_id, c.ownership_creation, c.comp_ch_ETA, 
-											b.first_name, b.last_name, b.username from challenges as a join user_info as b join challenge_ownership 
-											as c where a.challenge_type = '1' and blob_id = '0' and c.user_id = b.user_id and a.challenge_id = c.challenge_id
-											 and a.challenge_status = '2' ORDER BY challenge_creation DESC )
-											  UNION
-										 (SELECT DISTINCT a.challenge_id, a.challenge_title, c.stmt, d.user_id, d.ownership_creation, d.comp_ch_ETA, b.first_name,
-										  b.last_name, b.username from challenges as a join user_info as b join blobs as c join challenge_ownership
-										   as d WHERE a.challenge_type = '1' and a.challenge_id = d.challenge_id and a.blob_id = c.blob_id and
-										    d.user_id = b.user_id and a.challenge_status = '2' ORDER BY challenge_creation DESC);");
-  
-   while ($owned_challengesRow = mysqli_fetch_array($owned_challenges)) {
-			$eta = $owned_challengesRow['comp_ch_ETA'];
-			$stmt = str_replace("<s>","&nbsp;",$owned_challengesRow['stmt']) ;
-			$ch_title = $owned_challengesRow['challenge_title'];
-			$ch_id = $owned_challengesRow['challenge_id'];
-			$id = $owned_challengesRow['user_id'];
-			$namefirst = $owned_challengesRow['first_name'];
-			$namelast = $owned_challengesRow['last_name'];
-                        $username_owned_ch_ninjas = $owned_challengesRow['username'];
-			$time = $owned_challengesRow['ownership_creation'];
-			$ETA = $eta*60 ;
-			$day = floor($ETA/(24*60*60)) ;
-			$daysec = $ETA%(24*60*60) ;
-			$hour = floor($daysec/(60*60)) ;
-			$hoursec = $daysec%(60*60) ;
-			$minute = floor($hoursec/60) ;
-			$remainingtime = "to accomplish in : ".$day." Days :".$hour." Hours :".$minute." Min" ;
-			$starttimestr = (string) $time ;
-			$initialtime = strtotime($starttimestr) ;
-			$totaltime = $initialtime+$ETA ;
-			$completiontime = time() ;
-		if ($completiontime > $totaltime) { 
-			$remaining_time_own = "Time over" ; }
-	else {	$remaintime = ($totaltime-$completiontime) ;
-			$day = floor($remaintime/(24*60*60)) ;
-			$daysec = $remaintime%(24*60*60) ;
-			$hour = floor($daysec/(60*60)) ;
-			$hoursec = $daysec%(60*60) ;
-			$minute = floor($hoursec/60) ;
-			$remaining_time_own = $day." Days :".$hour." Hours :".$minute." Min " ;
-		} 
-	if($id != $user_id) {
-  echo "<div class='list-group'>
-				<div class='list-group-item'>" ;
-				
-	echo  "Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_owned_ch_ninjas."'>"
-			  .ucfirst($namefirst). '&nbsp'. ucfirst($namelast)."</a></span> &nbsp&nbsp".$remainingtime. "&nbsp&nbsp&nbsp Remaining Time : ".$remaining_time_own.
-			  "<br/></div><div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
-			   $stmt."<br/><br/> </font>";
-		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username FROM response_challenge as a
-													JOIN user_info as b WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
-												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$ch_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
-	while($commenterRow = mysqli_fetch_array($commenter)) {
-              $comment_id = $commenterRow['response_ch_id'];
-              $username_comment_owned_ch_ninjas = $commenterRow['username'];
-		echo "<div id='commentscontainer'>
-				<div class='comments clearfix'>
-					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
-					</div>
-					<div class='comment-text'>
-						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_comment_owned_ch_ninjas."'>".ucfirst($commenterRow['first_name'])."&nbsp". ucfirst($commenterRow['last_name']) ."</a></span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."";
-						dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
-          echo "</div></div></div>";
-		}
-		echo "<div class='comments clearfix'>
-                  <div class='pull-left lh-fix'>
-                     <img src='img/default.gif'>&nbsp
-                  </div>
-                  <div class='comment-text' class='inline-form'>
-                     <form action='' method='POST' class='inline-form'>
-							<input type='hidden' value='".$ch_id."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-						</form>
-                  </div>
-             </div>";
-          echo " </div></div> ";
-	  }
-	  }
-?>
