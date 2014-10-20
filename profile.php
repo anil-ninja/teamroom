@@ -376,44 +376,9 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootswatch.js"></script>
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
+        <script src="js/date_time.js"></script>
         <script src="js/project.js"></script>
-        <script>
-            startTime();
-            function getDateTime() {
-                var now     = new Date(); 
-                var year    = now.getFullYear();
-                var month   = now.getMonth()+1; 
-                var day     = now.getDate();
-                var hour    = now.getHours();
-                var minute  = now.getMinutes();
-                var second  = now.getSeconds(); 
-                if(month.toString().length == 1) {
-                    var month = '0'+month;
-                }
-                if(day.toString().length == 1) {
-                    var day = '0'+day;
-                }   
-                if(hour.toString().length == 1) {
-                    var hour = '0'+hour;
-                }
-                if(minute.toString().length == 1) {
-                    var minute = '0'+minute;
-                }
-                if(second.toString().length == 1) {
-                    var second = '0'+second;
-                }   
-                var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
-                return dateTime;
-            }
-
-            function startTime() {
-                document.getElementById('demo').innerHTML = String(getDateTime());
-                t = setTimeout(function () {
-                    startTime()
-                }, 500);
-            }
-        </script>
+        
         <script src="js/custom.js"></script>
 
         
@@ -440,49 +405,6 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 }
             }
         </script>
-        <script type="text/javascript">
-            document.getElementById("usernameR").onblur = function() {
-
-                var xmlhttp;
-
-                var username=document.getElementById("usernameR");
-                if (username.value != ""){
-                    if (window.XMLHttpRequest){
-                        xmlhttp=new XMLHttpRequest();
-
-                    } else {
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange=function(){
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                            document.getElementById("status").innerHTML=xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
-                    xmlhttp.send();
-                }
-            };
-            document.getElementById("email").onblur = function() {
-
-                var xmlhttp;
-
-                var email=document.getElementById("email");
-                if (email.value != ""){
-                    if (window.XMLHttpRequest){
-                        xmlhttp=new XMLHttpRequest();
-
-                    } else {
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange=function(){
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                            document.getElementById("status_email").innerHTML=xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
-                    xmlhttp.send();
-                }
-            };
-        </script>
+        <script type="text/javascript" src="js/username_email_check.js"></script>
     </body>
 </html>
