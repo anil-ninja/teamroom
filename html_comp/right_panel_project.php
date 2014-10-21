@@ -37,7 +37,7 @@
                                 $teamowners = mysqli_query($db_handle, ("SELECT DISTINCT team_owner FROM teams where  team_name = '$teamname' and team_owner != '0' ;")) ;
                                  $teamownersrow = mysqli_fetch_array($teamowners) ;
                                  $owner = $teamownersrow['team_owner'] ;
-								 echo "Team Name : <p align='center' style='white-space: normal;' >".ucfirst($teamname)."</p><br/>
+								 echo "Team Name : <p align='center' style='white-space: normal;' >".ucfirst($teamname)."</p>
 										<div class='dropdown'>
                                           <input class='btn btn-success btn-xs dropdown-toggle' id='dropdownMenu1' value='Add Member' data-toggle='dropdown'/>
                                             <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
@@ -48,7 +48,7 @@
                                                     <input type='hidden' name='project_id' value='" .$pro_id. "'/>
                                                     <input type='submit' class='btn-success btn-sm' name='member' value='Add '/>
                                                 </form>
-                                            </li></ul></div><br/><p align='center'>Members</p><br/>" ;
+                                            </li></ul></div><br/><p align='center'>Members</p>" ;
                                
                                if ($owner == $user_id) { 
                                
@@ -59,20 +59,11 @@
                                     $memberid = $memberrow['user_id'] ;
                                     $firstname = $memberrow['first_name'] ;
 									$lastname = $memberrow['last_name'] ;
-									$email = $memberrow['email'] ;
-                                                                        $username_profile = $memberrow['username'];
-									$phone = $memberrow['contact_no'] ;
-									$rank = $memberrow['rank'] ;
-									$profile = $email." "."Phone No. : ".$phone." "."Rank : ".$rank ;
-							echo "<form role='form' method='POST' onsubmit=\"return confirm('Really, Remove this Friend !!!')\">
-                                   <a data-toggle='tooltip' data-placement='bottom' data-original-title='".$profile."'>
-                                    <p align='center' style='white-space: normal;'><a href ='profile.php?username=".$username_profile."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a></p></a>
+                                    $username_profile = $memberrow['username'];
+							echo "<form role='form' method='POST' class='inline-form' onsubmit=\"return confirm('Really, Remove this Friend !!!')\">
+                                    <a href ='profile.php?username=".$username_profile."'>".ucfirst($firstname)." ".ucfirst($lastname)."</a>
                                      <input type='hidden' name='deleteid' value='".$memid."'/>
-                                     <input type='hidden' name='delid' value='".$memberid."'/>
-                                     <button type='submit' class='btn btn-warning btn-sm' name='delete'>
-                                          <span class='glyphicon glyphicon-trash'></span>
-                                              </button>
-                                            <br/><br/>
+                                     <input type='hidden' name='delid' value='".$memberid."'/><p align='right'><button type='submit' class='inline-form btn btn-warning btn-sm' name='delete'><span class='glyphicon glyphicon-trash'></span></button></p>
                                         </form></p>" ;
 
                                     //header('Location: project.php');
@@ -175,7 +166,7 @@
                 <form >
 					 <div class="input-group" >
                         <span class="input-group-addon">Assign To : </span>
-                         <input type="email" class="form-control" id="email" placeholder="Enter email">
+                         <input type="text" class="form-control" id="email" placeholder="Enter email or Team name ">
                       </div><br/>
                       <div class="input-group" >
                         <span class="input-group-addon">Title : </span>						

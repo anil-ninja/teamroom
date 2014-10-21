@@ -11,7 +11,13 @@
 											and a.challenge_status = '2' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id) ;" ) ;
 		while ($titlesrow =  mysqli_fetch_array($titles)) {		
 				$title = $titlesrow['challenge_title'] ;
+		if (strlen($title) > 25) {
+			$chtitle = substr(ucfirst($title),0,26)."....";
+		} else {
+				$chtitle = ucfirst($title) ;
+			}		
 				$time = $titlesrow['challenge_creation'] ;
+				$timefun = date("j F, g:i a",strtotime($time));
 				$eta = $titlesrow['challenge_ETA'] ;
 				$fname = $titlesrow['first_name'] ;
 				$lname = $titlesrow['last_name'] ;
@@ -34,9 +40,10 @@
 				$minute = floor($hoursec/60) ;
 				$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}
-				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$time." ETA given : ".$remaining_time." ".$remaining_time_own ;			
-		echo "<p align='left'><button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;font-size:14px;'><b>".ucfirst($title)."</b><br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>".$remaining_time_own."</p></button></p>" ;
+				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$timefun ;			
+		echo "<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
+				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;height: 20px; font-size:14px;'>".$chtitle."</button>
+				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p>" ;
       }
   
 ?>

@@ -19,14 +19,14 @@ if (isset($_POST['own_chl_response'])) {
         if (strlen($own_ch_response) < 1000) {
             mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, stmt) 
                                     VALUES ('$user_id', '$own_challenge_id_comment', '$own_ch_response');");
-            //header('Location: #');
+            header('Location: #');
         } else {
             mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
                                     VALUES (default, '$own_ch_response');");
             $id = mysqli_insert_id($db_handle);
             mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) 
                                     VALUES ('$user_id', '$own_challenge_id_comment', ' ', '$id');");
-            //header('Location: #');
+            header('Location: #');
         }
     }
 }
@@ -68,7 +68,7 @@ if (isset($_POST['chlange'])) {
     $your_eta = (($youreta * 30 + $youretab) * 24 + $youretac) * 60 + $youretad;
     mysqli_query($db_handle, "UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ");
     mysqli_query($db_handle, "INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)									VALUES ('$user_id', '$chalange', '$your_eta');");
-//header('Location: #');
+header('Location: #');
 }
 ?>
 <html lang="en">
@@ -102,7 +102,7 @@ if (isset($_POST['chlange'])) {
             <div class="col-md-offset-2 col-lg-6">
                 <div class='alert_placeholder'></div>
                 <?php
-                $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.*, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
+                $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id,a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                                         WHERE blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
                                     UNION
                                         (SELECT DISTINCT a.user_id, a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
@@ -112,8 +112,9 @@ if (isset($_POST['chlange'])) {
                     echo "no match found";
                 }
                 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
-                    $chelange = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
+                    $chellange_open_stmt = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
                     $ETA = $open_chalangerow['challenge_ETA'];
+                    //echo $chellange_open_stmt;
                     $ch_title = $open_chalangerow['challenge_title'];
                     $frstname = $open_chalangerow['first_name'];
                     $lstname = $open_chalangerow['last_name'];
@@ -166,7 +167,7 @@ if (isset($_POST['chlange'])) {
                 <a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                             . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " 
                 </a>
-            </span> on " . $own_created . "";
+            </span> on " . $times . "";
                     switch ($challenge_status) {
                         case 1:
                             echo $challenge_createdBY;
@@ -199,7 +200,7 @@ if (isset($_POST['chlange'])) {
 
                 echo "<br><br></div>";
                     echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>" . ucfirst($ch_title) . "</b></p><br/>" .
-                    $chelange . "<br/><br/>";
+                    $chellange_open_stmt . "<br/><br/>";
                     $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                                 JOIN user_info as b WHERE a.challenge_id = $challengeSearchID AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                             UNION
@@ -349,42 +350,7 @@ if (isset($_POST['chlange'])) {
         <script src="js/bootswatch.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
         <script src="js/project.js"></script>
-        <script>
-            startTime();
-            function getDateTime() {
-                var now     = new Date(); 
-                var year    = now.getFullYear();
-                var month   = now.getMonth()+1; 
-                var day     = now.getDate();
-                var hour    = now.getHours();
-                var minute  = now.getMinutes();
-                var second  = now.getSeconds(); 
-                if(month.toString().length == 1) {
-                    var month = '0'+month;
-                }
-                if(day.toString().length == 1) {
-                    var day = '0'+day;
-                }   
-                if(hour.toString().length == 1) {
-                    var hour = '0'+hour;
-                }
-                if(minute.toString().length == 1) {
-                    var minute = '0'+minute;
-                }
-                if(second.toString().length == 1) {
-                    var second = '0'+second;
-                }   
-                var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
-                return dateTime;
-            }
-
-            function startTime() {
-                document.getElementById('demo').innerHTML = String(getDateTime());
-                t = setTimeout(function () {
-                    startTime()
-                }, 500);
-            }
-        </script>
+        <script src="js/date_time.js"></script>
         <script src="js/custom.js"></script>
 
         
@@ -411,49 +377,8 @@ if (isset($_POST['chlange'])) {
                 }
             }
         </script>
-        <script type="text/javascript">
-            document.getElementById("usernameR").onblur = function() {
-
-                var xmlhttp;
-
-                var username=document.getElementById("usernameR");
-                if (username.value != ""){
-                    if (window.XMLHttpRequest){
-                        xmlhttp=new XMLHttpRequest();
-
-                    } else {
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange=function(){
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                            document.getElementById("status").innerHTML=xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
-                    xmlhttp.send();
-                }
-            };
-            document.getElementById("email").onblur = function() {
-
-                var xmlhttp;
-
-                var email=document.getElementById("email");
-                if (email.value != ""){
-                    if (window.XMLHttpRequest){
-                        xmlhttp=new XMLHttpRequest();
-
-                    } else {
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange=function(){
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                            document.getElementById("status_email").innerHTML=xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
-                    xmlhttp.send();
-                }
-            };
+        <script type="text/javascript" src="js/username_email_check.js">
+            
         </script>
     </body>
 </html>
