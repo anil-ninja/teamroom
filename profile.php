@@ -93,6 +93,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
                                 <?php echo "<img src='uploads/profilePictures/$UserName.jpg'  onError=this.src='img/default.gif' class='img-circle img-responsive'>"; ?>
+                                <b> <a data-toggle='modal' style="cursor: pointer" data-target='#uploadPicture'>Change Picture</a> </b>
                                 <figcaption class="ratings">
                                     <p>Ratings
                                         <a href="#">
@@ -150,9 +151,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                         </div>
                     </div>
                 </div>
-                
-            </div>
-        
+                </div>
             <div class="col-lg-3">
                 <div class="well profile">
                     <p>  In-contact with Friends </p>
@@ -175,8 +174,6 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 </div>                 
             </div>
         </div>
-        
-        
         <div class="row">
             <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
@@ -294,8 +291,74 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                     </div>
                 </div>
             </div>
-        </div>          
-            
+        </div>      
+        <script>
+            $(document).ready(function(){
+                $("#upload_image").click(function(){
+      		//$("#upload_image").attr('disabled','disabled');
+			var file = $("#file").val() ;
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'profilepic=true&file='+file;
+			//alert(dataString);
+			if(file==''){
+				bootstrap_alert(".alert_placeholder", "Please select an image", 5000,"alert-warning");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+			$.ajax({
+				type: "POST",
+				url: "ajax/upload_file.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result=='Image uploaded succesfully!'){
+                                            $("#file").val("");
+                                            location.reload();
+					}
+				}
+			});
+			}
+                $("#create_article").removeAttr('disabled');
+			return false;
+		});
+});
+            </script>
+            <!---Modal --->
+            <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:auto; height:auto">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+                        
+                        <div class='alert_placeholder'></div>
+                    </div>
+                    <div class="modal-body">
+                        <br/>
+                        <div class="input-group">
+                           
+                            <input class="btn btn-default btn-sm" type="file" id="file" style ="width: auto;"><br>
+                        </div>
+                       <br/>
+                        <input class="btn btn-default btn-sm" type="submit" id="upload_image" value="Upload"><br>
+                    </div>
+
+                    <div class  ="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
+                  
+            </form>
+            <!---End OF Modal --->
               <!-- Modal -->
         <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">

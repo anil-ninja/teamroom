@@ -75,7 +75,7 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 						</form>
 		</div>";
 	
-	echo '</tr> </div> </div>';
+	echo '</div> </div>';
     }
 ?>
 
