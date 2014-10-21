@@ -221,7 +221,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                                 $minute = floor($hoursec / 60);
                                                 $remaining_time_own = "Remaining Time : " . $day . " Days :" . $hour . " Hours :" . $minute . " Min ";
                                             }
-                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_comp_ID_open_page . "'>" . ucfirst($title) . "</a></style><br/>" . $remaining_time_own . "<br><br>";
+                                            echo "<p align='left'><style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_comp_ID_open_page . "'>" . ucfirst($title) . "</a></style><br/>" . $remaining_time_own . "<br><br></p>";
                                         }
                                     ?>
                                 </div>
@@ -263,8 +263,12 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                                 $minute = floor($hoursec / 60);
                                                 $remaining_time_own = "Remaining Time : " . $day . " Days :" . $hour . " Hours :" . $minute . " Min ";
                                             }
-                                            $tooltip = "Assigned By : " . ucfirst($fname) . " " . ucfirst($lname) . " On " . $time . " ETA given : " . $remaining_time . " " . $remaining_time_own;
-                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_owned_ID_open_page . "'>" . ucfirst($title) . "</a></style><br/>" . $remaining_time_own . "<br><br>";
+                                            $tooltip = "Assigned By :" . ucfirst($fname) . " " . ucfirst($lname) . " On " . $time . " ETA given : " . $remaining_time . " " . $remaining_time_own;
+                                            echo "<p align='left'>
+                                                    <style='white-space: pre-line;'>
+                                                        <b><a href ='challengesOpen.php?challenge_id=" . $ch_owned_ID_open_page . "'>" . ucfirst($title) . "</a></b>
+                                                    </style><br>" . $remaining_time_own . "<br><br>
+                                                </p>";
                                         }
                                     ?>                                    
                                 </div>
@@ -281,7 +285,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                             $ch_title = $title_ch_createdRow['challenge_title'];
                                             $status = $title_ch_createdRow['challenge_status'];
                                             $ch_created_ID_open_page = $title_ch_createdRow['challenge_id'];
-                                            echo "<style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_created_ID_open_page . "'>" . ucfirst($ch_title) . "</a></b><br><br></style>";
+                                            echo "<p align='left'><style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_created_ID_open_page . "'>" . ucfirst($ch_title) . "</a></b><br><br></style></p>";
                                         }
                                     ?>                                   
                                 </div>

@@ -1,5 +1,4 @@
 <?php
-//include_once "controllers/login_controller.php";
 include_once 'functions/delete_comment.php';
 include_once 'lib/db_connect.php';
 session_start();
@@ -10,6 +9,11 @@ if (isset($_POST['logout'])) {
     unset($_SESSION['first_name']);
     session_destroy();
     exit;
+}
+function public_challenge_check ($db_handle, $user_id, $challenge_id) {
+    $public_Private = mysqli_query($db_handle, "SELECT b.user_id FROM challenges as a JOIN teams as b WHERE a.challenge_id = $challenge_id AND a.project_id=b.project_id and b.user_id = $user_id;");
+    $public_PrivateRow = mysqli_num_rows($public_Private);
+    return $public_PrivateRow;
 }
 if (isset($_POST['own_chl_response'])) {
     $user_id = $_SESSION['user_id'];
@@ -100,8 +104,22 @@ header('Location: #');
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
         <div class="row">
             <div class="col-md-offset-2 col-lg-6">
-                <div class='alert_placeholder'></div>
                 <?php
+                $private_check = mysqli_query($db_handle, "SELECT challenge_type FROM challenges WHERE challenge_id = $challengeSearchID");
+                $private_checkRow = mysqli_fetch_array($private_check);
+                $private_ch_type = $private_checkRow['challenge_type'];
+                if (!isset($_SESSION['user_id']) AND $private_ch_type == 2) {
+                    include_once 'html_comp/error.html';
+                    //exit;
+                }
+                elseif (isset($_SESSION['user_id']) AND $private_ch_type == 2) {
+                    $userID = $_SESSION['user_id'];
+                    $public_ch_fn = public_challenge_check($db_handle, $userID, $challengeSearchID);
+                    if ($public_ch_fn == 0 ) {
+                        include_once 'html_comp/error.html';
+                        //exit;
+                    }
+                } else {       
                 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id,a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                                         WHERE blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
                                     UNION
@@ -109,11 +127,12 @@ header('Location: #');
                                         WHERE a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
                 $emptySearch = mysqli_num_rows($open_chalange);
                 if ($emptySearch == 0) {
-                    echo "no match found";
+                    include_once 'html_comp/error.html';
                 }
                 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     $chellange_open_stmt = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
                     $ETA = $open_chalangerow['challenge_ETA'];
+                    $user_userID = $open_chalangerow['user_id'];
                     //echo $chellange_open_stmt;
                     $ch_title = $open_chalangerow['challenge_title'];
                     $frstname = $open_chalangerow['first_name'];
@@ -158,16 +177,12 @@ header('Location: #');
                     }
                     echo "<div class='list-group'>
                     <div class='list-group-item'>";
-                    if (isset($_SESSION['user_id'])) {
-                        $userID = $_SESSION['user_id'];
-                        dropDown_challenge($db_handle, $chelangeid, $userID, $remaining_time_own);
-                    }
-                    $challenge_createdBY = "Created by &nbsp
-            <span class='color strong' style= 'color :lightblue;'>
-                <a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " 
-                </a>
-            </span> on " . $times . "";
+                        $challenge_createdBY = "Created by &nbsp
+                            <span class='color strong' style= 'color :lightblue;'>
+                                <a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " 
+                                </a>
+                            </span> on " . $times . "";
                     switch ($challenge_status) {
                         case 1:
                             echo $challenge_createdBY;
@@ -250,8 +265,8 @@ header('Location: #');
                             }
                         echo "</div>
                         </div>";
-                    echo " </div> </div> </div>            
-";
+                    echo " </div> </div> </div>";
+                }
                 }
                 ?>
             </div>
