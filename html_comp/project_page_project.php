@@ -72,7 +72,7 @@
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'><a href ='profile.php?username=".$username_pr_comment."'>".ucfirst($frstnam)." ".ucfirst($lnam)."</a>&nbsp</span> 
@@ -85,7 +85,7 @@
 	}
 	echo "<div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
-			<img src='img/default.gif'>&nbsp
+			<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>
 			
 				<form method='POST' class='inline-form'>
@@ -222,7 +222,7 @@
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_notes_comment.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_notes_comment."'>". ucfirst($fstname)." ".ucfirst($lstname)."</a>&nbsp</span> 
@@ -235,7 +235,7 @@
 		}
 		echo "<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>&nbsp
+					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 				</div>
 				<form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$note_ID."' name='own_challen_id' />
@@ -338,7 +338,7 @@ echo "<div class='panel-heading'>
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_notes_comment.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>
@@ -350,7 +350,7 @@ echo "<div class='panel-heading'>
 		}
 		echo "<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>&nbsp
+					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 				</div>
 				<form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$CID."' name='own_challen_id' />
