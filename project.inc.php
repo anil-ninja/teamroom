@@ -19,20 +19,32 @@ $eta = $project_idrow['project_ETA'] ;
 $creater_id = $project_idrow['user_id'] ;
 $title = $project_idrow['project_title'] ;
 $starttime = $project_idrow['project_creation'] ;
-$starttimestr = (string) $starttime ;
-$initialtime = strtotime($starttimestr) ;
+$timef = date("j F, g:i a",strtotime($starttime));
+$initialtimepr = strtotime($starttime) ;
 $ETA = $eta*60 ;
-$totaltime = $initialtime+$ETA ;
-$completiontime = time() ;
-if ($completiontime > $totaltime) { 
-	$remaining_time = "Closed" ; }
-else {	$remainingtime = ($totaltime-$completiontime) ;
-		$day = floor($remainingtime/(24*60*60)) ;
-		$daysec = $remainingtime%(24*60*60) ;
-		$hour = floor($daysec/(60*60)) ;
-		$hoursec = $daysec%(60*60) ;
-		$minute = floor($hoursec/60) ;
-		$remaining_time ="Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
+$totaltimepr = $initialtimepr+$ETA ;
+$completiontimepr = time() ;
+if ($completiontimepr > $totaltimepr) { 
+	$remaining_timepr = "Closed" ; }
+else {	$remainingtimepr = ($totaltimepr-$completiontimepr) ;
+		$daypr = floor($remainingtimepr/(24*60*60)) ;
+		$daysecpr = $remainingtimepr%(24*60*60) ;
+		$hourpr = floor($daysecpr/(60*60)) ;
+		$hoursecpr = $daysecpr%(60*60) ;
+		$minutepr = floor($hoursecpr/60) ;
+		if ($totaltimepr > ((24*60*60)-1)) {
+		if($hourpr != 0) {
+		$remaining_timepr = $daypr." Days and ".$hourpr." Hours" ;
+		} else {
+			$remaining_timepr = $daypr." Days" ;
+			}
+	} else {
+			if (($totaltimepr < ((24*60*60)-1)) AND ($totaltimepr > ((60*60)-1))) {
+				$remaining_timepr = $hourpr." Hours and ".$minutepr." Mins" ;
+				} else {
+					$remaining_timepr = $minutepr." Mins" ;
+					}
+		}
 }		
 
 if (isset($_POST['resp_project'])) {
