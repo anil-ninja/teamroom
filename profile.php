@@ -174,6 +174,8 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 </div>                 
             </div>
         </div>
+        <a class="UploadButton" id="UploadButton">UpladFile</a>
+<div id="InfoBox"></div>
         <div class="row">
             <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
@@ -293,37 +295,40 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
             </div>
         </div>      
         <script>
+			
             $(document).ready(function(){
-                $("#upload_image").click(function(){
-      		//$("#upload_image").attr('disabled','disabled');
-			var file = $("#file").val() ;
-			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'profilepic=true&file='+file;
-			//alert(dataString);
-			if(file==''){
-				bootstrap_alert(".alert_placeholder", "Please select an image", 5000,"alert-warning");
-			}
-			else
-			{
-			// AJAX Code To Submit Form.
-			$.ajax({
-				type: "POST",
-				url: "ajax/upload_file.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Image uploaded succesfully!'){
-                                            $("#file").val("");
-                                            location.reload();
-					}
-				}
-			});
-			}
-                $("#create_article").removeAttr('disabled');
-			return false;
-		});
+			
+var _submit = document.getElementById('upload_image'), 
+_file = document.getElementById('_file'), 
+_progress = document.getElementById('_progress');
+
+var upload = function(){
+
+    if(_file.files.length === 0){
+        return;
+    }
+
+    var data = new FormData();
+    data.append('file', _file.files[0]);
+
+    var request = new XMLHttpRequest();
+    request.onreadystatechange = function(){
+        if(request.readyState == 4){
+            
+            alert(request.response);
+        }
+    };
+
+    request.upload.addEventListener('progress', function(e){
+        _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
+    }, false);
+
+    request.open('POST', 'ajax/upload_file.php?profilepic=true');
+    request.send(data);
+}
+
+upload_image.addEventListener('click', upload);
+
 });
             </script>
             <!---Modal --->
@@ -341,9 +346,10 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                     </div>
                     <div class="modal-body">
                         <br/>
+                        <div id='_progress' class='progress'></div>
                         <div class="input-group">
                            
-                            <input class="btn btn-default btn-sm" type="file" id="file" style ="width: auto;"><br>
+                            <input class="btn btn-default btn-sm" type="file" id="_file" style ="width: auto;"><br>
                         </div>
                        <br/>
                         <input class="btn btn-default btn-sm" type="submit" id="upload_image" value="Upload"><br>
@@ -441,6 +447,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
         <!--end modle-->
         
         <script src="js/jquery.js"></script>
+        <script src="js/ajaxupload-v1.2.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootswatch.js"></script>
         <script src="js/date_time.js"></script>
