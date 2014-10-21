@@ -119,7 +119,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     function show_search_results(challenges){
         var resp = "";
         for (var i = 0; i < challenges.length; i++) {
-            resp = resp + "<B>"+challenges[i].challenge_title+"</B><br>"+challenges[i].stmt+"<br>"; 
+            resp = resp + "<a href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>"+challenges[i].stmt+"<br>"; 
         }
         return resp;
     }
