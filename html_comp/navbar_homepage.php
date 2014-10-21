@@ -59,7 +59,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 <li>
                     <div class='dropdown'>
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; text-decoration: none;">Projects<span class='caret'></span></p></a>
-                        <ul class='dropdown-menu multi-level' role='menu' style="  max-height:400px; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
+                        <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
                             <?php
                                             session_start();
                             $user_id = $_SESSION['user_id'];
