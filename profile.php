@@ -120,17 +120,17 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                         <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
                             <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Created </button>
+                            <button class="btn btn-success btn-block" id='chcre'><span class="fa fa-plus-circle"></span> Created </button>
                         </div>
                         <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong> <?php echo $totalChallengeCompleted; ?> </strong></h2>                    
                             <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
+                            <button class="btn btn-success btn-block" id='chcomp'><span class="glyphicon glyphicon-ok"></span> Completed </button>
                         </div>
                         <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong><?php echo $totaLChallengeProgress; ?> </strong></h2>                    
                             <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
+                            <button class="btn btn-success btn-block" id='chown'><span class="glyphicon glyphicon-fire"></span> In-progress </button>
                         </div>
                     </div>
                     <div class="col-xs-12 divider text-center">
@@ -174,8 +174,30 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                 </div>                 
             </div>
         </div>
-        <a class="UploadButton" id="UploadButton">UpladFile</a>
 <div id="InfoBox"></div>
+        <script>
+$(document).ready(function(){
+	$("#challegeForm").toggle();
+  $("#chcomp").click(function(){
+  	$("#challegeownForm").hide(1500);
+  	$("#challegecreForm").hide(1500);
+    $("#challegeForm").toggle(3000);
+  });
+
+  $("#challegeownForm").toggle();
+  $("#chown").click(function(){
+  	$("#challegecreForm").hide(1500);
+  	$("#challegeForm").hide(1500);
+    $("#challegeownForm").toggle(3000);
+  });
+  $("#challegecreForm").toggle();
+  $("#chcre").click(function(){
+  	$("#challegeownForm").hide(1500);
+  	$("#challegeForm").hide(1500);
+    $("#challegecreForm").toggle(3000);
+  });
+});
+</script>
         <div class="row">
             <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
@@ -183,7 +205,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                         <div class="col-xs-12 col-sm-12">
                             <div class="col-xs-12 divider text-center">
                                 <div class="col-xs-12 col-sm-4 emphasis">
-                                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span> Challenges Completed </button>
+                                    <div id='challegeForm'>
                                     <?php
                                         $title_ch_comp = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
                                                                                     FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$profileViewUserID' AND a.challenge_type = '5'
@@ -223,9 +245,10 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                             echo "<p align='left'><style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_comp_ID_open_page . "'>" . ucfirst($title) . "</a></style><br/>" . $remaining_time_own . "<br><br></p>";
                                         }
                                     ?>
+                                    </div>
                                 </div>
                                 <div class="col-xs-12 col-sm-4 emphasis">
-                                    <button class="btn btn-success btn-block"><span class="glyphicon glyphicon-ok"></span>Challenges Owned</button>
+                                    <div id='challegeownForm'>
                                     <?php
                                         $title_ch_owned = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
                                                                                     FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$profileViewUserID' AND (a.challenge_type = '1' OR a.challenge_type = '2') 
@@ -269,10 +292,11 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                                     </style><br>" . $remaining_time_own . "<br><br>
                                                 </p>";
                                         }
-                                    ?>                                    
+                                    ?> 
+                                    </div>                                   
                                 </div>
                                 <div class="col-xs-12 col-sm-4 emphasis">
-                                    <button class="btn btn-success btn-block"><span class="fa fa-plus-circle"></span>Challenges Created</button>
+                                     <div id='challegecreForm'>
                                     <?php
                                         $title_ch_created = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_status, challenge_title, user_id, challenge_ETA, challenge_creation from challenges where
                                                                                         user_id = '$profileViewUserID' ORDER BY challenge_creation DESC ;");
@@ -286,7 +310,8 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                                             $ch_created_ID_open_page = $title_ch_createdRow['challenge_id'];
                                             echo "<p align='left'><style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_created_ID_open_page . "'>" . ucfirst($ch_title) . "</a></b><br><br></style></p>";
                                         }
-                                    ?>                                   
+                                    ?> 
+                                    </div>                                  
                                 </div>
                             </div>
                         </div>
