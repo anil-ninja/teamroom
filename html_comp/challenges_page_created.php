@@ -53,7 +53,7 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 			echo "<div id='commentscontainer'>
 					<div class='comments clearfix'>
 						<div class='pull-left lh-fix'>
-							<img src='img/default.gif'>
+							<img src='uploads/profilePictures/$username_commenter.jpg'  onError=this.src='img/default.gif'>
 						</div>
 						<div class='comment-text'>
 							<span class='pull-left color strong'>";
@@ -66,7 +66,7 @@ while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 		}
 	echo "<div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
-				<img src='img/default.gif'>&nbsp
+				<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>
 			<form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$chall_id."' name='own_challen_id' />

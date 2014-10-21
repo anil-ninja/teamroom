@@ -11,12 +11,19 @@
 		$lname = $project_idrow['last_name'];
         $username_project = $project_idrow['username'];
 		$projecteta = $project_idrow['project_ETA'];
-		$day = floor(($projecteta*60)/(24*60*60)) ;
-		$daysec = ($projecteta*60)%(24*60*60) ;
-		$hour = floor($daysec/(60*60)) ;
-		$hoursec = $daysec%(60*60) ;
-		$minute = floor($hoursec/60) ;
-		$projectETA = $day." Days :".$hour." Hours :".$minute." Min" ;
+		$daypr = floor(($projecteta)/(24*60)) ;
+		$daysecpr = ($projecteta)%(24*60) ;
+		$hourpr = floor($daysecpr/(60)) ;
+		$minutepr = $daysecpr%(60) ;
+		if($projecteta > 1439) {
+			$timepr = $daypr." days" ;
+		}
+		else {
+			if(($projecteta < 1439) AND ($projecteta > 59)) {
+				$timepr = $hourpr." hours" ;	
+			}
+			else { $timepr = $minutepr." mins" ; }
+		}
 					
 	echo "<div class='list-group'>
 				<div class='list-group-item'>";
@@ -47,7 +54,7 @@
             </div>";
 	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 			<a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
-			</span>  on &nbsp".$starttime. " <br/> with ETA in &nbsp".$projectETA. " <br>".$remaining_time." <br>
+			</span>  on &nbsp".$timef. " <br/> with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
 			<span class='color strong' style= 'color :lightblue;'><p align='center'>".ucfirst($title)."</p></span>
 			".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
@@ -65,7 +72,7 @@
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'><a href ='profile.php?username=".$username_pr_comment."'>".ucfirst($frstnam)." ".ucfirst($lnam)."</a>&nbsp</span> 
@@ -78,7 +85,7 @@
 	}
 	echo "<div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
-			<img src='img/default.gif'>&nbsp
+			<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>
 			
 				<form method='POST' class='inline-form'>
@@ -215,7 +222,7 @@
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_notes_comment.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_notes_comment."'>". ucfirst($fstname)." ".ucfirst($lstname)."</a>&nbsp</span> 
@@ -228,7 +235,7 @@
 		}
 		echo "<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>&nbsp
+					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 				</div>
 				<form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$note_ID."' name='own_challen_id' />
@@ -254,14 +261,23 @@ echo "<div class='panel-heading'>
 				$CIDeta = $closedrow['challenge_ETA'] ;
 				$CIDstmt = $closedrow['stmt'] ;
 				$CIDtime = $closedrow['challenge_creation'] ;
+				$timeCID = date("j F, g:i a",strtotime($CIDtime));
 				$CIDfname = $closedrow['first_name'] ;
 				$CIDlname = $closedrow['last_name'] ;
 				$CIDname = $closedrow['username'] ;
-				$day = floor($CIDeta/(24*60)) ;
-				$daysec = $CIDeta%(24*60) ;
-				$hour = floor($daysec/(60)) ;
-				$minute = $daysec%(60) ;
-				$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
+				$dayD = floor($CIDeta/(24*60)) ;
+				$daysecD = $CIDeta%(24*60) ;
+				$hourD = floor($daysecD/(60)) ;
+				$minuteD = $daysecD%(60) ;
+	if($CIDeta > 1439) {
+			$timeD = $dayD." days" ;
+		}
+		else {
+			if(($CIDeta < 1439) AND ($CIDeta > 59)) {
+				$timeD = $hourD." hours" ;	
+			}
+			else { $timeD = $minuteD." mins" ; }
+		}
 		$complete = mysqli_query($db_handle, "select a.user_id, a.ownership_creation, a.time, b.first_name, b.last_name, b.username from challenge_ownership as a 
 											join user_info as b where a.challenge_id = '$CID' and a.user_id = b.user_id ;") ;
 		$completerow = mysqli_fetch_array($complete) ;
@@ -269,18 +285,25 @@ echo "<div class='panel-heading'>
 				$Cfname = $completerow['first_name'] ;							
 				$Cname = $completerow['username'] ;							
 				$Ctime = $completerow['time'] ;							
-				$Ccreation = $completerow['ownership_creation'] ;							
-				$starttimestr = (string) $Ccreation ;
-				$andtimestr = (string) $Ctime ;
-				$initialtime = strtotime($starttimestr) ;
-				$endingtime = strtotime($andtimestr) ;
-				$totaltime =$endingtime-$initialtime ;
-				$day = floor($totaltime/(24*60*60)) ;
-				$daysec = $totaltime%(24*60*60) ;
-				$hour = floor($daysec/(60*60)) ;
-				$hoursec = $daysec%(60*60) ;
-				$minute = floor($hoursec/60) ;
-				$remaining_time = $day." Days :".$hour." Hours :".$minute." Min " ;
+				$Ccreation = $completerow['ownership_creation'] ;
+				$timeC = date("j F, g:i a",strtotime($Ctime));
+				$initialtimeC = strtotime($Ccreation) ;
+				$endingtimeC = strtotime($Ctime) ;
+				$totaltimeC =$endingtimeC-$initialtimeC ;
+				$dayC = floor($totaltimeC/(24*60*60)) ;
+				$daysecC = $totaltimeC%(24*60*60) ;
+				$hourC = floor($daysecC/(60*60)) ;
+				$hoursecC = $daysecC%(60*60) ;
+				$minuteC = floor($hoursecC/60) ;
+		if($totaltimeC > ((24*60*60)-1)) {
+			$timeC = $dayC." days" ;
+		}
+		else {
+			if(($totaltimeC < ((24*60*60)-1)) AND ($totaltimeC > ((60*60)-1))) {
+				$timeC = $hourC." hours" ;	
+			}
+			else { $timeC = $minuteC." mins" ; }
+		}
 		$ans = 	mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id= '$CID' and blob_id = '0') UNION (select b.stmt from 
 										response_challenge as a join blobs as b where a.challenge_id= '$CID' and a.blob_id = b.blob_id);") ;	
 			$ansrow = mysqli_fetch_array($ans) ;
@@ -289,11 +312,11 @@ echo "<div class='panel-heading'>
 				<div class='list-group-item'>
 					Challenge Created By : <span color strong' style= 'color :lightblue;'>
 					<a href ='profile.php?username=".$CIDname."'>".ucfirst($CIDfname)." ".ucfirst($CIDlname)."</a></span>
-					&nbsp&nbsp&nbsp&nbsp On : ".$CIDtime."<br/>
+					&nbsp&nbsp&nbsp&nbsp On : ".$timeCID."<br/>
 					ETA Given : ".$remainingtime." <br/>
 					Challenge Accepted and Sumitted By : <span color strong' style= 'color :lightblue;'>
 					<a href ='profile.php?username=".$Cname."'>".ucfirst($Cfname)." ".ucfirst($Clname)."</a></span>
-					&nbsp&nbsp&nbsp&nbsp On : ".$Ctime."<br/>
+					&nbsp&nbsp&nbsp&nbsp On : ".$timeC."<br/>
 					ETA Taken : ".$remaining_time." <br/>
 					<p align='center' style='font-size: 14pt;color :lightblue;'>".ucfirst($CIDtitle)."</p><br/>
 					<small>".$CIDstmt."</small><br/>
@@ -315,7 +338,7 @@ echo "<div class='panel-heading'>
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_notes_comment.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>
@@ -327,7 +350,7 @@ echo "<div class='panel-heading'>
 		}
 		echo "<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>&nbsp
+					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 				</div>
 				<form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$CID."' name='own_challen_id' />

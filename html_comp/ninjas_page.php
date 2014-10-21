@@ -1,6 +1,40 @@
-        
+        <script>
+$(document).ready(function(){
+	$("#challegeForm").toggle();
+  $("#challenge").click(function(){
+  	$("#ArticleForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#VideoForm").hide(1500);
+    $("#challegeForm").toggle(3000);
+  });
+
+  $("#ArticleForm").toggle();
+  $("#artical").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#VideoForm").hide(1500);
+    $("#ArticleForm").toggle(3000);
+  });
+  $("#PictureForm").toggle();
+  $("#picture").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").toggle(1500);
+  	$("#VideoForm").hide(1500);
+    $("#ArticleForm").hide(3000);
+  });
+  $("#VideoForm").toggle();
+  $("#video").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#VideoForm").toggle(1500);
+    $("#ArticleForm").hide(3000);
+  });
+});
+</script>
 				   <div class='list-group'>
+				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge'> Challenge</span> | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical'> Artical</span> | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture'> Photos</span> | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video'> Videos</span></div>
 				<div class='list-group-item'>
+				<div id='challegeForm'>
                   <form>
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
                          <br>
@@ -62,7 +96,23 @@
                         </select><br/><br/>                          
                         <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                         </div>
-                    </form><br/>
+                    </form>
+                    </div>
+                    <div id='ArticleForm'>
+                        <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
+                        <textarea rows="3" class="form-control" id="article" placeholder="article"></textarea><br><br>
+                        <input type="submit" value="Post" class="btn btn-success" id="create_article"/>
+                    </div>
+                    <div id='PictureForm'>
+                        <input type='text' class="form-control" id="picture_title" placeholder="Title"/><br>
+                        <textarea rows="3" class="form-control" id="picture" placeholder="picture"></textarea><br><br>
+                        <input type="button" value="Post" class="btn btn-success" id="create_picture"/>
+                    </div>
+                    <div id='VideoForm'>
+                        <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
+                        <textarea rows="3" class="form-control" id="article" placeholder="Upload Videos"></textarea><br><br>
+                        <input type="button" value="Post" class="btn btn-success" id="create_article"/>
+                    </div><br/>
                 </div></div>
 		<?php
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
@@ -88,6 +138,15 @@
 		$daysec = $ETA%(24*60) ;
 		$hour = floor($daysec/(60)) ;
 		$minute = $daysec%(60) ;
+		if($ETA > 1439) {
+			$sutime = $day." days" ;
+		}
+		else {
+			if(($ETA < 1439) AND ($ETA > 59)) {
+				$sutime = $hour." hours" ;	
+			}
+			else { $sutime = $minute." mins" ; }
+		}
 		$starttimestr = (string) $times ;
         $initialtime = strtotime($starttimestr) ;
 		$totaltime = $initialtime+($ETA+$timeopen)*60 ;
@@ -100,22 +159,34 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		$hour = floor($daysec/(60*60)) ;
 		$hoursec = $daysec%(60*60) ;
 		$minute = floor($hoursec/60) ;
-		$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
+	if ($totaltime > ((24*60*60)-1)) {
+		if($hour != 0) {
+		$remaining_time_own = $day." Days and ".$hour." Hours" ;
+		} else {
+			$remaining_time_own = $day." Days" ;
+			}
+	} else {
+			if (($totaltime < ((24*60*60)-1)) AND ($totaltime > ((60*60)-1))) {
+				$remaining_time_own = $hour." Hours and ".$minute." Mins" ;
+				} else {
+					$remaining_time_own = $minute." Mins" ;
+					}
+		}
+			
 }
 		echo "<div class='list-group'>
 				<div class='list-group-item'>" ;
 				
 		if($status == 1) {
 		echo "Created by &nbsp 
-				<span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
+				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
 				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
 			echo "<form method='POST' class='inline-form pull-right'>
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
-				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp ";				 
-			echo "<br/>".$remaining_time_own."</div>";
+				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaining_time_own."</div>";
 		}
 		else {
 			$ownedby = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
@@ -127,13 +198,53 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$ownfname = $ownedbyrow['first_name'] ;
 			$ownlname = $ownedbyrow['last_name'] ;
 			$ownname = $ownedbyrow['username'] ;
-			echo "Created by &nbsp 
-				<span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_ch_ninjas."'>"
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
-				Owned By  <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$ownname."'>"
-				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct."</div>" ;
+			$dayo = floor($owneta/(24*60)) ;
+		$dayseco = $owneta%(24*60) ;
+		$houro = floor($daysec/(60)) ;
+		$minuteo = $daysec%(60) ;
+		if($owneta > 1439) {
+			$timeo = $dayo." days" ;
+		}
+		else {
+			if(($owneta < 1439) AND ($owneta > 59)) {
+				$timeo = $houro." hours" ;	
 			}
-			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+			else { $timeo = $minuteo." mins" ; }
+		}
+		$starttimestro = (string) $owntime ;
+        $initialtimeo = strtotime($starttimestro) ;
+		$totaltimeo = $initialtimeo+($owneta*60) ;
+		$completiontimeo = time() ;
+if ($completiontimeo > $totaltimeo) { 
+	$remaining_time_owno = "Closed" ; }
+else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
+		$dayow = floor($remainingtimeo/(24*60*60)) ;
+		$daysecow = $remainingtimeo%(24*60*60) ;
+		$hourow = floor($daysecow/(60*60)) ;
+		$hoursecow = $daysecow%(60*60) ;
+		$minuteow = floor($hoursecow/60) ;
+	if ($totaltimeo > ((24*60*60)-1)) {
+		if($hourow != 0) {
+		$remaining_time_owno = $dayow." Days and ".$hourow." Hours" ;
+		} else {
+			$remaining_time_owno = $dayow." Days" ;
+			}
+	} else {
+			if (($totaltimeo < ((24*60*60)-1)) AND ($totaltimeo > ((60*60)-1))) {
+				$remaining_time_owno = $hourow." Hours and ".$minuteow." Mins" ;
+				} else {
+					$remaining_time_owno = $minuteow." Mins" ;
+					}
+		}
+			
+}
+			echo "Created by &nbsp 
+				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
+				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
+				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaining_time_owno."</div>" ;
+			}
+			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -147,7 +258,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_comment_ninjas."'>".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</a></span>
@@ -158,7 +269,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>
-                     <img src='img/default.gif'>
+                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>
                   </div>
                   <div class='comment-text' >
                       <form action='' method='POST' class='inline-form'>

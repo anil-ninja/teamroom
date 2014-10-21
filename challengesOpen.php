@@ -1,5 +1,4 @@
 <?php
-//include_once "controllers/login_controller.php";
 include_once 'functions/delete_comment.php';
 include_once 'lib/db_connect.php';
 session_start();
@@ -10,6 +9,11 @@ if (isset($_POST['logout'])) {
     unset($_SESSION['first_name']);
     session_destroy();
     exit;
+}
+function public_challenge_check ($db_handle, $user_id, $challenge_id) {
+    $public_Private = mysqli_query($db_handle, "SELECT b.user_id FROM challenges as a JOIN teams as b WHERE a.challenge_id = $challenge_id AND a.project_id=b.project_id and b.user_id = $user_id;");
+    $public_PrivateRow = mysqli_num_rows($public_Private);
+    return $public_PrivateRow;
 }
 if (isset($_POST['own_chl_response'])) {
     $user_id = $_SESSION['user_id'];
@@ -70,6 +74,19 @@ if (isset($_POST['chlange'])) {
     mysqli_query($db_handle, "INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)									VALUES ('$user_id', '$chalange', '$your_eta');");
 header('Location: #');
 }
+if(isset($_POST['projectphp'])){
+    $user_id = $_SESSION['user_id'];
+    $name = $_SESSION['first_name'];
+    $username = $_SESSION['username'];
+    $rank = $_SESSION['rank'];
+    $email = $_SESSION['email'];
+        header('location: project.php') ;   
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['first_name'] = $name;
+        $_SESSION['project_id'] = $_POST['project_id'] ;
+        $_SESSION['rank'] = $rank;
+        exit ;
+}
 ?>
 <html lang="en">
     <head>
@@ -100,20 +117,35 @@ header('Location: #');
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
         <div class="row">
             <div class="col-md-offset-2 col-lg-6">
-                <div class='alert_placeholder'></div>
                 <?php
+                $private_check = mysqli_query($db_handle, "SELECT challenge_type FROM challenges WHERE challenge_id = $challengeSearchID");
+                $private_checkRow = mysqli_fetch_array($private_check);
+                $private_ch_type = $private_checkRow['challenge_type'];
+                if (!isset($_SESSION['user_id']) AND $private_ch_type == 2) {
+                    include_once 'html_comp/error.html';
+                    //exit;
+                }
+                elseif (isset($_SESSION['user_id']) AND $private_ch_type == 2) {
+                    $userID = $_SESSION['user_id'];
+                    $public_ch_fn = public_challenge_check($db_handle, $userID, $challengeSearchID);
+                    if ($public_ch_fn == 0 ) {
+                        include_once 'html_comp/error.html';
+                        //exit;
+                    }
+                } else {       
                 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id,a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
-                                        WHERE blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
+                                        WHERE a.challenge_type != 3 AND blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
                                     UNION
                                         (SELECT DISTINCT a.user_id, a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-                                        WHERE a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
+                                        WHERE a.challenge_type != 3 AND a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
                 $emptySearch = mysqli_num_rows($open_chalange);
                 if ($emptySearch == 0) {
-                    echo "no match found";
+                    include_once 'html_comp/error.html';  //echo "no longer exists";
                 }
                 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     $chellange_open_stmt = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
                     $ETA = $open_chalangerow['challenge_ETA'];
+                    //$user_userID = $open_chalangerow['user_id'];
                     //echo $chellange_open_stmt;
                     $ch_title = $open_chalangerow['challenge_title'];
                     $frstname = $open_chalangerow['first_name'];
@@ -158,16 +190,12 @@ header('Location: #');
                     }
                     echo "<div class='list-group'>
                     <div class='list-group-item'>";
-                    if (isset($_SESSION['user_id'])) {
-                        $userID = $_SESSION['user_id'];
-                        dropDown_challenge($db_handle, $chelangeid, $userID, $remaining_time_own);
-                    }
-                    $challenge_createdBY = "Created by &nbsp
-            <span class='color strong' style= 'color :lightblue;'>
-                <a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " 
-                </a>
-            </span> on " . $times . "";
+                        $challenge_createdBY = "Created by &nbsp
+                            <span class='color strong' style= 'color :lightblue;'>
+                                <a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " 
+                                </a>
+                            </span> on " . $times . "";
                     switch ($challenge_status) {
                         case 1:
                             echo $challenge_createdBY;
@@ -250,8 +278,8 @@ header('Location: #');
                             }
                         echo "</div>
                         </div>";
-                    echo " </div> </div> </div>            
-";
+                    echo " </div> </div> </div>";
+                }
                 }
                 ?>
             </div>
@@ -262,10 +290,20 @@ header('Location: #');
                 </ul>
             </div>
         </div>
+      
         
-
+        <script>
+$('#SignUp').on('show', function() {
+  	$('#SignIn').css('opacity', .5);
+  	$('#SignIn').unbind();
+});
+$('#SignUp').on('hidden', function() {
+  	$('#SignIn').css('opacity', 1);
+  	$('#SignIn').removeData("SignIn").modal({});
+});
+</script>
         <!-- Modal -->
-        <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="width:auto; height:auto">
                     <div class="modal-header">
@@ -309,7 +347,7 @@ header('Location: #');
         <!--end modle-->
          
         <!-- Modal -->
-        <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 
                 <div class="modal-content" style="width:390px; height:500px">
@@ -322,6 +360,7 @@ header('Location: #');
                          
                         <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
                     </div>
+                    <div class='alert_placeholder'></div>
                     <div class="modal-body">
                             <div class="inline-form">					
                                 <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
@@ -352,9 +391,6 @@ header('Location: #');
         <script src="js/project.js"></script>
         <script src="js/date_time.js"></script>
         <script src="js/custom.js"></script>
-
-        
-
         <script type="text/javascript" src="js/loginValidation.js"></script>
         <script type="text/javascript" src="js/signupValidation.js"></script>
         

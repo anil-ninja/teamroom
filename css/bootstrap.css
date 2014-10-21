@@ -3176,7 +3176,7 @@ tbody.collapse.in {
   list-style: none;
   font-size: 14px;
   text-align: center;
-  background-color: lightblue;
+  background-color: white;
   border: 1px solid #cccccc;
   border: 1px solid #e7e7e7;
   border-radius: 4px;
@@ -3277,9 +3277,9 @@ tbody.collapse.in {
   margin-bottom: 1px;
 }
 @media (min-width: 768px) {
-  .navbar-right .dropdown-menu {
-    left: auto;
-    right: 0;
+  .navbar-right .dropdown-menu-right {
+    left: 0;
+    right: auto;
   }
   .navbar-right .dropdown-menu-left {
     left: 0;

@@ -93,6 +93,44 @@ function bootstrap_alert(elem, message, timeout,type) {
 });
 $(document).ready(function(){
     
+		$("#create_article").click(function(){
+      		$("#create_article").attr('disabled','disabled');
+			var article = $("#article").val() ;
+			var article_title = $("#article_title").val() ;
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',article)) + '&article_title='+ article_title  ;
+			//alert(dataString);
+			if(article==''){
+				bootstrap_alert(".alert_placeholder", "Article can not be empty", 5000,"alert-warning");
+			}
+			else if(article_title==''){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+			$.ajax({
+				type: "POST",
+				url: "ajax/submit_article.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result=='Article posted succesfully!'){
+						$("#article").val("");
+						$("#article_title").val("");
+					location.reload();
+					}
+				}
+			});
+			}
+      $("#create_article").removeAttr('disabled');
+			return false;
+		});
+});
+$(document).ready(function(){
+    
 		$("#task").click(function(){
       		$("#task").attr('disabled','disabled');
 			var email = $("#email").val() ;
