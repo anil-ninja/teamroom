@@ -54,9 +54,9 @@
 		}
 		}
 				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$timefun ;			
-		echo "<a href='challengesOpen.php?challenge_id=".$challengeOpen_pageID."'> <button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;height: 20px; font-size:14px;'>".$chtitle."</button></a>
-				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p>" ;
+		echo "<a href='challengesOpen.php?challenge_id=".$challengeOpen_pageID."'> <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;height: 20px; font-size:14px;'><b>".$chtitle."</b></button></a>
+				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;".$remaining_time_own."</p>" ;
       }
   
 ?><hr/><hr/><br/><br/>
@@ -110,9 +110,9 @@
 		}
 		}
 				$tooltipas = "Assigned To : ".ucfirst($fnameas)." ".ucfirst($lnameas)." On ".$timefunas ;			
-		echo "<a href='challengesOpen.php?challenge_id=".$challenge_pageID."'> <button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title='".$tooltipas."' style='white-space: pre-line;height: 20px; font-size:14px;'>".$chtitleas."</button></a>
-				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;&nbsp;".$remaining_time_ownas."</p>" ;
+		echo "<a href='challengesOpen.php?challenge_id=".$challenge_pageID."'> <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+				data-placement='bottom' data-original-title='".$tooltipas."' style='white-space: pre-line;height: 20px; font-size:14px;'><b>".$chtitleas."</b></button></a>
+				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;".$remaining_time_ownas."</p>" ;
       }
   
 ?><hr/><hr/>

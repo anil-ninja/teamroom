@@ -22,19 +22,19 @@ if (!isset($_SESSION['first_name'])) {
 
     </head>
     <body >
-	<div class="row">  <div class='alert_placeholder'></div>
-		<div class="navbar navbar-default navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-inner">
-					<a class="btn-link" href="index.php"><h4>Collgo</a>
-					<div class="span3 pull-right">
-						<ul class="list-inline">
-						   Powered By :  <a class="btn-link" href="http://dpower4.com/">Dpower4.com</a></h4></ul> 
-					</div>
-				 </div>
-			</div>
-		</div>
-	</div>
+	<div class="navbar navbar-inverse navbar-fixed-top"><div class='alert_placeholder'></div>
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="brand" style='font-size:16pt; color: #000;' href="index.php">Collgo</a>
+           <div class="span3 pull-right">
+            <ul class="list-inline">
+              <li><p style='font-size:10pt; color:rgba(161, 148, 148, 1);'>Powered By : </p></li>
+              <li><a class="btn-link" style='font-size:14pt; color: #000;' href="http://dpower4.com/">Dpower4.com</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 	<div class="row" style="background-image: url(img/collaboration.jpg); height: 670px; max-width: 100%;">
 		<div class = "col-xs-7 col-ls-8"></div>	
 		<div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
