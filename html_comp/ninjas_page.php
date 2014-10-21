@@ -1,6 +1,22 @@
-        
+        <script>
+$(document).ready(function(){
+	$("#challegeForm").toggle();
+  $("#challenge").click(function(){
+  	$("#ArticleForm").hide(1000);
+    $("#challegeForm").toggle(1000);
+  });
+
+  $("#ArticleForm").toggle();
+  $("#artical").click(function(){
+  	$("#challegeForm").hide(1000);
+    $("#ArticleForm").toggle(1000);
+  });
+});
+</script>
 				   <div class='list-group'>
+				   <div class='list-group-item'><span id='challenge'>Challenge</span> | <span id='artical'>Artical</span></div>
 				<div class='list-group-item'>
+				<div id='challegeForm'>
                   <form>
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
                          <br>
@@ -62,7 +78,11 @@
                         </select><br/><br/>                          
                         <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                         </div>
-                    </form><br/>
+                    </form>
+                    </div>
+                    <div id='ArticleForm'>
+                    artical form comes here
+                    </div><br/>
                 </div></div>
 		<?php
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
