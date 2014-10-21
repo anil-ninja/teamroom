@@ -32,7 +32,7 @@ $(document).ready(function(){
 });
 </script>
 				   <div class='list-group'>
-				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge'> Challenge</span> | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical'> Artical</span> | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture'> Photos</span> | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video'> Videos</span></div>
+				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge'> Challenge</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical'> Articale</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture'> Photos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video'> Videos</span></div>
 				<div class='list-group-item'>
 				<div id='challegeForm'>
                   <form>
