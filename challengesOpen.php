@@ -74,6 +74,19 @@ if (isset($_POST['chlange'])) {
     mysqli_query($db_handle, "INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)									VALUES ('$user_id', '$chalange', '$your_eta');");
 header('Location: #');
 }
+if(isset($_POST['projectphp'])){
+    $user_id = $_SESSION['user_id'];
+    $name = $_SESSION['first_name'];
+    $username = $_SESSION['username'];
+    $rank = $_SESSION['rank'];
+    $email = $_SESSION['email'];
+        header('location: project.php') ;   
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['first_name'] = $name;
+        $_SESSION['project_id'] = $_POST['project_id'] ;
+        $_SESSION['rank'] = $rank;
+        exit ;
+}
 ?>
 <html lang="en">
     <head>
@@ -132,7 +145,7 @@ header('Location: #');
                 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     $chellange_open_stmt = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
                     $ETA = $open_chalangerow['challenge_ETA'];
-                    $user_userID = $open_chalangerow['user_id'];
+                    //$user_userID = $open_chalangerow['user_id'];
                     //echo $chellange_open_stmt;
                     $ch_title = $open_chalangerow['challenge_title'];
                     $frstname = $open_chalangerow['first_name'];
@@ -277,10 +290,20 @@ header('Location: #');
                 </ul>
             </div>
         </div>
+      
         
-
+        <script>
+$('#SignUp').on('show', function() {
+  	$('#SignIn').css('opacity', .5);
+  	$('#SignIn').unbind();
+});
+$('#SignUp').on('hidden', function() {
+  	$('#SignIn').css('opacity', 1);
+  	$('#SignIn').removeData("SignIn").modal({});
+});
+</script>
         <!-- Modal -->
-        <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="width:auto; height:auto">
                     <div class="modal-header">
@@ -324,7 +347,7 @@ header('Location: #');
         <!--end modle-->
          
         <!-- Modal -->
-        <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 
                 <div class="modal-content" style="width:390px; height:500px">
@@ -337,6 +360,7 @@ header('Location: #');
                          
                         <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
                     </div>
+                    <div class='alert_placeholder'></div>
                     <div class="modal-body">
                             <div class="inline-form">					
                                 <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
@@ -367,9 +391,6 @@ header('Location: #');
         <script src="js/project.js"></script>
         <script src="js/date_time.js"></script>
         <script src="js/custom.js"></script>
-
-        
-
         <script type="text/javascript" src="js/loginValidation.js"></script>
         <script type="text/javascript" src="js/signupValidation.js"></script>
         

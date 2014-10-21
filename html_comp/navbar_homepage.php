@@ -40,7 +40,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                         $team_name = $teams_name_displayRow['team_name'];
                                         echo "<li class='dropdown-submenu'>
-                                                <a style='white-space: normal;'>" . ucfirst($team_name) . "<br/></a>
+                                                <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
                                                     <ul class='dropdown-menu'>";
                                         $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
                                                                                         as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
