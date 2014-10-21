@@ -9,8 +9,8 @@ if($_POST['project_title']){
 	$project_eta = $_POST['project_eta'] ;
 	$type = $_POST['type'] ;
 if (strlen($project_st) < 1000) {
-        mysqli_query($db_handle, "INSERT INTO projects (user_id, project_title, stmt, project_ETA) 
-                                  VALUES ('$user_id', '$project_title', '$project_st', '$project_eta');");
+        mysqli_query($db_handle, "INSERT INTO projects (user_id, project_title, stmt, project_ETA, project_type) 
+                                  VALUES ('$user_id', '$project_title', '$project_st', '$project_eta', '$type');");
     if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
 	else { echo "Project posted succesfully!"; }
 }
@@ -19,8 +19,8 @@ if (strlen($project_st) < 1000) {
                                 VALUES (default, '$project_st');");
         
         $id = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO projects (user_id, blob_id, project_title, stmt, project_ETA) 
-                                VALUES ('$user_id', '$id', '$project_title', ' ', '$project_eta');");
+        mysqli_query($db_handle, "INSERT INTO projects (user_id, blob_id, project_title, stmt, project_ETA, project_type) 
+                                VALUES ('$user_id', '$id', '$project_title', ' ', '$project_eta', '$type');");
 	if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
 	else { echo "Project posted succesfully!"; }
 }
