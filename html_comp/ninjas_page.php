@@ -258,7 +258,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 		echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_comment_ninjas."'>".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</a></span>
@@ -269,7 +269,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 		}
 		echo "<div class='comments clearfix'>
                   <div class='pull-left lh-fix'>
-                     <img src='img/default.gif'>
+                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>
                   </div>
                   <div class='comment-text' >
                       <form action='' method='POST' class='inline-form'>
