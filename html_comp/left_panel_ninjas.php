@@ -9,9 +9,9 @@
                                 while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
                                 $p_title = $project_title_displayRow['project_title'] ;
                             if (strlen($p_title) > 25) {
-								$prtitle = substr($p_title,0,26)."....";
+								$prtitle = substr(ucfirst($p_title),0,26)."....";
 								} else {
-									$prtitle = $p_title ;
+									$prtitle = ucfirst($p_title) ;
 								}								   
                                 $p_eta = $project_title_displayRow['project_ETA'] ;
                                 $p_time = $project_title_displayRow['project_creation'] ;
@@ -52,10 +52,10 @@
                                 $time_for_project = $day." Days :".$hour." Hours :".$minute." Min" ;
                                 echo "<form method='POST' action=''>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
-                                <button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='".$title."' style='height: 20px;font-size:12px;'>
-                                ".$prtitle."</button>
-                                <br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p></form>" ;
+                                <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+                                data-placement='bottom' data-original-title='".$title."' style='height: 20px;font-size:14px;'><b>
+                                ".$prtitle."</b></button>
+                                <br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;".$remaining_time_own."</p></form>" ;
                             }
                         ?><hr/><hr/>
                         <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Project</a>
