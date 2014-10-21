@@ -92,7 +92,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
-                                <?php echo "<img src='uploads/profilePictures/$UserName.jpg'  alt='' class='img-circle img-responsive'>"; ?>
+                                <?php echo "<img src='uploads/profilePictures/$UserName.jpg'  onError=this.src='img/default.gif' class='img-circle img-responsive'>"; ?>
                                 <figcaption class="ratings">
                                     <p>Ratings
                                         <a href="#">
