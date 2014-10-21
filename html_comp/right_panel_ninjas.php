@@ -21,6 +21,7 @@
 				$eta = $titlesrow['challenge_ETA'] ;
 				$fname = $titlesrow['first_name'] ;
 				$lname = $titlesrow['last_name'] ;
+                                $challengeOpen_pageID = $titlesrow['challenge_id'];
 				$day = floor($eta/(24*60)) ;
 				$daysec = $eta%(24*60) ;
 				$hour = floor($daysec/(60)) ;
@@ -41,8 +42,8 @@
 				$remaining_time_own = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
 		}
 				$tooltip = "Assigned By : ".ucfirst($fname)." ".ucfirst($lname)." On ".$timefun ;			
-		echo "<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;height: 20px; font-size:14px;'>".$chtitle."</button>
+		echo "<a href='challengesOpen.php?challenge_id=".$challengeOpen_pageID."'> <button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
+				data-placement='bottom' data-original-title='".$tooltip."' style='white-space: pre-line;height: 20px; font-size:14px;'>".$chtitle."</button></a>
 				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p>" ;
       }
   

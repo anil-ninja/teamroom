@@ -121,13 +121,13 @@ header('Location: #');
                     }
                 } else {       
                 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id,a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
-                                        WHERE blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
+                                        WHERE a.challenge_type != 3 AND blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
                                     UNION
                                         (SELECT DISTINCT a.user_id, a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-                                        WHERE a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
+                                        WHERE a.challenge_type != 3 AND a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
                 $emptySearch = mysqli_num_rows($open_chalange);
                 if ($emptySearch == 0) {
-                    include_once 'html_comp/error.html';
+                    include_once 'html_comp/error.html';  //echo "no longer exists";
                 }
                 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     $chellange_open_stmt = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
