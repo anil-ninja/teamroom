@@ -55,7 +55,7 @@
                                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                                 data-placement='bottom' data-original-title='".$title."' style='height: 20px;font-size:14px;'><b>
                                 ".$prtitle."</b></button>
-                                <br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;".$remaining_time_own."</p></form>" ;
+                                <br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p></form>" ;
                             }
                         ?><hr/><hr/>
                         <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Project</a>

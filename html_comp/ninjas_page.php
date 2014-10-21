@@ -274,7 +274,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
                   <div class='comment-text' >
                       <form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$chelangeid."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 93.3%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 92.8%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
                   </div>

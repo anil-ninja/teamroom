@@ -55,7 +55,7 @@
 	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 			<a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
 			</span>  on &nbsp".$timef. " <br/> with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
-			<span class='color strong' style= 'color :lightblue;'><p align='center'>".ucfirst($title)."</p></span>
+			<span class='color strong' style= 'color :#3B5998;'><p align='center'>".ucfirst($title)."</p></span>
 			".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
@@ -96,22 +96,26 @@
 		</div></div></div>"								  
 	
 ?>
-<div class='panel-heading'>    
-  <h3 class='panel-title'><p align='center'>Summary</p></h3>
-</div>
-<table class="table table-striped table-hover ">
-	<thead>
-		<tr>
-			<th>No.</th>
-			<th>Challenges</th>
-			<th>Time</th>
-			<th>Owned By</th>
-			<th>Status</th>
-		</tr>
-	</thead>
-	<tbody>
 <?php 
 	$i = 0 ;
+	$c = mysqli_query($db_handle, "SELECT * FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
+											AND challenge_type != '7' AND blob_id = '0' ;") ;
+	if(mysqli_num_rows($c) > 0)	{									
+	echo "<div class='panel-heading'>    
+			<h3 class='panel-title'><p align='center'>Summary</p></h3>
+		</div>
+		<table class='table table-striped table-hover'>
+			<thead>
+				<tr>
+					<th>No.</th>
+					<th>Challenges</th>
+					<th>Time</th>
+					<th>Owned By</th>
+					<th>Status</th>
+				</tr>
+			</thead>
+			<tbody>" ;
+		}
 	 $summary = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, challenge_type, challenge_status, challenge_ETA, LEFT(stmt, 90) as stmt
 											FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
 											AND challenge_type != '7' AND blob_id = '0')
@@ -156,6 +160,7 @@
 		$sname = $ownedrow['username'] ;
 		$sfname = $ownedrow['first_name'] ;
 		$i++; 
+		
 		echo "<tr>
 				<td>".$i."</td>
 				<td><a href ='challengesOpen.php?challenge_id=".$sid."'>".$sidtitle."</a><br/>".$sidstmt."</td>
@@ -164,12 +169,13 @@
 				<td>".$sstatus."</td>
 			</tr>" ;
 	}
+	echo "</tbody>
+            </table>" ;
 				?>
-	</tbody>
-</table>
+	
 <?php
 	$echo = mysqli_query($db_handle,"select * from challenges where challenge_type = '6' ;");
-		if(mysqli_num_rows($echo) != 0) {
+		if(mysqli_num_rows($echo) > 0) {
     echo "<div class='panel-heading'>    
             <h3 class='panel-title'><p align='center'> Notes</p></h3>
           </div>"; 
@@ -202,8 +208,8 @@
 								   </ul>
 							  </div>
 							</div>
-							<p align='center' style='font-size: 14pt;'>".$title."</p>
-							<span class='pull-left color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_notes."'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp&nbsp&nbsp</span> 
+							<p align='center' style='font-size: 14pt;color :#3B5998;'>".$title."</p>
+							<span class='pull-left color strong' style= 'color :#3B5998;'><a href ='profile.php?username=".$username_notes."'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp&nbsp&nbsp</span> 
 							<small>".$notes."</small><br/><br/>";
 			$displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
 													FROM response_challenge as a join user_info as b where a.challenge_id = ".$displayrow['challenge_id']." 
@@ -245,7 +251,7 @@
 			</div></div></div>" ;
 	}
 $closehd = mysqli_query($db_handle,"select * from challenges where challenge_type = '5' ;");
-		if(mysqli_num_rows($closehd) != 0) {
+		if(mysqli_num_rows($closehd) > 0) {
 echo "<div class='panel-heading'>    
         <h3 class='panel-title'><p align='center'>Closed Challenges</p></h3>
       </div>";
@@ -310,17 +316,17 @@ echo "<div class='panel-heading'>
 				$ansstmt = $ansrow['stmt'] ;						
        echo "<div class='list-group'>
 				<div class='list-group-item'>
-					Challenge Created By : <span color strong' style= 'color :lightblue;'>
+					Challenge Created By : <span color strong' style= 'color :#3B5998;'>
 					<a href ='profile.php?username=".$CIDname."'>".ucfirst($CIDfname)." ".ucfirst($CIDlname)."</a></span>
 					&nbsp&nbsp&nbsp&nbsp On : ".$timeCID."<br/>
 					ETA Given : ".$remainingtime." <br/>
-					Challenge Accepted and Sumitted By : <span color strong' style= 'color :lightblue;'>
+					Challenge Accepted and Sumitted By : <span color strong' style= 'color :#3B5998;;'>
 					<a href ='profile.php?username=".$Cname."'>".ucfirst($Cfname)." ".ucfirst($Clname)."</a></span>
 					&nbsp&nbsp&nbsp&nbsp On : ".$timeC."<br/>
 					ETA Taken : ".$remaining_time." <br/>
-					<p align='center' style='font-size: 14pt;color :lightblue;'>".ucfirst($CIDtitle)."</p><br/>
+					<p align='center' style='font-size: 14pt;color :#3B5998;'>".ucfirst($CIDtitle)."</p><br/>
 					<small>".$CIDstmt."</small><br/>
-					<p align='center' style='font-size: 14pt;color :lightblue;'>Statement</p><br/>
+					<p align='center' style='font-size: 14pt;color :#3B5998;'>Statement</p><br/>
 					<small>".$ansstmt."</small><br/>";
 			$displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
 													FROM response_challenge as a join user_info as b where a.challenge_id = ".$CID." and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
