@@ -15,7 +15,6 @@
                                 $p_eta = $project_title_displayRow['project_ETA'] ;
                                 $p_time = $project_title_displayRow['project_creation'] ;
                                 $timefunc = date("j F, g:i a",strtotime($p_time));
-                                $eta = $p_eta*60 ;
 								$day = floor($eta/(24*60*60)) ;
 								$daysec = $eta%(24*60*60) ;
 								$hour = floor($daysec/(60*60)) ;
@@ -23,33 +22,32 @@
 								$minute = floor($hoursec/60) ;
 								$remaining_time = "ETA : ".$day." Days :".$hour." Hours :".$minute." Min" ;
 								$title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;	
-								$starttimestr = (string) $p_time ;
-								$initialtime = strtotime($starttimestr) ;
-								$totaltime = $initialtime+($eta*60) ;
+								$initialtime = strtotime($p_time) ;
+								$totaltime = $initialtime+($p_eta*60) ;
 								$completiontime = time() ;
 						if ($completiontime > $totaltime) { 
 							$remaining_time_own = "Closed" ; 
 						} else {	
 								$remainingtime = ($totaltime-$completiontime) ;
-								$day = floor($remainingtime/(24*60*60)) ;
+								$dayl = floor($remainingtime/(24*60*60)) ;
 								$daysec = $remainingtime%(24*60*60) ;
-								$hour = floor($daysec/(60*60)) ;
+								$hourl = floor($daysec/(60*60)) ;
 								$hoursec = $daysec%(60*60) ;
 								$minute = floor($hoursec/60) ;
-						if ($totaltime > ((24*60*60)-1)) {
-		if($hour != 0) {
-		$remaining_time_own = $day." Days and ".$hour." Hours" ;
+	if ($remainingtime > ((24*60*60)-1)) {
+		if($hourl != 0) {
+		$remaining_time_own = $dayl." Days and ".$hourl." Hours" ;
 		} else {
-			$remaining_time_own = $day." Days" ;
+			$remaining_time_own = $dayl." Days" ;
 			}
 	} else {
-			if (($totaltime < ((24*60*60)-1)) AND ($totaltime > ((60*60)-1))) {
-				$remaining_time_own = $hour." Hours and ".$minute." Mins" ;
+			if (($remainingtime < ((24*60*60)-1)) AND ($remainingtime > ((60*60)-1))) {
+				$remaining_time_ownas = $hourl." Hours and ".$minute." Mins" ;
 				} else {
 					$remaining_time_own = $minute." Mins" ;
 					}
 		}
-						}
+	}
                                 $time_for_project = $day." Days :".$hour." Hours :".$minute." Min" ;
                                 echo "<form method='POST' action=''>
                                 <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
