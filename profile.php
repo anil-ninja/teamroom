@@ -39,9 +39,13 @@ $projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projec
 $counter = mysqli_fetch_assoc($projectCreated);
 $totalProjectCreated = $counter["COUNT(project_id)"];
 
-$projectCompleted = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type = '2';");
+$projectCompleted = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type = '4';");
 $counter = mysqli_fetch_assoc($projectCompleted);
 $totalProjectCompleted = $counter["COUNT(project_id)"];
+
+$projectProgress = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type != '3' and project_type != '4' and project_type != '5';");
+$counter = mysqli_fetch_assoc($projectProgress);
+$totalprojectProgress = $counter["COUNT(project_id)"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,13 +86,26 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                             echo "<h2><strong>" . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong></h2>
                                         <p><strong>Email-Id: </strong>" . $profileViewEmail . "</p>
                                         <p><strong>Contact: </strong>" . $profileViewPhone . "</p>
-                                        <p><strong>Skills: </strong>
-                                            <span class='tags'>html5</span> 
-                                            <span class='tags'>css3</span>
-                                            <span class='tags'>jquery</span>
-                                            <span class='tags'>bootstrap3</span>
-                                        </p>";
-                            ?>
+                                        <p><strong>Skills: </strong>";
+                                        $skill_display = mysqli_query($db_handle, "SELECT a.skill_name FROM skill_names as a JOIN user_skills as b 
+                                                                                    WHERE a.skill_id = b.skill_id AND b.user_id = $profileViewUserID;");
+                                        while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+                                            echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
+                                        }
+                                      echo "</p>";
+                           
+                            if(isset($_SESSION['user_id'])) { 
+                           echo "<form>
+                                <select class='btn-sm' id='add'>";	
+                                    $skill_names= mysqli_query($db_handle, "SELECT DISTINCT a.* FROM skill_names as a JOIN user_skills as b WHERE a.skill_id NOT IN(SELECT skill_id FROM user_skills WHERE user_id = $profileViewUserID);");
+                                    while ($skill_namesRow = mysqli_fetch_array($skill_names)) {
+                                        echo "<option value= '".$skill_namesRow['skill_id']."'>".$skill_namesRow['skill_name']."</option>";
+                                    }
+                              echo "</select>&nbsp
+                                <input id='add_skill' class='btn-sm btn-primary' type='button' value='Add Skill'/>
+                            </form>";
+                            }
+                           ?>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
@@ -149,7 +166,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                             <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
                         </div>
                         <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong> 0 </strong></h2>                    
+                            <h2><strong><?php echo $totalprojectProgress; ?> </strong></h2>                    
                             <p><small>projects</small></p>
                             <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
                         </div>
@@ -179,7 +196,8 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
             </div>
         </div>
 <div id="InfoBox"></div>
-        <script>
+        <script src="js/add_skill.js"> </script>
+        <script> 
 $(document).ready(function(){
 	$("#challegeForm").toggle();
   $("#chcomp").click(function(){
@@ -363,29 +381,20 @@ upload_image.addEventListener('click', upload);
             <!---Modal --->
             <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="width:auto; height:auto">
+                <div class="modal-content" style="width:300px; height:auto">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
-                        
                         <div class='alert_placeholder'></div>
                     </div>
                     <div class="modal-body">
-                        <br/>
-                        <div id='_progress' class='progress'></div>
                         <div class="input-group">
-                           
                             <input class="btn btn-default btn-sm" type="file" id="_file" style ="width: auto;"><br>
                         </div>
-                       <br/>
-                        <input class="btn btn-default btn-sm" type="submit" id="upload_image" value="Upload"><br>
-                    </div>
-
-                    <div class  ="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <input class="btn btn-primary btn-sm" type="submit" id="upload_image" onclick="validateUploadImage()" value="Change"><br>
                     </div>
                 </div>
             </div>
@@ -408,14 +417,6 @@ upload_image.addEventListener('click', upload);
                         <div class='alert_placeholder'></div>
                     </div>
                     <div class="modal-body">
-                        <div class="input-group">
-                        <?php 
-                            if (isset($_POST['login_comment'])) {
-                                echo 'Sign In for your comment!!!';
-                            }
-                        ?> 
-                        </div>
-                        <br/>
                         <div class="input-group">
                             <span class="input-group-addon">Username</span>
                             <input type="text" style="font-size:10pt" class="form-control" id="username" placeholder="Enter email or username">
