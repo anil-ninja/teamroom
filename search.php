@@ -2,7 +2,7 @@
 include_once 'lib/db_connect.php';
 
 $keyword = $_GET['keyword'] ;
-$searchResults = mysqli_query($db_handle, ("SELECT challenge_id, challenge_title, LEFT(stmt, 30) as stmt 
+$searchResults = mysqli_query($db_handle, ("SELECT challenge_id, challenge_title, LEFT(stmt, 100) as stmt 
 	FROM challenges 
 	WHERE challenge_type = '1' 
 	AND ((challenge_title like '%$keyword%' And stmt NOT LIKE '<iframe%') 

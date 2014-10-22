@@ -14,6 +14,7 @@
 			$title_task = $tasksrow['challenge_title'];
 			$eta_task = $tasksrow['challenge_ETA'];
 			$creation_task = $tasksrow['challenge_creation'];
+			$timetask = date("j F, g:i a",strtotime($creation_task));
 			$stmt_task = $tasksrow['stmt'];
 			$fname_task = $tasksrow['first_name'];
 			$lname_task = $tasksrow['last_name'];
@@ -52,10 +53,10 @@
 					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
 					</form>";
 				}
-	echo "Task Assigned by &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($name)."</a></span> On ".$creation_task."<br/>
-			Task Assigned To &nbsp <span class='color strong' style= 'color :lightblue;'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a> </span>
+	echo "Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($name)."</a></span> On ".$timetask."<br/>
+			Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a> </span>
 					<br/> ETA Given : ".$remainingtime." <br/>".$remaining_time."<br/>";
-   	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($title_task)."</b></span></p><br/>
+   	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :#3B5998;'><b>".ucfirst($title_task)."</b></span></p><br/>
 				<small>".str_replace("<s>","&nbsp;",$stmt_task)."</small><br> <br>";
 			
 	$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -86,13 +87,13 @@
 		}
 		echo "<div class='comments clearfix'>
                         <div class='pull-left'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'> &nbsp
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
-						<form action='' method='POST' class='inline-form'>
-							<input type='hidden' value='".$id_task."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-						</form>
+                        <form action='' method='POST' class='inline-form'>
+                                <input type='hidden' value='".$id_task."' name='own_challen_id' />
+                                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
+                        </form>
                     </div>";
 	echo "</div> </div>";		
 			
@@ -112,6 +113,7 @@
           $username_pr_ch_cr = $displayrow['username'];
 			$chalangest = $displayrow['stmt'] ;
 			$chalangetime = $displayrow['challenge_creation'] ;
+			$timech = date("j F, g:i a",strtotime($chalangetime));
 			$opentime = $displayrow['challenge_open_time'] ;
 			$idb = $displayrow['challenge_id'] ;
 			$ch_title = $displayrow['challenge_title'] ;
@@ -145,14 +147,14 @@
 						<div class='list-group-item'>";
       dropDown_challenge($db_handle, $idb, $user_id, $remaining_time);
 	  
-      echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
+      echo "Created by &nbsp <span class='color strong' style= 'color :#3B5998;'>
 				: <a href ='profile.php?username=".$username_pr_ch_cr."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span>
 				<form method='POST' class='inline-form pull-right'>
 					<input type='hidden' name='id' value='".$idb."'/>
 					<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form><br/> ETA : ".$remainingtime." <br/> Challenge Created 
-				ON :".$chalangetime. "<br/>".$remaining_time."<br/>";
-   	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :lightblue;'><b>".ucfirst($ch_title)."</b></span></p><br/>
+				ON :".$timech. "<br/>".$remaining_time."<br/>";
+   	echo "<p align='center' style='font-size: 14pt;'  ><span style= 'color :#3B5998;'><b>".ucfirst($ch_title)."</b></span></p><br/>
 				<small>".str_replace("<s>","&nbsp;",$chalangest)."</small><br> <br>";
 		$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 												JOIN user_info as b WHERE a.challenge_id = '$idb' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -182,11 +184,11 @@
 		}
 		echo "<div class='comments clearfix'>
                         <div class='pull-left'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'> &nbsp
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
 						<form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$idb."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
                     </div>";
@@ -203,7 +205,8 @@
       while ($displayrowd = mysqli_fetch_array($displayd)) {
           $username_pr_ch = $displayrowd['username'];
 			$stmt = $displayrowd['stmt'] ;
-			$chalangetime = $displayrowd['challenge_creation'] ;
+			$chalangetimer = $displayrowd['challenge_creation'] ;
+			$timecha = date("j F, g:i a",strtotime($chalangetimer));
 			$timecreataion = $displayrowd['ownership_creation'] ;
 			$idd = $displayrowd['challenge_id'] ;
 			$ch_title = $displayrowd['challenge_title'] ;
@@ -249,11 +252,11 @@
 					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
 					</form>";
 				}
-	  echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
+	  echo "Created by &nbsp <span class='color strong' style= 'color :#3B5998;'>
 				: <a href ='profile.php?username=".$username_pr_ch_cr."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a> </span><br/> Challenge Created 
-				ON :".$chalangetime. "<br/>Owned By : <span class='color strong' style= 'color :lightblue;'><a href ='profile.php?username=".$username_pr_ch."'>"
+				ON :".$timecha. "<br/>Owned By : <span class='color strong' style= 'color :#3B5998;'><a href ='profile.php?username=".$username_pr_ch."'>"
 			  .ucfirst($fnamer). '&nbsp'. ucfirst($lnamer)."</a></span><br/>ETA taken : ".$remainingtimer. "<br/>".$remaining_time_own.
-			  "<br/><br/><p align='center' style='font-size: 14pt; color :lightblue;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+			  "<br/><br/><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $stmt. "</font><br/>" ;
 			   
 		$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -285,11 +288,11 @@
 		}
 		echo "<div class='comments clearfix'>
                         <div class='pull-left'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'> &nbsp
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
 			<form action='' method='POST' class='inline-form'>
 							<input type='hidden' value='".$idd."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
 							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
 						</form>
                     </div>";

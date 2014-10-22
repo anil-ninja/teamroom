@@ -25,6 +25,7 @@
 			$mins = $daysecs%(60);
 			$etagiven = $days." Days : ".$hours." Hours : ".$mins." Minutes" ; 
 			$committime = $challangerow['time'] ;
+			$timecom = date("j F, g:i a",strtotime($committime));
 			$starttimestr = (string) $accepttime ;
 			$initialtime = strtotime($starttimestr) ;
 			$endtimestr = (string) $committime ;
@@ -42,12 +43,12 @@
 			$answerrow = mysqli_fetch_array($answer) ;
 			echo "<div class='list-group'>
 					 <div class='list-group-item'>
-						Challenged by <span class='color strong' style= 'color :lightblue;'> You </span> On : ".$challangerow['challenge_creation'].
-						"<br/>ETA Given : ".$etagiven."</div><div class='list-group-item'>Accepted By <span class='color strong' style= 'color :lightblue;'>".ucfirst($challangerow['first_name'])." ".ucfirst($challangerow['last_name']).
-						"</span> and Submitted On : ".$committime."<br/>ETA Taken : ".$timetaken."</div><div class='list-group-item'>
-						<span class='color strong' style= 'color :lightblue;font-size: 14pt;'><p align='center'>".ucfirst($challangerow['challenge_title'])."</p></span>
+						Challenged by <span class='color strong' style= 'color :#3B5998;'> You </span> On : ".date("j F, g:i a",strtotime($challangerow['challenge_creation'])).
+						"<br/>ETA Given : ".$etagiven."</div><div class='list-group-item'>Accepted By <span class='color strong' style= 'color :#3B5998;'>".ucfirst($challangerow['first_name'])." ".ucfirst($challangerow['last_name']).
+						"</span> and Submitted On : ".$timecom."<br/>ETA Taken : ".$timetaken."</div><div class='list-group-item'>
+						<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'><p align='center'>".ucfirst($challangerow['challenge_title'])."</p></span>
 						".$challangerow['stmt']."<br/>
-						<span class='color strong' style= 'color :lightblue;font-size: 14pt;'><p align='center'>Answer</p></span>"
+						<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'><p align='center'>Answer</p></span>"
 						.$answerrow['stmt']."<br/><form method='POST' onsubmit=\"return confirm('Really Close Challenge !!!')\"><div class='pull-right'><input type='hidden' name='cid' value='".$id."'/>
 						<button type='submit' class='btn-primary' name='closechallenge'>Close</button></div></form><br/>";
 						

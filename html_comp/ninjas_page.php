@@ -115,17 +115,18 @@ $(document).ready(function(){
                     </div><br/>
                 </div></div>
 		<?php
-	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.stmt, a.challenge_creation,
-                                            b.first_name, b.last_name, b.username from challenges as a join user_info as b where a.challenge_type = '1'
+	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation,
+                                            b.first_name, b.last_name, b.username from challenges as a join user_info as b where (a.challenge_type = '1' or a.challenge_type = '9')
                                              and blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, c.stmt, a.challenge_creation,
+											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE a.challenge_type = '1' and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC ;");
+											WHERE (a.challenge_type = '1' or a.challenge_type = '9') and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10;");
 	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
 		$ETA = $open_chalangerow['challenge_ETA'] ;
 		$ch_title = $open_chalangerow['challenge_title'] ;
+		$ctype = $open_chalangerow['challenge_type'] ;
 		$frstname = $open_chalangerow['first_name'] ;
 		$lstname = $open_chalangerow['last_name'] ;
         $username_ch_ninjas = $open_chalangerow['username'];
@@ -176,7 +177,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 }
 		echo "<div class='list-group'>
 				<div class='list-group-item'>" ;
-				
+	if ($ctype == 1) {			
 		if($status == 1) {
 		echo "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
@@ -236,7 +237,6 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 					$remaining_time_owno = $minuteow." Mins" ;
 					}
 		}
-			
 }
 			echo "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
@@ -244,6 +244,13 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
 				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaining_time_owno."</div>" ;
 			}
+	} else {
+		echo "Written by &nbsp 
+				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
+				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
+		
+		}		
 			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -268,16 +275,14 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
          echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
-                  <div class='pull-left lh-fix'>
-                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>
-                  </div>
-                  <div class='comment-text' >
-                      <form action='' method='POST' class='inline-form'>
-							<input type='hidden' value='".$chelangeid."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 93.3%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-						</form>
-                  </div>
-             </div>";
-          echo " </div> </div> ";    
-  }
+                        <div class='pull-left lh-fix'>
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                        </div>
+                        <form action='' method='POST' class='inline-form'>
+                            <input type='hidden' value='".$chelangeid."' name='own_challen_id' />
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-play' name='own_chl_response' ></button>
+                        </form>
+                    </div>";
+          echo "</div> </div> "; 
+        }
