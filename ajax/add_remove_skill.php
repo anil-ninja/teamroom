@@ -1,11 +1,7 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
-if(isset($_SESSION['user_id']))
-    $userID = $_SESSION['user_id'];
-else 
-    header ('location:../index.php');
-if (isset ($_POST['skill_name'])) {
+if (isset ($_POST['skills'])) {
     $userID = $_SESSION['user_id'];
     $skill_Name = $_POST['skill_name'];
     mysqli_query($db_handle, "INSERT INTO skills (user_id, skill_name) VALUES ('$userID', '$skill_Name');");

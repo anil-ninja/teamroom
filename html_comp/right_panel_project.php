@@ -70,8 +70,8 @@
                                 }
                                  }
                                   else { 
-                                $member = mysqli_query($db_handle, ("SELECT DISTINCT a.id, a.user_id, a.member_status, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
-                                                                    a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;")) ;
+                                $member = mysqli_query($db_handle, "SELECT DISTINCT a.id, a.user_id, a.member_status, b.first_name, b.contact_no, b.email FROM teams as a join user_info as b where
+                                                                    a.team_name = '$teamname' and a.member_status = '1' and a.user_id = b.user_id ;") ;
                                 while ($memberrow = mysqli_fetch_array($member)) {
                                      $memid = $memberrow['id'] ;
                                     $memberid = $memberrow['user_id'] ;

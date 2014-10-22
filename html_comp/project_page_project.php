@@ -1,9 +1,9 @@
 <?php
 	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
-												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id AND a.project_type = '1')
+												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id )
                                                 UNION
                                                 (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
-                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' AND a.project_type = '1' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
+                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
 	   $project_idrow = mysqli_fetch_array($project_id) ;
 		$p_id = $project_idrow['project_id'] ;
 		$projectst = $project_idrow['stmt'];

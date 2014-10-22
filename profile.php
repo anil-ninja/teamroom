@@ -100,7 +100,7 @@ $totalprojectProgress = $counter["COUNT(project_id)"];
                                         <p><strong>Email-Id: </strong>" . $profileViewEmail . "</p>
                                         <p><strong>Contact: </strong>" . $profileViewPhone . "</p>
                                         <p><strong>Skills: </strong>";
-                                        $skill_display = mysqli_query($db_handle, "SELECT * FROM skills WHERE user_id = $profileViewUserID AND skill_status = '1';");
+                                        $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
                                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                                             echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
                                             }
@@ -110,8 +110,7 @@ $totalprojectProgress = $counter["COUNT(project_id)"];
                             if(isset($_SESSION['user_id'])) { 
                                 echo "<div class='col-lg-5'>
                                         <div class='alert_placeholder'></div>
-                                        <input type='text' id ='add'>
-                                        <input id='add_skill' class='btn-sm btn-primary' type='submit' value='Add Skill'/>
+                                        <a data-toggle='modal' class='btn btn-primary' data-target='#addskill' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Add Skills</a>
                                     </div>";
                                 
                                 echo "<form>
@@ -423,6 +422,44 @@ upload_image.addEventListener('click', upload);
                   
             </form>
             <!---End OF Modal --->
+            <!---Modal --->
+            <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:300px; height:auto;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Add Skills</h4>
+                        <div class='alert_placeholder'></div>
+                    </div>
+                    <div class="modal-body">
+						Select Skill : &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select class="inline-form" id = "skills" >	
+                            <option value='0' selected >Default (none)</option>
+                            <?php
+                            $m = mysqli_query($db_handle, "select * from skill_names where 1 = 1 ;") ;
+                            while ($n = mysqli_fetch_array($m)) {
+								$id = $n['skill_id'] ;
+								$sn = $n['skill_name'] ;
+                                echo "<option value='" . $id . "' >" . $sn . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <br/><br/>OR<br/><br/>
+                         Enter your Skill  &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' class="inline-form" id="insert" placeholder="Enter your Skill"/><br/><br/>
+                        <input type="button" value="Add" class="btn btn-success" id="addskills"/>
+                       
+                        </div>
+                     <div class="modal-footer">
+                <button name="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+                </div>
+            </div>
+        </div>
+            <!---End OF Modal --->            
               <!-- Modal -->
         <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
