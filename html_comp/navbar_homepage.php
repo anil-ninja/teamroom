@@ -61,7 +61,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; text-decoration: none;">Projects<span class='caret'></span></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
                             <?php
-                                            session_start();
+                         
                             $user_id = $_SESSION['user_id'];
                                 $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  

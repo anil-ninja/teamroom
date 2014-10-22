@@ -112,13 +112,14 @@ $totalprojectProgress = $counter["COUNT(project_id)"];
                                         <a data-toggle='modal' class='btn btn-primary' data-target='#addskill' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Add Skills</a>
                                     </div>";
                                 
-                                //echo "<form>
-                                    //<select class='btn-sm' id='remove'>
-                                    //<option value='0' selected></option>";	
-                                      //  $skill_remove_names= mysqli_query($db_handle, "SELECT skill_id, skill_name FROM skills WHERE user_id = $profileViewUserID AND skill_status = '1';");
-                                      //  while ($skill_remove_namesRow = mysqli_fetch_array($skill_remove_names)) {
-                                       //     echo "<option value= '".$skill_remove_namesRow['skill_id']."'>".$skill_remove_namesRow['skill_name']."</option>";
-                                     //   }
+                                echo "<form>
+                                    <select class='btn-sm' id='remove'>
+                                    <option value='0' selected></option>";	
+                                        $skill_remove_names= mysqli_query($db_handle, "SELECT b.skill_id, b.skill_name FROM user_skills as a join skill_names as b
+																						WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id;");
+                                       while ($skill_remove_namesRow = mysqli_fetch_array($skill_remove_names)) {
+                                            echo "<option value= '".$skill_remove_namesRow['skill_id']."'>".$skill_remove_namesRow['skill_name']."</option>";
+                                       }
                                 echo "</select>&nbsp
                                     <input id='remove_skill' class='btn-sm btn-primary' type='submit' value='Remove Skill'/>
                                 </form>";
