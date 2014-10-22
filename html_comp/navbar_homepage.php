@@ -82,8 +82,8 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     </div>
                 </li>      
                 <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal"  data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p></li>
-                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php"> Your Challenges</a></p></li>
-                <li><p class="navbar-text">&nbsp;Your rank :  <?php $rank = $_SESSION['rank'];
+                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php"> Challenges</a></p></li>
+                <li><p class="navbar-text">&nbsp; Rank :  <?php $rank = $_SESSION['rank'];
                         echo $rank; ?>
                     </p>
                 </li>

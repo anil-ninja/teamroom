@@ -88,10 +88,10 @@
 			<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>
 			
-				<form method='POST' class='inline-form'>
-					<input type='text' STYLE='border: 1px solid #bdc7d8; width: 300px; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this project' />
-					<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
-			  </form>
+                        <form method='POST' class='inline-form'>
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this project' />
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
+                        </form>
 			
 		</div></div></div>"								  
 	
@@ -244,10 +244,10 @@
 					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 				</div>
 				<form action='' method='POST' class='inline-form'>
-							<input type='hidden' value='".$note_ID."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-						</form>
+                                    <input type='hidden' value='".$note_ID."' name='own_challen_id' />
+                                    <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
+                                </form>
 			</div></div></div>" ;
 	}
 $closehd = mysqli_query($db_handle,"select * from challenges where challenge_type = '5' ;");
@@ -359,10 +359,10 @@ echo "<div class='panel-heading'>
 					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 				</div>
 				<form action='' method='POST' class='inline-form'>
-							<input type='hidden' value='".$CID."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: auto; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-						</form>
+                                    <input type='hidden' value='".$CID."' name='own_challen_id' />
+                                    <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
+                                </form>
 			</div>
 		</div>
 	</div>" ;      
