@@ -1,129 +1,26 @@
-        <script>
-$(document).ready(function(){
-	$("#challegeForm").toggle();
-  $("#challenge").click(function(){
-  	$("#ArticleForm").hide(1500);
-  	$("#PictureForm").hide(1500);
-  	$("#VideoForm").hide(1500);
-    $("#challegeForm").toggle(3000);
-  });
-
-  $("#ArticleForm").toggle();
-  $("#artical").click(function(){
-  	$("#challegeForm").hide(1500);
-  	$("#PictureForm").hide(1500);
-  	$("#VideoForm").hide(1500);
-    $("#ArticleForm").toggle(3000);
-  });
-  $("#PictureForm").toggle();
-  $("#picture").click(function(){
-  	$("#challegeForm").hide(1500);
-  	$("#PictureForm").toggle(1500);
-  	$("#VideoForm").hide(1500);
-    $("#ArticleForm").hide(3000);
-  });
-  $("#VideoForm").toggle();
-  $("#video").click(function(){
-  	$("#challegeForm").hide(1500);
-  	$("#PictureForm").hide(1500);
-  	$("#VideoForm").toggle(1500);
-    $("#ArticleForm").hide(3000);
-  });
-});
-</script>
-				   <div class='list-group'>
-				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge'> Challenge</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical'> Articale</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture'> Photos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video'> Videos</span></div>
-				<div class='list-group-item'>
-				<div id='challegeForm'>
-                  <form>
-                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
-                         <br>
-                        <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea>
-                        <br>
-                        <div class="inline-form">
-                        Challenge Open For 
-                        <select class="btn-info btn-xs"  id= "open_time" >	
-                            <option value='0' selected >hour</option>
-                            <?php
-                                $o = 1 ;
-                                while ($o <= 24){
-                                    echo "<option value='".$o."' >".$o."</option>" ;
-                                    $o++ ;
-                                }
-                            ?>
-                        </select>&nbsp;
-                        <select class="btn-info btn-xs" id= "open" >	
-                            <option value='10' selected >minute</option>
-                            <option value='20'  >20</option>
-                            <option value='30' >30</option>
-                            <option value='40'  >40</option>
-                            <option value='50' >50</option>
-                        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETA
-                        <select class="btn-info btn-xs" id= "c_eta" >	
-                            <option value='0' selected >Month</option>
-                            <?php
-                                $m = 1 ;
-                                while ($m <= 11){
-                                    echo "<option value='".$m."' >".$m."</option>" ;
-                                    $m++ ;
-                                }
-                            ?>
-                        </select>&nbsp;
-                        <select class="btn-info btn-xs" id= "c_etab" >	
-                            <option value='0' selected >Days</option>
-                            <?php
-                                $d = 1 ;
-                                while ($d <= 30){
-                                    echo "<option value='".$d."' >".$d."</option>" ;
-                                    $d++ ;
-                                }
-                            ?>
-                        </select>&nbsp;
-                        <select class="btn-info btn-xs" id= "c_etac" >	
-                            <option value='0' selected >hours</option>
-                                <?php
-                                    $h = 1 ;
-                                    while ($h <= 23){
-                                        echo "<option value='".$h."' >".$h."</option>" ;
-                                        $h++ ;
-                                    }
-                                ?>
-                        </select>&nbsp;
-                        <select class="btn-info btn-xs" id= "c_etad" >	
-                            <option value='15' selected >minute</option>
-                            <option value='30' >30</option>
-                            <option value='45'  >45</option>
-                        </select><br/><br/>                          
-                        <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
-                        </div>
-                    </form>
-                    </div>
-                    <div id='ArticleForm'>
-                        <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
-                        <textarea rows="3" class="form-control" id="article" placeholder="article"></textarea><br><br>
-                        <input type="submit" value="Post" class="btn btn-success" id="create_article"/>
-                    </div>
-                    <div id='PictureForm'>
-                        <input type='text' class="form-control" id="picture_title" placeholder="Title"/><br>
-                        <textarea rows="3" class="form-control" id="picture" placeholder="picture"></textarea><br><br>
-                        <input type="button" value="Post" class="btn btn-success" id="create_picture"/>
-                    </div>
-                    <div id='VideoForm'>
-                        <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
-                        <textarea rows="3" class="form-control" id="article" placeholder="Upload Videos"></textarea><br><br>
-                        <input type="button" value="Post" class="btn btn-success" id="create_article"/>
-                    </div><br/>
-                </div></div>
-		<?php
+<?php
+session_start();
+include_once "../lib/db_connect.php";
+include_once '../functions/delete_comment.php';
+if($_POST['chal']){
+	$user_id = $_SESSION['user_id'];
+	$limit = $_SESSION['lastpanel'];
+	
+	$a = (int)$limit ;
+	
+	$b = $a+5;
+	
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation,
                                             b.first_name, b.last_name, b.username from challenges as a join user_info as b where (a.challenge_type = '1' or a.challenge_type = '9')
                                              and blob_id = '0' and a.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE (a.challenge_type = '1' or a.challenge_type = '9') and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10;");
-	$_SESSION['lastpanel'] = '10' ; 
-	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
+											WHERE (a.challenge_type = '1' or a.challenge_type = '9') and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT $a,$b;");
+ $show = "";
+ $iR=0;
+ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
+	 $i++;
 		$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
 		$ETA = $open_chalangerow['challenge_ETA'] ;
 		$ch_title = $open_chalangerow['challenge_title'] ;
@@ -176,15 +73,15 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		}
 			
 }
-		echo "<div class='list-group'>
+		
+		$show .= "<div class='list-group'>
 				<div class='list-group-item'>" ;
 	if ($ctype == 1) {			
 		if($status == 1) {
-		echo "Created by &nbsp 
+		$show = $show . "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
-				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-			echo "<form method='POST' class='inline-form pull-right'>
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+			$show = $show . "<form method='POST' class='inline-form pull-right'>
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
@@ -239,20 +136,20 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 					}
 		}
 }
-			echo "Created by &nbsp 
+			$show = $show . "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
 				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaining_time_owno."</div>" ;
 			}
 	} else {
-		echo "Written by &nbsp 
+		$show = $show . "Written by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
 		
 		}		
-			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
+			 $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -263,7 +160,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
               $comment_id = $commenterRow['response_ch_id'];
               $challenge_ID = $commenterRow['challenge_id'];
               $username_comment_ninjas = $commenterRow['username'];
-		echo "<div id='commentscontainer'>
+		$show = $show . "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
 					<img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>
@@ -273,9 +170,9 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."";
 				
                 dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
-         echo "</div></div></div>";
+         $show = $show . "</div></div></div>";
 		}
-		echo "<div class='comments clearfix'>
+		$show = $show . "<div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
@@ -285,6 +182,20 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
                             <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-play' name='own_chl_response' ></button>
                         </form>
                     </div>";
-          echo "</div> </div> "; 
+          $show = $show . "</div> </div> "; 
         }
+											
+	if(mysqli_error($db_handle)) 
+	{ 
+		echo "Failed!"; 
+	}
+	else { 
+		$_SESSION['lastpanel'] = $a+$i;
+		echo $show ; 
+		}
+}
+	
+
+else echo "Invalid parameters!";
+mysqli_close($db_handle);
 ?>

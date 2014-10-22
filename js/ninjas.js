@@ -27,9 +27,38 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-
+function getNext(){
+			 
+			 
+			
+		}
+function createPanels(str){
+	
+	return str;
+	}
+	
 	$(document).ready(function(){
-    
+
+    $(window).scroll(function(event) {
+		
+    if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+         event.preventDefault();
+		var dataString = 'chal=10' ;
+			  $.ajax({
+				type: "POST",
+				url: "ajax/get_next.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#panel-cont').append(result);
+					}
+				
+			});
+		
+	}
+});
+
 		$("#submit_ch").click(function(){
       		$("#submit_ch").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;

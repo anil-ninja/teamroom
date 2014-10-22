@@ -32,7 +32,7 @@ include_once 'functions/delete_comment.php';
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
           <div class="col-lg-6">
-			  <div class="panel-primary">
+			  <div class="panel-primary" id='panel-cont'>
 				  <p id='home-ch'></p>
 				  <p id='home'></p>
           
