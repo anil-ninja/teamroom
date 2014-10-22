@@ -93,9 +93,12 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
                                 <?php
-                                 echo "<img src='uploads/profilePictures/$UserName.jpg'  onError=this.src='img/default.gif' class='img-circle img-responsive'>"; ?>
-                                <b> <a data-toggle='modal' style="cursor: pointer" data-target='#uploadPicture'>Change Picture</a> </b>
-                                <figcaption class="ratings">
+                                    echo "<img src='uploads/profilePictures/$UserName.jpg'  onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+                                    if (isset($_SESSION['user_id'])) {
+                                        echo "<b> <a data-toggle='modal' style='cursor: pointer' data-target='#uploadPicture'>Change Picture</a> </b>";
+                                    }
+                                ?>
+                                 <figcaption class="ratings">
                                     <p>Ratings
                                         <a href="#">
                                             <span class="fa fa-star"></span>

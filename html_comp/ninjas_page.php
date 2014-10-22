@@ -275,16 +275,14 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
          echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
-                  <div class='pull-left lh-fix'>
-                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>
-                  </div>
-                  <div class='comment-text' >
-                      <form action='' method='POST' class='inline-form'>
-							<input type='hidden' value='".$chelangeid."' name='own_challen_id' />
-							<input type='text' STYLE='border: 1px solid #bdc7d8; width: 92.8%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-							<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-						</form>
-                  </div>
-             </div>";
-          echo " </div> </div> ";    
-  }
+                        <div class='pull-left lh-fix'>
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                        </div>
+                        <form action='' method='POST' class='inline-form'>
+                            <input type='hidden' value='".$chelangeid."' name='own_challen_id' />
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-play' name='own_chl_response' ></button>
+                        </form>
+                    </div>";
+          echo "</div> </div> "; 
+        }
