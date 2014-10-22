@@ -12,39 +12,42 @@ $(document).ready(function(){
       		$("#addskills").attr('disabled','disabled');
 			var insert = $("#insert").val() ;
 			var skills = $("#skills").val() ;
-			
+			if (skills == '0') {
+				if (insert =='') {
+                     bootstrap_alert(".alert_placeholder", "Skills can not be empty", 5000,"alert-warning");
+                  }
+			}
+             else if (skills != '0') {
+				if (insert != '') {
+                   bootstrap_alert(".alert_placeholder", "Either select OR enter", 5000,"alert-warning");
+              }
+		  }
+               else {
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'skills=' + skills + '&insert=' + insert ;
+			var dataString = 'insert=' + insert + '&skills=' + skills ;
 			//alert(dataString);
 			// AJAX Code To Submit Form.
-                        if ((insert =='') AND (skills == '0'))
-                            {
-                                bootstrap_alert(".alert_placeholder", "Skills can not be empty", 5000,"alert-warning");
-                            }
-                          else if ((insert =='insert') AND (skills == 'skills'))
-                            {
-                                bootstrap_alert(".alert_placeholder", "Either select OR enter", 5000,"alert-warning");
-                            }
-                        else {
-			$.ajax({
+   			$.ajax({
 				type: "POST",
 				url: "ajax/add_remove_skill.php",
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					alert(result);
+					//bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result=='Skill added succesfully!'){
                                             $("#skills").val("");
                                             $("#insert").val("");
                                             location.reload();
                                         }
+                                  else {
+									  alert("error occured")
+									  }      
 				}
 			});
-                            }
-			
-                        $("#addskills").removeAttr('disabled');
-                                            return false;
+      }
+	     $("#addskills").removeAttr('disabled');
+                 return false;
 		});
         $("#remove_skill").click(function(){
       		$("#remove_skill").attr('disabled','disabled');
