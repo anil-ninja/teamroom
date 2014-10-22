@@ -397,7 +397,7 @@ upload_image.addEventListener('click', upload);
               <!-- Modal -->
         <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="width:auto; height:auto">
+                <div class="modal-content" style="width:350px; height:auto">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
@@ -418,19 +418,19 @@ upload_image.addEventListener('click', upload);
                         <br/>
                         <div class="input-group">
                             <span class="input-group-addon">Username</span>
-                            <input type="text" class="form-control" id="username" placeholder="Enter email or username">
+                            <input type="text" style="font-size:10pt" class="form-control" id="username" placeholder="Enter email or username">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon">Password</span>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" style="font-size:10pt" class="form-control" id="password" placeholder="Password">
                         </div><br/>
-                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLogin1()">Log in</button> &nbsp;&nbsp;
-                        <button class="btn btn-success" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
+                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLogin1()">Log in</button>
+                        
                     </div>
 
                     <div class  ="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						<button class="btn btn-primary" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
                     </div>
                 </div>
             </div>
