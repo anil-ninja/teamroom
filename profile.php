@@ -16,6 +16,19 @@ if (isset($_POST['logout'])) {
     session_destroy();
     exit;
 }
+if(isset($_POST['projectphp'])){
+    $user_id = $_SESSION['user_id'];
+    $name = $_SESSION['first_name'];
+    $username = $_SESSION['username'];
+    $rank = $_SESSION['rank'];
+    $email = $_SESSION['email'];
+        header('location: project.php') ;   
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['first_name'] = $name;
+        $_SESSION['project_id'] = $_POST['project_id'] ;
+        $_SESSION['rank'] = $rank;
+        exit ;
+}
 $user_InformationRow = mysqli_fetch_array($userInfo);
 $profileViewFirstName = $user_InformationRow['first_name'];
 $profileViewLastName = $user_InformationRow['last_name'];
@@ -87,30 +100,37 @@ $totalprojectProgress = $counter["COUNT(project_id)"];
                                         <p><strong>Email-Id: </strong>" . $profileViewEmail . "</p>
                                         <p><strong>Contact: </strong>" . $profileViewPhone . "</p>
                                         <p><strong>Skills: </strong>";
-                                        $skill_display = mysqli_query($db_handle, "SELECT a.skill_name FROM skill_names as a JOIN user_skills as b 
-                                                                                    WHERE a.skill_id = b.skill_id AND b.user_id = $profileViewUserID;");
+                                        $skill_display = mysqli_query($db_handle, "SELECT * FROM skills WHERE user_id = $profileViewUserID AND skill_status = '1';");
                                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                                             echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
-                                        }
+                                            }
                                       echo "</p>";
+                                        
                            
                             if(isset($_SESSION['user_id'])) { 
-                           echo "<form>
-                                <select class='btn-sm' id='add'>";	
-                                    $skill_names= mysqli_query($db_handle, "SELECT DISTINCT a.* FROM skill_names as a JOIN user_skills as b WHERE a.skill_id NOT IN(SELECT skill_id FROM user_skills WHERE user_id = $profileViewUserID);");
-                                    while ($skill_namesRow = mysqli_fetch_array($skill_names)) {
-                                        echo "<option value= '".$skill_namesRow['skill_id']."'>".$skill_namesRow['skill_name']."</option>";
-                                    }
-                              echo "</select>&nbsp
-                                <input id='add_skill' class='btn-sm btn-primary' type='button' value='Add Skill'/>
-                            </form>";
+                                echo "<div class='col-lg-5'>
+                                        <div class='alert_placeholder'></div>
+                                        <input type='text' id ='add'>
+                                        <input id='add_skill' class='btn-sm btn-primary' type='submit' value='Add Skill'/>
+                                    </div>";
+                                
+                                echo "<form>
+                                    <select class='btn-sm' id='remove'>
+                                    <option value='0' selected></option>";	
+                                        $skill_remove_names= mysqli_query($db_handle, "SELECT skill_id, skill_name FROM skills WHERE user_id = $profileViewUserID AND skill_status = '1';");
+                                        while ($skill_remove_namesRow = mysqli_fetch_array($skill_remove_names)) {
+                                            echo "<option value= '".$skill_remove_namesRow['skill_id']."'>".$skill_remove_namesRow['skill_name']."</option>";
+                                        }
+                                echo "</select>&nbsp
+                                    <input id='remove_skill' class='btn-sm btn-primary' type='submit' value='Remove Skill'/>
+                                </form>";
                             }
                            ?>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
                                 <?php
-                                    echo "<img src='uploads/profilePictures/$UserName.jpg'  onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+                                    echo "<img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
                                     if (isset($_SESSION['user_id'])) {
                                         echo "<b> <a data-toggle='modal' style='cursor: pointer' data-target='#uploadPicture'>Change Picture</a> </b>";
                                     }
@@ -196,28 +216,28 @@ $totalprojectProgress = $counter["COUNT(project_id)"];
             </div>
         </div>
 <div id="InfoBox"></div>
-        <script src="js/add_skill.js"> </script>
+        <script src="js/add_remove_skill.js"> </script>
         <script> 
 $(document).ready(function(){
-	$("#challegeForm").toggle();
-  $("#chcomp").click(function(){
+    $("#challegecreForm").toggle();
+    $("#chcre").click(function(){
+        $("#challegecreForm").toggle(3000);
+        $("#challegeownForm").hide(1500);
+        $("#challegeForm").hide(1500);
+    });
+    $("#challegeForm").toggle();
+    $("#chcomp").click(function(){
   	$("#challegeownForm").hide(1500);
+        $("#challegeForm").toggle(3000);
   	$("#challegecreForm").hide(1500);
-    $("#challegeForm").toggle(3000);
-  });
+    });
 
-  $("#challegeownForm").toggle();
-  $("#chown").click(function(){
+    $("#challegeownForm").toggle();
+    $("#chown").click(function(){
   	$("#challegecreForm").hide(1500);
   	$("#challegeForm").hide(1500);
-    $("#challegeownForm").toggle(3000);
-  });
-  $("#challegecreForm").toggle();
-  $("#chcre").click(function(){
-  	$("#challegeownForm").hide(1500);
-  	$("#challegeForm").hide(1500);
-    $("#challegecreForm").toggle(3000);
-  });
+        $("#challegeownForm").toggle(3000);
+    });
 });
 </script>
         <div class="row">
@@ -268,8 +288,8 @@ $(document).ready(function(){
                                         }
                                     ?>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-4 emphasis">
+                                
+                                    
                                     <div id='challegeownForm'>
                                     <?php
                                         $title_ch_owned = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
@@ -316,9 +336,9 @@ $(document).ready(function(){
                                         }
                                     ?> 
                                     </div>                                   
-                                </div>
-                                <div class="col-xs-12 col-sm-4 emphasis">
-                                     <div id='challegecreForm'>
+                                
+                                    
+                                    <div id='challegecreForm'>
                                     <?php
                                         $title_ch_created = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_status, challenge_title, user_id, challenge_ETA, challenge_creation from challenges where
                                                                                         user_id = '$profileViewUserID' ORDER BY challenge_creation DESC ;");
