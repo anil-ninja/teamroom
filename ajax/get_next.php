@@ -190,7 +190,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 		echo "Failed!"; 
 	}
 	else { 
-		$_SESSION['lastpanel'] = $a+$i;
+		$_SESSION['lastpanel'] = $a+$i;s
 		echo $show ; 
 		}
 }
