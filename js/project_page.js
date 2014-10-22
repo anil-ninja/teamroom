@@ -7,6 +7,22 @@ function bootstrap_alert(elem, message, timeout,type) {
   }
 };
 	$(document).ready(function(){
+	 $(window).scroll(function(event) {
+	    if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+         event.preventDefault();
+		var dataString = 'proch=10' ;
+			  $.ajax({
+				type: "POST",
+				url: "ajax/next_proch.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#prch').append(result);
+					}
+			});
+		}
+});		
 		$("#create_challange_pb_pr").click(function(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;

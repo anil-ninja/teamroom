@@ -40,7 +40,7 @@
                         <li><button class='btn-link' href='#'>Edit Project</button></li>
                         <li><button class='btn-link' pID='".$p_id."' onclick='delProject(".$p_id.");'>Delete Project</button></li>
                         <li><form method='POST' class='inline-form'>";                    
-                        if($projectETA == 'Time over') {        
+                        if($projecteta == 'Time over') {        
                             echo "<input type='hidden' name='id' value='".$p_id."'/>
                                 <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
                             }                                    
@@ -54,8 +54,8 @@
             </div>";
 	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 			<a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
-			</span>  on &nbsp".$timef. " <br/> with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
-			<span class='color strong' style= 'color :#3B5998;'><p align='center'>".ucfirst($title)."</p></span>
+			</span>  on &nbsp".$timef. " with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
+			<span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>".ucfirst($title)."</p></span>
 			".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
