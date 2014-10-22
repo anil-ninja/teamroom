@@ -121,7 +121,7 @@ $(document).ready(function(){
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE (a.challenge_type = '1' or a.challenge_type = '9') and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC ;");
+											WHERE (a.challenge_type = '1' or a.challenge_type = '9') and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10;");
 	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
 		$ETA = $open_chalangerow['challenge_ETA'] ;
@@ -237,7 +237,6 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 					$remaining_time_owno = $minuteow." Mins" ;
 					}
 		}
-			
 }
 			echo "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
@@ -246,9 +245,10 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaining_time_owno."</div>" ;
 			}
 	} else {
-		echo "Created by &nbsp 
+		echo "Written by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."</div>" ;
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
+				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
 		
 		}		
 			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
