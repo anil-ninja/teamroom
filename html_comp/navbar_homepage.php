@@ -121,7 +121,7 @@ if ($requestedPage == "ninjas.php") {
 echo "<div class='navbar navbar-inverse navbar-fixed-top' style='max-height:20px;margin-top:50px;'>
       <div class='navbar-inner'>
         <div class='container'>
-           <div class='col-md-offset-2 col-md-7 col-lg-7'>
+           <div class='col-md-offset-2 col-md-8 col-lg-8'>
             <ul class='list-inline'>&nbsp;&nbsp;&nbsp;&nbsp;
               <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></li>
               <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></li>
