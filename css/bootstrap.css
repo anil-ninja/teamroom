@@ -4125,7 +4125,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: lightblue;
+  background-color: #4EC67F;
   border-color: #e7e7e7;
   max-height:45px ;
 }
@@ -4241,7 +4241,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #eeeeee;
 }
 .navbar-inverse {
-  background-color: lightblue;
+  background-color: #39C381;
   border-color: #e6e6e6;
 }
 .navbar-inverse .navbar-brand {

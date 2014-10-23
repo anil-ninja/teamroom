@@ -93,7 +93,8 @@ $(document).ready(function(){
                             <option value='15' selected >minute</option>
                             <option value='30' >30</option>
                             <option value='45'  >45</option>
-                        </select><br/><br/>                          
+                        </select><br/><br/> 
+                        <input type="checkbox" id="Chall_type" value='off' /> Always Open<br/><br/>                          
                         <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                         </div>
                     </form>
@@ -116,12 +117,13 @@ $(document).ready(function(){
                 </div></div>
 		<?php
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation,
-                                            b.first_name, b.last_name, b.username from challenges as a join user_info as b where (a.challenge_type = '1' or a.challenge_type = '9')
-                                             and blob_id = '0' and a.user_id = b.user_id)
+                                            b.first_name, b.last_name, b.username from challenges as a join user_info as b where (a.challenge_type = '1' or a.challenge_type = '9' or a.challenge_type = '10')
+                                             and blob_id = '0' and a.challenge_status != '5' and a.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE (a.challenge_type = '1' or a.challenge_type = '9') and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10;");
+											WHERE (a.challenge_type = '1' or a.challenge_type = '9' or a.challenge_type = '10') and a.blob_id = c.blob_id and a.challenge_status != '5' 
+											and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10;");
 	$_SESSION['lastpanel'] = '10' ; 
 	while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
@@ -176,21 +178,6 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 		}
 			
 }
-		echo "<div class='list-group'>
-				<div class='list-group-item'>" ;
-	if ($ctype == 1) {			
-		if($status == 1) {
-		echo "Created by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
-				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-			echo "<form method='POST' class='inline-form pull-right'>
-						<input type='hidden' name='id' value='".$chelangeid."'/>
-						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
-					</form>
-				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaining_time_own."</div>";
-		}
-		else {
 			$ownedby = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
 												from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;") ;
 			$ownedbyrow = mysqli_fetch_array($ownedby) ;
@@ -239,21 +226,79 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 					}
 		}
 }
+		echo "<div class='list-group'>
+				<div class='list-group-item'>" ;
+	if ($ctype == 1) {			
+		if($status == 1) {
+		echo "Created by &nbsp 
+				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
+				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+			echo "<form method='POST' class='inline-form pull-right'>
+						<input type='hidden' name='id' value='".$chelangeid."'/>
+						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+					</form>
+				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaining_time_own."</div>";
+		}
+		else {
+
 			echo "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
 				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaining_time_owno."</div>" ;
 			}
-	} else {
+	} else if ($ctype == 9) {
 		echo "Written by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
 		
-		}		
+		}	
+		else {
+			echo "Created by &nbsp 
+				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
+				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
+						<input type='hidden' name='id' value='".$chelangeid."'/>
+						<input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
+					</form>
+				 &nbsp&nbsp&nbsp On : ".$timefunction."</div>";
+			 
+		 if ($status == 3) {		 
+			$ownedb = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
+												from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;") ;
+		while ($ownedbrow = mysqli_fetch_array($ownedb)) {
+			$owtime = $ownedbrow['ownership_creation'] ;
+			$timfunct = date("j F, g:i a",strtotime($owtime));
+			$owfname = $ownedbrow['first_name'] ;
+			$owlname = $ownedbrow['last_name'] ;
+			$owname = $ownedbrow['username'] ;
+			echo "<div class='list-group-item'> Owned By  <span class='color strong'><a href ='profile.php?username=".$owname."'>"
+				. ucfirst($owfname). '&nbsp'. ucfirst($owlname). " </a></span>&nbsp&nbsp On : ".$timfunct ;
+		if($ownedbrow['user_id'] == $user_id) {			
+			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+					<input type='hidden' name='id' value='".$chelangeid."'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+					</form>";
+				}
+				echo "</div>" ;
+			}
+		}
+	}	
 			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
 			   $chelange. "<br/><br/>";
+	if	($ctype == 9 && $status == 4) {	 
+		$answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
+												UNION
+												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);") ;										
+		while ($answerrow = mysqli_fetch_array($answer)) { 
+			echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
+				<p align='center'>Answer</p></span>"
+				.$answerrow['stmt']."<br/>" ;
+		}  
+	}
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION

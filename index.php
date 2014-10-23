@@ -22,14 +22,14 @@ if (!isset($_SESSION['first_name'])) {
 
     </head>
     <body >
-	<div class="navbar navbar-inverse navbar-fixed-top"><div class='alert_placeholder'></div>
+	<div class="navbar navbar-inverse navbar-fixed-top" >
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" style='font-size:16pt; color: #000;' href="index.php">Collgo</a>
+          <a class="brand" style='font-size:16pt; color: #fff;' href="index.php">Collgo</a>
            <div class="span3 pull-right">
             <ul class="list-inline">
               <li><p style='font-size:10pt; color:rgba(161, 148, 148, 1);'>Powered By : </p></li>
-              <li><a class="btn-link" style='font-size:14pt; color: #000;' href="http://dpower4.com/">Dpower4.com</a></li>
+              <li><a class="btn-link" style='font-size:14pt; color: #fff;' href="http://dpower4.com/">Dpower4.com</a></li>
             </ul>
           </div>
         </div>
