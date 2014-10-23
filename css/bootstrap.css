@@ -3075,7 +3075,7 @@ fieldset[disabled] .btn-link {
 .btn-link:hover,
 .btn-link:focus {
   color: #158cba;
-  text-decoration: underline;
+  text-decoration: none;
   background-color: transparent;
 }
 .btn-link[disabled]:hover,
@@ -3805,7 +3805,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  min-height: 50px;
+  min-height: 30px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -4127,7 +4127,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default {
   background-color: #4EC67F;
   border-color: #e7e7e7;
-  max-height:45px ;
+  max-height:55px ;
 }
 .youtube {
 	width: 100%;
@@ -4241,7 +4241,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   color: #eeeeee;
 }
 .navbar-inverse {
-  background-color: #39C381;
+  background-color: #3BD78C;
   border-color: #e6e6e6;
 }
 .navbar-inverse .navbar-brand {

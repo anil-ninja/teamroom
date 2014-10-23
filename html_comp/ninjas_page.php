@@ -4,6 +4,7 @@ $(document).ready(function(){
   $("#challenge").click(function(){
   	$("#ArticleForm").hide(1500);
   	$("#PictureForm").hide(1500);
+  	$("#IdeaForm").hide(3000);
   	$("#VideoForm").hide(1500);
     $("#challegeForm").toggle(3000);
   });
@@ -12,6 +13,7 @@ $(document).ready(function(){
   $("#artical").click(function(){
   	$("#challegeForm").hide(1500);
   	$("#PictureForm").hide(1500);
+  	$("#IdeaForm").hide(3000);
   	$("#VideoForm").hide(1500);
     $("#ArticleForm").toggle(3000);
   });
@@ -19,6 +21,7 @@ $(document).ready(function(){
   $("#picture").click(function(){
   	$("#challegeForm").hide(1500);
   	$("#PictureForm").toggle(1500);
+  	$("#IdeaForm").hide(3000);
   	$("#VideoForm").hide(1500);
     $("#ArticleForm").hide(3000);
   });
@@ -26,13 +29,22 @@ $(document).ready(function(){
   $("#video").click(function(){
   	$("#challegeForm").hide(1500);
   	$("#PictureForm").hide(1500);
+  	$("#IdeaForm").hide(3000);
   	$("#VideoForm").toggle(1500);
     $("#ArticleForm").hide(3000);
+  });
+  $("#IdeaForm").toggle();
+  $("#idea").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#VideoForm").hide(1500);
+    $("#ArticleForm").hide(3000);
+    $("#IdeaForm").toggle(3000);
   });
 });
 </script>
 				   <div class='list-group'>
-				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge'> Challenge</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical'> Articale</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture'> Photos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video'> Videos</span></div>
+				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge'> Challenge</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical'> Articale</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture'> Photos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video'> Videos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-tree-deciduous" id='idea'> Ideas</span></div>
 				<div class='list-group-item'>
 				<div id='challegeForm'>
                   <form>
@@ -113,6 +125,11 @@ $(document).ready(function(){
                         <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
                         <textarea rows="3" class="form-control" id="article" placeholder="Upload Videos"></textarea><br><br>
                         <input type="button" value="Post" class="btn btn-success" id="create_article"/>
+                    </div>
+                    <div id='IdeaForm'>
+                        <input type='text' class="form-control" id="idea_title" placeholder="Title"/><br>
+                        <textarea rows="3" class="form-control" id="idea" placeholder="About Idea"></textarea><br><br>
+                        <input type="submit" value="Post" class="btn btn-success" id="create_idea"/>
                     </div><br/>
                 </div></div>
 		<?php
