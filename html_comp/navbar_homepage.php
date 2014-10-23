@@ -115,6 +115,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     ?>
         </ul>
         <br>
+        
         <ul class='nav navbar-nav'>
             <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
            <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></p></li>
