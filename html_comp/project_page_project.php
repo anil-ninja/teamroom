@@ -349,8 +349,9 @@ echo "<div class='panel-heading'>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>
 						<a href ='profile.php?username=".$username_notes_comment."'>". ucfirst($fstname)." ".ucfirst($lstname)."</a></span> 
-						&nbsp&nbsp&nbsp".$chalangeres."
-					</div>
+						&nbsp&nbsp&nbsp".$chalangeres."";
+                                                    dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+					echo "</div>
 				</div> 
 			</div>";
 		}
