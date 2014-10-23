@@ -16,6 +16,19 @@ if (isset($_POST['logout'])) {
     session_destroy();
     exit;
 }
+if(isset($_POST['projectphp'])){
+    $user_id = $_SESSION['user_id'];
+    $name = $_SESSION['first_name'];
+    $username = $_SESSION['username'];
+    $rank = $_SESSION['rank'];
+    $email = $_SESSION['email'];
+        header('location: project.php') ;   
+        $_SESSION['user_id'] = $user_id;
+        $_SESSION['first_name'] = $name;
+        $_SESSION['project_id'] = $_POST['project_id'] ;
+        $_SESSION['rank'] = $rank;
+        exit ;
+}
 $user_InformationRow = mysqli_fetch_array($userInfo);
 $profileViewFirstName = $user_InformationRow['first_name'];
 $profileViewLastName = $user_InformationRow['last_name'];
@@ -39,9 +52,13 @@ $projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projec
 $counter = mysqli_fetch_assoc($projectCreated);
 $totalProjectCreated = $counter["COUNT(project_id)"];
 
-$projectCompleted = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type = '2';");
+$projectCompleted = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type = '4';");
 $counter = mysqli_fetch_assoc($projectCompleted);
 $totalProjectCompleted = $counter["COUNT(project_id)"];
+
+$projectProgress = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type != '3' and project_type != '4' and project_type != '5';");
+$counter = mysqli_fetch_assoc($projectProgress);
+$totalprojectProgress = $counter["COUNT(project_id)"];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -82,18 +99,37 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                             echo "<h2><strong>" . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong></h2>
                                         <p><strong>Email-Id: </strong>" . $profileViewEmail . "</p>
                                         <p><strong>Contact: </strong>" . $profileViewPhone . "</p>
-                                        <p><strong>Skills: </strong>
-                                            <span class='tags'>html5</span> 
-                                            <span class='tags'>css3</span>
-                                            <span class='tags'>jquery</span>
-                                            <span class='tags'>bootstrap3</span>
-                                        </p>";
-                            ?>
+                                        <p><strong>Skills: </strong>";
+                                        $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
+                                        while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+                                            echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
+                                            }
+                                      echo "</p>";
+                                        
+                           
+                            if(isset($_SESSION['user_id'])) { 
+                                echo "<div class='col-lg-5'>
+                                        <a data-toggle='modal' class='btn btn-primary' data-target='#addskill' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Add Skills</a>
+                                    </div>";
+                                
+                                echo "<form>
+                                    <select class='btn-sm' id='remove'>
+                                    <option value='0' selected></option>";	
+                                        $skill_remove_names= mysqli_query($db_handle, "SELECT b.skill_id, b.skill_name FROM user_skills as a join skill_names as b
+																						WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id;");
+                                       while ($skill_remove_namesRow = mysqli_fetch_array($skill_remove_names)) {
+                                            echo "<option value= '".$skill_remove_namesRow['skill_id']."'>".$skill_remove_namesRow['skill_name']."</option>";
+                                       }
+                                echo "</select>&nbsp
+                                    <input id='remove_skill' class='btn-sm btn-primary' type='submit' value='Remove Skill'/>
+                                </form>";
+                            }
+                           ?>
                         </div>             
                         <div class="col-xs-12 col-sm-4 text-center">
                             <figure>
                                 <?php
-                                    echo "<img src='uploads/profilePictures/$UserName.jpg'  onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+                                    echo "<img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
                                     if (isset($_SESSION['user_id'])) {
                                         echo "<b> <a data-toggle='modal' style='cursor: pointer' data-target='#uploadPicture'>Change Picture</a> </b>";
                                     }
@@ -149,7 +185,7 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
                             <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
                         </div>
                         <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong> 0 </strong></h2>                    
+                            <h2><strong><?php echo $totalprojectProgress; ?> </strong></h2>                    
                             <p><small>projects</small></p>
                             <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
                         </div>
@@ -179,27 +215,28 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
             </div>
         </div>
 <div id="InfoBox"></div>
-        <script>
+        <script src="js/add_remove_skill.js"> </script>
+        <script> 
 $(document).ready(function(){
-	$("#challegeForm").toggle();
-  $("#chcomp").click(function(){
+    $("#challegecreForm").toggle();
+    $("#chcre").click(function(){
+        $("#challegecreForm").toggle(3000);
+        $("#challegeownForm").hide(1500);
+        $("#challegeForm").hide(1500);
+    });
+    $("#challegeForm").toggle();
+    $("#chcomp").click(function(){
   	$("#challegeownForm").hide(1500);
+        $("#challegeForm").toggle(3000);
   	$("#challegecreForm").hide(1500);
-    $("#challegeForm").toggle(3000);
-  });
+    });
 
-  $("#challegeownForm").toggle();
-  $("#chown").click(function(){
+    $("#challegeownForm").toggle();
+    $("#chown").click(function(){
   	$("#challegecreForm").hide(1500);
   	$("#challegeForm").hide(1500);
-    $("#challegeownForm").toggle(3000);
-  });
-  $("#challegecreForm").toggle();
-  $("#chcre").click(function(){
-  	$("#challegeownForm").hide(1500);
-  	$("#challegeForm").hide(1500);
-    $("#challegecreForm").toggle(3000);
-  });
+        $("#challegeownForm").toggle(3000);
+    });
 });
 </script>
         <div class="row">
@@ -250,8 +287,8 @@ $(document).ready(function(){
                                         }
                                     ?>
                                     </div>
-                                </div>
-                                <div class="col-xs-12 col-sm-4 emphasis">
+                                
+                                    
                                     <div id='challegeownForm'>
                                     <?php
                                         $title_ch_owned = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
@@ -298,9 +335,9 @@ $(document).ready(function(){
                                         }
                                     ?> 
                                     </div>                                   
-                                </div>
-                                <div class="col-xs-12 col-sm-4 emphasis">
-                                     <div id='challegecreForm'>
+                                
+                                    
+                                    <div id='challegecreForm'>
                                     <?php
                                         $title_ch_created = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_status, challenge_title, user_id, challenge_ETA, challenge_creation from challenges where
                                                                                         user_id = '$profileViewUserID' ORDER BY challenge_creation DESC ;");
@@ -363,29 +400,20 @@ upload_image.addEventListener('click', upload);
             <!---Modal --->
             <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="width:auto; height:auto">
+                <div class="modal-content" style="width:300px; height:auto">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
-                        
                         <div class='alert_placeholder'></div>
                     </div>
                     <div class="modal-body">
-                        <br/>
-                        <div id='_progress' class='progress'></div>
                         <div class="input-group">
-                           
                             <input class="btn btn-default btn-sm" type="file" id="_file" style ="width: auto;"><br>
                         </div>
-                       <br/>
-                        <input class="btn btn-default btn-sm" type="submit" id="upload_image" value="Upload"><br>
-                    </div>
-
-                    <div class  ="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        <input class="btn btn-primary btn-sm" type="submit" id="upload_image" onclick="validateUploadImage()" value="Change"><br>
                     </div>
                 </div>
             </div>
@@ -394,10 +422,48 @@ upload_image.addEventListener('click', upload);
                   
             </form>
             <!---End OF Modal --->
+            <!---Modal --->
+            <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:300px; height:auto;">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Add Skills</h4>
+                        <div class='alert_placeholder'></div>
+                    </div>
+                    <div class="modal-body">
+						Select Skill : &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select class="inline-form" id = "skills" >	
+                            <option value='0' selected >Default (none)</option>
+                            <?php
+                            $m = mysqli_query($db_handle, "select * from skill_names where 1 = 1 ;") ;
+                            while ($n = mysqli_fetch_array($m)) {
+								$id = $n['skill_id'] ;
+								$sn = $n['skill_name'] ;
+                                echo "<option value='" . $id . "' >" . $sn . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <br/><br/>OR<br/><br/>
+                         Enter your Skill  &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' class="inline-form" id="insert" placeholder="Enter your Skill"/><br/><br/>
+                        <input type="button" value="Add" class="btn btn-success" id="addskills"/>
+                       
+                        </div>
+                     <div class="modal-footer">
+                <button name="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+                </div>
+            </div>
+        </div>
+            <!---End OF Modal --->            
               <!-- Modal -->
         <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="width:auto; height:auto">
+                <div class="modal-content" style="width:350px; height:auto">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
@@ -409,28 +475,20 @@ upload_image.addEventListener('click', upload);
                     </div>
                     <div class="modal-body">
                         <div class="input-group">
-                        <?php 
-                            if (isset($_POST['login_comment'])) {
-                                echo 'Sign In for your comment!!!';
-                            }
-                        ?> 
-                        </div>
-                        <br/>
-                        <div class="input-group">
                             <span class="input-group-addon">Username</span>
-                            <input type="text" class="form-control" id="username" placeholder="Enter email or username">
+                            <input type="text" style="font-size:10pt" class="form-control" id="username" placeholder="Enter email or username">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon">Password</span>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" style="font-size:10pt" class="form-control" id="password" placeholder="Password">
                         </div><br/>
-                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLogin1()">Log in</button> &nbsp;&nbsp;
-                        <button class="btn btn-success" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
+                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLogin1()">Log in</button>
+                        
                     </div>
 
                     <div class  ="modal-footer">
-                        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						<button class="btn btn-primary" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,9 @@
 <?php
 	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
-												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id AND a.project_type = '1')
+												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id )
                                                 UNION
                                                 (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
-                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' AND a.project_type = '1' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
+                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
 	   $project_idrow = mysqli_fetch_array($project_id) ;
 		$p_id = $project_idrow['project_id'] ;
 		$projectst = $project_idrow['stmt'];
@@ -40,7 +40,7 @@
                         <li><button class='btn-link' href='#'>Edit Project</button></li>
                         <li><button class='btn-link' pID='".$p_id."' onclick='delProject(".$p_id.");'>Delete Project</button></li>
                         <li><form method='POST' class='inline-form'>";                    
-                        if($projectETA == 'Time over') {        
+                        if($projecteta == 'Time over') {        
                             echo "<input type='hidden' name='id' value='".$p_id."'/>
                                 <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
                             }                                    
@@ -54,8 +54,8 @@
             </div>";
 	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 			<a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
-			</span>  on &nbsp".$timef. " <br/> with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
-			<span class='color strong' style= 'color :#3B5998;'><p align='center'>".ucfirst($title)."</p></span>
+			</span>  on &nbsp".$timef. " with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
+			<span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>".ucfirst($title)."</p></span>
 			".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 

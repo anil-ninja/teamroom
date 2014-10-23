@@ -67,4 +67,62 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
               </div>
             </div>";
 }
+function eta($eta){
+	$day = floor($eta/(24*60)) ;
+	$daysec = $eta%(24*60) ;
+	$hour = floor($daysec/(60)) ;
+	$minute = $daysec%(60) ;
+if($eta > 1439) {
+		$time = $day." days" ;
+		return $time ;
+	}
+	else {
+		if(($eta < 1439) AND ($eta > 59)) {
+			$time = $hour." hours" ;
+			return $time ;	
+		}
+		else { 
+			$time = $minute." mins" ;
+			return $time ;
+		 }
+}
+}
+function remaining_time($creationtime, $eta) {
+		$initialtime = strtotime($creationtime) ;
+		$totaltime = $initialtime+($eta*60) ;
+		$completiontime = time() ;
+ if ($completiontime > $totaltime) { 
+	  $remaining_time = "Closed" ;
+	  return $remaining_time ; 
+	  }
+	else {	
+			$remainingtime = ($totaltime-$completiontime) ;
+			$day = floor($remainingtime/(24*60*60)) ;
+			$daysec = $remainingtime%(24*60*60) ;
+			$hour = floor($daysec/(60*60)) ;
+			$hoursec = $daysec%(60*60) ;
+			$minute = floor($hoursec/60) ;
+		if ($remainingtime > ((24*60*60)-1)) {
+			if($hour != '0') {
+				$remaining_time = $day." Days and ".$hour." Hours" ;
+				return $remaining_time ;
+			} 
+			else {
+				$remaining_time = $day." Days" ;
+				return $remaining_time ;
+				}
+			} 
+		else {
+			if (($remainingtime < ((24*60*60)-1)) AND ($remainingtime > ((60*60)-1))) {
+				$remaining_time = $hour." Hours and ".$minute." Mins" ;
+				return $remaining_time ;
+				} 
+				else {
+					$remaining_time = $minute." Mins" ;
+					return $remaining_time ;
+					}
+		}
+	}
+}
+
 ?>

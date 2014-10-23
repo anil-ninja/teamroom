@@ -1,6 +1,6 @@
 <div class="bs-component">
   
-<p align="center"><font size="4">Your Tasks</font></p><hr/>
+<p align="center"><font size="4">Tasks</font></p><hr/>
 <?php
 		$titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
 											FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND a.challenge_type = '8'
