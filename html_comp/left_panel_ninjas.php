@@ -1,6 +1,6 @@
 <div class="bs-component">
               
-                      <p align="center"><font size="4">Your Projects</font></p><hr/>
+                      <p align="center"><font size="4">Projects</font></p><hr/>
                        <?php
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  

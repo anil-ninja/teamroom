@@ -27,16 +27,7 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-function getNext(){
-			 
-			 
-			
-		}
-function createPanels(str){
-	
-	return str;
-	}
-	
+
 	$(document).ready(function(){
 
     $(window).scroll(function(event) {

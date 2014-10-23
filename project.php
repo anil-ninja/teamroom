@@ -47,17 +47,10 @@ include_once 'functions/delete_comment.php';
                             cursor:pointer;
                     }             
             </style>
-        <script src="js/content_edit.js"> </script>
+       <script src="js/content_edit.js"> </script>
         <script src="js/project.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-
-
-
-
-
-
-
-    </head>
+   </head>
     <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
         <div class="container-fluid">
@@ -72,7 +65,7 @@ include_once 'functions/delete_comment.php';
                     </div>
                 </div>
                 <div class="col-lg-5">
-                    <div class="row" style="visibility: visible; position: relative;">
+						<div class="panel-primary" id="prch">
 					   <?php include_once 'html_comp/project_page_challenge.php'; ?>
 				    </div>
                 </div>	

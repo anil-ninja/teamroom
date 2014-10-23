@@ -1,11 +1,5 @@
 <?php
-	 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
-	 if($requestedPage == "challenges.php"){
 			$message = mysqli_query($db_handle, "select challenge_id from challenges where challenge_type='4' and user_id='$user_id';") ;
-		}
-		else {
-			$message = mysqli_query($db_handle, "select challenge_id from challenges where challenge_type='4' and user_id='$user_id' and project_id = '$pro_id';") ;
-		}
 		if(mysqli_num_rows($message) > 0) {
 		while ($messagerow = mysqli_fetch_array($message)) {
 			$id = $messagerow['challenge_id'] ;
@@ -37,9 +31,9 @@
 			$hoursec = $daysec%(60*60) ;
 			$minute = floor($hoursec/60) ;
 			$timetaken = $day." Days :".$hour." Hours :".$minute." Min :" ;
-			$answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$id' and blob_id = '0')
+			$answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$id' and blob_id = '0' and status = '2')
 												UNION
-												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$id' and a.blob_id = b.blob_id);") ;										
+												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$id'and a.status = '2' and a.blob_id = b.blob_id);") ;										
 			$answerrow = mysqli_fetch_array($answer) ;
 			echo "<div class='list-group'>
 					 <div class='list-group-item'>
@@ -49,7 +43,8 @@
 						<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'><p align='center'>".ucfirst($challangerow['challenge_title'])."</p></span>
 						".$challangerow['stmt']."<br/>
 						<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'><p align='center'>Answer</p></span>"
-						.$answerrow['stmt']."<br/><form method='POST' onsubmit=\"return confirm('Really Close Challenge !!!')\"><div class='pull-right'><input type='hidden' name='cid' value='".$id."'/>
+						.$answerrow['stmt']."<br/><form method='POST' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+						<div class='pull-right'><input type='hidden' name='cid' value='".$id."'/>
 						<button type='submit' class='btn-primary' name='closechallenge'>Close</button></div></form><br/>";
 						
 			$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, b.first_name, a.response_ch_creation FROM response_challenge as a JOIN user_info as b WHERE
