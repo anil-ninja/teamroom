@@ -138,46 +138,8 @@ $(document).ready(function(){
 		$times = $open_chalangerow['challenge_creation'] ;
 		$timefunction = date("j F, g:i a",strtotime($times));
 		$timeopen = $open_chalangerow['challenge_open_time'] ;
-		$day = floor($ETA/(24*60)) ;
-		$daysec = $ETA%(24*60) ;
-		$hour = floor($daysec/(60)) ;
-		$minute = $daysec%(60) ;
-		if($ETA > 1439) {
-			$sutime = $day." days" ;
-		}
-		else {
-			if(($ETA < 1439) AND ($ETA > 59)) {
-				$sutime = $hour." hours" ;	
-			}
-			else { $sutime = $minute." mins" ; }
-		}
-		$starttimestr = (string) $times ;
-        $initialtime = strtotime($starttimestr) ;
-		$totaltime = $initialtime+($ETA+$timeopen)*60 ;
-		$completiontime = time() ;
-if ($completiontime > $totaltime) { 
-	$remaining_time_own = "Closed" ; }
-else {	$remainingtime = ($totaltime-$completiontime) ;
-		$day = floor($remainingtime/(24*60*60)) ;
-		$daysec = $remainingtime%(24*60*60) ;
-		$hour = floor($daysec/(60*60)) ;
-		$hoursec = $daysec%(60*60) ;
-		$minute = floor($hoursec/60) ;
-	if ($totaltime > ((24*60*60)-1)) {
-		if($hour != 0) {
-		$remaining_time_own = $day." Days and ".$hour." Hours" ;
-		} else {
-			$remaining_time_own = $day." Days" ;
-			}
-	} else {
-			if (($totaltime < ((24*60*60)-1)) AND ($totaltime > ((60*60)-1))) {
-				$remaining_time_own = $hour." Hours and ".$minute." Mins" ;
-				} else {
-					$remaining_time_own = $minute." Mins" ;
-					}
-		}
-			
-}
+		$sutime = eta($ETA) ;
+		$remaintime = remaining_time($times, $ETA) ;
 			$ownedby = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
 												from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;") ;
 			$ownedbyrow = mysqli_fetch_array($ownedby) ;
@@ -187,19 +149,7 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$ownfname = $ownedbyrow['first_name'] ;
 			$ownlname = $ownedbyrow['last_name'] ;
 			$ownname = $ownedbyrow['username'] ;
-			$dayo = floor($owneta/(24*60)) ;
-		$dayseco = $owneta%(24*60) ;
-		$houro = floor($daysec/(60)) ;
-		$minuteo = $daysec%(60) ;
-		if($owneta > 1439) {
-			$timeo = $dayo." days" ;
-		}
-		else {
-			if(($owneta < 1439) AND ($owneta > 59)) {
-				$timeo = $houro." hours" ;	
-			}
-			else { $timeo = $minuteo." mins" ; }
-		}
+			$timeo = eta($owneta) ;
 		$starttimestro = (string) $owntime ;
         $initialtimeo = strtotime($starttimestro) ;
 		$totaltimeo = $initialtimeo+($owneta*60) ;
@@ -233,12 +183,12 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 		echo "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
-				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
 			echo "<form method='POST' class='inline-form pull-right'>
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
-				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaining_time_own."</div>";
+				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaintime."</div>";
 		}
 		else {
 
@@ -256,6 +206,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 		
 		}	
 		else {
+			
 			echo "Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
