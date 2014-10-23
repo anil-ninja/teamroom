@@ -9,14 +9,14 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" style='color: #fff;' href="ninjas.php">Collgo</a>
+        <a class="navbar-brand" style='color: #fff;' href="ninjas.php">colvade</a>
     </div>
 
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
             <li class='navbar-text' >
-                <input type="text" id="search" placeholder="search"/>
-                    <button type="submit" id="keyword"  class="glyphicon glyphicon-search btn-primary btn-xs">
+                <input type="text"  id="search" placeholder="search"/>
+                    <button type="submit" id="keyword"  class="glyphicon glyphicon-search btn-primary btn-sm">
                 </button>
             </li>
         </ul>
@@ -113,28 +113,18 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         echo "<li><p class='navbar-text' style='cursor: pointer'><a data-toggle='modal' data-target='#SignUp' style='color: #fff;'><b>Sign Up</b></a></p></li>";
     }
     ?>
-                </ul>
-        </div>
+        </ul>
+        <br>
+        <ul class='nav navbar-nav'>
+            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+           <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></p></li>
+              <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></p></li>
+              <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Ideas &nbsp;</button></p></li>
+             <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Closed challenges &nbsp;</button></p></li>
+              <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Videos &nbsp;</button></p></li>
+      </ul>
+    </div>
 </div>
-<?php 
-if ($requestedPage == "ninjas.php") {
-echo "<div class='navbar navbar-inverse navbar-fixed-top' style='max-height:20px;margin-top:50px;'>
-      <div class='navbar-inner'>
-        <div class='container'>
-           <div class='col-md-offset-2 col-md-7 col-lg-7'>
-            <ul class='list-inline'>&nbsp;&nbsp;&nbsp;&nbsp;
-              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></li>
-              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></li>
-              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Ideas &nbsp;</button></li>
-              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Closed challenges &nbsp;</button></li>
-              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Videos &nbsp;</button></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>" ;
-}
-?>
 <script>
     function show_search_results(challenges){
         var resp = "";
