@@ -28,7 +28,7 @@ if ($chall == '1') {
 else {
 	if (strlen($challange) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
-                                    VALUES ('$user_id', '$challenge_title', '$challange', '1', '1', '10') ; ") ;
+                                    VALUES ('$user_id', '$challenge_title', '$challange', '1', '999999999', '10') ; ") ;
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Challange posted succesfully!"; }
 } else {
@@ -37,7 +37,7 @@ else {
         
         $id = mysqli_insert_id($db_handle);
         mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type) 
-                                VALUES ('$user_id', '$challenge_title', '$id', '1', '1', ' ', '10');");
+                                VALUES ('$user_id', '$challenge_title', '$id', '1', '999999999', ' ', '10');");
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Challange posted succesfully!"; }
 }

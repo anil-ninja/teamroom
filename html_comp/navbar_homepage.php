@@ -9,23 +9,23 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="ninjas.php">Collgo</a>
+        <a class="navbar-brand" style='color: #fff;' href="ninjas.php">Collgo</a>
     </div>
 
     <div class="navbar-collapse collapse navbar-responsive-collapse">
         <ul class="nav navbar-nav">
-            <li class='navbar-text'>
+            <li class='navbar-text' >
                 <input type="text" id="search" placeholder="search"/>
                     <button type="submit" id="keyword"  class="glyphicon glyphicon-search btn-primary btn-xs">
                 </button>
             </li>
         </ul>
-        <ul class='nav navbar-nav navbar-right'>
+        <ul class='nav navbar-nav navbar-right' >
             <?php
             if (isset($_SESSION['user_id'])) {
                 if ($requestedPage == "challenges.php") {
                     echo "<li><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>
-                            <a data-toggle='modal' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'></i>Create Challenge
+                            <a data-toggle='modal' style='color: #fff;' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'></i>Create Challenge
                             </a></p>    
                         </li>";
                 }
@@ -33,7 +33,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 if ($requestedPage == "ninjas.php") {
                     echo "<li>
                             <div class='dropdown'>
-                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>Teams<span class='caret'></span></p></a>
+                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'>Teams<span class='caret'></span></p></a>
                                 <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>";
                                     $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
                                     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
@@ -58,8 +58,8 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 ?>
                 <li>
                     <div class='dropdown'>
-                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; text-decoration: none;">Projects<span class='caret'></span></p></a>
-                        <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
+                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;">Projects<span class='caret'></span></p></a>
+                        <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
                             <?php
                          
                             $user_id = $_SESSION['user_id'];
@@ -82,15 +82,15 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                         </ul>
                     </div>
                 </li>      
-                <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal"  data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p></li>
-                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php"> Challenges</a></p></li>
-                <li><p class="navbar-text">&nbsp; Rank :  <?php $rank = $_SESSION['rank'];
+                <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p></li>
+                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'> Challenges</a></p></li>
+                <li><p class="navbar-text" style='color: #fff;'>&nbsp; Rank :  <?php $rank = $_SESSION['rank'];
                         echo $rank; ?>
                     </p>
                 </li>
-                <li><p class="navbar-text" id="demo"></p></li>
+                <li><p class="navbar-text" style='color: #fff;' id="demo"></p></li>
                 <li><div class="dropdown">
-                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php $name = $_SESSION['first_name'];
+                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php $name = $_SESSION['first_name'];
                         echo ucfirst($name); ?></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
                             <li><p class="navbar-text">
@@ -109,13 +109,32 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             
     <?php
     } else {
-        echo "<li><p class='navbar-text' style='cursor: pointer'><b> <a data-toggle='modal' data-target='#SignIn'>Sign In</a> </b></p></li>";
-        echo "<li><p class='navbar-text' style='cursor: pointer'><a data-toggle='modal' data-target='#SignUp'><b>Sign Up</b></a></p></li>";
+        echo "<li><p class='navbar-text' style='cursor: pointer'><b> <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In</a> </b></p></li>";
+        echo "<li><p class='navbar-text' style='cursor: pointer'><a data-toggle='modal' data-target='#SignUp' style='color: #fff;'><b>Sign Up</b></a></p></li>";
     }
     ?>
-                </ul>		  
+                </ul>
         </div>
 </div>
+<?php 
+if ($requestedPage == "ninjas.php") {
+echo "<div class='navbar navbar-inverse navbar-fixed-top' style='max-height:20px;margin-top:50px;'>
+      <div class='navbar-inner'>
+        <div class='container'>
+           <div class='col-md-offset-2 col-md-7 col-lg-7'>
+            <ul class='list-inline'>&nbsp;&nbsp;&nbsp;&nbsp;
+              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></li>
+              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></li>
+              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Ideas &nbsp;</button></li>
+              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Closed challenges &nbsp;</button></li>
+              <li><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Videos &nbsp;</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>" ;
+}
+?>
 <script>
     function show_search_results(challenges){
         var resp = "";
