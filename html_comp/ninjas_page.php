@@ -251,8 +251,15 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."</div>" ;
 		
 		}		
-			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title)."</b></p><br/>".
-			   $chelange. "<br/><br/>";
+		//i am working here
+			 echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>".ucfirst($ch_title).
+			 "</b></p><br/>
+			 <span id='chall_".$chelangeid."'  >".
+			   $chelange. 
+			   "</span>
+			   	<input type='text' value=".
+			   $chelange."  id='last_input_".$chelangeid."' class='editbox'/>
+			   <br/><br/>";
 		$commenter = mysqli_query ($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION

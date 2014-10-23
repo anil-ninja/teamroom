@@ -23,6 +23,10 @@ body {
   padding: 5px 15px;
 }
 
+.editbox
+{
+display:none
+}
 /* Nav Messages */
 
 .messages-dropdown .dropdown-menu .message-preview .avatar,
