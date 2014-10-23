@@ -13,7 +13,7 @@ if (!isset($_SESSION['first_name'])) {
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>Collgo</title>
+        <title>colvade</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem">
         <meta name="author" content="Anil">
@@ -25,11 +25,11 @@ if (!isset($_SESSION['first_name'])) {
 	<div class="navbar navbar-inverse navbar-fixed-top" >
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" style='font-size:16pt; color: #fff;' href="index.php">Collgo</a>
+          <a class="brand" style='font-size:16pt; color: #000;' href="index.php">colvade</a>
            <div class="span3 pull-right">
             <ul class="list-inline">
               <li><p style='font-size:10pt; color:rgba(161, 148, 148, 1);'>Powered By : </p></li>
-              <li><a class="btn-link" style='font-size:14pt; color: #fff;' href="http://dpower4.com/">Dpower4.com</a></li>
+              <li><a class="btn-link" style='font-size:14pt; color: #000;' href="http://dpower4.com/">Dpower4.com</a></li>
             </ul>
           </div>
         </div>
@@ -44,7 +44,7 @@ if (!isset($_SESSION['first_name'])) {
 						<div class="modal-content">
 							<div class="modal-header">
 							
-								<p align="center"><font size="5" >Collaborations</font></p>
+								<p align="center"><font size="5" >Vade the Clan</font></p>
 							</div>
 							<div class="modal-body">
 								
@@ -61,7 +61,7 @@ if (!isset($_SESSION['first_name'])) {
 									<button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
 								</div>
 							<div class="modal-footer">
-								<a data-toggle="modal" class="btn-link" data-target="#myModal" style="float: right; cursor:pointer;">Sign Up Now</a>
+								<a data-toggle="modal" class="btn-link" data-target="#myModal" style="float: right; cursor:pointer;">Join the Clan</a>
 							</div>
 						</div>
 					</div>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['first_name'])) {
 							<span aria-hidden="true">&times;</span>
 							<span class="sr-only">Close</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">New User Registration</h4>
+						<h4 class="modal-title" id="myModalLabel">Join the Clan</h4>
 					</div>
 					<div class="modal-body">
 						<div class="inline-form">					
@@ -94,10 +94,7 @@ if (!isset($_SESSION['first_name'])) {
 										
 										<input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
 									</div>
-					<div class  ="modal-footer">
-						<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-					</div>
-				</div>
+                                            </div>
 			</div>
 		</div>
 		<!--end modle-->
