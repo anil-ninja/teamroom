@@ -22,7 +22,7 @@ if (!isset($_SESSION['first_name'])) {
 
     </head>
     <body >
-	<div class="navbar navbar-inverse navbar-fixed-top" >
+	<div class="navbar navbar-default navbar-fixed-top" >
       <div class="navbar-inner">
         <div class="container">
           <a class="brand" style='font-size:16pt; color: #000;' href="index.php">colvade</a>

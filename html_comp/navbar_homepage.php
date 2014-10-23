@@ -12,7 +12,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         <a class="navbar-brand" style='color: #fff;' href="ninjas.php">colvade</a>
     </div>
 
-    <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <div class="navbar-collapse">
         <ul class="nav navbar-nav">
             <li class='navbar-text' >
                 <input type="text"  id="search" placeholder="search"/>
@@ -114,16 +114,20 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     }
     ?>
         </ul>
-        <br>
+    </div>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
         
-        <ul class='nav navbar-nav'>
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-           <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></p></li>
-              <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></p></li>
-              <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Ideas &nbsp;</button></p></li>
-             <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Closed challenges &nbsp;</button></p></li>
-              <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Videos &nbsp;</button></p></li>
-      </ul>
+        <ul class='nav navbar-nav navbar-inverse'>
+            <div class="col-md-offset-3 col-md-8 col-lg-8">
+                <div class="list-inline">
+                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Ideas &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Closed challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Videos &nbsp;</button></p></li>
+                </div>
+            </div>
+        </ul>                 
     </div>
 </div>
 <script>
