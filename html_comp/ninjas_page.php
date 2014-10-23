@@ -127,11 +127,10 @@
 		
 	if ($ctype == 1) {			
 		if($status == 1) {
-		echo "<div class='list-group'>
-				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
+		echo "<div class='list-group challenge'>
+				<div class='list-group-item' ><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
-				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
 			echo "<form method='POST' class='inline-form pull-right'>
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
@@ -140,8 +139,8 @@
 		}
 		else {
 
-			echo "<div class='list-group'>
-				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
+			echo "<div class='list-group challenge'>
+				<div class='list-group-item' ><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
@@ -149,16 +148,16 @@
 				 ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaintimeown."</div>" ;
 			}
 	} else if ($ctype == 9) {
-		echo "<div class='list-group'>
-				<div class='list-group-item' class='article'><span class='glyphicon glyphicon-globe'></span>&nbsp&nbsp&nbsp Written by &nbsp 
+		echo "<div class='list-group articlesch'>
+				<div class='list-group-item' ><span class='glyphicon glyphicon-globe'></span>&nbsp&nbsp&nbsp Written by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
 		
 		}
 		else if ($ctype == 11) {
-		echo "<div class='list-group'>
-				<div class='list-group-item' class='idea'><span class='glyphicon glyphicon-tree-deciduous'></span>&nbsp&nbsp&nbsp Purposed by &nbsp 
+		echo "<div class='list-group idea'>
+				<div class='list-group-item' ><span class='glyphicon glyphicon-tree-deciduous'></span>&nbsp&nbsp&nbsp Purposed by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p></div>" ;
@@ -166,11 +165,10 @@
 		}	
 		else {
 			
-			echo "<div class='list-group'>
-				<div class='list-group-item' class='openchall'><span class='glyphicon glyphicon-pencil'></span>&nbsp&nbsp&nbsp Created by &nbsp 
+			echo "<div class='list-group openchalhide'>
+				<div class='list-group-item' ><span class='glyphicon glyphicon-pencil'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
-				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
 		if ($status != 5 && $ch_id != $user_id) {
 			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 						<input type='hidden' name='id' value='".$chelangeid."'/>
@@ -232,9 +230,7 @@
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_comment_ninjas."'>".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</a></span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ."";
-				
-                dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ." ".dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
          echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>

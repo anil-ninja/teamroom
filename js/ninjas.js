@@ -203,6 +203,51 @@ $(document).ready(function(){
     $("#IdeaForm").toggle(3000);
   });
 });	
+
+	$(document).ready(function(){
+	
+  $("#pencil").click(function(){
+	 // alert("I am pencil!!! :)");
+  	$(".articlesch").hide(1500);
+  	$(".openchalhide").hide(1500);
+  	$(".idea").hide(1500);
+  	$(".VideoForm").hide(1500);
+    $(".challenge").toggle(3000);
+  });
+
+  
+  $("#globe").click(function(){
+  	$(".challenge").hide(1500);
+  	$(".openchalhide").hide(1500);
+  	$(".idea").hide(3000);
+  	$(".VideoForm").hide(1500);
+    $(".articlesch").toggle(3000);
+  });
+  
+  $("#ok").click(function(){
+  	$(".challenge").hide(1500);
+  	$(".openchalhide").toggle(1500);
+  	$(".idea").hide(3000);
+  	$(".VideoForm").hide(1500);
+    $(".articlesch").hide(3000);
+  });
+  
+  $("#film").click(function(){
+  	$(".challenge").hide(1500);
+  	$(".openchalhide").hide(1500);
+  	$(".idea").hide(3000);
+  	$(".VideoForm").toggle(1500);
+    $(".articlesch").hide(3000);
+  });
+  
+  $("#tree").click(function(){
+  	$(".challenge").hide(1500);
+  	$(".openchalhide").hide(1500);
+  	$(".VideoForm").hide(1500);
+    $(".articlesch").hide(3000);
+    $(".idea").toggle(3000);
+  });
+});	
 $(document).ready(function(){	
 		$("#create_idea").click(function(){
       		$("#create_idea").attr('disabled','disabled');

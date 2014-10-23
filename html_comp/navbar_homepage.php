@@ -120,17 +120,18 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         <ul class='nav navbar-nav navbar-inverse'>
             <div class="col-md-offset-3 col-md-8 col-lg-8">
                 <div class="list-inline">
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Ideas &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Closed challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Videos &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-pencil'></span> Open challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-globe'></span> Articles &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-tree-deciduous'></span> Ideas &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='ok' ><span class='glyphicon glyphicon-ok'></span> Closed challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='film' ><span class='glyphicon glyphicon-film'></span> Videos &nbsp;</button></p></li>
                 </div>
             </div>
         </ul>                 
     </div>
 </div>
 <script>
+	
     function show_search_results(challenges){
         var resp = "";
         for (var i = 0; i < challenges.length; i++) {
