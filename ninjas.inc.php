@@ -140,6 +140,10 @@ if (isset($_POST['chlange'])) {
 									VALUES ('$user_id', '$chalange', '$your_eta');") ;
 header('Location: #');
 }
+if (isset($_POST['closechal'])) {
+		$chalange = $_POST['cid'] ;
+    mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
+}
 if (isset($_POST['change_eta'])) {
 		$user_id = $_SESSION['user_id'];
 		$a = date("y-m-d H:i:s") ;
