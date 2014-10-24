@@ -60,7 +60,8 @@
                                 
                             }
                         ?><hr/>
-                      <p align="left"><font size="2">Public Projects</font></p><hr/>
+                       <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i>
+                      <font size="2"><b>Public Projects</b></font></a><hr>
                        <?php /*
                             $project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1';");
                                 while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
@@ -117,5 +118,4 @@
                                 
                             } */
                         ?><hr/>
-                        <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Project</a>
               </div>
