@@ -116,7 +116,7 @@ select,
 textarea {
   color: inherit;
   font: inherit;
-  margin: 0;
+  margin: 2px;
 }
 button {
   overflow: visible;
@@ -6278,7 +6278,7 @@ button.close {
   border-width: 0 1px 4px 1px;
 }
 .btn {
-  padding: 2px 2px 2px;
+  padding: 5px 5px 5px;
   border-width: 0 1px 1px 1px;
   font-size: 12px;
   font-weight: bold;
