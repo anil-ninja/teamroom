@@ -56,15 +56,15 @@ include_once 'functions/delete_comment.php';
         <div class="container-fluid">
             <div class="row-fluid">
 				<div class='alert_placeholder'></div>
-            <div class="col-lg-2" STYLE="font-size: 11pt;">
-				<?php   include_once 'html_comp/right_panel_project.php';      ?>
+            <div class="col-lg-3" STYLE="font-size: 11pt;">
+				<?php   include_once 'html_comp/left_panel_ninjas.php';      ?>
             </div> 
-                <div class="col-lg-5">
+                <div class="col-lg-6">
                     <div class="row" style="visibility: visible; position: relative;">
                        <?php include_once 'html_comp/project_page_project.php'; ?>
                     </div>
                 </div>
-                <div class="col-lg-5">
+                <div class="col-lg-3">
 						<div class="panel-primary" id="prch">
 					   <?php include_once 'html_comp/project_page_challenge.php'; ?>
 				    </div>

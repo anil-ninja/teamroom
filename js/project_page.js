@@ -22,7 +22,26 @@ function bootstrap_alert(elem, message, timeout,type) {
 					}
 			});
 		}
-});		
+});	
+var $table = $('table.scroll'),
+    $bodyCells = $table.find('tbody tr:first').children(),
+    colWidth;
+
+// Adjust the width of thead cells when window resizes
+$(window).resize(function() {
+    // Get the tbody columns width array
+    colWidth = $bodyCells.map(function() {
+        return $(this).width();
+    }).get();
+    
+    // Set the width of thead columns
+    $table.find('thead tr').children().each(function(i, v) {
+        $(v).width(colWidth[i]);
+    });    
+}).resize();
+
+
+	
 		$("#create_challange_pb_pr").click(function(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;
@@ -148,3 +167,59 @@ return str.replace(new RegExp(find, 'g'), replace);
 }
 	
 	});
+	$(document).ready(function(){
+		$("#challegeprForm").toggle();
+  $("#challengepr").click(function(){
+  	$("#ArticleprForm").hide(1500);
+  	$("#taskForm").hide(1500);
+  	$("#teamForm").hide(3000);
+  	$("#notesForm").hide(1500);
+  	$("#manageForm").hide(1500);
+    $("#challegeprForm").toggle(3000);
+  });
+  $("#ArticleprForm").toggle();
+  $("#articalpr").click(function(){
+  	$("#challegeprForm").hide(1500);
+  	$("#taskForm").hide(1500);
+  	$("#teamForm").hide(3000);
+  	$("#notesForm").hide(1500);
+  	$("#manageForm").hide(1500);
+    $("#ArticleprForm").toggle(3000);
+  });
+  $("#taskForm").toggle();
+  $("#task").click(function(){
+  	$("#challegeprForm").hide(1500);
+  	$("#taskForm").toggle(1500);
+  	$("#teamForm").hide(3000);
+  	$("#notesForm").hide(1500);
+  	$("#manageForm").hide(1500);
+    $("#ArticleprForm").hide(3000);
+  });
+  $("#teamForm").toggle();
+  $("#team").click(function(){
+  	$("#challegeprForm").hide(1500);
+  	$("#taskForm").hide(1500);
+  	$("#notesForm").hide(1500);
+  	$("#manageForm").hide(3000);
+  	$("#teamForm").toggle(1500);
+    $("#ArticleprForm").hide(3000);
+  });
+  $("#notesForm").toggle();
+  $("#notes").click(function(){
+  	$("#challegeprForm").hide(1500);
+  	$("#taskForm").hide(1500);
+  	$("#teamForm").hide(1500);
+  	$("#manageForm").hide(1500);
+    $("#ArticleprForm").hide(3000);
+    $("#notesForm").toggle(3000);
+  });
+  $("#manageForm").toggle();
+  $("#files").click(function(){
+  	$("#challegeprForm").hide(1500);
+  	$("#taskForm").hide(1500);
+  	$("#teamForm").hide(1500);
+  	$("#notesForm").hide(1500);
+    $("#ArticleprForm").hide(3000);
+    $("#manageForm").toggle(3000);
+  });
+});	
