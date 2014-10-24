@@ -60,7 +60,7 @@
                             }
                         ?><hr/>
                       <p align="center"><font size="4">Public Projects</font></p><hr/>
-                       <?php
+                       <?php /*
                             $project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1';");
                                 while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
                                 $public_pr_title = $project_public_title_displayRow['project_title'] ;
@@ -72,8 +72,8 @@
                                 $p_eta = $project_public_title_displayRow['project_ETA'] ;
                                 $p_time = $project_public_title_displayRow['project_creation'] ;
                                 $timefunc = date("j F, g:i a",strtotime($p_time));
-								$day = floor($eta/(24*60*60)) ;
-								$daysec = $eta%(24*60*60) ;
+								$day = floor($p_eta/(24*60*60)) ;
+								$daysec = $p_eta%(24*60*60) ;
 								$hour = floor($daysec/(60*60)) ;
 								$hoursec = $daysec%(60*60) ;
 								$minute = floor($hoursec/60) ;
@@ -114,7 +114,7 @@
                                         <br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p></form>" ;
                                     
                                 
-                            }
+                            } */
                         ?><hr/>
                         <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Project</a>
               </div>

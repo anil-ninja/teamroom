@@ -1,5 +1,6 @@
 <?php 
 include_once 'ninjas.inc.php';
+include_once 'functions/delete_comment.php';
 
 if (!isset($_SESSION['first_name'])) {
     header('Location: index.php');
@@ -20,32 +21,7 @@ $creater_id = $project_idrow['user_id'] ;
 $projttitle = $project_idrow['project_title'] ;
 $starttime = $project_idrow['project_creation'] ;
 $timef = date("j F, g:i a",strtotime($starttime));
-$initialtimepr = strtotime($starttime) ;
-$ETA = $eta*60 ;
-$totaltimepr = $initialtimepr+$ETA ;
-$completiontimepr = time() ;
-if ($completiontimepr > $totaltimepr) { 
-	$remaining_timepr = "Closed" ; }
-else {	$remainingtimepr = ($totaltimepr-$completiontimepr) ;
-		$daypr = floor($remainingtimepr/(24*60*60)) ;
-		$daysecpr = $remainingtimepr%(24*60*60) ;
-		$hourpr = floor($daysecpr/(60*60)) ;
-		$hoursecpr = $daysecpr%(60*60) ;
-		$minutepr = floor($hoursecpr/60) ;
-		if ($totaltimepr > ((24*60*60)-1)) {
-		if($hourpr != 0) {
-		$remaining_timepr = $daypr." Days and ".$hourpr." Hours" ;
-		} else {
-			$remaining_timepr = $daypr." Days" ;
-			}
-	} else {
-			if (($totaltimepr < ((24*60*60)-1)) AND ($totaltimepr > ((60*60)-1))) {
-				$remaining_timepr = $hourpr." Hours and ".$minutepr." Mins" ;
-				} else {
-					$remaining_timepr = $minutepr." Mins" ;
-					}
-		}
-}		
+$prtime = remaining_time($starttime, $eta) ;	
 
 if (isset($_POST['resp_project'])) {
 	$user_id = $_SESSION['user_id'] ;

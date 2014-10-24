@@ -127,7 +127,7 @@
                         </select>
                         </div><br/><br/>
                          <input type='hidden' id='project_id' value="<?php echo $pro_id; ?>"/>
-                        <input type="button" value="Assign" class="btn btn-success" id="task"/>
+                        <input type="button" value="Assign" class="btn btn-success" id="create_task"/>
                     </div>
                     <div id='teamForm'>
                        <form role="form" method="POST">
@@ -153,34 +153,23 @@
                      <div id='manageForm'>
                         <div id="elfinder"></div>
                     </div><br/>
-                </div></div>
+                </div>
+                </div>
 <?php
-	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
-												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id )
+	   $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
+												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id )
                                                 UNION
                                                 (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
                                                 join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
-	   $project_idrow = mysqli_fetch_array($project_id) ;
-		$p_id = $project_idrow['project_id'] ;
-		$projectst = $project_idrow['stmt'];
-		$fname = $project_idrow['first_name'];
-		$lname = $project_idrow['last_name'];
-        $username_project = $project_idrow['username'];
-		$projecteta = $project_idrow['project_ETA'];
-		$daypr = floor(($projecteta)/(24*60)) ;
-		$daysecpr = ($projecteta)%(24*60) ;
-		$hourpr = floor($daysecpr/(60)) ;
-		$minutepr = $daysecpr%(60) ;
-		if($projecteta > 1439) {
-			$timepr = $daypr." days" ;
-		}
-		else {
-			if(($projecteta < 1439) AND ($projecteta > 59)) {
-				$timepr = $hourpr." hours" ;	
-			}
-			else { $timepr = $minutepr." mins" ; }
-		}
-					
+	   $project_row = mysqli_fetch_array($project) ;
+		$p_id = $project_row['project_id'] ;
+		$p_uid = $project_row['user_id'] ;
+		$projectst = $project_row['stmt'];
+		$fname = $project_row['first_name'];
+		$lname = $project_row['last_name'];
+        $username_project = $project_row['username'];
+		$projecteta = $project_row['project_ETA'];
+		$timepr = eta($projecteta) ;		
 	echo "<div class='list-group'>
 				<div class='list-group-item'>";
 
@@ -188,15 +177,12 @@
             <div class='list-group-item'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $project_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM projects WHERE project_id = '$p_id' AND user_id='$user_id';"));
-                    $project_dropdown_displayRow = mysqli_fetch_array($project_dropdown_display);
-                    $project_dropdown_userID = $project_dropdown_displayRow['user_id'];
-                    if($project_dropdown_userID == $user_id) {
+                    if($p_uid == $user_id) {
                         echo "
                         <li><button class='btn-link' href='#'>Edit Project</button></li>
                         <li><button class='btn-link' pID='".$p_id."' onclick='delProject(".$p_id.");'>Delete Project</button></li>
                         <li><form method='POST' class='inline-form'>";                    
-                        if($projecteta == 'Time over') {        
+                        if($prtime == 'Closed') {        
                             echo "<input type='hidden' name='id' value='".$p_id."'/>
                                 <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
                             }                                    
@@ -210,7 +196,7 @@
             </div>";
 	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 			<a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
-			</span>  on &nbsp".$timef. " with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
+			</span>  on &nbsp".$timef. " with ETA in &nbsp".$timepr. " <br>".$prtime." <br>
 			<span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>".ucfirst($projttitle)."</p></span>
 			".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
@@ -256,7 +242,7 @@
 <?php  
 echo "<h3 class='panel-title'><p align='center'>Challenges</p></h3>" ;
 
-$_SESSION['lastch'] = '10' ;  
+$_SESSION['lastpr'] = '10' ;  
 		$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, a.challenge_type,
 											a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
 											 WHERE a.project_id = '$p_id' AND (a.challenge_type = '8' OR a.challenge_type = '4' OR a.challenge_type = '1' OR a.challenge_type='2')
@@ -395,7 +381,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 						<input type='hidden' name='id' value='".$id_task."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
-				 &nbsp&nbsp&nbsp On : ".$timetask."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaining_time."</div>";
+				 &nbsp&nbsp&nbsp On : ".$timetask."&nbsp&nbsp&nbsp with ETA : ".$remainingtime."<br/>".$remaining_time."</div>";
 		}
 		else {
 			echo "Created by &nbsp 

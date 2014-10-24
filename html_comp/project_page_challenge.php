@@ -1,8 +1,8 @@
 <?php 
-include_once '../functions/delete_comment.php';
+
 	$i = 0 ;
 	$c = mysqli_query($db_handle, "SELECT * FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
-											AND challenge_type != '7' AND blob_id = '0' ;") ;
+										 AND blob_id = '0' ;") ;
 	if(mysqli_num_rows($c) > 0)	{									
 	echo "   
 			<h3 class='panel-title'><p align='center'>Summary</p></h3>
@@ -32,19 +32,7 @@ include_once '../functions/delete_comment.php';
 				$sidstmt = str_replace("<s>","&nbsp;",$summaryrow['stmt']) ;
 				$sidtype = $summaryrow['challenge_type'] ;
 				$sidstatus = $summaryrow['challenge_status'] ;
-				$daysu = floor($sideta/(24*60)) ;
-				$daysecsu = $sideta%(24*60) ;
-				$hoursu = floor($daysecsu/(60)) ;
-				$minutesu = $daysecsu%(60) ;
-		if($sideta > 1439) {
-			$sutime = $daysu." days" ;
-		}
-		else {
-			if(($sideta < 1439) AND ($sideta > 59)) {
-				$sutime = $hoursu." hours" ;	
-			}
-			else { $sutime = $minutesu." mins" ; }
-		} 
+				$sutime = eta($sideta) ;
 		if (($sidtype == 1 OR $sidtype == 2) AND $sidstatus == 1 )	{
 			$sstatus = "Not Owned" ;
 		}
@@ -83,7 +71,7 @@ include_once '../functions/delete_comment.php';
 			</thead>
 			<tbody >" ;
 		
-	 $oc = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_title, challenge_ETA, challenge_creation FROM challenges WHERE project_id = '$p_id' AND challenge_type = '2' AND challenge_status = '1' ;");
+	 $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, challenge_creation FROM challenges WHERE project_id = '$p_id' AND challenge_type = '2' AND challenge_status = '1' ;");
       while($ocrow = mysqli_fetch_array($oc)) {
 				$ocid = $ocrow['challenge_id'] ;
 				$octitle = $ocrow['challenge_title'] ;
@@ -97,7 +85,7 @@ include_once '../functions/delete_comment.php';
 	}
 	echo "</tbody>
             </table><br/>" ;
-   	echo "<h3 class='panel-title'><p align='center'>In progress</p></h3>
+  	echo "<h3 class='panel-title'><p align='center'>In progress</p></h3>
 			<table class='scroll table table-striped'>
 			<thead>
 				<tr>
@@ -110,8 +98,8 @@ include_once '../functions/delete_comment.php';
 			<tbody >" ;
 		
 	 $ip = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
-												from challenges as a join challenge_ownership as b join user_info as c where project_id = '$p_id' 
-												AND (a.challenge_type = '2' OR a.challenge_type = '8') AND challenge_status = '2' and a.challenge_id = b.challenge_id
+												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$p_id' 
+												AND (a.challenge_type = '2' OR a.challenge_type = '8') AND a.challenge_status = '2' and a.challenge_id = b.challenge_id
 												and b.user_id = c.user_id;");
       while($iprow = mysqli_fetch_array($ip)) {
 				$ipid = $iprow['challenge_id'] ;
@@ -127,7 +115,7 @@ include_once '../functions/delete_comment.php';
 		if ($iptype == 2) {
 			echo "Challenge" ;
 			}
-		if ($iptype == 8) {
+		else {
 				echo "Task" ;
 			}		
 			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
@@ -136,5 +124,89 @@ include_once '../functions/delete_comment.php';
 				</tr>" ;
 	}
 	echo "</tbody>
-            </table>" ;
+            </table><br/>" ;
+echo "<h3 class='panel-title'><p align='center'>In Review</p></h3>
+			<table class='scroll table table-striped'>
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Title</th>
+					<th>Submitted By</th>
+					<th>ON</th>
+				</tr>
+			</thead>
+			<tbody >" ;
+		
+	 $ir = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
+												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$p_id' 
+												AND (a.challenge_type = '2' OR a.challenge_type = '8') AND a.challenge_status = '4' and a.challenge_id = b.challenge_id
+												and b.user_id = c.user_id;");
+      while($irrow = mysqli_fetch_array($ir)) {
+				$irid = $irrow['challenge_id'] ;
+				$irtitle = $irrow['challenge_title'] ;
+				$irtype = $irrow['challenge_type'] ;
+				$irctime = $irrow['ownership_creation'] ;
+				$irname = $irrow['username'] ;
+				$irtime = $irrow['time'] ;
+				$irontime = date("j F, g:i a",strtotime($irtime));
+				$irfname = $irrow['first_name'] ;
+				$ireta = $irrow['comp_ch_ETA'] ;
+				$rtir = remaining_time($irctime, $ireta) ;
+			echo "<tr>
+					<td>" ;
+		if ($irtype == 2) {
+			echo "Challenge" ;
+			}
+		else {
+				echo "Task" ;
+			}		
+			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
+					<td><a href ='profile.php?username=".$ipname."'>".$ipfname."</a></td>
+					<td>".$irontime."</td>
+				</tr>" ;
+	}
+	echo "</tbody>
+            </table><br/>" ;
+echo "<h3 class='panel-title'><p align='center'>Completed</p></h3>
+			<table class='scroll table table-striped'>
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>Title</th>
+					<th>Submitted By</th>
+					<th>ON</th>
+				</tr>
+			</thead>
+			<tbody >" ;
+		
+	 $ir = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
+												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$p_id' 
+												AND (a.challenge_type = '2' OR a.challenge_type = '8') AND a.challenge_status = '5' and a.challenge_id = b.challenge_id
+												and b.user_id = c.user_id;");
+      while($irrow = mysqli_fetch_array($ir)) {
+				$irid = $irrow['challenge_id'] ;
+				$irtitle = $irrow['challenge_title'] ;
+				$irtype = $irrow['challenge_type'] ;
+				$irctime = $irrow['ownership_creation'] ;
+				$irname = $irrow['username'] ;
+				$irtime = $irrow['time'] ;
+				$irontime = date("j F, g:i a",strtotime($irtime));
+				$irfname = $irrow['first_name'] ;
+				$ireta = $irrow['comp_ch_ETA'] ;
+				$rtir = remaining_time($irctime, $ireta) ;
+			echo "<tr>
+					<td>" ;
+		if ($irtype == 2) {
+			echo "Challenge" ;
+			}
+		else {
+				echo "Task" ;
+			}		
+			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
+					<td><a href ='profile.php?username=".$ipname."'>".$ipfname."</a></td>
+					<td>".$irontime."</td>
+				</tr>" ;
+	}
+	echo "</tbody>
+            </table>" ;            
 				?>

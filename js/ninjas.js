@@ -287,8 +287,8 @@ $(document).ready(function(){
 });
 $(document).ready(function(){
     
-		$("#task").click(function(){
-      		$("#task").attr('disabled','disabled');
+		$("#create_task").click(function(){
+      		$("#create_task").attr('disabled','disabled');
 			var email = $("#email").val() ;
 			var title = $("#title").val() ;
 			var id = $("#project_id").val() ;
@@ -335,7 +335,7 @@ $(document).ready(function(){
 				}
 			});
 			}
-      $("#task").removeAttr('disabled');
+      $("#create_task").removeAttr('disabled');
 			return false;
 		});
 });
