@@ -179,7 +179,7 @@ if (isset($_POST['answerch'])) {
 		$answer = $_POST['answer'] ;
 		$a = date("y-m-d H:i:s") ;
 	if (strlen($answer) > 1) { 
-		mysqli_query($db_handle,"UPDATE challenges SET challenge_type='4' WHERE challenge_id = $chalange ; ") ;
+		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $chalange ; ") ;
 		mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $chalange ; ") ;
 	 if (strlen($answer) < 1000) {
         mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$chalange', '$answer', '2'); ") ;
@@ -198,7 +198,7 @@ header('Location:project.php') ;
 }
 if (isset($_POST['closechallenge'])) {
 		$chalange = $_POST['cid'] ;
-    mysqli_query($db_handle,"UPDATE challenges SET challenge_type='5' WHERE challenge_id = $chalange ; ") ;
+    mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
 }
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;

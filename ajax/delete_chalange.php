@@ -9,7 +9,7 @@ else
 if(isset($_POST['cID'])){
 	$challengeID = $_POST['cID'];
 
-	$sql = "UPDATE challenges SET challenge_type = '3' WHERE challenge_id = '$challengeID' and user_id = '$userID';";
+	$sql = "UPDATE challenges SET challenge_status = '3' WHERE challenge_id = '$challengeID' and user_id = '$userID';";
 	mysqli_query($db_handle, $sql);
 
     if(mysqli_error($db_handle)) echo "Failed to delete Challange!"; 
@@ -29,7 +29,7 @@ else if(isset($_POST['pID'])) {
 
 else if(isset($_POST['noteID'])) {
 	$noteID = $_POST['noteID'];
-	$sql = "UPDATE challenges SET challenge_type = '3' WHERE challenge_id = '$noteID' and user_id = '$userID';";
+	$sql = "UPDATE challenges SET challenge_status = '3' WHERE challenge_id = '$noteID' and user_id = '$userID';";
 	mysqli_query($db_handle, $sql);
 
     if(mysqli_error($db_handle)) echo "Failed to delete Note!"; 

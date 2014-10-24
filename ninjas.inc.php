@@ -96,7 +96,7 @@ if(isset($_POST['pr_spem'])) {
 	$id = $_POST['pr_spem'] ;
 	$user_id = $_SESSION['user_id'];
 	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '1');") ;
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_type='7' WHERE challenge_id = '$id'; ") ;
+	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='7' WHERE challenge_id = '$id'; ") ;
 	header('Location: #');
 	}
 if(isset($_POST['eta'])) {
