@@ -217,47 +217,65 @@ $(document).ready(function(){
 });	
 
 	$(document).ready(function(){
-	
+		//allPanels
+		$("#allPanels").click(function(){
+	 // alert("I am pencil!!! :)");
+  	$(".articlesch").show(1000);
+  	$(".openchalhide").show(1000);
+  	$(".idea").show(1000);
+  	$(".VideoForm").show(1000);
+    $(".challenge").show(1000);
+  });
+
+$("#pencil").click(function(){
+	 // alert("I am pencil!!! :)");
+  	$(".articlesch").hide(1000);
+  	$(".openchalhide").hide(1000);
+  	$(".idea").hide(1000);
+  	$(".VideoForm").hide(1000);
+    $(".challenge").show(1000);
+  });
+
   $("#pencil").click(function(){
 	 // alert("I am pencil!!! :)");
-  	$(".articlesch").hide(1500);
-  	$(".openchalhide").hide(1500);
-  	$(".idea").hide(1500);
-  	$(".VideoForm").hide(1500);
-    $(".challenge").toggle(3000);
+  	$(".articlesch").hide(1000);
+  	$(".openchalhide").hide(1000);
+  	$(".idea").hide(1000);
+  	$(".VideoForm").hide(1000);
+    $(".challenge").show(1000);
   });
 
   
   $("#globe").click(function(){
-  	$(".challenge").hide(1500);
-  	$(".openchalhide").hide(1500);
-  	$(".idea").hide(3000);
-  	$(".VideoForm").hide(1500);
-    $(".articlesch").toggle(3000);
+  	$(".challenge").hide(1000);
+  	$(".openchalhide").hide(1000);
+  	$(".idea").hide(1000);
+  	$(".VideoForm").hide(1000);
+    $(".articlesch").show(1000);
   });
   
   $("#ok").click(function(){
-  	$(".challenge").hide(1500);
-  	$(".openchalhide").toggle(1500);
-  	$(".idea").hide(3000);
-  	$(".VideoForm").hide(1500);
-    $(".articlesch").hide(3000);
+  	$(".challenge").hide(1000);
+  	$(".openchalhide").show(1000);
+  	$(".idea").hide(1000);
+  	$(".VideoForm").hide(1000);
+    $(".articlesch").hide(1000);
   });
   
   $("#film").click(function(){
-  	$(".challenge").hide(1500);
-  	$(".openchalhide").hide(1500);
-  	$(".idea").hide(3000);
-  	$(".VideoForm").toggle(1500);
-    $(".articlesch").hide(3000);
+  	$(".challenge").hide(1000);
+  	$(".openchalhide").hide(1000);
+  	$(".idea").hide(1000);
+  	$(".VideoForm").show(1000);
+    $(".articlesch").hide(1000);
   });
   
   $("#tree").click(function(){
-  	$(".challenge").hide(1500);
-  	$(".openchalhide").hide(1500);
-  	$(".VideoForm").hide(1500);
-    $(".articlesch").hide(3000);
-    $(".idea").toggle(3000);
+  	$(".challenge").hide(1000);
+  	$(".openchalhide").hide(1000);
+  	$(".VideoForm").hide(1000);
+    $(".articlesch").hide(1000);
+    $(".idea").show(1000);
   });
 });	
 $(document).ready(function(){	
