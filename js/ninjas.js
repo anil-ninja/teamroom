@@ -159,6 +159,87 @@ $(document).ready(function(){
 			return false;
 		});
 });
+
+	$(document).ready(function(){
+	$("#challegeForm").toggle();
+  $("#challenge").click(function(){
+  	$("#ArticleForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#IdeaForm").hide(3000);
+  	$("#VideoForm").hide(1500);
+    $("#challegeForm").toggle(3000);
+  });
+
+  $("#ArticleForm").toggle();
+  $("#artical").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#IdeaForm").hide(3000);
+  	$("#VideoForm").hide(1500);
+    $("#ArticleForm").toggle(3000);
+  });
+  $("#PictureForm").toggle();
+  $("#picture").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").toggle(1500);
+  	$("#IdeaForm").hide(3000);
+  	$("#VideoForm").hide(1500);
+    $("#ArticleForm").hide(3000);
+  });
+  $("#VideoForm").toggle();
+  $("#video").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#IdeaForm").hide(3000);
+  	$("#VideoForm").toggle(1500);
+    $("#ArticleForm").hide(3000);
+  });
+  $("#IdeaForm").toggle();
+  $("#idea").click(function(){
+  	$("#challegeForm").hide(1500);
+  	$("#PictureForm").hide(1500);
+  	$("#VideoForm").hide(1500);
+    $("#ArticleForm").hide(3000);
+    $("#IdeaForm").toggle(3000);
+  });
+});	
+$(document).ready(function(){	
+		$("#create_idea").click(function(){
+      		$("#create_idea").attr('disabled','disabled');
+			var idea = $("#ideaA").val() ;
+			var idea_title = $("#idea_titleA").val() ;
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',idea)) + '&idea_title='+ idea_title  ;
+			//alert(dataString);
+			if(idea == ''){
+				bootstrap_alert(".alert_placeholder", "Idea can not be empty", 5000,"alert-warning");
+			}
+			else if(idea_title==''){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+			}
+			else
+			{
+			// AJAX Code To Submit Form.
+			$.ajax({
+				type: "POST",
+				url: "ajax/submit_idea.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result=='IDEA posted succesfully!'){
+						$("#ideaA").val("");
+						$("#idea_titleA").val("");
+					location.reload();
+					}
+				}
+			});
+			}
+      $("#create_idea").removeAttr('disabled');
+			return false;
+		});
+});
 $(document).ready(function(){
     
 		$("#task").click(function(){

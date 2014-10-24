@@ -11,12 +11,13 @@ if($_POST['chal']){
 	$b = $a+5;
 	
 	$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation,
-                                            b.first_name, b.last_name, b.username from challenges as a join user_info as b where (a.challenge_type = '1' or a.challenge_type = '9' or a.challenge_type = '10')
+                                            b.first_name, b.last_name, b.username from challenges as a join user_info as b where (a.challenge_type = '1' or a.challenge_type = '9' or a.challenge_type = '10' or a.challenge_type = '11')
                                              and blob_id = '0' and a.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE (a.challenge_type = '1' or a.challenge_type = '9' or a.challenge_type = '10') and a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT $a,$b;");
+											WHERE (a.challenge_type = '1' or a.challenge_type = '9' or a.challenge_type = '10' or a.challenge_type = '11') and a.blob_id = c.blob_id and a.user_id = b.user_id )
+											 ORDER BY challenge_creation DESC LIMIT $a,$b;");
  $show = "";
  $iR=0;
  while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
@@ -24,6 +25,7 @@ if($_POST['chal']){
 		$chelange = str_replace("<s>","&nbsp;",$open_chalangerow['stmt']) ;
 		$ETA = $open_chalangerow['challenge_ETA'] ;
 		$ch_title = $open_chalangerow['challenge_title'] ;
+		$ch_id = $open_chalangerow['user_id'] ;
 		$ctype = $open_chalangerow['challenge_type'] ;
 		$frstname = $open_chalangerow['first_name'] ;
 		$lstname = $open_chalangerow['last_name'] ;
@@ -33,46 +35,8 @@ if($_POST['chal']){
 		$times = $open_chalangerow['challenge_creation'] ;
 		$timefunction = date("j F, g:i a",strtotime($times));
 		$timeopen = $open_chalangerow['challenge_open_time'] ;
-		$day = floor($ETA/(24*60)) ;
-		$daysec = $ETA%(24*60) ;
-		$hour = floor($daysec/(60)) ;
-		$minute = $daysec%(60) ;
-		if($ETA > 1439) {
-			$sutime = $day." days" ;
-		}
-		else {
-			if(($ETA < 1439) AND ($ETA > 59)) {
-				$sutime = $hour." hours" ;	
-			}
-			else { $sutime = $minute." mins" ; }
-		}
-		$starttimestr = (string) $times ;
-        $initialtime = strtotime($starttimestr) ;
-		$totaltime = $initialtime+($ETA+$timeopen)*60 ;
-		$completiontime = time() ;
-if ($completiontime > $totaltime) { 
-	$remaining_time_own = "Closed" ; }
-else {	$remainingtime = ($totaltime-$completiontime) ;
-		$day = floor($remainingtime/(24*60*60)) ;
-		$daysec = $remainingtime%(24*60*60) ;
-		$hour = floor($daysec/(60*60)) ;
-		$hoursec = $daysec%(60*60) ;
-		$minute = floor($hoursec/60) ;
-	if ($totaltime > ((24*60*60)-1)) {
-		if($hour != 0) {
-		$remaining_time_own = $day." Days and ".$hour." Hours" ;
-		} else {
-			$remaining_time_own = $day." Days" ;
-			}
-	} else {
-			if (($totaltime < ((24*60*60)-1)) AND ($totaltime > ((60*60)-1))) {
-				$remaining_time_own = $hour." Hours and ".$minute." Mins" ;
-				} else {
-					$remaining_time_own = $minute." Mins" ;
-					}
-		}
-			
-}
+		$sutime = eta($ETA) ;
+		$remaintime = remaining_time($times, $ETA) ;
 			$ownedby = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
 												from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;") ;
 			$ownedbyrow = mysqli_fetch_array($ownedby) ;
@@ -82,85 +46,67 @@ else {	$remainingtime = ($totaltime-$completiontime) ;
 			$ownfname = $ownedbyrow['first_name'] ;
 			$ownlname = $ownedbyrow['last_name'] ;
 			$ownname = $ownedbyrow['username'] ;
-			$dayo = floor($owneta/(24*60)) ;
-		$dayseco = $owneta%(24*60) ;
-		$houro = floor($daysec/(60)) ;
-		$minuteo = $daysec%(60) ;
-		if($owneta > 1439) {
-			$timeo = $dayo." days" ;
-		}
-		else {
-			if(($owneta < 1439) AND ($owneta > 59)) {
-				$timeo = $houro." hours" ;	
-			}
-			else { $timeo = $minuteo." mins" ; }
-		}
-		$starttimestro = (string) $owntime ;
-        $initialtimeo = strtotime($starttimestro) ;
-		$totaltimeo = $initialtimeo+($owneta*60) ;
-		$completiontimeo = time() ;
-if ($completiontimeo > $totaltimeo) { 
-	$remaining_time_owno = "Closed" ; }
-else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
-		$dayow = floor($remainingtimeo/(24*60*60)) ;
-		$daysecow = $remainingtimeo%(24*60*60) ;
-		$hourow = floor($daysecow/(60*60)) ;
-		$hoursecow = $daysecow%(60*60) ;
-		$minuteow = floor($hoursecow/60) ;
-	if ($totaltimeo > ((24*60*60)-1)) {
-		if($hourow != 0) {
-		$remaining_time_owno = $dayow." Days and ".$hourow." Hours" ;
-		} else {
-			$remaining_time_owno = $dayow." Days" ;
-			}
-	} else {
-			if (($totaltimeo < ((24*60*60)-1)) AND ($totaltimeo > ((60*60)-1))) {
-				$remaining_time_owno = $hourow." Hours and ".$minuteow." Mins" ;
-				} else {
-					$remaining_time_owno = $minuteow." Mins" ;
-					}
-		}
-}
-		$show .= "<div class='list-group'>
-				<div class='list-group-item'>" ;
+			$timeo = eta($owneta) ;
+		$remaintimeown = remaining_time($owntime, $owneta) ;
+		
 	if ($ctype == 1) {			
 		if($status == 1) {
-		$show = $show . "Created by &nbsp 
+		$show .= "<div class='list-group'>
+				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
-				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
 			$show = $show . "<form method='POST' class='inline-form pull-right'>
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
 					</form>
-				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaining_time_own."</div>";
+				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaintime."</div>";
 		}
 		else {
 
-			$show = $show . "Created by &nbsp 
+			$show = $show . "<div class='list-group'>
+				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
-				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaining_time_owno."</div>" ;
+				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and
+				 ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaintimeown."</div>" ;
 			}
 	} else if ($ctype == 9) {
-		$show = $show . "Written by &nbsp 
+		$show = $show . "<div class='list-group'>
+				<div class='list-group-item' class='article'><span class='glyphicon glyphicon-globe'></span>&nbsp&nbsp&nbsp Written by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
 		
+		}
+		else if ($ctype == 11) {
+		$show = $show . "<div class='list-group'>
+				<div class='list-group-item' class='idea'><span class='glyphicon glyphicon-tree-deciduous'></span>&nbsp&nbsp&nbsp Purposed by &nbsp 
+				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
+				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p></div>" ;
+		
 		}	
 		else {
-			$show = $show . "Created by &nbsp 
+			
+			$show = $show . "<div class='list-group'>
+				<div class='list-group-item' class='openchall'><span class='glyphicon glyphicon-pencil'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>" ;		 		
 				dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+		if ($status != 5 && $ch_id != $user_id) {
 			$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
 					</form>
 				 &nbsp&nbsp&nbsp On : ".$timefunction."</div>";
-			 
+			 }
+		if($ch_id == $user_id) {
+			$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+				   <input type='hidden' name='cid' value='".$chelangeid."'/>
+				   <button type='submit' class='btn-primary' name='closechal'>Close</button></form></div>" ;
+		 }
 		 if ($status == 3) {		 
 			$ownedb = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
 												from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;") ;
@@ -171,7 +117,14 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 			$owlname = $ownedbrow['last_name'] ;
 			$owname = $ownedbrow['username'] ;
 			$show = $show . "<div class='list-group-item'> Owned By  <span class='color strong'><a href ='profile.php?username=".$owname."'>"
-				. ucfirst($owfname). '&nbsp'. ucfirst($owlname). " </a></span>&nbsp&nbsp On : ".$timfunct."</div>" ;
+				. ucfirst($owfname). '&nbsp'. ucfirst($owlname). " </a></span>&nbsp&nbsp On : ".$timfunct ;
+		if($ownedbrow['user_id'] == $user_id && $status != 5) {			
+			$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+					<input type='hidden' name='id' value='".$chelangeid."'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+					</form>";
+				}
+				$show = $show . "</div>" ;
 			}
 		}
 	}	
@@ -182,7 +135,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 												UNION
 												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);") ;										
 		while ($answerrow = mysqli_fetch_array($answer)) { 
-			$show = $show ."<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
+			$show = $show . "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 				<p align='center'>Answer</p></span>"
 				.$answerrow['stmt']."<br/>" ;
 		}  
@@ -214,7 +167,8 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
                         </div>
                         <form action='' method='POST' class='inline-form'>
                             <input type='hidden' value='".$chelangeid."' name='own_challen_id' />
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response' 
+                            placeholder='Whats on your mind about this'/>
                             <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-play' name='own_chl_response' ></button>
                         </form>
                     </div>";
