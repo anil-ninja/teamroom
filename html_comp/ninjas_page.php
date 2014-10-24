@@ -1,11 +1,11 @@
 				   <div class='list-group'>
-				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge'> Challenge</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical'> Articale</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture'> Photos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video'> Videos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-tree-deciduous" id='idea'> Ideas</span></div>
+				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge' style="cursor: pointer"> Challenge</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical' style="cursor: pointer"> Article</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture' style="cursor: pointer"> Photos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video' style="cursor: pointer"> Videos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-tree-deciduous" id='idea' style="cursor: pointer"> Ideas</span></div>
 				<div class='list-group-item'>
 				<div id='challegeForm'>
                   <form>
-                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/>
+                        <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/>
                          <br>
-                        <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea>
+                        <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
                         <br>
                         <div class="inline-form">
                         Challenge Open For 
@@ -78,7 +78,7 @@
                     </div>
                     <div id='VideoForm'>
                         <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
-                        <textarea rows="3" class="form-control" id="article" placeholder="Upload Videos"></textarea><br><br>
+                        <textarea rows="3" class="form-control" id="article" placeholder="Add Youtube URL"></textarea><br><br>
                         <input type="button" value="Post" class="btn btn-success" id="create_article"/>
                     </div>
                     <div id='IdeaForm'>
@@ -128,20 +128,37 @@
 	if ($ctype == 1) {			
 		if($status == 1) {
 		echo "<div class='list-group challenge'>
-				<div class='list-group-item' ><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
-			echo "<form method='POST' class='inline-form pull-right'>
-						<input type='hidden' name='id' value='".$chelangeid."'/>
-						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
-					</form>
-				 &nbsp&nbsp&nbsp On : ".$timefunction."&nbsp&nbsp&nbsp with ETA : ".$sutime."<br/>".$remaintime."</div>";
+                        <div class='list-group-item'>
+                            <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-fire'></span>
+                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                    <div style='line-height: 16.50px;'>
+                            <span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
+                                . ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a>
+                            </span>";
+                            dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
+			    echo "<form method='POST' class='inline-form pull-right'>
+                                <input type='hidden' name='id' value='".$chelangeid."'/>
+                                <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                            </form>
+                            <br> ".$timefunction."&nbsp&nbsp&nbsp";
+                            if ($remaintime != "Closed") {
+                                echo "with ETA : ".$sutime."<br/>".$remaintime;
+                            } else {
+                                echo "<br>Closed";
+                            }
+                   echo "</div></div>";
 		}
 		else {
 
 			echo "<div class='list-group challenge'>
-				<div class='list-group-item' ><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
+				<div class='list-group-item' >
+                                    <div class='pull-left lh-fix'>     
+                                        <span class='glyphicon glyphicon-fire'></span>
+                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                    </div>				
+                                <span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
 				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and
@@ -149,26 +166,40 @@
 			}
 	} else if ($ctype == 9) {
 		echo "<div class='list-group articlesch'>
-				<div class='list-group-item' ><span class='glyphicon glyphicon-globe'></span>&nbsp&nbsp&nbsp Written by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
+				<div class='list-group-item' >
+                                    <div class='pull-left lh-fix'>     
+                                        <span class='glyphicon glyphicon-globe'></span>
+                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                    </div>
+           			<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
 		
 		}
 		else if ($ctype == 11) {
 		echo "<div class='list-group idea'>
-				<div class='list-group-item' ><span class='glyphicon glyphicon-tree-deciduous'></span>&nbsp&nbsp&nbsp Purposed by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
-				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p></div>" ;
+                        <div class='list-group-item' ></span>
+                            <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-tree-deciduous'>
+                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>	
+                        Purposed by &nbsp
+                        <span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
+                        . ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
+                        <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p></div>" ;
 		
 		}	
 		else {
 			
 			echo "<div class='list-group openchalhide'>
-				<div class='list-group-item' ><span class='glyphicon glyphicon-pencil'></span>&nbsp&nbsp&nbsp Created by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+				<div class='list-group-item' >
+                            <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pencil'>
+                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
+                            . ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>";
+                        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
 		if ($status != 5 && $ch_id != $user_id) {
 			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 						<input type='hidden' name='id' value='".$chelangeid."'/>
@@ -230,7 +261,8 @@
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_comment_ninjas."'>".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</a></span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ." ".dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+						&nbsp&nbsp&nbsp".$commenterRow['stmt'];
+                dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
          echo "</div></div></div>";
 		}
 		echo "<div class='comments clearfix'>
