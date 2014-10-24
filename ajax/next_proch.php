@@ -5,9 +5,9 @@ include_once '../functions/delete_comment.php';
 if($_POST['proch']){
 	$user_id = $_SESSION['user_id'];
 	$p_id = $_SESSION['project_id'];
-	$limit = $_SESSION['lastch'];
+	$limitpr = $_SESSION['lastpr'];
 	
-	$a = (int)$limit ;
+	$a = (int)$limitpr ;
 	
 	$b = $a+5;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, a.challenge_type,
@@ -220,7 +220,7 @@ else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
 		echo "Failed!"; 
 	}
 	else { 
-		$_SESSION['lastch'] = $a+$i;
+		$_SESSION['lastpr'] = $a+$iR;
 		echo $show ; 
 		}
 }

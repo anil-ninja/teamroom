@@ -66,7 +66,7 @@ if(isset($_POST['accept'])) {
 }
 if(isset($_POST['accept_pub'])) {
 	$id = $_POST['id'] ;
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='3' WHERE challenge_id = '$id' ; ") ;
+	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = '$id' ; ") ;
 		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$id', '1');") ;
 header('Location: #');
@@ -82,7 +82,7 @@ if(isset($_POST['spem'])) {
 	$id = $_POST['spem'] ;
 	$user_id = $_SESSION['user_id'];
 	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '2');") ;
-	mysqli_query($db_handle,"UPDATE response_challenge SET status='4' WHERE response_ch_id = '$id'; ") ;
+	mysqli_query($db_handle,"UPDATE response_challenge SET status='7' WHERE response_ch_id = '$id'; ") ;
 	header('Location: #');
 	}
 if(isset($_POST['spem_prresp'])) {
@@ -96,7 +96,7 @@ if(isset($_POST['pr_spem'])) {
 	$id = $_POST['pr_spem'] ;
 	$user_id = $_SESSION['user_id'];
 	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '1');") ;
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_type='7' WHERE challenge_id = '$id'; ") ;
+	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='7' WHERE challenge_id = '$id'; ") ;
 	header('Location: #');
 	}
 if(isset($_POST['eta'])) {

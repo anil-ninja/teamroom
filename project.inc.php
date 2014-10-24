@@ -1,5 +1,6 @@
 <?php 
 include_once 'ninjas.inc.php';
+include_once 'functions/delete_comment.php';
 
 if (!isset($_SESSION['first_name'])) {
     header('Location: index.php');
@@ -17,35 +18,10 @@ $project_id = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id 
 $project_idrow = mysqli_fetch_array($project_id) ;
 $eta = $project_idrow['project_ETA'] ;
 $creater_id = $project_idrow['user_id'] ;
-$title = $project_idrow['project_title'] ;
+$projttitle = $project_idrow['project_title'] ;
 $starttime = $project_idrow['project_creation'] ;
 $timef = date("j F, g:i a",strtotime($starttime));
-$initialtimepr = strtotime($starttime) ;
-$ETA = $eta*60 ;
-$totaltimepr = $initialtimepr+$ETA ;
-$completiontimepr = time() ;
-if ($completiontimepr > $totaltimepr) { 
-	$remaining_timepr = "Closed" ; }
-else {	$remainingtimepr = ($totaltimepr-$completiontimepr) ;
-		$daypr = floor($remainingtimepr/(24*60*60)) ;
-		$daysecpr = $remainingtimepr%(24*60*60) ;
-		$hourpr = floor($daysecpr/(60*60)) ;
-		$hoursecpr = $daysecpr%(60*60) ;
-		$minutepr = floor($hoursecpr/60) ;
-		if ($totaltimepr > ((24*60*60)-1)) {
-		if($hourpr != 0) {
-		$remaining_timepr = $daypr." Days and ".$hourpr." Hours" ;
-		} else {
-			$remaining_timepr = $daypr." Days" ;
-			}
-	} else {
-			if (($totaltimepr < ((24*60*60)-1)) AND ($totaltimepr > ((60*60)-1))) {
-				$remaining_timepr = $hourpr." Hours and ".$minutepr." Mins" ;
-				} else {
-					$remaining_timepr = $minutepr." Mins" ;
-					}
-		}
-}		
+$prtime = remaining_time($starttime, $eta) ;	
 
 if (isset($_POST['resp_project'])) {
 	$user_id = $_SESSION['user_id'] ;
@@ -179,7 +155,7 @@ if (isset($_POST['answerch'])) {
 		$answer = $_POST['answer'] ;
 		$a = date("y-m-d H:i:s") ;
 	if (strlen($answer) > 1) { 
-		mysqli_query($db_handle,"UPDATE challenges SET challenge_type='4' WHERE challenge_id = $chalange ; ") ;
+		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $chalange ; ") ;
 		mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $chalange ; ") ;
 	 if (strlen($answer) < 1000) {
         mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$chalange', '$answer', '2'); ") ;
@@ -198,7 +174,7 @@ header('Location:project.php') ;
 }
 if (isset($_POST['closechallenge'])) {
 		$chalange = $_POST['cid'] ;
-    mysqli_query($db_handle,"UPDATE challenges SET challenge_type='5' WHERE challenge_id = $chalange ; ") ;
+    mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
 }
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;

@@ -21,14 +21,14 @@ include_once 'functions/delete_comment.php';
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
         <style>
             body {
-                padding-top: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
+                padding-top: 70px; /* 60px to make the container go all the way to the bottom of the topbar */
             }             
         </style>
 
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
             <style>
             body {
-                    padding-top: 50px; /* 60px to make the container go all the way to the bottom of the topbar */
+                    padding-top: 70px; /* 60px to make the container go all the way to the bottom of the topbar */
                 }             
                 .editbox{
                             display:none
@@ -56,18 +56,17 @@ include_once 'functions/delete_comment.php';
         <div class="container-fluid">
             <div class="row-fluid">
 				<div class='alert_placeholder'></div>
-            <div class="col-lg-2" STYLE="font-size: 11pt;">
-				<?php   include_once 'html_comp/right_panel_project.php';      ?>
+            <div class="col-lg-3" STYLE="font-size: 11pt;">
+				<?php   include_once 'html_comp/left_panel_ninjas.php';      ?>
             </div> 
-                <div class="col-lg-5">
-                    <div class="row" style="visibility: visible; position: relative;">
+                <div class="col-lg-6">
+                    <div class="panel-primary" id="prch">
                        <?php include_once 'html_comp/project_page_project.php'; ?>
                     </div>
                 </div>
-                <div class="col-lg-5">
-						<div class="panel-primary" id="prch">
+                <div class="col-lg-3">
+						
 					   <?php include_once 'html_comp/project_page_challenge.php'; ?>
-				    </div>
                 </div>	
            </div>
 </div>
@@ -134,7 +133,7 @@ function startTime() {
         <!-- elFinder initialization (REQUIRED) -->
         <script type="text/javascript" charset="utf-8">
             $().ready(function() {
-                var temp = "<?php echo $titleR."_".$pro_idR; ?>";
+                var temp = "<?php echo $title."_".$pro_id; ?>";
                 var elf = $('#elfinder').elfinder({
                     url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
                     // lang: 'ru',             // language (OPTIONAL)

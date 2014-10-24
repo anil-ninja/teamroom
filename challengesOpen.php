@@ -71,7 +71,8 @@ if (isset($_POST['chlange'])) {
     $youretad = $_POST['y_etad'];
     $your_eta = (($youreta * 30 + $youretab) * 24 + $youretac) * 60 + $youretad;
     mysqli_query($db_handle, "UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ");
-    mysqli_query($db_handle, "INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)									VALUES ('$user_id', '$chalange', '$your_eta');");
+    mysqli_query($db_handle, "INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)	
+    								VALUES ('$user_id', '$chalange', '$your_eta');");
 header('Location: #');
 }
 if(isset($_POST['projectphp'])){
@@ -348,40 +349,41 @@ $('#SignUp').on('hidden', function() {
          
         <!-- Modal -->
         <div class="modal fade" id="SignUp" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                
-                <div class="modal-content" style="width:390px; height:500px">
-                   
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                         
-                        <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
-                    </div>
-                    <div class='alert_placeholder'></div>
-                    <div class="modal-body">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:370px; height:500px">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel">Join the Clan</h4>
+                            <div class="alert-placeholder"> </div>
+                        </div>
+                        <div class="modal-body">
                             <div class="inline-form">					
                                 <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
                                 <input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
                             </div><br/>	
-                            <div class="inline-form">				
-                                <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)" /> <span id="status_email"></span>
-                                <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
+                            <div class="inline-form">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
+                                    </div>
+                               
+                                    <div class="col-md-5">
+                                        <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
+                                    </div>
+                                </div>
                             </div><br/>					
                             <input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
                             <input type="password" class="form-control" id="passwordR" placeholder="password"/>
                             <input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
 
                             <input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
-                    </div>
-                    <div class  ="modal-footer">
-                        <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
         <!--end modle-->
         
         <script src="js/jquery.js"></script>
@@ -413,8 +415,6 @@ $('#SignUp').on('hidden', function() {
                 }
             }
         </script>
-        <script type="text/javascript" src="js/username_email_check.js">
-            
-        </script>
+        <script type="text/javascript" src="js/username_email_check.js"></script>
     </body>
 </html>

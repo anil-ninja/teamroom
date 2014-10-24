@@ -90,8 +90,13 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 </li>
                 <li><p class="navbar-text" style='color: #fff;' id="demo"></p></li>
                 <li><div class="dropdown">
-                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php $name = $_SESSION['first_name'];
-                        echo ucfirst($name); ?></p></a>
+                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
+                                <?php
+                                    $username = $_SESSION['username'];
+                                    echo "<img style='width: 25px; height: 25px' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>"."&nbsp &nbsp";
+                                    $name = $_SESSION['first_name'];
+                                    echo ucfirst($name)."&nbsp"; 
+                                    ?></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
                             <li><p class="navbar-text">
                                 <form method='GET' action='profile.php'>
@@ -120,17 +125,18 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         <ul class='nav navbar-nav navbar-inverse'>
             <div class="col-md-offset-3 col-md-8 col-lg-8">
                 <div class="list-inline">
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Open challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Articles &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Ideas &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Closed challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn btn-link btn-xs' style='color:#fff;' name='logout' ><span class='glyphicon glyphicon-off'></span> Videos &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-pencil'></span> Open challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-globe'></span> Articles &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-tree-deciduous'></span> Ideas &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='ok' ><span class='glyphicon glyphicon-ok'></span> Closed challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='film' ><span class='glyphicon glyphicon-film'></span> Videos &nbsp;</button></p></li>
                 </div>
             </div>
         </ul>                 
     </div>
 </div>
 <script>
+	
     function show_search_results(challenges){
         var resp = "";
         for (var i = 0; i < challenges.length; i++) {

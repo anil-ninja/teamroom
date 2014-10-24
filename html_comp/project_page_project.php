@@ -1,30 +1,175 @@
+ <div class='list-group'>
+				   <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr'> Challenge</span> | <span class="glyphicon glyphicon-globe" id='articalpr'> Articale</span> | <span class="glyphicon glyphicon-pushpin" id='task'> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team'> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes'> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files'> Manage Files</span></div>
+				<div class='list-group-item'>
+				<div id='challegeprForm'>
+                  <form>
+                        <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
+                        <textarea rows="3" class="form-control" id="challange" placeholder="Details of Challange"></textarea><br>
+                    <div class="inline-form">
+                        Challange Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
+                            <option value='0' selected >hour</option>
+                            <?php
+                            $o = 1;
+                            while ($o <= 24) {
+                                echo "<option value='" . $o . "' >" . $o . "</option>";
+                                $o++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id = "open" >	
+                            <option value='10' selected >minute</option>
+                            <option value='20'  >20</option>
+                            <option value='30' >30</option>
+                            <option value='40'  >40</option>
+                            <option value='50' >50</option>
+                        </select><br/><br/>ETA : 
+                        <select class="btn btn-default btn-xs" id = "cc_eta" >	
+                            <option value='0' selected >Month</option>
+                            <?php
+                            $m = 1;
+                            while ($m <= 11) {
+                                echo "<option value='" . $m . "' >" . $m . "</option>";
+                                $m++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "cc_etab" >	
+                            <option value='0' selected >Days</option>
+                            <?php
+                            $d = 1;
+                            while ($d <= 30) {
+                                echo "<option value='" . $d . "' >" . $d . "</option>";
+                                $d++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "cc_etac" >	
+                            <option value='0' selected >hours</option>
+                            <?php
+                            $h = 1;
+                            while ($h <= 23) {
+                                echo "<option value='" . $h . "' >" . $h . "</option>";
+                                $h++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "cc_etad" >	
+                            <option value='15' selected >minute</option>
+                            <option value='30' >30</option>
+                            <option value='45'  >45</option>
+                        </select>
+                        </div><br/><br/>
+                        <div class="input-group">Challenge Type : 
+                            <select class='btn-default btn-xs' id="type" >
+                                <option value=" 1" >Public</option>
+                                <option value=" 2" selected >Private</option>
+                            </select>
+                        </div>
+                        <br>
+                        <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
+                        <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
+                    </form>
+                    </div>
+                    <div id='ArticleprForm'>
+                        <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
+                        <textarea rows="3" class="form-control" id="article" placeholder="article"></textarea><br><br>
+                        <input type="submit" value="Post" class="btn btn-success" id="create_article"/>
+                    </div>
+                    <div id='taskForm'>
+                       <div class="input-group" >
+                        <span class="input-group-addon">Assign To : </span>
+                         <input type="text" class="form-control" id="email" placeholder="Enter email or Team name ">
+                      </div><br/>
+                      <div class="input-group" >
+                        <span class="input-group-addon">Title : </span>						
+                        <input type="text" class="form-control" id="title" placeholder="Tilte"/>
+                       </div><br>
+                       <div class="input-group" >
+                        <span class="input-group-addon">Task : </span>						
+                        <textarea rows="3" class="form-control" id="taskdetails" placeholder="Details of Tasks"></textarea>
+                        </div><br>
+                    <div class="inline-form">
+                        ETA : 
+                        <select class="btn btn-default btn-xs" id = "c_eta" >	
+                            <option value='0' selected >Month</option>
+                            <?php
+                            $m = 1;
+                            while ($m <= 11) {
+                                echo "<option value='" . $m . "' >" . $m . "</option>";
+                                $m++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etab" >	
+                            <option value='0' selected >Days</option>
+                            <?php
+                            $d = 1;
+                            while ($d <= 30) {
+                                echo "<option value='" . $d . "' >" . $d . "</option>";
+                                $d++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etac" >	
+                            <option value='0' selected >hours</option>
+                            <?php
+                            $h = 1;
+                            while ($h <= 23) {
+                                echo "<option value='" . $h . "' >" . $h . "</option>";
+                                $h++;
+                            }
+                            ?>
+                        </select>
+                        <select class="btn btn-default btn-xs" id= "c_etad" >	
+                            <option value='15' selected >minute</option>
+                            <option value='30' >30</option>
+                            <option value='45'  >45</option>
+                        </select>
+                        </div><br/><br/>
+                         <input type='hidden' id='project_id' value="<?php echo $pro_id; ?>"/>
+                        <input type="button" value="Assign" class="btn btn-success" id="create_task"/>
+                    </div>
+                    <div id='teamForm'>
+                       <form role="form" method="POST">
+                    <div class="input-group" >
+                        <span class="input-group-addon">Team Name</span>
+                        <input type="text" class="form-control" name="team_name" placeholder="Enter your team name">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">Create Team with (Email)</span>
+                        <input type="email" class="form-control" name="email" placeholder="Enter First team member Email">
+                    </div>
+                    <br>
+                    <input type="submit" class="btn btn-success" name = "create_team" value = "Create New Team" >
+                </form>
+                    </div>
+                    <div id='notesForm'>
+                         <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>
+                        <textarea rows="3" class="form-control" id="notes" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
+                        <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
+                        <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
+                    </div>
+                     <div id='manageForm'>
+                        <div id="elfinder"></div>
+                    </div><br/>
+                </div>
+                </div>
 <?php
-	   $project_id = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
-												projects as a join user_info as b WHERE a.project_id = '$pro_id' and blob_id = '0' and a.user_id = b.user_id )
+	   $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
+												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id )
                                                 UNION
                                                 (SELECT a.user_id, a.project_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
                                                 join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
-	   $project_idrow = mysqli_fetch_array($project_id) ;
-		$p_id = $project_idrow['project_id'] ;
-		$projectst = $project_idrow['stmt'];
-		$fname = $project_idrow['first_name'];
-		$lname = $project_idrow['last_name'];
-        $username_project = $project_idrow['username'];
-		$projecteta = $project_idrow['project_ETA'];
-		$daypr = floor(($projecteta)/(24*60)) ;
-		$daysecpr = ($projecteta)%(24*60) ;
-		$hourpr = floor($daysecpr/(60)) ;
-		$minutepr = $daysecpr%(60) ;
-		if($projecteta > 1439) {
-			$timepr = $daypr." days" ;
-		}
-		else {
-			if(($projecteta < 1439) AND ($projecteta > 59)) {
-				$timepr = $hourpr." hours" ;	
-			}
-			else { $timepr = $minutepr." mins" ; }
-		}
-					
+	   $project_row = mysqli_fetch_array($project) ;
+		$p_id = $project_row['project_id'] ;
+		$p_uid = $project_row['user_id'] ;
+		$projectst = $project_row['stmt'];
+		$fname = $project_row['first_name'];
+		$lname = $project_row['last_name'];
+        $username_project = $project_row['username'];
+		$projecteta = $project_row['project_ETA'];
+		$timepr = eta($projecteta) ;		
 	echo "<div class='list-group'>
 				<div class='list-group-item'>";
 
@@ -32,15 +177,12 @@
             <div class='list-group-item'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $project_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM projects WHERE project_id = '$p_id' AND user_id='$user_id';"));
-                    $project_dropdown_displayRow = mysqli_fetch_array($project_dropdown_display);
-                    $project_dropdown_userID = $project_dropdown_displayRow['user_id'];
-                    if($project_dropdown_userID == $user_id) {
+                    if($p_uid == $user_id) {
                         echo "
                         <li><button class='btn-link' href='#'>Edit Project</button></li>
                         <li><button class='btn-link' pID='".$p_id."' onclick='delProject(".$p_id.");'>Delete Project</button></li>
                         <li><form method='POST' class='inline-form'>";                    
-                        if($projecteta == 'Time over') {        
+                        if($prtime == 'Closed') {        
                             echo "<input type='hidden' name='id' value='".$p_id."'/>
                                 <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
                             }                                    
@@ -54,8 +196,8 @@
             </div>";
 	echo "Created by &nbsp <span class='color strong' style= 'color :lightblue;'>
 			<a href ='profile.php?username=".$username_project."'>".ucfirst($fname). '&nbsp'.ucfirst($lname)."</a>
-			</span>  on &nbsp".$timef. " with ETA in &nbsp".$timepr. " <br>".$remaining_timepr." <br>
-			<span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>".ucfirst($title)."</p></span>
+			</span>  on &nbsp".$timef. " with ETA in &nbsp".$timepr. " <br>".$prtime." <br>
+			<span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>".ucfirst($projttitle)."</p></span>
 			".str_replace("<s>","&nbsp;",$projectst)."<br/><br/>" ;
 					
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
@@ -96,82 +238,218 @@
 		</div></div></div>"								  
 	
 ?>
-<?php 
-	$i = 0 ;
-	$c = mysqli_query($db_handle, "SELECT * FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
-											AND challenge_type != '7' AND blob_id = '0' ;") ;
-	if(mysqli_num_rows($c) > 0)	{									
-	echo "<div class='panel-heading'>    
-			<h3 class='panel-title'><p align='center'>Summary</p></h3>
-		</div>
-		<table class='table table-striped table-hover'>
-			<thead>
-				<tr>
-					<th>No.</th>
-					<th>Challenges</th>
-					<th>Time</th>
-					<th>Owned By</th>
-					<th>Status</th>
-				</tr>
-			</thead>
-			<tbody>" ;
-		}
-	 $summary = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, challenge_type, challenge_status, challenge_ETA, LEFT(stmt, 90) as stmt
-											FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
-											AND challenge_type != '7' AND blob_id = '0')
+
+<?php  
+echo "<h3 class='panel-title'><p align='center'>Challenges</p></h3>" ;
+
+$_SESSION['lastpr'] = '10' ;  
+		$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, a.challenge_type,
+											a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
+											 WHERE a.project_id = '$p_id' AND (a.challenge_type = '8' OR a.challenge_type = '4' OR a.challenge_type = '1' OR a.challenge_type='2')
+											AND a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
-										 (SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, a.challenge_ETA, a.challenge_status, LEFT(b.stmt, 90) as stmt
-										   FROM challenges AS a JOIN blobs AS b WHERE a.project_id = '$p_id' AND a.challenge_type != '3' AND a.challenge_type != '6' 
-										   AND a.challenge_type != '7' AND a.blob_id = b.blob_id );");
-      while($summaryrow = mysqli_fetch_array($summary)) {
-				$sid = $summaryrow['challenge_id'] ;
-				$sidtitle = $summaryrow['challenge_title'] ;
-				$sideta = $summaryrow['challenge_ETA'] ;
-				$sidstmt = str_replace("<s>","&nbsp;",$summaryrow['stmt']) ;
-				$sidtype = $summaryrow['challenge_type'] ;
-				$sidstatus = $summaryrow['challenge_status'] ;
-				$daysu = floor($sideta/(24*60)) ;
-				$daysecsu = $sideta%(24*60) ;
-				$hoursu = floor($daysecsu/(60)) ;
-				$minutesu = $daysecsu%(60) ;
-		if($sideta > 1439) {
-			$sutime = $daysu." days" ;
+										 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.challenge_creation, a.challenge_type,
+										  a.challenge_creation, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
+										  WHERE a.project_id = '$p_id' AND (a.challenge_type = '8' OR a.challenge_type = '4' OR a.challenge_type = '1' OR a.challenge_type='2')
+										   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10 ;");
+		while ($tasksrow = mysqli_fetch_array($tasks)) {
+			$username_task = $tasksrow['username'];
+			$id_task = $tasksrow['challenge_id'];
+			$title_task = $tasksrow['challenge_title'];
+			$type_task = $tasksrow['challenge_type'];
+			$status_task = $tasksrow['challenge_status'];
+			$eta_task = $tasksrow['challenge_ETA'];
+			$creation_task = $tasksrow['challenge_creation'];
+			$timetask = date("j F, g:i a",strtotime($creation_task));
+			$stmt_task = $tasksrow['stmt'];
+			$fname_task = $tasksrow['first_name'];
+			$lname_task = $tasksrow['last_name'];
+			$day = floor($eta_task/(24*60)) ;
+			$daysec = $eta_task%(24*60) ;
+			$hour = floor($daysec/(60)) ;
+			$minute = $daysec%(60) ;
+			$remainingtime = $day." Days :".$hour." Hours :".$minute." Min" ;
+			$starttimestr = (string) $creation_task ;
+			$initialtime = strtotime($starttimestr) ;
+			$totaltime = $initialtime+($eta_task*60) ;
+			$completiontime = time() ;
+		if ($completiontime > $totaltime) { 
+			$remaining_time = "Closed" ; }
+	else {	$remaintime = ($totaltime-$completiontime) ;
+			$day = floor($remaintime/(24*60*60)) ;
+			$daysec = $remaintime%(24*60*60) ;
+			$hour = floor($daysec/(60*60)) ;
+			$hoursec = $daysec%(60*60) ;
+			$minute = floor($hoursec/60) ;
+			$remaining_time = "Remaining Time : ".$day." Days :".$hour." Hours :".$minute." Min " ;
+		}	
+		$ownedby = mysqli_query($db_handle,"SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, a.time, b.first_name, b.last_name,b.username
+												from challenge_ownership as a join user_info as b where a.challenge_id = '$id_task' and b.user_id = a.user_id ;") ;
+			$ownedbyrow = mysqli_fetch_array($ownedby) ;
+			$owneta = $ownedbyrow['comp_ch_ETA'] ;
+			$ownid = $ownedbyrow['user_id'] ;
+			$owntime = $ownedbyrow['ownership_creation'] ;
+			$timefunct = date("j F, g:i a",strtotime($owntime));
+			$committime = $ownedbyrow['time'] ;
+			$timecom = date("j F, g:i a",strtotime($committime));
+			$ownfname = $ownedbyrow['first_name'] ;
+			$ownlname = $ownedbyrow['last_name'] ;
+			$ownname = $ownedbyrow['username'] ;
+			$dayo = floor($owneta/(24*60)) ;
+		$dayseco = $owneta%(24*60) ;
+		$houro = floor($daysec/(60)) ;
+		$minuteo = $daysec%(60) ;
+		if($owneta > 1439) {
+			$timeo = $dayo." days" ;
 		}
 		else {
-			if(($sideta < 1439) AND ($sideta > 59)) {
-				$sutime = $hoursu." hours" ;	
+			if(($owneta < 1439) AND ($owneta > 59)) {
+				$timeo = $houro." hours" ;	
 			}
-			else { $sutime = $minutesu." mins" ; }
+			else { $timeo = $minuteo." mins" ; }
+		}
+        $initialtimeo = strtotime($owntime) ;
+        $endtime = strtotime($committime) ;
+        $time_taken = ($endtime-$initialtimeo) ;
+		$day = floor($time_taken/(24*60*60)) ;
+		$daysec = $time_taken%(24*60*60) ;
+		$hour = floor($daysec/(60*60)) ;
+		$hoursec = $daysec%(60*60) ;
+		$minute = floor($hoursec/60) ;
+		$timetaken = $day." Days :".$hour." Hours :".$minute." Min :" ;
+		$totaltimeo = $initialtimeo+($owneta*60) ;
+		$completiontimeo = time() ;
+if ($completiontimeo > $totaltimeo) { 
+	$remaining_time_owno = "Closed" ; }
+else {	$remainingtimeo = ($totaltimeo-$completiontimeo) ;
+		$dayow = floor($remainingtimeo/(24*60*60)) ;
+		$daysecow = $remainingtimeo%(24*60*60) ;
+		$hourow = floor($daysecow/(60*60)) ;
+		$hoursecow = $daysecow%(60*60) ;
+		$minuteow = floor($hoursecow/60) ;
+	if ($totaltimeo > ((24*60*60)-1)) {
+		if($hourow != 0) {
+		$remaining_time_owno = $dayow." Days and ".$hourow." Hours" ;
+		} else {
+			$remaining_time_owno = $dayow." Days" ;
+			}
+	} else {
+			if (($totaltimeo < ((24*60*60)-1)) AND ($totaltimeo > ((60*60)-1))) {
+				$remaining_time_owno = $hourow." Hours and ".$minuteow." Mins" ;
+				} else {
+					$remaining_time_owno = $minuteow." Mins" ;
+					}
+		}
+}
+			echo "<div class='list-group'>
+						<div class='list-group-item'>";
+	if ($type_task == 4) {
+		if ($tasksrow['user_id'] == $user_id) {
+		echo "Challenged by <span class='color strong' style= 'color :#3B5998;'> You </span> On : ".$timetask.
+				"<br/>ETA Given : ".$remainingtime."</div>
+				<div class='list-group-item'>Accepted By <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname).
+				"</span> and Submitted On : ".$timecom."<br/>ETA Taken : ".$timetaken."</div>" ;
+			}					
+		}				
+	else if($type_task == 8) {					
+	      echo "<div class='pull-right'>
+				<div class='list-group-item'>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+					<ul class='dropdown-menu' aria-labelledby='dropdown'>                   
+                     <li><button class='btn-link' >Report Spam</button></li>
+                   </ul>
+              </div>
+            </div>";
+       if($ownid==$user_id) {			
+			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+					<input type='hidden' name='id' value='".$id_task."'/>
+					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+					</form>";
+				}
+	echo "Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
+			Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
+					 ETA Given : ".$timeo." <br/>".$remaining_time_owno."</div>";
 		} 
-		if (($sidtype == 1 OR $sidtype == 2) AND $sidstatus == 1 )	{
-			$sstatus = "Not Owned" ;
+		 
+		else {			
+		if($status_task == 1) {
+		echo "Created by &nbsp 
+				<span class='color strong'><a href ='profile.php?username=".$username_task."'>" 
+				. ucfirst($fname_task). '&nbsp'. ucfirst($lname_task). " </a></span>" ;		 		
+				dropDown_challenge($db_handle, $id_task, $user_id, $remaining_time_owno);
+			echo "<form method='POST' class='inline-form pull-right'>
+						<input type='hidden' name='id' value='".$id_task."'/>
+						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+					</form>
+				 &nbsp&nbsp&nbsp On : ".$timetask."&nbsp&nbsp&nbsp with ETA : ".$remainingtime."<br/>".$remaining_time."</div>";
 		}
-		else if (($sidtype == 1 OR $sidtype == 2) AND $sidstatus == 2 )	{
-			$sstatus = "IN Progress" ;
-		}	
-		else if ($sidtype == 4 OR $sidtype == 5) {	
-			$sstatus = "Completed" ;
-		}
-		else if ($sidtype == 8) {	
-			$sstatus = "Task" ;
-		}
-		$owned = mysqli_query($db_handle, "select a.user_id, b.first_name, b.username from challenge_ownership as a join user_info as b where a.challenge_id = '$sid' and a.user_id = b.user_id ;") ;	
-		$ownedrow = mysqli_fetch_array($owned) ;
-		$sname = $ownedrow['username'] ;
-		$sfname = $ownedrow['first_name'] ;
-		$i++; 
+		else {
+			echo "Created by &nbsp 
+				<span class='color strong'><a href ='profile.php?username=".$username_task."'>"
+				. ucfirst($fname_task). '&nbsp'. ucfirst($lname_task). " </a></span>&nbsp&nbsp On : ".$timetask."<br/>
+				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
+				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and 
+				ETA Taken : ".$timeo." <br/> Time Remaining : ".$remaining_time_owno."</div>" ;
+			}
+		}			
+   	echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'><b>".ucfirst($title_task)."</b></p><br/>
+				<small>".str_replace("<s>","&nbsp;",$stmt_task)."</small><br>";
+	if ($type_task == 4) {
+		if ($tasksrow['user_id'] == $user_id) {
+		$answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$id_task' and blob_id = '0' and status = '2')
+												UNION
+												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$id_task' and a.status = '2' and a.blob_id = b.blob_id);") ;										
+			$answerrow = mysqli_fetch_array($answer) ;
+		echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
+				<p align='center'>Answer</p></span>"
+				.$answerrow['stmt']."<br/><form method='POST' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+				<div class='pull-right'><input type='hidden' name='cid' value='".$id_task."'/>
+				<button type='submit' class='btn-primary' name='closechallenge'>Close</button></div></form><br/>" ;
 		
-		echo "<tr>
-				<td>".$i."</td>
-				<td><a href ='challengesOpen.php?challenge_id=".$sid."'>".$sidtitle."</a><br/>".$sidstmt."</td>
-				<td>".$sutime."</td>
-				<td><a href ='profile.php?username=".$sname."'>".$sfname."</a></td>
-				<td>".$sstatus."</td>
-			</tr>" ;
-	}
-	echo "</tbody>
-            </table>" ;
-				?>
+		}			
+	}	
+	$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
+												JOIN user_info as b WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
+												   UNION
+												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
+													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");		
+		while ($displayrowb = mysqli_fetch_array($displaya)) {	
+				$fstname = $displayrowb['first_name'] ;
+                $lstname = $displayrowb['last_name'];
+                $username_commenter_pr_ch = $displayrowb['username'];
+				$idc = $displayrowb['response_ch_id'] ;
+				$chalangeres = $displayrowb['stmt'] ;
+		echo "
+		<div id='commentscontainer'>
+			<div class='comments clearfix'>
+				<div class='pull-left lh-fix'>
+					<img src='uploads/profilePictures/$username_commenter_pr_ch.jpg'  onError=this.src='img/default.gif'>
+				</div>
+				<div class='comment-text'>
+					<span class='pull-left color strong'>
+						&nbsp<a href ='profile.php?username=".$username_commenter_pr_ch."'>". ucfirst($fstname)."&nbsp".$lstname."</a>&nbsp".
+					"</span><small>".$chalangeres."</small>";
+					dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+				echo "</div>
+			</div> 
+		</div>";
+		}
+		echo "<div class='comments clearfix'>
+                        <div class='pull-left'>
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                        </div>
+                        <form action='' method='POST' class='inline-form'>
+                                <input type='hidden' value='".$id_task."' name='own_challen_id' />
+                                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 84%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
+                        </form>
+                    </div>";
+	echo "</div> </div>";		
+			
+			
+			}
+
+?>
 	
 <?php
 	$echo = mysqli_query($db_handle,"select * from challenges where challenge_type = '6' ;");
@@ -349,8 +627,9 @@ echo "<div class='panel-heading'>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>
 						<a href ='profile.php?username=".$username_notes_comment."'>". ucfirst($fstname)." ".ucfirst($lstname)."</a></span> 
-						&nbsp&nbsp&nbsp".$chalangeres."
-					</div>
+						&nbsp&nbsp&nbsp".$chalangeres."";
+                                                    dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+					echo "</div>
 				</div> 
 			</div>";
 		}
