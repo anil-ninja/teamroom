@@ -90,8 +90,13 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 </li>
                 <li><p class="navbar-text" style='color: #fff;' id="demo"></p></li>
                 <li><div class="dropdown">
-                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello <?php $name = $_SESSION['first_name'];
-                        echo ucfirst($name); ?></p></a>
+                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
+                                <?php
+                                    $username = $_SESSION['username'];
+                                    echo "<img style='width: 25px; height: 25px' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>"."&nbsp &nbsp";
+                                    $name = $_SESSION['first_name'];
+                                    echo ucfirst($name)."&nbsp"; 
+                                    ?></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
                             <li><p class="navbar-text">
                                 <form method='GET' action='profile.php'>
