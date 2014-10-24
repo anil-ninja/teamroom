@@ -162,65 +162,57 @@ $(document).ready(function(){
 
 	$(document).ready(function(){
 		//to hide all the form
-		$("#challegeForm").hide();
-  		$("#ArticleForm").hide();
-  		$("#PictureForm").hide();
-  		$("#VideoForm").hide();
-  		$("#IdeaForm").hide();
+		$("#challegeForm").toggle();
+  		$("#ArticleForm").toggle();
+  		$("#PictureForm").toggle();
+  		$("#VideoForm").toggle();
+  		$("#IdeaForm").toggle();
 
 
   		//selecting perticular one
 
-  		$("#ShowAll").click(function(){
-  			$("#ArticleForm").show(1000);
-  			$("#PictureForm").show(1000);
-  			$("#IdeaForm").show(1000);
-  			$("#VideoForm").show(1000);
-    		$("#challegeForm").show(1000);
-  		});
-
   		$("#challenge").click(function(){
-  			$("#ArticleForm").hide(1000);
-  			$("#PictureForm").hide(1000);
-  			$("#IdeaForm").hide(1000);
-  			$("#VideoForm").hide(1000);
-    		$("#challegeForm").show(1000);
+  			$("#ArticleForm").hide(1500);
+  			$("#PictureForm").hide(1500);
+  			$("#IdeaForm").hide(3000);
+  			$("#VideoForm").hide(1500);
+    		$("#challegeForm").toggle(3000);
   		});
 
   		
   		
   		$("#artical").click(function(){
-  			$("#challegeForm").hide(1000);
-  			$("#PictureForm").hide(1000);
-  			$("#IdeaForm").hide(1000);
-  			$("#VideoForm").hide(1000);
-    		$("#ArticleForm").show(1000);
+  			$("#challegeForm").hide(1500);
+  			$("#PictureForm").hide(1500);
+  			$("#IdeaForm").hide(3000);
+  			$("#VideoForm").hide(1500);
+    		$("#ArticleForm").toggle(3000);
   		});
   
   		
 		
 		$("#picture").click(function(){
-  			$("#challegeForm").hide(1000);
-  			$("#PictureForm").show(1000);
-  			$("#IdeaForm").hide(1000);
-  			$("#VideoForm").hide(1000);
-    		$("#ArticleForm").hide(1000);
+  			$("#challegeForm").hide(1500);
+  			$("#PictureForm").toggle(1500);
+  			$("#IdeaForm").hide(3000);
+  			$("#VideoForm").hide(1500);
+    		$("#ArticleForm").hide(3000);
   		});
   
   		$("#video").click(function(){
-  			$("#challegeForm").hide(1000);
-  			$("#PictureForm").hide(1000);
-  			$("#IdeaForm").hide(1000);
-  			$("#VideoForm").show(1000);
-    		$("#ArticleForm").hide(1000);
+  			$("#challegeForm").hide(1500);
+  			$("#PictureForm").hide(1500);
+  			$("#IdeaForm").hide(3000);
+  			$("#VideoForm").toggle(1500);
+    		$("#ArticleForm").hide(3000);
   		});
   
   		$("#idea").click(function(){
-		  	$("#challegeForm").hide(1000);
-		  	$("#PictureForm").hide(1000);
-		  	$("#VideoForm").hide(1000);
-		    $("#ArticleForm").hide(1000);
-		    $("#IdeaForm").show(1000);
+		  	$("#challegeForm").hide(1500);
+		  	$("#PictureForm").hide(1500);
+		  	$("#VideoForm").hide(1500);
+		    $("#ArticleForm").hide(3000);
+		    $("#IdeaForm").toggle(3000);
   		});
 });	
 
