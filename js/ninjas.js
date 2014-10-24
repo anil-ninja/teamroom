@@ -162,11 +162,11 @@ $(document).ready(function(){
 
 	$(document).ready(function(){
 		//to hide all the form
-		$("#challegeForm").toggle();
-  		$("#ArticleForm").toggle();
-  		$("#PictureForm").toggle();
-  		$("#VideoForm").toggle();
-  		$("#IdeaForm").toggle();
+		$("#challegeForm").hide();
+  		$("#ArticleForm").hide();
+  		$("#PictureForm").hide();
+  		$("#VideoForm").hide();
+  		$("#IdeaForm").hide();
 
 
   		//selecting perticular one
