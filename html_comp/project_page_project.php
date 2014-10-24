@@ -179,10 +179,8 @@
                             echo "<input type='hidden' name='id' value='".$pro_id."'/>
                                 <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
                             }                                    
-                       echo "</form></li>";
-                    }
-                    else {
-                       echo "<li><button class='btn-link' >Report Spam</button></li>";
+                       echo "</form></li>
+								<li><button class='btn-link' >Report Spam</button></li>";
                     } 
     echo "</ul>
               </div>
@@ -248,6 +246,7 @@ $_SESSION['lastpr'] = '10' ;
 		while ($tasksrow = mysqli_fetch_array($tasks)) {
 			$username_task = $tasksrow['username'];
 			$id_task = $tasksrow['challenge_id'];
+			$id_create = $tasksrow['user_id'];
 			$title_task = $tasksrow['challenge_title'];
 			$type_task = $tasksrow['challenge_type'];
 			$status_task = $tasksrow['challenge_status'];
@@ -296,13 +295,19 @@ $_SESSION['lastpr'] = '10' ;
 				<div class='pull-right'>
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>                   
-                     <li><button class='btn-link' >Report Spam</button></li>
-                   </ul>
-              </div>
-            </div>";
-      if($status_task == 2) {     
-       if($ownid==$user_id) {			
+					<ul class='dropdown-menu' aria-labelledby='dropdown'>" ;
+		if($id_create == $user_id) {
+              echo "<li><button class='btn-link' href='#'>Edit Project</button></li>
+                        <li><button class='btn-link' pID='".$id_task."' onclick='delProject(".$id_task.");'>Delete Project</button></li>
+                        <li><form method='POST' class='inline-form'>";                    
+              if($remaintimeown == 'Closed') {        
+                     echo "<input type='hidden' name='id' value='".$id_task."'/>
+                                <input class='btn-link' type='submit' name='eta' value='Change ETA'/>";
+                            }                                    
+                       echo "</form></li>
+								<li><button class='btn-link' >Report Spam</button></li>";
+                    } 
+      if($ownid==$user_id) {			
 			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
 					<input type='hidden' name='id' value='".$id_task."'/>
 					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
@@ -310,18 +315,17 @@ $_SESSION['lastpr'] = '10' ;
 				}
 		echo "Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
 				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$timeo." <br/>".$remaining_time_owno."</div>";
+					 ETA Given : ".$etaown." <br/>".$remaintimeown."</div>";
 		} 
 		else if($status_task == 4) {
-				if($ownid==$user_id) {			
-			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='".$id_task."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-					</form>";
+				if($id_create==$user_id) {			
+			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+				   <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+				   <button type='submit' class='btn-primary' name='closechal'>Close</button></form>";
 				}
 		echo "Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
 				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$timeo." <br/>".$remaining_time_owno."</div>";
+					 ETA Given : ".$etaown." <br/>".$remaintimeown."</div>";
 		}
 		else {			
 		if($status_task == 1) {
