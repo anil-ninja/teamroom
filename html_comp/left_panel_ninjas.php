@@ -1,7 +1,7 @@
 <div class="bs-component">
               
-                      <p><a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></a></i>
-                      <font size="2"><b>Private Projects</b></font></p><hr/>
+                      <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i>
+                      <font size="2"><b>Private Projects</b></font></a><hr>
                        <?php
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
@@ -53,9 +53,9 @@
                                         echo "<form method='POST' action=''>
                                         <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
                                         <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                                        data-placement='bottom' data-original-title=' ".$title."' style='height: 20px;font-size:11px;'>
+                                        data-placement='bottom' data-original-title=' ".$title."' style='height: 15px;font-size:11px;'>
                                         <b>".$prtitle."</b></button>
-                                        <br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p></form>" ;
+                                        <p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p><br/></form>" ;
                                     
                                 
                             }
