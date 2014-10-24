@@ -25,11 +25,11 @@ if (!isset($_SESSION['first_name'])) {
         <div class="navbar navbar-default navbar-fixed-top" >
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" style='font-size:16pt; color: #fff;' href="index.php">colvade</a>
+                    <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">colvade</a>
                     <div class="span3 pull-right">
                         <ul class="list-inline">
                             <li><p style='font-size:10pt; color:rgba(161, 148, 148, 1);'>Powered By : </p></li>
-                            <li><a class="btn-link" style='font-size:14pt; color: #fff;' href="http://dpower4.com/">Dpower4.com</a></li>
+                            <li><a class="btn-link" style='font-size:14pt; color: #fff; font-weight: bold;' href="http://dpower4.com/">Dpower4.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -86,9 +86,16 @@ if (!isset($_SESSION['first_name'])) {
                                 <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
                                 <input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
                             </div><br/>	
-                            <div class="inline-form">				
-                                <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
-                                <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
+                            <div class="inline-form">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
+                                    </div>
+                               
+                                    <div class="col-md-5">
+                                        <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
+                                    </div>
+                                </div>
                             </div><br/>					
                             <input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
                             <input type="password" class="form-control" id="passwordR" placeholder="password"/>
@@ -133,11 +140,11 @@ if (!isset($_SESSION['first_name'])) {
             <!-----signup valiation ends -------------and login validation added here--->
 
             <script type="text/javascript">
-                document.getElementById("username").onblur = function() {
+                document.getElementById("usernameR").onblur = function() {
 
                     var xmlhttp;
 
-                    var username=document.getElementById("username");
+                    var username=document.getElementById("usernameR");
                     if (username.value != ""){
                         if (window.XMLHttpRequest){
                             xmlhttp=new XMLHttpRequest();
@@ -150,7 +157,7 @@ if (!isset($_SESSION['first_name'])) {
                                 document.getElementById("status").innerHTML=xmlhttp.responseText;
                             }
                         };
-                        xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
+                        xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(usernameR.value),true);
                         xmlhttp.send();
                     }
                 };
