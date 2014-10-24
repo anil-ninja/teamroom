@@ -115,6 +115,6 @@
                                     
                                 
                             }
-                        ?><hr/><hr/>
+                        ?><hr/>
                         <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Project</a>
               </div>

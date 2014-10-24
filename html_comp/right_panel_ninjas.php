@@ -59,7 +59,7 @@
 				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p>" ;
       }
   
-?><hr/><hr/><br/><br/>
+?><hr/>
 <p align="center"><font size="4">Assigned Tasks</font></p><hr/>
 <?php
 		$titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
@@ -115,5 +115,5 @@
 				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_ownas."</p>" ;
       }
   
-?><hr/><hr/>
+?><hr/>
 </div>
