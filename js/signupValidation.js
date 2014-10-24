@@ -33,17 +33,17 @@ function bootstrap_alert(elem, message, timeout,type) {
          '&password='+ password + '&password2='+ password2 + '&request=Signup' ;
          if(password==password2){
          if(firstname==''){
-				bootstrap_alert(".alert_placeholder", "firstname can not be empty", 5000,"alert-warning");
+				bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
 		} else if(email==''){
-			bootstrap_alert(".alert_placeholder", "email can not be empty", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
 		} else if(phone==''){
-			bootstrap_alert(".alert_placeholder", "phone can not be empty", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
 		} else if(username==''){
-			bootstrap_alert(".alert_placeholder", "username can not be empty", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
 		} else if(password==''){
-			bootstrap_alert(".alert_placeholder", "password can not be empty", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		} else if(password2==''){
-			bootstrap_alert(".alert_placeholder", "password can not be empty", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		} else {
           $.ajax({
 					type: "POST",
@@ -52,7 +52,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					cache: false,
 					success: function(result){
 							if(result){
-                                bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+                                bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
                                 } 
                            else {
 							  location.reload();
@@ -61,7 +61,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					});
 		}
 		}		
-        else bootstrap_alert(".alert_placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
+        else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
     }
     function validateEmpty(fld) {
         var error = "";

@@ -10,10 +10,10 @@ $sql="SELECT * FROM user_info where username='$username'";
 $data=mysqli_query($db_handle,$sql);
 if(mysqli_num_rows($data)>0)
 {
-print "<span style=\"color:red;\">Username already exists :(</span>";
+print "<span style=\"color:red;\">Username already exists</span>";
 }
 else
 {
-print "<span style=\"color:green;\">Username is available :)</span>";
+print "<span style=\"color:green;\">Username is available</span>";
 }
 ?>
