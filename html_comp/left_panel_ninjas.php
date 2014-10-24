@@ -52,16 +52,12 @@
                                 $time_for_project = $day." Days :".$hour." Hours :".$minute." Min" ;
                                 $private_projects = $project_title_displayRow['project_type'];
                                 echo $private_projects;
-                                switch ($private_projects) {
-                                    case 1:
                                         echo "<form method='POST' action=''>
                                         <input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
                                         <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                                         data-placement='bottom' data-original-title='".$title."' style='height: 20px;font-size:14px;'><b>
                                         ".$prtitle."</b></button>
                                         <br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p></form>" ;
-                                    
-                                }
                             }
                         ?><hr/><hr/>
                         <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Project</a>
