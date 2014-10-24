@@ -9,7 +9,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" style='color: #fff;' href="ninjas.php">colvade</a>
+        <a class="navbar-brand" style='color: #fff;font-size:16pt;' href="ninjas.php"><b>colvade</b></a>
     </div>
 
     <div class="navbar-collapse">
@@ -25,15 +25,15 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             if (isset($_SESSION['user_id'])) {
                 if ($requestedPage == "challenges.php") {
                     echo "<li><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>
-                            <a data-toggle='modal' style='color: #fff;' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'></i>Create Challenge
-                            </a></p>    
+                            <a data-toggle='modal' style='color: #fff;' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'>
+                            </i><b>Create Challenge</b></a></p>    
                         </li>";
                 }
 
                 if ($requestedPage == "ninjas.php") {
                     echo "<li>
                             <div class='dropdown'>
-                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'>Teams<span class='caret'></span></p></a>
+                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
                                 <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>";
                                     $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
                                     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
@@ -58,7 +58,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 ?>
                 <li>
                     <div class='dropdown'>
-                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;">Projects<span class='caret'></span></p></a>
+                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;"><b>Projects</b><span class='caret'></span></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
                             <?php
                          
@@ -82,10 +82,10 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                         </ul>
                     </div>
                 </li>      
-                <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i>Create Project</a></p></li>
-                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'> Challenges</a></p></li>
-                <li><p class="navbar-text" style='color: #fff;'>&nbsp; Rank :  <?php $rank = $_SESSION['rank'];
-                        echo $rank; ?>
+                <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li>
+                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
+                <li><p class="navbar-text" style='color: #fff;'>&nbsp;<b> Rank :  <?php $rank = $_SESSION['rank'];
+                        echo $rank; ?></b>
                     </p>
                 </li>
                 <li><p class="navbar-text" style='color: #fff;' id="demo"></p></li>
@@ -95,7 +95,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                     $username = $_SESSION['username'];
                                     echo "<img style='width: 25px; height: 25px' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>"."&nbsp &nbsp";
                                     $name = $_SESSION['first_name'];
-                                    echo ucfirst($name)."&nbsp"; 
+                                    echo "<b>".ucfirst($name)."</b>&nbsp"; 
                                     ?></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
                             <li><p class="navbar-text">

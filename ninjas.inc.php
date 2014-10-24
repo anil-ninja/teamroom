@@ -66,7 +66,7 @@ if(isset($_POST['accept'])) {
 }
 if(isset($_POST['accept_pub'])) {
 	$id = $_POST['id'] ;
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = '$id' ; ") ;
+	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$id' ; ") ;
 		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$id', '1');") ;
 header('Location: #');

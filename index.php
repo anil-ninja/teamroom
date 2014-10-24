@@ -28,7 +28,7 @@ if (!isset($_SESSION['first_name'])) {
                     <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">colvade</a>
                     <div class="span3 pull-right">
                         <ul class="list-inline">
-                            <li><p style='font-size:10pt; color:rgba(161, 148, 148, 1);'>Powered By : </p></li>
+                            <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
                             <li><a class="btn-link" style='font-size:14pt; color: #fff; font-weight: bold;' href="http://dpower4.com/">Dpower4.com</a></li>
                         </ul>
                     </div>
@@ -61,7 +61,7 @@ if (!isset($_SESSION['first_name'])) {
                                     <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
                                 </div>
                                 <div class="modal-footer">
-                                    <a data-toggle="modal" class="btn-link" data-target="#myModal" style="float: right; cursor:pointer;">Join the Clan</a>
+                                    <a data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;">Join the Clan</a>
                                 </div>
                             </div>
                         </div>
@@ -72,36 +72,35 @@ if (!isset($_SESSION['first_name'])) {
             <!-- Modal -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
-                    <div class="modal-content" style="width:370px; height:500px">
+                    <div class="modal-content" style="width:370px; height:auto">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Close</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel">Join the Clan</h4>
+                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Join the Clan</font></h4>
                             <div class="alert-placeholder"> </div>
                         </div>
                         <div class="modal-body">
-                            <div class="inline-form">					
-                                <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
-                                <input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
-                            </div><br/>	
                             <div class="inline-form">
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
-                                    </div>
-                               
-                                    <div class="col-md-5">
-                                        <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
-                                    </div>
-                                </div>
-                            </div><br/>					
-                            <input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
-                            <input type="password" class="form-control" id="passwordR" placeholder="password"/>
-                            <input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
-
-                            <input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
+								<div class="row">
+									<div class="col-md-6">					
+                                <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
+                                </div><div class="col-md-6">
+                                <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
+                            </div></div></div><br/>	
+                                 <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
+                                    <br/>					
+                            <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
+                           <br/>
+                           <div class="inline-form">
+							   <div class="row">
+									<div class="col-md-6">
+                             	<input type="password" class="form-control" style="width: 100%" id="passwordR" placeholder="password"/>
+								</div><div class="col-md-6">
+								<input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
+							</div></div></div>
+                            <input type="submit" class="btn btn-primary btn-lg" name = "request" value = "Join" onclick="validateSignupFormOnSubmit()">
                         </div>
                     </div>
                 </div>

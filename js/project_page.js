@@ -170,22 +170,13 @@ return str.replace(new RegExp(find, 'g'), replace);
 	$(document).ready(function(){
 		$("#challegeprForm").toggle();
   $("#challengepr").click(function(){
-  	$("#ArticleprForm").hide(1500);
   	$("#taskForm").hide(1500);
   	$("#teamForm").hide(3000);
   	$("#notesForm").hide(1500);
   	$("#manageForm").hide(1500);
     $("#challegeprForm").toggle(3000);
   });
-  $("#ArticleprForm").toggle();
-  $("#articalpr").click(function(){
-  	$("#challegeprForm").hide(1500);
-  	$("#taskForm").hide(1500);
-  	$("#teamForm").hide(3000);
-  	$("#notesForm").hide(1500);
-  	$("#manageForm").hide(1500);
-    $("#ArticleprForm").toggle(3000);
-  });
+
   $("#taskForm").toggle();
   $("#task").click(function(){
   	$("#challegeprForm").hide(1500);
@@ -193,7 +184,6 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#teamForm").hide(3000);
   	$("#notesForm").hide(1500);
   	$("#manageForm").hide(1500);
-    $("#ArticleprForm").hide(3000);
   });
   $("#teamForm").toggle();
   $("#team").click(function(){
@@ -202,7 +192,6 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#notesForm").hide(1500);
   	$("#manageForm").hide(3000);
   	$("#teamForm").toggle(1500);
-    $("#ArticleprForm").hide(3000);
   });
   $("#notesForm").toggle();
   $("#notes").click(function(){
@@ -210,7 +199,6 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#taskForm").hide(1500);
   	$("#teamForm").hide(1500);
   	$("#manageForm").hide(1500);
-    $("#ArticleprForm").hide(3000);
     $("#notesForm").toggle(3000);
   });
   $("#manageForm").toggle();
@@ -219,7 +207,6 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#taskForm").hide(1500);
   	$("#teamForm").hide(1500);
   	$("#notesForm").hide(1500);
-    $("#ArticleprForm").hide(3000);
     $("#manageForm").toggle(3000);
   });
 });	
