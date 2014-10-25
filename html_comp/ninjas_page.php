@@ -157,23 +157,23 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             } else {
                 echo "<br>Closed";
             }
-            echo "</div>
-                       </div>";
+                    echo "</div>
+                    </div>";
         } else {
             echo "<div class='list-group challenge'>
-				<div class='list-group-item' >
-                                    <div class='pull-left lh-fix'>     
-                                        <span class='glyphicon glyphicon-question-sign'></span>
-                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                    </div>
-                                    <div style='line-height: 16.50px;'>
-                                        <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>&nbsp&nbsp On : " . $timefunction . "<br/>
-                                        Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp On : " . $timefunct . " and
-                                        ETA Taken : " . $timeo . " <br/> Time Remaining : " . $remaintimeown . "
-                                    </div>
-                                </div>";
+                    <div class='list-group-item' >
+                        <div class='pull-left lh-fix'>     
+                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                        </div>
+                        <div style='line-height: 16.50px;'>
+                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>&nbsp&nbsp On : " . $timefunction . "<br/>
+                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp On : " . $timefunct . " and
+                            ETA Taken : " . $timeo . " <br/> Time Remaining : " . $remaintimeown . "
+                        </div>
+                    </div>";
         }
     } else if ($ctype == 9) {
         echo "<div class='list-group articlesch'>
@@ -201,29 +201,32 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     } else {
 
         echo "<div class='list-group openchalhide'>
-				<div class='list-group-item' >
-                            <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-question-sign'>
-                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>
-                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                <div class='list-group-item' >
+                    <div class='pull-left lh-fix'>     
+                        <span class='glyphicon glyphicon-question-sign'>
+                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                    </div>
+                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>";
         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
         if ($status != 5 && $ch_id != $user_id) {
             echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-						<input type='hidden' name='id' value='" . $chelangeid . "'/>
-						<input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-					</form>
-				 &nbsp&nbsp&nbsp On : " . $timefunction . "</div>";
+                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
+                </form>
+                &nbsp&nbsp&nbsp On : " . $timefunction . "
+            </div>";
         }
         if ($ch_id == $user_id) {
             echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-				   <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-				   <button type='submit' class='btn-primary' name='closechal'>Close</button></form></div>";
+                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                    <button type='submit' class='btn-primary' name='closechal'>Close</button>
+                </form>
+            </div>";
         }
         if ($status == 3) {
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
-												from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
+                                                from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
                 $owtime = $ownedbrow['ownership_creation'];
                 $timfunct = date("j F, g:i a", strtotime($owtime));
@@ -235,11 +238,12 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>&nbsp&nbsp On : " . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id && $status != 5) {
                     echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='" . $chelangeid . "'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-					</form>";
+                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                            <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+                        </form>";
                 }
-                echo "</div>";
+                echo "</div>
+                    </div>";
             }
         }
     }
@@ -247,19 +251,19 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $chelange . "<br/><br/>";
     if ($ctype == 9 && $status == 4) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
-												UNION
-												(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
+                                            UNION
+                                            (select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
         while ($answerrow = mysqli_fetch_array($answer)) {
             echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
-				<p align='center'>Answer</p></span>"
+                    <p align='center'>Answer</p></span>"
             . $answerrow['stmt'] . "<br/>";
         }
     }
     $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
-													JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
-												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id,a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chelangeid' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
+                                            JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
+                                        UNION
+                                        (SELECT DISTINCT a.challenge_id, a.response_ch_id,a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
+                                            JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chelangeid' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
     while ($commenterRow = mysqli_fetch_array($commenter)) {
         $comment_id = $commenterRow['response_ch_id'];
         $challenge_ID = $commenterRow['challenge_id'];
