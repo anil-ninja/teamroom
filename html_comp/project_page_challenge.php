@@ -1,5 +1,5 @@
 <?php 
-/*
+
 	$i = 0 ;
 	$c = mysqli_query($db_handle, "SELECT * FROM challenges WHERE project_id = '$p_id' AND challenge_type != '3' AND challenge_type != '6' 
 										 AND blob_id = '0' ;") ;
@@ -60,7 +60,7 @@
 			</tr>" ;
 	}
 	echo "</tbody>
-            </table><br/>" ; */
+            </table><br/>" ; 
   	echo "<h3 class='panel-title'><p align='center'>Open Challenges</p></h3>
 			<table class='scroll table table-striped'>
 			<thead>
