@@ -139,11 +139,11 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 <script>
 	
     function show_search_results(challenges){
-        var resp = "<div class='list-group'>";
+        var resp = "<div class='list-group'><div class='list-group-item'> <a data-toggle='modal' class='btn btn-link'style='line-height: 20.50px;font-size: 15px'>Search Results</a></b></div>";
         for (var i = 0; i < challenges.length; i++) {
             var resultNumber = i+1;
             
-            resp = resp +"<div class='list-group-item'>"+String(resultNumber)+": <a href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>"+challenges[i].stmt+"<br></div>"; 
+            resp = resp +"<div class='list-group-item'><div class ='row'><div class='col-md-1' style = 'width : 1%;'>"+"</div><div class ='col-md-9'> <a data-toggle='modal' class='btn btn-link' style='color:#3B5998;' href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>&nbsp;&nbsp;"+challenges[i].stmt+"..</br></div></div></div>"; 
         }
         return resp+"</div>";
     }
