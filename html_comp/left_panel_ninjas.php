@@ -1,4 +1,4 @@
-<div class="bs-component">
+<div class="bs-component"><br/>
   <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i>
 	  <font size="2"><b>Private Projects</b></font></a><hr>
 	   <?php
