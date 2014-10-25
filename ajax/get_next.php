@@ -146,7 +146,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
                                     <div class='pull-left lh-fix'>     
-                                        <span class='glyphicon glyphicon-globe'></span>
+                                        <span class='glyphicon glyphicon-book'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                     </div>
         
@@ -277,7 +277,7 @@ if ($_POST['chal']) {
                             <input type='hidden' value='" . $chelangeid . "' name='own_challen_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response'
                              placeholder='Whats on your mind about this'/>
-                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-film' name='own_chl_response' ></button>
+                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' name='own_chl_response' ></button>
                         </form>
                     </div>";
     $show = $show . "</div> </div> ";
