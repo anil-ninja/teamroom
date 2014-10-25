@@ -1,12 +1,12 @@
 <div class='list-group'>
-    <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr'> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task'> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team'> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes'> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files'> Manage Files</span></div>
+    <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span></div>
     <div class='list-group-item'>
         <div id='challegeprForm'>
             <form>
                 <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
                 <textarea rows="3" class="form-control" id="challange" placeholder="Details of Challange"></textarea><br>
                 <div class="inline-form">
-                    Challange Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
+                    Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                         <option value='0' selected >hour</option>
                         <?php
                         $o = 1;

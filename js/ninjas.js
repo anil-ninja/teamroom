@@ -125,7 +125,7 @@ $(document).ready(function(){
     
 		$("#create_article").click(function(){
       		$("#create_article").attr('disabled','disabled');
-			var article = $("#article").val() ;
+			var article = $("#articlech").val() ;
 			var article_title = $("#article_title").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',article)) + '&article_title='+ article_title  ;
