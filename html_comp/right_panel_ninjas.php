@@ -29,12 +29,12 @@
         echo "<a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				    data-placement='bottom' data-original-title='" . $tooltip . 
-                    "' style='height: 25px;font-size:12px;'><b>" . $chtitle . "</b>
-				</button>
+                    "' style='height: 25px;font-size:12px;text-align: left;height: 37px'><b>" . $chtitle . "</b>
+				
                 </a>
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_own . "</p>";
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p></button><br/>";
     }
-    ?><hr/><br/>
+    ?><br/>
     <a data-toggle='modal' class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-tasks'></i>
       <font size="2"><b>Tasks -- get done</b></font></a><hr>
     <?php
@@ -59,10 +59,9 @@
         echo "<a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
     				data-placement='bottom' data-original-title='" . $tooltipas .
-                     "'style='height: 25px;font-size:12px;'><b>" . $chtitleas ."</b>
-                </button>
+                     "'style='height: 37px;font-size:13px;text-align: left;'><b>" . $chtitleas ."</b>
                 </a>
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_ownas . "</p>";
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>  </button><br/>";
     }
-    ?><hr/>
+    ?>
 </div>
