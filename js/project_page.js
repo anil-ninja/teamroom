@@ -97,7 +97,7 @@ $(window).resize(function() {
 	$(document).ready(function(){
 		$("#create_notes").click(function(){
 			$("#create_notes").attr('disabled','disabled');
-			var notes = $("#notes").val() ;
+			var notes = $("#notestmt").val() ;
 			var notes_title = $("#notes_title").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',notes)) + '&notes_title='+ notes_title ;

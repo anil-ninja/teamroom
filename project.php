@@ -65,7 +65,6 @@ include_once 'functions/delete_comment.php';
                     </div>
                 </div>
                 <div class="col-lg-3">
-						
 					   <?php include_once 'html_comp/project_page_challenge.php'; ?>
                 </div>	
            </div>
