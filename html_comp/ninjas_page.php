@@ -276,7 +276,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         }
         echo "</div>";
 	}
-        if ($status == 2) {
+        if ($status == 2 || $status == 4 || $status == 5) {
 			echo "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     

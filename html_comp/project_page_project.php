@@ -487,21 +487,23 @@ while ($displayrow = mysqli_fetch_array($display)) {
 							  </div>
 							</div>
 							<p align='center' style='font-size: 14pt;color :#3B5998;'>" . $title . "</p>
-							<span class='pull-left color strong' style= 'color :#3B5998;'>
-                                                        <div class='pull-left lh-fix'>     
-                                                            <span class='glyphicon glyphicon-question-sign'></span>
-                                                            <img src='uploads/profilePictures/$username_notes.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                                        </div>
-                                                        <div style='line-height: 16.50px;'>
-							<a href ='profile.php?username=" . $username_notes . "'>" . ucfirst($fname) . " " . ucfirst($lname) . "</a>&nbsp&nbsp&nbsp</span> </div>
-							<small>" . $notes . "</small><br/><br/>";
+							
+							<div class='pull-left lh-fix'>     
+								<span class='glyphicon glyphicon-question-sign'></span>
+								<img src='uploads/profilePictures/$username_notes.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+							</div>
+							<div style='line-height: 16.50px;'>
+								<span class='pull-left color strong' style= 'color :#3B5998;'>
+									<a href ='profile.php?username=" . $username_notes . "'>" . ucfirst($fname) . " " . ucfirst($lname) . "</a>&nbsp&nbsp&nbsp</span> 
+							</div>
+							<small><br><br>" . $notes . "</small><br/><br/>";
     $displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
-													FROM response_challenge as a join user_info as b where a.challenge_id = " . $note_ID . " 
-													and a.user_id = b.user_id and a.blob_id = '0')
-													UNION
-													(select DISTINCT a.user_id, c.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
-													 FROM response_challenge as a join user_info as b join blobs as c where a.challenge_id = " . $note_ID . "
-													  and a.user_id = b.user_id and a.blob_id = c.blob_id);");
+										FROM response_challenge as a join user_info as b where a.challenge_id = " . $note_ID . " 
+										and a.user_id = b.user_id and a.blob_id = '0')
+										UNION
+										(select DISTINCT a.user_id, c.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
+										 FROM response_challenge as a join user_info as b join blobs as c where a.challenge_id = " . $note_ID . "
+										  and a.user_id = b.user_id and a.blob_id = c.blob_id);");
     while ($displayrowb = mysqli_fetch_array($displaya)) {
         $fstname = $displayrowb['first_name'];
         $lstname = $displayrowb['last_name'];
@@ -512,14 +514,13 @@ while ($displayrow = mysqli_fetch_array($display)) {
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username_notes_comment.jpg'  onError=this.src='img/default.gif'>
+						<img src='uploads/profilePictures/$username_notes_comment.jpg'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_notes_comment . "'>" . ucfirst($fstname) . " " . ucfirst($lstname) . "</a>&nbsp</span> 
 						" . $chalangeres . "";
-        dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
-
-        echo "</div>
+							dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+				echo "</div>
 				</div> 
 			</div>";
     }
