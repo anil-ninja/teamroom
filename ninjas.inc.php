@@ -4,16 +4,11 @@ include_once 'lib/db_connect.php';
 session_start();
 if(isset($_SESSION['user_id']))
     $user_id = $_SESSION['user_id'];
-else 
-    header ('location:index.php');
 $name = $_SESSION['first_name'];
 $username = $_SESSION['username'];
 $rank = $_SESSION['rank'];
 $email = $_SESSION['email'];
 
-if (!isset($_SESSION['first_name'])) {
-    header('Location: index.php');
-}
 if(isset($_POST['submitchlnin'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
@@ -207,12 +202,31 @@ if (isset($_POST['change_eta'])) {
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='$a' WHERE challenge_id = $chalange ; ") ;
 header('Location: #');
 }
-if(isset($_POST['projectphp'])){
-		 header('location: project.php') ;   
-		$_SESSION['user_id'] = $user_id;
-		$_SESSION['first_name'] = $name;
-		$_SESSION['project_id'] = $_POST['project_id'] ;
-		$_SESSION['rank'] = $rank;
+function checkProject($projectID, $userId, $db_handle){
+	//returns true in case of public
+	$type = mysqli_query($db_handle,"select project_type from projects where project_id = '$projectID';") ;
+	$typerow = mysqli_fetch_array($type) ;
+	if ($typerow['project_type'] == 1) {
+			return true ;
+		}
+		else if(!isset($_SESSION['user_id'])) return false;
+	else {
+		$access = mysqli_query($db_handle,"SELECT DISTINCT a.user_id FROM teams as a join projects as b WHERE a.user_id = '$userId' and a.project_id = b.project_id and b.project_id = '$projectID' and b.project_type = '2';") ;
+	$accessrow = mysqli_fetch_array($access) ;
+	if ($accessrow['user_id'] == $userId) {
+		return true ;
+		}
+	 return false ;
+	}
+	//check use have access if access the return true
+	
+	}
+if(isset($_GET['projectphp'])){
+	$projt_id = $_GET['project_id'];
+	if(checkProject($projt_id,$user_id,$db_handle)) 
+		 header("location: project.php?project_id=$projt_id") ;
+	 
+	else header("location: ninjas.php") ;
 		exit ;
 	}
 ?>

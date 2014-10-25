@@ -2,17 +2,17 @@
 include_once 'ninjas.inc.php';
 include_once 'functions/delete_comment.php';
 
-if (!isset($_SESSION['first_name'])) {
-    header('Location: index.php');
-}
+$pro_id = $_GET['project_id'] ;
+
+if(!checkProject($pro_id,$user_id,$db_handle))
+	{	 
+	header("location: ninjas.php") ;
+		exit ;
+	}
+	
 $user_id = $_SESSION['user_id'] ;
 $name = $_SESSION['first_name'];
 $rank = $_SESSION['rank'] ;
-if (isset($_SESSION['project_id'])) 
-    $pro_id = $_SESSION['project_id'] ;
-else 
-    header ('location: ninjas.php');
-
 $pro_idR = $pro_id;
 $project_id = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
 $project_idrow = mysqli_fetch_array($project_id) ;

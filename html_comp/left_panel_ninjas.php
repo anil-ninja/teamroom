@@ -17,7 +17,7 @@
 				$timefunc = date("j F, g:i a",strtotime($p_time));
 				$title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
 				$remaining_time_own = remaining_time($p_time, $p_eta);
-		echo "<form method='POST' action=''>
+		echo "<form method='GET' action=''>
 				<input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
 				<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				data-placement='bottom' data-original-title=' ".$title."' style='height: 15px;font-size:11px;'>
@@ -44,14 +44,12 @@
 				$timefuncp = date("j F, g:i a",strtotime($p_time));
 				$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
 				$remaining_time_ownp = remaining_time($p_timep, $p_etap);	
-	echo "<form method='POST' action=''>
+	echo "<form method='GET' action=''>
 			<input type='hidden' name='project_id' value='".$project_public_title_displayRow['project_id']."'/>
 			<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 			data-placement='bottom' data-original-title='".$titlep."' style='height: 15x;font-size:11px;'><b>
 			".$prtitlep."</b></button>
 			<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_ownp."</p></form>" ;
-					
-				
 			} 
 		?><hr/>
 </div>
