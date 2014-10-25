@@ -52,7 +52,7 @@ if($_POST['chal']){
 	if ($ctype == 1) {			
 		if($status == 1) {
 		$show .= "<div class='list-group challenge'>
-				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
+				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-question-sign'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime) ;
 			$show = $show . "<form method='POST' class='inline-form pull-right'>
@@ -64,7 +64,7 @@ if($_POST['chal']){
 		else {
 
 			$show = $show . "<div class='list-group challenge'>
-				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-fire'></span>&nbsp&nbsp&nbsp Created by &nbsp 
+				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-question-sign'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
@@ -73,7 +73,7 @@ if($_POST['chal']){
 			}
 	} else if ($ctype == 9) {
 		$show = $show . "<div class='list-group articlesch'>
-				<div class='list-group-item' class='article'><span class='glyphicon glyphicon-globe'></span>&nbsp&nbsp&nbsp Written by &nbsp 
+				<div class='list-group-item' class='article'><span class='glyphicon glyphicon-book'></span>&nbsp&nbsp&nbsp Written by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>Article</b></p></div>" ;
@@ -81,7 +81,7 @@ if($_POST['chal']){
 		}
 		else if ($ctype == 11) {
 		$show = $show . "<div class='list-group idea'>
-				<div class='list-group-item' class='idea'><span class='glyphicon glyphicon-tree-deciduous'></span>&nbsp&nbsp&nbsp Purposed by &nbsp 
+				<div class='list-group-item' class='idea'><span class='glyphicon glyphicon-flash'></span>&nbsp&nbsp&nbsp Purposed by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>"
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>&nbsp&nbsp On : ".$timefunction."<br/>
 				<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p></div>" ;
@@ -90,7 +90,7 @@ if($_POST['chal']){
 		else {
 			
 			$show = $show . "<div class='list-group openchalhide'>
-				<div class='list-group-item' class='openchall'><span class='glyphicon glyphicon-pencil'></span>&nbsp&nbsp&nbsp Created by &nbsp 
+				<div class='list-group-item' class='openchall'><span class='glyphicon glyphicon-flash'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
 				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
 		if ($status != 5 && $ch_id != $user_id) {
@@ -165,7 +165,7 @@ if($_POST['chal']){
                             <input type='hidden' value='".$chelangeid."' name='own_challen_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response' 
                             placeholder='Whats on your mind about this'/>
-                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-play' name='own_chl_response' ></button>
+                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-film' name='own_chl_response' ></button>
                         </form>
                     </div>";
           $show = $show . "</div> </div> "; 

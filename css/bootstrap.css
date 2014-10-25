@@ -116,7 +116,7 @@ select,
 textarea {
   color: inherit;
   font: inherit;
-  margin: 0;
+  margin: 2px;
 }
 button {
   overflow: visible;
@@ -891,7 +891,7 @@ html {
 body {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
-  line-height: 1.92857143;
+  line-height: 1.2857143;
   color: #555555;
   background-color: #F0F1F2;
 }
@@ -1000,10 +1000,10 @@ img {
   border-radius: 50%;
 }
 hr {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: 1px;
-  border-top: 1px solid #D2D1D1;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  border: 2px;
+  border-top: 2px solid #D2D1D1;
 }
 .sr-only {
   position: absolute;
@@ -1140,7 +1140,7 @@ h6,
   font-size: 12px;
 }
 p {
-  margin: 0 0 10px;
+  margin: 0 0 0px;
 }
 .lead {
   margin-bottom: 20px;
@@ -6278,8 +6278,8 @@ button.close {
   border-width: 0 1px 4px 1px;
 }
 .btn {
-  padding: 5px 6px 7px;
-  border-width: 0 1px 4px 1px;
+  padding: 5px 5px 5px;
+  border-width: 0 1px 1px 1px;
   font-size: 12px;
   font-weight: bold;
   text-transform: uppercase;

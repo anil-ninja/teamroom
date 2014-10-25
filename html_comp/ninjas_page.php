@@ -1,5 +1,14 @@
 <div class='list-group'>
-    <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challenge' style="cursor: pointer"> Challenge</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-globe" id='artical' style="cursor: pointer"> Article</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-picture" id='picture' style="cursor: pointer"> Photos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-film" id='video' style="cursor: pointer"> Videos</span>&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-tree-deciduous" id='idea' style="cursor: pointer"> Ideas</span></div>
+    <div class='list-group-item'>
+        <span class="glyphicon glyphicon-question-sign" id='challenge' style="cursor: pointer"> Challenge</span>
+        &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="glyphicon glyphicon-book" id='artical' style="cursor: pointer"> Article</span>
+        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="glyphicon glyphicon-picture" id='picture' style="cursor: pointer"> Photos</span>
+        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="glyphicon glyphicon-film" id='video' style="cursor: pointer"> Videos</span>
+        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
+        <span class="glyphicon glyphicon-flash" id='idea' style="cursor: pointer"> Ideas</span></div>
     <div class='list-group-item'>
         <div id='challegeForm'>
             <form>
@@ -130,7 +139,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             echo "<div class='list-group challenge'>
                         <div class='list-group-item'>
                             <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-fire'></span>
+                                <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>
                             <div style='line-height: 16.50px;'>
@@ -154,7 +163,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             echo "<div class='list-group challenge'>
 				<div class='list-group-item' >
                                     <div class='pull-left lh-fix'>     
-                                        <span class='glyphicon glyphicon-fire'></span>
+                                        <span class='glyphicon glyphicon-question-sign'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                     </div>
                                     <div style='line-height: 16.50px;'>
@@ -182,7 +191,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "<div class='list-group idea'>
                         <div class='list-group-item' ></span>
                             <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-tree-deciduous'>
+                                <span class='glyphicon glyphicon-book'>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>	
                         Purposed by &nbsp
@@ -194,7 +203,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "<div class='list-group openchalhide'>
 				<div class='list-group-item' >
                             <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-pencil'>
+                                <span class='glyphicon glyphicon-question-sign'>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>
                             <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
@@ -274,7 +283,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             <input type='hidden' value='" . $chelangeid . "' name='own_challen_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response'
                              placeholder='Whats on your mind about this'/>
-                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-play' name='own_chl_response' ></button>
+                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-film' name='own_chl_response' ></button>
                         </form>
                     </div>";
     echo "</div> </div> ";

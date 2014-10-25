@@ -125,11 +125,11 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         <ul class='nav navbar-nav navbar-inverse'>
             <div class="col-md-offset-3 col-md-8 col-lg-8">
                 <div class="list-inline">
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-close'></span> All &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-pencil'></span> Open challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-globe'></span> Articles &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-tree-deciduous'></span> Ideas &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='ok' ><span class='glyphicon glyphicon-ok'></span> Closed challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-book'></span> Articles &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-flash'></span> Ideas &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='ok' ><span class='glyphicon glyphicon-flag'></span> Closed challenges &nbsp;</button></p></li>
                     <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='film' ><span class='glyphicon glyphicon-film'></span> Videos &nbsp;</button></p></li>
                 </div>
             </div>
