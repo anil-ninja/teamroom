@@ -46,42 +46,7 @@ include_once 'functions/delete_comment.php';
 <script src="js/bootswatch.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
 <script src="js/ninjas.js"></script>
-<script>
-	startTime();
- function getDateTime() {
-    var now     = new Date(); 
-    var year    = now.getFullYear();
-    var month   = now.getMonth()+1; 
-    var day     = now.getDate();
-    var hour    = now.getHours();
-    var minute  = now.getMinutes();
-    var second  = now.getSeconds(); 
-    if(month.toString().length == 1) {
-        var month = '0'+month;
-    }
-    if(day.toString().length == 1) {
-        var day = '0'+day;
-    }   
-    if(hour.toString().length == 1) {
-        var hour = '0'+hour;
-    }
-    if(minute.toString().length == 1) {
-        var minute = '0'+minute;
-    }
-    if(second.toString().length == 1) {
-        var second = '0'+second;
-    }   
-    var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
-     return dateTime;
-}
-
-function startTime() {
-    document.getElementById('demo').innerHTML = String(getDateTime());
-    t = setTimeout(function () {
-        startTime()
-    }, 500);
-}
-</script>
+ <script src="js/date_time.js"></script>
 <div class="row">
     <div class="col-md-6 pull-right">
 
