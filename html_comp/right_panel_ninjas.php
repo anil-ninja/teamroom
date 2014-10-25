@@ -1,6 +1,7 @@
 <div class="bs-component">
-
-    <p align="center"><font size="4">Tasks</font></p><hr/>
+    <br/><b>
+    <a data-toggle='modal' class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-bell'></i>
+      <font size="2"><b>Tasks -- to do</b></font></a><hr>
     <?php
     $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
 						b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
@@ -25,12 +26,17 @@
         $challengeOpen_pageID = $titlesrow['challenge_id'];
         $remaining_time_own = remaining_time($time, $eta);
         $tooltip = "Assigned By : " . ucfirst($fname) . " " . ucfirst($lname) . " On " . $timefun;
-        echo "<a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title='" . $tooltip . "' style='white-space: pre-line;height: 20px; font-size:14px;'><b>" . $chtitle . "</b>
-				</button></a><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_own . "</p>";
+        echo "<a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
+                <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+				    data-placement='bottom' data-original-title='" . $tooltip . 
+                    "' style='height: 15px;font-size:11px;'><b>" . $chtitle . "</b>
+				</button>
+                </a>
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_own . "</p>";
     }
-    ?><hr/>
-    <p align="center"><font size="4">Assigned Tasks</font></p><hr/>
+    ?><hr/><br/>
+    <a data-toggle='modal' class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-tasks'></i>
+      <font size="2"><b>Tasks -- get done</b></font></a><hr>
     <?php
     $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
 											b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE
@@ -50,9 +56,13 @@
         $challenge_pageID = $titlesrowass['challenge_id'];
 		$remaining_time_ownas = remaining_time($timeas, $etaas);
         $tooltipas = "Assigned To : " . ucfirst($fnameas) . " " . ucfirst($lnameas) . " On " . $timefunas;
-        echo "<a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title='" . $tooltipas . "' style='white-space: pre-line;height: 20px; font-size:14px;'><b>" . $chtitleas .
-				 "</b></button></a><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_ownas . "</p>";
+        echo "<a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
+                <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+    				data-placement='bottom' data-original-title='" . $tooltipas .
+                     "' style='height: 15px;font-size:11px;'><b>" . $chtitleas ."</b>
+                </button>
+                </a>
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_ownas . "</p>";
     }
     ?><hr/>
 </div>

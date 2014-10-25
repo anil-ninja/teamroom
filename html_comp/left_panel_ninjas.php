@@ -26,7 +26,7 @@
 			
 				
 			}
-		?><hr/>
+		?><hr/><br/>
 	   <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i>
 	  <font size="2"><b>Public Projects</b></font></a><hr>
 	   <?php 
@@ -47,7 +47,7 @@
 	echo "<form method='POST' action=''>
 			<input type='hidden' name='project_id' value='".$project_public_title_displayRow['project_id']."'/>
 			<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-			data-placement='bottom' data-original-title='".$titlep."' style='height: 20px;font-size:14px;'><b>
+			data-placement='bottom' data-original-title='".$titlep."' style='height: 15x;font-size:11px;'><b>
 			".$prtitlep."</b></button>
 			<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_ownp."</p></form>" ;
 					

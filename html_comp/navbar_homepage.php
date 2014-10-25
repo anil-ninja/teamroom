@@ -9,7 +9,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" style='color: #fff;font-size:16pt;' href="ninjas.php"><b>colvade</b></a>
+        <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>colvade</b></a>
     </div>
 
     <div class="navbar-collapse">
@@ -84,11 +84,11 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 </li>      
                 <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li>
                 <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
-                <li><p class="navbar-text" style='color: #fff;'>&nbsp;<b> Rank :  <?php $rank = $_SESSION['rank'];
+                <li><p class="navbar-text" style='cursor: pointer;color: #fff;'>&nbsp;<b> Rank :  <?php $rank = $_SESSION['rank'];
                         echo $rank; ?></b>
                     </p>
                 </li>
-                <li><p class="navbar-text" style='color: #fff;' id="demo"></p></li>
+                <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
                                 <?php
@@ -139,11 +139,13 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 <script>
 	
     function show_search_results(challenges){
-        var resp = "";
+        var resp = "<div class='list-group'>";
         for (var i = 0; i < challenges.length; i++) {
-            resp = resp + "<a href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>"+challenges[i].stmt+"<br>"; 
+            var resultNumber = i+1;
+            
+            resp = resp +"<div class='list-group-item'>"+String(resultNumber)+": <a href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>"+challenges[i].stmt+"<br></div>"; 
         }
-        return resp;
+        return resp+"</div>";
     }
     function show_search_results_id(challenges){
         var id = "";
@@ -167,10 +169,10 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     data: dataString,
                     cache: false,
                     success: function(result){
-                        alert(result);
+                        //alert(result);
                         challenges = JSON.parse(result);
                         document.getElementById("home-ch").innerHTML = show_search_results(challenges);
-                        document.getElementById("home").innerHTML = show_search_results_id(challenges);
+                        //document.getElementById("home").innerHTML = show_search_results_id(challenges);
                         //alert(show_search_results(challenges));
                         //alert(challenges[0].stmt);			
                     }
