@@ -47,9 +47,10 @@
 	echo "<form method='GET' action=''>
 			<input type='hidden' name='project_id' value='".$project_public_title_displayRow['project_id']."'/>
 			<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-			data-placement='bottom' data-original-title='".$titlep."' style='height: 15x;font-size:11px;'><b>
-			".$prtitlep."</b></button>
-			<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_ownp."</p></form>" ;
+			data-placement='bottom' data-original-title='".$titlep."' style='height: 37px;font-size:13px;text-align: left;'><b>
+			".$prtitlep."</b>
+			<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_ownp."</p></button></form>" ;
+					
 			} 
 		?>
 </div>
