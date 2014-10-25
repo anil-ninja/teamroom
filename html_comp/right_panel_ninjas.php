@@ -29,7 +29,7 @@
         echo "<a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				    data-placement='bottom' data-original-title='" . $tooltip . 
-                    "' style='height: 15px;font-size:11px;'><b>" . $chtitle . "</b>
+                    "' style='height: 25px;font-size:12px;'><b>" . $chtitle . "</b>
 				</button>
                 </a>
                 <p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_own . "</p>";
@@ -59,7 +59,7 @@
         echo "<a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
     				data-placement='bottom' data-original-title='" . $tooltipas .
-                     "' style='height: 15px;font-size:11px;'><b>" . $chtitleas ."</b>
+                     "'style='height: 25px;font-size:12px;'><b>" . $chtitleas ."</b>
                 </button>
                 </a>
                 <p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;" . $remaining_time_ownas . "</p>";

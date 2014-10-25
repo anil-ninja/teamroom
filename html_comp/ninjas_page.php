@@ -381,7 +381,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             <input type='hidden' value='" . $chelangeid . "' name='own_challen_id' />
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response'
                              placeholder='Whats on your mind about this'/>
-                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-film' name='own_chl_response' ></button>
+                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' name='own_chl_response' ></button>
                         </form>
                     </div>";
     echo "</div> </div> ";
