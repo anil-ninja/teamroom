@@ -1,6 +1,6 @@
 <div class="bs-component"><br/>
   <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i>
-	  <font size="2"><b>Private Projects</b></font></a><hr>
+	  <font size="2"><b>Private Projects</b></font></a><hr/>
 	   <?php
 			$project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
 																as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
@@ -20,15 +20,15 @@
 		echo "<form method='POST' action=''>
 				<input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
 				<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title=' ".$title."' style='height: 25px;font-size:12px;'>
-				<b>".$prtitle."</b></button>
-				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p><br/></form>" ;
+				data-placement='bottom' data-original-title=' ".$title."' style='height: 37px;font-size:13px;text-align: left;'>
+				<b>".$prtitle."</b><br/>
+				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_own."</p> </button></form>" ;
 			
 				
 			}
-		?><hr/><br/>
+		?><br/>
 	   <a data-toggle='modal' class='btn btn-link' data-target='#createProject' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i>
-	  <font size="2"><b>Public Projects</b></font></a><hr>
+	  <font size="2"><b>Public Projects</b></font></a><hr/>
 	   <?php 
 			$project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1';");
 		
@@ -47,11 +47,11 @@
 	echo "<form method='POST' action=''>
 			<input type='hidden' name='project_id' value='".$project_public_title_displayRow['project_id']."'/>
 			<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-			data-placement='bottom' data-original-title='".$titlep."' style='height: 25px;font-size:12px;'><b>
-			".$prtitlep."</b></button>
-			<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_ownp."</p></form>" ;
+			data-placement='bottom' data-original-title='".$titlep."' style='height: 37px;font-size:13px;text-align: left;'><b>
+			".$prtitlep."</b>
+			<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_ownp."</p></button></form>" ;
 					
 				
 			} 
-		?><hr/>
+		?>
 </div>
