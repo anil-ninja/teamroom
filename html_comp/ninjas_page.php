@@ -77,7 +77,7 @@
         </div>
         <div id='ArticleForm'>
             <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
-            <textarea rows="3" class="form-control" id="article" placeholder="article"></textarea><br><br>
+            <textarea rows="3" class="form-control" id="articlech" placeholder="article"></textarea><br><br>
             <input type="submit" value="Post" class="btn btn-success" id="create_article"/>
         </div>
         <div id='PictureForm'>
@@ -86,9 +86,9 @@
             <input type="button" value="Post" class="btn btn-success" id="create_picture"/>
         </div>
         <div id='VideoForm'>
-            <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
-            <textarea rows="3" class="form-control" id="article" placeholder="Add Youtube URL"></textarea><br><br>
-            <input type="button" value="Post" class="btn btn-success" id="create_article"/>
+            <input type='text' class="form-control" id="video_title" placeholder="Title"/><br>
+            <textarea rows="3" class="form-control" id="video" placeholder="Add Youtube URL"></textarea><br><br>
+            <input type="button" value="Post" class="btn btn-success" id="create_video"/>
         </div>
         <div id='IdeaForm'>
             <input type='text' class="form-control" id="idea_titleA" placeholder="Title"/><br>

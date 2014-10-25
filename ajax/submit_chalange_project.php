@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
-include_once 'project.inc.php';
+include_once '../project.inc.php';
 if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
 	$pro_id = $_SESSION['project_id'] ;	
