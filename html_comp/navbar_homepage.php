@@ -2,7 +2,9 @@
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 // include_once 'ninjas.inc.php';
 ?>
-<div class="navbar navbar-default navbar-fixed-top">
+<div class="navbar navbar-default navbar-fixed-top" style="line-height: 1.928571;">
+    <div class="row">
+    <div class="col-md-1">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="icon-bar"></span>
@@ -11,15 +13,26 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         </button>
         <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>colvade</b></a>
     </div>
-
-    <div class="navbar-collapse">
-        <ul class="nav navbar-nav">
+</div><div class="col-md-2">
+<div class="navbar-collapse">
+        <ul class="nav navbar-nav navbar-left">
             <li class='navbar-text' >
-                <input type="text"  id="search" placeholder="search"/>
-                    <button type="submit" id="keyword"  class="glyphicon glyphicon-search btn-primary btn-sm">
-                </button>
-            </li>
+            <div class="row">
+                <div class="col-lg-6">
+                <div class="input-group">
+                  <input type="text"  id="search" placeholder="search" style="width : 250px; height : 29px" class="form-control"/>
+                  <span class="input-group-btn">
+                    <button type="submit" id="keyword"  class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                  </span>
+                </div>
+              </div>
+              </div>
+           </li>
         </ul>
+        </div></div>
+        <div class="col-md-9">
+    <div class="navbar-collapse">
+       
         <ul class='nav navbar-nav navbar-right' >
             <?php
             if (isset($_SESSION['user_id'])) {
@@ -106,11 +119,11 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                 </form>
                                 <p class="navbar-text">
                                 <form method="POST" >
-                                    <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out&nbsp;<span class="glyphicon glyphicon-off"></span></button></form>   
+                                    <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out&nbsp;<span class="glyphicon glyphicon-off"></span></p></button></form>   
                             </li>
                         </ul>
                     </div>
-                </li><li>&nbsp;&nbsp;</li>
+                </li><li>&nbsp;&nbsp;&nbsp;</li>
             
     <?php
     } else {
@@ -119,11 +132,15 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     }
     ?>
         </ul>
-    </div>
-    <div class="navbar-collapse collapse navbar-responsive-collapse">
+    </div></div></div>
+
+
+
+    <!-- sub nav bar-->
+    <div class="navbar-collapse collapse navbar-responsive-collapse" style="width: 110%;">
         
         <ul class='nav navbar-nav navbar-inverse'>
-            <div class="col-md-offset-3 col-md-8 col-lg-8">
+            <div class="col-md-offset-3 col-md-9 col-lg-9">
                 <div class="list-inline">
                     <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All &nbsp;</button></p></li>
                     <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges &nbsp;</button></p></li>
