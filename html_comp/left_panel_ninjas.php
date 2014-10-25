@@ -20,7 +20,7 @@
 		echo "<form method='POST' action=''>
 				<input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
 				<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-				data-placement='bottom' data-original-title=' ".$title."' style='height: 15px;font-size:11px;'>
+				data-placement='bottom' data-original-title=' ".$title."' style='height: 25px;font-size:12px;'>
 				<b>".$prtitle."</b></button>
 				<p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_own."</p><br/></form>" ;
 			
@@ -47,7 +47,7 @@
 	echo "<form method='POST' action=''>
 			<input type='hidden' name='project_id' value='".$project_public_title_displayRow['project_id']."'/>
 			<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-			data-placement='bottom' data-original-title='".$titlep."' style='height: 15x;font-size:11px;'><b>
+			data-placement='bottom' data-original-title='".$titlep."' style='height: 25px;font-size:12px;'><b>
 			".$prtitlep."</b></button>
 			<br/><p style='font-size:8pt; color:rgba(161, 148, 148, 1);'>&nbsp;&nbsp;&nbsp;".$remaining_time_ownp."</p></form>" ;
 					

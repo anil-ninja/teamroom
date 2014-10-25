@@ -8,13 +8,12 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
+            
         </button>
         <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>colvade</b></a>
     </div>
 </div><div class="col-md-2">
-<div class="navbar-collapse">
+<div class="navbar-collapse" style="hieght: auto;">
         <ul class="nav navbar-nav navbar-left">
             <li class='navbar-text' >
             <div class="row">
@@ -31,7 +30,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         </ul>
         </div></div>
         <div class="col-md-9">
-    <div class="navbar-collapse">
+    <div class="navbar-collapse" style="hieght: auto;">
        
         <ul class='nav navbar-nav navbar-right' >
             <?php
