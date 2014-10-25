@@ -54,7 +54,8 @@ if($_POST['chal']){
 		$show .= "<div class='list-group challenge'>
 				<div class='list-group-item' class='challenge'><span class='glyphicon glyphicon-question-sign'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime) ;
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>";
+                dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime) ;
 			$show = $show . "<form method='POST' class='inline-form pull-right'>
 						<input type='hidden' name='id' value='".$chelangeid."'/>
 						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
@@ -92,7 +93,8 @@ if($_POST['chal']){
 			$show = $show . "<div class='list-group openchalhide'>
 				<div class='list-group-item' class='openchall'><span class='glyphicon glyphicon-flash'></span>&nbsp&nbsp&nbsp Created by &nbsp 
 				<span class='color strong'><a href ='profile.php?username=".$username_ch_ninjas."'>" 
-				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>".dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+				. ucfirst($frstname). '&nbsp'. ucfirst($lstname). " </a></span>";
+                        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
 		if ($status != 5 && $ch_id != $user_id) {
 			$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
 						<input type='hidden' name='id' value='".$chelangeid."'/>
@@ -154,7 +156,8 @@ if($_POST['chal']){
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=".$username_comment_ninjas."'>".ucfirst($commenterRow['first_name'])." ". ucfirst($commenterRow['last_name']) ."</a></span>
-						&nbsp&nbsp&nbsp".$commenterRow['stmt'] ." ".dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+						&nbsp&nbsp&nbsp".$commenterRow['stmt'];
+                dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
          $show = $show . "</div></div></div>";
 		}
 		$show = $show . "<div class='comments clearfix'>
