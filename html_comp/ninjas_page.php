@@ -12,7 +12,8 @@
     <div class='list-group-item'>
         <div id='challegeForm'>
             <form>
-                <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/>
+                <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/><br>
+                <input class="btn btn-default btn-sm" type="file" id="_fileChallenge" style ="width: auto;">
                 <br>
                 <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
                 <br>
@@ -77,12 +78,14 @@
         </div>
         <div id='ArticleForm'>
             <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
+            <input class="btn btn-default btn-sm" type="file" id="_fileArticle" style ="width: auto;">
             <textarea rows="3" class="form-control" id="articlech" placeholder="article"></textarea><br><br>
             <input type="submit" value="Post" class="btn btn-success" id="create_article"/>
         </div>
         <div id='PictureForm'>
             <input type='text' class="form-control" id="picture_title" placeholder="Title"/><br>
-            <textarea rows="3" class="form-control" id="picture" placeholder="picture"></textarea><br><br>
+            <input class="btn btn-default btn-sm" type="file" id="_filePhotos" style ="width: auto;">
+            <textarea rows="3" class="form-control" id="picturech" placeholder="About picture"></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_picture"/>
         </div>
         <div id='VideoForm'>
@@ -92,6 +95,7 @@
         </div>
         <div id='IdeaForm'>
             <input type='text' class="form-control" id="idea_titleA" placeholder="Title"/><br>
+            <input class="btn btn-default btn-sm" type="file" id="_fileIdea" style ="width: auto;">
             <textarea rows="3" class="form-control" id="ideaA" placeholder="About Idea"></textarea><br><br>
             <input type="submit" value="Post" class="btn btn-success" id="create_idea"/>
         </div><br/>

@@ -208,6 +208,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             <div class="modal-body">
                 <form >
                     <input type="text" class="form-control" id="project_title" placeholder="Enter Project Title"><br>
+                    <input class="btn btn-default btn-sm" type="file" id="_fileProject" style ="width: auto;"><br/>
                     <textarea rows="3" class="form-control" id="project_stmt" placeholder="Details about Project"></textarea><br/>
                     Estimated Time (ETA)
                     <select id = "eta" >	

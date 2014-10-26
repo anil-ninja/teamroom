@@ -48,7 +48,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			});
 		
 	}
-});
+}); 
 
 		$("#submit_ch").click(function(){
       		$("#submit_ch").attr('disabled','disabled');
@@ -63,7 +63,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
 			//alert(challenge);
-			var challenge_title = $("#challange_title").val() ;
+			var challenge_title = $("#challange_title").val() ;			
 			var type = document.getElementById("Chall_type").checked;
 			//alert(type) ;
 			if (type) {
@@ -92,75 +92,131 @@ function bootstrap_alert(elem, message, timeout,type) {
 			else if(challenge_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 			}
-			else
-			{
-			// AJAX Code To Submit Form.
+			else {
+					//file upload
+				var _filech = document.getElementById('_fileChallenge');
+				uploadFile(_filech,"challengePic",String(dataString),"ajax/submit_chalange.php");
+			}
+		});
+    
+    function uploadFile(_file,typeOfPic,data1,url1){
+		var _progress = document.getElementById('_progress');
+		
+		if(_file.files.length === 0){
+				submitCreateArticle("",data1,url1);
+				return false ;
+		} else {
+
+		var data = new FormData();
+		data.append('file', _file.files[0]);
+
+		var request = new XMLHttpRequest();
+		var responceTx = "";
+		request.onreadystatechange = function(){
+			if(request.readyState == 4){
+				responceTx = request.response;
+				submitCreateArticle(responceTx,data1,url1);
+				//alert(responceTx);
+				//alert(request.response);
+				//return request.response;
+				}
+			};
+		}
+
+		request.upload.addEventListener('progress', function(e){
+        _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
+		}, false);
+		
+		request.open('POST', 'ajax/upload_file.php?typeOfPic='+typeOfPic);
+		request.send(data);
+		//alert(request.response);
+		//alert(responceTx);
+		//return responceTx;
+		
+	}
+	function submitCreateArticle(ilink,data,url){
+		if (ilink != "") {
+		var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" />";
+		var dataString = data + '&img='+ imgTx ;
+		//alert(dataString) ;
+		}
+			else {
+				var	dataString =  data ;
+				//alert(dataString) ;			
+				}
 			$.ajax({
 				type: "POST",
-				url: "ajax/submit_chalange.php",
+				url: url,
 				data: dataString,
 				cache: false,
 				success: function(result){
 					//alert(result);
 					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Challange posted succesfully!'){
-						$("#challange").val("");
-						$("#challange_title").val("");
-						$("#open_time").val("");
-						$("#open").val("");
-						$("#c_eta").val("");
-						$("#c_etab").val("");
-						$("#c_etac").val("");
-						$("#c_etad").val("");
-					 location.reload();
+					if(result=='Posted succesfully!'){
+					location.reload();
 					}
 				}
-			});
-			}
-      $("#submit_ch").removeAttr('disabled');
-			return false;
-		});
-});
-$(document).ready(function(){
-    
+			}); 
+					
+      //$("#create_article").removeAttr('disabled');
+			//return false;
+	}
 		$("#create_article").click(function(){
       		$("#create_article").attr('disabled','disabled');
 			var article = $("#articlech").val() ;
 			var article_title = $("#article_title").val() ;
-			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',article)) + '&article_title='+ article_title  ;
-			//alert(dataString);
 			if(article==''){
 				bootstrap_alert(".alert_placeholder", "Article can not be empty", 5000,"alert-warning");
+				return false;
 			}
 			else if(article_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-			}
-			else
-			{
-			// AJAX Code To Submit Form.
-			$.ajax({
-				type: "POST",
-				url: "ajax/submit_article.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Article posted succesfully!'){
-						$("#article").val("");
-						$("#article_title").val("");
-					location.reload();
-					}
-				}
-			});
-			}
-      $("#create_article").removeAttr('disabled');
-			return false;
+				return false;
+			} else {
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',article)) + '&article_title='+ article_title  ;
+			//alert(dataString);
+			
+			//file upload
+			var _file = document.getElementById('_fileArticle');
+			//alert(uploadFile(_file,"articlePic"));
+			uploadFile(_file,"articlePic",String(dataString),"ajax/submit_article.php");
+		
+	}
 		});
-});
+		
+				$("#create_project").click(function(){
+			$("#create_project").attr('disabled','disabled');
+			var project_title = $("#project_title").val() ;
+			var project_stmt = $("#project_stmt").val();
+			var type = $("#type").val();
+			var eta = parseInt($("#eta").val());
+			var etab = parseInt($("#etab").val());
+			var etac = parseInt($("#etac").val());
+			var etad = parseInt($("#etad").val());
+			var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'project_title='+ project_title + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',project_stmt)) + 
+			'&project_eta='+ (project_eta+='') + '&type='+ type ;
+			//alert(dataString);
+			if(project_title==''){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+			}
+			else if(project_stmt==''){
+				bootstrap_alert(".alert_placeholder", "Project can not be empty", 5000,"alert-warning");
+			}
+			else {
+				//file upload
+			var _file = document.getElementById('_fileProject');
+			//alert(uploadFile(_file,"articlePic"));
+			uploadFile(_file,"projectPic",String(dataString),"ajax/submit_project.php");
+			}
+		});
+		$('.tree-toggle').click(function () {
+		$(this).parent().children('ul.tree').toggle(200);
+		});	
+	
 
-	$(document).ready(function(){
 		//to hide all the form
 		$("#challegeForm").toggle();
   		$("#ArticleForm").toggle();
@@ -176,7 +232,7 @@ $(document).ready(function(){
   			$("#PictureForm").hide(1500);
   			$("#IdeaForm").hide(3000);
   			$("#VideoForm").hide(1500);
-    		$("#challegeForm").toggle(3000);
+    		$("#challegeForm").show(3000);
   		});
 
   		
@@ -186,14 +242,14 @@ $(document).ready(function(){
   			$("#PictureForm").hide(1500);
   			$("#IdeaForm").hide(3000);
   			$("#VideoForm").hide(1500);
-    		$("#ArticleForm").toggle(3000);
+    		$("#ArticleForm").show(3000);
   		});
   
   		
 		
 		$("#picture").click(function(){
   			$("#challegeForm").hide(1500);
-  			$("#PictureForm").toggle(1500);
+  			$("#PictureForm").show(1500);
   			$("#IdeaForm").hide(3000);
   			$("#VideoForm").hide(1500);
     		$("#ArticleForm").hide(3000);
@@ -203,7 +259,7 @@ $(document).ready(function(){
   			$("#challegeForm").hide(1500);
   			$("#PictureForm").hide(1500);
   			$("#IdeaForm").hide(3000);
-  			$("#VideoForm").toggle(1500);
+  			$("#VideoForm").show(1500);
     		$("#ArticleForm").hide(3000);
   		});
   
@@ -212,11 +268,9 @@ $(document).ready(function(){
 		  	$("#PictureForm").hide(1500);
 		  	$("#VideoForm").hide(1500);
 		    $("#ArticleForm").hide(3000);
-		    $("#IdeaForm").toggle(3000);
+		    $("#IdeaForm").show(3000);
   		});
-});	
 
-	$(document).ready(function(){
 		//allPanels
 		$("#allPanels").click(function(){
 	 // alert("I am pencil!!! :)");
@@ -277,12 +331,11 @@ $("#pencil").click(function(){
     $(".articlesch").hide(1000);
     $(".idea").show(1000);
   });
-});	
-$(document).ready(function(){	
+	
 		$("#create_idea").click(function(){
       		$("#create_idea").attr('disabled','disabled');
 			var idea = $("#ideaA").val() ;
-			var idea_title = $("#idea_titleA").val() ;
+			var idea_title = $("#idea_titleA").val() ;		
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',idea)) + '&idea_title='+ idea_title  ;
 			//alert(dataString);
@@ -292,29 +345,35 @@ $(document).ready(function(){
 			else if(idea_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 			}
-			else
-			{
-			// AJAX Code To Submit Form.
-			$.ajax({
-				type: "POST",
-				url: "ajax/submit_idea.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='IDEA posted succesfully!'){
-						$("#ideaA").val("");
-						$("#idea_titleA").val("");
-					location.reload();
-					}
-				}
-			});
+			else { 
+				//file upload
+			var _file = document.getElementById('_fileIdea');
+			uploadFile(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
 			}
-      $("#create_idea").removeAttr('disabled');
-			return false;
+		});
+
+		$("#create_picture").click(function(){
+      		$("#create_picture").attr('disabled','disabled');
+			var picturech = $("#picturech").val() ;
+			var picture_title = $("#picture_title").val() ;			
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',picturech)) + '&picture_title='+ picture_title  ;
+			//alert(dataString);
+			if(picturech == ''){
+				bootstrap_alert(".alert_placeholder", "Idea can not be empty", 5000,"alert-warning");
+			}
+			else if(picture_title==''){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+			}
+			else {
+				//file upload
+				var _file = document.getElementById('_filePhotos');
+				uploadFile(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
+			}
 		});
 });
+
+
 $(document).ready(function(){
     
 		$("#create_task").click(function(){

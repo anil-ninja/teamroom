@@ -359,44 +359,7 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
-        </div>      
-        <script>
-			
-            $(document).ready(function(){
-			
-var _submit = document.getElementById('upload_image'), 
-_file = document.getElementById('_file'), 
-_progress = document.getElementById('_progress');
-
-var upload = function(){
-
-    if(_file.files.length === 0){
-        return;
-    }
-
-    var data = new FormData();
-    data.append('file', _file.files[0]);
-
-    var request = new XMLHttpRequest();
-    request.onreadystatechange = function(){
-        if(request.readyState == 4){
-            
-            alert(request.response);
-        }
-    };
-
-    request.upload.addEventListener('progress', function(e){
-        _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
-    }, false);
-
-    request.open('POST', 'ajax/upload_file.php?profilepic=true');
-    request.send(data);
-}
-
-upload_image.addEventListener('click', upload);
-
-});
-            </script>
+        </div>
             <!---Modal --->
             <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
@@ -538,6 +501,7 @@ upload_image.addEventListener('click', upload);
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootswatch.js"></script>
         <script src="js/date_time.js"></script>
+        <script src="js/uploadpic.js"></script>
         <script src="js/project.js"></script>
         
         <script src="js/custom.js"></script>
