@@ -1,6 +1,9 @@
 <div class='list-group'>
     <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span></div>
     <div class='list-group-item'>
+		<?php
+		$_SESSION['project_id'] = $pro_id;
+		?>
         <div id='challegeprForm'>
             <form>
                 <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
@@ -237,6 +240,7 @@ echo "<div class='comments clearfix'>
 
 <?php
 $_SESSION['lastpr'] = '10';
+$_SESSION['project_id'] = $pro_id;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, a.challenge_type,
 											a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
 											 WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'

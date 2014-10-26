@@ -12,12 +12,12 @@ if($_POST['proch']){
 	$b = $a+5;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, a.challenge_type,
 											a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
-											 WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
+											 WHERE a.project_id = '$p_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
 											AND a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
 										 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.challenge_creation, a.challenge_type,
 										  a.challenge_creation, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
-										  WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
+										  WHERE a.project_id = '$p_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
 										   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT $a, $b ;");
 	$show = "";
  $iR=0;
