@@ -10,6 +10,12 @@ if (isset($_POST['logout'])) {
     session_destroy();
     exit;
 }
+$challengeSearch_user = mysqli_query($db_handle, "SELECT a.user_id, b.username from challenges as a JOIN user_info as b WHERE a.challenge_id = $challengeSearchID AND a.user_id=b.user_id;");
+$challengeSearch_user_IDRow = mysqli_fetch_array($challengeSearch_user);
+$challengeSearch_user_ID = $challengeSearch_user_IDRow['user_id'];
+$ch_username = $challengeSearch_user_IDRow['username'];
+echo $challengeSearch_user_ID;
+
 
 function public_challenge_check($db_handle, $user_id, $challenge_id) {
     $public_Private = mysqli_query($db_handle, "SELECT b.user_id FROM challenges as a JOIN teams as b WHERE a.challenge_id = $challenge_id AND a.project_id=b.project_id and b.user_id = $user_id;");
@@ -119,7 +125,8 @@ if (isset($_POST['projectphp'])) {
 
                 <?php include_once 'html_comp/navbar_homepage.php'; ?>
         <div class="row">
-            <div class="col-md-offset-2 col-lg-6">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-7">
                 <?php
 
                 //function is added to display challneges of challengeOpen page,,this is used for two times in else part of next condition added for checking whether challenge display or not.
@@ -157,7 +164,7 @@ if (isset($_POST['projectphp'])) {
                         $initialtime = strtotime($starttimestr);
                         $totaltime = $initialtime + $eta + $open;
                         $completiontime = time();
-                        $owned_or_not = mysqli_query($db_handle, "SELECT a.user_id, a.comp_ch_ETA, a.ownership_creation, b.first_name, b.last_name, b.username 
+                        $owned_or_not = mysqli_query($db_handle, "SELECT a.comp_ch_ETA, a.ownership_creation, b.first_name, b.last_name, b.username 
                                                       FROM challenge_ownership as a JOIN user_info as b 
                                                       WHERE a.challenge_id = '$challengeSearchID' and a.user_id = b.user_id;");
                         while ($owned_or_notRow = mysqli_fetch_array($owned_or_not)) {
@@ -307,16 +314,58 @@ if (isset($_POST['projectphp'])) {
                     challenge_display($db_handle, $challengeSearchID);
                 }
                 ?>
+            
+            <div class="col-md-3">
+           <?php 
+                echo "<div class='bs-component'>
+                    <font size='4'><h3 class='panel-title'><p>Projects</p></h3></font><hr>";
+			
+		
+	 $projects = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title FROM teams as a join projects 
+                                                as b WHERE a.user_id = '$challengeSearch_user_ID' and a.project_id = b.project_id and b.project_type = '2')  
+                                                UNION 
+                                                (SELECT DISTINCT project_id, project_title FROM projects 
+                                                    WHERE user_id = '$challengeSearch_user_ID' and project_type= '2')
+                                                UNION 
+                                                (SELECT DISTINCT project_id, project_title FROM projects WHERE project_type= '1') ORDER BY rand() lIMIT 10 ;");
+      while($projectsRow = mysqli_fetch_array($projects)) {
+	$project_title_display = $projectsRow['project_title'];			
+		echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>".$project_title_display."</b></p><br>";
+      }
+                 ?>
+            
             </div>
-            <div class="col-md-6 pull-right">
-                <ul class="list-inline">
-                    <li>Posted by: Dpower4</li>
-                    <li>Copyright @ 2014</li>
-                </ul>
             </div>
+            </div>
+        <div class="row">
+            <div class="col-lg-1"></div>
+            
+                <div class="col-lg-7">
+                    <div class="panel">
+                        <?php 
+                        
+                            echo "<div class='col-lg-4'>
+                                    <img src='uploads/profilePictures/$ch_username.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+                                </div>";
+                            $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
+                            $about_authorRow = mysqli_fetch_array($about_author);
+                            echo "<div class='panel-body'>";
+                                        echo $about_authorRow['about_user'];
+                            echo "</div>";
+                        ?>  
+                    
+                    </div>
+                </div>
         </div>
-
-
+         
+        
+        <div class="col-md-6 pull-right">
+            <ul class="list-inline">
+                <li>Posted by: Dpower4</li>
+                <li>Copyright @ 2014</li>
+            </ul>
+        </div>
+        
         <script>
             $('#SignUp').on('show', function() {
                 $('#SignIn').css('opacity', .5);
