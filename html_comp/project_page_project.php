@@ -5,9 +5,9 @@
 		$_SESSION['project_id'] = $pro_id;
 		?>
         <div id='challegeprForm'>
-            <form>
+            
                 <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
-                <textarea rows="3" class="form-control" id="challange" placeholder="Details of Challange"></textarea><br>
+                <textarea rows="3" class="form-control" id="challangepr" placeholder="Details of Challange"></textarea><br>
                 <div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                         <option value='0' selected >hour</option>
@@ -69,9 +69,8 @@
                     </select>
                 </div>
                 <br>
-                <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
                 <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
-            </form>
+            
         </div>
         <div id='taskForm'>
             <div class="input-group" >
@@ -431,7 +430,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username_commenter_pr_ch.jpg'  onError=this.src='img/default.gif'>
+					<img src='uploads/profilePictures/$username_commenter.jpg'  onError=this.src='img/default.gif'>
 				</div>
 				<div class='comment-text'>
 					<span class='pull-left color strong'>

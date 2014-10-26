@@ -1,7 +1,9 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
-include_once '../project.inc.php';
+//include_once '../project.inc.php';
+
+//echo "i am not working before post";
 if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
 	$pro_id = $_SESSION['project_id'] ;	
@@ -10,6 +12,8 @@ if($_POST['challange']){
 	$challenge_title = $_POST['challenge_title'] ;
 	$challange_eta = $_POST['challange_eta'] ; 
 	$type = $_POST['type'] ;
+	
+	//echo "i am not working POST";
 if (strlen($challange) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
                                     VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '$opentime', '$challange_eta', '$type') ; ") ;

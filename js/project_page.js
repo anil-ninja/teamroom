@@ -6,12 +6,13 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-	$(document).ready(function(){
-	 $(window).scroll(function(event) {
-	    if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-         event.preventDefault();
-		var dataString = 'proch=10' ;
-			  $.ajax({
+
+$(document).ready(function(){
+	$(window).scroll(function(event) {
+		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+			event.preventDefault();
+			var dataString = 'proch=10' ;
+			$.ajax({
 				type: "POST",
 				url: "ajax/next_proch.php",
 				data: dataString,
@@ -19,32 +20,34 @@ function bootstrap_alert(elem, message, timeout,type) {
 				success: function(result){
 					//alert(result) ;
 					$('#prch').append(result);
-					}
+				}
 			});
 		}
-});	
-var $table = $('table.scroll'),
+	});
+		
+	var $table = $('table.scroll'),
     $bodyCells = $table.find('tbody tr:first').children(),
     colWidth;
 
-// Adjust the width of thead cells when window resizes
-$(window).resize(function() {
-    // Get the tbody columns width array
-    colWidth = $bodyCells.map(function() {
-        return $(this).width();
-    }).get();
-    
-    // Set the width of thead columns
-    $table.find('thead tr').children().each(function(i, v) {
-        $(v).width(colWidth[i]);
-    });    
-}).resize();
+	// Adjust the width of thead cells when window resizes
+	$(window).resize(function() {
+		// Get the tbody columns width array
+		colWidth = $bodyCells.map(function() {
+			return $(this).width();
+		}).get();
+
+		// Set the width of thead columns
+		$table.find('thead tr').children().each(function(i, v) {
+			$(v).width(colWidth[i]);
+		});    
+	}).resize();
 
 
 	
 		$("#create_challange_pb_pr").click(function(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
-			var challenge = $("#challange").val() ;
+			//alert("i am geting fucked");
+			var challenge = $("#challangepr").val() ;
 			var challenge_title = $("#challange_title").val() ;
 			var open_time = parseInt($("#open_time").val());
 			var open = parseInt($("#open").val());
@@ -67,6 +70,7 @@ $(window).resize(function() {
 			}
 			else
 			{
+				//alert(dataString);
 			// AJAX Code To Submit Form.
 			$.ajax({
 				type: "POST",
@@ -74,9 +78,10 @@ $(window).resize(function() {
 				data: dataString,
 				cache: false,
 				success: function(result){
+					//alert(result);
 					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result=='Challange posted succesfully!'){
-						$("#challange").val("");
+						$("#challangepr").val("");
 						$("#challange_title").val("");
 						$("#open_time").val("");
 						$("#open").val("");
@@ -89,9 +94,10 @@ $(window).resize(function() {
 					}
 				}
 			});
+			//alert("bye i am stoping the function");
 			}
 			$("#create_challange_pb_pr").removeAttr('disabled');
-			return false;
+			
 		});
 	});
 	$(document).ready(function(){
