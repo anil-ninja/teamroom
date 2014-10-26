@@ -14,7 +14,7 @@ $challengeSearch_user = mysqli_query($db_handle, "SELECT a.user_id, b.username f
 $challengeSearch_user_IDRow = mysqli_fetch_array($challengeSearch_user);
 $challengeSearch_user_ID = $challengeSearch_user_IDRow['user_id'];
 $ch_username = $challengeSearch_user_IDRow['username'];
-echo $challengeSearch_user_ID;
+//echo $challengeSearch_user_ID;
 
 
 function public_challenge_check($db_handle, $user_id, $challenge_id) {
@@ -96,17 +96,38 @@ if (isset($_POST['projectphp'])) {
     $_SESSION['rank'] = $rank;
     exit;
 }
+
+include_once 'models/challenge.php';
+$obj = new challenge($challengeSearchID);
+
 ?>
+
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <title>Challenges Open</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Challenges, Projects, Problem solving, problems">
         <meta name="author" content="Rajnish">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Challenge, Project, Problem solving, problem">
-        <meta name="author" content="Anil">
+        
+        <!-- for Google -->
+        <meta name="description" content="<?= $obj->getDiscription(); ?>" />
+        <meta name="keywords" content="Challenges, Projects, Problem solving, problems" />
+        <meta name="author" content="<?= $obj->first_name." ".$obj->last_name; ?>" />
+        <meta name="copyright" content="true" />
+        <meta name="application-name" content="Article" />
+
+        <!-- for Facebook -->          
+        <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
+        <meta property="og:type" content="article"/>
+        <meta property="og:image" content="<?= $obj->getUrl(stmt); ?>" />
+        <meta property="og:url" content="" />
+        <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
+
+        <!-- for Twitter -->          
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="<?= $obj->challenge_title; ?>" />
+        <meta name="twitter:description" content="<?= $obj->getDiscription(); ?>" />
+        <meta name="twitter:image" content="<?= $obj->getUrl(stmt); ?>" />
+
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.css">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
@@ -121,15 +142,12 @@ if (isset($_POST['projectphp'])) {
 
     </head>
     <body>
-
-
-                <?php include_once 'html_comp/navbar_homepage.php'; ?>
+      <?php include_once 'html_comp/navbar_homepage.php'; ?>
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-7">
                 <?php
-
-                //function is added to display challneges of challengeOpen page,,this is used for two times in else part of next condition added for checking whether challenge display or not.
+                  //function is added to display challneges of challengeOpen page,,this is used for two times in else part of next condition added for checking whether challenge display or not.
                 function challenge_display($db_handle, $challengeSearchID) {
                     $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id,a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                                         WHERE a.challenge_status != 3 AND blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
@@ -291,7 +309,7 @@ if (isset($_POST['projectphp'])) {
                         }
                         echo "</div>
                         </div>";
-                        echo " </div> </div> </div>";
+                        echo " </div></div>";
                     }
                 }
 
@@ -314,50 +332,62 @@ if (isset($_POST['projectphp'])) {
                     challenge_display($db_handle, $challengeSearchID);
                 }
                 ?>
-            
-            <div class="col-md-3">
-           <?php 
-                echo "<div class='bs-component'>
-                    <font size='4'><h3 class='panel-title'><p>Projects</p></h3></font><hr>";
-			
-		
-	 $projects = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title FROM teams as a join projects 
-                                                as b WHERE a.user_id = '$challengeSearch_user_ID' and a.project_id = b.project_id and b.project_type = '2')  
-                                                UNION 
-                                                (SELECT DISTINCT project_id, project_title FROM projects 
-                                                    WHERE user_id = '$challengeSearch_user_ID' and project_type= '2')
-                                                UNION 
-                                                (SELECT DISTINCT project_id, project_title FROM projects WHERE project_type= '1') ORDER BY rand() lIMIT 10 ;");
-      while($projectsRow = mysqli_fetch_array($projects)) {
-	$project_title_display = $projectsRow['project_title'];			
-		echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>".$project_title_display."</b></p><br>";
-      }
-                 ?>
-            
-            </div>
-            </div>
-            </div>
-        <div class="row">
-            <div class="col-lg-1"></div>
-            
-                <div class="col-lg-7">
-                    <div class="panel">
-                        <?php 
-                        
-                            echo "<div class='col-lg-4'>
-                                    <img src='uploads/profilePictures/$ch_username.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>
-                                </div>";
-                            $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
-                            $about_authorRow = mysqli_fetch_array($about_author);
-                            echo "<div class='panel-body'>";
-                                        echo $about_authorRow['about_user'];
-                            echo "</div>";
-                        ?>  
-                    
+                <div class="panel">
+                <?php 
+                    echo "<div class='col-lg-4'>
+                            <img src='uploads/profilePictures/$ch_username.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+                        </div>";
+                    $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
+                    $no_data = mysqli_num_rows($about_author);
+                    if ($no_data == 0){
+                        echo "<div class='panel-body'>
+                                No information is available about this user
+                            </div>";
+                    } else {
+                        $about_authorRow = mysqli_fetch_array($about_author);
+                        echo "<div class='panel-body'>";
+                                    echo $about_authorRow['about_user'];
+                        echo "</div>";
+                    }
+                ?>  
                     </div>
                 </div>
-        </div>
-         
+        <div class="col-md-3">
+           <?php 
+                echo "<div class='bs-component'>
+                        <font size='4'><h3 class='panel-title'><p>By this User</p></h3></font><hr>";
+                $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 100) FROM challenges 
+                                                        WHERE challenge_type != '2' AND (challenge_status !='3' OR challenge_status != '7') AND blob_id = '0')  
+                                                    UNION 
+                                                    (SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 100) FROM challenges as a JOIN blobs as b 
+                                                        WHERE a.blob_id = b.blob_id AND challenge_type != '2' AND (challenge_status !='3' OR challenge_status != '7')) ORDER BY rand() LIMIT 10 ;");
+                while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
+                    $challenge_user_title = $challenge_userRow['challenge_title'];
+                    $challenge_user_stmt = $challenge_userRow['LEFT(stmt, 100)'];
+                    //echo $challenge_user_stmt;
+                    echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>"
+                    .$challenge_user_title."</b><br></p>"
+                    .$challenge_user_stmt."<br>";
+                    
+                    }
+                echo "<br><hr><font size='4'><h3 class='panel-title'><p>Projects</p></h3></font><hr>";
+                $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 100) FROM projects 
+                                                        WHERE project_type = '1' AND blob_id = '0')  
+                                                    UNION 
+                                                    (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 100) FROM projects as a JOIN blobs as b 
+                                                        WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 3 ;");
+                while($projectsRow = mysqli_fetch_array($projects)) {
+                    $project_title_display = $projectsRow['project_title'];
+                    $project_title_stmt = $projectsRow['LEFT(stmt, 100)'];
+                    echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>"
+                    .$project_title_display."</b></p>"
+                    .$project_title_stmt."<br>";
+                }
+            ?>
+            
+            </div>
+    </div>
+      
         
         <div class="col-md-6 pull-right">
             <ul class="list-inline">

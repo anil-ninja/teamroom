@@ -59,6 +59,10 @@ $totalProjectCompleted = $counter["COUNT(project_id)"];
 $projectProgress = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID and project_type != '3' and project_type != '4' and project_type != '5';");
 $counter = mysqli_fetch_assoc($projectProgress);
 $totalprojectProgress = $counter["COUNT(project_id)"];
+
+include_once 'models/profile.php';
+$obj = new profile($UserName);
+//echo $obj->first_name."hi";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -69,11 +73,24 @@ $totalprojectProgress = $counter["COUNT(project_id)"];
        
         <link rel="stylesheet" href="css/profile_page_style.css">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Challenge, Project, Problem solving, problem">
-    <meta name="author" content="Anil">
-    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="css/bootswatch.css">
+        <meta name="author" content="Anil">
+        <!-- for Google -->
+        <meta name="keywords" content="Challenges, Projects, Problem solving, problems" />
+        <meta name="author" content="<?= $obj->first_name." ".$obj->last_name; ?>" />
+        <meta name="copyright" content="true" />
+        <meta name="application-name" content="Article" />
+
+        <!-- for Facebook -->          
+        <meta property="og:image" content="<?= $obj->getImage(); ?>" />
+        <meta property="og:url" content="" />
+        
+        <!-- for Twitter -->          
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:image" content="<?= $obj->getImage(); ?>" />
+        
+        
+        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
+        <link rel="stylesheet" href="css/bootswatch.css">
 	<link href="css/bootstrap-responsive.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
 	
