@@ -4,32 +4,35 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 ?>
 <div class="navbar navbar-default navbar-fixed-top" style="line-height: 1.928571;">
     <div class="row">
-    <div class="col-md-1">
-    <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
-            <span class="icon-bar"></span>
-            
-        </button>
-        <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>colvade</b></a>
-    </div>
-</div><div class="col-md-2">
-<div class="navbar-collapse" style="hieght: auto;">
-        <ul class="nav navbar-nav navbar-left">
-            <li class='navbar-text' >
-            <div class="row">
-                <div class="col-lg-6">
-                <div class="input-group">
-                  <input type="text"  id="search" placeholder="search" style="width : 250px; height : 29px" class="form-control"/>
-                  <span class="input-group-btn">
-                    <button type="submit" id="keyword"  class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
-                  </span>
+        <div class="col-md-1">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>colvade</b></a>
+            </div>
+        </div>
+        <div class="col-md-2">
+                <div class="navbar-collapse" style="hieght: auto;">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li class='navbar-text' >
+                        <div class="row">
+                         <div class="input-group">
+                                 <input type="text"  id="search" placeholder="search" style="height : 28px" class="form-control">
+                                 <span class="input-group-btn">
+                                     <button type="submit" id="keyword"  class="btn btn-default">
+                                        <p class="glyphicon glyphicon-search">
+                                     </button>
+                                 </span>
+                         </div>
+                         </div>
+                        </li>
+                    </ul>
                 </div>
-              </div>
-              </div>
-           </li>
-        </ul>
-        </div></div>
-        <div class="col-md-9">
+            </div>
+    <div class="col-md-9">
     <div class="navbar-collapse" style="hieght: auto;">
        
         <ul class='nav navbar-nav navbar-right' >
