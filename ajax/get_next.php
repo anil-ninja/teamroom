@@ -192,6 +192,18 @@ if ($_POST['chal']) {
         }
         $show = $show . "</div>";
 	}
+		if ($status == 6) {
+   $show = $show ."<div class='list-group openchalhide'>
+					<div class='list-group-item' >
+                    <div class='pull-left lh-fix'>     
+                        <span class='glyphicon glyphicon-picture'>
+                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                    </div>
+                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>&nbsp&nbsp&nbsp On : " . $timefunction ;
+        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+      $show = $show ."<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
+	}
         if ($status == 2 || $status == 4 || $status == 5) {
 			$show = $show . "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
