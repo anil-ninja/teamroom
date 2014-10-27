@@ -113,7 +113,7 @@ if (isset($_POST['projectphp'])) {
     <head>
         <meta charset="utf-8">
         <title>Challenges Open</title>
-        <meta name="author" content="Rajnish">
+        <meta name="author" content="">
         
         <!-- for Google -->
         <meta name="description" content="<?= $obj->getDiscription(); ?>" />
@@ -126,7 +126,7 @@ if (isset($_POST['projectphp'])) {
         <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
         <meta property="og:type" content="article"/>
         <meta property="og:image" content="<?= $obj->url; ?>" />
-        <meta property="og:url" content="<?= "://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
+        <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
         <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
 
         <!-- for Twitter -->          

@@ -40,10 +40,10 @@ class challenge{
     }
     function getUrl($stmt){
         if (substr($stmt, 0, 4) == "<img") {
-            return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/".(explode("\"", $stmt)[1]);
+            return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).(explode("\"", $stmt)[1]);
         }
         else {
-            return $stmt.'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."/uploads/profilePictures/$this->username.jpg";
+            return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."uploads/profilePictures/$this->username.jpg";
         }
     }
 }
