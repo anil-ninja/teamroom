@@ -32,7 +32,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 		switch($_GET['typeOfPic']){
 			case "articlePic":
 					
-					$filePath = checkNCreateFolder($username,"articlePic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"articlePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath);
 					echo substr($filePath, 3);
 					exit;
@@ -45,7 +45,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				
 			case "challengePic"	:
 					
-					$filePath = checkNCreateFolder($username,"challengePic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"challengePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
 					echo substr($filePath, 3);
 					exit;
@@ -54,7 +54,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				
 			case "ideaPic":
 			
-					$filePath = checkNCreateFolder($username,"ideaPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"ideaPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
 					echo substr($filePath, 3);
 					exit;
@@ -63,7 +63,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				
 			case "photoPic":
 			
-					$filePath = checkNCreateFolder($username,"photoPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"photoPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
 					echo substr($filePath, 3);
 					exit;
@@ -72,7 +72,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				
 			case "projectPic":
 			
-					$filePath = checkNCreateFolder($username,"projectPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"projectPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
 					echo substr($filePath, 3);
 					exit;
@@ -81,7 +81,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				
 			case "taskPic":
 			
-					$filePath = checkNCreateFolder($username,"taskPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"taskPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
 					echo substr($filePath, 3);
 					exit;
@@ -90,7 +90,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				
 			case "projectchalPic":
 			
-					$filePath = checkNCreateFolder($username,"projectchalPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"projectchalPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
 					echo substr($filePath, 3);
 					exit;
@@ -99,7 +99,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				
 			case "projectnotesPic":
 			
-					$filePath = checkNCreateFolder($username,"projectnotesPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					$filePath = checkNCreateFolder($username,"projectnotesPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
 					echo substr($filePath, 3);
 					exit;
