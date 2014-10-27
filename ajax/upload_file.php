@@ -43,32 +43,40 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				$fileName = $username.".".pathinfo( $_FILES["file"]["name"], PATHINFO_EXTENSION);
 				break;
 				
-			case "challengePic"	;
+			case "challengePic"	:
 					
 					$filePath = checkNCreateFolder($username,"challengePic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;
 				
-			case "ideaPic";
+			case "ideaPic":
 			
 					$filePath = checkNCreateFolder($username,"ideaPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;
 				
-			case "photoPic";
+			case "photoPic":
 			
 					$filePath = checkNCreateFolder($username,"photoPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;
 				
-			case "projectPic";
+			case "projectPic":
 			
 					$filePath = checkNCreateFolder($username,"projectPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;	
 		}
     //  echo "fileName: ".$fileName;
