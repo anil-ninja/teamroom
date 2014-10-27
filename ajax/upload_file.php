@@ -27,7 +27,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
   $username = $_SESSION['username'];
   if(($_FILES["file"]["type"] == "image/jpeg")
             || ($_FILES["file"]["type"] == "image/JPG") 
-            ||  ($_FILES["file"]["type"] == "image/png")){
+            ||  ($_FILES["file"]["type"] == "image/PNG")){
 		
 		switch($_GET['typeOfPic']){
 			case "articlePic":
@@ -43,32 +43,40 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				$fileName = $username.".".pathinfo( $_FILES["file"]["name"], PATHINFO_EXTENSION);
 				break;
 				
-			case "challengePic"	;
+			case "challengePic"	:
 					
 					$filePath = checkNCreateFolder($username,"challengePic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;
 				
-			case "ideaPic";
+			case "ideaPic":
 			
 					$filePath = checkNCreateFolder($username,"ideaPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;
 				
-			case "photoPic";
+			case "photoPic":
 			
 					$filePath = checkNCreateFolder($username,"photoPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;
 				
-			case "projectPic";
+			case "projectPic":
 			
 					$filePath = checkNCreateFolder($username,"projectPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					//echo "bye";
+					echo substr($filePath, 3);
+					exit;
+					
 				break;	
 		}
     //  echo "fileName: ".$fileName;
@@ -77,7 +85,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
     //echo "Type: " . $_FILES["file"]["type"] . "<br>";
   }
 }
-
+/*
 if ($_FILES["file"]["size"] < 1000000) {
   if ($_FILES["file"]["error"] > 0) {
     echo "File size is larger than Limit";
@@ -86,7 +94,7 @@ if ($_FILES["file"]["size"] < 1000000) {
    // echo "Type: " . $_FILES["file"]["type"] . "<br>";
     //echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
     //echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
-    if ($fileName == ""){
+   // if ($fileName == ""){
       
     } else {
 
@@ -109,5 +117,5 @@ if ($_FILES["file"]["size"] < 1000000) {
   }
 } else {
   echo "Invalid file";
-}
+} */
 ?> 

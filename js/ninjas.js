@@ -135,6 +135,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 	}
 	function submitCreateArticle(ilink,data,url){
+		//alert(ilink) ;
 		if (ilink != "") {
 		var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" />";
 		var dataString = data + '&img='+ imgTx ;

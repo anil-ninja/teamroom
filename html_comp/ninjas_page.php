@@ -13,7 +13,7 @@
         <div id='challegeForm'>
             <form>
                 <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/><br>
-                <input class="btn btn-default btn-sm" type="file" id="_fileChallenge" style ="width: auto;">
+                <input class="btn btn-default btn-sm" type="file" id="_fileChallenge" placeholder="Upload Photo" style ="width: auto;">
                 <br>
                 <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
                 <br>
@@ -299,6 +299,18 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 </form>";
         }
         echo "</div>";
+	}	
+		if ($status == 6) {
+        echo "<div class='list-group openchalhide'>
+                <div class='list-group-item' >
+                    <div class='pull-left lh-fix'>     
+                        <span class='glyphicon glyphicon-picture'>
+                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                    </div>
+                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>&nbsp&nbsp&nbsp On : " . $timefunction ;
+        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+        echo "<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
 	}
         if ($status == 2 || $status == 4 || $status == 5) {
 			echo "<div class='list-group openchalhide'>

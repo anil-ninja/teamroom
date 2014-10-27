@@ -10,8 +10,8 @@ if($_POST['picturech']){
 	$image = $_POST['img'] ;
 	$article = $image." ".$articletext ;
  if (strlen($article) < 400) {
-        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
-                                    VALUES ('$user_id', '$article_title', '$article', '1', '1', '8') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
+                                    VALUES ('$user_id', '$article_title', '$article', '1', '1', '3', '6') ; ") ;
     if(mysqli_error($db_handle)) { echo "Failed to Post Article!"; }
 	else { echo "Posted succesfully!"; }
 } 
@@ -20,8 +20,8 @@ else {
                                 VALUES (default, '$article');");
         
         $id = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type) 
-                                VALUES ('$user_id', '$article_title', '$id', '1', '1', ' ', '8');");
+        mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type, challenge_status) 
+                                VALUES ('$user_id', '$article_title', '$id', '1', '1', ' ', '3', '6');");
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Article!"; }
 	else { echo "Posted succesfully!"; }
 }
