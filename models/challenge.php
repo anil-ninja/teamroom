@@ -36,7 +36,7 @@ class challenge{
         $this->first_name = $chalangerow['first_name'];
         $this->last_name = $chalangerow['last_name'];
         $this->username = $chalangerow['username'];
-        $this->url = $this->getUrl($chalangerow['stmt']);
+        $this->url = $this->getUrl($this->stmt);
         mysqli_close($db_handle);
     }
     function getDiscription(){
