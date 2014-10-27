@@ -38,64 +38,84 @@ $totalchallengessubmitted = mysqli_query($db_handle, "select challenge_id from c
 $totalchallengesclosed = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND (challenge_type = '1' OR challenge_type = '2') AND challenge_status = '5';") ;
 
 $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '6' AND challenge_status = '1';") ;
-  echo "<h3 class='panel-title'><p align='center'>Summary</p></h3>
-			<table class='table table-striped table-hover '>
-			<tbody>
-				<tr class='info'>
-					<td>Task</td>
-					<td>".mysqli_num_rows($totaltask)."</td>
-				</tr>
-				<tr>
-					<td>Tasks Accepted(within Remaining Time)</td>
-					<td>".$bz."</td>
-				</tr>
-				<tr class='warning'>
-					<td>Tasks Accepted(Remaining Time Over)</td>
-					<td>".$az."</td>
-				</tr>
-				<tr>	
-					<td>Tasks Submitted</td>
-					<td>".mysqli_num_rows($totaltasksubmitted)."</td>
-				</tr>
-				<tr>
-					<td>Tasks Completed/Closed</td>
-					<td>".mysqli_num_rows($totaltaskclosed)."</td>
-				</tr>
-				<tr class='info'>
-					<td>Challenges</td>
-					<td>".mysqli_num_rows($totalchallenges)."</td>
-				</tr>
-				<tr>
-					<td>Challenges Open(within Remaining Time)</td>
-					<td>".$by."</td>
-				</tr>
-				<tr class='warning'>
-					<td>Challenges Open(Remaining Time Over)</td>
-					<td>".$ay."</td>
-				</tr>
-				<tr>
-					<td>Challenges Accepted(within Remaining Time)</td>
-					<td>".$bx."</td>
-				</tr>
-				<tr class='warning'>
-					<td>Challenges Accepted(Remaining Time Over)</td>
-					<td>".$ax."</td>
-				</tr>
-				<tr>
-					<td>Challenges Submitted</td>
-					<td>".mysqli_num_rows($totalchallengessubmitted)."</td>
-				</tr>
-				<tr>
-					<td>Challenges Completed/Closed</td>
-					<td>".mysqli_num_rows($totalchallengesclosed)."</td>
-				</tr>
-				<tr class='info'>
-					<td>Notes</td>
-					<td>".mysqli_num_rows($totalnotes)."</td>
-				</tr>
-			</tbody>
-			</table><br/>" ;
-  
+  echo "<div class='list-group'  style='cursor: pointer;'>
+  			<div class='list-group-item' style='font-size:14px; text-align: center;'>
+  				<b>DASHBOARD</b>
+  			</div>
+
+			<div class='list-group-item'>
+				<table class='table table-striped'>
+					<thead> <center>TASKS (".mysqli_num_rows($totaltaskclosed)."/"
+											.mysqli_num_rows($totaltask).") </center> </thead>
+					<tbody>
+					
+					<tr class='active'>
+						<td>On Track</td>
+						<td>".$bz."</td>
+					</tr>
+					<tr>
+						<td>Delayed</td>
+						<td class='warning'>".$az."</td>
+					</tr>
+					<tr class='active'>	
+						<td>Submitted</td>
+						<td>".mysqli_num_rows($totaltasksubmitted)."</td>
+					</tr>
+					<tr >
+						<td>Completed</td>
+						<td>".mysqli_num_rows($totaltaskclosed)."</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class='list-group-item'>
+				<table class='table table-striped table-hover '>
+				<thead> <center>CHALLENGES (".mysqli_num_rows($totalchallengesclosed)."/"
+					.mysqli_num_rows($totalchallenges).") </center></thead>
+					<tbody>
+					<tr>
+						<td>Open</td>
+						<td>".$by."</td>
+					</tr>
+					<tr>
+						<td>Closed</td>
+						<td  class='warning'>".$ay."</td>
+					</tr>
+					<tr>
+						<td>Accepted</td>
+						<td>".$bx."</td>
+					</tr>
+					<tr>
+						<td>Delayed</td>
+						<td  class='warning'>".$ax."</td>
+					</tr>
+					<tr>
+						<td>Submitted</td>
+						<td>".mysqli_num_rows($totalchallengessubmitted)."</td>
+					</tr>
+					<tr>
+						<td>Completed</td>
+						<td>".mysqli_num_rows($totalchallengesclosed)."</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+			</div>
+		<br/>" ;
+
+			// <div class='list-group-item'>
+			// 	<table class='table table-striped table-hover '>
+			// 		<tbody>
+			// 			<tr class='info'>
+			// 				<td>Notes</td>
+			// 				<td>".mysqli_num_rows($totalnotes)."</td>
+			// 			</tr>
+			// 		</tbody>
+			// 	</table>
+			// </div>
+		
+	  
   
   	echo "<h3 class='panel-title'><p align='center'>Open Challenges</p></h3>
 			<table class='scroll table table-striped'>
