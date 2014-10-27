@@ -1,8 +1,16 @@
 <?php
+session_start();
+
+
 include_once 'functions/delete_comment.php';
 include_once 'lib/db_connect.php';
-session_start();
+
+include_once 'models/challenge.php';
+//echo $_GET['challenge_id'];
+$obj = new challenge($_GET['challenge_id']);
+
 $challengeSearchID = $_GET['challenge_id'];
+$challengeSearchIDR = $_GET['challenge_id'];
 if (isset($_POST['logout'])) {
     header('Location: challengesOpen.php?challenge_id=' . "$challengeSearchID");
     unset($_SESSION['user_id']);
@@ -44,7 +52,6 @@ if (isset($_POST['own_chl_response'])) {
 }
 if (isset($_POST['accept'])) {
     $id = $_POST['id'];
-    $challengeSearchID = $_GET['challenge_id'];
     echo "<div style='display: block;' class='modal fade in' id='eye' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
             <div class='modal-dialog'> 
                 <div class='modal-content'>
@@ -97,8 +104,8 @@ if (isset($_POST['projectphp'])) {
     exit;
 }
 
-include_once 'models/challenge.php';
-$obj = new challenge($challengeSearchID);
+
+//echo "title Id ".$challengeSearchIDR;
 
 ?>
 
@@ -118,15 +125,15 @@ $obj = new challenge($challengeSearchID);
         <!-- for Facebook -->          
         <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
         <meta property="og:type" content="article"/>
-        <meta property="og:image" content="<?= $obj->getUrl(stmt); ?>" />
-        <meta property="og:url" content="" />
+        <meta property="og:image" content="<?= $obj->url; ?>" />
+        <meta property="og:url" content="<?= "://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
         <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
 
         <!-- for Twitter -->          
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content="<?= $obj->challenge_title; ?>" />
         <meta name="twitter:description" content="<?= $obj->getDiscription(); ?>" />
-        <meta name="twitter:image" content="<?= $obj->getUrl(stmt); ?>" />
+        <meta name="twitter:image" content="<?= $obj->url; ?>" />
 
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.css">
