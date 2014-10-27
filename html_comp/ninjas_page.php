@@ -12,9 +12,15 @@
     <div class='list-group-item'>
         <div id='challegeForm'>
             <form>
+<<<<<<< HEAD
+                <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/><br/>
+                <input id="_fileChallenge" class="btn btn-primary" type="file" title="Upload Photo" label="Add photos to your post" style ="width: auto;">
+                <br/>
+=======
                 <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/><br>
                 <input class="btn btn-default btn-sm" type="file" id="_fileChallenge" style ="width: auto;">
                 <br>
+>>>>>>> 4b0cff96db59df1094d44157bac81e373b6f24d2
                 <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
                 <br>
                 <div class="inline-form">
@@ -71,8 +77,11 @@
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
                     </select><br/><br/> 
-                    <input type="checkbox" id="Chall_type" value='off' /> Always Open<br/><br/>                          
+                    <input type="checkbox" id="Chall_type" value='off' /> Always Open<br/><br/>
                     <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
+                    
+                                         
+                    
                 </div>
             </form>
         </div>
