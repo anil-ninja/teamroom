@@ -34,13 +34,15 @@ class challenge{
     }
     function getDiscription(){
         if (substr($this->stmt, 0, 4) == "<img") {
-            return substr(explode("100%;\">", $this->stmt)[1],0,155);
+            $arrayStmt = explode("\"", $this->stmt);
+            return substr($arrayStmt[1],0,155);
         }
         return substr($this->stmt, 0, 200);
     }
     function getUrl($stmt){
         if (substr($stmt, 0, 4) == "<img") {
-            return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).(explode("\"", $stmt)[1]);
+			$arrayStmt = explode("\"", $stmt);
+            return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).$arrayStmt[1];
         }
         else {
             return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."uploads/profilePictures/$this->username.jpg";
