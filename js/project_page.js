@@ -42,8 +42,66 @@ $(document).ready(function(){
 		});    
 	}).resize();
 
+	function uploadFile(_file,typeOfPic,data1,url1){
+		var _progress = document.getElementById('_progress');
+		
+		if(_file.files.length === 0){
+				submitCreateArticle("",data1,url1);
+				return false ;
+		} else {
 
-	
+		var data = new FormData();
+		data.append('file', _file.files[0]);
+
+		var request = new XMLHttpRequest();
+		var responceTx = "";
+		request.onreadystatechange = function(){
+			if(request.readyState == 4){
+				responceTx = request.response;
+				submitCreateArticle(responceTx,data1,url1);
+				//alert(responceTx);
+				//alert(request.response);
+				//return request.response;
+				}
+			};
+		}
+
+		request.upload.addEventListener('progress', function(e){
+        _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
+		}, false);
+		
+		request.open('POST', 'ajax/upload_file.php?typeOfPic='+typeOfPic);
+		request.send(data);
+		//alert(request.response);
+		//alert(responceTx);
+		//return responceTx;
+		
+	}
+	function submitCreateArticle(ilink,data,url){
+		//alert(ilink) ;
+		if (ilink != "") {
+		var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" />";
+		var dataString = data + '&img='+ imgTx ;
+		//alert(dataString) ;
+		}
+			else {
+				var	dataString =  data ;
+				//alert(dataString) ;			
+				}
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result=='Posted succesfully!'){
+					location.reload();
+					}
+				}
+			}); 
+		}
 		$("#create_challange_pb_pr").click(function(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			//alert("i am geting fucked");
@@ -68,39 +126,14 @@ $(document).ready(function(){
 			else if(challenge_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 			}
-			else
-			{
-				//alert(dataString);
-			// AJAX Code To Submit Form.
-			$.ajax({
-				type: "POST",
-				url: "ajax/submit_chalange_project.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Challange posted succesfully!'){
-						$("#challangepr").val("");
-						$("#challange_title").val("");
-						$("#open_time").val("");
-						$("#open").val("");
-						$("#c_eta").val("");
-						$("#c_etab").val("");
-						$("#c_etac").val("");
-						$("#c_etad").val("");
-						$("#type").val("");
-						location.reload();
-					}
-				}
-			});
-			//alert("bye i am stoping the function");
+			else {
+				//file upload
+			var _file = document.getElementById('_fileChallengepr');
+			//alert(uploadFile(_file,"articlePic"));
+			uploadFile(_file,"projectchalPic",String(dataString),"ajax/submit_chalange_project.php");
 			}
-			$("#create_challange_pb_pr").removeAttr('disabled');
-			
 		});
-	});
-	$(document).ready(function(){
+	
 		$("#create_notes").click(function(){
 			$("#create_notes").attr('disabled','disabled');
 			var notes = $("#notestmt").val() ;
@@ -111,25 +144,12 @@ $(document).ready(function(){
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
 			}
-			else
-			{
-			// AJAX Code To Submit Form.
-			$.ajax({
-				type: "POST",
-				url: "ajax/submit_notes.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Notes posted succesfully!'){
-						$("#notes").val("");
-						location.reload();
-					}
-				}
-			});
+			else {
+				//file upload
+			var _file = document.getElementById('_fileNotes');
+			//alert(uploadFile(_file,"articlePic"));
+			uploadFile(_file,"projectnotesPic",String(dataString),"ajax/submit_notes.php");
 			}
-			$("#create_notes").removeAttr('disabled');
-			return false;
 		});
 	});
 	$(document).ready(function(){

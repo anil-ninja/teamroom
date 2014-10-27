@@ -3,15 +3,17 @@ session_start();
 include_once "../lib/db_connect.php";
 if($_POST['email']){
 	$user_id = $_SESSION['user_id'];
-	$details = $_POST['taskdetails'] ;
+	$detailstext = $_POST['taskdetails'] ;
 	$id = $_POST['id'] ;
 	$email = $_POST['email'] ;
 	$assigned = mysqli_query($db_handle,"select user_id from user_info where email = '$email' ;") ;
 	$assignedrow = mysqli_fetch_array($assigned) ;
 	$owner = $assignedrow['user_id'] ;
 	$title = $_POST['title'] ;
+	$image = $_POST['img'] ;
+	$details = $image." ".$detailstext ;
 	$challange_eta = $_POST['challange_eta'] ;
- if (strlen($challange) < 1000) {
+ if (strlen($details) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
                                     VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
         $ida = mysqli_insert_id($db_handle);

@@ -372,10 +372,6 @@ $("#pencil").click(function(){
 				uploadFile(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
 			}
 		});
-});
-
-
-$(document).ready(function(){
     
 		$("#create_task").click(function(){
       		$("#create_task").attr('disabled','disabled');
@@ -401,31 +397,10 @@ $(document).ready(function(){
 			else if(taskdetails==''){
 				bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
 			}
-			else
-			{
-			// AJAX Code To Submit Form.
-			$.ajax({
-				type: "POST",
-				url: "ajax/submit_task.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Task assigned succesfully!'){
-						$("#email").val("");
-						$("#title").val("");
-						$("#taskdetails").val("");
-						$("#c_eta").val("");
-						$("#c_etab").val("");
-						$("#c_etac").val("");
-						$("#c_etad").val("");
-					 location.reload();
-					}
-				}
-			});
+			else {
+				//file upload
+				var _file = document.getElementById('_fileTask');
+				uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
 			}
-      $("#create_task").removeAttr('disabled');
-			return false;
-		});
+      	});
 });

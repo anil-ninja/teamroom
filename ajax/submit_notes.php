@@ -4,7 +4,9 @@ include_once "../lib/db_connect.php";
 if($_POST['notes']){
 	$user_id = $_SESSION['user_id'] ;
 	$pro_id = $_SESSION['project_id'] ;
-	$notes = $_POST['notes'] ;
+	$notestext = $_POST['notes'] ;
+	$image = $_POST['img'] ;
+	$notes = $image." ".$notestext ;
 	$notes_title = $_POST['notes_title'] ;
  if (strlen($notes) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, project_id, stmt, challenge_open_time, challenge_ETA, challenge_type) 

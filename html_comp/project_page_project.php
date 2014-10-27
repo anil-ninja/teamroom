@@ -7,6 +7,7 @@
         <div id='challegeprForm'>
             
                 <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
+                <input class="btn btn-default btn-sm" type="file" id="_fileChallengepr" style ="width: auto;"><br/>
                 <textarea rows="3" class="form-control" id="challangepr" placeholder="Details of Challange"></textarea><br>
                 <div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
@@ -81,6 +82,7 @@
                 <span class="input-group-addon">Title : </span>						
                 <input type="text" class="form-control" id="title" placeholder="Tilte"/>
             </div><br>
+            <input class="btn btn-default btn-sm" type="file" id="_fileTask" style ="width: auto;"><br/>
             <div class="input-group" >
                 <span class="input-group-addon">Task : </span>						
                 <textarea rows="3" class="form-control" id="taskdetails" placeholder="Details of Tasks"></textarea>
@@ -143,8 +145,8 @@
         </div>
         <div id='notesForm'>
             <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>
+            <input class="btn btn-default btn-sm" type="file" id="_fileNotes" style ="width: auto;"><br/>
             <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
-            <input type='hidden' name='project_id' value="<?php echo $pro_id; ?>"/>
             <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
         </div>
         <div id='manageForm'>

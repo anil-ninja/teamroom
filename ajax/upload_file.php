@@ -77,9 +77,36 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					echo substr($filePath, 3);
 					exit;
 					
-				break;	
+				break;
+				
+			case "taskPic":
+			
+					$filePath = checkNCreateFolder($username,"taskPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					saveFile($filePath) ;
+					echo substr($filePath, 3);
+					exit;
+					
+				break;
+				
+			case "projectchalPic":
+			
+					$filePath = checkNCreateFolder($username,"projectchalPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					saveFile($filePath) ;
+					echo substr($filePath, 3);
+					exit;
+					
+				break;
+				
+			case "projectnotesPic":
+			
+					$filePath = checkNCreateFolder($username,"projectnotesPic")."/".date("Y-m-d h:i:sa")."_".$_FILES["file"]["name"];
+					saveFile($filePath) ;
+					echo substr($filePath, 3);
+					exit;
+					
+				break;
 		}
-    //  echo "fileName: ".$fileName;
+    //  echo "fileName: ".$fileName; taskPic
   } else {
     echo "Invalid File type only jpeg, jpg and png are allowed";
     //echo "Type: " . $_FILES["file"]["type"] . "<br>";
