@@ -2,11 +2,11 @@
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 // include_once 'ninjas.inc.php';
 ?>
-<div class="navbar navbar-default navbar-fixed-top" style="line-height: 1.928571;">
+<div class="navbar navbar-default navbar-fixed-top" style="line-height: 1.928571; width :100%">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-lg-1">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -14,28 +14,26 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>colvade</b></a>
             </div>
         </div>
-        <div class="col-md-2">
-                <div class="navbar-collapse" style="hieght: auto;">
-                    <ul class="nav navbar-nav navbar-left">
+        <div class="col-lg-2">
+                <div class="navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left navbar-responsive">
                         <li class='navbar-text' >
-                        <div class="row">
                          <div class="input-group">
-                                 <input type="text"  id="search" placeholder="search" style="height : 28px" class="form-control">
+                                 <input type="text"  id="search" placeholder="search" style="height : 26px" class="form-control">
                                  <span class="input-group-btn">
-                                     <button type="submit" id="keyword"  class="btn btn-default">
+                                     <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
                                         <p class="glyphicon glyphicon-search">
                                      </button>
                                  </span>
-                         </div>
                          </div>
                         </li>
                     </ul>
                 </div>
             </div>
-    <div class="col-md-9">
-    <div class="navbar-collapse" style="hieght: auto;">
+    <div class="col-lg-9">
+    <div class="navbar-collapse">
        
-        <ul class='nav navbar-nav navbar-right' >
+        <ul class='nav navbar-nav navbar-right navbar-responsive' >
             <?php
             if (isset($_SESSION['user_id'])) {
                 if ($requestedPage == "challenges.php") {
@@ -125,7 +123,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             </li>
                         </ul>
                     </div>
-                </li><li>&nbsp;&nbsp;&nbsp;</li>
+                </li>
             
     <?php
     } else {
