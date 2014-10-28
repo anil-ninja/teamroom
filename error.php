@@ -46,7 +46,7 @@ if (isset($_POST['logout'])) {
                    while ($top_challengesRow = mysqli_fetch_array($top_challenges)) {
                        $challenge_type_id = $top_challengesRow['challenge_id'];
                        $challenge_type_title = $top_challengesRow['challenge_title'];
-                       $challenge_type_stmt = $top_challengesRow['stmt'];
+                       $challenge_type_stmt = str_replace("<s>", "&nbsp;", $top_challengesRow['stmt']) ;
                        $challenge_type_first = $top_challengesRow['first_name'];
                        $challenge_type_last = $top_challengesRow['last_name'];
                        $challenge_type_username = $top_challengesRow['username'];
@@ -122,14 +122,14 @@ if (isset($_POST['logout'])) {
            <?php 
                 echo "<div class='bs-component'>
                         <font size='4'><h3 class='panel-title'><p>Projects</p></h3></font><hr>";
-                $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 100) FROM projects 
+                $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 100) as stmt FROM projects 
                                                         WHERE project_type = '1' AND blob_id = '0')  
                                                     UNION 
-                                                    (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 100) FROM projects as a JOIN blobs as b 
+                                                    (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 100) as stmt FROM projects as a JOIN blobs as b 
                                                         WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 10 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
                     $project_title_display = $projectsRow['project_title'];
-                    $project_title_stmt = $projectsRow['LEFT(stmt, 100)'];
+                    $project_title_stmt = str_replace("<s>", "&nbsp;", $projectsRow['stmt']) ;
                     echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>"
                     .$project_title_display."</b></p>"
                     .$project_title_stmt."....<br>";
