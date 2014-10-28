@@ -235,4 +235,39 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#notesForm").hide(1500);
     $("#manageForm").toggle(3000);
   });
+
+//allPanels
+		$("#eye_open").click(function(){
+	 // alert("I am pencil!!! :)");
+  	$(".sign").show(1000);
+  	$(".deciduous").show(1000);
+  	$(".pushpin").show(1000);
+  	$(".flag").show(1000);
+  });
+$("#sign").click(function(){
+	 // alert("I am pencil!!! :)");
+  	$(".pushpin").hide(1000);
+  	$(".deciduous").hide(1000);
+  	$(".flag").hide(1000);
+    $(".sign").show(1000);
+  });
+  $("#deciduous").click(function(){
+	 // alert("I am pencil!!! :)");
+  	$(".sign").hide(1000);
+  	$(".pushpin").hide(1000);
+  	$(".flag").hide(1000);
+    $(".deciduous").show(1000);
+  });
+  $("#pushpin").click(function(){
+  	$(".sign").hide(1000);
+  	$(".deciduous").hide(1000);
+  	$(".flag").hide(1000);
+    $(".pushpin").show(1000);
+  });
+  $("#flag").click(function(){
+  	$(".sign").hide(1000);
+  	$(".flag").show(1000);
+  	$(".pushpin").hide(1000);
+  	$(".deciduous").hide(1000);
+  });
 });	

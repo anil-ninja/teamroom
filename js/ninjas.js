@@ -186,7 +186,46 @@ function bootstrap_alert(elem, message, timeout,type) {
 	}
 		});
 		
-				$("#create_project").click(function(){
+		$("#remind").click(function(){
+      		$("#remind").attr('disabled','disabled');
+			var reminder = $("#reminder").val() ;
+			var month = $("#month").val() ;
+			var date = $("#date").val() ;
+			var hour = $("#hour").val() ;
+			var minute = $("#minute").val() ;
+			if(reminder==''){
+				bootstrap_alert(".alert_placeholder", "Reminder can not be empty", 5000,"alert-warning");
+				return false;
+			}
+			else if (month == '0' && date == '0' && hour == '0' && minute == '0') {
+				bootstrap_alert(".alert_placeholder", "Please Select Date and Time ", 5000,"alert-warning");
+				return false;
+				}
+			 else {
+			var dataString = 'reminder='+ reminder + '&month='+ month + '&date='+ date + '&hour='+ hour + '&minute='+ minute  ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/submit_reminder.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result=='Reminder Set succesfully!'){
+						$("#reminder").val("") ;
+						$("#month").val("") ;
+						$("#date").val("") ;
+						$("#hour").val("") ;
+						$("#minute").val("") ;
+					location.reload();
+					}
+				}
+			 });
+			}
+			$("#remind").removeAttr('disabled');	
+		});
+			
+		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
 			var project_title = $("#project_title").val() ;
 			var project_stmt = $("#project_stmt").val();
@@ -375,7 +414,28 @@ $("#pencil").click(function(){
     
 		$("#create_task").click(function(){
       		$("#create_task").attr('disabled','disabled');
+			var team = $("#team").val() ;
 			var email = $("#email").val() ;
+			if (email != "") {
+				check = function () {
+			  $.ajax({
+				type: "POST",
+				url: "ajax/email.php",
+				data: email,
+				cache: false,
+				success: function(result){
+					alert(result);
+				}
+				});	
+			  }
+			 }
+			var users = $("#users").val() ;
+			if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team == '0' && users !='0' && email !="")
+				||(team != '0' && users =='0' && email !="")||(team != '0' && users !='0' && email =="")) {
+				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
+				return false ;
+			}
+			else {
 			var title = $("#title").val() ;
 			var id = $("#project_id").val() ;
 			var taskdetails = $("#taskdetails").val() ;
@@ -385,13 +445,10 @@ $("#pencil").click(function(){
 			var etad = parseInt($("#c_etad").val());
 			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&title='+ title + '&email='+ email + '&id='+ id +
+			var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&title='+ title + '&email='+ email + '&team='+ team + '&users='+ users + '&id='+ id +
 			'&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
-			if(email==''){
-				bootstrap_alert(".alert_placeholder", "Email can not be empty", 5000,"alert-warning");
-			}
-			else if(title==''){
+			if(title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 			}
 			else if(taskdetails==''){
@@ -402,5 +459,6 @@ $("#pencil").click(function(){
 				var _file = document.getElementById('_fileTask');
 				uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
 			}
-      	});
+		}
+      });
 });

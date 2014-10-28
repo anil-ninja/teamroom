@@ -60,10 +60,8 @@ include_once 'functions/delete_comment.php';
 				<?php   include_once 'html_comp/left_panel_ninjas.php';      ?>
             </div> 
                 <div class="col-lg-6">
-                    <div class="panel-primary" id="prch">
-                        <p id='home-ch'></p>
+                        
                        <?php include_once 'html_comp/project_page_project.php'; ?>
-                    </div>
                 </div>
                 <div class="col-lg-3">
 					   <?php include_once 'html_comp/project_page_challenge.php'; ?>

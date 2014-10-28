@@ -1,159 +1,3 @@
-<div class='list-group'>
-    <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span></div>
-    <div class='list-group-item'>
-		<?php
-		$_SESSION['project_id'] = $pro_id;
-		?>
-        <div id='challegeprForm'>
-            
-                <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
-                <input class="btn btn-default btn-sm" type="file" id="_fileChallengepr" style ="width: auto;"><br/>
-                <textarea rows="3" class="form-control" id="challangepr" placeholder="Details of Challange"></textarea><br>
-                <div class="inline-form">
-                    Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
-                        <option value='0' selected >hour</option>
-                        <?php
-                        $o = 1;
-                        while ($o <= 24) {
-                            echo "<option value='" . $o . "' >" . $o . "</option>";
-                            $o++;
-                        }
-                        ?>
-                    </select>
-                    <select class="btn btn-default btn-xs" id = "open" >	
-                        <option value='10' selected >minute</option>
-                        <option value='20'  >20</option>
-                        <option value='30' >30</option>
-                        <option value='40'  >40</option>
-                        <option value='50' >50</option>
-                    </select><br/><br/>ETA : 
-                    <select class="btn btn-default btn-xs" id = "cc_eta" >	
-                        <option value='0' selected >Month</option>
-                        <?php
-                        $m = 1;
-                        while ($m <= 11) {
-                            echo "<option value='" . $m . "' >" . $m . "</option>";
-                            $m++;
-                        }
-                        ?>
-                    </select>
-                    <select class="btn btn-default btn-xs" id= "cc_etab" >	
-                        <option value='0' selected >Days</option>
-                        <?php
-                        $d = 1;
-                        while ($d <= 30) {
-                            echo "<option value='" . $d . "' >" . $d . "</option>";
-                            $d++;
-                        }
-                        ?>
-                    </select>
-                    <select class="btn btn-default btn-xs" id= "cc_etac" >	
-                        <option value='0' selected >hours</option>
-                        <?php
-                        $h = 1;
-                        while ($h <= 23) {
-                            echo "<option value='" . $h . "' >" . $h . "</option>";
-                            $h++;
-                        }
-                        ?>
-                    </select>
-                    <select class="btn btn-default btn-xs" id= "cc_etad" >	
-                        <option value='15' selected >minute</option>
-                        <option value='30' >30</option>
-                        <option value='45'  >45</option>
-                    </select>
-                </div><br/><br/>
-                <div class="input-group">Challenge Type : 
-                    <select class='btn-default btn-xs' id="type" >
-                        <option value=" 1" >Public</option>
-                        <option value=" 2" selected >Private</option>
-                    </select>
-                </div>
-                <br>
-                <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
-            
-        </div>
-        <div id='taskForm'>
-            <div class="input-group" >
-                <span class="input-group-addon">Assign To : </span>
-                <input type="text" class="form-control" id="email" placeholder="Enter email or Team name ">
-            </div><br/>
-            <div class="input-group" >
-                <span class="input-group-addon">Title : </span>						
-                <input type="text" class="form-control" id="title" placeholder="Tilte"/>
-            </div><br>
-            <input class="btn btn-default btn-sm" type="file" id="_fileTask" style ="width: auto;"><br/>
-            <div class="input-group" >
-                <span class="input-group-addon">Task : </span>						
-                <textarea rows="3" class="form-control" id="taskdetails" placeholder="Details of Tasks"></textarea>
-            </div><br>
-            <div class="inline-form">
-                ETA : 
-                <select class="btn btn-default btn-xs" id = "c_eta" >	
-                    <option value='0' selected >Month</option>
-                    <?php
-                    $m = 1;
-                    while ($m <= 11) {
-                        echo "<option value='" . $m . "' >" . $m . "</option>";
-                        $m++;
-                    }
-                    ?>
-                </select>
-                <select class="btn btn-default btn-xs" id= "c_etab" >	
-                    <option value='0' selected >Days</option>
-                    <?php
-                    $d = 1;
-                    while ($d <= 30) {
-                        echo "<option value='" . $d . "' >" . $d . "</option>";
-                        $d++;
-                    }
-                    ?>
-                </select>
-                <select class="btn btn-default btn-xs" id= "c_etac" >	
-                    <option value='0' selected >hours</option>
-                    <?php
-                    $h = 1;
-                    while ($h <= 23) {
-                        echo "<option value='" . $h . "' >" . $h . "</option>";
-                        $h++;
-                    }
-                    ?>
-                </select>
-                <select class="btn btn-default btn-xs" id= "c_etad" >	
-                    <option value='15' selected >minute</option>
-                    <option value='30' >30</option>
-                    <option value='45'  >45</option>
-                </select>
-            </div><br/><br/>
-            <input type='hidden' id='project_id' value="<?php echo $pro_id; ?>"/>
-            <input type="button" value="Assign" class="btn btn-success" id="create_task"/>
-        </div>
-        <div id='teamForm'>
-            <form method="POST">
-                <div class="input-group" >
-                    <span class="input-group-addon">Team Name</span>
-                    <input type="text" class="form-control" name="team_name" placeholder="Enter your team name">
-                </div>
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon">Create Team with (Email)</span>
-                    <input type="email" class="form-control" name="email" placeholder="Enter First team member Email">
-                </div>
-                <br>
-                <input type="submit" class="btn btn-success" name = "create_team" value = "Create New Team" >
-            </form>
-        </div>
-        <div id='notesForm'>
-            <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>
-            <input class="btn btn-default btn-sm" type="file" id="_fileNotes" style ="width: auto;"><br/>
-            <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
-            <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
-        </div>
-        <div id='manageForm'>
-            <div id="elfinder"></div>
-        </div><br/>
-    </div>
-</div>
 <?php
 $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id )
@@ -239,6 +83,184 @@ echo "<div class='comments clearfix'>
 </div>"
 ?>
 
+<div class='list-group'>
+    <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span></div>
+    <div class='list-group-item'>
+		<?php
+		$_SESSION['project_id'] = $pro_id;
+		?>
+        <div id='challegeprForm'>
+            
+                <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
+                <input class="btn btn-default btn-sm" type="file" id="_fileChallengepr" style ="width: auto;"><br/>
+                <textarea rows="3" class="form-control" id="challangepr" placeholder="Details of Challange"></textarea><br>
+                <div class="inline-form">
+                    Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
+                        <option value='0' selected >hour</option>
+                        <?php
+                        $o = 1;
+                        while ($o <= 24) {
+                            echo "<option value='" . $o . "' >" . $o . "</option>";
+                            $o++;
+                        }
+                        ?>
+                    </select>
+                    <select class="btn btn-default btn-xs" id = "open" >	
+                        <option value='10' selected >minute</option>
+                        <option value='20'  >20</option>
+                        <option value='30' >30</option>
+                        <option value='40'  >40</option>
+                        <option value='50' >50</option>
+                    </select><br/><br/>ETA : 
+                    <select class="btn btn-default btn-xs" id = "cc_eta" >	
+                        <option value='0' selected >Month</option>
+                        <?php
+                        $m = 1;
+                        while ($m <= 11) {
+                            echo "<option value='" . $m . "' >" . $m . "</option>";
+                            $m++;
+                        }
+                        ?>
+                    </select>
+                    <select class="btn btn-default btn-xs" id= "cc_etab" >	
+                        <option value='0' selected >Days</option>
+                        <?php
+                        $d = 1;
+                        while ($d <= 30) {
+                            echo "<option value='" . $d . "' >" . $d . "</option>";
+                            $d++;
+                        }
+                        ?>
+                    </select>
+                    <select class="btn btn-default btn-xs" id= "cc_etac" >	
+                        <option value='0' selected >hours</option>
+                        <?php
+                        $h = 1;
+                        while ($h <= 23) {
+                            echo "<option value='" . $h . "' >" . $h . "</option>";
+                            $h++;
+                        }
+                        ?>
+                    </select>
+                    <select class="btn btn-default btn-xs" id= "cc_etad" >	
+                        <option value='15' selected >minute</option>
+                        <option value='30' >30</option>
+                        <option value='45'  >45</option>
+                    </select>
+                </div><br/><br/>
+                <div class="input-group">Challenge Type : 
+                    <select class='btn-default btn-xs' id="type" >
+                        <option value=" 1" >Public</option>
+                        <option value=" 2" selected >Private</option>
+                    </select>
+                </div>
+                <br>
+                <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
+            
+        </div>
+        <div id='taskForm'>
+	<?php
+	
+	$teams = mysqli_query($db_handle, "select DISTINCT team_name from teams where project_id = '$pro_id' and status = '1';" ) ;
+		if (mysqli_num_rows($teams) > 0) { 
+			$task = "";
+          $task .= "<div class='inline-form'>Assign To : &nbsp;&nbsp;
+                <select class='btn btn-default btn-xs' id = 'team' >
+                <option value='0' selected > Select Team </option>" ;
+           while ($teamsrow = mysqli_fetch_array($teams)) {
+			   $teamsname = $teamsrow['team_name'] ;
+			  $task = $task ."<option value='" . $teamsname . "' >" . $teamsname . "</option>" ;
+		   }
+		   $task = $task ."</select>&nbsp;&nbsp;&nbsp;&nbsp;
+					<select class='btn btn-default btn-xs' id= 'users' >	
+                    <option value='0' selected >Select Member </option>" ;
+		   $users = mysqli_query($db_handle, "select DISTINCT a.user_id, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and 
+												a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
+												and a.member_status = '1' and a.user_id = b.user_id;" ) ;
+			 while ($userssrow = mysqli_fetch_array($users)) {
+			   $username = $userssrow['username'] ;
+			   $u_id = $userssrow['user_id'] ;
+			  $task = $task ."<option value='" . $u_id . "' >" . $username . "</option>" ;
+		   }									
+        $task = $task ."</select>&nbsp;&nbsp; <input type='email' id='email' placeholder='Enter Email-ID'/></div><br/>
+            <div class='input-group' >
+                <span class='input-group-addon'>Title : </span>						
+                <input type='text' class='form-control' id='title' placeholder='Tilte'/>
+            </div><br>
+            <input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/><br/>
+            <div class='input-group' >
+                <span class='input-group-addon'>Task : </span>						
+                <textarea rows='3' class='form-control' id='taskdetails' placeholder='Details of Tasks'></textarea>
+            </div><br>
+            <div class='inline-form'>
+                ETA : 
+                <select class='btn btn-default btn-xs' id = 'c_eta' >	
+                    <option value='0' selected >Month</option>" ;
+                    $m = 1;
+                    while ($m <= 11) {
+                      $task = $task . "<option value='" . $m . "' >" . $m . "</option>";
+                        $m++;
+                    }
+         $task = $task ." </select>
+                <select class='btn btn-default btn-xs' id= 'c_etab' >	
+                    <option value='0' selected >Days</option> " ;
+                    $d = 1;
+                    while ($d <= 30) {
+                   $task = $task ."<option value='" . $d . "' >" . $d . "</option>";
+                        $d++;
+                    }
+        $task = $task ."</select>
+                <select class='btn btn-default btn-xs' id= 'c_etac' >	
+                    <option value='0' selected >hours</option>" ;
+                    $h = 1;
+                    while ($h <= 23) {
+             $task = $task ."<option value='" . $h . "' >" . $h . "</option>";
+                        $h++;
+                    }
+         $task = $task ."</select>
+                <select class='btn btn-default btn-xs' id= 'c_etad' >	
+                    <option value='15' selected >minute</option>
+                    <option value='30' >30</option>
+                    <option value='45'  >45</option>
+                </select>
+            </div><br/><br/>
+            <input type='button' value='Assign' class='btn btn-success' id='create_task'/>" ;
+            
+         echo $task ;  
+	 } 
+		else {
+			echo "You hane no teams, Please create Team First";			
+			}
+     ?>
+        </div>
+        <div id='teamForm'>
+            <form method="POST">
+                <div class="input-group" >
+                    <span class="input-group-addon">Team Name</span>
+                    <input type="text" class="form-control" name="team_name" placeholder="Enter your team name">
+                </div>
+                <br>
+                <div class="input-group">
+                    <span class="input-group-addon">Create Team with (Email)</span>
+                    <input type="email" class="form-control" name="email" placeholder="Enter First team member Email">
+                </div>
+                <br>
+                <input type="submit" class="btn btn-success" name = "create_team" value = "Create New Team" >
+            </form>
+        </div>
+        <div id='notesForm'>
+            <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>
+            <input class="btn btn-default btn-sm" type="file" id="_fileNotes" style ="width: auto;"><br/>
+            <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
+            <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
+        </div>
+        <div id='manageForm'>
+            <div id="elfinder"></div>
+        </div><br/>
+    </div>
+</div>
+<div class="panel-primary eye_open" id="prch">
+	<p id='home-ch'></p>
 <?php
 $_SESSION['lastpr'] = '10';
 $_SESSION['project_id'] = $pro_id;
@@ -297,14 +319,14 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $remaintimeown = remaining_time($owntime, $owneta);
 
     if ($type_task == 5) {
-        echo "<div class='list-group'>
+         if ($status_task == 2) {
+			 echo "<div class='list-group pushpin'>
                     <div class='list-group-item'>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-pushpin'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>
                             <div style='line-height: 16.50px;'>";
-        if ($status_task == 2) {
             echo "<div class='pull-right'>
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
@@ -332,7 +354,13 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 					 ETA Given : " . $etaown . " <br/>" . $remaintimeown . "</div></div>";
         }
         if ($status_task == 4) {
-
+			echo "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
             if ($id_create == $user_id) {
                 echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
 				   <input type='hidden' name='cid' value='" . $id_task . "'/>
@@ -343,6 +371,13 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
         }
         if ($status_task == 5) {
+			echo "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
             echo "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span><br/>
 				<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
 				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
@@ -350,14 +385,14 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         }
     }
     if ($type_task == 1 || $type_task == 2) {
-        echo "<div class='list-group'>
-                <div class='list-group-item'>
-                    <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-pencil'></span>
-                        <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                    </div>
-                    <div style='line-height: 16.50px;'>";
         if ($status_task == 1) {
+			echo "<div class='list-group sign'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
             echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
             . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
             dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
@@ -368,6 +403,13 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                 <br>" . $timetask . "&nbsp&nbsp&nbsp with ETA : " . $tasketa . "<br/>" . $remaintime . "</div></div>";
         }
         if ($status_task == 2) {
+			echo "<div class='list-group sign'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
             echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
             . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span></div>";
             if ($ownid == $user_id) {
@@ -383,6 +425,13 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         }
 
         if ($status_task == 4) {
+			echo "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
             echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
             . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
             if ($id_create == $user_id) {
@@ -397,6 +446,13 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         }
 
         if ($status_task == 5) {
+			echo "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
             echo "</span><span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>
 				<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
 				Owned By &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
@@ -455,7 +511,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     </div></div></div>";
 }
 ?>
-
+</div>
 <?php
 $echo = mysqli_query($db_handle, "select * from challenges where challenge_type = '6' ;");
 if (mysqli_num_rows($echo) > 0) {
@@ -479,7 +535,7 @@ while ($displayrow = mysqli_fetch_array($display)) {
     $lname = $displayrow['last_name'];
     $username_notes = $displayrow['username'];
     $note_ID = $displayrow['challenge_id'];
-    echo "<div class='list-group'>
+    echo "<div class='list-group deciduous'>
 							<div class='list-group-item'>
 							   <div class='pull-right'>
 								<div class='list-group-item'>

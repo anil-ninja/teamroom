@@ -1,7 +1,8 @@
 <div class="bs-component">
     <br/><b>
     <a data-toggle='modal' class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-bell'></i>
-      <font size="2"><b>Tasks -- to do</b></font></a><hr>
+      <font size="2"><b>Tasks -- to do</b></font></a> | <a data-toggle='modal' data-target="#myreminder" class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-bullhorn'></i>
+      <font size="2"><b> Add Reminder </b></font></a><hr>
     <?php
     $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
 						b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
@@ -65,3 +66,69 @@
     }
     ?>
 </div>
+ <!-- Modal -->
+            <div class="modal fade" id="myreminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Add Reminder</font></h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="inline-form"><br/>
+								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
+                               	<div class="inline-form">
+                    Select Date and Time :  
+                    <select class="btn-info btn-xs"  id= "month" >	
+                        <option value='0' selected >Month</option>
+                        <?php
+                        $m = 1;
+                        while ($m <= 12) {
+                            echo "<option value='" . $m . "' >" . $m . "</option>";
+                            $m++;
+                        }
+                        ?>
+                    </select>&nbsp;&nbsp;
+                    <select class="btn-info btn-xs"  id= "date" >	
+                        <option value='0' selected >Date</option>
+                        <?php
+                        $d = 1;
+                        while ($d <= 30) {
+                            echo "<option value='" . $d . "' >" . $d . "</option>";
+                            $d++;
+                        }
+                        ?>
+                    </select>&nbsp;&nbsp;&nbsp;
+                    <select class="btn-info btn-xs"  id= "hour" >	
+                        <option value='0' selected >hour</option>
+                        <?php
+                        $h = 1;
+                        while ($h <= 23) {
+                            echo "<option value='" . $h . "' >" . $h . "</option>";
+                            $h++;
+                        }
+                        ?>
+                    </select>&nbsp;&nbsp;&nbsp;
+                    <select class="btn-info btn-xs"  id= "minute" >	
+                        <option value='0' selected >minute</option>
+                        <?php
+                        $o = 1;
+                        while ($o <= 59) {
+                            echo "<option value='" . $o . "' >" . $o . "</option>";
+                            $o++;
+                        }
+                        ?>
+                    </select>				
+                       </div><br/><br/>     	
+                            <input type="submit" class="btn btn-primary btn-sm" id = "remind" value = "Set"><br/><br/>
+                        </div>
+                        <div class="modal-footer">
+							<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+						</div>
+                    </div>
+                </div>
+            </div>
+            <!--end modle-->

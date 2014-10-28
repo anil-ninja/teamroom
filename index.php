@@ -89,7 +89,8 @@ if (!isset($_SESSION['first_name'])) {
                                 </div><div class="col-md-6">
                                 <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
                             </div></div></div><br/>	
-                                 <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/> <span id="status_email"></span>
+                                 <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
+                                  <span id="status_email"></span>
                                     <br/>					
                             <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
                            <br/>

@@ -84,7 +84,7 @@ if (isset($_POST['create_team'])) {
         $responserow = mysqli_fetch_array($respo);
         $uid = $responserow['user_id'];
         mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, team_owner, project_id) VALUES ('$uid', '$team_name', '0', '$pro_id'),('$user_id','$team_name', '$user_id', '$pro_id');");
-        header('Location: project.php');
+        header('Location: #');
     } else {
        echo "<div style='display: block;' class='modal fade in' id='eye' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
                 <div class='modal-dialog'>

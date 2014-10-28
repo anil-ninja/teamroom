@@ -61,157 +61,147 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 			$timetaken = $day." Days :".$hour." Hours :".$minute." Min :" ;
 			$remaintimeown = remaining_time($owntime, $owneta) ;
 					
-	 if($type_task == 5) {
-		if($status_task == 2) {					
-	      $show .= "<div class='list-group'><span class='glyphicon glyphicon-pushpin'></span>
-				<div class='list-group-item'>
-				<div class='pull-right'>
-				<div class='list-group-item'>
-					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>" ;
-		if($id_create == $user_id) {
-           $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
-                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
-                        <li><form method='POST' class='inline-form'>";                    
-       if($remaintimeown == 'Closed') {        
-             $show = $show . "<input type='hidden' name='id' value='".$id_task."'/>
-                                <input class='btn-link' type='submit' name='eta' value='Change ETA'/>";
-                            } 
-						}                                   
-                 $show = $show . "</form></li>
-								<li><button class='btn-link' >Report Spam</button></li></div></div>";
-                    
-      if($ownid==$user_id) {			
-	$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='".$id_task."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-					</form>";
-				}
-	$show = $show . "Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$etaown." <br/>".$remaintimeown."</div>";
-		}
-	else if($status_task == 4) {
-	$show = $show . "<div class='list-group'><span class='glyphicon glyphicon-pushpin'></span>
-				<div class='list-group-item'>" ;
-		if($id_create==$user_id) {			
-		$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-				   <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-				   <button type='submit' class='btn-primary' name='closechal'>Close</button></form>";
-				}
-	$show = $show . "Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$etaown." <br/> and Submitted On : ".$timecom." ETA Taken : ".$timetaken."</div>";
-		}
-	else {	
-	$show = $show . "<div class='list-group'><span class='glyphicon glyphicon-ok'></span>
-				<div class='list-group-item'>" ;		
-		$show = $show . "<span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>
-				Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$etaown." <br/> and Submitted On : ".$timecom." ETA Taken : ".$timetaken."</div>";
-	}
-}
- if($type_task == 5) {
-		 $show .= "<div class='list-group'>
-				<div class='list-group-item'><span class='glyphicon glyphicon-pushpin'></span>" ;
-		if($status_task == 2) {					
-	    $show = $show . "<div class='pull-right'>
+    if ($type_task == 5) {
+         if ($status_task == 2) {
+			 $show .= "<div class='list-group pushpin'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            $show = $show . "<div class='pull-right'>
 				<div class='list-group-item'>
 					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-					<ul class='dropdown-menu' aria-labelledby='dropdown'>" ;
-		if($id_create == $user_id) {
-        $show = $show ."<li><button class='btn-link' href='#'>Edit</button></li>
-                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
-                        <li><form method='POST' class='inline-form'>";                    
-       if($remaintimeown == 'Closed') {        
-             $show = $show ."<input type='hidden' name='id' value='".$id_task."'/>
+					<ul class='dropdown-menu' aria-labelledby='dropdown'>";
+            if ($id_create == $user_id) {
+                $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                        <li><button class='btn-link' cID='" . $id_task . "' onclick='delChallenge(" . $id_task . ");'>Delete</button></li>
+                        <li><form method='POST' class='inline-form'>";
+                if ($remaintimeown == 'Closed') {
+                    $show = $show . "<input type='hidden' name='id' value='" . $id_task . "'/>
                                 <input class='btn-link' type='submit' name='eta' value='Change ETA'/>";
-                            } 
-						}                                   
-            $show = $show ."</form></li>
-								<li><button class='btn-link' >Report Spam</button></li></ul></div></div>"; 
-                    
-      if($ownid==$user_id) {			
-	$show = $show ."<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='".$id_task."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-					</form>";
-				}
-$show = $show . "Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$etaown." <br/>".$remaintimeown."</div>";
-		}
-	 if($status_task == 4) {
+                }
+            }
+            $show = $show . "</form></li>
+								<li><button class='btn-link' >Report Spam</button></li></ul></div></div>";
 
-		if($id_create==$user_id) {			
-	$show = $show ."<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-				   <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-				   <button type='submit' class='btn-primary' name='closechallenge'>Close</button></form>";
-				}
-	$show = $show ."Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$etaown." <br/> and Submitted On : ".$timecom." ETA Taken : ".$timetaken."</div>";
-		}
-	if($status_task == 5) {			
-	$show = $show ."<span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>
-				Task Assigned by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$etaown." <br/> and Submitted On : ".$timecom." ETA Taken : ".$timetaken."</div>";
-	}
-}
-	 if($type_task == 1 || $type_task == 2) {
-	$show = $show ."<div class='list-group'>
-				<div class='list-group-item'><span class='glyphicon glyphicon-pencil'></span>" ;
-		 if ($status_task == 1) {					
-	   $show = $show ."Created by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_task."'>" 
-				. ucfirst($fname_task). '&nbsp'. ucfirst($lname_task). " </a></span>" ;
-				dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
-	$show = $show ."<form method='POST' class='inline-form pull-right'>
-						<input type='hidden' name='id' value='".$id_task."'/>
-						<input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
-					</form>
-				 &nbsp&nbsp&nbsp On : ".$timetask."&nbsp&nbsp&nbsp with ETA : ".$tasketa."<br/>".$remaintime."</div>";
-		}
-	 if ($status_task == 2) {					
-	   $show = $show ."Created by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_task."'>"
-				. ucfirst($fname_task). '&nbsp'. ucfirst($lname_task). " </a></span>" ;
-		if($ownid==$user_id) {			
-		$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='".$id_task."'/>
+            if ($ownid == $user_id) {
+                $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+					<input type='hidden' name='id' value='" . $id_task . "'/>
 					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
 					</form>";
-				}		
-		$show = $show . "&nbsp&nbsp On : ".$timetask."<br/>
-				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
-				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp On : ".$timefunct." and 
-				ETA Taken : ".$etaown." <br/> Time Remaining : ".$remaintimeown."</div>" ;
-			}
-		
-	 if($status_task == 4) {
-		$show = $show . "Created by &nbsp 
-				<span class='color strong'><a href ='profile.php?username=".$username_task."'>"
-				. ucfirst($fname_task). '&nbsp'. ucfirst($lname_task). " </a></span>" ;
-		if($id_create==$user_id) {			
-			$show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+            }
+            $show = $show . "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
+				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
+					 ETA Given : " . $etaown . " <br/>" . $remaintimeown . "</div></div>";
+        }
+        if ($status_task == 4) {
+			$show = $show . "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            if ($id_create == $user_id) {
+                $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
 				   <input type='hidden' name='cid' value='" . $id_task . "'/>
 				   <button type='submit' class='btn-primary' name='closechallenge'>Close</button></form>";
-				}		
-		$show = $show . "&nbsp&nbsp On : ".$timetask."<br/>
-				Owned By  <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
-				. ucfirst($ownfname). '&nbsp'. ucfirst($ownlname). " </a></span>&nbsp&nbsp Submitted On : ".$timefunct." and 
-				ETA Taken : ".$timetaken."</div>" ;
-			}
-		
-	if($status_task == 5) {		
-		$show = $show . "</span><span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>
-				Created by &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($fname_task)."</a></span> On ".$timefunct."<br/>
-				Owned By &nbsp <span class='color strong' style= 'color :#3B5998;'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> </span>
-					 ETA Given : ".$etaown." <br/> and Submitted On : ".$timecom." ETA Taken : ".$timetaken."</div>";
-	}
-}				 
+            }
+            $show = $show . "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
+				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
+					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
+        }
+        if ($status_task == 5) {
+			$show = $show . "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            $show = $show . "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span><br/>
+				<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
+				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
+					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
+        }
+    }
+    if ($type_task == 1 || $type_task == 2) {
+        if ($status_task == 1) {
+			$show = $show . "<div class='list-group sign'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
+            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
+            dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
+            $show = $show . "<form method='POST' class='inline-form pull-right'>
+                    <input type='hidden' name='id' value='" . $id_task . "'/>
+                    <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                </form>
+                <br>" . $timetask . "&nbsp&nbsp&nbsp with ETA : " . $tasketa . "<br/>" . $remaintime . "</div></div>";
+        }
+        if ($status_task == 2) {
+			$show = $show . "<div class='list-group sign'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
+            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span></div>";
+            if ($ownid == $user_id) {
+                $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+                        <input type='hidden' name='id' value='" . $id_task . "'/>
+                        <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+                    </form>";
+            }
+            $show = $show . "&nbsp&nbsp On : " . $timetask . "<br/>
+				Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp On : " . $timefunct . " and 
+				ETA Taken : " . $etaown . " <br/> Time Remaining : " . $remaintimeown . "</div>";
+        }
+
+        if ($status_task == 4) {
+			$show = $show . "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
+            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
+            if ($id_create == $user_id) {
+                $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+				   <input type='hidden' name='cid' value='" . $id_task . "'/>
+				   <button type='submit' class='btn-primary' name='closechallenge'>Close</button></form>";
+            }
+            $show = $show . "&nbsp&nbsp On : " . $timetask . "<br/>
+				Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp Submitted On : " . $timefunct . " and 
+				ETA Taken : " . $timetaken . "</div></div>";
+        }
+
+        if ($status_task == 5) {
+			$show = $show . "<div class='list-group flag'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            $show = $show . "</span><span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>
+				<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
+				Owned By &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
+					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
+        }
+    }				 
 				
    	$show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'><b>".ucfirst($title_task)."</b></p>
 				<small>".str_replace("<s>","&nbsp;",$stmt_task)."</small><br/><br/>";

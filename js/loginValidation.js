@@ -35,17 +35,7 @@ function validateLoginFormOnSubmit() {
            // bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
             if(result){
                                 bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-                //alert(result);
-                /*$("#email").val("");
-                $("#title").val("");
-                $("#taskdetails").val("");
-                $("#c_eta").val("");
-                $("#c_etab").val("");
-                $("#c_etac").val("");
-                $("#c_etad").val("");
-             location.reload();*/
-
-             //return false;
+               
             } else {
                 //$("#accept_challenge").click() ;
                 location.reload();

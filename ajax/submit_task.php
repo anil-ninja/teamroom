@@ -5,7 +5,8 @@ if($_POST['email']){
 	$user_id = $_SESSION['user_id'];
 	$detailstext = $_POST['taskdetails'] ;
 	$id = $_POST['id'] ;
-	$email = $_POST['email'] ;
+	$team = $_POST['team'] ;
+	$users = $_POST['users'] ;
 	$assigned = mysqli_query($db_handle,"select user_id from user_info where email = '$email' ;") ;
 	$assignedrow = mysqli_fetch_array($assigned) ;
 	$owner = $assignedrow['user_id'] ;
