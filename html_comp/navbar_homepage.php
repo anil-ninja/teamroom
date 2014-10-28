@@ -135,15 +135,30 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     ?>
         </ul>
     </div></div></div>
-
-
-
-    <!-- sub nav bar-->
-    <div class="navbar-collapse collapse navbar-responsive-collapse" style="width: 110%;">
-        
+<!-- sub nav bar-->
+<?php
+if ($requestedPage == "project.php") {
+    
+ echo " <div class='navbar-collapse collapse navbar-responsive-collapse' style='width: 110%;'>        
         <ul class='nav navbar-nav navbar-inverse'>
-            <div class="col-md-offset-3 col-md-9 col-lg-9">
-                <div class="list-inline">
+            <div class='col-md-offset-3 col-md-9 col-lg-9'>
+                <div class='list-inline'>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-book'></span> Notes &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-flash'></span> Ideas &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='ok' ><span class='glyphicon glyphicon-flag'></span> Closed challenges &nbsp;</button></p></li>
+                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='film' ><span class='glyphicon glyphicon-film'></span> Videos &nbsp;</button></p></li>
+                </div>
+            </div>
+        </ul>                 
+    </div>" ;
+}
+	else {
+		echo " <div class='navbar-collapse collapse navbar-responsive-collapse' style='width: 110%;'>        
+        <ul class='nav navbar-nav navbar-inverse'>
+            <div class='col-md-offset-3 col-md-9 col-lg-9'>
+                <div class='list-inline'>
                     <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All &nbsp;</button></p></li>
                     <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges &nbsp;</button></p></li>
                     <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-book'></span> Articles &nbsp;</button></p></li>
@@ -153,7 +168,9 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 </div>
             </div>
         </ul>                 
-    </div>
+    </div>" ;
+}
+?>
 </div>
 <script>
 	
