@@ -418,7 +418,6 @@ $("#pencil").click(function(){
 			var users = $("#userstask").val() ;
 			var email = $("#emailtask").val() ;
 			if (email != "") {
-			d = checkemail({
 			$.ajax({
 				type: "POST",
 				url: "ajax/email.php",
@@ -427,10 +426,7 @@ $("#pencil").click(function(){
 				success: function(result){
 					alert(result);
 					}
-				});
-				});
-					}
-				
+				  });
 				}
 			if((team == '0' && users =='0')||(team != '0' && users !='0')) {
 				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
