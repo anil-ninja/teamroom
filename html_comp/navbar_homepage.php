@@ -10,7 +10,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>colvade</b></a>
+                <a class="navbar-brand" style='color: #fff;font-size:18pt;' href="ninjas.php"><b>collap</b></a>
             </div>
         </div>
         <div class="col-lg-2">
