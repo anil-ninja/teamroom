@@ -10,8 +10,9 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src ='img/collap.gif' style="width:75px;">
-                    <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">collap</a>
+                
+                    <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
+                    <img src ='img/collap.gif' style="width:75px;">collap</a>
             </div>
         </div>
         <div class="col-lg-2">
