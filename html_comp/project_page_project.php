@@ -595,3 +595,35 @@ while ($displayrow = mysqli_fetch_array($display)) {
 			</div></div></div>";
 }
 ?>
+<!-- Modal  -->
+<div class="modal fade" id="chasendemail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class='modal-title' id='myModalLabel'>Hi, It looks like s/he is not here. Lets intivite her/him.</h4>
+             </div>
+             <div class='modal-body'>
+                 <form role='form' method='POST' action = ''>
+                     <div class='input-group'>
+                         <span class='input-group-addon'>His/Her First Name</span> 
+                         <input type='text' class='form-control' name='fname' placeholder='His First Name'> 
+                     </div><br/>
+                     <div class='input-group'>
+                          <span class='input-group-addon'>His/Her Second Name</span> 
+                          <input type='text' class='form-control' name='sname' placeholder='His Second Name'> 
+                     </div><br/>
+                     <div class='input-group'>
+						  <span class='input-group-addon'>His Email ID</span> 
+                          <input type='text' class='form-control' name='email' value='".$email."' /> 
+                     </div><br><br>
+                        <input type='submit' class='btn btn-success' name='invite'  value='Invite Him/Her' />
+                  </form>
+             </div>
+             <div class="modal-footer">
+                <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+     </div>
+ </div>
+<!--- Modal Close --->

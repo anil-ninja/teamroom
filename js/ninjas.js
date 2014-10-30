@@ -417,6 +417,11 @@ $("#pencil").click(function(){
 			var team = $("#teamtask").val() ;
 			var users = $("#userstask").val() ;
 			var email = $("#emailtask").val() ;
+			if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team != '0' && users !='0' && email =="")
+			||(team != '0' && users =='0' && email !="")||(team == '0' && users !='0' && email !="")) {
+				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
+				return false ;
+			}
 			if (email != "") {
 			$.ajax({
 				type: "POST",
@@ -424,37 +429,61 @@ $("#pencil").click(function(){
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
-					alert(result);
+					//alert(result);
+					if (result == 'true') {
+							var title = $("#title").val() ;
+							var taskdetails = $("#taskdetails").val() ;
+							var eta = parseInt($("#c_eta").val());
+							var etab = parseInt($("#c_etab").val());
+							var etac = parseInt($("#c_etac").val());
+							var etad = parseInt($("#c_etad").val());
+							var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
+							// Returns successful data submission message when the entered information is stored in database.
+							var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&email='+ email + '&title='+ title + '&team='+ team + '&users='+ users +
+							'&challange_eta='+ (challange_eta+='') ;
+							//alert(dataString);
+							if(title==''){
+								bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+							}
+							else if(taskdetails==''){
+								bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
+							}
+							else {
+								//file upload
+								var _file = document.getElementById('_fileTask');
+								uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
+							}				
 					}
+						else {
+							alert("this person is not registered");
+							return false ;
+							}
+						}
 				  });
 				}
-			if((team == '0' && users =='0')||(team != '0' && users !='0')) {
-				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
-				return false ;
-			}
 			else {
-			var title = $("#title").val() ;
-			var taskdetails = $("#taskdetails").val() ;
-			var eta = parseInt($("#c_eta").val());
-			var etab = parseInt($("#c_etab").val());
-			var etac = parseInt($("#c_etac").val());
-			var etad = parseInt($("#c_etad").val());
-			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
-			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&title='+ title + '&team='+ team + '&users='+ users +
-			'&challange_eta='+ (challange_eta+='') ;
-			//alert(dataString);
-			if(title==''){
-				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-			}
-			else if(taskdetails==''){
-				bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
-			}
-			else {
-				//file upload
-				var _file = document.getElementById('_fileTask');
-				uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
-			}
-		}
-      });
+				var title = $("#title").val() ;
+				var taskdetails = $("#taskdetails").val() ;
+				var eta = parseInt($("#c_eta").val());
+				var etab = parseInt($("#c_etab").val());
+				var etac = parseInt($("#c_etac").val());
+				var etad = parseInt($("#c_etad").val());
+				var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
+				// Returns successful data submission message when the entered information is stored in database.
+				var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&title='+ title + '&team='+ team + '&users='+ users +
+				'&challange_eta='+ (challange_eta+='') ;
+				//alert(dataString);
+				if(title==''){
+					bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				}
+				else if(taskdetails==''){
+					bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
+				}
+				else {
+					//file upload
+					var _file = document.getElementById('_fileTask');
+					uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
+				}
+			}			
+		});
 });
