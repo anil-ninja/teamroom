@@ -414,30 +414,14 @@ $("#pencil").click(function(){
     
 		$("#create_task").click(function(){
       		$("#create_task").attr('disabled','disabled');
-			var team = $("#team").val() ;
-			var email = $("#email").val() ;
-			if (email != "") {
-				check = function () {
-			  $.ajax({
-				type: "POST",
-				url: "ajax/email.php",
-				data: email,
-				cache: false,
-				success: function(result){
-					alert(result);
-				}
-				});	
-			  }
-			 }
-			var users = $("#users").val() ;
-			if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team == '0' && users !='0' && email !="")
-				||(team != '0' && users =='0' && email !="")||(team != '0' && users !='0' && email =="")) {
+			var team = $("#teamtask").val() ;
+			var users = $("#userstask").val() ;
+			if((team == '0' && users =='0')||(team != '0' && users !='0')) {
 				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
 				return false ;
 			}
 			else {
 			var title = $("#title").val() ;
-			var id = $("#project_id").val() ;
 			var taskdetails = $("#taskdetails").val() ;
 			var eta = parseInt($("#c_eta").val());
 			var etab = parseInt($("#c_etab").val());
@@ -445,7 +429,7 @@ $("#pencil").click(function(){
 			var etad = parseInt($("#c_etad").val());
 			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&title='+ title + '&email='+ email + '&team='+ team + '&users='+ users + '&id='+ id +
+			var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',taskdetails)) + '&title='+ title + '&team='+ team + '&users='+ users +
 			'&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(title==''){

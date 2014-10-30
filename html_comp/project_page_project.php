@@ -165,14 +165,14 @@ echo "<div class='comments clearfix'>
 		if (mysqli_num_rows($teams) > 0) { 
 			$task = "";
           $task .= "<div class='inline-form'>Assign To : &nbsp;&nbsp;
-                <select class='btn btn-default btn-xs' id = 'team' >
+                <select class='btn-default btn-xs' id = 'teamtask' >
                 <option value='0' selected > Select Team </option>" ;
            while ($teamsrow = mysqli_fetch_array($teams)) {
 			   $teamsname = $teamsrow['team_name'] ;
 			  $task = $task ."<option value='" . $teamsname . "' >" . $teamsname . "</option>" ;
 		   }
 		   $task = $task ."</select>&nbsp;&nbsp;&nbsp;&nbsp;
-					<select class='btn btn-default btn-xs' id= 'users' >	
+					<select class='btn btn-default btn-xs' id= 'userstask' >	
                     <option value='0' selected >Select Member </option>" ;
 		   $users = mysqli_query($db_handle, "select DISTINCT a.user_id, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and 
 												a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
@@ -182,7 +182,7 @@ echo "<div class='comments clearfix'>
 			   $u_id = $userssrow['user_id'] ;
 			  $task = $task ."<option value='" . $u_id . "' >" . $username . "</option>" ;
 		   }									
-        $task = $task ."</select>&nbsp;&nbsp; <input type='email' id='email' placeholder='Enter Email-ID'/></div><br/>
+        $task = $task ."</select></div><br/>
             <div class='input-group' >
                 <span class='input-group-addon'>Title : </span>						
                 <input type='text' class='form-control' id='title' placeholder='Tilte'/>
@@ -421,7 +421,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             echo "&nbsp&nbsp On : " . $timetask . "<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp On : " . $timefunct . " and 
-				ETA Taken : " . $etaown . " <br/> Time Remaining : " . $remaintimeown . "</div>";
+				ETA Taken : " . $etaown . " <br/> Time Remaining : " . $remaintimeown . "</div></div>";
         }
 
         if ($status_task == 4) {
@@ -536,28 +536,27 @@ while ($displayrow = mysqli_fetch_array($display)) {
     $username_notes = $displayrow['username'];
     $note_ID = $displayrow['challenge_id'];
     echo "<div class='list-group deciduous'>
-							<div class='list-group-item'>
-							   <div class='pull-right'>
-								<div class='list-group-item'>
-									<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-									<ul class='dropdown-menu' aria-labelledby='dropdown'>
-									 <li><a class='btn-link' href='#'>Edit Note</a></li>
-									 <li><a class='btn-link' noteID='" . $note_ID . "' onclick='delNote(" . $note_ID . ");'>Delete Note</a></li>                  
-									 <li><a class='btn-link' >Report Spam</a></li>
-								   </ul>
-							  </div>
-							</div>
-							<p align='center' style='font-size: 14pt;color :#3B5998;'>" . $title . "</p>
-							
-							<div class='pull-left lh-fix'>     
-								<span class='glyphicon glyphicon-question-sign'></span>
-								<img src='uploads/profilePictures/$username_notes.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-							</div>
-							<div style='line-height: 16.50px;'>
-								<span class='pull-left color strong' style= 'color :#3B5998;'>
-									<a href ='profile.php?username=" . $username_notes . "'>" . ucfirst($fname) . " " . ucfirst($lname) . "</a>&nbsp&nbsp&nbsp</span> 
-							</div>
-							<small><br><br>" . $notes . "</small><br/><br/>";
+			<div class='list-group-item'>
+			   <div class='pull-right'>
+				<div class='list-group-item'>
+					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+						<ul class='dropdown-menu' aria-labelledby='dropdown'>
+						 <li><a class='btn-link' href='#'>Edit Note</a></li>
+						 <li><a class='btn-link' noteID='" . $note_ID . "' onclick='delNote(" . $note_ID . ");'>Delete Note</a></li>                  
+						 <li><a class='btn-link' >Report Spam</a></li>
+						</ul>
+			  </div>
+			</div>
+				<p align='center' style='font-size: 14pt;color :#3B5998;'>" . $title . "</p>
+				<div class='pull-left lh-fix'>     
+					<span class='glyphicon glyphicon-question-sign'></span>
+					<img src='uploads/profilePictures/$username_notes.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+				</div>
+				<div style='line-height: 16.50px;'>
+					<span class='pull-left color strong' style= 'color :#3B5998;'>
+					<a href ='profile.php?username=" . $username_notes . "'>" . ucfirst($fname) . " " . ucfirst($lname) . "</a>&nbsp&nbsp&nbsp</span> 
+				</div>
+				<small><br><br>" . $notes . "</small><br/><br/>";
     $displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
 										FROM response_challenge as a join user_info as b where a.challenge_id = " . $note_ID . " 
 										and a.user_id = b.user_id and a.blob_id = '0')
