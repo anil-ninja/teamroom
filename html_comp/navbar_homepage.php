@@ -102,7 +102,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     </p>
                 </li>
                 <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                <li>
+                
 			<?php
 				$reminder = mysqli_query($db_handle, " select Distinct user_id, reminder, creation_time, time from reminders where person_id = '$user_id';") ;
 				$y = 0 ;
@@ -124,7 +124,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 						else {
 							$rname = "Remind By : ".$remindbyrow['first_name']." ".$remindbyrow['last_name'] ;
 							}
-					$tooltip = strtoupper($reminders)."&nbsp;&nbsp;&nbsp;&nbsp;".$rname ;
+					$tooltip = strtoupper($reminders)." ".$rname ;
 					$creation_time = $reminderrow['creation_time'] ;
 					$reminder_time = $reminderrow['time'] ;
 					$createdon = date("j F, g:i a", strtotime($creation_time));
@@ -135,18 +135,18 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 					}
 					if ($timeleft < 600) {
 						$y++ ;
-						$remind .= "<li><button type='button' class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' 
-									style='height: 25px;font-size:12px;text-align: left;height: 37px'><b>" .$rtitle. "</b><p style='font-size:8pt; 
-									color:rgba(161, 148, 148, 1); text-align: left;'>" . $createdon . "</p></button></li><br/>" ;
+						$remind .= "<button class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' >
+									<b>" .$rtitle. "</b><p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>
+									" . $createdon . "</p></button><br/>" ;
 						
 						}
 				}
                 ?>
-                 <div class='dropdown'>
+                 <li><div class='dropdown'>
 							<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'>
 							 <i class='glyphicon glyphicon-bell'></i><span class='badge'><?php echo $y ; ?></span></a>
-								<ul class='dropdown-menu' role='menu' style=' max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;' aria-labelledby='dropdownMenu'>		
-									<li><?php echo $remind ; ?></li>
+								<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>		
+									<?php echo $remind ; ?>
 								</ul>
 						  </div>
                 </li>
