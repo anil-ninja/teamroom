@@ -1,6 +1,5 @@
 <?php
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
-// include_once 'ninjas.inc.php';
 ?>
 <div class="navbar navbar-default navbar-fixed-top" style="line-height: 1.928571; width :100%">
     <div class="row">
