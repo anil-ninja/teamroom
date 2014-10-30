@@ -1,5 +1,6 @@
 <?php 
     include_once 'challengesOpen.inc.php'; 
+    //comment added to check github by rajnish
 ?>
 <html lang="en">
     <head>
