@@ -1,6 +1,7 @@
 <?php
 include_once "challenges.inc.php";
 include_once 'functions/delete_comment.php';
+//git checkout by rajnish
 ?>
 <html lang="en">
     <head>
@@ -8,7 +9,7 @@ include_once 'functions/delete_comment.php';
         <title>Challenges</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenges, Projects, Problem solving, problems">
-        <meta name="author" content="Rajnish">
+  
 
         <!-- Le styles -->
        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
