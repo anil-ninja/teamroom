@@ -170,9 +170,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                                     <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
                                 </form>
-                                <br> " . $timefunction . "&nbsp&nbsp with ETA : " . $sutime . "<br/>" . $remaintime;
+                                <br> " . $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             } else {
-                echo "<br>Closed";
+                echo " <br> " . $timefunction."<br>Closed";
             }
                     echo "</div>
                     </div>";
@@ -209,11 +209,11 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 4) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item' >
-                        <div class='pull-left lh-fix' style='line-height: 16.50px;'>     
+                        <div class='pull-left lh-fix' >     
                             <span class='glyphicon glyphicon-question-sign'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
-                        <div class='row'>
+                        <div class='row' style='line-height: 16.50px;'>
                             <div class='col-md-3'>
                                 <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                 . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
@@ -245,12 +245,12 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             <div class='row'>
                                 <div class='col-md-3'>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/>
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/> ETA Given : " . $timeo . "
                                 </div>
                                 <div class='col-md-5'>
                                     Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp Submitted On : " . $timecomm . "<br/> and
-                                    ETA Given : " . $timeo . " and ETA Taken : " . $timetakennin . "</div></div>
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm . "<br/>
+                                    ETA Taken : " . $timetakennin . "</div></div>
                                 </div>
                             </div>" ;	
             }
@@ -271,13 +271,20 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "<div class='list-group idea'>
                         <div class='list-group-item' style='line-height: 16.50px;'></span>
                             <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-flash'>
+                                <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>	
-                       
-                        <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
-                        <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p></div>";
+                            
+                               
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
+                             
+                                <div class='row'>
+                                <div class='col-md-8'>
+                                    <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p>
+                                </div>
+                            </div>
+                        </div>";
     } 
     if ($ctype == 3) {
 		if ($status == 1) {
