@@ -31,9 +31,7 @@
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				    data-placement='bottom' data-original-title='" . $tooltip . 
                     "' style='height: 25px;font-size:12px;text-align: left;height: 37px'><b>" . $chtitle . "</b>
-				
-                </a>
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p></button><br/>";
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p></button></a><br/>";
     }
     ?><br/>
     <a data-toggle='modal' class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-tasks'></i>
@@ -61,8 +59,7 @@
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
     				data-placement='bottom' data-original-title='" . $tooltipas .
                      "'style='height: 37px;font-size:13px;text-align: left;'><b>" . $chtitleas ."</b>
-                </a>
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>  </button><br/>";
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p></button></a><br/>";
     }
     ?>
 </div>
