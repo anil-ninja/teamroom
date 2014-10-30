@@ -15,7 +15,7 @@ if (!isset($_SESSION['first_name'])) {
         <meta charset="utf-8">
         <title>collap</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Challenge, Project, Problem solving, problem">
+        <meta name="description" content="Challenge, Project, Problem solving, problem, article, collaborate, collaboration">
         <meta name="author" content="Anil">
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.css">
@@ -25,11 +25,11 @@ if (!isset($_SESSION['first_name'])) {
         <div class="navbar navbar-default navbar-fixed-top" >
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">collap</a>
+                    <a class="brand" style='font-size:18pt; color: #fff; font-weight: bold;' href="index.php">collap</a>
                     <div class="span3 pull-right">
                         <ul class="list-inline">
                             <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
-                            <li><a class="btn-link" style='font-size:14pt; color: #fff; font-weight: bold;' href="http://dpower4.com/">Dpower4.com</a></li>
+                            <li><a class="btn-link" style='font-size:12pt; color: #fff; font-weight: bold;' href="http://dpower4.com/" target="_blank">Dpower4.com</a></li>
                         </ul>
                     </div>
                 </div>
@@ -44,24 +44,27 @@ if (!isset($_SESSION['first_name'])) {
                             <div class="modal-content">
                                 <div class="modal-header">
                                    
-                                    <p align="center"><font size="5" >Vade the Clan</font></p>
+                                    <p align="center"><font size="5" >Let's Collaborate!!</font></p>
                                 </div>
                                 <div class="modal-body">
                                      <div class="alert_placeholder"> </div>
                                     <br/>
                                     <div class="input-group">
                                         <span class="input-group-addon">Username</span>
-                                        <input type="text" class="form-control" id="username" placeholder="Enter email or username">
+                                        <input type="text" class="form-control" id="username" placeholder="Email or Username">
                                     </div>
-                                    <br>
+                                    <br/>
                                     <div class="input-group">
-                                        <span class="input-group-addon">Password</span>
+                                        <span class="input-group-addon">Password&nbsp;</span>
                                         <input type="password" class="form-control" id="password" placeholder="Password">
                                     </div><br/>
-                                    <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
+                                    <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
+                                    
                                 </div>
                                 <div class="modal-footer">
-                                    <a data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;">Join the Clan</a>
+                                   <!--  <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Google Login</font></a>
+                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: left; cursor:pointer;"><font size="3" >Facebook login</font></a> -->
+                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up for Collap</font></a>
                                 </div>
                             </div>
                         </div>
@@ -78,7 +81,7 @@ if (!isset($_SESSION['first_name'])) {
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Close</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Join the Clan</font></h4>
+                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Sign up for Collap</font></h4>
                             <div class="alert-placeholder"> </div>
                         </div>
                         <div class="modal-body">
@@ -101,7 +104,7 @@ if (!isset($_SESSION['first_name'])) {
 								</div><div class="col-md-6">
 								<input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
 							</div></div></div>
-                            <input type="submit" class="btn btn-primary btn-lg" name = "request" value = "Join" onclick="validateSignupFormOnSubmit()">
+                            <input type="submit" class="btn btn-primary btn-lg" name = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
                         </div>
                     </div>
                 </div>
@@ -145,7 +148,7 @@ if (!isset($_SESSION['first_name'])) {
             if (isset($_GET['status'])) {
                 if ($_GET['status'] == 2) {
                     echo "<script> 
-					alert('Please, put Valid Username and Password');
+					alert('Invalid Username and Password');
 				</script>";
                 }
                 if ($_GET['status'] == 0) {
@@ -155,17 +158,17 @@ if (!isset($_SESSION['first_name'])) {
                 }
                 if ($_GET['status'] == 1) {
                     echo "<script>
-				alert('Password do not match, Try again');
+				alert('Password don't match, Try again');
 			</script>";
                 }
                 if ($_GET['status'] == 3) {
                     echo "<script>
-				alert('User is already registered with this email, Please Sign In');
+				alert('Email ID already registered, Please Sign In');
 			</script>";
                 }
                 if ($_GET['status'] == 4) {
                     echo "<script>
-				alert('User is already registered with this username, Please Sign In');
+				alert('Username is already registered, Please Sign In');
 			</script>";
                 }
             }
