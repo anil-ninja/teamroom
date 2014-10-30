@@ -7,9 +7,7 @@ class challenge{
     public $user_id = 0;
     public $project_id = 0;
     public $blob_id = 0;
-    
-    
-    
+      
     function __construct($idR) {
         $this->id = $idR;
         //echo gettype($idR);

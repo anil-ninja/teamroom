@@ -187,8 +187,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 		});
 		
 		$("#remind").click(function(){
-      		$("#remind").attr('disabled','disabled');
 			var reminder = $("#reminder").val() ;
+			var self = $("#self").val() ;
 			var month = $("#month").val() ;
 			var date = $("#date").val() ;
 			var hour = $("#hour").val() ;
@@ -202,7 +202,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false;
 				}
 			 else {
-			var dataString = 'reminder='+ reminder + '&month='+ month + '&date='+ date + '&hour='+ hour + '&minute='+ minute  ;
+			var dataString = 'reminder='+ reminder + '&month='+ month + '&self='+ self + '&date='+ date + '&hour='+ hour + '&minute='+ minute  ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/submit_reminder.php",
@@ -213,6 +213,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result=='Reminder Set succesfully!'){
 						$("#reminder").val("") ;
+						$("#self").val("") ;
 						$("#month").val("") ;
 						$("#date").val("") ;
 						$("#hour").val("") ;
@@ -221,8 +222,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					}
 				}
 			 });
-			}
-			$("#remind").removeAttr('disabled');	
+			}	
 		});
 			
 		$("#create_project").click(function(){

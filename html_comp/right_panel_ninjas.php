@@ -76,9 +76,18 @@
                                 <span class="sr-only">Close</span>
                             </button>
                             <h4 class="modal-title" id="myModalLabel"><font size="5" >Add Reminder</font></h4>
-                        </div>
+                        </div><div class='alert_placeholder'></div>
                         <div class="modal-body">
-                            <div class="inline-form"><br/>
+                        Reminder To : <select class="btn-info btn-xs"  id= "self" >
+							<option value="<?= $user_id ; ?>" selected >Self</option>
+				<?php
+                  $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
+														a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id') as b where a.user_id=b.user_id;");
+                         while ($friendsrow = mysqli_fetch_array($friends)) {
+                            echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
+                        }
+                        ?>
+                    </select><br/><br/>
 								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
                                	<div class="inline-form">
                     Select Date and Time :  

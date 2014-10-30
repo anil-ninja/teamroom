@@ -94,7 +94,8 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             ?>
                         </ul>
                     </div>
-                </li>      
+                </li>
+                
                 <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li>
                 <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
                 <li><p class="navbar-text" style='cursor: pointer;color: #fff;'>&nbsp;<b> Rank :  <?php $rank = $_SESSION['rank'];
@@ -102,6 +103,54 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     </p>
                 </li>
                 <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
+                <li>
+			<?php
+				$reminder = mysqli_query($db_handle, " select Distinct user_id, reminder, creation_time, time from reminders where person_id = '$user_id';") ;
+				$y = 0 ;
+				$remind = "" ;
+				while ($reminderrow = mysqli_fetch_array($reminder)) {
+					$reminders = $reminderrow['reminder'] ;
+					$ruser_id = $reminderrow['user_id'] ;
+					if (strlen($reminders) > 20) {
+						$rtitle = substr(ucfirst($reminders), 0, 20) . "....";
+					}
+						else {
+						$rtitle = ucfirst($reminders);
+						}
+					$remindby = mysqli_query($db_handle, " select first_name, last_name from user_info where user_id = '$ruser_id' ;") ;
+					$remindbyrow = mysqli_fetch_array($remindby) ;
+					if ($ruser_id == $user_id) {
+						$rname = "Remind By : You" ;
+						}
+						else {
+							$rname = "Remind By : ".$remindbyrow['first_name']." ".$remindbyrow['last_name'] ;
+							}
+					$tooltip = strtoupper($reminders)."&nbsp;&nbsp;&nbsp;&nbsp;".$rname ;
+					$creation_time = $reminderrow['creation_time'] ;
+					$reminder_time = $reminderrow['time'] ;
+					$createdon = date("j F, g:i a", strtotime($creation_time));
+					$starttime = strtotime($reminder_time) ;
+					$endtime = time() ;
+					if ($endtime <= $starttime) {
+						$timeleft = $starttime - $endtime ;
+					}
+					if ($timeleft < 600) {
+						$y++ ;
+						$remind .= "<button type='button' class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' 
+									style='height: 25px;font-size:12px;text-align: left;height: 37px'><b>" .$rtitle. "</b><p style='font-size:8pt; 
+									color:rgba(161, 148, 148, 1); text-align: left;'>" . $createdon . "</p></button><br/>" ;
+						
+						}
+				}
+                ?>
+                 <div class='dropdown'>
+							<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'>
+							 <i class='glyphicon glyphicon-bell'></i><span class='badge'><?php echo $y ; ?></span></a>
+								<ul class='dropdown-menu' role='menu' style=' max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;' aria-labelledby='dropdownMenu'>		
+									<li><?php echo $remind ; ?></li>
+								</ul>
+						  </div>
+                </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
                                 <?php

@@ -1,12 +1,5 @@
 <div class="bs-component">
-                
-                   
-                <!-- <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
-                    <label for="file">Upload file:</label>
-                    <input class="btn btn-default btn-sm" type="file" name="file" id="file" style ="width: 100px;"><br>
-                    <input class="btn btn-default btn-sm" type="submit" name="submit" value="Submit"><br>
-                </form>
- -->                <a data-toggle="modal" class="btn btn-link" data-target="#managefiles" style="cursor:pointer;"><i class="glyphicon glyphicon-hdd"></i> Manage Files</a><br/>
+    <a data-toggle="modal" class="btn btn-link" data-target="#managefiles" style="cursor:pointer;"><i class="glyphicon glyphicon-hdd"></i> Manage Files</a><br/>
                 <?php 
                 if($creater_id == $user_id) {
 				echo "<a data-toggle='modal' class='btn btn-link' data-target='#assigntask' style='cursor:pointer;'><i class='glyphicon glyphicon-pushpin'></i> Assign Tasks</a><br/>";	
