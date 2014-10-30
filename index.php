@@ -24,8 +24,9 @@ if (!isset($_SESSION['first_name'])) {
     <body >
         <div class="navbar navbar-default navbar-fixed-top" >
             <div class="navbar-inner">
-                <div class="container"><img src ='img/collap.gif' style="width:80px;">
-                    <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">collap</a>
+                <div class="container">
+                    <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
+                    <img src ='img/collap.gif' style="width:80px;">collap</a>
                     <div class="span3 pull-right">
                         <ul class="list-inline">
                             <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
