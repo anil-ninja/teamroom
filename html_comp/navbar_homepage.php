@@ -135,9 +135,9 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 					}
 					if ($timeleft < 600) {
 						$y++ ;
-						$remind .= "<button type='button' class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' 
+						$remind .= "<li><button type='button' class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' 
 									style='height: 25px;font-size:12px;text-align: left;height: 37px'><b>" .$rtitle. "</b><p style='font-size:8pt; 
-									color:rgba(161, 148, 148, 1); text-align: left;'>" . $createdon . "</p></button><br/>" ;
+									color:rgba(161, 148, 148, 1); text-align: left;'>" . $createdon . "</p></button></li><br/>" ;
 						
 						}
 				}
@@ -172,7 +172,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                         </ul>
                     </div>
                 </li>
-            
     <?php
     } else {
         echo "<li><p class='navbar-text' style='cursor: pointer'><b> <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In</a> </b></p></li>";
