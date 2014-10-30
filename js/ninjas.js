@@ -416,6 +416,18 @@ $("#pencil").click(function(){
       		$("#create_task").attr('disabled','disabled');
 			var team = $("#teamtask").val() ;
 			var users = $("#userstask").val() ;
+			var email = $("#emailtask").val() ;
+			if (email != "") {
+			$.ajax({
+				type: "POST",
+				url: "ajax/email.php",
+				data: 'email='+ email,
+				cache: false,
+				success: function(result){
+					alert(result);
+					}
+				  });
+				}
 			if((team == '0' && users =='0')||(team != '0' && users !='0')) {
 				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
 				return false ;

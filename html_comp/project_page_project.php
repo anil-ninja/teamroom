@@ -24,10 +24,9 @@ echo "<div class='list-group'>
                         <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                         <ul class='dropdown-menu' aria-labelledby='dropdown'>";
 if ($p_uid == $user_id) {
-    echo "
-                        <li><button class='btn-link' href='#'>Edit Project</button></li>
-                        <li><button class='btn-link' pID='" . $pro_id . "' onclick='delProject(" . $pro_id . ");'>Delete Project</button></li>
-                        <li><form method='POST' class='inline-form'>";
+			echo "<li><button class='btn-link' href='#'>Edit Project</button></li>
+                  <li><button class='btn-link' pID='" . $pro_id . "' onclick='delProject(" . $pro_id . ");'>Delete Project</button></li>
+                  <li><form method='POST' class='inline-form'>";
     if ($prtime == 'Closed') {
         echo "<input type='hidden' name='id' value='" . $pro_id . "'/>
                                 <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
@@ -169,7 +168,7 @@ echo "<div class='comments clearfix'>
                 <option value='0' selected > Select Team </option>" ;
            while ($teamsrow = mysqli_fetch_array($teams)) {
 			   $teamsname = $teamsrow['team_name'] ;
-			  $task = $task ."<option value='" . $teamsname . "' >" . $teamsname . "</option>" ;
+			  $task = $task ."<option value='" . $teamsname . "' >".$teamsname."</option>" ;
 		   }
 		   $task = $task ."</select>&nbsp;&nbsp;&nbsp;&nbsp;
 					<select class='btn btn-default btn-xs' id= 'userstask' >	
@@ -182,7 +181,7 @@ echo "<div class='comments clearfix'>
 			   $u_id = $userssrow['user_id'] ;
 			  $task = $task ."<option value='" . $u_id . "' >" . $username . "</option>" ;
 		   }									
-        $task = $task ."</select></div><br/>
+        $task = $task ."</select>&nbsp;&nbsp;&nbsp; <input type='email' id='emailtask' placeholder='Enter email-id'/></div><br/>
             <div class='input-group' >
                 <span class='input-group-addon'>Title : </span>						
                 <input type='text' class='form-control' id='title' placeholder='Tilte'/>
