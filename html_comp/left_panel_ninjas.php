@@ -1,11 +1,10 @@
 <div class="bs-component">
 	<div class='list-group'  style='cursor: pointer; background-color:#F0F1F2'>
- 		<hr/><div >
+ 		<hr/>
+ 		<div >
  		<tr>
-	 		<td> <font size="3"><b> Classified Projects&nbsp;&nbsp;&nbsp;&nbsp;</b></font></a></td>
-	 		<td>
-	 		 <a data-toggle='modal' class=' btn-link' data-target='#createProject' style='cursor:pointer; pull-right'> <font size="2">+Add</font></a> 
-			</td>
+	 		<td> <font size="3"><b> Classified Projects&nbsp;&nbsp;&nbsp;&nbsp;</b></font></td>
+	 		<td><a data-toggle='modal' class=' btn-link' data-target='#createProject' style='cursor:pointer; pull-right'> <font size="2">+Add</font></a> </td>
 		</tr>
 		</div>
 		<div >
@@ -43,7 +42,7 @@
  		<hr/>
  		<div >
  		<tr>
-	 		<td> <font size="3"><b> Public Projects&nbsp;&nbsp;&nbsp;&nbsp;</b></font></a></td>
+	 		<td> <font size="3"><b> Public Projects&nbsp;&nbsp;&nbsp;&nbsp;</b></font></td>
 	 		<td>
 	 		 <a data-toggle='modal' class=' btn-link' data-target='#createProject' style='cursor:pointer; pull-right'> <font size="2">+Add</font></a> 
 			</td>
