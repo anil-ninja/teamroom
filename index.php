@@ -13,7 +13,7 @@ if (!isset($_SESSION['first_name'])) {
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <title>colvade</title>
+        <title>collap</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem">
         <meta name="author" content="Anil">
@@ -25,7 +25,7 @@ if (!isset($_SESSION['first_name'])) {
         <div class="navbar navbar-default navbar-fixed-top" >
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">colvade</a>
+                    <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">collap</a>
                     <div class="span3 pull-right">
                         <ul class="list-inline">
                             <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
