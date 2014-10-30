@@ -277,7 +277,4 @@ function challenge_display($db_handle, $challengeSearchID) {
             echo " </div></div>";
         }
     }
-
-//echo "title Id ".$challengeSearchIDR;
-
 ?>
