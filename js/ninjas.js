@@ -455,7 +455,10 @@ $("#pencil").click(function(){
 							}				
 					}
 						else {
-							alert("this person is not registered");
+							alert("this user is not registered");
+							//var modal = document.getElementById('chasendemail');
+							//alert(modal) ;
+							//$("#chasendemail").modal('show');
 							return false ;
 							}
 						}
