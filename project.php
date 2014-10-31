@@ -75,6 +75,26 @@ include_once 'functions/delete_comment.php';
                 }).elfinder('instance');
             });
         </script>
+        <script>
+        $(document).ready(function(){
+	$(window).scroll(function(event) {
+		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+			event.preventDefault();
+			var dataString = 'proch=10' ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/next_proch.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#prch').append(result);
+				}
+			});
+		}
+	});	
+	});
+        </script>
 
         </body>
     </html>

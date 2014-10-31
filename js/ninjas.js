@@ -30,26 +30,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 
 	$(document).ready(function(){
 
-    $(window).scroll(function(event) {
-		
-    if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-         event.preventDefault();
-		var dataString = 'chal=10' ;
-			  $.ajax({
-				type: "POST",
-				url: "ajax/get_next.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					$('#panel-cont').append(result);
-					}
-				
-			});
-		
-	}
-}); 
-
 		$("#submit_ch").click(function(){
       		$("#submit_ch").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;
@@ -455,7 +435,10 @@ $("#pencil").click(function(){
 							}				
 					}
 						else {
-							alert("this person is not registered");
+							alert("this user is not registered");
+							//var modal = document.getElementById('chasendemail');
+							//alert(modal) ;
+							//$("#chasendemail").modal('show');
 							return false ;
 							}
 						}

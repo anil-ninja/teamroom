@@ -6,25 +6,7 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-
-$(document).ready(function(){
-	$(window).scroll(function(event) {
-		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-			event.preventDefault();
-			var dataString = 'proch=10' ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/next_proch.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					$('#prch').append(result);
-				}
-			});
-		}
-	});
-		
+	$(document).ready(function(){	
 	var $table = $('table.scroll'),
     $bodyCells = $table.find('tbody tr:first').children(),
     colWidth;
