@@ -6,6 +6,7 @@ include_once '../functions/delete_comment.php';
 if ($_POST['chal']) {
     $user_id = $_SESSION['user_id'];
     $limit = $_SESSION['lastpanel'];
+    $username = $_SESSION['username'];
 
     $a = (int) $limit;
 
@@ -416,13 +417,14 @@ if ($_POST['chal']) {
         dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
         $show = $show . "</div></div></div>";
     }
+
     $show = $show . "<div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
                         <form action='' method='POST' class='inline-form'>
                             <input type='hidden' value='" . $chelangeid . "' name='own_challen_id' />
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 87.0%; height: 30px;' name='own_ch_response'
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' name='own_ch_response'
                              placeholder='Whats on your mind about this'/>
                             <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' name='own_chl_response' ></button>
                         </form>
