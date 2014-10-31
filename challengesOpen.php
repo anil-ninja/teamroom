@@ -5,7 +5,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Challenges Open</title>
+        <title><?= $challenge_page_title; ?></title>
         <meta name="author" content="">
         
         <!-- for Google -->

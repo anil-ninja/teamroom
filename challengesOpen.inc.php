@@ -28,8 +28,10 @@ elseif (isset($_SESSION['user_id']) AND $private_ch_type == 2) {
         exit;
     }
 }
-$open_chalange = mysqli_query($db_handle, "SELECT DISTINCT challenge_id from challenges 
+$open_chalange = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_title from challenges 
             WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id='$challengeSearchID';");
+$open_chalangeRtitle = mysqli_fetch_array($open_chalange);
+$challenge_page_title = $open_chalangeRtitle['challenge_title'];
 $emptySearch = mysqli_num_rows($open_chalange);
 if ($emptySearch == 0) {
     include_once 'error.php';

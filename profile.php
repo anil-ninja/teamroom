@@ -68,7 +68,7 @@ $obj = new profile($UserName);
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>profile</title>
+        <title><?= $profileViewFirstName." ".$profileViewLastName; ?></title>
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
        
         <link rel="stylesheet" href="css/profile_page_style.css">
