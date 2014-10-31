@@ -596,7 +596,7 @@ while ($displayrow = mysqli_fetch_array($display_notes)) {
 }
 ?>
 <!-- Modal  -->
-<div class="modal fade" id="chasendemail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class='modal fade' id='chasendemail' tabindex='-1' role='dialog' aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
