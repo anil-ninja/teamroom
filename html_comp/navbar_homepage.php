@@ -221,6 +221,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 
 <!-- sub nav bar-->
 <?php
+if (isset($_SESSION['user_id'])) {
 if ($requestedPage == "project.php") {
     
  echo "  <ul class='nav navbar-inverse' >
@@ -249,6 +250,7 @@ if ($requestedPage == "project.php") {
                 </div>
             </div>
         </ul> " ;
+}
 }
 ?>
 </div>

@@ -1,4 +1,4 @@
-<?php 
+<?php include_once 'functions/delete_comment.php';
 $totaltask = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status != '3' AND challenge_status != '7';") ;
 $totaltaskopen = mysqli_query($db_handle, "select challenge_id, challenge_creation, challenge_ETA from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '2';") ;
 $z = 0 ;
@@ -27,7 +27,7 @@ $by = mysqli_num_rows($totalchallengesopen) - $ay ;
 $totalchallengesaccepted = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, b.comp_ch_ETA, b.ownership_creation from challenges as a join challenge_ownership as b where a.project_id = '$pro_id' AND (a.challenge_type = '1' OR a.challenge_type = '2') AND a.challenge_status = '2' and a.challenge_id = b.challenge_id ;") ;
 $x = 0 ;
 while ($ad = mysqli_fetch_array($totalchallengesaccepted)) {
-		$timed = remaining_time($ad['challenge_creation'], $ad['challenge_ETA']) ;
+		$timed = remaining_time($ad['ownership_creation'], $ad['comp_ch_ETA']) ;
 		if($timed == "Closed") {
 			$x++ ;
 		}
@@ -40,7 +40,7 @@ $totalchallengesclosed = mysqli_query($db_handle, "select challenge_id from chal
 $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '6' AND challenge_status = '1';") ;
   echo "<div class='list-group'  style='cursor: pointer;'>
   			<div class='list-group-item' style='font-size:14px; text-align: center;'>
-  				<b>DASHBOARD</b>
+  				<b>PROJECT DASHBOARD</b>
   			</div>
 
 			<div class='list-group-item'>
@@ -117,15 +117,20 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 		
 	  
   
-  	echo "<h3 class='panel-title'><p align='center'>Open Challenges</p></h3>
-			<table class='scroll table table-striped'>
-			<thead>
-				<tr>
-					<th>Name</th>
-					<th>Remaining Time</th>
-				</tr>
-			</thead>
-			<tbody >" ;
+  	echo "
+  		<div class='list-group'  style='cursor: pointer;'>
+  			<div class='list-group-item' style='font-size:14px; text-align: center;'>
+  				<b>WORK SUMMARY </b>
+  			</div>
+  			<div class='list-group-item'>
+				<table class='table table-striped scroll '>
+				 <thead> <center><b>Not Accepted</b></center>
+				 </thead>
+				 <tbody>
+					<tr>
+						<td style='width:180px'>Name</td>
+						<td>Remaining Time</td>
+					</tr>" ;
 		
 	 $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, challenge_creation FROM challenges WHERE project_id = '$pro_id' AND challenge_type = '2' AND challenge_status = '1' ;");
       while($ocrow = mysqli_fetch_array($oc)) {
@@ -135,23 +140,25 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				$oceta = $ocrow['challenge_ETA'] ;
 				$rtoc = remaining_time($occtime, $oceta) ;
 		echo "<tr>
-				<td><a href ='challengesOpen.php?challenge_id=".$ocid."'>".$octitle."</a></td>
+				<td style='width:180px'><a href ='challengesOpen.php?challenge_id=".$ocid."'>".$octitle."</a></td>
 				<td>".$rtoc."</td>
-			</tr>" ;
+			  </tr>" ;
 	}
 	echo "</tbody>
-            </table><br/>" ;
-  	echo "<h3 class='panel-title'><p align='center'>In progress</p></h3>
-			<table class='scroll table table-striped'>
-			<thead>
+            </table></div>" ;
+
+
+  	echo "<div class='list-group-item'>
+				<table class='table table-striped scroll '>
+				 <thead> <center><b>In Progress</b></center>
+				 </thead>
+				 <tbody>
 				<tr>
-					<th>Type</th>
-					<th>Title</th>
-					<th>Owned</th>
-					<th>R Time</th>
-				</tr>
-			</thead>
-			<tbody >" ;
+					<td style='width:70px'>Type</td>
+					<td style='width:70px'>Title</td>
+					<td style='width:70px'>Owned</td>
+					<td style='width:70px'>R Time</td>
+				</tr>" ;
 		
 	 $ip = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
 												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$pro_id' 
@@ -167,31 +174,32 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				$ipeta = $iprow['comp_ch_ETA'] ;
 				$rtip = remaining_time($ipctime, $ipeta) ;
 			echo "<tr>
-					<td>" ;
+					<td style='width:70px'>" ;
 		if ($iptype == 2 || $iptype == 1) {
 			echo "Challenge" ;
 			}
 		else {
 				echo "Task" ;
 			}		
-			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
-					<td><a href ='profile.php?username=".$ipname."'>".$ipfname."</a></td>
-					<td>".$rtip."</td>
+			echo "</td><td style='width:70px'><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
+					<td style='width:70px'><a href ='profile.php?username=".$ipname."'>".$ipfname."</a></td>
+					<td style='width:70px'>".$rtip."</td>
 				</tr>" ;
 	}
 	echo "</tbody>
-            </table><br/>" ;
-echo "<h3 class='panel-title'><p align='center'>In Review</p></h3>
-			<table class='scroll table table-striped'>
-			<thead>
+            </table></div>" ;
+echo 
+		"<div class='list-group-item'>
+				<table class='table table-striped scroll '>
+				 <thead> <center><b>In Review</b></center>
+				 </thead>
+				 <tbody>
 				<tr>
-					<th>Type</th>
-					<th>Title</th>
-					<th>Submitted By</th>
-					<th>ON</th>
-				</tr>
-			</thead>
-			<tbody >" ;
+					<td style='width:70px'>Type</td>
+					<td style='width:70px'>Title</td>
+					<td style='width:70px'>Submitted By</td>
+					<td style='width:70px'>ON</td>
+				</tr>" ;
 		
 	 $ir = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
 												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$pro_id' 
@@ -209,31 +217,31 @@ echo "<h3 class='panel-title'><p align='center'>In Review</p></h3>
 				$ireta = $irrow['comp_ch_ETA'] ;
 				$rtir = remaining_time($irctime, $ireta) ;
 			echo "<tr>
-					<td>" ;
+					<td style='width:70px'>" ;
 		if ($irtype == 2 || $irtype == 1) {
 			echo "Challenge" ;
 			}
 		else {
 				echo "Task" ;
 			}		
-			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$irid."'>".$irtitle."</a></td>
-					<td><a href ='profile.php?username=".$irname."'>".$irfname."</a></td>
-					<td>".$irontime."</td>
+			echo "</td><td style='width:70px'><a href ='challengesOpen.php?challenge_id=".$irid."'>".$irtitle."</a></td>
+					<td style='width:70px'><a href ='profile.php?username=".$irname."'>".$irfname."</a></td>
+					<td style='width:70px'>".$irontime."</td>
 				</tr>" ;
 	}
 	echo "</tbody>
-            </table><br/>" ;
-echo "<h3 class='panel-title'><p align='center'>Completed</p></h3>
-			<table class='scroll table table-striped'>
-			<thead>
+            </table></div>" ;
+echo  "<div class='list-group-item'>
+				<table class='table table-striped scroll '>
+				 <thead> <center><b>Completed</b></center>
+				 </thead>
+				 <tbody>
 				<tr>
-					<th>Type</th>
-					<th>Title</th>
-					<th>Submitted By</th>
-					<th>ON</th>
-				</tr>
-			</thead>
-			<tbody >" ;
+					<td style='width:70px'>Type</td>
+					<td style='width:70px'>Title</td>
+					<td style='width:70px'>Submitted By</td>
+					<td style='width:70px'>ON</td>
+				</tr>" ;
 		
 	 $com = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
 												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$pro_id' 
@@ -251,18 +259,18 @@ echo "<h3 class='panel-title'><p align='center'>Completed</p></h3>
 				$cometa = $comrow['comp_ch_ETA'] ;
 				$rtcom = remaining_time($comctime, $cometa) ;
 			echo "<tr>
-					<td>" ;
+					<td style='width:70px'>" ;
 		if ($irtype == 2 || $irtype == 1) {
 			echo "Challenge" ;
 			}
 		else {
 				echo "Task" ;
 			}		
-			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$comid."'>".$comtitle."</a></td>
-					<td><a href ='profile.php?username=".$comname."'>".$comfname."</a></td>
-					<td>".$comontime."</td>
+			echo "</td><td style='width:70px'><a href ='challengesOpen.php?challenge_id=".$comid."'>".$comtitle."</a></td>
+					<td style='width:70px'><a href ='profile.php?username=".$comname."'>".$comfname."</a></td>
+					<td style='width:70px'>".$comontime."</td>
 				</tr>" ;
 	}
 	echo "</tbody>
-            </table>" ;            
+            </table></div></div>" ;            
 				?>
