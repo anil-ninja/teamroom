@@ -92,7 +92,7 @@ include_once 'functions/delete_comment.php';
 				}
 			});
 		}
-		
+	});	
 	});
         </script>
 
