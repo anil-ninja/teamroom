@@ -27,18 +27,18 @@ include_once 'functions/delete_comment.php';
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class='alert_placeholder'></div>
-        <div class="row-fluid">
-          <div class="col-lg-3" style="width:300px;">
+         <div class=" media-body">
+          <div class="col-md-3">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
-           </div> 
-          <div class="col-lg-6">
+           </div>  
+          <div class="col-md-6">
               <div class="panel-primary" id='panel-cont'>
                        <?php include_once 'html_comp/project_page_project.php'; ?>
                 </div>
-                </div>
-                <div class="col-lg-3">
-					   <?php include_once 'html_comp/project_page_challenge.php'; ?>
-                </div>	
+            </div>
+            <div class="col-md-3">
+				   <?php include_once 'html_comp/project_page_challenge.php'; ?>
+            </div>	
            </div>
        <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
