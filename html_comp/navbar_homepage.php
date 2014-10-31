@@ -124,6 +124,8 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 </li>
                 <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
                 <li><div class='dropdown'>
+					<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'>
+							 <i class='glyphicon glyphicon-bell'></i><span class='badge'>
 			<?php
 				$count = mysqli_query($db_handle, " select Distinct time from reminders where person_id = '$user_id';") ;
 				$y = 0 ;
@@ -140,9 +142,11 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 						$y++ ;
 					}
 				}
-				echo "<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'>
-							 <i class='glyphicon glyphicon-bell'></i><span class='badge'>".$y."</span></a>
-								<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>";
+				echo $y ;
+				?>
+				</span></a>
+					<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+				<?php 					
 				$reminder = mysqli_query($db_handle, " select Distinct user_id, reminder, creation_time, time from reminders where person_id = '$user_id';") ;
 				while ($reminderrow = mysqli_fetch_array($reminder)) {
 					$reminders = $reminderrow['reminder'] ;
@@ -180,9 +184,8 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 						
 						}
 				}
-				echo "</ul>"
                 ?>
-                </div></li>
+               </ul> </div></li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
                                 <?php
@@ -218,6 +221,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 
 <!-- sub nav bar-->
 <?php
+if (isset($_SESSION['user_id'])) {
 if ($requestedPage == "project.php") {
     
  echo "  <ul class='nav navbar-inverse' >
@@ -246,6 +250,7 @@ if ($requestedPage == "project.php") {
                 </div>
             </div>
         </ul> " ;
+}
 }
 ?>
 </div>
