@@ -71,7 +71,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
 }
 echo "<div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
-				<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+				<img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>
 			<form method='POST' class='inline-form'>
 				<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Whats on your mind about this project' />
@@ -177,9 +177,9 @@ echo "<div class='comments clearfix'>
 												a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
 												and a.member_status = '1' and a.user_id = b.user_id;" ) ;
 			 while ($userssrow = mysqli_fetch_array($users)) {
-			   $username = $userssrow['username'] ;
+			   $users_username_task= $userssrow['username'] ;
 			   $u_id = $userssrow['user_id'] ;
-			  $task = $task ."<option value='" . $u_id . "' >" . $username . "</option>" ;
+			  $task = $task ."<option value='" . $u_id . "' >" . $users_username_task . "</option>" ;
 		   }									
         $task = $task ."</select>&nbsp;&nbsp;&nbsp; <input type='email' id='emailtask' placeholder='Enter email-id'/></div><br/>
             <div class='input-group' >
@@ -500,7 +500,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     }
     echo "<div class='comments clearfix'>
                         <div class='pull-left'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                            <img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
                         <form action='' method='POST' class='inline-form'>
                                 <input type='hidden' value='" . $id_task . "' name='own_challen_id' />
@@ -520,14 +520,15 @@ if (mysqli_num_rows($echo) > 0) {
 }
 ?>             
 <?php
-$display = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
+$display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b where a.project_id = '$pro_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 
 												)
 												UNION
 												(select DISTINCT a.challenge_title,a.challenge_id,a.challenge_creation, a.user_id, c.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b join blobs as c where a.project_id = '$pro_id' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
 												) ORDER BY challenge_creation DESC;");
-while ($displayrow = mysqli_fetch_array($display)) {
+
+while ($displayrow = mysqli_fetch_array($display_notes)) {
     $notes = str_replace("<s>", "&nbsp;", $displayrow['stmt']);
     $title = $displayrow['challenge_title'];
     $fname = $displayrow['first_name'];
@@ -548,7 +549,7 @@ while ($displayrow = mysqli_fetch_array($display)) {
 			</div>
 				<p align='center' style='font-size: 14pt;color :#3B5998;'>" . $title . "</p>
 				<div class='pull-left lh-fix'>     
-					<span class='glyphicon glyphicon-question-sign'></span>
+					<span class='glyphicon glyphicon-tree-deciduous'></span>
 					<img src='uploads/profilePictures/$username_notes.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
 				</div>
 				<div style='line-height: 16.50px;'>
@@ -556,14 +557,14 @@ while ($displayrow = mysqli_fetch_array($display)) {
 					<a href ='profile.php?username=" . $username_notes . "'>" . ucfirst($fname) . " " . ucfirst($lname) . "</a>&nbsp&nbsp&nbsp</span> 
 				</div>
 				<small><br><br>" . $notes . "</small><br/><br/>";
-    $displaya = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
+    $display_comment_notes = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
 										FROM response_challenge as a join user_info as b where a.challenge_id = " . $note_ID . " 
 										and a.user_id = b.user_id and a.blob_id = '0')
 										UNION
 										(select DISTINCT a.user_id, c.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
 										 FROM response_challenge as a join user_info as b join blobs as c where a.challenge_id = " . $note_ID . "
 										  and a.user_id = b.user_id and a.blob_id = c.blob_id);");
-    while ($displayrowb = mysqli_fetch_array($displaya)) {
+    while ($displayrowb = mysqli_fetch_array($display_comment_notes)) {
         $fstname = $displayrowb['first_name'];
         $lstname = $displayrowb['last_name'];
         $username_notes_comment = $displayrowb['username'];
@@ -585,8 +586,7 @@ while ($displayrow = mysqli_fetch_array($display)) {
     }
     echo "<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
-				</div>
+<img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp				</div>
 				<form action='' method='POST' class='inline-form'>
                                     <input type='hidden' value='" . $note_ID . "' name='own_challen_id' />
                                     <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
