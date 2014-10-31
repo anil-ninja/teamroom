@@ -27,7 +27,7 @@ include_once 'functions/delete_comment.php';
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class='alert_placeholder'></div>
-         <div class=" media-body">
+         <div class=" media-body" style="padding-top: 35px;">
           <div class="col-md-3">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div>  

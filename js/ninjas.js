@@ -435,11 +435,13 @@ $("#pencil").click(function(){
 							}				
 					}
 						else {
-							alert("this user is not registered");
+							var modal = "<div class='modal fade' id='sendemail' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='false'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>Hi, It looks like s/he is not here Lets intivite her/him</h4></div><div class='modal-body'><form role='form' method='POST' action = ''><div class='input-group'><span class='input-group-addon'>His/Her First Name</span><input type='text' class='form-control' name='fname' placeholder='His First Name'></div><br/><div class='input-group'><span class='input-group-addon'>His/Her Second Name</span><input type='text' class='form-control' name='sname' placeholder='His Second Name'></div><br/><div class='input-group'><span class='input-group-addon'>His Email ID</span><input type='text' class='form-control' name='email' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class='btn btn-success' name='invite'  value='Invite Him/Her' /></form></div><div class='modal-footer'><button id='newuser' type='button' class='btn btn-primary' data-dismiss='modal'>Close</button></div></div></div></div>";
+							document.getElementById("invitation").innerHTML = modal ;
+							//alert("this user is not registered");
 							//var modal = document.getElementById('chasendemail');
 							//alert(modal) ;
 							//$("#chasendemail").modal('show');
-							return false ;
+							//return false ;
 							}
 						}
 				  });
