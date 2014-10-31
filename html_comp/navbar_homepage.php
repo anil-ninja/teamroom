@@ -1,40 +1,34 @@
 <?php
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 ?>
-<div class="navbar navbar-default navbar-fixed-top" style="line-height: 1.928571; width :100%">
-    <div class="row">
-        <div class="col-lg-2">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                
-                    <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
-                    <img src ='img/collap.gif' style="width:75px;">collap</a>
-            </div>
-        </div>
-        <div class="col-lg-2">
-                <div class="navbar-collapse">
-                    <ul class="nav navbar-nav navbar-left navbar-responsive">
-                        <li class='navbar-text' >
-                         <div class="input-group">
-                                 <input type="text"  id="search" placeholder="search" style="height : 26px" class="form-control">
-                                 <span class="input-group-btn">
-                                     <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
-                                        <p class="glyphicon glyphicon-search">
-                                     </button>
-                                 </span>
-                         </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-    <div class="col-lg-8">
-    <div class="navbar-collapse">
-       
-        <ul class='nav navbar-nav navbar-right navbar-responsive' >
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="line-height: 1.928571; width :100%">
+    <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+       <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
+          <img src ='img/collap.gif' style="width:75px;">collap</a>
+    </div>
+     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background : #4EC67F">
+        <div class="navbar-collapse">
+            <ul class="nav navbar-nav navbar-left navbar-responsive">
+                <li class='navbar-text' >
+                 <div class="input-group">
+                         <input type="text"  id="search" placeholder="search" style="height : 26px" class="form-control">
+                         <span class="input-group-btn">
+                             <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
+                                <p class="glyphicon glyphicon-search">
+                             </button>
+                         </span>
+                 </div>
+                </li>
+            </ul>
+          <ul class='nav navbar-nav navbar-right navbar-responsive' >
             <?php
             if (isset($_SESSION['user_id'])) {
                 if ($requestedPage == "challenges.php") {
@@ -48,7 +42,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     echo "<li>
                             <div class='dropdown'>
                                 <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
-                                <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>";
+                                <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
                                     $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
                                     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                         $team_name = $teams_name_displayRow['team_name'];
@@ -72,7 +66,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 ?>
                 <li>
                     <div class='dropdown'>
-                        <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;"><b>Projects</b><span class='caret'></span></p></a>
+                        <!-- <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;"><b>Projects</b><span class='caret'></span></p></a> -->
                         <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
                             <?php
                          
@@ -97,9 +91,9 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     </div>
                 </li>
                 
-                <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li>
+                <!-- <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li> -->
                 <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
-                <li><p class="navbar-text" style='cursor: pointer;color: #fff;'>&nbsp;<b> Rank :  <?php $rank = $_SESSION['rank'];
+                <li><p class="navbar-text" style='cursor: pointer;color: #fff;'><b> Rank :  <?php $rank = $_SESSION['rank'];
                         echo $rank; ?></b>
                     </p>
                 </li>
@@ -169,7 +163,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                 </form>
                                 <p class="navbar-text">
                                 <form method="POST" >
-                                    <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out&nbsp;<span class="glyphicon glyphicon-off"></span></p></button></form>   
+                                    <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out<span class="glyphicon glyphicon-off"></span></p></button></form>   
                             </li>
                         </ul>
                     </div>
@@ -181,43 +175,44 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     }
     ?>
         </ul>
-    </div></div></div>
+   </div>
+   </div>
+   </div>
+
 <!-- sub nav bar-->
 <?php
 if ($requestedPage == "project.php") {
     
- echo " <div class='navbar-collapse collapse navbar-responsive-collapse' style='width: 110%;'>        
-        <ul class='nav navbar-nav navbar-inverse'>
-            <div class='col-md-offset-3 col-md-9 col-lg-9'>
-                <div class='list-inline'>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='eye_open' ><span class='glyphicon glyphicon-eye-open'></span> All &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='sign' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='deciduous' ><span class='glyphicon glyphicon-tree-deciduous'></span> Notes &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pushpin' ><span class='glyphicon glyphicon-pushpin'></span> Tasks &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='flag' ><span class='glyphicon glyphicon-flag'></span> Closed challenges &nbsp;</button></p></li>
+ echo "  <ul class='nav navbar-inverse' >
+            <div class='col-md-offset-3 col-md-12 col-lg-12'>
+                <div class='list-inline'style='background:#3BD78C;'>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='eye_open' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='sign' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='deciduous' ><span class='glyphicon glyphicon-tree-deciduous'></span> Notes </button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='pushpin' ><span class='glyphicon glyphicon-pushpin'></span> Tasks</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='flag' ><span class='glyphicon glyphicon-flag'></span> Closed challenges</button></p></li>
                 </div>
             </div>
-        </ul>                 
-    </div>" ;
+        </ul>" ;
 }
 	else {
-		echo " <div class='navbar-collapse collapse navbar-responsive-collapse' style='width: 110%;'>        
-        <ul class='nav navbar-nav navbar-inverse'>
-            <div class='col-md-offset-3 col-md-9 col-lg-9'>
-                <div class='list-inline'>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-book'></span> Articles &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-flash'></span> Ideas &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='ok' ><span class='glyphicon glyphicon-flag'></span> Closed challenges &nbsp;</button></p></li>
-                    <li><p><button type='submit' class='btn-link btn-xs' style='color:#fff;' id='film' ><span class='glyphicon glyphicon-film'></span> Videos &nbsp;</button></p></li>
+		echo "     
+        <ul class='nav navbar-inverse ' >
+            <div class='col-md-offset-3 col-md-12 col-lg-12'>
+                <div class='list-inline' style='background:#3BD78C;'>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-book'></span> Articles;</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-flash'></span> Ideas</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='ok' ><span class='glyphicon glyphicon-flag'></span> Closed challenges</button></p></li>
+                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='film' ><span class='glyphicon glyphicon-film'></span> Videos</button></p></li>
                 </div>
             </div>
-        </ul>                 
-    </div>" ;
+        </ul> " ;
 }
 ?>
 </div>
+</nav>
 <script>
 	
     function show_search_results(challenges){
@@ -323,4 +318,5 @@ if ($requestedPage == "project.php") {
             </div>
         </div>
     </div>
-</div>
+    </div>
+
