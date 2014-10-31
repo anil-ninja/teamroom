@@ -123,11 +123,31 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     </p>
                 </li>
                 <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                
+                <li><div class='dropdown'>
+					<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'>
+							 <i class='glyphicon glyphicon-bell'></i><span class='badge'>
 			<?php
-				$reminder = mysqli_query($db_handle, " select Distinct user_id, reminder, creation_time, time from reminders where person_id = '$user_id';") ;
+				$count = mysqli_query($db_handle, " select Distinct time from reminders where person_id = '$user_id';") ;
 				$y = 0 ;
-				$remind = "" ;
+				while ($countrow = mysqli_fetch_array($count)) {
+					$count_time = $countrow['time'] ;
+					$startingtime = strtotime($count_time) ;
+					$endtimecount = time() ;
+					if ($endtimecount <= $startingtime) {
+						$timeleftcount = $startingtime - $endtimecount ;
+					} else {
+						$timeleftcount = $startingtime ;
+						}
+					if ($timeleftcount < 600 && $timeleftcount > 0) {
+						$y++ ;
+					}
+				}
+				echo $y ;
+				?>
+				</span></a>
+					<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+				<?php 					
+				$reminder = mysqli_query($db_handle, " select Distinct user_id, reminder, creation_time, time from reminders where person_id = '$user_id';") ;
 				while ($reminderrow = mysqli_fetch_array($reminder)) {
 					$reminders = $reminderrow['reminder'] ;
 					$ruser_id = $reminderrow['user_id'] ;
@@ -154,23 +174,18 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 					if ($endtime <= $starttime) {
 						$timeleft = $starttime - $endtime ;
 					}
+						else {
+							$timeleft = $starttime ;
+							}
 					if ($timeleft < 600 && $timeleft > 0) {
-						$y++ ;
-						$remind .= "<button class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' >
+						echo "<li><button class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' >
 									<b>" .$rtitle. "</b><p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>
-									" . $createdon . "</p></button><br/>" ;
+									" . $createdon . "</p></button></li><br/>" ;
 						
 						}
 				}
                 ?>
-                 <li><div class='dropdown'>
-							<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'>
-							 <i class='glyphicon glyphicon-bell'></i><span class='badge'><?php echo $y ; ?></span></a>
-								<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>		
-									<?php echo $remind ; ?>
-								</ul>
-						  </div>
-                </li>
+               </ul> </div></li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
                                 <?php

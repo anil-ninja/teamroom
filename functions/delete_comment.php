@@ -124,5 +124,4 @@ function remaining_time($creationtime, $eta) {
 		}
 	}
 }
-
 ?>

@@ -371,7 +371,7 @@ $("#pencil").click(function(){
 			uploadFile(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
 			}
 		});
-
+	
 		$("#create_picture").click(function(){
       		$("#create_picture").attr('disabled','disabled');
 			var picturech = $("#picturech").val() ;
