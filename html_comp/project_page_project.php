@@ -437,24 +437,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 			echo "<div class='list-group sign'>
                     <div class='list-group-item' style='line-height: 16.50px;'>
                     <div class='pull-left lh-fix'>     
-<<<<<<< HEAD
-                                <span class='glyphicon glyphicon-pushpin'></span>
-                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>
-                            <div style='line-height: 16.50px;'>";
-            echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
-            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
-            if ($ownid == $user_id) {
-                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                        <input type='hidden' name='id' value='" . $id_task . "'/>
-                        <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-                    </form>";
-            }
-            echo "&nbsp&nbsp On : " . $timetask . "<br/>
-				Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp On : " . $timefunct . " and 
-				ETA Taken : " . $etaown . " <br/> Time Remaining : " . $remaintimeown . "</div></div>";
-=======
+
                         <span class='glyphicon glyphicon-question-sign'></span>
                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
@@ -478,7 +461,6 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     echo "</div>
                     </div>
                 </div>";
->>>>>>> c2e501023fbf0f8b740e19898fa81ccf9be58d04
         }
 
         if ($status_task == 4) {
