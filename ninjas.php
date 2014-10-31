@@ -30,19 +30,19 @@ if(!isset($_SESSION['user_id'])){
   <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class='alert_placeholder'></div>
-        <div class="row-fluid">
-          <div class="col-lg-3" style="width:300px;">
+        <div class=" media-body" style="padding-top: 35px;">
+          <div class="col-md-3">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
-          <div class="col-lg-6">
+          <div class="col-md-6">
 			  <div class="panel-primary" id='panel-cont'>
 				  <p id='home-ch'></p>
 				  <p id='home'></p>
-			<?php include_once 'html_comp/ninjas_page.php'   ?>
-	</div>
-	</div>
-	<div class="col-lg-3">
-		<?php include_once 'html_comp/right_panel_ninjas.php'   ?>
+		    	<?php include_once 'html_comp/ninjas_page.php'   ?>
+			</div>
+		  </div>
+		<div class="col-md-3 ">
+			<?php include_once 'html_comp/right_panel_ninjas.php'   ?>
 		</div>
 	</div>
 	<script>
