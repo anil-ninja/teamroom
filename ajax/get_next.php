@@ -78,9 +78,9 @@ if ($_POST['chal']) {
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                                     <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
                                 </form>
-                                <br> " . $timefunction . "&nbsp&nbsp&nbsp with ETA : " . $sutime . "<br/>" . $remaintime;
+                                <br> " . $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             } else {
-                $show = $show . "<br>Closed";
+                $show = $show . " <br> " . $timefunction."<br>Closed";
             }
                     $show = $show . "</div>
                     </div>";
@@ -93,55 +93,54 @@ if ($_POST['chal']) {
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                         <div style='line-height: 16.50px;'>
-                    <div class='row'>
+                            <div class='row'>
                                 <div class='col-md-3'>
-                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "
                                 </div>
                                 <div class='col-md-5'>    
                                     Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br/> Time Remaining : " . $remaintimeown ."<br>
                                 </div>";
           if($ownuser == $user_id) {			
-			$show = $show . "<div class='col-md-2'>
-                            <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='".$chelangeid."'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-					</form>
-                                        </div>";
+			$show = $show . " <div class='col-md-2'>  
+                                    <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+                                        <input type='hidden' name='id' value='".$chelangeid."'/>
+                                        <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
+                                    </form>
+                            </div>";
 				}
 			$show = $show . "</div>
                             </div>
-                            </div>" ;	
+                        </div>" ;	
         }
         if ($status == 4) {
             $show = $show . "<div class='list-group challenge'>
                     <div class='list-group-item' >
-                        <div class='pull-left lh-fix'>     
+                        <div class='pull-left lh-fix' >     
                             <span class='glyphicon glyphicon-question-sign'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
-                    <div class='row' style='line-height: 16.50px;'>
-                        <div class='col-md-3'>
-                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "
-                        </div>
-                        <div class='col-md-5'>
-                            Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm . "<br/>
-                            ETA Taken : " . $timeo ."
-                        </div>";
-                 if($ch_id == $user_id) {			
-			$show = $show . "
-                        <div class='col-md-2'>
-                            <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                        <div class='row' style='line-height: 16.50px;'>
+                            <div class='col-md-3'>
+                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
+                            </div>
+                            <div class='col-md-5'>
+                                Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm . "<br/>
+                                ETA Taken : " . $timeo ."
+                            </div>";
+          if($ch_id == $user_id) {			
+                $show = $show . "<div class='col-md-2'>
+                        <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
                             <input type='hidden' name='cid' value='" . $chelangeid . "'/>
                             <button type='submit' class='btn-primary' name='closechal'>Close</button>
                         </form>
                     </div>";
-                }
-            $show = $show . "</div>
-                </div>" ;	
+            }
+                $show = $show . "</div>
+                    </div>" ;	
         }
         if ($status == 5) {
             $show = $show . "<div class='list-group challenge'>
@@ -153,16 +152,16 @@ if ($_POST['chal']) {
                         <div style='line-height: 16.50px;'>
                             <div class='row'>
                                 <div class='col-md-3'>
-                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/> ETA Given : " . $timeo . "
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/> ETA Given : " . $timeo . "
                                 </div>
                                 <div class='col-md-5'>
-                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm . "<br/>
+                                    Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm . "<br/>
                                     ETA Taken : " . $timetakennin . "</div></div>
                                 </div>
-                            </div>" ;		
-        }
+                            </div>" ;	
+            }
     } 
      if ($ctype == 7) {
         $show = $show . "<div class='list-group articlesch'>
@@ -172,8 +171,8 @@ if ($_POST['chal']) {
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                     </div>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                                        <br> " . $timefunction . "<br/>
+                                        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
+                                    <br> " . $timefunction . "<br/>
                                 </div>";
     } 
      if ($ctype == 4) {
@@ -183,9 +182,10 @@ if ($_POST['chal']) {
                                 <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>	
-                        
-                        <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
+                            
+                               
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
                              
                                 <div class='row'>
                                 <div class='col-md-8'>
@@ -204,7 +204,7 @@ if ($_POST['chal']) {
                         style='width: 50px; height: 50px'></span>
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>&nbsp&nbsp&nbsp On : " . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction ;
         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
         if ($ch_id != $user_id) {
             $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
@@ -215,24 +215,25 @@ if ($_POST['chal']) {
         else {
             $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
                     <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                    <button type='submit' class='btn-primary' name='closechal'>Close</button>
+                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                 </form>";
         }
         $show = $show . "</div>";
-	}
+	}	
 		if ($status == 6) {
-   $show = $show ."<div class='list-group openchalhide'>
-					<div class='list-group-item' >
+        $show = $show . "<div class='list-group openchalhide'>
+                <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-picture'>
-                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
+                        style='width: 50px; height: 50px'></span>
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>&nbsp&nbsp&nbsp On : " . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> " . $timefunction ;
         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-      $show = $show ."<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
+        $show = $show . "<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
 	}
-        if ($status == 2 || $status == 4 || $status == 5) {
+        if ($status == 2) {
 			$show = $show . "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
@@ -240,17 +241,20 @@ if ($_POST['chal']) {
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>&nbsp&nbsp&nbsp On : " . $timefunction ;
-         if ($ch_id != $user_id) {
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction ;
+        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
+         if ($ch_id != $user_id ) {
+			 if(mysqli_num_rows($owneduser) == 0){
             $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                     <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                 </form>" ;
 			}
+		}
         else {
             $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
                     <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                    <button type='submit' class='btn-primary' name='closechal'>Close</button>
+                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                 </form>";
         }
            $show = $show . "</div>";
@@ -264,15 +268,118 @@ if ($_POST['chal']) {
                 $owname = $ownedbrow['username'];
                 $show = $show . "<div class='list-group-item'>
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>&nbsp&nbsp On : " . $timfunct;
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
                     $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
                             <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
+                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
                         </form>";
                 }
-                $show = $show . "</div>
-                    </div>";
+                $show = $show . "</div>";
+            }
+        }
+        if ($status == 4) {
+			$show = $show . "<div class='list-group challenge'>
+                <div class='list-group-item' >
+                    <div class='pull-left lh-fix'>     
+                        <span class='glyphicon glyphicon-question-sign'>
+                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                    </div>
+                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction ;
+        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
+         if ($ch_id != $user_id ) {
+			 if(mysqli_num_rows($owneduser) == 0){
+            $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
+                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
+                </form>" ;
+			}
+		}
+        else {
+            $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
+                </form>";
+        }
+           $show = $show . "</div>";
+            $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
+                                                from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
+            while ($ownedbrow = mysqli_fetch_array($ownedb)) {
+                $owtime = $ownedbrow['ownership_creation'];
+                $owtimesub = $ownedbrow['time'];
+                $timfunct = date("j F, g:i a", strtotime($owtime));
+                $owtimesubmit = date("j F, g:i a", strtotime($owtimesub));
+                $owfname = $ownedbrow['first_name'];
+                $owlstatus = $ownedbrow['status'];
+                $owlname = $ownedbrow['last_name'];
+                $owname = $ownedbrow['username'];
+                $initialtimen = strtotime($owtime) ;
+				$endtimen = strtotime($owtimesub) ;
+				$time_taken = ($endtimen-$initialtimen)/60 ;
+				$timetakennin = eta($time_taken);
+              if  ($owlstatus==1){
+                $show = $show . "<div class='list-group-item'>
+                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
+                if ($ownedbrow['user_id'] == $user_id ) {
+                    $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
+                        </form>";
+                }
+                $show = $show . "</div>";
+			}
+			 if  ($owlstatus==2){
+                $show = $show . "<div class='list-group-item'>
+                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit." and Time
+                 Taken : ".$timetakennin."</div>";
+			}
+            }
+        }
+        if ($status == 5) {
+			$show = $show . "<div class='list-group challenge'>
+                <div class='list-group-item' >
+                    <div class='pull-left lh-fix'>     
+                        <span class='glyphicon glyphicon-question-sign'>
+                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                    </div>
+                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."</div>";
+            $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
+                                                from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
+            while ($ownedbrow = mysqli_fetch_array($ownedb)) {
+                $owtime = $ownedbrow['ownership_creation'];
+                $owtimesub = $ownedbrow['time'];
+                $timfunct = date("j F, g:i a", strtotime($owtime));
+                $owtimesubmit = date("j F, g:i a", strtotime($owtimesub));
+                $owfname = $ownedbrow['first_name'];
+                $owlstatus = $ownedbrow['status'];
+                $owlname = $ownedbrow['last_name'];
+                $owname = $ownedbrow['username'];
+                $initialtimen = strtotime($owtime) ;
+				$endtimen = strtotime($owtimesub) ;
+				$time_taken = ($endtimen-$initialtimen)/60 ;
+				$timetakennin = eta($time_taken);
+              if  ($owlstatus==1){
+                $show = $show . "<div class='list-group-item'>
+                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
+                if ($ownedbrow['user_id'] == $user_id ) {
+                    $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
+                        </form>";
+                }
+                $show = $show . "</div>";
+			}
+			 if  ($owlstatus==2){
+                $show = $show . "<div class='list-group-item'>
+                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit." and Time
+                 Taken : ".$timetakennin."</div>";
+			}
             }
         }
     
