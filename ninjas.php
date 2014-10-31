@@ -46,6 +46,27 @@ if(!isset($_SESSION['user_id'])){
 		<?php include_once 'html_comp/right_panel_ninjas.php'   ?>
 		</div>
 	</div>
+	<script>
+		$(document).ready(function(){
+	$(window).scroll(function(event) {
+		
+    if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+         event.preventDefault();
+		var dataString = 'chal=10' ;
+			  $.ajax({
+				type: "POST",
+				url: "ajax/get_next.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#panel-cont').append(result);
+					}
+			});	
+	}
+}
+}); 
+	</script>
     <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootswatch.js"></script>
