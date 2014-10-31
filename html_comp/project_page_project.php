@@ -411,7 +411,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                             </div>
                             <div style='line-height: 16.50px;'>";
             echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
-            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span></div>";
+            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
             if ($ownid == $user_id) {
                 echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
                         <input type='hidden' name='id' value='" . $id_task . "'/>

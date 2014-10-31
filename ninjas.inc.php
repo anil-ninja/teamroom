@@ -211,16 +211,16 @@ function checkProject($projectID, $userId, $db_handle){
 		}
 		else if(!isset($_SESSION['user_id'])) return false;
 	else {
-		$access = mysqli_query($db_handle,"(select user_id from projects where project_id = '$projectID' and project_type = '2')
+		$access = mysqli_query($db_handle,"(select user_id from projects where project_id = '$projectID')
 											UNION 
-											(SELECT DISTINCT a.user_id FROM teams as a join projects as b WHERE a.user_id = '$userId' and a.project_id = b.project_id and b.project_id = '$projectID' and b.project_type = '2');") ;
+											(SELECT DISTINCT a.user_id FROM teams as a join projects as b WHERE a.user_id = '$userId' and a.project_id = b.project_id and b.project_id = '$projectID');") ;
 	$accessrow = mysqli_fetch_array($access) ;
 	if ($accessrow['user_id'] == $userId) {
 		return true ;
 		}
 	 return false ;
 	}
-	//check use have access if access the return true
+	//check user have access if access the return true
 	
 	}
 if(isset($_GET['projectphp'])){
