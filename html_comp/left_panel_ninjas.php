@@ -56,6 +56,7 @@
 						
 						while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
 								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
+								$idproject = $project_public_title_displayRow['project_id'] ;
 							if (strlen($public_pr_titlep) > 25) {
 								$prtitlep = substr(ucfirst($public_pr_titlep),0,26)."....";
 								} else {
@@ -66,15 +67,28 @@
 								$timefuncp = date("j F, g:i a",strtotime($p_time));
 								$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
 								$remaining_time_ownp = remaining_time($p_timep, $p_etap);	
-					echo "<form method='GET' action=''>
-							<input type='hidden' name='project_id' value='".$project_public_title_displayRow['project_id']."'/>
-							<tr><td>
-							<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-							data-placement='bottom' data-original-title='".$titlep."' style='height: 37px;font-size:13px;text-align: left;'><b>
-							".$prtitlep."</b>
-							<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_ownp."</p></button></td></tr></form>" ;
-									
-							} 
+					echo "<tr>
+							<td>
+								<form method='GET' action=''>
+									<input type='hidden' name='project_id' value='".$idproject."'/>
+									<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+									data-placement='bottom' data-original-title='".$titlep."' style='height: 37px;font-size:13px;text-align: left;'><b>
+									".$prtitlep."</b>
+									<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_ownp."</p></button>
+								</form>
+							</td>" ;
+					$join =  mysqli_query($db_handle, "select user_id from teams where project_id = '$idproject' and user_id = '$user_id';") ;
+					if (mysqli_num_rows($join) == 0) {		
+					echo	"<td>
+								<form method='POST' action=''>
+									<input type='hidden' name='project_id' value='".$idproject."'/>
+									<input type='submit' name='joinproject' class='btn btn-link' value='Join This Project'/>
+								</form>
+							</td>" ;
+						} else {
+					echo "</tr>" ;
+					}			
+					} 
 						?>
 			</table>
 			</div>

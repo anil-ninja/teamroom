@@ -123,6 +123,13 @@ if (isset($_POST['logout'])) {
     unset($_SESSION['first_name']);
     session_destroy();
     exit ;
+}
+if (isset($_POST['joinproject'])) {
+	$user_id = $_SESSION['user_id'];
+	$id = $_POST['project_id'] ;
+	mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$id', 'defaultteam') ;") ;
+	echo "<script>alert('Joined Successfully')</script>" ;
+	header('Location: #');
 }   
 if(isset($_POST['spem'])) {
 	$id = $_POST['spem'] ;
