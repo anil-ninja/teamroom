@@ -103,7 +103,7 @@ $obj = new profile($UserName);
 	<script src="js/ninjas.js" type="text/javascript"></script>
     </head>
 
-    <body>
+    <body style="background:#FFF;">
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          <div class='alert_placeholder'></div>
         <div class=" media-body" style="padding-top: 35px;">
