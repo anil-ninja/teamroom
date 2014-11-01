@@ -68,7 +68,7 @@ $obj = new profile($UserName);
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>profile</title>
+        <title><?php echo $profileViewFirstName; ?></title>
         <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
        
         <link rel="stylesheet" href="css/profile_page_style.css">
@@ -104,114 +104,70 @@ $obj = new profile($UserName);
     </head>
 
     <body>
-
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
-    
-        <div class="row">
-            <div class="col-md-offset-1 col-md-8 col-lg-8">
-                <div class="well profile">
-                    <div class="col-sm-12">
-                        <div class="col-xs-12 col-sm-8">
-                            <?php
-                            echo "<h2><strong>" . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong></h2>
-                                        <p><strong>Email-Id: </strong>" . $profileViewEmail . "</p>
-                                        <p><strong>Contact: </strong>" . $profileViewPhone . "</p>
-                                        <p><strong>Skills: </strong>";
-                                        $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
-                                        while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-                                            echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
-                                            }
-                                      echo "</p>";
-                                        
-                           
-                            if(isset($_SESSION['user_id'])) { 
-                                echo "<div class='col-lg-5'>
-                                        <a data-toggle='modal' class='btn btn-primary' data-target='#addskill' style='cursor:pointer;'><i class='glyphicon glyphicon-plus'></i> Add Skills</a>
-                                    </div>";
-                                
-                                echo "<form>
-                                    <select class='btn-sm' id='remove'>
-                                    <option value='0' selected></option>";	
-                                        $skill_remove_names= mysqli_query($db_handle, "SELECT b.skill_id, b.skill_name FROM user_skills as a join skill_names as b
-																						WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id;");
-                                       while ($skill_remove_namesRow = mysqli_fetch_array($skill_remove_names)) {
-                                            echo "<option value= '".$skill_remove_namesRow['skill_id']."'>".$skill_remove_namesRow['skill_name']."</option>";
-                                       }
-                                echo "</select>&nbsp
-                                    <input id='remove_skill' class='btn-sm btn-primary' type='submit' value='Remove Skill'/>
-                                </form>";
-                            }
-                           ?>
-                        </div>             
-                        <div class="col-xs-12 col-sm-4 text-center">
-                            <figure>
-                                <?php
-                                    echo "<img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
-                                    if (isset($_SESSION['user_id'])) {
-                                        echo "<b> <a data-toggle='modal' style='cursor: pointer' data-target='#uploadPicture'>Change Picture</a> </b>";
+         <div class='alert_placeholder'></div>
+        <div class=" media-body" style="padding-top: 35px;">
+        <div class="col-md-1"></div>
+        <div class="col-md-2">
+        <?php
+            echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+            if (isset($_SESSION['user_id'])) {
+                echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a><br/><hr/>";
+            }
+                    echo "<span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong></span>
+                                <span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>
+                                <span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
+                                <span><br/>Skills:";
+                                $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
+                                while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+                                    echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
                                     }
-                                ?>
-                                 <figcaption class="ratings">
-                                    <p>Ratings
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star"></span>
-                                        </a>
-                                        <a href="#">
-                                            <span class="fa fa-star-o"></span>
-                                        </a> 
-                                    </p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>            
-                    <div class="col-xs-12 divider text-center">
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
-                            <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block" id='chcre'><span class="fa fa-plus-circle"></span> Created </button>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong> <?php echo $totalChallengeCompleted; ?> </strong></h2>                    
-                            <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block" id='chcomp'><span class="glyphicon glyphicon-ok"></span> Completed </button>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong><?php echo $totaLChallengeProgress; ?> </strong></h2>                    
-                            <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block" id='chown'><span class="glyphicon glyphicon-fire"></span> In-progress </button>
-                        </div>
-                    </div>
-                    <div class="col-xs-12 divider text-center">
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong><?php echo $totalProjectCreated; ?></strong></h2>                    
-                            <p><small>projects</small></p>
-                            <button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span> Created </button>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong><?php echo $totalProjectCompleted; ?> </strong></h2>                    
-                            <p><small>projects</small></p>
-                            <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong><?php echo $totalprojectProgress; ?> </strong></h2>                    
-                            <p><small>projects</small></p>
-                            <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
-                        </div>
-                    </div>
-                </div>
-                </div>
-            <div class="col-lg-3">
-                <div class="well profile">
-                    <p>  In-contact with Friends </p>
+                              echo "<br/></span>";
+                                
+                   
+                    if(isset($_SESSION['user_id'])) { 
+                        echo "
+                                <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
+                                    <i class='glyphicon glyphicon-plus'></i>
+                                    Skill
+                                </a><br/>";
+                        
+                        // echo "<span>
+                        //     <select class='btn-xs' id='remove'>
+                        //     <option value='0' selected></option>";  
+                        //         $skill_remove_names= mysqli_query($db_handle, "SELECT b.skill_id, b.skill_name FROM user_skills as a join skill_names as b
+                        //                                                         WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id;");
+                        //        while ($skill_remove_namesRow = mysqli_fetch_array($skill_remove_names)) {
+                        //             echo "<option value= '".$skill_remove_namesRow['skill_id']."'>".$skill_remove_namesRow['skill_name']."</option>";
+                        //        }
+                        // echo "</select>&nbsp
+                        //     <input id='remove_skill' class='btn-xs btn-primary' type='submit' value='Remove Skill'/>
+                        // </span>";
+                    }
+                   ?> 
+                <figure>   
+                 <figcaption class="ratings">
+                    <p>Ratings
+                        <a href="#">
+                            <span class="fa fa-star"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-star"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-star"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-star"></span>
+                        </a>
+                        <a href="#">
+                            <span class="fa fa-star-o"></span>
+                        </a> 
+                    </p>
+                </figcaption>
+            </figure>
+            <br/>
+                    <p> <b><u> Collaborating With </u></b></p>
                     <?php
                     $userProjects = mysqli_query($db_handle, ("SELECT * FROM user_info as a join 
                                                             (SELECT DISTINCT b.user_id FROM teams as a join
@@ -228,8 +184,47 @@ $obj = new profile($UserName);
                                    <br></a>";
                     }
                     ?>
-                </div>                 
-            </div>
+        </div>
+          <div class="col-md-7 divider text-center" style="background-color: ##F0FDEC;">
+          <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active"><a href="#">Projects</a></li>
+              <li role="presentation"><a href="#">Articles</a></li>
+              <li role="presentation"><a href="#">Challanges</a></li>
+              <li role="presentation"><a href="#">Ideas</a></li>
+          </ul>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
+                            <p><small>challenges</small></p>
+                            <button class="btn btn-success btn-block" id='chcre'><span class="fa fa-plus-circle"></span> Created </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong> <?php echo $totalChallengeCompleted; ?> </strong></h2>                    
+                            <p><small>challenges</small></p>
+                            <button class="btn btn-success btn-block" id='chcomp'><span class="glyphicon glyphicon-ok"></span> Completed </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong><?php echo $totaLChallengeProgress; ?> </strong></h2>                    
+                            <p><small>challenges</small></p>
+                            <button class="btn btn-success btn-block" id='chown'><span class="glyphicon glyphicon-fire"></span> In-progress </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong><?php echo $totalProjectCreated; ?></strong></h2>                    
+                            <p><small>projects</small></p>
+                            <button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span> Created </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong><?php echo $totalProjectCompleted; ?> </strong></h2>                    
+                            <p><small>projects</small></p>
+                            <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-ok"></span> Completed </button>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 emphasis">
+                            <h2><strong><?php echo $totalprojectProgress; ?> </strong></h2>                    
+                            <p><small>projects</small></p>
+                            <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
+                        </div>
+          </div>
+</div>
+                </div>
         </div>
 <div id="InfoBox"></div>
         <script src="js/add_remove_skill.js"> </script>
