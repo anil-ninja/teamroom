@@ -57,6 +57,7 @@ function login(){
 		//header('Location: ninjas.php');
 		$responseRow = mysqli_fetch_array($response);
 		$id = $responseRow['user_id'];
+		$lastlogintime = $responseRow['last_login'];
 		$logintime = date("y-m-d H:i:s") ;
 		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime' where user_id = '$id' ;" ) ;
 		$_SESSION['user_id'] = $id ;
