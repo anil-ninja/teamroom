@@ -3,7 +3,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
 <div class="row">
-    <div class="navbar-header">
+    <div class="col-md-2 navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -14,7 +14,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
               <img src ='img/collap.gif' style="width:75px;">collap</a>
         </div>
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
-                <ul class="nav navbar-nav navbar-left navbar-responsive">
+                <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
                     <li class='navbar-text' >
                      <div class="input-group">
                              <input type="text"  id="search" placeholder="search" style="height : 26px" class="form-control">
@@ -26,7 +26,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                      </div>
                     </li>
                 </ul>
-                <ul class='nav navbar-nav navbar-right navbar-responsive' style='margin-right: 0px;'>
+                <ul class='ccol-md-9 nav navbar-nav navbar-right' style='margin-right: 0px;'>
                     <?php
                     if (isset($_SESSION['user_id'])) {
                         if ($requestedPage == "challenges.php") {
