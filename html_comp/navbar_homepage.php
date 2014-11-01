@@ -10,7 +10,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
+              <a class="brand" style='font-size:18pt; color: #fff; font-weight: bold;' href="index.php">
               <img src ='img/collap.gif' style="width:75px;">collap</a>
         </div>
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
@@ -95,7 +95,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             </p>
                         </li>
                         <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-
+                        <li><?php include_once 'notification.php'?></li>
                </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
