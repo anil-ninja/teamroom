@@ -87,7 +87,7 @@
                     </select><br/><br/>
 								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
                                	<div class="inline-form">
-                    Set Date and Time :  
+                    Show After(Set Date and Time) :  
                     <select class="btn-info btn-xs"  id= "month" >	
                         <option value='0' selected >Month</option>
                         <?php

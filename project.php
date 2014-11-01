@@ -24,9 +24,9 @@ include_once 'functions/delete_comment.php';
         <script src="js/project.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
    </head>
-    <body>
-        <?php include_once 'html_comp/navbar_homepage.php'; ?>
-       <div class='alert_placeholder'></div>
+<body>
+	<?php include_once 'html_comp/navbar_homepage.php'; ?>
+    <div class='alert_placeholder'></div>
          <div class=" media-body" style="padding-top: 35px;">
           <div class="col-md-3">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
@@ -40,6 +40,7 @@ include_once 'functions/delete_comment.php';
 				   <?php include_once 'html_comp/project_page_challenge.php'; ?>
             </div>	
            </div>
+           
        <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/ninjas.js"></script>

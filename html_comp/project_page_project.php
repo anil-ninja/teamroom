@@ -1,3 +1,4 @@
+
 <?php
 $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id )
@@ -90,7 +91,7 @@ echo "<div class='comments clearfix'>
 	</div>
 </div>"
 ?>
-<p id='invitation'></p>
+
 <div class='list-group'>
     <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span></div>
     <div class='list-group-item'>
@@ -165,7 +166,7 @@ echo "<div class='comments clearfix'>
                 <br>
                 <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
             
-        </div>
+        </div><div id='invitation'></div>
         <div id='taskForm'>
 			
 	<?php
