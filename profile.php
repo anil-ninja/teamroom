@@ -103,7 +103,7 @@ $obj = new profile($UserName);
 	<script src="js/ninjas.js" type="text/javascript"></script>
     </head>
 
-    <body>
+    <body style="background:#FFF;">
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          <div class='alert_placeholder'></div>
         <div class=" media-body" style="padding-top: 35px;">
@@ -251,7 +251,7 @@ $(document).ready(function(){
     });
 });
 </script>
-        <div class="row">
+       <!--  <div class="row">
             <div class="col-md-offset-1 col-md-8 col-lg-8">
                 <div class="well profile">
                     <div class="col-xm-12">
@@ -371,7 +371,7 @@ $(document).ready(function(){
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
             <!---Modal --->
             <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
