@@ -17,7 +17,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
                     <li class='navbar-text' >
                      <div class="input-group">
-                             <input type="text"  id="search" placeholder="search" style="height : 26px" class="form-control">
+                             <input type="text"  id="search" placeholder="search" style="height : 26px;padding-bottom: 0px; padding-top: 0px;" class="form-control">
                              <span class="input-group-btn">
                                  <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
                                     <p class="glyphicon glyphicon-search">
@@ -172,11 +172,11 @@ if ($requestedPage == "project.php") {
 <script>
 	
     function show_search_results(challenges){
-        var resp = "<div class='list-group'><div class='list-group-item'> <a data-toggle='modal' class='btn btn-link'style='line-height: 20.50px;font-size: 15px'>Search Results</a></b></div>";
+        var resp = "<div class='list-group'><div class='list-group-item'> <p style='line-height: 20.50px;font-size: 15px'>Search Results</p></div>";
         for (var i = 0; i < challenges.length; i++) {
             var resultNumber = i+1;
             
-            resp = resp +"<div class='list-group-item'><div class ='row'><div class='col-md-1' style = 'width : 1%;'>"+"</div><div class ='col-md-9'> <a data-toggle='modal' class='btn btn-link' style='color:#3B5998;' href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>&nbsp;&nbsp;"+challenges[i].stmt+"..</br></div></div></div>"; 
+            resp = resp +"<div class='list-group-item'><div class ='row'><div class='col-md-1' style = 'width : 1%;'>"+"</div><div class ='col-md-9'> <a class='btn btn-link' style='color:#3B5998;' href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>&nbsp;&nbsp;"+challenges[i].stmt+"..</br></div></div></div>"; 
         }
         return resp+"</div>";
     }
@@ -204,6 +204,8 @@ if ($requestedPage == "project.php") {
                     success: function(result){
                         //alert(result);
                         challenges = JSON.parse(result);
+                        //alert(challenges);
+                        alert(show_search_results(challenges));
                         document.getElementById("home-ch").innerHTML = show_search_results(challenges);
                         //document.getElementById("home").innerHTML = show_search_results_id(challenges);
                         //alert(show_search_results(challenges));
