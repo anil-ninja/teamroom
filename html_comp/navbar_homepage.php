@@ -2,6 +2,7 @@
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
+<div class="row">
     <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -12,7 +13,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
               <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
               <img src ='img/collap.gif' style="width:75px;">collap</a>
         </div>
-         <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style="background : #4EC67F">
+         <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
                 <ul class="nav navbar-nav navbar-left navbar-responsive">
                     <li class='navbar-text' >
                      <div class="input-group">
@@ -25,7 +26,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                      </div>
                     </li>
                 </ul>
-                <ul class='nav navbar-nav navbar-right navbar-responsive' >
+                <ul class='nav navbar-nav navbar-right navbar-responsive' style='margin-right: 0px;'>
                     <?php
                     if (isset($_SESSION['user_id'])) {
                         if ($requestedPage == "challenges.php") {
@@ -94,7 +95,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             </p>
                         </li>
                         <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                 
+
                </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
@@ -125,7 +126,9 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     }
     ?>
         </ul>
+        </div>
    </div>
+
  
 
 
