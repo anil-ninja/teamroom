@@ -19,7 +19,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
             <ul class="nav navbar-nav navbar-left navbar-responsive">
                 <li class='navbar-text' >
                  <div class="input-group">
-                         <input type="text"  id="search" placeholder="search" style="height : 26px" class="form-control">
+                         <input type="text"  id="search" placeholder="search" style="height : 26px; width: 200px;" class="form-control">
                          <span class="input-group-btn">
                              <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
                                 <p class="glyphicon glyphicon-search">

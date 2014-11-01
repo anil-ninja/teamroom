@@ -1,14 +1,15 @@
 <div class="bs-component">
-	<div class='list-group'  style='cursor: pointer; background-color:#F0F1F2'>
- 		<hr/>
- 		<div >
+	<div class='list-group'  style='cursor: pointer;'>
+ 		<div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);">
+ 		<table >
+ 		<tr><td><font size="2"> PROJECTS&nbsp;&nbsp;&nbsp;</font></td>
+ 		<td><a data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size="1">+Add</font></a> </td>
+ 		</tr>
  		<tr>
-	 		<td> <font size="3"><b> Classified Projects&nbsp;&nbsp;&nbsp;&nbsp;</b></font></td>
-	 		<td><a data-toggle='modal' class=' btn-link' data-target='#createProject' style='cursor:pointer; pull-right'> <font size="2">+Add</font></a> </td>
+	 		<td> <font size="2"> Classified</font></td>
+	 		
 		</tr>
-		</div>
-		<div >
-				<table >
+				
 	
 			   <?php
 					$project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
@@ -17,8 +18,8 @@
 						while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
 						$p_title = $project_title_displayRow['project_title'] ;
 						$idpro = $project_title_displayRow['project_id'] ;
-						if (strlen($p_title) > 40) {
-						$prtitle = substr(ucfirst($p_title),0,40)."...";
+						if (strlen($p_title) > 25) {
+						$prtitle = substr(ucfirst($p_title),0,25)."...";
 						} else {
 							$prtitle = ucfirst($p_title) ;
 						}								   
@@ -31,22 +32,16 @@
 							<input type='hidden' name='project_id' value='".$idpro."'/>
 							<tr><td>
 							<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-							data-placement='bottom' data-original-title=' ".$title."' style='height: 37px;font-size:13px;text-align: left;'>
-							<b>".$prtitle."</b>
-							<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_own."</p></td></tr> </button></form>" ;
+							data-placement='bottom' data-original-title=' ".$title."' style='height: 20px;font-size:11px;text-align: left;'>
+							</b>".$prtitle."</b>
+							<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_own."</p></td></tr> 
+						</button></form>" ;
 						
 						
 					}
 				?>
-				</table>
-			</div>
- 		<hr/>
- 		<div >
- 		<tr>
-	 		<td> <font size="3"><b> Public Projects&nbsp;&nbsp;&nbsp;&nbsp;</b></font></td>
-	 		<td>
-	 		 <a data-toggle='modal' class=' btn-link' data-target='#createProject' style='cursor:pointer; pull-right'> <font size="2">+Add</font></a> 
-			</td>
+ 		<tr></tr><tr>
+	 		<td> <font size="2"> <br/>Public</font></td>
 		</tr>
 		</div>
 		<div>
@@ -58,7 +53,7 @@
 								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
 								$idproject = $project_public_title_displayRow['project_id'] ;
 							if (strlen($public_pr_titlep) > 25) {
-								$prtitlep = substr(ucfirst($public_pr_titlep),0,26)."....";
+								$prtitlep = substr(ucfirst($public_pr_titlep),0,25)."....";
 								} else {
 									$prtitlep = ucfirst($public_pr_titlep) ;
 								}								   
@@ -69,22 +64,25 @@
 								$remaining_time_ownp = remaining_time($p_timep, $p_etap);	
 					echo "<tr>
 							<td>
-								<form method='GET' action=''>
-									<input type='hidden' name='project_id' value='".$idproject."'/>
-									<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-									data-placement='bottom' data-original-title='".$titlep."' style='height: 37px;font-size:13px;text-align: left;'><b>
-									".$prtitlep."</b>
-									<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_ownp."</p></button>
-								</form>
-							</td>" ;
+							<form method='GET' action=''>
+								<input type='hidden' name='project_id' value='".$idprot."'/>
+								<tr><td>
+								<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+								data-placement='bottom' data-original-title='".$titlep."' style='height: 20px;font-size:11px;text-align: left;'>
+								".$prtitlep."
+								<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_ownp."</p></button></td>
+							</form>
+							" ;
 					$join =  mysqli_query($db_handle, "select user_id from teams where project_id = '$idproject' and user_id = '$user_id';") ;
 					if (mysqli_num_rows($join) == 0) {		
 					echo	"<td>
 								<form method='POST' action=''>
 									<input type='hidden' name='project_id' value='".$idproject."'/>
-									<input type='submit' name='joinproject' class='btn btn-link' value='Join This Project'/>
+									<button type='submit' class='btn-link' name='join' data-toggle='tooltip' 
+									data-placement='bottom' data-original-title='Join' style='height: 20px;font-size:11px;text-align: left;'>Join</button>
+									
 								</form>
-							</td>" ;
+							</td></tr>" ;
 						} else {
 					echo "</tr>" ;
 					}			
