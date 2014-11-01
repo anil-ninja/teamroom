@@ -2,6 +2,7 @@
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 ?>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="inline-block">
     <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -217,6 +218,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     }
     ?>
         </ul>
+   </div>
    </div>
    </div>
 
