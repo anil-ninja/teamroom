@@ -187,25 +187,56 @@ function challenge_display($db_handle, $challengeSearchID) {
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                         <div style='line-height: 16.50px;'>
-                        <span class='color strong' style= 'color :lightblue;'>
+                            <span class='color strong' style= 'color :lightblue;'>
                                 <a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                 .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " 
                                 </a>
-                        </span><br>" . $timefunction . "<br>".$remaining_time_own."
-                    </div>";
+                            </span><br>" . $timefunction . "<br>".$remaining_time_own."
+                        </div>";
             switch ($challenge_status) {
                 case 1:
                     if (isset($_SESSION['user_id'])) {
-                        dropDown_challenge($db_handle, $chelangeid, $user_ID, $remaining_time_own);
-                        echo "<form method='POST' class='inline-form pull-right'>
-                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' id = 'accept_challenge' name='accept' value='Accept'>
-                        </form>";
-                        echo $challenge_createdBY;
-                    } else {
+                        if ($challenge_type == 7) {
+                        echo "<div style='line-height: 24.50px;'>
+                                <div class='pull-left lh-fix'>     
+                                    <span class='glyphicon glyphicon-book'></span>
+                                    <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                </div>
+                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
+                                <br> " . $timefunction . "<br/>
+                            </div>";
+                        } 
+                        elseif ($challenge_type == 4) {
+                        echo "<div style='line-height: 16.50px;'></span>
+                                <div class='pull-left lh-fix'>     
+                                    <span class='glyphicon glyphicon-flash'></span>
+                                    <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                </div>  
+                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
+                                <div class='row'>
+                                    <div class='col-md-8'>
+                                        <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p>
+                                    </div>
+                                </div>
+                            </div>";
+                        }
+                        elseif ($challenge_type == 2 OR $challenge_type == 1) {
+                            dropDown_challenge($db_handle, $chelangeid, $user_ID, $remaining_time_own);
+                            echo "<form method='POST' class='inline-form pull-right'>
+                                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                                    <input class='btn btn-primary btn-sm' type='submit' id = 'accept_challenge' name='accept' value='Accept'>
+                                </form>";
+                            echo $challenge_createdBY;
+                        }
+                    }
+                    else {
                         echo"<a data-toggle='modal' data-target='#SignIn'>
                             <button class='btn btn-primary btn-sm pull-right' >Accept</button>
                         </a>";
+                        echo $challenge_createdBY;
+                        //echo "case 1";
                     }
                     break;
                 case 2:
@@ -227,14 +258,16 @@ function challenge_display($db_handle, $challengeSearchID) {
                             </a>
                         </span>&nbsp on &nbsp" . $own_created."<br>". $remaining_time_own;
                     } else {
-                        echo $challenge_createdBY;
                         echo"<a data-toggle='modal' data-target='#SignIn'>
                             <button class='btn btn-primary btn-sm pull-right' >Accept</button>
                         </a>";
+                        echo $challenge_createdBY;
+                        //echo "case 2";
                     }
             }
 
-            echo "<br><br></div>";
+            echo "</div>";
+             
             echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'><b>" . ucfirst($ch_title) . "</b></p><br/>" .
             $chellange_open_stmt . "<br/><br/>";
             $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
