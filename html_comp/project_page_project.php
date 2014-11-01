@@ -170,7 +170,10 @@ echo "<div class='comments clearfix'>
         <div id='taskForm'>
 			
 	<?php
-	
+	$owner_project = mysqli_query($db_handle, "select user_id from projects where project_id = '$pro_id';" ) ;
+	$owner_projectrow = mysqli_fetch_array($owner_project) ;
+	$ownerof_project = $owner_projectrow['user_id'] ;
+	if ($ownerof_project == $user_id) {
 	$teams = mysqli_query($db_handle, "select DISTINCT team_name from teams where project_id = '$pro_id' and status = '1';" ) ;
 		if (mysqli_num_rows($teams) > 0) { 
 			$task = "";
@@ -240,6 +243,10 @@ echo "<div class='comments clearfix'>
 	 } 
 		else {
 			echo "You hane no teams, Please create Team First";			
+			}
+		}
+		else {
+			echo "You are not authorised only Project Manager can assign Tassk" ;
 			}
      ?>
         </div>

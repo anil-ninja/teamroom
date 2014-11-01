@@ -124,7 +124,10 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 </li>
                 <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
                 <li>
-					<?php include_once "notification.php";  ?>
+					<?php
+					// $lasttime = $_SESSION['last_login'] ;
+					// echo $lasttime ;
+					 include_once "notification.php";  ?>
                </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">

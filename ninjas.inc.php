@@ -2,7 +2,9 @@
 include_once 'lib/db_connect.php';
 
 session_start();
-if(isset($_SESSION['user_id']))
+if(!isset($_SESSION['user_id'])) {
+	header('Location:index.php') ;
+	} 
     $user_id = $_SESSION['user_id'];
 $name = $_SESSION['first_name'];
 $username = $_SESSION['username'];
