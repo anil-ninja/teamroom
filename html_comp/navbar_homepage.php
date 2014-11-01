@@ -123,8 +123,9 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                     </p>
                 </li>
                 <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                <li><div class='dropdown'>
-					<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'>
+                <li>
+					<div class='dropdown'>
+					<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: red;'>
 							 <i class='glyphicon glyphicon-bell'></i><span class='badge'>
 			<?php
 				$count = mysqli_query($db_handle, " select Distinct time from reminders where person_id = '$user_id';") ;
@@ -144,7 +145,8 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 				}
 				echo $y ;
 				?>
-				</span></a>
+				</span>
+				</p></a>
 					<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
 				<?php 					
 				$reminder = mysqli_query($db_handle, " select Distinct user_id, reminder, creation_time, time from reminders where person_id = '$user_id';") ;
@@ -180,12 +182,14 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 					if ($timeleft < 600 && $timeleft > 0) {
 						echo "<li><button class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' >
 									<b>" .$rtitle. "</b><p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>
-									" . $createdon . "</p></button></li><br/>" ;
+									" . $createdon . "</p></button></li>" ;
 						
 						}
 				}
                 ?>
-               </ul> </div></li>
+					</ul> 
+				</div>
+               </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
                                 <?php

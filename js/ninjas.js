@@ -169,10 +169,11 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$("#remind").click(function(){
 			var reminder = $("#reminder").val() ;
 			var self = $("#self").val() ;
-			var month = $("#month").val() ;
-			var date = $("#date").val() ;
-			var hour = $("#hour").val() ;
-			var minute = $("#minute").val() ;
+			var month = parseInt($("#month").val());
+			var date = parseInt($("#date").val());
+			var hour = parseInt($("#hour").val());
+			var minute = parseInt($("#minute").val());
+			var eventtime = parseInt((((month*30+date)*24+hour)*60+minute)*60) ;
 			if(reminder==''){
 				bootstrap_alert(".alert_placeholder", "Reminder can not be empty", 5000,"alert-warning");
 				return false;
@@ -182,7 +183,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false;
 				}
 			 else {
-			var dataString = 'reminder='+ reminder + '&month='+ month + '&self='+ self + '&date='+ date + '&hour='+ hour + '&minute='+ minute  ;
+			var dataString = 'reminder='+ reminder + '&eventtime='+ eventtime + '&self='+ self ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/submit_reminder.php",
@@ -393,7 +394,8 @@ $("#pencil").click(function(){
 		});
     
 		$("#create_task").click(function(){
-      		$("#create_task").attr('disabled','disabled');
+			//$(".alert_placeholder").innerHTML += "hi" ;
+      		//$("#create_task").attr('disabled','disabled');
 			var team = $("#teamtask").val() ;
 			var users = $("#userstask").val() ;
 			var email = $("#emailtask").val() ;
@@ -435,8 +437,13 @@ $("#pencil").click(function(){
 							}				
 					}
 						else {
-							var modal = "<div class='modal fade' id='sendemail' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='false'><div class='modal-dialog'><div class='modal-content'><div class='modal-header'><button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button><h4 class='modal-title' id='myModalLabel'>Hi, It looks like s/he is not here Lets intivite her/him</h4></div><div class='modal-body'><form role='form' method='POST' action = ''><div class='input-group'><span class='input-group-addon'>His/Her First Name</span><input type='text' class='form-control' name='fname' placeholder='His First Name'></div><br/><div class='input-group'><span class='input-group-addon'>His/Her Second Name</span><input type='text' class='form-control' name='sname' placeholder='His Second Name'></div><br/><div class='input-group'><span class='input-group-addon'>His Email ID</span><input type='text' class='form-control' name='email' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class='btn btn-success' name='invite'  value='Invite Him/Her' /></form></div><div class='modal-footer'><button id='newuser' type='button' class='btn btn-primary' data-dismiss='modal'>Close</button></div></div></div></div>";
-							document.getElementById("invitation").innerHTML = modal ;
+							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><form role='form' method='POST' action = ''><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' name='fname' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' name='sname' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' name='email' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' name='invite'  value='Invite Him/Her' /></form><br/>";
+							//var modal = "<div class='modal'>test</div>";
+							//alert("hi");
+							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
+							$("#invitation").show().html(modal);
+							//$("#taskForm").hide(1500);
+							//$("#invitation").innerHTML = "hijkjkj" ;
 							//alert("this user is not registered");
 							//var modal = document.getElementById('chasendemail');
 							//alert(modal) ;

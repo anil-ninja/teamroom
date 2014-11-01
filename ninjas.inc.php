@@ -204,18 +204,17 @@ header('Location: #');
 }
 function checkProject($projectID, $userId, $db_handle){
 	//returns true in case of public
-	$type = mysqli_query($db_handle,"select project_type from projects where project_id = '$projectID';") ;
+	$type = mysqli_query($db_handle,"select project_type from projects where project_id = '$projectID' ;") ;
 	$typerow = mysqli_fetch_array($type) ;
 	if ($typerow['project_type'] == 1) {
 			return true ;
 		}
 		else if(!isset($_SESSION['user_id'])) return false;
 	else {
-		$access = mysqli_query($db_handle,"(select user_id from projects where project_id = '$projectID')
+		$access = mysqli_query($db_handle,"(select user_id from projects where project_id = '$projectID' and user_id = '$userId')
 											UNION 
 											(SELECT DISTINCT a.user_id FROM teams as a join projects as b WHERE a.user_id = '$userId' and a.project_id = b.project_id and b.project_id = '$projectID');") ;
-	$accessrow = mysqli_fetch_array($access) ;
-	if ($accessrow['user_id'] == $userId) {
+	if (mysqli_num_rows($access) > 0) {
 		return true ;
 		}
 	 return false ;
@@ -223,12 +222,14 @@ function checkProject($projectID, $userId, $db_handle){
 	//check user have access if access the return true
 	
 	}
+
 if(isset($_GET['projectphp'])){
 	$projt_id = $_GET['project_id'];
-	if(checkProject($projt_id,$user_id,$db_handle)) 
-		 header("location: project.php?project_id=$projt_id") ;
-	 
-	else header("location: ninjas.php") ;
+	if(checkProject($projt_id,$user_id,$db_handle)) {
+		 header("location: project.php?project_id=$projt_id") ;		
 		exit ;
+	} else {
+		header("location: ninjas.php") ;
+		}
 	}
 ?>

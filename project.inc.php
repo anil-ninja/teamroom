@@ -58,12 +58,12 @@ if (isset($_POST['invite'])) {
             To know details login to http://54.64.1.52/Mybill/.\n
             Username: ".$email."\n
             Password: ".$password)){
-            header('Location: project.php');
-           echo "<script>alert('User was not registered, we have invited the user!')</script>";
+            header('Location: #');
+           echo "<script>alert('User was not registered we have invited the user!')</script>";
     }
     else{
-            header('Location: project.php');
-            echo "<script>alert('An error occured, Sorry try again!')</script>";
+            header('Location: #');
+            echo "<script>alert('An error occured Sorry try again!')</script>";
             }
             }  else { echo "<script>alert('Enter First name!')</script>"; }
             }  else { echo "<script>alert('Enter something!')</script>"; }
