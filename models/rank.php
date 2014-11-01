@@ -12,7 +12,7 @@ class rank{
     }
     function setRank(){
         
-        $db_handle = mysqli_connect("localhost","root","redhat111111","ninjasTeamRoom");
+        $db_handle = mysqli_connect("localhost","root","redhat11111","ninjasTeamRoom");
         if (mysqli_connect_errno()) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }
@@ -90,7 +90,7 @@ class rank{
         
         $rankNo = round(log($finalScore,2))-3;
 
-        if($rankNo <  3) $rankNo = 0;
+        if($rankNo <  0) $rankNo = 0;
 
         $this->user_rank = $rankStrings[$rankNo];
         mysqli_close($db_handle);
