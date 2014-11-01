@@ -41,7 +41,7 @@ else if ($email != "") {
 		$owners = mysqli_query($db_handle,"select user_id from user_info where email = '$email' ;") ;
        $ownersrow = mysqli_fetch_array($owners) ; 
 		   $owner = $ownersrow['user_id'] ;	
-		   $insert =  mysqli_query($db_handle,"select user_id from teams where project_id = '$id' and user_id = '$owner' and team_name = 'defaultteam' ;") ;
+		   $insert =  mysqli_query($db_handle,"select user_id from teams where project_id = '$id' and user_id = '$owner' ;") ;
 		   if (mysqli_num_rows($insert) == 0){
 			  mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$id', 'defaultteam') ;" ) ; 
 			   }	

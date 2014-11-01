@@ -5,7 +5,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Challenges Open</title>
+        <title><?php chOpen_title($challenge_page_title); ?></title>
         <meta name="author" content="">
         
         <!-- for Google -->
@@ -60,11 +60,21 @@
                     $no_data = mysqli_num_rows($about_author);
                     if ($no_data == 0){
                         echo "<div class='panel-body'>
+                            <span class='color strong' style= 'color :lightblue;'>
+                                    <a href ='profile.php?username=" . $ch_username . "'>"
+                                    .ucfirst($challengeSearch_first) . '&nbsp' . ucfirst($challengeSearch_last) . " 
+                                    </a>
+                            </span><br>
                                 No information is available about this user
                             </div>";
                     } else {
                         $about_authorRow = mysqli_fetch_array($about_author);
-                        echo "<div class='panel-body'>";
+                        echo "<div class='panel-body'>
+                                <span class='color strong' style= 'color :lightblue;'>
+                                    <a href ='profile.php?username=" . $ch_username . "'>"
+                                    .ucfirst($challengeSearch_first) . '&nbsp' . ucfirst($challengeSearch_last) . " 
+                                    </a>
+                            </span><br>";
                                     echo $about_authorRow['about_user'];
                         echo "</div>";
                     }
@@ -86,7 +96,7 @@
                     $challenge_user_stmt = str_replace("<s>", "&nbsp;", $challenge_userRow['stmt']) ;
                     //echo $challenge_user_stmt;
                     echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>
-                    <a href='challengesOpen.php?challenge_id=" . $challenge_user_chID . "'>".$challenge_user_title."</a></b><br></p>";
+                    <a href='challengesOpen.php?challenge_id=$challenge_user_chID'>".$challenge_user_title."</a></b><br></p>";
                     if (substr($challenge_user_stmt, 0, 4) == "<img") {
                         $arrayStmt = explode(">", $challenge_user_stmt);
                         echo $arrayStmt[1]."<br>";
