@@ -1,5 +1,5 @@
 <?php
-
+include_once "../models/rank.php";
 function signup(){
 	include_once "db_connect.php";
 	$firstname = mysqli_real_escape_string($db_handle, $_POST['firstname']);
@@ -32,7 +32,9 @@ function signup(){
 		$_SESSION['first_name'] = $firstname ;
 		$_SESSION['username'] = $username ;
 		$_SESSION['email'] = $email;
-		$_SESSION['rank'] = "dabbling";
+		$obj = new rank(mysqli_insert_id($db_handle));
+    	//echo $obj->user_rank;
+		$_SESSION['rank'] = $obj->user_rank;
 		exit;
 		}
 		//header('Location: ./index.php?status=0');
@@ -57,13 +59,16 @@ function login(){
 		//header('Location: ninjas.php');
 		$responseRow = mysqli_fetch_array($response);
 		$id = $responseRow['user_id'];
-		$logintime = date("y-m-d H:i:s") ;
-		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime' where user_id = '$id' ;" ) ;
+		$lastlogintime = $responseRow['last_login'];
+		$_SESSION['last_login'] = $lastlogintime ;
 		$_SESSION['user_id'] = $id ;
 		$_SESSION['first_name'] = $responseRow['first_name'] ;
 		$_SESSION['username'] = $responseRow['username'] ;
 		$_SESSION['email'] = $responseRow['email'];
-		$_SESSION['rank'] = $responseRow['rank'];
+		$logintime = date("y-m-d H:i:s") ;
+		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime' where user_id = '$id' ;" ) ;
+		$obj = new rank($id);
+		$_SESSION['rank'] = $obj->user_rank;
 		exit;
 	}
 	else {

@@ -14,7 +14,6 @@ if(isset($_POST['cID'])){
 
     if(mysqli_error($db_handle)) echo "Failed to delete Challange!"; 
 	else echo "Deleted succesfully!"; 
-
 } 
 else if(isset($_POST['pID'])) {
 	$projectID = $_POST['pID'];
