@@ -1,5 +1,5 @@
 <?php
-
+include_once "../models/rank.php";
 function signup(){
 	include_once "db_connect.php";
 	$firstname = mysqli_real_escape_string($db_handle, $_POST['firstname']);
@@ -32,7 +32,9 @@ function signup(){
 		$_SESSION['first_name'] = $firstname ;
 		$_SESSION['username'] = $username ;
 		$_SESSION['email'] = $email;
-		$_SESSION['rank'] = "dabbling";
+		$obj = new rank(mysqli_insert_id($db_handle));
+    	//echo $obj->user_rank;
+		$_SESSION['rank'] = $obj->user_rank;
 		exit;
 		}
 		//header('Location: ./index.php?status=0');
@@ -63,7 +65,8 @@ function login(){
 		$_SESSION['first_name'] = $responseRow['first_name'] ;
 		$_SESSION['username'] = $responseRow['username'] ;
 		$_SESSION['email'] = $responseRow['email'];
-		$_SESSION['rank'] = $responseRow['rank'];
+		$obj = new rank($id);
+		$_SESSION['rank'] = $obj->user_rank;
 		exit;
 	}
 	else {
