@@ -2,129 +2,191 @@
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 ?>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="row">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-       <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
-          <img src ='img/collap.gif' style="width:75px;">collap</a>
-    </div>
-     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background : #4EC67F">
-        <div class="navbar-collapse">
-            <ul class="nav navbar-nav navbar-left navbar-responsive">
-                <li class='navbar-text' >
-                 <div class="input-group">
-                         <input type="text"  id="search" placeholder="search" style="height : 26px; width: 200px;" class="form-control">
-                         <span class="input-group-btn">
-                             <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
-                                <p class="glyphicon glyphicon-search">
-                             </button>
-                         </span>
-                 </div>
-                </li>
-            </ul>
-          <ul class='nav navbar-nav navbar-right navbar-responsive' >
-            <?php
-            if (isset($_SESSION['user_id'])) {
-                if ($requestedPage == "challenges.php") {
-                    echo "<li><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>
-                            <a data-toggle='modal' style='color: #fff;' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'>
-                            </i><b>Create Challenge</b></a></p>    
-                        </li>";
-                }
+        <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
+              <img src ='img/collap.gif' style="width:75px;">collap</a>
+        </div>
+         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background : #4EC67F">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-left navbar-responsive">
+                    <li class='navbar-text' >
+                     <div class="input-group">
+                             <input type="text"  id="search" placeholder="search" style="height : 26px" class="form-control">
+                             <span class="input-group-btn">
+                                 <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
+                                    <p class="glyphicon glyphicon-search">
+                                 </button>
+                             </span>
+                     </div>
+                    </li>
+                </ul>
+                  <ul class='nav navbar-nav navbar-right navbar-responsive' >
+                    <?php
+                    if (isset($_SESSION['user_id'])) {
+                        if ($requestedPage == "challenges.php") {
+                            echo "<li><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>
+                                    <a data-toggle='modal' style='color: #fff;' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'>
+                                    </i><b>Create Challenge</b></a></p>    
+                                </li>";
+                        }
 
-                if ($requestedPage == "ninjas.php") {
-                    echo "<li>
+                        if ($requestedPage == "ninjas.php") {
+                            echo "<li>
+                                    <div class='dropdown'>
+                                        <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
+                                        <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
+                                            $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
+                                            while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
+                                                $team_name = $teams_name_displayRow['team_name'];
+                                                echo "<li class='dropdown-submenu'>
+                                                        <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
+                                                            <ul class='dropdown-menu'>";
+                                                $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
+                                                                                                as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
+                                                while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
+                                                    $firstname = $teams_names_displayRow['first_name'];
+                                                    $username = $teams_names_displayRow['username'];
+                                                    $lastname = $teams_names_displayRow['last_name'];
+                                                    echo "<li><p align='center' ><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
+                                                }
+                                            echo "</ul></li>";
+                                            }
+                                    echo "</ul>
+                                    </div>
+                                </li>";
+                            }
+                            if ($requestedPage == "project.php") {
+                            echo "<li>
+                                    <div class='dropdown'>
+                                        <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
+                                        <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
+                                            $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
+                                            while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
+                                                $team_name = $teams_name_displayRow['team_name'];
+                                                echo "<li class='dropdown-submenu'>
+                                                        <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
+                                                            <ul class='dropdown-menu'>";
+                                                $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
+                                                                                                as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
+                                                while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
+                                                    $firstname = $teams_names_displayRow['first_name'];
+                                                    $username = $teams_names_displayRow['username'];
+                                                    $lastname = $teams_names_displayRow['last_name'];
+                                                    echo "<li><p align='center' ><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
+                                                }
+                                            echo "</ul></li>";
+                                            }
+                                    echo "</ul>
+                                    </div>
+                                </li>";
+                            }
+                        ?>
+                        <li>
                             <div class='dropdown'>
-                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
-                                <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
-                                    $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
-                                    while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
-                                        $team_name = $teams_name_displayRow['team_name'];
-                                        echo "<li class='dropdown-submenu'>
-                                                <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
-                                                    <ul class='dropdown-menu'>";
-                                        $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
-                                                                                        as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
-                                        while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
-                                            $firstname = $teams_names_displayRow['first_name'];
-                                            $username = $teams_names_displayRow['username'];
-                                            $lastname = $teams_names_displayRow['last_name'];
-                                            echo "<li><p align='center' ><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
+                                <!-- <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;"><b>Projects</b><span class='caret'></span></p></a> -->
+                                <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
+                                    <?php
+                                 
+                                    $user_id = $_SESSION['user_id'];
+                                        $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
+                                                                                        as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
+                                                                                        UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id' and project_type= '2')
+                                                                                        UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1');"));
+                                        while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
+                                            $p_title = $project_title_displayRow['project_title'];
+                                            echo "<li>
+                                                    <form method='POST' action=''>
+                                                        <input type='hidden' name='project_title' value='" . $p_title . "'/>
+                                                        <input type='hidden' name='project_id' value='" . $project_title_displayRow['project_id'] . "'/>
+                                                        <button type='submit' class='btn-link' name='projectphp' style='white-space: pre-line;'>" . $p_title . "
+                                                        </button><br/><br/>
+                                                    </form>
+                                                </li>";
                                         }
-                                    echo "</ul></li>";
-                                    }
-                            echo "</ul>
+                                    ?>
+                                </ul>
                             </div>
-                        </li>";
-                    }
-                    if ($requestedPage == "project.php") {
-                    echo "<li>
-                            <div class='dropdown'>
-                                <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
-                                <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
-                                    $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
-                                    while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
-                                        $team_name = $teams_name_displayRow['team_name'];
-                                        echo "<li class='dropdown-submenu'>
-                                                <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
-                                                    <ul class='dropdown-menu'>";
-                                        $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
-                                                                                        as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
-                                        while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
-                                            $firstname = $teams_names_displayRow['first_name'];
-                                            $username = $teams_names_displayRow['username'];
-                                            $lastname = $teams_names_displayRow['last_name'];
-                                            echo "<li><p align='center' ><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
-                                        }
-                                    echo "</ul></li>";
-                                    }
-                            echo "</ul>
-                            </div>
-                        </li>";
-                    }
+                        </li>                
+                        <!-- <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li> -->
+                        <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
+                        <li><p class="navbar-text" style='cursor: pointer;color: #fff;'><b> Rank :  <?php $rank = $_SESSION['rank'];
+                                echo $rank; ?></b>
+                            </p>
+                        </li>
+                        <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
+                        <li>
+    					<div class='dropdown'>
+    					<a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: red;'>
+    							 <i class='glyphicon glyphicon-bell'></i><span class='badge'>
+			<?php
+				$count = mysqli_query($db_handle, " select Distinct time from reminders where person_id = '$user_id';") ;
+				$y = 0 ;
+				while ($countrow = mysqli_fetch_array($count)) {
+					$count_time = $countrow['time'] ;
+					$startingtime = strtotime($count_time) ;
+					$endtimecount = time() ;
+					if ($endtimecount <= $startingtime) {
+						$timeleftcount = $startingtime - $endtimecount ;
+					} else {
+						$timeleftcount = $startingtime ;
+						}
+					if ($timeleftcount < 600 && $timeleftcount > 0) {
+						$y++ ;
+					}
+				}
+				echo $y ;
+				?>
+				</span>
+				</p></a>
+					<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+				<?php 					
+				$reminder = mysqli_query($db_handle, " select Distinct user_id, reminder, creation_time, time from reminders where person_id = '$user_id';") ;
+				while ($reminderrow = mysqli_fetch_array($reminder)) {
+					$reminders = $reminderrow['reminder'] ;
+					$ruser_id = $reminderrow['user_id'] ;
+					if (strlen($reminders) > 20) {
+						$rtitle = substr(ucfirst($reminders), 0, 20) . "....";
+					}
+						else {
+						$rtitle = ucfirst($reminders);
+						}
+					$remindby = mysqli_query($db_handle, " select first_name, last_name from user_info where user_id = '$ruser_id' ;") ;
+					$remindbyrow = mysqli_fetch_array($remindby) ;
+					if ($ruser_id == $user_id) {
+						$rname = "Remind By : You" ;
+						}
+						else {
+							$rname = "Remind By : ".$remindbyrow['first_name']." ".$remindbyrow['last_name'] ;
+							}
+					$tooltip = strtoupper($reminders)." ".$rname ;
+					$creation_time = $reminderrow['creation_time'] ;
+					$reminder_time = $reminderrow['time'] ;
+					$createdon = date("j F, g:i a", strtotime($creation_time));
+					$starttime = strtotime($reminder_time) ;
+					$endtime = time() ;
+					if ($endtime <= $starttime) {
+						$timeleft = $starttime - $endtime ;
+					}
+						else {
+							$timeleft = $starttime ;
+							}
+					if ($timeleft < 600 && $timeleft > 0) {
+						echo "<li><button class='btn-link' data-toggle='tooltip' data-placement='bottom' data-original-title='" .$tooltip."' >
+									<b>" .$rtitle. "</b><p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>
+									" . $createdon . "</p></button></li>" ;
+						
+						}
+				}
                 ?>
-                <li>
-                    <div class='dropdown'>
-                        <!-- <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;"><b>Projects</b><span class='caret'></span></p></a> -->
-                        <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
-                            <?php
-                         
-                            $user_id = $_SESSION['user_id'];
-                                $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
-                                                                                as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
-                                                                                UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id' and project_type= '2')
-                                                                                UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1');"));
-                                while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
-                                    $p_title = $project_title_displayRow['project_title'];
-                                    echo "<li>
-                                            <form method='POST' action=''>
-                                                <input type='hidden' name='project_title' value='" . $p_title . "'/>
-                                                <input type='hidden' name='project_id' value='" . $project_title_displayRow['project_id'] . "'/>
-                                                <button type='submit' class='btn-link' name='projectphp' style='white-space: pre-line;'>" . $p_title . "
-                                                </button><br/><br/>
-                                            </form>
-                                        </li>";
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                </li>
-                
-                <!-- <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li> -->
-                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
-                <li><p class="navbar-text" style='cursor: pointer;color: #fff;'><b> Rank :  <?php $rank = $_SESSION['rank'];
-                        echo $rank; ?></b>
-                    </p>
-                </li>
-                <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                <li>
-					<?php include_once "notification.php";  ?>
+				</ul> 
+			</div>
                </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
@@ -157,15 +219,15 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         </ul>
    </div>
    </div>
-   </div>
+
 
 <!-- sub nav bar-->
 <?php
 if (isset($_SESSION['user_id'])) {
 if ($requestedPage == "project.php") {
     
- echo "  <ul class='nav navbar-inverse' >
-            <div class='col-md-offset-3 col-md-12 col-lg-12'>
+ echo "  <div class='nav navbar-inverse' >
+            <div class='col-md-offset-3 col-md-9 col-lg-9'>
                 <div class='list-inline'style='background:#3BD78C;'>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='eye_open' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='sign' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
@@ -174,12 +236,12 @@ if ($requestedPage == "project.php") {
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='flag' ><span class='glyphicon glyphicon-flag'></span> Closed challenges</button></p></li>
                 </div>
             </div>
-        </ul>" ;
+        </div>" ;
 }
 	else {
 		echo "     
-        <ul class='nav navbar-inverse ' >
-            <div class='col-md-offset-3 col-md-12 col-lg-12'>
+        <div class='nav navbar-inverse ' >
+            <div class='col-md-offset-3 col-md-9 col-lg-9'>
                 <div class='list-inline' style='background:#3BD78C;'>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
@@ -189,12 +251,13 @@ if ($requestedPage == "project.php") {
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='film' ><span class='glyphicon glyphicon-film'></span> Videos</button></p></li>
                 </div>
             </div>
-        </ul> " ;
+        </div> " ;
 }
 }
 ?>
 </div>
 </nav>
+
 <script>
 	
     function show_search_results(challenges){
