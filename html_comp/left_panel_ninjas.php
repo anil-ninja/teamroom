@@ -16,6 +16,7 @@
 																		UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id' and project_type= '2');");
 						while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
 						$p_title = $project_title_displayRow['project_title'] ;
+						$idpro = $project_title_displayRow['project_id'] ;
 						if (strlen($p_title) > 40) {
 						$prtitle = substr(ucfirst($p_title),0,40)."...";
 						} else {
@@ -27,7 +28,7 @@
 						$title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
 						$remaining_time_own = remaining_time($p_time, $p_eta);
 					echo "<form method='GET' action=''>
-							<input type='hidden' name='project_id' value='".$project_title_displayRow['project_id']."'/>
+							<input type='hidden' name='project_id' value='".$idpro."'/>
 							<tr><td>
 							<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 							data-placement='bottom' data-original-title=' ".$title."' style='height: 37px;font-size:13px;text-align: left;'>
