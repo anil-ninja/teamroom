@@ -1,11 +1,9 @@
 <?php
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 ?>
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-<div class="inline-block">
-    <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -14,8 +12,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
               <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
               <img src ='img/collap.gif' style="width:75px;">collap</a>
         </div>
-         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="background : #4EC67F">
-            <div class="navbar-collapse">
+         <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style="background : #4EC67F">
                 <ul class="nav navbar-nav navbar-left navbar-responsive">
                     <li class='navbar-text' >
                      <div class="input-group">
@@ -28,7 +25,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                      </div>
                     </li>
                 </ul>
-                  <ul class='nav navbar-nav navbar-right navbar-responsive' >
+                <ul class='nav navbar-nav navbar-right navbar-responsive' >
                     <?php
                     if (isset($_SESSION['user_id'])) {
                         if ($requestedPage == "challenges.php") {
@@ -55,7 +52,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                                     $firstname = $teams_names_displayRow['first_name'];
                                                     $username = $teams_names_displayRow['username'];
                                                     $lastname = $teams_names_displayRow['last_name'];
-                                                    echo "<li><p align='center' ><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
+                                                    echo "<li><p><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
                                                 }
                                             echo "</ul></li>";
                                             }
@@ -89,78 +86,15 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                 </li>";
                             }
                         ?>
-                        <li>
-                            <div class='dropdown'>
-                                <!-- <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;"><b>Projects</b><span class='caret'></span></p></a> -->
-                                <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
-                                    <?php
-                                 
-                                    $user_id = $_SESSION['user_id'];
-                                        $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
-                                                                                        as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
-                                                                                        UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id' and project_type= '2')
-                                                                                        UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1');"));
-                                        while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
-                                            $p_title = $project_title_displayRow['project_title'];
-                                            echo "<li>
-                                                    <form method='POST' action=''>
-                                                        <input type='hidden' name='project_title' value='" . $p_title . "'/>
-                                                        <input type='hidden' name='project_id' value='" . $project_title_displayRow['project_id'] . "'/>
-                                                        <button type='submit' class='btn-link' name='projectphp' style='white-space: pre-line;'>" . $p_title . "
-                                                        </button><br/><br/>
-                                                    </form>
-                                                </li>";
-                                        }
-                                    ?>
-                                </ul>
-                            </div>
-                        </li>                
-                        <!-- <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li> -->
+                       
+    
                         <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
                         <li><p class="navbar-text" style='cursor: pointer;color: #fff;'><b> Rank :  <?php $rank = $_SESSION['rank'];
                                 echo $rank; ?></b>
                             </p>
                         </li>
                         <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                <li>
-                    <div class='dropdown'>
-                        <!-- <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff; text-decoration: none;"><b>Projects</b><span class='caret'></span></p></a> -->
-                        <ul class='dropdown-menu multi-level' role='menu' style="  max-height:300px; color: #fff; overflow-y: auto; overflow-x: hidden;" aria-labelledby='dropdownMenu'>
-                            <?php
-                         
-                            $user_id = $_SESSION['user_id'];
-                                $project_title_display = mysqli_query($db_handle, ("(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
-                                                                                as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
-                                                                                UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id' and project_type= '2')
-                                                                                UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1');"));
-                                while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
-                                    $p_title = $project_title_displayRow['project_title'];
-                                    echo "<li>
-                                            <form method='POST' action=''>
-                                                <input type='hidden' name='project_title' value='" . $p_title . "'/>
-                                                <input type='hidden' name='project_id' value='" . $project_title_displayRow['project_id'] . "'/>
-                                                <button type='submit' class='btn-link' name='projectphp' style='white-space: pre-line;'>" . $p_title . "
-                                                </button><br/><br/>
-                                            </form>
-                                        </li>";
-                                }
-                            ?>
-                        </ul>
-                    </div>
-                </li>
-                
-                <!-- <li><p class="navbar-text" style ="cursor: pointer; text-decoration: none;"><a data-toggle="modal" style='color: #fff;' data-target="#createProject"><i class="glyphicon glyphicon-edit"></i><b>Create Project</b></a></p></li> -->
-                <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
-                <li><p class="navbar-text" style='cursor: pointer;color: #fff;'><b> Rank :  <?php $rank = $_SESSION['rank'];
-                        echo $rank; ?></b>
-                    </p>
-                </li>
-                <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                <li>
-					<?php
-					// $lasttime = $_SESSION['last_login'] ;
-					// echo $lasttime ;
-					 include_once "notification.php";  ?>
+                 
                </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
@@ -192,8 +126,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
     ?>
         </ul>
    </div>
-   </div>
-   </div>
+ 
 
 
 <!-- sub nav bar-->
@@ -231,7 +164,7 @@ if ($requestedPage == "project.php") {
 }
 ?>
 </div>
-</nav>
+  </div>
 
 <script>
 	
