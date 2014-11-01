@@ -32,6 +32,13 @@ $open_chalange = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challen
             WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id='$challengeSearchID';");
 $open_chalangeRtitle = mysqli_fetch_array($open_chalange);
 $challenge_page_title = $open_chalangeRtitle['challenge_title'];
+function chOpen_title($title_length) {
+    if (strlen($title_length) < 40) {
+        echo  $title_length;
+    } else {
+        echo substr($title_length, 0, 40)."....";
+    }
+}
 $emptySearch = mysqli_num_rows($open_chalange);
 if ($emptySearch == 0) {
     include_once 'error.php';
@@ -42,10 +49,12 @@ function private_challenge_access($db_handle, $user_id, $challenge_id) {
     $public_PrivateRow = mysqli_num_rows($public_Private);
     return $public_PrivateRow;
 }
-$challengeSearch_user = mysqli_query($db_handle, "SELECT a.user_id, b.username from challenges as a JOIN user_info as b WHERE a.challenge_id = $challengeSearchID AND a.user_id=b.user_id;");
+$challengeSearch_user = mysqli_query($db_handle, "SELECT a.user_id, b.username, b.first_name, b.last_name from challenges as a JOIN user_info as b WHERE a.challenge_id = $challengeSearchID AND a.user_id=b.user_id;");
 $challengeSearch_user_IDRow = mysqli_fetch_array($challengeSearch_user);
 $challengeSearch_user_ID = $challengeSearch_user_IDRow['user_id'];
 $ch_username = $challengeSearch_user_IDRow['username'];
+$challengeSearch_first = $challengeSearch_user_IDRow['first_name'];
+$challengeSearch_last = $challengeSearch_user_IDRow['last_name'];
 
 if (isset($_POST['own_chl_response'])) {
     $user_id = $_SESSION['user_id'];
