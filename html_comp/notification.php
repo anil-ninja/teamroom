@@ -3,7 +3,7 @@
 	  $user_id = $_SESSION['user_id'] ;
 	  $notice = "" ;
 	  $y = 0 ;
-	  $notice1 = mysqli_query($db_handle, " select Distinct a.reminder, a.time, b.first_name from reminders as a join user_info
+	  $notice1 = mysqli_query($db_handle, " select Distinct a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
 											as b where a.person_id = '$user_id' and a.user_id = b.user_id;") ;
 				while ($notice1row = mysqli_fetch_array($notice1)) {
 					$reminders = $notice1row['reminder'] ;
@@ -24,7 +24,7 @@
 							$timeleft = $starttime ;
 							}
 					if ($timeleft < 600 && $timeleft > 0) {
-						$notice .= $rtitle. "<br/><small>By : ".$rname."</small><hr/>";
+						$notice .= "<span class='glyphicon glyphicon-bullhorn'>&nbsp; ".$reminders. "</span><br/><p style='font-size: 10px;'>By : ".$rname."</p><hr/>";
 						$y++ ;
 						}
 				}
@@ -35,7 +35,8 @@
 			$fname2 = $notice2row['first_name'] ;
 			$challenge_id2 = $notice2row['challenge_id'] ;
 			$title2 = $notice2row['challenge_title'] ;
-			$notice = $notice ."<small>".$fname2." Commented On </small><br/>".$title2."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname2." Commented On </p><br/>
+								<a href='challengesOpen.php?challenge_id=" . $challenge_id2 . "'>".$title2."</a><hr/>" ;
 			$y++ ;
 			}									
 	 $notice3 = mysqli_query($db_handle, " select Distinct c.first_name, b.project_id, d.project_title from teams as a join response_project as b
@@ -45,7 +46,7 @@
 			$fname3 = $notice3row['first_name'] ;
 			$project_id3 = $notice3row['project_id'] ;
 			$title3 = $notice3row['project_title'] ;
-			$notice = $notice ."<small>".$fname3." Commented On </small><br/>".$title3."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-star-empty'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>".$title3."<hr/>" ;
 			$y++ ;
 			}			
 	$notice4 = mysqli_query($db_handle, " select Distinct c.first_name, d.challenge_id, d.challenge_title from challenge_ownership as a join spems as b
@@ -55,7 +56,7 @@
 			$fname4 = $notice4row['first_name'] ;
 			$challenge_id4 = $notice4row['challenge_id'] ;
 			$title4 = $notice4row['challenge_title'] ;
-			$notice = $notice ."<small>".$fname3." Spammed </small><br/>".$title3."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-eye-close'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Spammed </p><br/>".$title3."<hr/>" ;
 			$y++ ;
 			}	
 	$notice5 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
@@ -65,7 +66,8 @@
 			$fname5 = $notice5row['first_name'] ;
 			$challenge_id5 = $notice5row['challenge_id'] ;
 			$title5 = $notice5row['challenge_title'] ;
-			$notice = $notice ."<small>".$fname5." Accepted </small><br/>".$title5."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-fire'></span><p style='font-size: 10px;'> &nbsp; ".$fname5." Accepted </p><br/>
+								<a href='challengesOpen.php?challenge_id=" . $challenge_id5 . "'>".$title5."</a><hr/>" ;
 			$y++ ;
 			}
 	$notice6 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
@@ -75,7 +77,8 @@
 			$fname6 = $notice6row['first_name'] ;
 			$challenge_id6 = $notice6row['challenge_id'] ;
 			$title6 = $notice6row['challenge_title'] ;
-			$notice = $notice ."<small>".$fname6." Submitted </small><br/>".$title6."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-ok'></span><p style='font-size: 10px;'> &nbsp; ".$fname6." Submitted </p><br/>
+								<a href='challengesOpen.php?challenge_id=" . $challenge_id6 . "'>".$title6."</a><hr/>" ;
 			$y++ ;
 			}
 	$notice7 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
@@ -85,7 +88,8 @@
 			$fname7 = $notice7row['first_name'] ;
 			$challenge_id7 = $notice7row['challenge_id'] ;
 			$title7 = $notice7row['challenge_title'] ;
-			$notice = $notice ."<small>".$fname7." Closed </small><br/>".$title7."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-flag'></span><p style='font-size: 10px;'> &nbsp; ".$fname7." Closed </p><br/>
+								<a href='challengesOpen.php?challenge_id=" . $challenge_id7 . "'>".$title7."</a><hr/>" ;
 			$y++ ;
 			}	 					
 	$notice8 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
@@ -95,7 +99,8 @@
 			$fname8 = $notice8row['first_name'] ;
 			$challenge_id8 = $notice8row['challenge_id'] ;
 			$title8 = $notice8row['challenge_title'] ;
-			$notice = $notice ."<small>".$fname8." Assigned Task </small><br/>".$title8."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-screenshot'></span><p style='font-size: 10px;'> &nbsp; ".$fname8." Assigned Task </p><br/>
+								<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "'>".$title8."</a><hr/>" ;
 			$y++ ;
 			}			
     $notice9 = mysqli_query($db_handle, " select Distinct b.first_name, a.project_id, a.project_title from projects as a join user_info as b
@@ -104,7 +109,7 @@
 			$fname9 = $notice9row['first_name'] ;
 			$project_id9 = $notice9row['project_id'] ;
 			$title9 = $notice9row['project_title'] ;
-			$notice = $notice ."<small>".$fname9." Created </small><br/>".$title9."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname9." Created </p><br/>".$title9."<hr/>" ;
 			$y++ ;
 			}
 	$notice10 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
@@ -118,7 +123,8 @@
 			if (time() > ($comp_ch_ETA + $ownership_creation)) { 
 					//$dead_time = "Closed" ;
 					$y++ ;
-					$notice = $notice ."<small>Remaining Time Over</small><br/>".$title10."<hr/>" ;
+					$notice = $notice ."<span class='glyphicon glyphicon-time'></span><p style='font-size: 10px;'> Remaining Time Over</p><br/>
+										<a href='challengesOpen.php?challenge_id=" . $challenge_id10 . "'>".$title10."</a><hr/>" ;
 				}
 			else {	
 					$remainingtime = (($comp_ch_ETA + $ownership_creation)-time()) ;
@@ -126,7 +132,9 @@
 						$hour = floor($remainingtime/(60*60)) ;
 						$hoursec = $remainingtime%(60*60) ;
 						$minute = floor($hoursec/60) ;
-						$notice = $notice ."<small>Deadline Reached (Remaining Time) : ".$hour." Hours : ".$minute." Mins</small><br/>".$title10."<hr/>" ;
+						$notice = $notice ."<span class='glyphicon glyphicon-time'></span><p style='font-size: 10px;'> &nbsp; Deadline Reached (Remaining Time)
+											: ".$hour." Hours : ".$minute." Mins</p><br/><a href='challengesOpen.php?challenge_id=" . $challenge_id10 . "'>
+											".$title10."</a><hr/>" ;
 						$y++ ;
 					} 
 				}
@@ -140,8 +148,8 @@
 				echo "<p class='navbar-text' style ='cursor: pointer; color: red;'>" ;
 				}
 				echo "<i class='glyphicon glyphicon-bell'></i><span class='badge'>".$y."</span></p></a>
-						<ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+						<ul class='dropdown-menu multi-level' style=' height: 300px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
 							<li>".$notice."</li>
 						</ul>
-						</div>" ;			
+					</div>" ;			
 ?>
