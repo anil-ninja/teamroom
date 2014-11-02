@@ -22,20 +22,20 @@ if (!isset($_SESSION['first_name'])) {
 
     </head>
     <body >
-        <div class="navbar navbar-default navbar-fixed-top" >
-            <div class="navbar-inner">
-                <div class="container">
-                    <a class="brand" style='font-size:20pt; color: #fff; font-weight: bold;' href="index.php">
-                    <img src ='img/collap.gif' style="width:80px;">collap</a>
-                    <div class="span3 pull-right">
-                        <ul class="list-inline">
-                            <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
-                            <li><a class="btn-link" style='font-size:12pt; color: #fff; font-weight: bold;' href="http://dpower4.com/" target="_blank">Dpower4.com</a></li>
-                        </ul>
-                    </div>
-                </div>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div>
+            <div class="col-md-2 navbar-header">
+                 <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">
+                 <img src ='img/collap.gif' style="width:70px;">collap</a>
+            </div>
+            <div class="span3 pull-right">
+                <ul class="list-inline">
+                    <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
+                    <li><a class="btn-link" style='font-size:12pt; color: #fff; font-weight: bold;' href="http://dpower4.com/" target="_blank">Dpower4.com</a></li>
+                </ul>
             </div>
         </div>
+    </div>
         <div class="row" style="background-image: url(img/collaboration.jpg); margin-top:-40px; height: 600px; max-width: 100%;">
             <div class = "col-xs-7 col-ls-8"></div>	
             <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
