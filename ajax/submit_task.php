@@ -73,6 +73,7 @@ else {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
                                     VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
         $ida = mysqli_insert_id($db_handle);
+        mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$id', '$team', '$ida');") ;
         $owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$id' and team_name = '$team' and user_id != '$user_id' ;") ;
        while ($ownersrow = mysqli_fetch_array($owners)) { 
 		   $owner = $ownersrow['user_id'] ;
@@ -90,6 +91,7 @@ else {
         mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
                                 VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
         $idc = mysqli_insert_id($db_handle);
+        mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$id', '$team', '$idc');") ;
            $owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$id' and team_name = '$team' and user_id != '$user_id' ;") ;
        while ($ownersrow = mysqli_fetch_array($owners)) { 
 		   $owner = $ownersrow['user_id'] ;
