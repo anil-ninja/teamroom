@@ -176,7 +176,7 @@ if ($requestedPage == "project.php") {
         for (var i = 0; i < challenges.length; i++) {
             var resultNumber = i+1;
             
-            resp = resp +"<div class='list-group-item'><div class ='row'><div class='col-md-1' style = 'width : 1%;'>"+"</div><div class ='col-md-9'> <a class='btn btn-link' style='color:#3B5998;' href='challengesOpen?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>&nbsp;&nbsp;"+challenges[i].stmt+"..</br></div></div></div>"; 
+            resp = resp +"<div class='list-group-item'><div class ='row'><div class='col-md-1' style = 'width : 1%;'>"+"</div><div class ='col-md-9'> <a class='btn btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>&nbsp;&nbsp;"+challenges[i].stmt+"..</br></div></div></div>"; 
         }
         return resp+"</div>";
     }
@@ -205,7 +205,7 @@ if ($requestedPage == "project.php") {
                         //alert(result);
                         challenges = JSON.parse(result);
                         //alert(challenges);
-                        alert(show_search_results(challenges));
+                        //alert(show_search_results(challenges));
                         document.getElementById("home-ch").innerHTML = show_search_results(challenges);
                         //document.getElementById("home").innerHTML = show_search_results_id(challenges);
                         //alert(show_search_results(challenges));
