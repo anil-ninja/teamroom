@@ -26,6 +26,7 @@
 					</tbody>
 				</table>";	
 	$kanban1col = "" ;
+	$kanban1col2 = "" ;
 	$kanban1col .= "<table class='table table-striped'>
 					<thead>
 					 <tr>
@@ -42,7 +43,18 @@
 		$name2 = $kanban2row['first_name'] ;
 		$username2 = $kanban2row['username'] ;
 		$user_id2 = $kanban2row['user_id'] ;
-		
+	
+	$kanban3 = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.challenge_title, a.challenge_status, b.first_name from challenges as a join
+										user_info as b join challenge_ownership as c WHERE a.project_id = '$pro_id' AND a.challenge_id = c.challenge_id 
+										and a.user_id = b.user_id and c.user_id = '$user_id2' ;") ;	
+		while($kanban3row = mysqli_fetch_array($kanban3)) {
+			$name3 = $kanban3row['first_name'] ;
+			$challenge_id12 = $kanban3row['challenge_id'] ;
+			$challenge_title12 = $kanban3row['challenge_title'] ;
+			$status3 = $kanban3row['challenge_status'] ;
+			
+			
+			}
 		
 		}									 	
 ?>
