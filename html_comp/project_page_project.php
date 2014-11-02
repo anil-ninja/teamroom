@@ -1,6 +1,4 @@
-
 <?php
-
 $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id )
                                                 UNION
@@ -10,10 +8,12 @@ $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
 $projectst = $project_row['stmt'];
 $fname = $project_row['first_name'];
+$projectcreation = $project_row['project_creation'];
 $lname = $project_row['last_name'];
 $username_project = $project_row['username'];
 $projecteta = $project_row['project_ETA'];
 $timepr = eta($projecteta);
+$prtime = remaining_time($projectcreation, $projecteta);
 echo "<div class='list-group'>
         <div class='list-group-item'>
             <div class='pull-left lh-fix'>     
