@@ -65,7 +65,7 @@
 					echo "<tr>
 							<td>
 							<form method='GET' action=''>
-								<input type='hidden' name='project_id' value='".$idprot."'/>
+								<input type='hidden' name='project_id' value='".$idproject."'/>
 								<tr><td>
 								<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 								data-placement='bottom' data-original-title='".$titlep."' style='height: 20px;font-size:11px;text-align: left;'>
