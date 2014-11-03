@@ -51,7 +51,7 @@ $email = $_GET['email'];
 	                                </div><div class="col-md-6">
 	                                <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
 	                            </div></div></div><br/>	
-	                                 <input type="email" method="get" class="form-control" value="<?= $_GET['email']; ?>" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
+	                                 <input type="email" class="form-control" value="<?= $_GET['email']; ?>" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
 	                                  <span id="status_email"></span>
 	                                    <br/>					
 	                            <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
