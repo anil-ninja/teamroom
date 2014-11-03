@@ -1,30 +1,37 @@
 <?php 
 session_start;
 include_once 'lib/db_connect.php';
-$email_id = $_GET['email_id'];
+$email = $_GET['email'];
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<title>register</title>
-    <head>
+<head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/profile_page_style.css">
-        
+        <title>register</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Challenge, Project, Problem solving, problem, article, collaborate, collaboration">
+        <meta name="author" content="Anil">
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.css">
-	<link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
-	
-	<link href="css/font-awesome.css" rel="stylesheet">
-	<script src="js/jquery.js"> </script>
-	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery.autosize.js"></script>
+
     </head>
-
-    <body>
-    <?php include_once 'html_comp/navbar_homepage.php'; ?>
-
+    <body >
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div>
+            <div class="col-md-2 navbar-header">
+                 <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">
+                 <img src ='img/collap.gif' style="width:70px;">collap</a>
+            </div>
+            <div class="span3 pull-right">
+                <ul class="list-inline">
+                    <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
+                    <li><a class="btn-link" style='font-size:12pt; color: #fff; font-weight: bold;' href="http://dpower4.com/" target="_blank">Dpower4.com</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <!-- Modal -->
     <div class="row">
     	<div class = "col-md-4"></div>	

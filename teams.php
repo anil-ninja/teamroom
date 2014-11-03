@@ -2,9 +2,13 @@
 include_once 'lib/db_connect.php';
 
 session_start();
+if(!isset($_SESSION['user_id'])) 
+    header ('location: index.php');
+else 
+    $user_id = $_SESSION['user_id'];
 
 if (isset($_POST['logout'])) {
-    header('Location: profile.php?username='."$UserName");
+    header('Location: index.php');
     unset($_SESSION['user_id']);
     unset($_SESSION['first_name']);
     session_destroy();
