@@ -223,9 +223,81 @@ $obj = new profile($UserName);
                             <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-fire"></span> In-progress </button>
                         </div>
           </div>
+        
+        
+        <!---projects table data included here for neeraj's profile page.....--->
+         <div class="col-md-6">
+             <table class='table table-striped'>
+                 <thead>
+                     <tr>
+                        <td><b>Project title</b></td>
+                        <td><b>Owner or not</b></td>
+                        <td><b>No. of tasks completed</b></td>
+                        <td><b>No. of challenges completed</b></td>
+                        <td><b>Notes Posted</b></td>
+                    
+                     </tr>
+                 </thead>
+                 <tbody>
+                     
+<?php
+$project_table_display = mysqli_query($db_handle, "(SELECT project_id, user_id, project_title FROM projects WHERE user_id = $profileViewUserID)
+                                                    UNION 
+                                                    (SELECT a.project_id, a.user_id, (SELECT project_title FROM projects WHERE project_id = a.project_id) FROM teams as a WHERE a.user_id = $profileViewUserID);");
+while($project_table_displayRow = mysqli_fetch_array($project_table_display)) {
+    $project_title_table = $project_table_displayRow['project_title'];
+    //project title created by profile user
+    echo "<tr><td>"
+            .$project_title_table.
+        "</td>";
+    //profile user is project owner or not
+    $project_id_table = $project_table_displayRow['project_id'];
+    //echo $project_id_table;
+    $own_created_or_not = mysqli_query($db_handle, "SELECT project_id, user_id FROM projects WHERE user_id = $profileViewUserID AND project_id = $project_id_table;");
+    $own_created_or_notRow = mysqli_fetch_array($own_created_or_not);
+    echo "<td>";
+        if ($own_created_or_notRow['user_id'] == $profileViewUserID) {
+            echo "Yes";
+        }
+        else {
+            echo "No";
+        }
+    echo "</td>";
+    //no of taskes completed by profile user of project in row
+    $project_task_pleted = mysqli_query($db_handle, "SELECT b.challenge_id FROM challenges as a JOIN challenge_ownership as b 
+                                                        WHERE a.project_id = $project_id_table AND a.challenge_type = 5 AND a.challenge_status = 4 
+                                                            AND b.user_id = $profileViewUserID AND b.status = 2 AND (a.challenge_id = b.challenge_id);");
+    $count_task = mysqli_num_rows($project_task_pleted);
+    //$total_project_task_completed = $count_task['challenge_id'];
+    echo "<td>".
+            $count_task.
+        "</td>";
+    
+    
+    //no of challenges completed by profile user of project in row
+    $project_challenges_completed = mysqli_query($db_handle, "SELECT b.challenge_id FROM challenges as a JOIN challenge_ownership as b 
+                                                            WHERE a.project_id = $project_id_table AND (a.challenge_type = 1 OR a.challenge_type = 2) AND a.challenge_status = 4 
+                                                                AND b.user_id = $profileViewUserID AND b.status = 2 AND a.challenge_id = b.challenge_id;");
+    $count_challenges = mysqli_num_rows($project_challenges_completed);
+    echo "<td>".
+            $count_challenges.
+        "</td>";
+    
+    //no of notes ccreated by profile user for user project in row
+    $project_notes = mysqli_query($db_handle, "SELECT challenge_id FROM challenges WHERE project_id = $project_id_table AND challenge_type = 6 AND user_id = $profileViewUserID;");
+    $count_notes = mysqli_num_rows($project_notes);
+    echo "<td>".
+            $count_notes.
+        "</td></tr>";
+}
+?>
+                     
+                </tbody>
+            </table>
+             
+             <!---projects table data included ends for neeraj's profile page.....--->
 </div>
                 </div>
-        </div>
 <div id="InfoBox"></div>
         <script src="js/add_remove_skill.js"> </script>
         <script> 
