@@ -19,6 +19,7 @@ if ($users != 0) {
                                     VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
         $ida = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
+       mysqli_query($db_handle," insert into events (user_id, receiver_id, event_type, event_id) VALUES ('$user_id', '$owner', '5', '$ida');") ; 
                           
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
@@ -33,6 +34,7 @@ else {
                                 VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
         $idc = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idc', '$challange_eta', '1');") ;
+	 mysqli_query($db_handle," insert into events (user_id, receiver_id, event_type, event_id) VALUES ('$user_id', '$owner', '5', '$idc');") ;
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
 }
@@ -50,7 +52,7 @@ else if ($email != "") {
                                     VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
         $ida = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
-                          
+       mysqli_query($db_handle," insert into events (user_id, receiver_id, event_type, event_id) VALUES ('$user_id', '$owner', '5', '$ida');") ;                   
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
 
@@ -64,6 +66,7 @@ else {
                                 VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
         $idc = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idc', '$challange_eta', '1');") ;
+	   mysqli_query($db_handle," insert into events (user_id, receiver_id, event_type, event_id) VALUES ('$user_id', '$owner', '5', '$idc');") ;
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
 }
@@ -78,6 +81,7 @@ else {
        while ($ownersrow = mysqli_fetch_array($owners)) { 
 		   $owner = $ownersrow['user_id'] ;
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
+		mysqli_query($db_handle," insert into events (user_id, receiver_id, event_type, event_id) VALUES ('$user_id', '$owner', '5', '$ida');") ;
 	}                  
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
@@ -96,6 +100,7 @@ else {
        while ($ownersrow = mysqli_fetch_array($owners)) { 
 		   $owner = $ownersrow['user_id'] ;
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
+		mysqli_query($db_handle," insert into events (user_id, receiver_id, event_type, event_id) VALUES ('$user_id', '$owner', '5', '$ida');") ;
 	}
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully"; }
