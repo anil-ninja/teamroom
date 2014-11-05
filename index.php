@@ -36,7 +36,7 @@ if (!isset($_SESSION['first_name'])) {
             </div>
         </div>
     </div>
-        <div class="row" style="background-image: url(img/collaboration.jpg); margin-top:-40px; height: 600px; max-width: 100%;">
+        <div class="row" style="background-image: url(img/collaboration.jpg); margin-top:0px; margin-left:0px; height: 600px; width: 100%;">
             <div class = "col-xs-7 col-ls-8"></div>	
             <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
                 <div class="bs-component">
