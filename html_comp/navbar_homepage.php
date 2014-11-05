@@ -93,20 +93,22 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
                                 <?php
                                     $username = $_SESSION['username'];
-                                    echo "<img style='width: 25px; height: 25px' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>"."&nbsp &nbsp";
                                     $name = $_SESSION['first_name'];
-                                    echo "<b>".ucfirst($name)."</b>&nbsp"; 
+                              echo "<img style='width: 25px; height: 25px' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp &nbsp<b>".ucfirst($name)."</b>&nbsp"; 
                                     ?></p></a>
                         <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
                             <li><p class="navbar-text">
                                 <form method='GET' action='profile.php'>
-                                    <button type='submit' name='username' class='btn btn-link btn-sm' value='<?php $username = $_SESSION['username'];
-                                        echo $username; ?>'>View Profile
-                                    </button>
+                                    <button type='submit' name='username' class='btn btn-link btn-sm' value='<?php echo $username; ?>'>View Profile</button>
                                 </form>
+                                </p>
+                            </li>
+                            <li>
                                 <p class="navbar-text">
                                 <form method="POST" >
-                                    <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out<span class="glyphicon glyphicon-off"></span></p></button></form>   
+                                    <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out<span class="glyphicon glyphicon-off"></span></button>
+                                </form>
+                                </p>   
                             </li>
                         </ul>
                     </div>
