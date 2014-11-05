@@ -1,8 +1,17 @@
 <div class="bs-component">
-    <br/><b>
-    <a data-toggle='modal' class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-bell'></i>
-      <font size="2"><b>Tasks -- to do</b></font></a> | <a data-toggle='modal' data-target="#myreminder" class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-bullhorn'></i>
-      <font size="2"><b> Add Reminder </b></font></a><hr>
+    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;">
+        <div class='list-group'>
+            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;">
+            <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
+            <font size="2">Add Reminder </font></a> 
+            </div>
+        </div>
+        <div class='list-group'style="cursor: pointer;">
+            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;" >
+                    <a class='btn-link glyphicon glyphicon-bullhorn'>
+                    <font size="2">Tasks To Do</font></a>
+            </div>
+                
     <?php
     $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
 						b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
@@ -27,15 +36,19 @@
         $challengeOpen_pageID = $titlesrow['challenge_id'];
         $remaining_time_own = remaining_time($time, $eta);
         $tooltip = "Assigned By : " . ucfirst($fname) . " " . ucfirst($lname) . " On " . $timefun;
-        echo "<a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
+        echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);cursor: pointer;'> <a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				    data-placement='bottom' data-original-title='" . $tooltip . 
-                    "' style='height: 25px;font-size:12px;text-align: left;height: 37px'><b>" . $chtitle . "</b>
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p></button></a><br/>";
+                    "' style='height: 25px;font-size:12px;text-align: left;height: 37px'>" . $chtitle . "
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
+                </button></a></div>";
     }
-    ?><br/>
-    <a data-toggle='modal' class='btn btn-link' style='cursor:pointer;'><i class='glyphicon glyphicon-tasks'></i>
-      <font size="2"><b>Tasks -- get done</b></font></a><hr>
+    ?></div>
+            <div class='list-group' style="cursor: pointer;">
+            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;" >
+                <a class='btn-link glyphicon glyphicon-tasks'>
+                <font size="2">Tasks Get Done</font></a>
+            </div>
     <?php
     $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
 											b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE
@@ -55,14 +68,18 @@
         $challenge_pageID = $titlesrowass['challenge_id'];
 		$remaining_time_ownas = remaining_time($timeas, $etaas);
         $tooltipas = "Assigned To : " . ucfirst($fnameas) . " " . ucfirst($lnameas) . " On " . $timefunas;
-        echo "<a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
+        echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);cursor: pointer;'>
+                <a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
     				data-placement='bottom' data-original-title='" . $tooltipas .
-                     "'style='height: 37px;font-size:13px;text-align: left;'><b>" . $chtitleas ."</b>
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p></button></a><br/>";
+                     "'style='height: 37px;font-size:13px;text-align: left;'>" . $chtitleas ."
+                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
+                </button></a></div>";
     }
     ?>
+        </div>
 </div>
+
  <!-- Modal -->
             <div class="modal fade" id="myreminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
