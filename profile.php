@@ -112,9 +112,9 @@ $obj = new profile($UserName);
         <?php
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
             if (isset($_SESSION['user_id'])) {
-                echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a><br/><hr/>";
+                echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>";
             }
-                    echo "<span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong></span>
+                    echo "<br/><hr/><span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong></span>
                                 <span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>
                                 <span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
                                 <span><br/>Skills:";
@@ -187,7 +187,7 @@ $obj = new profile($UserName);
         </div>
           <div class="col-md-7 divider text-center" style="background-color: ##F0FDEC;">
           <ul class="nav nav-tabs nav-justified" role="tablist">
-              <li role="presentation" class="active"><a href="#">Projects</a></li>
+              <li role="presentation"><a href="#">Projects</a></li>
               <li role="presentation"><a href="#">Articles</a></li>
               <li role="presentation"><a href="#">Challanges</a></li>
               <li role="presentation"><a href="#">Ideas</a></li>
