@@ -66,8 +66,10 @@ function login(){
 		$_SESSION['username'] = $responseRow['username'] ;
 		$_SESSION['email'] = $responseRow['email'];
 		$logintime = date("y-m-d H:i:s") ;
-		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime' where user_id = '$id' ;" ) ;
 		$obj = new rank($id);
+		$new_rank = $obj->user_rank ;
+		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime', rank = '$new_rank' where user_id = '$id' ;" ) ;
+		//$obj = new rank($id);
 		$_SESSION['rank'] = $obj->user_rank;
 		exit;
 	}

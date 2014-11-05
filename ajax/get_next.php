@@ -25,7 +25,7 @@ if ($_POST['chal']) {
     $iR = 0;
     while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         $i++;
-       $chelange = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
+       $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
     $ETA = $open_chalangerow['challenge_ETA'];
     $ch_title = $open_chalangerow['challenge_title'];
     $ch_id = $open_chalangerow['user_id'];

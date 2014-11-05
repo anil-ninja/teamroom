@@ -99,7 +99,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',challenge)) + '&challenge_title='+ challenge_title + '&opentime='+ (opentime+='') + 
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + '&challenge_title='+ challenge_title + '&opentime='+ (opentime+='') + 
 			'&challange_eta='+ (challange_eta+='') + '&type='+ type ;
 			//alert(dataString);
 			if(challenge==''){
@@ -121,7 +121,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var notes = $("#notestmt").val() ;
 			var notes_title = $("#notes_title").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',notes)) + '&notes_title='+ notes_title ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&notes_title='+ notes_title ;
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
@@ -139,7 +139,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var notes = $("#pr_resp").val() ;
 			var id = $("#challenge_id").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',notes)) + '&id='+ id ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&id='+ id ;
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
