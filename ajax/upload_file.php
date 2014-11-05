@@ -105,6 +105,15 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					exit;
 					
 				break;
+				
+			case "answerPic":
+			
+					$filePath = checkNCreateFolder($username,"answerPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
+					saveFile($filePath) ;
+					echo substr($filePath, 3);
+					exit;
+					
+				break;
 		}
     //  echo "fileName: ".$fileName; taskPic
   } else {

@@ -2,7 +2,7 @@
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
-<div class="row">
+  <div class="row">
     <div class="col-md-2 navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>

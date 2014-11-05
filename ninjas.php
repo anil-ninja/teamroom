@@ -70,7 +70,7 @@ if(!isset($_SESSION['user_id'])){
     <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootswatch.js"></script>
-    <script src="js/project.js"></script>
+    <script src="js/project_page.js"></script>
    <script src="js/date_time.js"></script>
 </body></html>
 <?php

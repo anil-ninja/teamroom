@@ -20,15 +20,14 @@ if(isset($_POST['submitchlnin'])) {
 				   <a href = 'ninjas.php' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
 				   <h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
 				 </div> 
-				 <div class='modal-body'> 
-				  <form method='POST' ><br/>
+				 <div class='modal-body'>  
 				  <div class='input-group-addon'>
-				  <textarea row='5' name='answer' class='form-control' placeholder='submit your answer'></textarea>
+				  <textarea row='5' id='answerchal' class='form-control' placeholder='submit your answer'></textarea>
 				  </div><br/>
-				    <input type='hidden' name='cid' value='".$id."'>
-				    <input type='submit' class='btn btn-success btn-sm' name='answerch' value = 'Submit' ></small>
-				  </form>
-				</div> 
+				  <input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'><br/>
+				    <input type='hidden' id='answercid' value='".$id."'>
+				    <input type='submit' class='btn btn-success btn-sm' id='answerch' value = 'Submit' ></small>
+				  </div> 
 				<div class='modal-footer'>
 				   <a type='button' href = 'ninjas.php' class='btn btn-default' data-dismiss='modal'>Close</a>
 				</div>
@@ -36,29 +35,7 @@ if(isset($_POST['submitchlnin'])) {
 		</div>
 	</div>" ;
 }
-if (isset($_POST['answerch'])) {
-		$user_id = $_SESSION['user_id'];
-		$chalange = $_POST['cid'] ;
-		$answer = $_POST['answer'] ;
-		$a = date("y-m-d H:i:s") ;
-	if (strlen($answer) > 1) { 
-		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $chalange ; ") ;
-		mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $chalange and user_id = '$user_id'; ") ;
-	 if (strlen($answer) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$chalange', '$answer', '2'); ") ;
-	}
-	else {
-        mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
-                                VALUES (default, '$challange');");
-        
-        $id = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, blob_id, stmt, status) VALUES ('$user_id', '$chalange', '$id', '$answer', '2');");
-}
-header('Location:#') ;
-}	
-	else { echo "<script>alert('Enter Your Answer!')</script>"; }
- 
-}
+
 if (isset($_POST['closechallenge'])) {
 		$chalange = $_POST['cid'] ;
     mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
