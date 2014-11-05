@@ -7,7 +7,7 @@ $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.project
                                                 join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id);");
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
-$projectst = $project_row['stmt'];
+$projectst = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_row['stmt'])));
 $fname = $project_row['first_name'];
 $projectcreation = $project_row['project_creation'];
 $lname = $project_row['last_name'];
@@ -308,7 +308,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $eta_task = $tasksrow['challenge_ETA'];
     $creation_task = $tasksrow['challenge_creation'];
     $timetask = date("j F, g:i a", strtotime($creation_task));
-    $stmt_task = $tasksrow['stmt'];
+    $stmt_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt'])));
     $fname_task = $tasksrow['first_name'];
     $lname_task = $tasksrow['last_name'];
     $tasketa = eta($eta_task);
@@ -589,7 +589,7 @@ $display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.
 												) ORDER BY challenge_creation DESC;");
 
 while ($displayrow = mysqli_fetch_array($display_notes)) {
-    $notes = str_replace("<s>", "&nbsp;", $displayrow['stmt']);
+    $notes = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrow['stmt'])));
     $title = $displayrow['challenge_title'];
     $fname = $displayrow['first_name'];
     $lname = $displayrow['last_name'];
