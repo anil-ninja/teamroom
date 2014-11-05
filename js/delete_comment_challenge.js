@@ -45,6 +45,38 @@ function delChallenge(href) {
     });
     }
 }
+function delArticle(href) {
+    if(confirm("Do u really want to delete this Article?")){
+        
+    var dataString = 'cID='+ href;
+    $.ajax({
+        type: "POST",
+        url: "ajax/delete_chalange.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+            alert(result);
+            location.reload();
+        }
+    });
+    }
+}
+function delIdea(href) {
+    if(confirm("Do u really want to delete this Idea?")){
+        
+    var dataString = 'cID='+ href;
+    $.ajax({
+        type: "POST",
+        url: "ajax/delete_chalange.php",
+        data: dataString,
+        cache: false,
+        success: function(result){
+            alert(result);
+            location.reload();
+        }
+    });
+    }
+}
 function delProject(href) {
     if(confirm("Do u really want to delete this Project? Challenges no longer will be there!!!")){
         

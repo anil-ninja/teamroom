@@ -67,6 +67,45 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
               </div>
             </div>";
 }
+function dropDown_delete_article($db_handle, $challenge_ID, $user_ID) {
+        echo "<div class='pull-right'>
+                <div class='list-group-item'>
+                    <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                    <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$challenge_ID' AND user_id='$user_ID';"));
+                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                        if($challenge_dropdown_userID == $user_ID) {
+                            echo "<li><button class='btn-link' href='#'>Edit</button></li>
+                                <li><button class='btn-link' cID='".$challenge_ID."' onclick='delArticle(".$challenge_ID.");'>Delete</button></li>";
+                        }
+                        else {
+                            echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                    <button type='submit' name='pr_spem' value='".$challenge_ID."' class='btn-link' >Report Spam</button></form></li>";
+                        }
+            echo "</ul>
+              </div>
+            </div>";
+}
+function dropDown_delete_idea($db_handle, $challenge_ID, $user_ID) {
+        echo "<div class='pull-right list-group-item'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                    <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$challenge_ID' AND user_id='$user_ID';"));
+                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                        if($challenge_dropdown_userID == $user_ID) {
+                            echo "<li><button class='btn-link' href='#'>Edit</button></li>
+                                <li><button class='btn-link' cID='".$challenge_ID."' onclick='delIdea(".$challenge_ID.");'>Delete</button></li>";
+                        }
+                        else {
+                            echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                        <button type='submit' name='pr_spem' value='".$challenge_ID."' class='btn-link' >Report Spam</button>
+                                    </form></li>";
+                        }
+            echo "</ul>
+             </div>";
+}
 function eta($eta){
 	$day = floor($eta/(24*60)) ;
 	$daysec = $eta%(24*60) ;

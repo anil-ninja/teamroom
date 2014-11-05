@@ -261,8 +261,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-book'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                    </div>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    </div>";
+        dropDown_delete_article($db_handle, $chelangeid, $user_id);
+                            echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
                                     <br> " . $timefunction . "<br/>
                                 </div>";
@@ -273,18 +274,16 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>	
-                            
-                               
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                            </div>";
+        dropDown_delete_idea($db_handle, $chelangeid, $user_id);
+                    echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                         .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
-                             
-                                <div class='row'>
-                                <div class='col-md-8'>
-                                    <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p>
-                                </div>
+                        <div class='row'>
+                            <div class='col-md-8'>
+                                <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p>
                             </div>
-                        </div>";
+                        </div>
+                    </div>";
     } 
     if ($ctype == 3) {
 		if ($status == 1) {
