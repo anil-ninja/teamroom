@@ -1,15 +1,15 @@
 <?php
 //include_once '../lib/db_connect.php';
-   $pro_id = $_SESSION['project_id'] ;
-   $user_id = $_SESSION['user_id'] ;
-   $team_name = $_SESSION['team_name'] ;
+   //$pro_id = $_SESSION['project_id'] ;
+   //$user_id = $_SESSION['user_id'] ;
+   //$team_name = $_SESSION['team_name'] ;
 
   include_once 'functions/delete_comment.php';
 	$td1 = "" ;
 	
 			
    $open_chalange_of_project = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.challenge_title, b.first_name from challenges as a join user_info as b 
-										WHERE a.project_id = '$pro_id' AND (a.challenge_type = '1' or a.challenge_type = '2') and a.challenge_status = '1'
+										WHERE a.project_id = '$team_project_id' AND (a.challenge_type = '1' or a.challenge_type = '2') and a.challenge_status = '1'
 										and a.user_id = b.user_id ;") ;
 	while($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_project)) {
 		$name1 = $open_chalange_of_projectrow['first_name'] ;
@@ -24,7 +24,7 @@
 	$td4 = "" ;
 	$kanban2 = mysqli_query($db_handle, "select a.user_id, b.username, b.first_name, b.rank 
 											from teams as a join user_info as b 
-											where a.project_id = '$pro_id'
+											where a.project_id = '$team_project_id'
 												and a.team_name = '$team_name' 
 												and a.user_id = b.user_id ;") ;
 	while($kanban2row = mysqli_fetch_array($kanban2)) {
@@ -34,7 +34,7 @@
 		$rank2 = $kanban2row['rank'] ;
 										
 	$kanban3 = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.challenge_title, a.challenge_status, b.first_name from challenges as a join
-										user_info as b join challenge_ownership as c WHERE a.project_id = '$pro_id' 
+										user_info as b join challenge_ownership as c WHERE a.project_id = '$team_project_id' 
 										 AND a.challenge_id = c.challenge_id and a.user_id = b.user_id and c.user_id = '$user_id2' ;") ;	
 		while($kanban3row = mysqli_fetch_array($kanban3)) {
 			$name3 = $kanban3row['first_name'] ;

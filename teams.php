@@ -23,9 +23,9 @@ $project_team_title = $project_name_displayRow['project_title'];
 
 
 
-$teams_names_display = mysqli_query($db_handle, (" select b.first_name, b.username, b.last_name,
+$teams_member_display = mysqli_query($db_handle, (" select b.first_name, b.username, b.last_name,
 		a.team_name,b.email,b.contact_no,b.rank from teams as a	join user_info as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1' and a.project_id=$team_project_id;"));
-
+$total_members = mysqli_num_rows($teams_member_display);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,11 +50,11 @@ $teams_names_display = mysqli_query($db_handle, (" select b.first_name, b.userna
         <div class=" media-body" style="padding-top: 35px;"></div>
         <div class='row'>
         	<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>
-        	<?= ucfirst($team_name)." (".$project_team_title.") <a class='badge'>3</a>";?>
+        	<?= ucfirst($team_name)." (".$project_team_title.") <a class='badge'>".$total_members."</a>";?>
         		
         	</b></p>
         </div>
-        <div clas='row'>
+        <div class='row'>
         <div class='col-md-2'>
         	<div class="panel">
             <div class='panel-body'>
@@ -62,10 +62,10 @@ $teams_names_display = mysqli_query($db_handle, (" select b.first_name, b.userna
         	    	echo "<p style='color :#3B5998';>".$project_team_title." Teams </p><br>";
         	    	$teams_name_display = mysqli_query($db_handle, ("select team_name, project_id from teams where user_id= '$user_id' AND project_id='$team_project_id';"));
                         while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
-                            $team_name = $teams_name_displayRow['team_name'];
+                            $list_of_teams = $teams_name_displayRow['team_name'];
                             $team_project_id = $teams_name_displayRow['project_id'];
 
-                            echo "<a href='teams.php?project_id=$team_project_id&team_name=$team_name'>" . ucfirst($team_name)."</a><br>";
+                            echo "<a href='teams.php?project_id=$team_project_id&team_name=$list_of_teams'>" . ucfirst($list_of_teams)."</a><br>";
                         }
         	    ?>
         	</div>
@@ -75,11 +75,11 @@ $teams_names_display = mysqli_query($db_handle, (" select b.first_name, b.userna
         <div class="panel">
         <div class='panel-body'>
     	<?php
-    		while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
-                $firstname = $teams_names_displayRow['first_name'];
-                $username = $teams_names_displayRow['username'];
-                $lastname = $teams_names_displayRow['last_name'];
-                $rank = $teams_names_displayRow['rank'];
+    		while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
+                $firstname = $teams_member_displayRow['first_name'];
+                $username = $teams_member_displayRow['username'];
+                $lastname = $teams_member_displayRow['last_name'];
+                $rank = $teams_member_displayRow['rank'];
                 echo "<div class='col-md-2'>
                         <img src='uploads/profilePictures/$username.jpg'  style='width:25%' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                         <span class='color strong pull-left'><a href ='profile.php?username=" . $username . "'>" 
@@ -90,6 +90,7 @@ $teams_names_display = mysqli_query($db_handle, (" select b.first_name, b.userna
 ?>
 </div>
     	</div>
+            <?php include_once 'html_comp/kanban.php'; ?>
         </div>
     	</div>
     	</body>
