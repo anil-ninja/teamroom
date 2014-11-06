@@ -253,19 +253,17 @@ echo "<div class='comments clearfix'>
      ?>
         </div>
         <div id='teamForm'>
-            <form method="POST">
                 <div class="input-group" >
                     <span class="input-group-addon">Team Name</span>
-                    <input type="text" class="form-control" name="team_name" placeholder="Enter your team name">
+                    <input type="text" class="form-control" id="team_name_A" placeholder="Enter your team name">
                 </div>
                 <br>
                 <div class="input-group">
                     <span class="input-group-addon">Create Team with (Email)</span>
-                    <input type="email" class="form-control" name="email" placeholder="Enter First team member Email">
+                    <input type="email" class="form-control" id = "email_team" placeholder="Enter First team member Email">
                 </div>
                 <br>
-                <input type="submit" class="btn btn-success" name = "create_team" value = "Create New Team" >
-            </form>
+                <input type="submit" class="btn btn-success" id = "create_team" value = "Create New Team" >
         </div>
         <div id='notesForm'>
             <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>

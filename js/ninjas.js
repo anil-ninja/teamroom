@@ -394,8 +394,6 @@ $("#pencil").click(function(){
 		});
     
 		$("#create_task").click(function(){
-			//$(".alert_placeholder").innerHTML += "hi" ;
-      		//$("#create_task").attr('disabled','disabled');
 			var team = $("#teamtask").val() ;
 			var users = $("#userstask").val() ;
 			var email = $("#emailtask").val() ;
@@ -436,6 +434,10 @@ $("#pencil").click(function(){
 								uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
 							}				
 					}
+					else if (result == 'same') {
+							bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
+							return false ;
+						}
 						else {
 							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><form role='form' method='POST' action = ''><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' name='fname' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' name='sname' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' name='email' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' name='invite'  value='Invite Him/Her' /></form><br/>";
 							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
@@ -469,5 +471,56 @@ $("#pencil").click(function(){
 					uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
 				}
 			}			
+		});
+		
+		$("#create_team").click(function(){
+			var team = $("#team_name_A").val() ;
+			var email = $("#email_team").val() ;
+			if(team =="") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Team Name", 5000,"alert-warning");
+				return false ;
+			}
+			else if (email == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Email_id", 5000,"alert-warning");
+				return false ;
+			}
+			else {
+			$.ajax({
+				type: "POST",
+				url: "ajax/email.php",
+				data: 'email='+ email,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					if (result == 'true') {
+							var dataString = 'team='+ team + '&email='+ email ;
+							$.ajax({
+								type: "POST",
+								url: "ajax/create_team.php",
+								data: dataString,
+								cache: false,
+								success: function(result){
+									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+								if(result = "Team Created Successfully !!!") {
+									location.reload() ;
+									$("#team_name_A").val("") ;
+									$("#email_team").val("") ;
+									}
+								}				
+							}) ;
+						}
+						else if (result == 'same') {
+							bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
+							return false ;
+						}
+						else {
+							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><form role='form' method='POST' action = ''><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' name='fname' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' name='sname' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' name='email' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' name='invite'  value='Invite Him/Her' /></form><br/>";
+							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
+							$("#invitation").show().html(modal);
+							
+							}
+						}
+				  });
+				}	
 		});
 });
