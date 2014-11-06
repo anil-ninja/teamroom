@@ -20,7 +20,7 @@ if(isset($_POST['submitchlnin'])) {
 						<a href = 'ninjas.php' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
 						<h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
 					</div> 
-					<div class='modal-body'>  
+					<div class='modal-body'><form>  
 						<div class='input-group-addon'>
 							<textarea row='5' id='answerchal' class='form-control' placeholder='submit your answer'></textarea>
 						</div>
@@ -29,7 +29,7 @@ if(isset($_POST['submitchlnin'])) {
 						<br/>
 						<input type='hidden' id='answercid' value='".$id."'>
 						<button type='submit' class='btn btn-success btn-sm' id='answerch' >Submit</button> 
-					</div> 
+					</form></div> 
 					<div class='modal-footer'>
 						<a type='button' href = 'ninjas.php' class='btn btn-default' data-dismiss='modal'>Close</a>
 					</div>

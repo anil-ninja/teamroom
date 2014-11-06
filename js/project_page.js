@@ -145,7 +145,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				bootstrap_alert(".alert_placeholder", "Answer can not be empty", 5000,"alert-warning");
 			}
 			else {
-				$("#answerForm").hide();
+				//$("#answerForm").hide();
 				//file upload
 			var _file = document.getElementById('_fileanswer');
 			//alert(uploadFile(_file,"articlePic"));
