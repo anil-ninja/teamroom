@@ -30,6 +30,7 @@ $total_members = mysqli_num_rows($teams_member_display);
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <title><?= $team_name; ?></title>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/profile_page_style.css">
         
