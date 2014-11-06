@@ -76,10 +76,10 @@
 					$join =  mysqli_query($db_handle, "select user_id from teams where project_id = '$idproject' and user_id = '$user_id';") ;
 					if (mysqli_num_rows($join) == 0) {		
 					echo	"<td>
-								<form method='POST' action=''>
+								<form method='POST' action='' onsubmit=\"return confirm('Really Join this Project !!!')\">
 									<input type='hidden' name='project_id' value='".$idproject."'/>
-									<button type='submit' class='btn-link' name='join' data-toggle='tooltip' 
-									data-placement='bottom' data-original-title='Join' style='height: 20px;font-size:11px;text-align: left;'>Join</button>
+									<button type='submit' class='btn-link' name='joinproject' data-toggle='tooltip' 
+									data-placement='bottom' data-original-title='Join This Project' style='height: 20px;font-size:11px;text-align: left;'>Join</button>
 									
 								</form>
 							</td></tr>" ;
