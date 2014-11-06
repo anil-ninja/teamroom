@@ -136,6 +136,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 		$("#answerch").click(function(){
 			$("#answerch").attr('disabled','disabled');
+			$("#answerForm").hide(1000);
 			var answerchal = $("#answerchal").val() ;
 			var answercid = $("#answercid").val() ;
 			// Returns successful data submission message when the entered information is stored in database.

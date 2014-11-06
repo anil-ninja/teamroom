@@ -13,7 +13,7 @@ $email = $_SESSION['email'];
 
 if(isset($_POST['submitchlnin'])) {
 	$id = $_POST['id'] ;
-	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
+	echo "<div style='display: block;' class='modal fade in' id='answerForm' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
 			<div class='modal-dialog'> 
 				<div class='modal-content'>
 				 <div class='modal-header'> 
@@ -26,7 +26,7 @@ if(isset($_POST['submitchlnin'])) {
 				  </div><br/>
 				  <input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'><br/>
 				    <input type='hidden' id='answercid' value='".$id."'>
-				    <input type='submit' class='btn btn-success btn-sm' id='answerch' value = 'Submit' ></small>
+				    <button type='submit' class='btn btn-success btn-sm' id='answerch' ><a href = 'ninjas.php' >Submit</a></button> 
 				  </div> 
 				<div class='modal-footer'>
 				   <a type='button' href = 'ninjas.php' class='btn btn-default' data-dismiss='modal'>Close</a>
@@ -79,7 +79,7 @@ if(isset($_POST['accept'])) {
 				      <select class='btn btn-default btn-xs' name = 'y_etac' ><option value='0' selected >hours</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option></select>&nbsp;
 				      <select class='btn btn-default btn-xs' name = 'y_etad' ><option value='15' selected >minute</option><option value='30' >30</option><option value='45' >45</option></select>
 				    <input type='hidden' name='cid' value='".$id."'><br/><br/>
-				    <input type='submit' class='btn btn-success btn-sm' name='chlange' value = 'Accept' ></small>
+				    <input type='submit' class='btn btn-success btn-sm' name='chlange' value = 'Accept' >
 				  </form>
 				</div> 
 				<div class='modal-footer'>
@@ -148,7 +148,7 @@ if(isset($_POST['eta'])) {
 				      <select class='btn btn-default btn-xs' name = 'y_etac' ><option value='0' selected >hours</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option></select>&nbsp;
 				      <select class='btn btn-default btn-xs' name = 'y_etad' ><option value='15' selected >minute</option><option value='30' >30</option><option value='45' >45</option></select>
 				    <input type='hidden' name='cid' value='".$id."'><br/><br/>
-				    <input type='submit' class='btn btn-success btn-sm' name='change_eta' value = 'Change' ></small>
+				    <input type='submit' class='btn btn-success btn-sm' name='change_eta' value = 'Change' >
 				  </form>
 				</div> 
 				<div class='modal-footer'>

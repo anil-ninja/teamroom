@@ -128,7 +128,7 @@ if (isset($_POST['create_team'])) {
 }	
 if(isset($_POST['submitchl'])) {
 	$id = $_POST['id'] ;
-	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
+	echo "<div style='display: block;' class='modal fade in' id='answerForm' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
 			<div class='modal-dialog'> 
 				<div class='modal-content'>
 				 <div class='modal-header'> 
@@ -141,7 +141,7 @@ if(isset($_POST['submitchl'])) {
 				  </div><br/>
 				  <input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'><br/>
 				    <input type='hidden' id='answercid' value='".$id."'>
-				    <input type='submit' class='btn btn-success btn-sm' name='answerch' value = 'Submit' ></small>
+				    <input type='submit' class='btn btn-success btn-sm' id='answerch' value = 'Submit' ></small>
 				</div> 
 				<div class='modal-footer'>
 				   <a type='button' href = 'project.php' class='btn btn-default' data-dismiss='modal'>Close</a>
