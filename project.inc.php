@@ -41,36 +41,6 @@ if (isset($_POST['resp_project'])) {
 }
 } else { echo "<script>alert('Enter something!')</script>"; }
 }
-
-if (isset($_POST['invite'])) {
-    $fname = $_POST['fname'];
-   if (strlen($fname)>0) { 
-    $sname = $_POST['sname'];
-    if (strlen($sname)>0) {  
-    $email = $_POST['email'];
-    if (strlen($email)>0) {  
-    $password = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);;
-    
-    mysqli_query($db_handle,"INSERT INTO user_info
-                                    (first_name, last_name, email, username, password) 
-                                    VALUES 
-                                    ('$fname', '$sname', '$email', '$password', '$password') ; ") ;
-    
-    if(mail($email,$name+" have share bill with you.","Hi,\n ".$name." have share bill with you.\n
-            To know details login to http://54.64.1.52/Mybill/.\n
-            Username: ".$email."\n
-            Password: ".$password)){
-            header('Location: #');
-           echo "<script>alert('User was not registered we have invited the user!')</script>";
-    }
-    else{
-            header('Location: #');
-            echo "<script>alert('An error occured Sorry try again!')</script>";
-            }
-            }  else { echo "<script>alert('Enter First name!')</script>"; }
-            }  else { echo "<script>alert('Enter something!')</script>"; }
-     }  else { echo "<script>alert('Enter Email-ID!')</script>"; }
-}	
 	
 if(isset($_POST['submitchl'])) {
 	$id = $_POST['id'] ;

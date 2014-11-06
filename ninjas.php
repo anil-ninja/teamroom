@@ -35,7 +35,7 @@ if(!isset($_SESSION['user_id'])){
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
           <div class=" media-body" style="padding-top: 35px;">
-          <div class="col-md-8">
+          <div class="col-md-9">
 			  <div class="panel-primary" id='panel-cont'>
 				  <p id='home-ch'></p>
 				  <p id='home'></p>
@@ -48,6 +48,7 @@ if(!isset($_SESSION['user_id'])){
 	</div>
 	<script>
 		$(document).ready(function(){
+			
 	$(window).scroll(function(event) {
 		
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {

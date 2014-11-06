@@ -439,7 +439,7 @@ $("#pencil").click(function(){
 							return false ;
 						}
 						else {
-							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><form role='form' method='POST' action = ''><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' name='fname' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' name='sname' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' name='email' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' name='invite'  value='Invite Him/Her' /></form><br/>";
+							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' id='invite'  value='Invite Him/Her' /><br/>";
 							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
 							$("#invitation").show().html(modal);
 							
@@ -514,7 +514,7 @@ $("#pencil").click(function(){
 							return false ;
 						}
 						else {
-							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><form role='form' method='POST' action = ''><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' name='fname' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' name='sname' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' name='email' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' name='invite'  value='Invite Him/Her' /></form><br/>";
+							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' id='invite'  value='Invite Him/Her' /><br/>";
 							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
 							$("#invitation").show().html(modal);
 							
@@ -523,4 +523,55 @@ $("#pencil").click(function(){
 				  });
 				}	
 		});
+		
+		$("#invite").click(function(){
+			var fname = $("#fnameteam").val() ;
+			var sname = $("#snameteam").val() ;
+			var email = $("#teamemail").val() ;
+			if(fname =="") {
+				bootstrap_alert(".alert_placeholder", "Please Enter First Name", 5000,"alert-warning");
+				return false ;
+			}
+			else if (sname == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Second Name", 5000,"alert-warning");
+				return false ;
+			}
+			else if (email == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Email-ID", 5000,"alert-warning");
+				return false ;
+			}
+			else {
+			$.ajax({
+				type: "POST",
+				url: "ajax/email.php",
+				data: 'email='+ email,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					if (result == 'false') {
+							var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email ;
+							$.ajax({
+								type: "POST",
+								url: "ajax/send_invitation.php",
+								data: dataString,
+								cache: false,
+								success: function(result){
+									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+								if(result = "Invitation Send Successfully !!!") {
+									location.reload() ;
+									$("#fnameteam").val("") ;
+									$("#snameteam").val("") ;
+									$("#teamemail").val("") ;
+									}
+								}				
+							}) ;
+						}
+						else {
+							bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
+							return false ;							
+							}
+					}
+				});
+			}
+		});	
 });

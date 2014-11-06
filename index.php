@@ -63,8 +63,6 @@ if (!isset($_SESSION['first_name'])) {
                                     
                                 </div>
                                 <div class="modal-footer">
-                                   <!--  <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Google Login</font></a>
-                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: left; cursor:pointer;"><font size="3" >Facebook login</font></a> -->
                                     <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up for Collap</font></a>
                                 </div>
                             </div>
