@@ -73,13 +73,9 @@
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
                     </select><br/><br/> 
-                    <input type="checkbox" id="Chall_type" value='on' /> Always Open<br/><br/> --->
+                    <input type="checkbox" id="Chall_type" value='off' /> Always Open<br/><br/>--->
                     <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
-                    
-                                         
-                    
-                </div>
-            </form>
+               </form>
         </div>
         <div id='ArticleForm'>
             <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
