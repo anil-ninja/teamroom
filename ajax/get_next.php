@@ -145,10 +145,10 @@ if ($_POST['chal']) {
                         </div>" ;	
         }
         if ($status == 4) {
-            $show = $show . "<div class='list-group challenge'>
+            $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
                         <div class='pull-left lh-fix' >     
-                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                         <div class='row' style='line-height: 16.50px;'>
@@ -173,10 +173,10 @@ if ($_POST['chal']) {
                     </div>" ;	
         }
         if ($status == 5) {
-            $show = $show . "<div class='list-group challenge'>
+            $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
                         <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                         <div style='line-height: 16.50px;'>
@@ -223,10 +223,10 @@ if ($_POST['chal']) {
                         </div>";
     }
     if ($ctype == 8) {
-        $show = $show . "<div class='list-group articlesch'>
+        $show = $show . "<div class='list-group film'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
                                     <div class='pull-left lh-fix'>     
-                                        <span class='glyphicon glyphicon-book'></span>
+                                        <span class='glyphicon glyphicon-film'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                     </div>
                            <div class='pull-right list-group-item'>
@@ -289,7 +289,7 @@ if ($_POST['chal']) {
     } 
     if ($ctype == 3) {
 		if ($status == 1) {
-        $show = $show . "<div class='list-group openchalhide'>
+        $show = $show . "<div class='list-group challenge'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-question-sign'>
@@ -342,7 +342,7 @@ if ($_POST['chal']) {
         $show = $show . "</div>";
 	}	
 		if ($status == 6) {
-        $show = $show . "<div class='list-group openchalhide'>
+        $show = $show . "<div class='list-group film'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-picture'>
@@ -383,7 +383,7 @@ if ($_POST['chal']) {
         $show = $show . "<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
 	}
         if ($status == 2) {
-			$show = $show . "<div class='list-group openchalhide'>
+			$show = $show . "<div class='list-group challenge'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-question-sign'>
@@ -488,10 +488,10 @@ if ($_POST['chal']) {
             }
         }
         if ($status == 5) {
-			$show = $show . "<div class='list-group challenge'>
+			$show = $show . "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-question-sign'>
+                        <span class='glyphicon glyphicon-flag'>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"

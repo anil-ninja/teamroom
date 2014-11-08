@@ -31,7 +31,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 	$(document).ready(function(){
 		
 		$("#create_video").click(function(){
-      		$("#create_video").attr('disabled','disabled');
+      		//$("#create_video").attr('disabled','disabled');
 			var challenge = $("#videosub").val() ;
 			var video_title = $("#video_title").val() ;
 			var videodes = $("#videodes").val() ;
@@ -57,7 +57,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false ;
 			}
 			else {
-				var dataString = 'video='+ challenge + '&title='+ video_title + '&videodes='+ videodes + '&project_id = 0';
+				var dataString = 'video='+ challenge + '&title='+ video_title + '&videodes='+ videodes ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/add_video.php",
@@ -74,6 +74,52 @@ function bootstrap_alert(elem, message, timeout,type) {
 				  });
 				}	
 		});
+
+		$("#create_videopr").click(function(){
+      		//$("#create_videopr").attr('disabled','disabled');
+			var challenge = $("#videoprjt").val() ;
+			var video_title = $("#video_titlepr").val() ;
+			var videodes = $("#videodespr").val() ;
+			var domain = url_domain(challenge);
+			//alert(domain);
+			if (domain == "www.youtube.com"){
+				var linkId = refineVedioId(getVedioId(challenge));
+				//alert(linkId);
+				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
+				challenge = challenge.concat(linkId);
+				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
+			}
+			if (challenge == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
+				return false ;
+			}
+			else if (video_title == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
+				return false ;
+			}
+			else if (videodes == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
+				return false ;
+			}
+			else {
+				var dataString = 'videos='+ challenge + '&title='+ video_title + '&videodes='+ videodes ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/add_video_pr.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result = "Video Posted Successfully !!!") {
+						location.reload() ;
+						$("#video_title").val("") ;
+						$("#video").val("") ;
+						}
+					}
+				  });
+				}	
+		});
+
 
 		$("#submit_ch").click(function(){
       		$("#submit_ch").attr('disabled','disabled');
@@ -335,7 +381,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   	$(".articlesch").show(1000);
   	$(".openchalhide").show(1000);
   	$(".idea").show(1000);
-  	$(".VideoForm").show(1000);
+  	$(".film").show(1000);
     $(".challenge").show(1000);
   });
 
@@ -344,47 +390,38 @@ $("#pencil").click(function(){
   	$(".articlesch").hide(1000);
   	$(".openchalhide").hide(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".challenge").show(1000);
   });
 
-  $("#pencil").click(function(){
-	 // alert("I am pencil!!! :)");
-  	$(".articlesch").hide(1000);
-  	$(".openchalhide").hide(1000);
-  	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
-    $(".challenge").show(1000);
-  });
- 
   $("#globe").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").hide(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".articlesch").show(1000);
   });
   
-  $("#ok").click(function(){
+  $("#okch").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").show(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".articlesch").hide(1000);
   });
   
-  $("#film").click(function(){
+  $("#filmnin").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").hide(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").show(1000);
+  	$(".film").show(1000);
     $(".articlesch").hide(1000);
   });
   
   $("#tree").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".articlesch").hide(1000);
     $(".idea").show(1000);
   });

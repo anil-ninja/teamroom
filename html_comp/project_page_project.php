@@ -21,26 +21,28 @@ echo "<div class='list-group'>
                 <span class='glyphicon glyphicon-question-sign'></span>
                 <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
             </div>
-            <div style='line-height: 16.50px;'>
-                <div class='pull-right'>
+            <div style='line-height: 16.50px;'>";
+if ($p_uid == $user_id) {
+    echo "<div class='pull-right'>
                     <div class='list-group-item'>
                         <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                        <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-if ($p_uid == $user_id) {
-			echo "<li><button class='btn-link' href='#'>Edit Project</button></li>
+                        <ul class='dropdown-menu' aria-labelledby='dropdown'>
+                <li><button class='btn-link' href='#'>Edit Project</button></li>
                   <li><button class='btn-link' pID='" . $pro_id . "' onclick='delProject(" . $pro_id . ");'>Delete Project</button></li>
-                  <li><form method='POST' class='inline-form'>";
+                  <li>";
     if ($prtime == 'Closed') {
-        echo "<input type='hidden' name='id' value='" . $pro_id . "'/>
-                                <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>";
+        echo "<form method='POST' class='inline-form'>
+                        <input type='hidden' name='id' value='" . $pro_id . "'/>
+                        <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>
+                    </form>";
     }
-    echo "</form></li>
-								<li><button class='btn-link' >Report Spam</button></li>";
+    echo "</li>
+        </ul>
+        </div>
+    </div>";
 }
-                    echo "</ul>
-                    </div>
-                </div>
-                <div class='row'>
+                             
+        echo "<div class='row'>
                     <div class='col-md-4'>
                         <span class='color strong' style= 'color :lightblue;'>
                             <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
@@ -49,8 +51,9 @@ if ($p_uid == $user_id) {
                     <div class='col-md-5'>
                         ETA in &nbsp".$timepr."<br>Time Left:".$prtime."
                     </div>
-                </div></div>
             </div>
+            </div>
+    </div>
             <div class='list-group-item'>
             <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . ucfirst($projttitle) . "</p></span>                
             " . str_replace("<s>", "&nbsp;", $projectst) . "<br/><br/>
@@ -274,7 +277,8 @@ echo "<div class='comments clearfix'>
         </div>
         <div id='VideoFormpr'>
             <input type='text' class="form-control" id="video_titlepr" placeholder="Title"/><br>
-            <input type='text' class="form-control" id="videopr" placeholder="Add Youtube URL"><br><br>
+            <input type='text' class="form-control" id="videoprjt" placeholder="Add Youtube URL"><br>
+            <textarea rows="3" class="form-control" id="videodespr" placeholder="About Video"></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
         </div>
         <div id='notesForm'>
@@ -303,7 +307,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 										  WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
 										   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10 ;");
 if (mysqli_num_rows($tasks) > 0) {
-    echo "<h3 class='panel-title'><p align='center'>Challenges</p></h3><br/><br/>";
+    echo "<h3 class='panel-title'><p align='center'>Challenges</p></h3>";
 } else {
     echo "<h3 class='panel-title'><p align='center'>You have no Challenges</p></h3>";
 }
@@ -351,11 +355,10 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
          if ($status_task == 2) {
 			 echo "<div class='list-group pushpin'>
                     <div class='list-group-item'>
-                       <div class='pull-left lh-fix' style='line-height: 16.50px;>     
+                       <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-pushpin'></span>
                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        ";
+                        </div>";
                     echo "<div class='pull-right'>
             				<div class='list-group-item'>
             					<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
@@ -363,21 +366,23 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                                 if ($id_create == $user_id) {
                                     echo "<li><button class='btn-link' href='#'>Edit</button></li>
                                             <li><button class='btn-link' cID='" . $id_task . "' onclick='delChallenge(" . $id_task . ");'>Delete</button></li>
-                                            <li><form method='POST' class='inline-form'>";
+                                           ";
                                     if ($remaintimeown == 'Closed') {
-                                        echo "<input type='hidden' name='id' value='" . $id_task . "'/>
-                                            <input class='btn-link' type='submit' name='eta' value='Change ETA'/>";
+                                        echo "<li><form method='POST' class='inline-form'>
+                                            <input type='hidden' name='id' value='" . $id_task . "'/>
+                                            <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
+                                            </form></li>";
                                     }
                                 }
-                                echo "</form></li>
-                    								<li><button class='btn-link' >Report Spam</button>
-                                                    </li>
-                                </ul>
+                               else {
+                                echo "<li><button class='btn-link' >Report Spam</button></li>";
+                                }
+                            echo "</ul>
                             </div>
                         </div>";
                         
 
-            echo "<div class='row'>
+            echo "<div class='row' style='line-height: 16.50px;'>
                     <div class='col-md-4'>
                         <span class='color strong' style= 'color :#3B5998;'>" 
                             . ucfirst($fname_task) ." ".ucfirst($lname_task) ."</a></span><br>" . $timefunct . "<br/>
@@ -396,51 +401,81 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                                 </form>";
                         }
               echo "</div>
-                
-             </div>
-         </div>";
+                </div>
+            </div>";
         }
         if ($status_task == 4) {
-			echo "<div class='list-group flag'>
-                    <div class='list-group-item'>
-                    <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-pushpin'></span>
-                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+			echo "<div class='list-group pushpin'>
+                                <div class='list-group-item'>
+                                    <div class='pull-left lh-fix'>     
+                                    <span class='glyphicon glyphicon-pushpin'></span>
+                                    <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                </div>
+                                <div class='row' style='line-height: 16.50px;'>
+                                    <div class='col-md-3'>";
+                                    echo "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span><br> " . $timefunct . "<br/>
+                                            ETA Given:" .$etaown."
+
+                                    </div>
+                                    <div class='col-md-5'>";
+                                        echo "Task Assigned To: &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span><br>
+                                            Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "
+                                    </div>
+                                    <div class='col-md-1 pull-right'>";
+                                        if ($id_create == $user_id) {
+                                        echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                                                        <input type='hidden' name='cid' value='" . $id_task . "'/>
+                                                        <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
+                                            </form>";
+                                    }
+                            echo "</div>
                             </div>
-                            <div style='line-height: 16.50px;'>";
-            if ($id_create == $user_id) {
-                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-				   <input type='hidden' name='cid' value='" . $id_task . "'/>
-				   <button type='submit' class='btn-primary' name='closechallenge'>Close</button></form>";
-            }
-            echo "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
-					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
+                        </div>";
+					 
         }
         if ($status_task == 5) {
 			echo "<div class='list-group flag'>
-                    <div class='list-group-item'>
-                    <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-pushpin'></span>
-                        <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                    </div>
-                    <div style='line-height: 16.50px;'>";
-                echo "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span><br/>
-				        <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span><br>" 
-                        . $timefunct . "<br/>
-				        Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" 
-                            . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span><br>
-				        ETA Given : " . $etaown . " <br/>Submitted On : " . $timecom . "<br> ETA Taken : " . $timetaken . "
-                    </div>
-                </div>";
+                                <div class='list-group-item'>
+                                    <div class='pull-left lh-fix'>     
+                                    <span class='glyphicon glyphicon-flag'></span>
+                                    <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                </div>
+                                <div class='row' style='line-height: 16.50px;'>
+                                    <div class='col-md-3'>";
+                              echo "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span><br>" 
+                                        .$timefunct . "<br/>ETA Given:" .$etaown."
+                                    </div>
+                                    <div class='col-md-5'>
+				        Task Assigned To: <span class='color strong' style= 'color :#3B5998;'>" 
+                                        . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span><br>
+				        Submitted On: " . $timecom . "<br> ETA Taken : " . $timetaken . "
+                                    </div>
+                                    <div class='col-md-1 pull-right'>";
+                                        echo "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span>
+                                    </div>
+                                </div>
+                            </div>";
         }
     }
+    if ($type_task == 8) {
+			echo "<div class='list-group videofilm'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-film'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
+            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
+            dropDown_delete_article($db_handle, $id_task, $user_id);
+            echo "<br>" . $timetask . "</div></div>";
+        }
     if ($type_task == 1 || $type_task == 2) {
         if ($status_task == 1) {
 			echo "<div class='list-group sign'>
                     <div class='list-group-item'>
                     <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-pushpin'></span>
+                                <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>
                             <div style='line-height: 16.50px;'>";
@@ -467,7 +502,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                                 . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span><br>".$timetask."
                         </div>";      
                   echo "<div class='col-md-5'>
-                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                            Owned By:  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br>" 
                             . $timefunct . "<br>ETA Taken: ". $etaown." <br/> Time Remaining : " . $remaintimeown . "
                         </div>
@@ -477,6 +512,9 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                                         <input type='hidden' name='id' value='" . $id_task . "'/>
                                         <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
                                     </form>";
+                            } 
+                            else {
+                                dropDown_delete_after_accept($db_handle, $id_task, $user_id);
                             }
                     echo "</div>
                     </div>
@@ -487,43 +525,51 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 			echo "<div class='list-group flag'>
                     <div class='list-group-item'>
                     <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-pushpin'></span>
-                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>
-                            <div style='line-height: 16.50px;'>";
-            echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
-            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
+                        <span class='glyphicon glyphicon-flag'></span>
+                        <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                    </div>
+                    <div class='row' style='line-height: 16.50px;'>
+                        <div class='col-md-3'>
+                            <span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
+                            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span><br>".$timetask."
+                        </div>
+                        <div class ='col-md-5'>
+                            Owned By <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                .ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br>Submitted : " . $timefunct . "<br> 
+                            ETA Taken: " . $timetaken . "
+                        </div>
+                        <div class='col-md-1 pull-right'>";
             if ($id_create == $user_id) {
                 echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-				   <input type='hidden' name='cid' value='" . $id_task . "'/>
-				   <button type='submit' class='btn-primary' name='closechallenge'>Close</button></form>";
+                        <input type='hidden' name='cid' value='" . $id_task . "'/>
+                        <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
+                    </form>";
+                dropDown_delete_after_accept($db_handle, $id_task, $user_id);
             }
-            echo "&nbsp&nbsp On : " . $timetask . "<br/>
-				Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp Submitted On : " . $timefunct . " and 
-				ETA Taken : " . $timetaken . "</div></div>";
+            echo "</div></div></div>";
         }
 
         if ($status_task == 5) {
 			echo "<div class='list-group flag'>
                     <div class='list-group-item' style='line-height: 16.50px;'>
                         <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                        ";
                     echo "<div class='row'>
                             <div class='col-md-3'>
                 				<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task)." ".ucfirst($fname_task)."</a></span><br>" 
-                                . $timefunct . "<br/>
+                                . $timefunct . "<br/>ETA Given: " . $etaown."
                             </div>
                             <div class='col-md-5'>
-                				Owned By &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span><br>
-                			    ETA Given : " . $etaown . " <br/>Submitted On: ".$timecom . "<br>ETA Taken: ".$timetaken."
+                                Owned By: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span><br>
+                                Submitted On: ".$timecom . "<br>ETA Taken: ".$timetaken."
                             </div>
-                            <div class='col-md-1'>
-                                <span class='color strong' style= 'color :#3B5998;'>Closed</span>
-                            </div>
+                            <div class='col-md-1 pull-right'>
+                                <span class='color strong pull-right' style= 'color :#3B5998;'>Closed</span>";
+                    dropDown_delete_after_accept($db_handle, $id_task, $user_id);
+                   echo "</div>
                         </div>
                     </div>";
         }
@@ -584,9 +630,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 <?php
 $echo = mysqli_query($db_handle, "select * from challenges where challenge_type = '6' ;");
 if (mysqli_num_rows($echo) > 0) {
-    echo "   
-            <h3 ><p align='center'> Notes</p></h3>
-          ";
+    echo "<h3 ><p align='center'> Notes</p></h3>";
 }
 ?>             
 <?php
@@ -604,6 +648,7 @@ while ($displayrow = mysqli_fetch_array($display_notes)) {
     $fname = $displayrow['first_name'];
     $lname = $displayrow['last_name'];
     $username_notes = $displayrow['username'];
+    $note_posted_user_id = $displayrow['user_id'];
     $note_ID = $displayrow['challenge_id'];
     $note_created_on = $displayrow['challenge_creation'];
     $note_creation = date("j F, g:i a", strtotime($note_created_on));
@@ -612,11 +657,15 @@ while ($displayrow = mysqli_fetch_array($display_notes)) {
 		      <div class='pull-right'>
 	 	        <div class='list-group-item'>
 				   <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-				   <ul class='dropdown-menu' aria-labelledby='dropdown'>
-					 <li><a class='btn-link' href='#'>Edit Note</a></li>
-					 <li><a class='btn-link' noteID='" . $note_ID . "' onclick='delNote(" . $note_ID . ");'>Delete Note</a></li>                  
-					 <li><a class='btn-link' >Report Spam</a></li>
-				   </ul>
+				   <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                        if ($note_posted_user_id == $user_id) {
+                            echo "<li><a class='btn-link' href='#'>Edit Note</a></li>
+                                <li><a class='btn-link' noteID='" . $note_ID . "' onclick='delNote(" . $note_ID . ");'>Delete Note</a></li>";
+                        } 
+                        else {
+                            echo "<li><a class='btn-link' >Report Spam</a></li>";
+                        }
+                        echo "</ul>
               </div>
 			</div>
 			<p align='center' style='font-size: 14pt;color :#3B5998;'>" . $title . "</p>

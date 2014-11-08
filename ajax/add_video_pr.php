@@ -4,17 +4,19 @@ include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 
 //echo "i am not working before post";
-if($_POST['video']){
+if($_POST['videos']){
 	$user_id = $_SESSION['user_id'];	
-	$challangetext = $_POST['video'] ;
+	$challangetext = $_POST['videos'];
+	$pro_id = $_SESSION['project_id'] ;	
 	$challenge_title = $_POST['title'] ;
 	$videodes = $_POST['videodes'] ;
 	$challange = $challangetext." ".$videodes ;
 	if (strlen($challange) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
-                                    VALUES ('$user_id', '$challenge_title', '$challange', '1', '1', '8') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
+                                    VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '1', '1', '8') ; ") ;
 			$idp = mysqli_insert_id($db_handle);
-		involve_in($db_handle,$user_id,"1",$idp); 
+		involve_in($db_handle,$user_id,"10",$idp);
+		events($db_handle,$user_id,"10",$idp); 
 		if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
 		else { echo "Video Posted Successfully !!!"; }
 	}
@@ -23,10 +25,11 @@ if($_POST['video']){
                                 VALUES (default, '$challange');");
         
         $id = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type) 
-                                VALUES ('$user_id', '$challenge_title', '$id', '1', '1', ' ', '8');");
+        mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type) 
+                                VALUES ('$user_id', '$pro_id', '$challenge_title', '$id', '1', '1', ' ', '8');");
        $idp = mysqli_insert_id($db_handle);
-      involve_in($db_handle,$user_id,"1",$idp); 
+      involve_in($db_handle,$user_id,"10",$idp);
+      events($db_handle,$user_id,"10",$idp); 
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
 	else { echo "Video Posted Successfully !!!"; }
 	}
