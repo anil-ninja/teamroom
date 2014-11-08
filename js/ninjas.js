@@ -29,6 +29,25 @@ function bootstrap_alert(elem, message, timeout,type) {
 };
 
 	$(document).ready(function(){
+		
+		$("#create_video").click(function(){
+      		$("#create_video").attr('disabled','disabled');
+			var challenge = $("#video").val() ;
+			var domain = url_domain(challenge);
+			//alert(domain);
+			if (domain == "www.youtube.com"){
+				var linkId = refineVedioId(getVedioId(challenge));
+				//alert(linkId);
+				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
+				challenge = challenge.concat(linkId);
+				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
+			}
+			
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'video='+ challenge ;
+				
+		
+		});
 
 		$("#submit_ch").click(function(){
       		$("#submit_ch").attr('disabled','disabled');
@@ -138,10 +157,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 					}
 				}
 			}); 
-					
-      //$("#create_article").removeAttr('disabled');
-			//return false;
 	}
+		
 		$("#create_article").click(function(){
       		$("#create_article").attr('disabled','disabled');
 			var article = $("#articlech").val() ;
@@ -233,11 +250,11 @@ function bootstrap_alert(elem, message, timeout,type) {
 			uploadFile(_file,"projectPic",String(dataString),"ajax/submit_project.php");
 			}
 		});
+		
 		$('.tree-toggle').click(function () {
 		$(this).parent().children('ul.tree').toggle(200);
 		});	
 	
-
 		//to hide all the form
 		$("#challegeForm").toggle();
   		$("#ArticleForm").toggle();
@@ -245,9 +262,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   		$("#VideoForm").toggle();
   		$("#IdeaForm").toggle();
 
-
   		//selecting perticular one
-
   		$("#challenge").click(function(){
   			$("#ArticleForm").hide(1500);
   			$("#PictureForm").hide(1500);
@@ -255,9 +270,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   			$("#VideoForm").hide(1500);
     		$("#challegeForm").show(3000);
   		});
-
-  		
-  		
+ 		
   		$("#artical").click(function(){
   			$("#challegeForm").hide(1500);
   			$("#PictureForm").hide(1500);
@@ -266,8 +279,6 @@ function bootstrap_alert(elem, message, timeout,type) {
     		$("#ArticleForm").show(3000);
   		});
   
-  		
-		
 		$("#picture").click(function(){
   			$("#challegeForm").hide(1500);
   			$("#PictureForm").show(1500);
@@ -319,8 +330,7 @@ $("#pencil").click(function(){
   	$(".VideoForm").hide(1000);
     $(".challenge").show(1000);
   });
-
-  
+ 
   $("#globe").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").hide(1000);

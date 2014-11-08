@@ -95,7 +95,13 @@ echo "<div class='comments clearfix'>
 ?>
 
 <div class='list-group'>
-    <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span></div>
+    <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span>
+     | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span>
+     | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span>
+     | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span>
+     | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span>
+     | <span class="glyphicon glyphicon-film" id='videopr' style="cursor: pointer"> Videos</span>
+    </div>
     <div class='list-group-item'>
 		<p style="color: grey;"><I>Please Select Post Type From Above ......</I></p>
 		<?php
@@ -265,6 +271,11 @@ echo "<div class='comments clearfix'>
                 </div>
                 <br>
                 <input type="submit" class="btn btn-success" id = "create_team" value = "Create New Team" >
+        </div>
+        <div id='VideoFormpr'>
+            <input type='text' class="form-control" id="video_titlepr" placeholder="Title"/><br>
+            <input type='text' class="form-control" id="videopr" placeholder="Add Youtube URL"><br><br>
+            <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
         </div>
         <div id='notesForm'>
             <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>

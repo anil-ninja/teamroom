@@ -27,7 +27,8 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
   $username = $_SESSION['username'];
   if(($_FILES["file"]["type"] == "image/jpeg")
             || ($_FILES["file"]["type"] == "image/jpg") 
-            ||  ($_FILES["file"]["type"] == "image/png")){
+            ||  ($_FILES["file"]["type"] == "image/png")
+            ||  ($_FILES["file"]["type"] == "image/gif")){
 		
 		switch($_GET['typeOfPic']){
 			case "articlePic":
