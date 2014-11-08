@@ -13,14 +13,14 @@ if ($_POST['chal']) {
     $b = $a + 5;
 
     $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
-											a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation, b.first_name, b.last_name, b.username from challenges
-										   as a join user_info as b where a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' 
-										   and blob_id = '0' and a.user_id = b.user_id)
-											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
-											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
-											 ORDER BY challenge_creation DESC LIMIT $a,$b;");
+                                                a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation, b.first_name, b.last_name, b.username from challenges
+                                            as a join user_info as b where a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' 
+                                            and blob_id = '0' and a.user_id = b.user_id)
+                                                UNION
+                                                (SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
+                                                b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
+                                                WHERE a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
+                                                    ORDER BY challenge_creation DESC LIMIT $a,$b;");
     $show = "";
     $iR = 0;
     while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
@@ -72,7 +72,36 @@ if ($_POST['chal']) {
                                 <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
             . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a>
                                 </span>";
-            dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
+    
+//dropdown for delete/edit/span challenge starts
+        $show = $show . "<div class='list-group-item pull-right'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+                    $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                    $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                    if($challenge_dropdown_userID == $user_id) {
+                        $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                              <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
+                        if($remaining_time_ETA_over == 'Time over') {        
+                            $show = $show . "<li>
+                                    <form method='POST' class='inline-form'>
+                                        <input type='hidden' name='id' value='".$chelangeid."'/>
+                                        <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
+                                    </form>
+                                </li>";
+                        }                                    
+                     }
+                    else {
+                       $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                    <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
+                                </form>
+                            </li>";
+                    } 
+               $show = $show . "</ul>
+              </div>";
+        //dropdown for delete/edit/span challenge ends here
+
             
             if ($remaintime != "Closed") {
                 $show = $show . "<form method='POST' class='inline-form pull-right'>
@@ -171,10 +200,27 @@ if ($_POST['chal']) {
                                         <span class='glyphicon glyphicon-book'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                     </div>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                                    <br> " . $timefunction . "<br/>
-                                </div>";
+                           <div class='pull-right list-group-item'>
+                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                        if($challenge_dropdown_userID == $user_id) {
+                            $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                                <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
+                        }
+                        else {
+                            $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                        <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
+                                    </form></li>";
+                        }
+                        $show = $show . "</ul>
+                        </div>
+                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
+                            <br> " . $timefunction . "<br/>
+                        </div>";
     } 
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
@@ -182,10 +228,27 @@ if ($_POST['chal']) {
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>	
-                            
-                               
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                            </div>";
+    //dropdown for delete/edit/span idea starts here
+        $show = $show . "<div class='pull-right list-group-item'>
+                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                        if($challenge_dropdown_userID == $user_id) {
+                            $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                                <li><button class='btn-link' cID='".$chelangeid."' onclick='delIdea(".$chelangeid.");'>Delete</button></li>";
+                        }
+                        else {
+                            $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                        <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
+                                    </form></li>";
+                        }
+                        $show = $show . "</ul>
+                        </div>";
+    //dropdown for delete/edit/span idea ends here
+        $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                         .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
                              
                                 <div class='row'>
@@ -205,8 +268,36 @@ if ($_POST['chal']) {
                         style='width: 50px; height: 50px'></span>
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction ;
-        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction;
+    //dropdown for delete/edit/span challenge starts
+        $show = $show . "<div class='list-group-item pull-right'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+                    $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                    $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                    if($challenge_dropdown_userID == $user_id) {
+                        $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                              <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
+                        if($remaining_time_ETA_over == 'Time over') {        
+                            $show = $show . "<li>
+                                    <form method='POST' class='inline-form'>
+                                        <input type='hidden' name='id' value='".$chelangeid."'/>
+                                        <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
+                                    </form>
+                                </li>";
+                        }                                    
+                     }
+                    else {
+                       $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                    <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
+                                </form>
+                            </li>";
+                    } 
+               $show = $show . "</ul>
+              </div>";
+        //dropdown for delete/edit/span challenge ends here
+
         if ($ch_id != $user_id) {
             $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
@@ -230,8 +321,36 @@ if ($_POST['chal']) {
                         style='width: 50px; height: 50px'></span>
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> " . $timefunction ;
-        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+                         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> " . $timefunction;
+        //dropdown for delete/edit/span challenge starts
+        $show = $show . "<div class='list-group-item pull-right'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+                    $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                    $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                    if($challenge_dropdown_userID == $user_id) {
+                        $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                              <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
+                        if($remaining_time_ETA_over == 'Time over') {        
+                            $show = $show . "<li>
+                                    <form method='POST' class='inline-form'>
+                                        <input type='hidden' name='id' value='".$chelangeid."'/>
+                                        <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
+                                    </form>
+                                </li>";
+                        }                                    
+                     }
+                    else {
+                       $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                    <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
+                                </form>
+                            </li>";
+                    } 
+               $show = $show . "</ul>
+              </div>";
+        //dropdown for delete/edit/span challenge ends here
+
         $show = $show . "<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
 	}
         if ($status == 2) {
@@ -414,7 +533,27 @@ if ($_POST['chal']) {
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
 						&nbsp&nbsp&nbsp" . $commenterRow['stmt'];
-        dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
+        //delete comment dropdown chall function is not called due to function call witihin concatination string and then further concatenated to $show
+        $show = $show . "<div class='list-group-item pull-right'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+            
+            $challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$comment_id' AND user_id='$user_id';"));
+                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
+                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
+                    if($challenge_dropdown_comment_userID == $user_id) {
+                        $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                              <li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
+                    } 
+                    else {
+                      $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                    <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
+                                </form>
+                            </li>";
+                    }
+             $show = $show . "</ul>
+        </div>";
+             //delete comment dropdown ends
         $show = $show . "</div></div></div>";
     }
 
