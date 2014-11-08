@@ -32,7 +32,9 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 		$("#create_video").click(function(){
       		$("#create_video").attr('disabled','disabled');
-			var challenge = $("#video").val() ;
+			var challenge = $("#videosub").val() ;
+			var video_title = $("#video_title").val() ;
+			var videodes = $("#videodes").val() ;
 			var domain = url_domain(challenge);
 			//alert(domain);
 			if (domain == "www.youtube.com"){
@@ -42,11 +44,35 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
-			
-			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'video='+ challenge ;
-				
-		
+			if (challenge == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
+				return false ;
+			}
+			else if (video_title == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
+				return false ;
+			}
+			else if (videodes == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
+				return false ;
+			}
+			else {
+				var dataString = 'video='+ challenge + '&title='+ video_title + '&videodes='+ videodes + '&project_id = 0';
+			$.ajax({
+				type: "POST",
+				url: "ajax/add_video.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result = "Video Posted Successfully !!!") {
+						location.reload() ;
+						$("#video_title").val("") ;
+						$("#video").val("") ;
+						}
+					}
+				  });
+				}	
 		});
 
 		$("#submit_ch").click(function(){

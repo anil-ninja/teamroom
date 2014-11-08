@@ -221,6 +221,35 @@ if ($_POST['chal']) {
                                 . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
                             <br> " . $timefunction . "<br/>
                         </div>";
+    }
+    if ($ctype == 8) {
+        $show = $show . "<div class='list-group articlesch'>
+				<div class='list-group-item' style='line-height: 24.50px;'>
+                                    <div class='pull-left lh-fix'>     
+                                        <span class='glyphicon glyphicon-book'></span>
+                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                    </div>
+                           <div class='pull-right list-group-item'>
+                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                        if($challenge_dropdown_userID == $user_id) {
+                            $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                                <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
+                        }
+                        else {
+                            $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                        <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
+                                    </form></li>";
+                        }
+                        $show = $show . "</ul>
+                        </div>
+                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
+                            <br> " . $timefunction . "<br/>
+                        </div>";
     } 
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
