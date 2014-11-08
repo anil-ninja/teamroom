@@ -163,4 +163,10 @@ function remaining_time($creationtime, $eta) {
 		}
 	}
 }
+function events($db_handle,$user_ID,$type,$id){
+	 mysqli_query($db_handle,"insert into events (event_creater, event_type, p_c_id) VALUES ('$user_ID', '$type', '$id') ;") ;
+	}
+function involve_in($db_handle,$user_ID,$type,$id){
+	 mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_ID', '$id', '$type') ;") ;
+	}
 ?>

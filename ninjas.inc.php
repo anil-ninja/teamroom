@@ -1,6 +1,6 @@
 <?php
 include_once 'lib/db_connect.php';
-
+include_once 'functions/delete_comment.php';
 session_start();
 if(!isset($_SESSION['user_id'])) {
 	header('Location:index.php') ;
@@ -40,12 +40,17 @@ if(isset($_POST['submitchlnin'])) {
 
 if (isset($_POST['closechallenge'])) {
 		$chalange = $_POST['cid'] ;
+		$user_id = $_SESSION['user_id'];
+	events($db_handle,$user_id,"6",$chalange);
+    involve_in($db_handle,$user_id,"6",$chalange);
     mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
 }
 if(isset($_POST['own_chl_response'])) {
     $user_id = $_SESSION['user_id'];
     $own_challenge_id_comment = $_POST['own_challen_id'] ;
     $own_ch_response = $_POST['own_ch_response'] ;
+    events($db_handle,$user_id,"3",$own_challenge_id_comment);
+    involve_in($db_handle,$user_id,"3",$own_challenge_id_comment);
     if (strlen($own_ch_response)>1) {
 	if (strlen($own_ch_response)<1000) {	
     mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) 
@@ -93,6 +98,9 @@ if(isset($_POST['accept'])) {
 }
 if(isset($_POST['accept_pub'])) {
 	$id = $_POST['id'] ;
+	$user_id = $_SESSION['user_id'];
+	events($db_handle,$user_id,"4",$id);
+    involve_in($db_handle,$user_id,"4",$id);
 	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$id' ; ") ;
 		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$id', '1');") ;
@@ -107,8 +115,10 @@ if (isset($_POST['logout'])) {
 }
 if (isset($_POST['joinproject'])) {
 	$user_id = $_SESSION['user_id'];
-	$id = $_POST['project_id'] ;
-	mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$id', 'defaultteam') ;") ;
+	$idpt = $_POST['project_id'] ;
+	events($db_handle,$user_id,"4",$idpt);
+    involve_in($db_handle,$user_id,"4",$idpt);
+	mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$idpt', 'defaultteam') ;") ;
 	echo "<script>alert('Joined Successfully')</script>" ;
 	header('Location: #');
 }   
@@ -127,10 +137,12 @@ if(isset($_POST['spem_prresp'])) {
 	header('Location: #');
 	}
 if(isset($_POST['pr_spem'])) {
-	$id = $_POST['pr_spem'] ;
+	$idch = $_POST['pr_spem'] ;
 	$user_id = $_SESSION['user_id'];
-	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '1');") ;
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='7' WHERE challenge_id = '$id'; ") ;
+	events($db_handle,$user_id,"7",$idch);
+    involve_in($db_handle,$user_id,"7",$idch);
+	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$idch', '1');") ;
+	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='7' WHERE challenge_id = '$idch'; ") ;
 	header('Location: #');
 	}
 if(isset($_POST['eta'])) {
@@ -169,6 +181,8 @@ if (isset($_POST['chlange'])) {
 		$youretac = $_POST['y_etac'] ;
 		$youretad = $_POST['y_etad'] ;
 		$your_eta = (($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
+		events($db_handle,$user_id,"4",$chalange);
+    involve_in($db_handle,$user_id,"4",$chalange);
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ") ;
 		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$chalange', '$your_eta');") ;
@@ -176,6 +190,9 @@ header('Location: #');
 }
 if (isset($_POST['closechal'])) {
 		$chalange = $_POST['cid'] ;
+		$user_id = $_SESSION['user_id'];
+	events($db_handle,$user_id,"6",$chalange);
+    involve_in($db_handle,$user_id,"6",$chalange);
     mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
 }
 if (isset($_POST['change_eta'])) {

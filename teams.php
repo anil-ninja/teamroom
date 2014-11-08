@@ -1,6 +1,5 @@
 <?php
 include_once 'lib/db_connect.php';
-
 session_start();
 if(!isset($_SESSION['user_id'])) 
     header ('location: index.php');
@@ -96,5 +95,3 @@ $total_members = mysqli_num_rows($teams_member_display);
     	</div>
     	</body>
     	</html>
-
-
