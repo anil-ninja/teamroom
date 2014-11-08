@@ -104,12 +104,12 @@ if (isset($_POST['logout'])) {
                             <img src='uploads/profilePictures/$challenge_type_username.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                         <span class='color strong'><a href ='profile.php?username=" . $challenge_type_username . "'>"
-                            .ucfirst($challenge_type_first) . '&nbsp' . ucfirst($challenge_type_last) . " </a></span>&nbsp&nbsp&nbsp On : " . $time_display."
+                            .ucfirst($challenge_type_first) . '&nbsp' . ucfirst($challenge_type_last) . " </a></span><br>" . $time_display."
                     </div>" ;
             }
             echo "<div class='list-group-item'>
-                    <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>" 
-                        .ucfirst($challenge_type_title) . "</b>
+                    <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>
+                        <a href='challengesOpen.php?challenge_id=$challenge_type_id'>".ucfirst($challenge_type_title) . "</a></b>
                     </p> <br/>" 
                         .$challenge_type_stmt." 
                     <br/>
@@ -128,10 +128,11 @@ if (isset($_POST['logout'])) {
                                                     (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 100) as stmt FROM projects as a JOIN blobs as b 
                                                         WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 10 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
+                    $project_id_display = $projectsRow['project_id'];
                     $project_title_display = $projectsRow['project_title'];
                     $project_title_stmt = str_replace("<s>", "&nbsp;", $projectsRow['stmt']) ;
-                    echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>"
-                    .$project_title_display."</b></p>"
+                    echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>
+                        <a href='project.php?project_id=$project_id_display'>".$project_title_display."</a></b></p>"
                     .$project_title_stmt."....<br>";
                     }
                 echo "<br><hr><font size='4'><h3 class='panel-title'><p>Top Users</p></h3></font><hr>";
