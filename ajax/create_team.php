@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
+include_once '../functions/delete_comment.php';
 if ($_POST['team']) {
 	$email = $_POST['email'] ;
 	$team = $_POST['team'] ;
@@ -13,6 +14,8 @@ if ($_POST['team']) {
 	mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, team_owner, project_id) VALUES 
 								('$id', '$team', '0', '$pro_id'),
 								('$user_id','$team', '$user_id', '$pro_id');");
+	events($db_handle,$user_id,"11",$pro_id) ;
+	involve_in($db_handle,$user_id,"11",$pro_id)						
      if(mysqli_error($db_handle)) { echo "Failed to Create Team!"; }
 	else { echo "Team Created Successfully !!!"; }    
  mysqli_close($db_handle);

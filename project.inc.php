@@ -29,6 +29,8 @@ if (isset($_POST['resp_project'])) {
 	$user_id = $_SESSION['user_id'] ;
 	$pro_id = $_SESSION['project_id'] ;
 	$pr_respon = $_POST['pr_resp'] ;
+	events($db_handle,$user_id,"14",$pro_id);
+    involve_in($db_handle,$user_id,"14",$pro_id);
   if(strlen($pr_respon)>1) {
   if (strlen($pr_respon) < 1000) {
         mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$pro_id', '$pr_respon') ; ") ;
@@ -51,14 +53,14 @@ if(isset($_POST['submitchl'])) {
 				   <a href = 'project.php' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
 				   <h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
 				 </div> 
-				 <div class='modal-body'>
+				 <div class='modal-body'><form>
 				  <div class='input-group-addon'>
 				  <textarea row='5' id='answerchal' class='form-control' placeholder='submit your answer'></textarea>
 				  </div><br/>
 				  <input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'><br/>
 				    <input type='hidden' id='answercid' value='".$id."'>
 				    <input type='submit' class='btn btn-success btn-sm' id='answerch' value = 'Submit' ></small>
-				</div> 
+				</form></div> 
 				<div class='modal-footer'>
 				   <a type='button' href = 'project.php' class='btn btn-default' data-dismiss='modal'>Close</a>
 				</div>
@@ -67,10 +69,6 @@ if(isset($_POST['submitchl'])) {
 	</div>" ;
 }
 
-if (isset($_POST['closechallenge'])) {
-		$chalange = $_POST['cid'] ;
-    mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
-}
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;
 $con_no = $contactrow['contact_no'] ;

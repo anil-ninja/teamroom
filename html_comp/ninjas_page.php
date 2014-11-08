@@ -10,6 +10,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
         <span class="glyphicon glyphicon-flash" id='idea' style="cursor: pointer"> Ideas</span></div>
     <div class='list-group-item'>
+		<p style="color: grey;"><I>Please Select Post Type From Above ......</I></p>
         <div id='challegeForm'>
             <form>
 

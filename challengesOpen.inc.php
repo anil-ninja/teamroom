@@ -60,6 +60,8 @@ if (isset($_POST['own_chl_response'])) {
     $user_id = $_SESSION['user_id'];
     $own_challenge_id_comment = $_POST['own_challen_id'];
     $own_ch_response = $_POST['own_ch_response'];
+    events($db_handle,$user_id,"3",$own_challenge_id_comment);
+    involve_in($db_handle,$user_id,"3",$own_challenge_id_comment);
     if (strlen($own_ch_response) > 1) {
         if (strlen($own_ch_response) < 1000) {
             mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, stmt) 
@@ -110,6 +112,8 @@ if (isset($_POST['chlange'])) {
     $youretac = $_POST['y_etac'];
     $youretad = $_POST['y_etad'];
     $your_eta = (($youreta * 30 + $youretab) * 24 + $youretac) * 60 + $youretad;
+    events($db_handle,$user_id,"4",$chalange);
+    involve_in($db_handle,$user_id,"4",$chalange);
     mysqli_query($db_handle, "UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ");
     mysqli_query($db_handle, "INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)	
     								VALUES ('$user_id', '$chalange', '$your_eta');");
