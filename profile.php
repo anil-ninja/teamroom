@@ -166,7 +166,6 @@ $obj = new profile($UserName);
                     ?>
         </div>
           <div class="col-md-7" style="background-color:#FFF;">
-            <div>
               <ul class="nav nav-tabs" role="tablist">
                   <li role="presentation" class="active">
                     <a href="#tabProjects" role="tab" data-toggle="tab">Projects</a></li>
@@ -177,9 +176,8 @@ $obj = new profile($UserName);
                   <li role="presentation">
                     <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas</a></li>
               </ul>
-            </div>
                 <div class="tab-content" >
-                  <div role="tabpanel1" class="row tab-pane active" id="projectsTab" >
+                  <div role="tabpanel" class="row tab-pane active" id="tabProjects" >
                   <div class="col-md-6">
                         <div class='col-md-12 pull-left list-group-item'>
                                      <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
@@ -201,7 +199,6 @@ $obj = new profile($UserName);
                              .substr($project_stmt_table,0, 70).
                              "</font>
                              </left></div>";
-
                     }
                     ?>   
                     </div>
@@ -227,9 +224,28 @@ $obj = new profile($UserName);
                         }
                         ?>           
                     </div>
-                  <div role="tabpanel1" class="tab-pane" id="articlesTab"></div>
-                  <div role="tabpanel1" class="tab-pane" id="challangesTab"></div>
-                  <div role="tabpanel1" class="tab-pane" id="ideasTab"></div>
+                    </div>
+                  <div role="tabpanel" class="tab-pane" id="tabArticles">
+                      <div class="col-md-6">
+                        <div class='col-md-12 pull-left list-group-item'>
+                                     <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
+                        </div>
+                  </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="tabChallanges">
+                      <div class="col-md-6">
+                        <div class='col-md-12 pull-left list-group-item'>
+                                     <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
+                        </div>
+                  </div>
+                  </div>
+                  <div role="tabpanel" class="tab-pane" id="tabIdeas">
+                      <div class="col-md-6">
+                        <div class='col-md-12 pull-left list-group-item'>
+                                     <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
+                        </div>
+                  </div>
+                </div>
                 </div>
                        <!--  <div class="col-xs-12 col-sm-4 emphasis">
                             <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
