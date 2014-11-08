@@ -191,16 +191,18 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 <div class='col-md-5'>    
                                     Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br/> Time Remaining : " . $remaintimeown ."<br>
-                                </div>";
+                                </div>
+                                <div class='col-md-2 pull-right'>";
+            dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
           if($ownuser == $user_id) {			
-			echo " <div class='col-md-2'>  
-                                    <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                        <input type='hidden' name='id' value='".$chelangeid."'/>
-                                        <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                                    </form>
-                            </div>";
-				}
+			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+                                <input type='hidden' name='id' value='".$chelangeid."'/>
+                                <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
+                            </form>";
+        }
+                    
 			echo "</div>
+                            </div>
                             </div>
                         </div>" ;	
         }
@@ -222,13 +224,14 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 ETA Taken : " . $timeo ."
                             </div>";
           if($ch_id == $user_id) {			
-                echo "<div class='col-md-2'>
+                echo "<div class='col-md-2 pull-right'>
                         <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
                             <input type='hidden' name='cid' value='" . $chelangeid . "'/>
                             <button type='submit' class='btn-primary' name='closechal'>Close</button>
                         </form>
                     </div>";
             }
+            dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
                 echo "</div>
                     </div>" ;	
         }
@@ -248,9 +251,13 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 <div class='col-md-5'>
                                     Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm . "<br/>
-                                    ETA Taken : " . $timetakennin . "</div></div>
+                                    ETA Taken : " . $timetakennin . "
                                 </div>
-                            </div>" ;	
+                                <div class='col-md-1 pull-right'>";
+                                dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+                            echo "</div>
+                                </div></div>
+                    </div>" ;	
             }
     } 
      if ($ctype == 7) {
