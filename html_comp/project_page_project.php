@@ -97,6 +97,7 @@ echo "<div class='comments clearfix'>
 <div class='list-group'>
     <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span> | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span> | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span> | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span> | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span></div>
     <div class='list-group-item'>
+		<p style="color: grey;"><I>Please Select Post Type From Above ......</I></p>
 		<?php
 		$_SESSION['project_id'] = $pro_id;
 		?>
