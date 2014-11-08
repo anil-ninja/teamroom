@@ -335,7 +335,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   	$(".articlesch").show(1000);
   	$(".openchalhide").show(1000);
   	$(".idea").show(1000);
-  	$(".VideoForm").show(1000);
+  	$(".film").show(1000);
     $(".challenge").show(1000);
   });
 
@@ -344,47 +344,38 @@ $("#pencil").click(function(){
   	$(".articlesch").hide(1000);
   	$(".openchalhide").hide(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".challenge").show(1000);
   });
 
-  $("#pencil").click(function(){
-	 // alert("I am pencil!!! :)");
-  	$(".articlesch").hide(1000);
-  	$(".openchalhide").hide(1000);
-  	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
-    $(".challenge").show(1000);
-  });
- 
   $("#globe").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").hide(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".articlesch").show(1000);
   });
   
-  $("#ok").click(function(){
+  $("#okch").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").show(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".articlesch").hide(1000);
   });
   
-  $("#film").click(function(){
+  $("#filmnin").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").hide(1000);
   	$(".idea").hide(1000);
-  	$(".VideoForm").show(1000);
+  	$(".film").show(1000);
     $(".articlesch").hide(1000);
   });
   
   $("#tree").click(function(){
   	$(".challenge").hide(1000);
   	$(".openchalhide").hide(1000);
-  	$(".VideoForm").hide(1000);
+  	$(".film").hide(1000);
     $(".articlesch").hide(1000);
     $(".idea").show(1000);
   });
