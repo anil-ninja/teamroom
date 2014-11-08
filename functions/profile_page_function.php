@@ -8,10 +8,10 @@ function user_articles ($db_handle, $user_id) {
         $article_id=$user_articles_displayRow['challenge_id'];
         $article_title = $user_articles_displayRow['challenge_title'];
         $article_stmt = $user_articles_displayRow['stmt'];
-        echo "<div class='col-md-12 text-left list-group-item'>
-               <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'><strong> "                          
+        echo "<div class='list-group-item text-left '>
+               <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'><strong><br/> "                          
                         .$article_title.":&nbsp<br/></strong></a>
-                <font size=2px>".$article_stmt.".....</font>
+                ".$article_stmt."..
              </div>";
     }
 }
@@ -24,11 +24,10 @@ function user_challenges ($db_handle, $user_id) {
         $challenge_title = $user_challenges_displayRow['challenge_title'];
         $challenge_stmt = $user_challenges_displayRow['stmt'];
         $you_owned_or_not = $user_challenges_displayRow['user_id'];
-        echo "<div class='col-md-12 text-left list-group-item'>
-                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'><strong> "                          
-                 .$challenge_title.":&nbsp</strong></a><br/>
-                 <font size=2px>"
-                 .$challenge_stmt.".....</font>
+        echo "<div  class='list-group-item text-left '>
+                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'><strong><br/> "                          
+                 .$challenge_title.":&nbsp</strong></a><br/>"
+                 .$challenge_stmt."...
               </div>";
     }
 }
@@ -40,11 +39,10 @@ function user_idea ($db_handle, $user_id) {
         $idea_id= $user_idea_displayRow['challenge_id'];
         $idea_title = $user_idea_displayRow['challenge_title'];
         $idea_stmt = $user_idea_displayRow['stmt'];
-         echo "<div class='col-md-12 text-left list-group-item'>
-                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'><strong> "                          
-                 .$idea_title.":&nbsp</strong></a><br/>
-                 <font size=2px>"
-                 .$idea_stmt.".....</font>
+         echo "<div  class='list-group-item text-left '>
+                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'><strong> <br/>"                          
+                 .$idea_title.":&nbsp</strong></a><br/>"
+                 .$idea_stmt."...
               </div>";
     }
 }

@@ -105,9 +105,9 @@ $obj = new profile($UserName);
     </head>
 
     <body style="background:#FFF;">
-        <?php include_once 'html_comp/navbar_homepage.php'; ?>
-         <div class='alert_placeholder'></div>
-        <div class=" media-body" style="padding-top: 35px;">
+      <?php include_once 'html_comp/navbar_homepage.php'; ?>
+      <div class='alert_placeholder'></div>
+      <div class=" media-body" style="padding-top: 35px;">
         <div class="col-md-3">
         <?php
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
@@ -162,14 +162,10 @@ $obj = new profile($UserName);
               </ul>
             </div>
             <div class="tab-content" >
-              <div role="tabpanel" class="row tab-pane active" id="tabProjects" >
+              <div role="tabpanel" class="tab-pane active" id="tabProjects" >
                 <div class="col-md-6">
-                  <div class='col-md-12 pull-left list-group-item'>
                       <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
-                  </div>
-                   
-                                         
-                  <?php
+                <?php
                   $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND (project_type!=3 OR project_type!=5))
                                                                         UNION 
                                                                        (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.user_id = $profileViewUserID AND a.blob_id=b.blob_id AND (a.project_type!=3 OR a.project_type!=5));");
@@ -181,19 +177,15 @@ $obj = new profile($UserName);
                   //project title created by profile user
                   echo  "<div class='col-md-12 text-left list-group-item'>
                          <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
-                       .$project_title_table.":&nbsp<br/></strong></a>
-                        <font size=2px>"
+                       .$project_title_table.":&nbsp<br/></strong></a>"
                        .substr($project_stmt_table,0, 70).
-                       "</font>
-                       </left></div>";
+                       "</div>";
                     }
                     ?>   
-                    </div>
-                    <div class="col-md-6">
-                      <div class='col-md-12 pull-right list-group-item'>
-                          <strong>Joined(<?php echo $projectsJoined;?>)</strong>
-                      </div>
-                      <?php
+                </div>
+                <div class="col-md-6">
+                    <strong>Joined(<?php echo $projectsJoined;?>)</strong>
+                <?php
                       $project_joined_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5 AND blob_id = 0)
                                                                           UNION 
                                                                       (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND a.user_id != $profileViewUserID and a.project_type != 4 and a.project_type!=3 and a.project_type!=5 AND a.blob_id = b.blob_id);");
@@ -204,53 +196,45 @@ $obj = new profile($UserName);
                       //project title created by profile user
                       echo  "<div class='col-md-12 text-left list-group-item' >
                              <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
-                           .$project_joined_title.": &nbsp<br/></strong></a>
-                           <font size=2px>"
+                           .$project_joined_title.": &nbsp<br/></strong></a>"
                            .substr($project_joined_stmt,0,70).
-                           "</font>
-                           </left></div>";
+                           "</div>";
 
                       }
                       ?>           
-                    </div>
-                  </div>
-                  <div role="tabpanel" class="tab-pane" id="tabArticles">
-                    <div class="col-md-12">
-                      <?php user_articles($db_handle,$profileViewUserID); ?>
-                    </div>
-                  </div>
-                  <div role="tabpanel" class="tab-pane" id="tabChallanges">
-                      <div class="col-md-12">
-                        <?php user_challenges($db_handle,$profileViewUserID); ?>
-                    </div>
-                  </div>
-                  <div role="tabpanel" class="tab-pane" id="tabIdeas">
-                    <div class="col-md-12">
-                      <?php user_idea($db_handle,$profileViewUserID); ?>
-                    </div>
-                  </div>
                 </div>
               </div>
-                <div class ="col-md-2">
-                  <p> <b><u> Collaborating With </u></b></p>
-                    <?php
-                    $userProjects = mysqli_query($db_handle, ("SELECT * FROM user_info as a join 
-                                                            (SELECT DISTINCT b.user_id FROM teams as a join
-                                                            teams as b where a.user_id = '$profileViewUserID' and
-                                                            a.team_name = b.team_name and b.user_id != '$profileViewUserID')
-                                                            as b where a.user_id=b.user_id;"));
-
-                    while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
-                        $friendFirstName = $userProjectsRow['first_name'];
-                        $friendLastName = $userProjectsRow['last_name'];
-                        $usernameFriends = $userProjectsRow['username'];
-                        echo "<a href ='profile.php?username=" . $usernameFriends . "'>
-                                        " . ucfirst($friendFirstName) . " " . ucfirst($friendLastName) . "
-                                   <br></a>";
-                    }
-                    ?>
-                </div>
+              <div role="tabpanel" class="tab-pane" id="tabArticles">
+                <?php user_articles($db_handle,$profileViewUserID); ?>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="tabChallanges">
+                <?php user_challenges($db_handle,$profileViewUserID); ?>
+              </div>
+              <div role="tabpanel" class="tab-pane" id="tabIdeas">
+                <?php user_idea($db_handle,$profileViewUserID); ?>
+              </div>
+            </div>
           </div>
+          <div class ="col-md-2">
+            <p> <b><u> Collaborating With </u></b></p>
+            <?php
+            $userProjects = mysqli_query($db_handle, ("SELECT * FROM user_info as a join 
+                                                    (SELECT DISTINCT b.user_id FROM teams as a join
+                                                    teams as b where a.user_id = '$profileViewUserID' and
+                                                    a.team_name = b.team_name and b.user_id != '$profileViewUserID')
+                                                    as b where a.user_id=b.user_id;"));
+
+            while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
+                $friendFirstName = $userProjectsRow['first_name'];
+                $friendLastName = $userProjectsRow['last_name'];
+                $usernameFriends = $userProjectsRow['username'];
+                echo "<a href ='profile.php?username=" . $usernameFriends . "'>
+                                " . ucfirst($friendFirstName) . " " . ucfirst($friendLastName) . "
+                           <br></a>";
+            }
+            ?>
+          </div>
+      </div>
 
 <div id="InfoBox"></div>
         <script src="js/add_remove_skill.js"> </script>
