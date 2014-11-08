@@ -1,5 +1,6 @@
 <?php
 include_once 'lib/db_connect.php';
+include_once 'functions/profile_page_function.php';
 $UserName = $_GET['username'];
 session_start();
 $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '$UserName';");
@@ -107,7 +108,6 @@ $obj = new profile($UserName);
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          <div class='alert_placeholder'></div>
         <div class=" media-body" style="padding-top: 35px;">
-        <div class="col-md-1"></div>
         <div class="col-md-3">
         <?php
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
@@ -146,27 +146,10 @@ $obj = new profile($UserName);
                         //     <input id='remove_skill' class='btn-xs btn-primary' type='submit' value='Remove Skill'/>
                         // </span>";
             ?>
-            <br/>
-            <p> <b><u> Collaborating With </u></b></p>
-                    <?php
-                    $userProjects = mysqli_query($db_handle, ("SELECT * FROM user_info as a join 
-                                                            (SELECT DISTINCT b.user_id FROM teams as a join
-                                                            teams as b where a.user_id = '$profileViewUserID' and
-                                                            a.team_name = b.team_name and b.user_id != '$profileViewUserID')
-                                                            as b where a.user_id=b.user_id;"));
-
-                    while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
-                        $friendFirstName = $userProjectsRow['first_name'];
-                        $friendLastName = $userProjectsRow['last_name'];
-                        $usernameFriends = $userProjectsRow['username'];
-                        echo "<a href ='profile.php?username=" . $usernameFriends . "'>
-                                        " . ucfirst($friendFirstName) . " " . ucfirst($friendLastName) . "
-                                   <br></a>";
-                    }
-                    ?>
+            
         </div>
           <div class="col-md-7" style="background-color:#FFF;">
-              <ul class="nav nav-tabs" role="tablist">
+              <ul class="nav nav-tabs nav-justified" role="tablist" style="font-size:20px">
                   <li role="presentation" class="active">
                     <a href="#tabProjects" role="tab" data-toggle="tab">Projects</a></li>
                   <li role="presentation">
@@ -195,7 +178,7 @@ $obj = new profile($UserName);
                         echo  "<div class='col-md-12 text-left list-group-item'>
                                <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
                              .$project_title_table.":&nbsp</strong></a>
-                              <font size=1px>"
+                              <font size=2px>"
                              .substr($project_stmt_table,0, 70).
                              "</font>
                              </left></div>";
@@ -216,7 +199,7 @@ $obj = new profile($UserName);
                         echo  "<div class='col-md-12 text-left list-group-item' >
                                <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
                              .$project_joined_title.": &nbsp</strong></a>
-                             <font size=1px>"
+                             <font size=2px>"
                              .substr($project_joined_stmt,0,70).
                              "</font>
                              </left></div>";
@@ -226,46 +209,40 @@ $obj = new profile($UserName);
                     </div>
                     </div>
                   <div role="tabpanel" class="tab-pane" id="tabArticles">
-                      <div class="col-md-6">
-                        <div class='col-md-12 pull-left list-group-item'>
-                                     <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
-                        </div>
+                      <div class="col-md-12">
+                            <?php user_articles($db_handle,$profileViewUserID); ?>
                   </div>
                   </div>
                   <div role="tabpanel" class="tab-pane" id="tabChallanges">
-                      <div class="col-md-6">
-                        <div class='col-md-12 pull-left list-group-item'>
-                                     <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
-                        </div>
+                      <div class="col-md-12">
+                        <?php user_challenges($db_handle,$profileViewUserID); ?>
                   </div>
                   </div>
                   <div role="tabpanel" class="tab-pane" id="tabIdeas">
-                      <div class="col-md-6">
-                        <div class='col-md-12 pull-left list-group-item'>
-                                     <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
-                        </div>
+                      <div class="col-md-12">
+                        <?php user_idea($db_handle,$profileViewUserID); ?>
                   </div>
                 </div>
                 </div>
-                       <!--  <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong> <?php echo $totalChallengeCreated; ?> </strong></h2>                    
-                            <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block" id='chcre'><span class="fa fa-plus-circle"></span> Created </button>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong> <?php echo $totalChallengeCompleted; ?> </strong></h2>                    
-                            <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block" id='chcomp'><span class="glyphicon glyphicon-ok"></span> Completed </button>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 emphasis">
-                            <h2><strong><?php echo $totaLChallengeProgress; ?> </strong></h2>                    
-                            <p><small>challenges</small></p>
-                            <button class="btn btn-success btn-block" id='chown'><span class="glyphicon glyphicon-fire"></span> In-progress </button>
-                        </div> -->
-        
-        
-              
-             
+                </div>
+                <div class ="col-md-2">
+                <p> <b><u> Collaborating With </u></b></p>
+                    <?php
+                    $userProjects = mysqli_query($db_handle, ("SELECT * FROM user_info as a join 
+                                                            (SELECT DISTINCT b.user_id FROM teams as a join
+                                                            teams as b where a.user_id = '$profileViewUserID' and
+                                                            a.team_name = b.team_name and b.user_id != '$profileViewUserID')
+                                                            as b where a.user_id=b.user_id;"));
+
+                    while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
+                        $friendFirstName = $userProjectsRow['first_name'];
+                        $friendLastName = $userProjectsRow['last_name'];
+                        $usernameFriends = $userProjectsRow['username'];
+                        echo "<a href ='profile.php?username=" . $usernameFriends . "'>
+                                        " . ucfirst($friendFirstName) . " " . ucfirst($friendLastName) . "
+                                   <br></a>";
+                    }
+                    ?>
                 </div>
                 </div>
 
