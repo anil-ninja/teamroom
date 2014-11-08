@@ -101,6 +101,8 @@
                                         $responserow = mysqli_fetch_array($respo);
                                         $uid = $responserow['user_id'];
                                         mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
+                                        involve_in($db_handle,$user_id,"15",$pro_id)
+                                        events($db_handle,$user_id,"15",$pro_id)
                                         //header('Location: projct.php');
                                 } 
                                 else { 
