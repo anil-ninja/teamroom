@@ -179,7 +179,7 @@ $obj = new profile($UserName);
                         //project title created by profile user
                         echo  "<div class='col-md-12 text-left list-group-item'>
                                <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
-                             .$project_title_table.":&nbsp</strong></a>
+                             .$project_title_table.":&nbsp<br/></strong></a>
                               <font size=2px>"
                              .substr($project_stmt_table,0, 70).
                              "</font>
@@ -202,7 +202,7 @@ $obj = new profile($UserName);
                         //project title created by profile user
                         echo  "<div class='col-md-12 text-left list-group-item' >
                                <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
-                             .$project_joined_title.": &nbsp</strong></a>
+                             .$project_joined_title.": &nbsp<br/></strong></a>
                              <font size=2px>"
                              .substr($project_joined_stmt,0,70).
                              "</font>

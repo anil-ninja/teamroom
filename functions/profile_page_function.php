@@ -10,7 +10,7 @@ function user_articles ($db_handle, $user_id) {
         $article_stmt = $user_articles_displayRow['stmt'];
         echo "<div class='col-md-12 text-left list-group-item'>
                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'><strong> "                          
-                        .$article_title.":&nbsp</strong></a>
+                        .$article_title.":&nbsp<br/></strong></a>
                 <font size=2px>".$article_stmt.".....</font>
              </div>";
     }
