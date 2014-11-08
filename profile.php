@@ -6,7 +6,7 @@ $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '
 $userInfoRows = mysqli_num_rows($userInfo);
 
 if ($userInfoRows == 0) {
-    include_once 'html_comp/error.html';
+    include_once 'error.php';
     exit;
 }
 if (isset($_POST['logout'])) {
@@ -52,9 +52,9 @@ $projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projec
 $counter = mysqli_fetch_assoc($projectCreated);
 $totalProjectCreated = $counter["COUNT(project_id)"];
 
-$projectJoined = mysqli_query($db_handle, "SELECT COUNT(DISTINCT project_id) FROM teams WHERE user_id = $profileViewUserID;");
+$projectJoined = mysqli_query($db_handle, "SELECT count(project_id) FROM projects WHERE projects.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5;");
 $counter = mysqli_fetch_assoc($projectJoined);
-$totalProjectJoined = $counter["COUNT(DISTINCT project_id)"];
+$projectsJoined = $counter["count(project_id)"];
 
 $projectProgress = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE project_id IN (SELECT DISTINCT project_id FROM teams WHERE user_id = $profileViewUserID) and project_type != '3' and project_type != '5';");
 $counter = mysqli_fetch_assoc($projectProgress);
@@ -165,42 +165,66 @@ $obj = new profile($UserName);
                     }
                     ?>
         </div>
-          <div class="col-md-7 divider text-center" style="background-color:#FFF;">
-              <ul class="nav nav-tabs nav-justified" role="tablist">
-                  <li role="presentation"><a href="#projectsTab">Projects</a></li>
-                  <li role="presentation"><a href="#articlesTab">Articles</a></li>
-                  <li role="presentation"><a href="#challangesTab">Challanges</a></li>
-                  <li role="presentation"><a href="#ideasTab">Ideas</a></li>
+          <div class="col-md-7" style="background-color:#FFF;">
+            <div>
+              <ul class="nav nav-tabs" role="tablist">
+                  <li role="presentation" class="active">
+                    <a href="#tabProjects" role="tab" data-toggle="tab">Projects</a></li>
+                  <li role="presentation">
+                    <a href="#tabArticles" role="tab" data-toggle="tab">Articles</a></li>
+                  <li role="presentation">
+                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challanges</a></li>
+                  <li role="presentation">
+                    <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas</a></li>
               </ul>
-                <div class="tab-content">
-                  <div role="tabpanel" class="tab-pane active" id="projectsTab">
-                        <div class='list-group-item'>
+            </div>
+                <div class="tab-content" >
+                  <div role="tabpanel" class="row tab-pane active" id="projectsTab" >
+                  <div class="col-md-6">
+                        <div class='col-md-12 pull-left list-group-item'>
                                      <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
                         </div>
-                        <table class='table table-striped' >
-                         <tbody>                                  
-                                     
+                   
                                          
                     <?php
-                    $project_table_display = mysqli_query($db_handle, "SELECT project_id, user_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID;");
-                    while($project_table_displayRow = mysqli_fetch_array($project_table_display)) {
+                    $project_created_display = mysqli_query($db_handle, "SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID;");
+                    while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
                         $project_title_table = $project_table_displayRow['project_title'];
                         $project_stmt_table = $project_table_displayRow['stmt'];
+                        $project_id_table = $project_table_displayRow['project_id'];
                         //project title created by profile user
-                        echo "<tr><td style='align:left'>"
-                                .$project_title_table.
-                            "</td>
-
-                         <td>";
-
-                        echo substr($project_stmt_table,0, 50).
-                        "</td></tr>";
+                        echo  "<div class='col-md-12 text-left list-group-item'>
+                               <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
+                             .$project_title_table.":&nbsp</strong></a>
+                              <font size=1px>"
+                             .substr($project_stmt_table,0, 150).
+                             "</font>
+                             </left></div>";
 
                     }
-
                     ?>   
-                    </tbody>
-                    </table>             
+                    </div>
+                    <div class="col-md-6">
+                        <div class='col-md-12 pull-right list-group-item'>
+                                     <strong>Joined(<?php echo $projectsJoined;?>)</strong>
+                        </div>
+                        <?php
+                        $project_joined_display = mysqli_query($db_handle, "SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5;");
+                        while($project_joined_displayRow = mysqli_fetch_array($project_joined_display)) {
+                        $project_joined_title = $project_joined_displayRow['project_title'];
+                        $project_joined_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$project_joined_displayRow['stmt'])));
+                        $project_joined_id = $project_joined_displayRow['project_id'];
+                        //project title created by profile user
+                        echo  "<div class='col-md-12 text-left list-group-item' >
+                               <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
+                             .$project_joined_title.": &nbsp</strong></a>
+                             <font size=1px>"
+                             .substr($project_joined_stmt,0,70).
+                             "</font>
+                             </left></div>";
+
+                        }
+                        ?>           
                     </div>
                   <div role="tabpanel" class="tab-pane" id="articlesTab"></div>
                   <div role="tabpanel" class="tab-pane" id="challangesTab"></div>
@@ -223,22 +247,11 @@ $obj = new profile($UserName);
                         </div> -->
         
         
-            <div id="projectsTab" class='list-group' style='background-color:#FFF;cursor: pointer;'>
-                <!-- <div class ='row'>
-                <div class="col-xs-12 col-sm-3">
-                    <h3><strong><?php echo $totalProjectJoined; ?></strong></h3>
-                    <button class="btn btn-info btn-block"><span class="glyphicon glyphicon-cog"></span> Involved </button>
-                </div>
-                <div class="col-xs-12 col-sm-3">
-                    <h3><strong><?php echo $totalProjectCreated; ?></strong></h3>
-                    <button class="btn btn-info btn-block"><span class="fa fa-plus-circle"></span> Created </button>
-                </div>
-                </div> -->
               
              
-             <!---projects table data included ends for neeraj's profile page.....--->
-</section>
                 </div>
+                </div>
+
 <div id="InfoBox"></div>
         <script src="js/add_remove_skill.js"> </script>
         <script> 
@@ -264,127 +277,7 @@ $(document).ready(function(){
     });
 });
 </script>
-        <div class="row">
-            <div class="col-md-offset-1 col-md-8 col-lg-8">
-                <div class="well profile">
-                    <div class="col-xm-12">
-                        <div class="col-xs-12 col-sm-12">
-                            <div class="col-xs-12 divider text-center">
-                                <div class="col-xs-12 col-sm-4 emphasis">
-                                    <div id='challegeForm'>
-                                    <?php
-                                        $title_ch_comp = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
-                                                                                    FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$profileViewUserID' AND a.challenge_type = '5'
-                                                                                    AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id;");
-                                        $not_any_comp = mysqli_num_rows($title_ch_comp);
-                                        if ($not_any_comp == 0) {
-                                            echo "<br> You have not completed any challenge till now.";
-                                        }
-                                        while ($title_ch_compRow = mysqli_fetch_array($title_ch_comp)) {
-                                            $title = $title_ch_compRow['challenge_title'];
-                                            $time = $title_ch_compRow['challenge_creation'];
-                                            $eta = $title_ch_compRow['challenge_ETA'];
-                                            $fname = $title_ch_compRow['first_name'];
-                                            $lname = $title_ch_compRow['last_name'];
-                                            $ch_comp_ID_open_page = $title_ch_compRow['challenge_id'];
-                                            $day = floor($eta / (24 * 60));
-                                            $daysec = $eta % (24 * 60);
-                                            $hour = floor($daysec / (60));
-                                            $minute = $daysec % (60);
-                                            $remaining_time = $day . " Days :" . $hour . " Hours :" . $minute . " Min";
-                                            $starttimestr = (string) $time;
-                                            $initialtime = strtotime($starttimestr);
-                                            $totaltime = $initialtime + ($eta * 60);
-                                            $completiontime = time();
-                                            if ($completiontime > $totaltime) {
-                                                $remaining_time_own = "Closed";
-                                            } 
-                                            else {
-                                                $remainingtime = ($totaltime - $completiontime);
-                                                $day = floor($remainingtime / (24 * 60 * 60));
-                                                $daysec = $remainingtime % (24 * 60 * 60);
-                                                $hour = floor($daysec / (60 * 60));
-                                                $hoursec = $daysec % (60 * 60);
-                                                $minute = floor($hoursec / 60);
-                                                $remaining_time_own = "Remaining Time : " . $day . " Days :" . $hour . " Hours :" . $minute . " Min ";
-                                            }
-                                            echo "<p align='left'><style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_comp_ID_open_page . "'>" . ucfirst($title) . "</a></style><br/>" . $remaining_time_own . "<br><br></p>";
-                                        }
-                                    ?>
-                                    </div>
-                                
-                                    
-                                    <div id='challegeownForm'>
-                                    <?php
-                                        $title_ch_owned = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, b.username
-                                                                                    FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$profileViewUserID' AND (a.challenge_type = '1' OR a.challenge_type = '2') 
-                                                                                    and a.challenge_status = '2' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id ;");
-                                        $not_any_owned = mysqli_num_rows($title_ch_owned);
-                                        if ($not_any_owned == 0) {
-                                            echo "<br> You have not Owned any challenge till now.";
-                                        }
-                                        while ($title_ch_ownedRow = mysqli_fetch_array($title_ch_owned)) {
-                                            $title = $title_ch_ownedRow['challenge_title'];
-                                            $time = $title_ch_ownedRow['challenge_creation'];
-                                            $eta = $title_ch_ownedRow['challenge_ETA'];
-                                            $fname = $title_ch_ownedRow['first_name'];
-                                            $lname = $title_ch_ownedRow['last_name'];
-                                            $ch_owned_ID_open_page = $title_ch_ownedRow['challenge_id'];
-                                            $day = floor($eta / (24 * 60));
-                                            $daysec = $eta % (24 * 60);
-                                            $hour = floor($daysec / (60));
-                                            $minute = $daysec % (60);
-                                            $remaining_time = $day . " Days :" . $hour . " Hours :" . $minute . " Min";
-                                            $starttimestr = (string) $time;
-                                            $initialtime = strtotime($starttimestr);
-                                            $totaltime = $initialtime + ($eta * 60);
-                                            $completiontime = time();
-                                            if ($completiontime > $totaltime) {
-                                                $remaining_time_own = "Closed";
-                                            } 
-                                            else {
-                                                $remainingtime = ($totaltime - $completiontime);
-                                                $day = floor($remainingtime / (24 * 60 * 60));
-                                                $daysec = $remainingtime % (24 * 60 * 60);
-                                                $hour = floor($daysec / (60 * 60));
-                                                $hoursec = $daysec % (60 * 60);
-                                                $minute = floor($hoursec / 60);
-                                                $remaining_time_own = "Remaining Time : " . $day . " Days :" . $hour . " Hours :" . $minute . " Min ";
-                                            }
-                                            $tooltip = "Assigned By :" . ucfirst($fname) . " " . ucfirst($lname) . " On " . $time . " ETA given : " . $remaining_time . " " . $remaining_time_own;
-                                            echo "<p align='left'>
-                                                    <style='white-space: pre-line;'>
-                                                        <b><a href ='challengesOpen.php?challenge_id=" . $ch_owned_ID_open_page . "'>" . ucfirst($title) . "</a></b>
-                                                    </style><br>" . $remaining_time_own . "<br><br>
-                                                </p>";
-                                        }
-                                    ?> 
-                                    </div>                                   
-                                
-                                    
-                                    <div id='challegecreForm'>
-                                    <?php
-                                        $title_ch_created = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_status, challenge_title, user_id, challenge_ETA, challenge_creation from challenges where
-                                                                                        user_id = '$profileViewUserID' ORDER BY challenge_creation DESC ;");
-                                        $not_any_created = mysqli_num_rows($title_ch_created);
-                                        if ($not_any_created == 0) {
-                                            echo "<br> You have not Created any challenge till now.";
-                                        }
-                                        while ($title_ch_createdRow = mysqli_fetch_array($title_ch_created)) {
-                                            $ch_title = $title_ch_createdRow['challenge_title'];
-                                            $status = $title_ch_createdRow['challenge_status'];
-                                            $ch_created_ID_open_page = $title_ch_createdRow['challenge_id'];
-                                            echo "<p align='left'><style='white-space: pre-line;'><b><a href ='challengesOpen.php?challenge_id=" . $ch_created_ID_open_page . "'>" . ucfirst($ch_title) . "</a></b><br><br></style></p>";
-                                        }
-                                    ?> 
-                                    </div>                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
             <!---Modal --->
             <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
