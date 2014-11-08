@@ -277,7 +277,8 @@ echo "<div class='comments clearfix'>
         </div>
         <div id='VideoFormpr'>
             <input type='text' class="form-control" id="video_titlepr" placeholder="Title"/><br>
-            <input type='text' class="form-control" id="videopr" placeholder="Add Youtube URL"><br><br>
+            <input type='text' class="form-control" id="videopr" placeholder="Add Youtube URL"><br>
+            <textarea rows="3" class="form-control" id="videodespr" placeholder="About Video"></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
         </div>
         <div id='notesForm'>
