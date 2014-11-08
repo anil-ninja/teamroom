@@ -95,7 +95,8 @@
         </div>
         <div id='VideoForm'>
             <input type='text' class="form-control" id="video_title" placeholder="Title"/><br>
-            <input type='text' class="form-control" id="video" placeholder="Add Youtube URL"><br><br>
+            <input type='text' class="form-control" id="videosub" placeholder="Add Youtube URL"><br>
+            <textarea rows="3" class="form-control" id="videodes" placeholder="About Video"></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_video"/>
         </div>
         <div id='IdeaForm'>
@@ -258,6 +259,19 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     } 
      if ($ctype == 7) {
         echo "<div class='list-group articlesch'>
+				<div class='list-group-item' style='line-height: 24.50px;'>
+                                    <div class='pull-left lh-fix'>     
+                                        <span class='glyphicon glyphicon-book'></span>
+                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                    </div>";
+        dropDown_delete_article($db_handle, $chelangeid, $user_id);
+                            echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
+                                    <br> " . $timefunction . "<br/>
+                                </div>";
+    }
+    if ($ctype == 8) {
+        echo "<div class='list-group film'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-book'></span>
