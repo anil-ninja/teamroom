@@ -105,7 +105,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             </li>
                             <li>
                                 <p class="navbar-text">
-                                <form method="POST" >
+                                <form method="POST" onsubmit="return confirm('Meet you soon!!!!');">
                                     <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out<span class="glyphicon glyphicon-off"></span></button>
                                 </form>
                                 </p>   
@@ -162,7 +162,7 @@ if ($requestedPage == "project.php") {
 ?>
 </div>
   </div>
-
+ 
 <script>
 	
     function show_search_results(challenges){
@@ -209,6 +209,9 @@ if ($requestedPage == "project.php") {
             }
         });
     });	
+
+
+
 </script>
 <!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
