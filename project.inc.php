@@ -69,7 +69,6 @@ if(isset($_POST['submitchl'])) {
 	</div>" ;
 }
 
-}
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;
 $con_no = $contactrow['contact_no'] ;
