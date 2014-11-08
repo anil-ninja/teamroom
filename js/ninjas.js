@@ -77,7 +77,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 
 		$("#create_videopr").click(function(){
       		//$("#create_videopr").attr('disabled','disabled');
-			var challenge = $("#videopr").val() ;
+			var challenge = $("#videoprjt").val() ;
 			var video_title = $("#video_titlepr").val() ;
 			var videodes = $("#videodespr").val() ;
 			var domain = url_domain(challenge);

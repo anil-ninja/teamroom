@@ -277,7 +277,7 @@ echo "<div class='comments clearfix'>
         </div>
         <div id='VideoFormpr'>
             <input type='text' class="form-control" id="video_titlepr" placeholder="Title"/><br>
-            <input type='text' class="form-control" id="videopr" placeholder="Add Youtube URL"><br>
+            <input type='text' class="form-control" id="videoprjt" placeholder="Add Youtube URL"><br>
             <textarea rows="3" class="form-control" id="videodespr" placeholder="About Video"></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
         </div>
@@ -307,7 +307,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 										  WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
 										   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10 ;");
 if (mysqli_num_rows($tasks) > 0) {
-    echo "<h3 class='panel-title'><p align='center'>Challenges</p></h3><br/><br/>";
+    echo "<h3 class='panel-title'><p align='center'>Challenges</p></h3>";
 } else {
     echo "<h3 class='panel-title'><p align='center'>You have no Challenges</p></h3>";
 }
@@ -405,7 +405,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             </div>";
         }
         if ($status_task == 4) {
-			echo "<div class='list-group flag'>
+			echo "<div class='list-group pushpin'>
                                 <div class='list-group-item'>
                                     <div class='pull-left lh-fix'>     
                                     <span class='glyphicon glyphicon-pushpin'></span>
@@ -437,7 +437,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 			echo "<div class='list-group flag'>
                                 <div class='list-group-item'>
                                     <div class='pull-left lh-fix'>     
-                                    <span class='glyphicon glyphicon-pushpin'></span>
+                                    <span class='glyphicon glyphicon-flag'></span>
                                     <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                 </div>
                                 <div class='row' style='line-height: 16.50px;'>
@@ -457,6 +457,19 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                             </div>";
         }
     }
+    if ($type_task == 8) {
+			echo "<div class='list-group videofilm'>
+                    <div class='list-group-item'>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-film'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+            echo "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
+            . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
+            dropDown_delete_article($db_handle, $id_task, $user_id);
+            echo "<br>" . $timetask . "</div></div>";
+        }
     if ($type_task == 1 || $type_task == 2) {
         if ($status_task == 1) {
 			echo "<div class='list-group sign'>
@@ -512,7 +525,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 			echo "<div class='list-group flag'>
                     <div class='list-group-item'>
                     <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-question-sign'></span>
+                        <span class='glyphicon glyphicon-flag'></span>
                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <div class='row' style='line-height: 16.50px;'>
@@ -540,7 +553,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 			echo "<div class='list-group flag'>
                     <div class='list-group-item' style='line-height: 16.50px;'>
                         <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                        ";
