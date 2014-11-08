@@ -5,13 +5,13 @@ include_once '../functions/delete_comment.php';
 if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
 	$challangetext = $_POST['challange'] ;
-	$opentime = $_POST['opentime'] ;
-	$chall = $_POST['challtype'] ;
+	//$opentime = $_POST['opentime'] ;
+	//$chall = $_POST['challtype'] ;
 	$challenge_title = $_POST['challenge_title'] ;
 	$image = $_POST['img'] ;
-	$challange_eta = $_POST['challange_eta'] ;
+	//$challange_eta = $_POST['challange_eta'] ;
 	$challange = $image." ".$challangetext ;
-if ($chall == '1') {
+/*if ($chall == '1') {
  if (strlen($challange) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA) 
                                     VALUES ('$user_id', '$challenge_title', '$challange', '$opentime', '$challange_eta') ; ") ;
@@ -32,7 +32,7 @@ if ($chall == '1') {
 	else { echo "Posted succesfully!"; }
 }
 }
-else {
+else { */
 	if (strlen($challange) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
                                     VALUES ('$user_id', '$challenge_title', '$challange', '1', '999999999', '3') ; ") ;
@@ -51,7 +51,6 @@ else {
       involve_in($db_handle,$user_id,"1",$idp);
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
-}
 }
 	mysqli_close($db_handle);
 } 
