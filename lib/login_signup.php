@@ -24,11 +24,21 @@ function signup(){
             else {
 		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, contact_no, username, password) VALUES 
 				('$firstname', '$lastname', '$email', '$phone', '$username', '$pas') ; ") ;
+                
+                
+                $user_create_id = mysqli_insert_id($db_handle);
+                $hash_key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
+                mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ($user_create_id, $hash_key);");
+                //$id_access_id = mysqli_query($db_handle, "SELECT id FROM user_access_aid WHERE user_id = $user_create_id;");
+                $id_access_id = mysqli_insert_id($db_handle);
+                $body = $hash_key.".".$id_access_id;
+                collapMail($email, "notification", $body);
+                
 		if(mysqli_error($db_handle)){
 			echo "Please try again";
 		} else {
 
-		$_SESSION['user_id'] = mysqli_insert_id($db_handle);
+		$_SESSION['user_id'] = $user_create_id;
 		$_SESSION['first_name'] = $firstname ;
 		$_SESSION['username'] = $username ;
 		$_SESSION['email'] = $email;
