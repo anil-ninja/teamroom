@@ -59,6 +59,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		//return responceTx;
 		
 	}
+	
 	function submitCreateArticle(ilink,data,url){
 		//alert(ilink) ;
 		if (ilink != "") {
@@ -84,6 +85,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 			}); 
 		}
+		
 		$("#create_challange_pb_pr").click(function(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			//alert("i am geting fucked");
@@ -199,6 +201,7 @@ return str.replace(new RegExp(find, 'g'), replace);
   $("#challengepr").click(function(){
   	$("#taskForm").hide(1500);
   	$("#teamForm").hide(3000);
+  	$("#VideoFormpr").hide(1500);
   	$("#notesForm").hide(1500);
   	$("#manageForm").hide(1500);
     $("#challegeprForm").toggle(3000);
@@ -209,6 +212,7 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#challegeprForm").hide(1500);
   	$("#taskForm").toggle(1500);
   	$("#teamForm").hide(3000);
+  	$("#VideoFormpr").hide(1500);
   	$("#notesForm").hide(1500);
   	$("#manageForm").hide(1500);
   });
@@ -217,6 +221,7 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#challegeprForm").hide(1500);
   	$("#taskForm").hide(1500);
   	$("#notesForm").hide(1500);
+  	$("#VideoFormpr").hide(1500);
   	$("#manageForm").hide(3000);
   	$("#teamForm").toggle(1500);
   });
@@ -225,6 +230,7 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#challegeprForm").hide(1500);
   	$("#taskForm").hide(1500);
   	$("#teamForm").hide(1500);
+  	$("#VideoFormpr").hide(1500);
   	$("#manageForm").hide(1500);
     $("#notesForm").toggle(3000);
   });
@@ -234,7 +240,17 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$("#taskForm").hide(1500);
   	$("#teamForm").hide(1500);
   	$("#notesForm").hide(1500);
+    $("#VideoFormpr").hide(1500);
     $("#manageForm").toggle(3000);
+  });
+  $("#VideoFormpr").toggle(1500);
+  $("#videopr").click(function(){
+  	$("#challegeprForm").hide(1500);
+  	$("#taskForm").hide(1500);
+  	$("#teamForm").hide(1500);
+  	$("#notesForm").hide(1500);
+  	$("#manageForm").hide(3000);
+    $("#VideoFormpr").toggle(1500);
   });
 
 //allPanels
@@ -243,12 +259,14 @@ return str.replace(new RegExp(find, 'g'), replace);
   	$(".sign").show(1000);
   	$(".deciduous").show(1000);
   	$(".pushpin").show(1000);
+  	$(".videofilm").show(1000);
   	$(".flag").show(1000);
   });
 $("#sign").click(function(){
 	 // alert("I am pencil!!! :)");
   	$(".pushpin").hide(1000);
   	$(".deciduous").hide(1000);
+  	$(".videofilm").hide(1000);
   	$(".flag").hide(1000);
     $(".sign").show(1000);
   });
@@ -256,18 +274,28 @@ $("#sign").click(function(){
 	 // alert("I am pencil!!! :)");
   	$(".sign").hide(1000);
   	$(".pushpin").hide(1000);
+  	$(".videofilm").hide(1000);
   	$(".flag").hide(1000);
     $(".deciduous").show(1000);
   });
   $("#pushpin").click(function(){
   	$(".sign").hide(1000);
   	$(".deciduous").hide(1000);
+  	$(".videofilm").hide(1000);
   	$(".flag").hide(1000);
     $(".pushpin").show(1000);
   });
   $("#flag").click(function(){
   	$(".sign").hide(1000);
   	$(".flag").show(1000);
+  	$(".videofilm").hide(1000);
+  	$(".pushpin").hide(1000);
+  	$(".deciduous").hide(1000);
+  });
+  $("#filmprj").click(function(){
+  	$(".sign").hide(1000);
+  	$(".flag").hide(1000);
+  	$(".videofilm").show(1000);
   	$(".pushpin").hide(1000);
   	$(".deciduous").hide(1000);
   });

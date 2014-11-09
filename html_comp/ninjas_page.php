@@ -19,11 +19,11 @@
                 <br/>
                 <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
                 <br>
-                <div class="inline-form">
+<!---                <div class="inline-form">
                     Challenge Open For 
                     <select class="btn-info btn-xs"  id= "open_time" >	
                         <option value='0' selected >hour</option>
-                        <?php
+                        <?php /*
                         $o = 1;
                         while ($o <= 24) {
                             echo "<option value='" . $o . "' >" . $o . "</option>";
@@ -65,7 +65,7 @@
                         while ($h <= 23) {
                             echo "<option value='" . $h . "' >" . $h . "</option>";
                             $h++;
-                        }
+                        } */
                         ?>
                     </select>&nbsp;
                     <select class="btn-info btn-xs" id= "c_etad" >	
@@ -73,13 +73,9 @@
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
                     </select><br/><br/> 
-                    <input type="checkbox" id="Chall_type" value='off' /> Always Open<br/><br/>
+                    <input type="checkbox" id="Chall_type" value='off' /> Always Open<br/><br/>--->
                     <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
-                    
-                                         
-                    
-                </div>
-            </form>
+               </form>
         </div>
         <div id='ArticleForm'>
             <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
@@ -95,7 +91,8 @@
         </div>
         <div id='VideoForm'>
             <input type='text' class="form-control" id="video_title" placeholder="Title"/><br>
-            <textarea rows="3" class="form-control" id="video" placeholder="Add Youtube URL"></textarea><br><br>
+            <input type='text' class="form-control" id="videosub" placeholder="Add Youtube URL"><br>
+            <textarea rows="3" class="form-control" id="videodes" placeholder="About Video"></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_video"/>
         </div>
         <div id='IdeaForm'>
@@ -194,24 +191,26 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 <div class='col-md-5'>    
                                     Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br/> Time Remaining : " . $remaintimeown ."<br>
-                                </div>";
+                                </div>
+                                <div class='col-md-2 pull-right'>";
+            dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
           if($ownuser == $user_id) {			
-			echo " <div class='col-md-2'>  
-                                    <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                        <input type='hidden' name='id' value='".$chelangeid."'/>
-                                        <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                                    </form>
-                            </div>";
-				}
+			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
+                                <input type='hidden' name='id' value='".$chelangeid."'/>
+                                <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
+                            </form>";
+        }
+                    
 			echo "</div>
+                            </div>
                             </div>
                         </div>" ;	
         }
         if ($status == 4) {
-            echo "<div class='list-group challenge'>
+            echo "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
                         <div class='pull-left lh-fix' >     
-                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                         <div class='row' style='line-height: 16.50px;'>
@@ -225,21 +224,22 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 ETA Taken : " . $timeo ."
                             </div>";
           if($ch_id == $user_id) {			
-                echo "<div class='col-md-2'>
+                echo "<div class='col-md-2 pull-right'>
                         <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
                             <input type='hidden' name='cid' value='" . $chelangeid . "'/>
                             <button type='submit' class='btn-primary' name='closechal'>Close</button>
                         </form>
                     </div>";
             }
+            dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
                 echo "</div>
                     </div>" ;	
         }
         if ($status == 5) {
-            echo "<div class='list-group challenge'>
+            echo "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
                         <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                         </div>
                         <div style='line-height: 16.50px;'>
@@ -251,9 +251,13 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 <div class='col-md-5'>
                                     Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm . "<br/>
-                                    ETA Taken : " . $timetakennin . "</div></div>
+                                    ETA Taken : " . $timetakennin . "
                                 </div>
-                            </div>" ;	
+                                <div class='col-md-1 pull-right'>";
+                                dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+                            echo "</div>
+                                </div></div>
+                    </div>" ;	
             }
     } 
      if ($ctype == 7) {
@@ -261,6 +265,19 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 				<div class='list-group-item' style='line-height: 24.50px;'>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-book'></span>
+                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                    </div>";
+        dropDown_delete_article($db_handle, $chelangeid, $user_id);
+                            echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
+                                    <br> " . $timefunction . "<br/>
+                                </div>";
+    }
+    if ($ctype == 8) {
+        echo "<div class='list-group film'>
+				<div class='list-group-item' style='line-height: 24.50px;'>
+                                    <div class='pull-left lh-fix'>     
+                                        <span class='glyphicon glyphicon-film'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                     </div>";
         dropDown_delete_article($db_handle, $chelangeid, $user_id);
@@ -288,7 +305,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     } 
     if ($ctype == 3) {
 		if ($status == 1) {
-        echo "<div class='list-group openchalhide'>
+        echo "<div class='list-group challenge'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-question-sign'>
@@ -313,7 +330,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "</div>";
 	}	
 		if ($status == 6) {
-        echo "<div class='list-group openchalhide'>
+        echo "<div class='list-group film'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-picture'>
@@ -326,7 +343,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
 	}
         if ($status == 2) {
-			echo "<div class='list-group openchalhide'>
+			echo "<div class='list-group challenge'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-question-sign'>
@@ -431,10 +448,10 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             }
         }
         if ($status == 5) {
-			echo "<div class='list-group challenge'>
+			echo "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-question-sign'>
+                        <span class='glyphicon glyphicon-flag'>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
