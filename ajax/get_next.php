@@ -172,15 +172,9 @@ if ($_POST['chal']) {
                                 Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm . "<br/>
                                 ETA Taken : " . $timeo ."
-                            </div>";
-          if($ch_id == $user_id) {			
-                $show = $show . "<div class='col-md-2'>
-                        <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                            <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                            <button type='submit' class='btn-primary' name='closechal'>Close</button>
-                        </form>
-                    </div>";
-            }
+                            </div>
+                            <div class='col-md-2 pull-right'>";
+          
             $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                                 $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                                 $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
@@ -193,8 +187,15 @@ if ($_POST['chal']) {
                                             </ul>
                                         </div>";                    
                                 }
+                                if($ch_id == $user_id) {			
+                    $show = $show . " <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                                        <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                                        <button type='submit' class='btn-primary' name='closechal'>Close</button>
+                                    </form>";
+                                }
                 $show = $show . "</div>
-                    </div>" ;	
+                            </div>
+                        </div>" ;	
         }
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>

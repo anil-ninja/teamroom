@@ -49,11 +49,11 @@ $challengeCompleted = mysqli_query($db_handle, "SELECT COUNT(status) FROM challe
 $counter = mysqli_fetch_assoc($challengeCompleted);
 $totalChallengeCompleted = $counter["COUNT(status)"];
 
-$projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID;");
+$projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID AND (project_type!=3 OR  project_type!=5);");
 $counter = mysqli_fetch_assoc($projectCreated);
 $totalProjectCreated = $counter["COUNT(project_id)"];
 
-$projectJoined = mysqli_query($db_handle, "SELECT count(project_id) FROM projects WHERE projects.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3;");
+$projectJoined = mysqli_query($db_handle, "SELECT count(project_id) FROM projects WHERE projects.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 5 and projects.project_type!=3;");
 $counter = mysqli_fetch_assoc($projectJoined);
 $projectsJoined = $counter["count(project_id)"];
 
@@ -149,7 +149,8 @@ $obj = new profile($UserName);
             
         </div>
           <div class="col-md-7" style="background-color:#FFF;">
-              <ul class="nav nav-tabs nav-justified" role="tablist" style="font-size:20px">
+            <div>
+              <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
                   <li role="presentation" class="active">
                     <a href="#tabProjects" role="tab" data-toggle="tab">Projects</a></li>
                   <li role="presentation">
@@ -159,70 +160,75 @@ $obj = new profile($UserName);
                   <li role="presentation">
                     <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas</a></li>
               </ul>
-                <div class="tab-content" >
-                  <div role="tabpanel" class="row tab-pane active" id="tabProjects" >
-                  <div class="col-md-6">
-                        <div class='col-md-12 pull-left list-group-item'>
-                                     <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
-                        </div>
+            </div>
+            <div class="tab-content" >
+              <div role="tabpanel" class="row tab-pane active" id="tabProjects" >
+                <div class="col-md-6">
+                  <div class='col-md-12 pull-left list-group-item'>
+                      <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
+                  </div>
                    
                                          
-                    <?php
-                    $project_created_display = mysqli_query($db_handle, "SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID;");
-                    while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-                        $project_title_table = $project_table_displayRow['project_title'];
-                        $project_stmt_table = $project_table_displayRow['stmt'];
-                        $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table)));
-                        $project_id_table = $project_table_displayRow['project_id'];
-                        //project title created by profile user
-                        echo  "<div class='col-md-12 text-left list-group-item'>
-                               <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
-                             .$project_title_table.":&nbsp</strong></a>
-                              <font size=2px>"
-                             .substr($project_stmt_table,0, 70).
-                             "</font>
-                             </left></div>";
+                  <?php
+                  $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND (project_type!=3 OR project_type!=5))
+                                                                        UNION 
+                                                                       (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.user_id = $profileViewUserID AND a.blob_id=b.blob_id AND (a.project_type!=3 OR a.project_type!=5));");
+                  while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
+                  $project_title_table = $project_table_displayRow['project_title'];
+                  $project_stmt_table = $project_table_displayRow['stmt'];
+                  $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table)));
+                  $project_id_table = $project_table_displayRow['project_id'];
+                  //project title created by profile user
+                  echo  "<div class='col-md-12 text-left list-group-item'>
+                         <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
+                       .$project_title_table.":&nbsp<br/></strong></a>
+                        "
+                       .substr($project_stmt_table,0, 70).
+                       "
+                       </left></div>";
                     }
                     ?>   
                     </div>
                     <div class="col-md-6">
-                        <div class='col-md-12 pull-right list-group-item'>
-                                     <strong>Joined(<?php echo $projectsJoined;?>)</strong>
-                        </div>
-                        <?php
-                        $project_joined_display = mysqli_query($db_handle, "SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5;");
-                        while($project_joined_displayRow = mysqli_fetch_array($project_joined_display)) {
-                        $project_joined_title = $project_joined_displayRow['project_title'];
-                        $project_joined_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$project_joined_displayRow['stmt'])));
-                        $project_joined_id = $project_joined_displayRow['project_id'];
-                        //project title created by profile user
-                        echo  "<div class='col-md-12 text-left list-group-item' >
-                               <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
-                             .$project_joined_title.": &nbsp</strong></a>
-                             <font size=2px>"
-                             .substr($project_joined_stmt,0,70).
-                             "</font>
-                             </left></div>";
+                      <div class='col-md-12 pull-right list-group-item'>
+                          <strong>Joined(<?php echo $projectsJoined;?>)</strong>
+                      </div>
+                      <?php
+                      $project_joined_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5 AND blob_id = 0)
+                                                                          UNION 
+                                                                      (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND a.user_id != $profileViewUserID and a.project_type != 4 and a.project_type!=3 and a.project_type!=5 AND a.blob_id = b.blob_id);");
+                      while($project_joined_displayRow = mysqli_fetch_array($project_joined_display)) {
+                      $project_joined_title = $project_joined_displayRow['project_title'];
+                      $project_joined_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$project_joined_displayRow['stmt'])));
+                      $project_joined_id = $project_joined_displayRow['project_id'];
+                      //project title created by profile user
+                      echo  "<div class='col-md-12 text-left list-group-item' >
+                             <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
+                           .$project_joined_title.": &nbsp<br/></strong></a>
+                           "
+                           .substr($project_joined_stmt,0,70).
+                           "
+                           </left></div>";
 
-                        }
-                        ?>           
+                      }
+                      ?>           
                     </div>
                     </div>
                   <div role="tabpanel" class="tab-pane" id="tabArticles">
-                      <div class="col-md-12">
-                            <?php user_articles($db_handle,$profileViewUserID); ?>
-                  </div>
+                    <div class="col-md-12">
+                      <?php user_articles($db_handle,$profileViewUserID); ?>
+                    </div>
                   </div>
                   <div role="tabpanel" class="tab-pane" id="tabChallanges">
                       <div class="col-md-12">
                         <?php user_challenges($db_handle,$profileViewUserID); ?>
-                  </div>
+                    </div>
                   </div>
                   <div role="tabpanel" class="tab-pane" id="tabIdeas">
-                      <div class="col-md-12">
-                        <?php user_idea($db_handle,$profileViewUserID); ?>
+                    <div class="col-md-12">
+                      <?php user_idea($db_handle,$profileViewUserID); ?>
+                    </div>
                   </div>
-                </div>
                 </div>
                 </div>
                 <div class ="col-md-2">

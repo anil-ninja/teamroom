@@ -9,7 +9,7 @@ if($_POST['fname']){
 		$fname = $_POST['fname'] ;
 		$sname = $_POST['sname'] ;
 		$email = $_POST['email'] ;
-	 $password = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);;
+	 $password = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 5);
     
     mysqli_query($db_handle,"INSERT INTO user_info
                                     (first_name, last_name, email, username, password) 
