@@ -15,7 +15,7 @@ if ($_POST['team']) {
 								('$id', '$team', '0', '$pro_id'),
 								('$user_id','$team', '$user_id', '$pro_id');");
 	events($db_handle,$user_id,"11",$pro_id) ;
-	involve_in($db_handle,$user_id,"11",$pro_id)						
+	involve_in($db_handle,$user_id,"11",$pro_id) ;						
      if(mysqli_error($db_handle)) { echo "Failed to Create Team!"; }
 	else { echo "Team Created Successfully !!!"; }    
  mysqli_close($db_handle);

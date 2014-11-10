@@ -18,7 +18,6 @@ if (strlen($project_st) < 1000) {
      mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name, team_owner) VALUES ('$user_id', '$idp', 'defaultteam', '$user_id') ;" ) ;
     if($type == 2) { 
      involve_in($db_handle,$user_id,"2",$idp); 
-       events($db_handle,$user_id,"2",$idp);
 		}  
 		else {
 			  involve_in($db_handle,$user_id,"9",$idp);
@@ -37,7 +36,6 @@ if (strlen($project_st) < 1000) {
 	mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name, team_owner) VALUES ('$user_id', '$idp', 'defaultteam', '$user_id') ;" ) ;
 	if($type == 2) { 
      involve_in($db_handle,$user_id,"2",$idp); 
-       events($db_handle,$user_id,"2",$idp);
 		}  
 		else {
 			  involve_in($db_handle,$user_id,"9",$idp);

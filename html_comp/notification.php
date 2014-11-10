@@ -28,7 +28,64 @@
 						$y++ ;
 						}
 				}
-	  $notice2 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, d.challenge_title from challenge_ownership as a join response_challenge as b
+		$notice2 = mysqli_query($db_handle, " SELECT id, event_creater, event_type, p_c_id FROM events WHERE
+												p_c_id IN 
+												(SELECT p_c_id  FROM involve_in WHERE user_id = '$user_id')
+												 and timestamp > '$a' 
+												 and event_creater != '$user_id' ;") ;
+		while($notice2row = mysqli_fetch_array($notice2)) {
+			$newid = $notice2row['id'] ;
+			$creater = $notice2row['event_creater'] ;
+			$type2 = $notice2row['event_type'] ;
+			$search_id = $notice2row['p_c_id'] ;
+		switch($type2){
+			case 3:
+			
+			
+			
+			
+			break;
+			case 4:
+			break;
+			case 5:
+			break;
+			case 6:
+			break;
+			case 7:
+			break;
+			case 10:
+			break;
+			case 11:
+			break;
+			case 12:
+			break;
+			case 14:
+			break;
+			case 15:
+			break;
+		$notice3 = mysqli_query($db_handle, " select Distinct first_name, username from user_info where user_id = '$creater' ;") ;
+			$notice3row = mysqli_fetch_array($notice3) ;
+			$fname3 = $notice3row['first_name'] ;
+			$uname3 = $notice3row['username'] ;
+			
+		$notice4 = mysqli_query($db_handle, " select  first_name, username from user_info where user_id = '$creater' ;") ;
+			$notice3row = mysqli_fetch_array($notice3) ;
+			$fname3 = $notice3row['first_name'] ;
+			$uname3 = $notice3row['username'] ;
+			
+			}	
+			else {
+				
+				
+				}
+			
+			
+			
+			$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname2." Commented On </p><br/>
+								<a href='challengesOpen.php?challenge_id=" . $challenge_id2 . "'>".$title2."</a><hr/>" ;
+			$y++ ;
+			}
+	/*  $notice2 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, d.challenge_title from challenge_ownership as a join response_challenge as b
 											join user_info as c join challenges as d where b.response_ch_creation > '$a' and d.challenge_id = b.challenge_id 
 											and (a.user_id = '$user_id' OR d.user_id = '$user_id') and b.user_id = c.user_id and b.user_id != '$user_id' ;") ;
 		while($notice2row = mysqli_fetch_array($notice2)) {
@@ -102,7 +159,7 @@
 			$notice = $notice ."<span class='glyphicon glyphicon-screenshot'></span><p style='font-size: 10px;'> &nbsp; ".$fname8." Assigned Task </p><br/>
 								<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "'>".$title8."</a><hr/>" ;
 			$y++ ;
-			}			
+			} */			
     $notice9 = mysqli_query($db_handle, " select Distinct b.first_name, a.project_id, a.project_title from projects as a join user_info as b
 											where a.project_creation > '$a' and a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 		while($notice9row = mysqli_fetch_array($notice9)) {
@@ -111,7 +168,7 @@
 			$title9 = $notice9row['project_title'] ;
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname9." Created </p><br/>".$title9."<hr/>" ;
 			$y++ ;
-			}
+			} 
 	$notice10 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
 											join challenges as b where b.challenge_id = a.challenge_id and a.status = '1' 
 											and a.user_id = '$user_id';") ;
