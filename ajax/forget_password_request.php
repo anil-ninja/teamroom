@@ -17,6 +17,8 @@ if (isset($_POST['email_rew_pass'])) {
     $body = "http://collap.com/forgetPassword.php?hash_key='$hash_key'";
 
     collapMail($email_req, "Update password", $body);
+    echo "Please check your Email, shortly you get an email, Go through your email and change your password";
+    echo "<a href='index.php'>Go Back</a>";
 
     if(mysqli_error($db_handle)){
             echo "Please try again";

@@ -7,56 +7,8 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-function validateForgetPasswordOnSubmit(theForm) {
-    var email_req_pass = $("#email_forget_password").val();
-    
-    var dataString = 'email_rew_pass='+ email_req_pass;
-    $.ajax({
-        type: "POST",
-        url: "ajax/forget_password_request.php",
-        data: dataString,
-        cache: false,
-        success: function(result){
-            if(result){
-                bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
-            } 
-            else {
-                location.reload();
-            }		
-        } 
-    });
-};
 
-function validadeUpdatePasswordOnSubmit(theForm) {
-    var passwordupd = $("#passwordnew").val() ;
-    var passwordupd2 = $("#passwordnew2").val() ;
-     var dataString ='passwordupd='+ passwordupd + '&passwordupd2='+ passwordupd2 + '&updatePassword=Update' ;
-         if(passwordupd==passwordupd2){
-            if (passwordupd==''){
-                    bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
-            } else if(passwordupd2==''){
-                    bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
-            } else {
-                $.ajax({
-                    type: "POST",
-                    url: "controllers/login_controller.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        if(result){
-                            bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
-                        } 
-                        else {
-                            location.reload();
-                        }		
-                    } 
-                });
-            }
-        }		
-        else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
-    };
-
-    function validateSignupFormOnSubmit(theForm) {
+function validateSignupFormOnSubmit(theForm) {
         var reason = "";
 		var firstname = $("#firstname").val() ;
 		var lastname = $("#lastname").val() ;

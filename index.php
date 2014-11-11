@@ -129,7 +129,7 @@ if (!isset($_SESSION['first_name'])) {
                                    data-bv-emailaddress-message="The value is not a valid email address" />
                             <span id="status_email_forget_password"></span>
                             <br>
-                            <button type="submit" class="btn-primary" name="request_password" onclick="validateForgetPasswordOnSubmit()"><font size="3" >Send Link</font></button>
+                            <button type="submit" class="btn-primary" id="request_password" onclick="validateForgetPasswordOnSubmit()"><font size="3" >Send Link</font></button>
                         </div>
                     </div>
                 </div>
