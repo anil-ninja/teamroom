@@ -11,15 +11,21 @@ function signup(){
 	$awe = mysqli_real_escape_string($db_handle, $_POST['password2']) ;
 	
 	if ( $pas == $awe ) {
-            $already_registered = mysqli_query($db_handle, "SELECT email, username FROM user_info WHERE email = '$email' OR username = '$username';");
-            $already_registered_email = mysqli_fetch_array($already_registered);
-            $already_registered_email['email'] = mysqli_num_rows($already_registered);
-            $already_registered_email['username'] = mysqli_num_rows($already_registered);
-            if ($already_registered_email['email'] != 0) {
-                header('Location: ./index.php?status=3');
+            $email_already_registered = mysqli_query($db_handle, "SELECT COUNT('email') as email FROM user_info WHERE email = '$email';");
+            $already_registered_email = mysqli_fetch_array($email_already_registered);
+            $email_exists = $already_registered_email['email'];
+            $username_already_registered = mysqli_query($db_handle, "SELECT COUNT('username') as username FROM user_info WHERE username = '$username';");
+            $already_registered_username = mysqli_fetch_array($username_already_registered);
+            $username_registered = $already_registered_username['username'];
+            if ($email_exists != 0) {
+                //header('Location: ./index.php?status=3');
+                echo "User is reistered with this Email,<br>
+                      Try different email or Please Sign In";
             }
-            elseif ($already_registered_email['username'] != 0) {
-                header('Location: ./index.php?status=4');
+            elseif ($username_registered != 0) {
+                //header('Location: ./index.php?status=4');
+                echo "User is registered with this username,<br>
+                    Try different username or Please Sign In";
             }
             else {
 		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, contact_no, username, password) VALUES 
