@@ -1,11 +1,12 @@
 <?php
 include_once "../models/rank.php";
+include_once '../functions/delete_comment.php';
 function signup(){
 	include_once "db_connect.php";
 	$firstname = mysqli_real_escape_string($db_handle, $_POST['firstname']);
 	$lastname = mysqli_real_escape_string($db_handle, $_POST['lastname']);
 	$email = mysqli_real_escape_string($db_handle, $_POST['email']);
-	$phone = mysqli_real_escape_string($db_handle, $_POST['phone']);
+	//$phone = mysqli_real_escape_string($db_handle, $_POST['phone']);
 	$username = mysqli_real_escape_string($db_handle, $_POST['username']);
 	$pas = mysqli_real_escape_string($db_handle, $_POST['password']) ;
 	$awe = mysqli_real_escape_string($db_handle, $_POST['password2']) ;
@@ -22,10 +23,9 @@ function signup(){
                 header('Location: ./index.php?status=4');
             }
             else {
-		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, contact_no, username, password) VALUES 
-				('$firstname', '$lastname', '$email', '$phone', '$username', '$pas') ; ") ;
-                
-                
+				$pas = md5($pas);
+		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password) VALUES 
+				('$firstname', '$lastname', '$email', '$username', '$pas') ; ") ;
                 $user_create_id = mysqli_insert_id($db_handle);
                 $hash_key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
                 mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ($user_create_id, $hash_key);");
@@ -61,7 +61,7 @@ function login(){
 	include_once "db_connect.php";
 	$username = mysqli_real_escape_string($db_handle, $_POST['username']);
 	$email = mysqli_real_escape_string($db_handle, $_POST['email']); 
-	$password = mysqli_real_escape_string($db_handle, $_POST['password']);
+	$password = md5(mysqli_real_escape_string($db_handle, $_POST['password']));
 	$response = mysqli_query($db_handle,"select * from user_info where (username = '$username' OR email = '$username') AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
 	if ( $num_rows){
