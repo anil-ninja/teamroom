@@ -116,8 +116,8 @@ if (isset($_POST['logout'])) {
 if (isset($_POST['joinproject'])) {
 	$user_id = $_SESSION['user_id'];
 	$idpt = $_POST['project_id'] ;
-	events($db_handle,$user_id,"4",$idpt);
-    involve_in($db_handle,$user_id,"4",$idpt);
+	events($db_handle,$user_id,"13",$idpt);
+    involve_in($db_handle,$user_id,"13",$idpt);
 	mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$idpt', 'defaultteam') ;") ;
 	echo "<script>alert('Joined Successfully')</script>" ;
 	header('Location: #');

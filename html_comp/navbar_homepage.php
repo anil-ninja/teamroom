@@ -87,7 +87,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             </p>
                         </li>
                         <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
-                        <li><?php //include_once 'notification.php'?></li>
+                        <li><?php include_once 'notification.php'?></li>
                </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
