@@ -60,10 +60,10 @@ if (!isset($_SESSION['first_name'])) {
                                         <input type="password" class="form-control" id="password" placeholder="Password">
                                     </div><br/>
                                     <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
-                                    
+                                    <a data-toggle="modal" data-target="#forgetPassword" style="float: right; cursor:pointer;"><font size="3" >Forget Password</font></a>
                                 </div>
                                 <div class="modal-footer">
-                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up for Collap</font></a>
+                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up for Collap</font></button>
                                 </div>
                             </div>
                         </div>
@@ -85,12 +85,15 @@ if (!isset($_SESSION['first_name'])) {
                         </div>
                         <div class="modal-body">
                             <div class="inline-form">
-								<div class="row">
-									<div class="col-md-6">					
-                                <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
-                                </div><div class="col-md-6">
-                                <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
-                            </div></div></div><br/>	
+                                <div class="row">
+                                    <div class="col-md-6">					
+                                        <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
+                                    </div>
+                                </div>
+                            </div><br/>	
                                  <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
                                   <span id="status_email"></span>
                                     <br/>					
@@ -104,6 +107,29 @@ if (!isset($_SESSION['first_name'])) {
 								<input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
 							</div></div></div>
                             <input type="submit" class="btn btn-primary btn-lg" name = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end modle-->
+            <!-- Modal -->
+            <div class="modal fade" id="forgetPassword" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="width:370px; height:auto">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"><font size="4" >Get Your password</font></h4>
+                            
+                        </div>
+                        <div class="modal-body inline-form">
+                            <input type="Email" class="form-control" style="width: 100%" id="email_forget_password" placeholder="Enter Email" onkeyup="nospaces(this)"
+                                   data-bv-emailaddress-message="The value is not a valid email address" />
+                            <span id="status_email_forget_password"></span>
+                            <br>
+                            <button type="submit" class="btn-primary" name="request_password"><font size="3" >Send Link</font></button>
                         </div>
                     </div>
                 </div>
