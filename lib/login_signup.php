@@ -1,6 +1,7 @@
 <?php
 include_once "../models/rank.php";
 include_once '../functions/delete_comment.php';
+include_once '../functions/collapMail.php';
 function signup(){
 	include_once "db_connect.php";
 	$firstname = mysqli_real_escape_string($db_handle, $_POST['firstname']);
@@ -37,7 +38,9 @@ function signup(){
                 mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ($user_create_id, $hash_key);");
                 //$id_access_id = mysqli_query($db_handle, "SELECT id FROM user_access_aid WHERE user_id = $user_create_id;");
                 $id_access_id = mysqli_insert_id($db_handle);
-                $body = $hash_key.".".$id_access_id;
+                $hash_key= $hash_key.".".$id_access_id;
+                $body = "http://collap.com/verifyEmail.php?hash_key=$hash_key";
+                
                 collapMail($email, "notification", $body);
                 
 		if(mysqli_error($db_handle)){
