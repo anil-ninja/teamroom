@@ -1,3 +1,4 @@
+//check for username already exists or not starts
 document.getElementById("usernameR").onblur = function() {
 
                 var xmlhttp;
@@ -19,6 +20,10 @@ document.getElementById("usernameR").onblur = function() {
                     xmlhttp.send();
                 }
             };
+            //check for username already exists or not ends
+            
+            //check for email already exists or not starts
+            
             document.getElementById("email").onblur = function() {
 
                 var xmlhttp;
@@ -40,6 +45,9 @@ document.getElementById("usernameR").onblur = function() {
                     xmlhttp.send();
                 }
             };
+            //check for email already exists or not ends
+            
+            //check for email exist or not for forget password request starts
             
             document.getElementById("email_forget_password").onblur = function() {
                 var xmlhttp;
@@ -63,3 +71,4 @@ document.getElementById("usernameR").onblur = function() {
                     
                 }
             };
+            //check for email exist or not for forget password request ends

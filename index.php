@@ -125,11 +125,11 @@ if (!isset($_SESSION['first_name'])) {
                             
                         </div>
                         <div class="modal-body inline-form">
-                            <input type="Email" class="form-control" style="width: 100%" id="email_forget_password" placeholder="Enter Email" onkeyup="nospaces(this)"
+                            <input type="email" class="form-control" style="width: 100%" id="email_forget_password" placeholder="Enter Email" onkeyup="nospaces(this)"
                                    data-bv-emailaddress-message="The value is not a valid email address" />
                             <span id="status_email_forget_password"></span>
                             <br>
-                            <button type="submit" class="btn-primary" name="request_password"><font size="3" >Send Link</font></button>
+                            <button type="submit" class="btn-primary" name="request_password" onclick="validateForgetPasswordOnSubmit()"><font size="3" >Send Link</font></button>
                         </div>
                     </div>
                 </div>
