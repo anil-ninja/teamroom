@@ -2,6 +2,9 @@
  function insert($id, $user_ID,  $db_handle) {
 	 mysqli_query($db_handle, "INSERT INTO notifications (event_id, user_id) VALUES ('$id', '$user_ID') ;") ;
 	 }
+ function update($id,$db_handle) {
+		mysqli_query($db_handle, " UPDATE notifications SET status = '1' WHERE user_id = '$id' ;") ;
+		}
 	  $a = $_SESSION['last_login'] ;
 	  $user_id = $_SESSION['user_id'] ;
 	  $notice = "" ;
@@ -54,7 +57,7 @@
 				$challenge_id4 = $notice4row['challenge_id'] ;
 				$challenge_title4 = $notice4row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id4 . "'>".$challenge_title4."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id4 . "' onclick=".update($user_id,$db_handle).">".$challenge_title4."</a><hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -68,7 +71,7 @@
 				$challenge_id5 = $notice5row['challenge_id'] ;
 				$challenge_title5 = $notice5row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-fire'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Accepted </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id5 . "'>".$challenge_title5."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id5 . "' onclick=".update($user_id,$db_handle).">".$challenge_title5."</a><hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -82,7 +85,7 @@
 				$challenge_id6 = $notice6row['challenge_id'] ;
 				$challenge_title6 = $notice6row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-ok'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Submitted </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id6 . "'>".$challenge_title6."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id6 . "' onclick=".update($user_id,$db_handle).">".$challenge_title6."</a><hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -96,7 +99,7 @@
 				$challenge_id7 = $notice7row['challenge_id'] ;
 				$challenge_title7 = $notice7row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-flag'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Closed </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id7 . "'>".$challenge_title7."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id7 . "' onclick=".update($user_id,$db_handle).">".$challenge_title7."</a><hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -110,7 +113,7 @@
 				$challenge_id8 = $notice8row['challenge_id'] ;
 				$challenge_title8 = $notice8row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-eye-close'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Spemmed </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "'>".$challenge_title8."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "' onclick=".update($user_id,$db_handle).">".$challenge_title8."</a><hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -124,7 +127,7 @@
 				$challenge_id9 = $notice9row['challenge_id'] ;
 				$challenge_title9 = $notice9row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Created </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id9 . "'>".$challenge_title9."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id9 . "' onclick=".update($user_id,$db_handle).">".$challenge_title9."</a><hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -138,8 +141,8 @@
 				$challenge_id10 = $notice10row['project_id'] ;
 				$team_name = $notice10row['team_name'] ;
 				$challenge_title10 = $notice10row['project_title'] ;	
-				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." 
-									Created Team ".$team_name." in </p><br/>".$challenge_title10."<hr/>" ;
+				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Created Team ".$team_name." in </p><br/>
+									<a href='project.php?project_id=" . $challenge_id10 . "' onclick=".update($user_id,$db_handle).">".$challenge_title10."<hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -151,8 +154,8 @@
 			while ($notice17row = mysqli_fetch_array($notice17)) {
 				$challenge_id17 = $notice17row['project_id'] ;
 				$challenge_title17 = $notice17row['project_title'] ;	
-				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." 
-									Joined in </p><br/>".$challenge_title17."<hr/>" ;
+				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Joined in </p><br/>
+									<a href='project.php?project_id=" . $challenge_id17 . "' onclick=".update($user_id,$db_handle).">".$challenge_title17."<hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -167,8 +170,8 @@
 				$challenge_id14 = $notice14row['project_id'] ;
 				$team_name2 = $notice11row['team_name'] ;
 				$challenge_title14 = $notice14row['project_title'] ;	
-				$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." 
-									Add member in ".$team_name2." in </p><br/>".$challenge_title14."<hr/>" ;
+				$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Add member in ".$team_name2." in </p>
+									<a href='project.php?project_id=" . $challenge_id14 . "' onclick=".update($user_id,$db_handle)."><br/>".$challenge_title14."<hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -181,8 +184,8 @@
 			while ($notice11row = mysqli_fetch_array($notice11)) {
 				$challenge_id11 = $notice11row['project_id'] ;
 				$challenge_title11 = $notice11row['project_title'] ;	
-				$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." 
-									Commented On </p><br/>".$challenge_title11."<hr/>" ;
+				$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>
+										<a href='project.php?project_id=" . $challenge_id11 . "' onclick=".update($user_id,$db_handle).">".$challenge_title11."<hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -196,7 +199,7 @@
 				$challenge_id12 = $notice12row['challenge_id'] ;
 				$challenge_title12 = $notice12row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-screenshot'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Assigned Task </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id12 . "'>".$challenge_title12."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id12 . "' onclick=".update($user_id,$db_handle).">".$challenge_title12."</a><hr/>" ;
 				$y++ ;
 				insert($newid, $user_id,  $db_handle) ;
 			}
@@ -204,88 +207,43 @@
 			break;		
 			}
 		}
-	/*  $notice2 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, d.challenge_title from challenge_ownership as a join response_challenge as b
-											join user_info as c join challenges as d where b.response_ch_creation > '$a' and d.challenge_id = b.challenge_id 
-											and (a.user_id = '$user_id' OR d.user_id = '$user_id') and b.user_id = c.user_id and b.user_id != '$user_id' ;") ;
-		while($notice2row = mysqli_fetch_array($notice2)) {
-			$fname2 = $notice2row['first_name'] ;
-			$challenge_id2 = $notice2row['challenge_id'] ;
-			$title2 = $notice2row['challenge_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname2." Commented On </p><br/>
-								<a href='challengesOpen.php?challenge_id=" . $challenge_id2 . "'>".$title2."</a><hr/>" ;
-			$y++ ;
-			}									
-	 $notice3 = mysqli_query($db_handle, " select Distinct c.first_name, b.project_id, d.project_title from teams as a join response_project as b
-											join user_info as c join projects as d where b.response_pr_creation > '$a' and d.project_id = b.project_id 
-											and (a.user_id = '$user_id' OR d.user_id = '$user_id') and b.user_id = c.user_id and b.user_id != '$user_id' ;") ;
-		while($notice3row = mysqli_fetch_array($notice3)) {
-			$fname3 = $notice3row['first_name'] ;
-			$project_id3 = $notice3row['project_id'] ;
-			$title3 = $notice3row['project_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-star-empty'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>".$title3."<hr/>" ;
-			$y++ ;
-			}			
-	$notice4 = mysqli_query($db_handle, " select Distinct c.first_name, d.challenge_id, d.challenge_title from challenge_ownership as a join spems as b
-											join user_info as c join challenges as d where b.time > '$a' and d.challenge_id = b.spem_id and b.type = '1'
-											and (a.user_id = '$user_id' OR d.user_id = '$user_id') and b.user_id = c.user_id and b.user_id != '$user_id' ;") ;
-		while($notice4row = mysqli_fetch_array($notice4)) {
-			$fname4 = $notice4row['first_name'] ;
-			$challenge_id4 = $notice4row['challenge_id'] ;
-			$title4 = $notice4row['challenge_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-eye-close'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Spammed </p><br/>".$title3."<hr/>" ;
-			$y++ ;
-			}	
-	$notice5 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
-											join challenges as b join user_info as c where a.ownership_creation > '$a' and b.challenge_id = a.challenge_id 
-											and b.challenge_type != '5'	and b.user_id = '$user_id' and a.user_id = c.user_id and b.user_id != '$user_id' ;") ;
-		while($notice5row = mysqli_fetch_array($notice5)) {
-			$fname5 = $notice5row['first_name'] ;
-			$challenge_id5 = $notice5row['challenge_id'] ;
-			$title5 = $notice5row['challenge_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-fire'></span><p style='font-size: 10px;'> &nbsp; ".$fname5." Accepted </p><br/>
-								<a href='challengesOpen.php?challenge_id=" . $challenge_id5 . "'>".$title5."</a><hr/>" ;
-			$y++ ;
-			}
-	$notice6 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
-											join challenges as b join user_info as c where a.time > '$a' and b.challenge_id = a.challenge_id and a.status = '2' 
-											and b.user_id = '$user_id' and a.user_id = c.user_id and b.user_id != '$user_id' ;") ;
-		while($notice6row = mysqli_fetch_array($notice6)) {
-			$fname6 = $notice6row['first_name'] ;
-			$challenge_id6 = $notice6row['challenge_id'] ;
-			$title6 = $notice6row['challenge_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-ok'></span><p style='font-size: 10px;'> &nbsp; ".$fname6." Submitted </p><br/>
-								<a href='challengesOpen.php?challenge_id=" . $challenge_id6 . "'>".$title6."</a><hr/>" ;
-			$y++ ;
-			}
-	$notice7 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
-											join challenges as b join user_info as c where a.time > '$a' and b.challenge_id = a.challenge_id and a.status = '2' 
-											and a.user_id = '$user_id' and b.user_id = c.user_id and b.challenge_status = '5' and a.user_id != '$user_id' ;") ;
-		while($notice7row = mysqli_fetch_array($notice7)) {
-			$fname7 = $notice7row['first_name'] ;
-			$challenge_id7 = $notice7row['challenge_id'] ;
-			$title7 = $notice7row['challenge_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-flag'></span><p style='font-size: 10px;'> &nbsp; ".$fname7." Closed </p><br/>
-								<a href='challengesOpen.php?challenge_id=" . $challenge_id7 . "'>".$title7."</a><hr/>" ;
-			$y++ ;
-			}	 					
-	$notice8 = mysqli_query($db_handle, " select Distinct c.first_name, b.challenge_id, b.challenge_title from challenge_ownership as a  
-											join challenges as b join user_info as c where a.time > '$a' and b.challenge_id = a.challenge_id and a.status = '1' 
-											and a.user_id = '$user_id' and b.user_id = c.user_id ;") ;
-		while($notice8row = mysqli_fetch_array($notice8)) {
-			$fname8 = $notice8row['first_name'] ;
-			$challenge_id8 = $notice8row['challenge_id'] ;
-			$title8 = $notice8row['challenge_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-screenshot'></span><p style='font-size: 10px;'> &nbsp; ".$fname8." Assigned Task </p><br/>
-								<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "'>".$title8."</a><hr/>" ;
-			$y++ ;
-			} */			
-    $notice15 = mysqli_query($db_handle, " select Distinct b.first_name, a.project_id, a.project_title from projects as a join user_info as b
+	$notice15 = mysqli_query($db_handle, " select Distinct b.first_name, a.project_id, a.project_title from projects as a join user_info as b
 											where a.project_creation > '$a' and a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 		while($notice15row = mysqli_fetch_array($notice15)) {
 			$fname5 = $notice15row['first_name'] ;
 			$project_id15 = $notice15row['project_id'] ;
 			$title15 = $notice15row['project_title'] ;
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname5." Created </p><br/>".$title15."<hr/>" ;
+			$y++ ;
+			}
+	$notice18 = mysqli_query($db_handle, " SELECT a.id, a.requesting_user_id, b.first_name, b.username FROM known_peoples as a join user_info as b
+											where a.last_action_time > '$a' and a.status = '1' and a.knowning_id = '$user_id' and a.requesting_user_id = b.user_id ;") ;
+		while($notice18row = mysqli_fetch_array($notice18)) {
+			$fname18 = $notice18row['first_name'] ;
+			$id1 = $notice18row['id'] ;
+			
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname18." Send Friend Request </p><br/>
+								<form method='POST' class='inline-form'>
+									<input type='hidden' name='request_id' value='".$id1."'/>
+									<input type='submit' class='btn-link inline-form' name='requestaccept' value='Accept'/>
+									<input type='submit' class='btn-link inline-form' name='requestdelete' value='Delete'/>
+								</form><hr/>" ;
+			$y++ ;
+			}
+	$notice20 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
+											where a.last_action_time > '$a' and a.status = '2' and a.requesting_user_id = '$user_id' and a.knowning_id = b.user_id ;") ;
+		while($notice20row = mysqli_fetch_array($notice20)) {
+			$fname20 = $notice20row['first_name'] ;
+			$id2 = $notice20row['id'] ;
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname20." Accepted Your Friend Request </p><hr/>" ;
+			$y++ ;
+			}
+	$notice19 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
+											where a.last_action_time > '$a' and a.status = '3' and a.requesting_user_id = '$user_id' and a.knowning_id = b.user_id ;") ;
+		while($notice19row = mysqli_fetch_array($notice19)) {
+			$fname19 = $notice19row['first_name'] ;
+			$id3 = $notice19row['id'] ;
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname19." Deleted Your Friend Request </p><hr/>" ;
 			$y++ ;
 			} 
 	$notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
@@ -300,7 +258,7 @@
 					//$dead_time = "Closed" ;
 					$y++ ;
 					$notice = $notice ."<span class='glyphicon glyphicon-time'></span><p style='font-size: 10px;'> Remaining Time Over</p><br/>
-										<a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "'>".$title16."</a><hr/>" ;
+										<a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "' >".$title16."</a><hr/>" ;
 				}
 			else {	
 					$remainingtime = (($comp_ch_ETA + $ownership_creation)-time()) ;
@@ -315,11 +273,13 @@
 					} 
 				}
 			}
-	function update($id,$db_handle) {
-		mysqli_query($db_handle, " UPDATE notifications SET status = '1' WHERE user_id = '$id' ;") ;
+	function updatetime($id,$db_handle) {
+		$time = date("Y-m-d H:i:s") ;
+		$_SESSION['last_login'] = $time ;
+		mysqli_query($db_handle, " UPDATE user_info SET last_login = '$time' WHERE user_id = '$id' ;") ;
 		}		
 			echo "<div class='dropdown'>
-					<a data-toggle='dropdown' onclick=".update($user_id,$db_handle).">" ;
+					<a data-toggle='dropdown' onclick=".updatetime($user_id,$db_handle).">" ;
 			if ($y == 0) {
 				echo "<p class='navbar-text' style ='cursor: pointer;'>" ;
 			}
@@ -331,5 +291,25 @@
 							<li>".$notice."</li>
 							<li>See All</li>
 						</ul>
-					</div>" ;							
+					</div>" ;
+if(isset($_POST['requestaccept'])){
+	$request_id = $_POST['request_id'] ;
+	$time = date("Y-m-d H:i:s") ;
+	$user_id = $_SESSION['user_id'] ;
+	echo $knownid ;
+	mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
+	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
+	else { echo "<script>alert('Request Accepted succesfully!')</script>"; }
+	//header('Location: #');
+	}
+if(isset($_POST['requestdelete'])){
+	$request_id = $_POST['request_id'] ;
+	$time = date("Y-m-d H:i:s") ;
+	$user_id = $_SESSION['user_id'] ;
+	echo $knownid ;
+	mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
+	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
+	else { echo "<script>alert('Request Deleted succesfully!')</script>"; }
+	//header('Location: #');
+	}							
 ?>
