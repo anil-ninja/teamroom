@@ -22,7 +22,7 @@ $project_team_title = $project_name_displayRow['project_title'];
 
 
 
-$teams_member_display = mysqli_query($db_handle, "select b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
+$teams_member_display = mysqli_query($db_handle, "select b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
                                                     from teams as a join user_info as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1' and a.project_id=$team_project_id;");
 $total_members = mysqli_num_rows($teams_member_display);
 
@@ -43,6 +43,7 @@ $total_members = mysqli_num_rows($teams_member_display);
 	<script src="js/jquery.js"> </script>
 	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="js/jquery.autosize.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
         <script src="js/jquery-1.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/bootswatch.js"></script>
@@ -85,15 +86,15 @@ $total_members = mysqli_num_rows($teams_member_display);
                 $team_ownerRow = mysqli_fetch_array($teams_owner_add);
                 $team_owner_project = $team_ownerRow['team_owner'];
                     if ($team_owner_project == $user_id) {
-                        echo "<div class='col-md-2'>
+                       echo "<div class='col-md-2'>
                                 <div class='dropdown'>
-                                    <a data-toggle='dropdown'><span class='btn btn-success glyphicon glyphicon-plus'> Add</span></a>
-                                    <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+                                    <button class='btn btn-success dropdown-toggle glyphicon glyphicon-plus' id='dropdownMenu1' data-toggle='dropdown'> Add</button>
+                                    <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
                                         <li>
                                             <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/>
                                             <input type='hidden' id ='team_name' value='" .$team_name. "'/>
                                             <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
-                                            <input type='submit' class='btn-success btn-sm' id='add_member' value='Add '/>
+                                            <input type='button' class='btn-success btn-sm submit' id='add_member' onclick='add_member_to_team()' value='Add' />
                                         </li>
                                     </ul>
                                 </div>
@@ -104,13 +105,19 @@ $total_members = mysqli_num_rows($teams_member_display);
                     $username = $teams_member_displayRow['username'];
                     $lastname = $teams_member_displayRow['last_name'];
                     $rank = $teams_member_displayRow['rank'];
+                    $user_id_member = $teams_member_displayRow['user_id'];
                     
                         echo "<div class='col-md-2'>
-                                <img src='uploads/profilePictures/$username.jpg'  style='width:25%' onError=this.src='img/default.gif' class='img-circle img-responsive'>
-                                    <span class='color strong pull-left'><a href ='profile.php?username=" . $username . "'>" 
+                                <img src='uploads/profilePictures/$username.jpg'  style='width:25%' onError=this.src='img/default.gif' class='img-circle img-responsive'>";
+                        if ($team_owner_project == $user_id && $user_id_member != $user_id) {
+                          echo "<input type='hidden' id ='team_name' value='" .$team_name. "'/>
+                                <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
+                                <input type='hidden' id ='user_id' value='" .$user_id_member."'/>
+                                <button type='submit' class='glyphicon glyphicon-minus pull-top' style='top: -28px; margin: -20px;' id='remove_member' onclick='remove_member_team();'></button>";
+                        }
+                        echo "<span class='color strong pull-left'><a href ='profile.php?username=" . $username . "'>" 
                                     .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br>"
-                                    .$rank."
-                            </div>";
+                                    .$rank."</div>";
                 }
         ?>
 </div>
@@ -118,31 +125,57 @@ $total_members = mysqli_num_rows($teams_member_display);
             <?php include_once 'html_comp/kanban.php'; ?>
         </div>
     	</div>
-        <script>
-            $(document).ready(function(){
-
-		$("#add_member").click(function(){
-      		$("#add_member").attr('disabled','disabled');
-			var email_add_member = $("#email_add_member").val() ;
-			var team_name = $("#team_name").val();
-                        var project_id = $("#project_id").val();
-			
-                        var dataString = 'email_add_member='+ email_add_member + '&team_name='+ (team_name+='') + '&project_id='+ project_id;
-			//alert(dataString);
-			$.ajax({
+        <script language="JavaScript" type="text/javascript">
+        function add_member_to_team () {
+			var emailadd_member =document.getElementById("email_add_member").value;
+			var teamName = document.getElementById("team_name").value;
+                        var project_id = document.getElementById("project_id").value;
+			alert(fdfdsfdf);
+                        var dataString = 'emailadd_member1='+ emailadd_member + '&teamName1='+ (teamName+='') + '&project_id1='+ project_id;
+                        
+			alert(dataString);
+                        if (emailadd_member == "") {
+                            alert("Email can't be empty");
+                        }
+                        else {
+                        $.ajax({
 				type: "POST",
-				url: ajax/add_member_team.php,
+				url: "ajax/add_member_team.php",
 				data: dataString,
 				cache: false,
-				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Member Added succesfully!'){
-					location.reload();
+				success: function(html){
+					alert(html);
+					//bootstrap_alert(".alert_placeholder", html, 5000,"alert-success");
+					//if(result=='Member Added succesfully!'){
+					//location.reload();
 					}
-				}
-			}); 
-		});
+				});
+			}
+                        return false;
+                        }
+        </script>
+                <script>
+            function remove_member_team(href){
+                if(confirm("Do u really want to Remove this member?")){
+                    var team_name = $("#team_name").val();
+                    var project_id = $("#project_id").val();
+                    var mem_remove_id = $("#user_id").val();
+                    var dataString = 'team_name=' + team_name + '&project_id='+ project_id + '&mem_remove_id=' + mem_remove_id;
+                    $.ajax({
+                        type: "POST",
+                        url: "ajax/add_member_team.php",
+                        data: dataString,
+                        cache: false,
+                        success: function(result){
+                            bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+                            if(result=='Member Removed succesfully!') {
+                                location.reload();
+                            }
+                        }
+                    });
+                }
+            }
+
         </script>
             </body>
     	</html>
