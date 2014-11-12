@@ -5,6 +5,31 @@ if (!isset($_SESSION['first_name'])) {
 } else {
     header('Location: ninjas.php');
 }
+if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
+    include_once 'lib/db_connect.php';
+    include_once 'functions/collapMail.php';
+    $email_req = $_POST['email_forget_password'];
+    $user_id_access_aid = mysqli_query($db_handle, "SELECT user_id FROM user_info WHERE email= '$email_req' ;");
+    
+    $user_id_access_aidRow = mysqli_fetch_array($user_id_access_aid);
+    $user_id_access = $user_id_access_aidRow['user_id'];
+    $hash_key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
+    mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_id_access', '$hash_key');");
+    
+    $id_access_id = mysqli_insert_id($db_handle);
+    $hash_key = $hash_key.".".$id_access_id;
+    $body = "http://collap.com/forgetPassword.php?hash_key='$hash_key'";
+
+    collapMail($email_req, "Update password", $body);
+    echo "<div class='jumbotron'>
+            <p align='center'> Please check your Email, shortly you get an email, Go through your email and change your password<br>
+            <a href='index.php'><br>Go Back</a></p>
+        </div>";
+
+    if(mysqli_error($db_handle)){
+            echo "Please try again";
+    }
+}
 //include_once "controllers/login_controller.php";
 ?>
 
@@ -122,14 +147,23 @@ if (!isset($_SESSION['first_name'])) {
                                 <span class="sr-only">Close</span>
                             </button>
                             <h4 class="modal-title" id="myModalLabel"><font size="4" >Get Your password</font></h4>
-                            
+                            <div class="alert_placeholder_nospace"> </div>
                         </div>
-                        <div class="modal-body inline-form">
-                            <input type="email" class="form-control" style="width: 100%" id="email_forget_password" placeholder="Enter Email" onkeyup="nospaces(this)"
-                                   data-bv-emailaddress-message="The value is not a valid email address" />
-                            <span id="status_email_forget_password"></span>
-                            <br>
-                            <button type="submit" class="btn-primary" id="request_password" onclick="validateForgetPasswordOnSubmit()"><font size="3" >Send Link</font></button>
+                        <div class="modal-body">
+                            <form method="POST" id="html5Form"  class="form-horizontal"
+                                    data-bv-message="This value is not valid"
+                                    data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
+                                    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
+                                    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                                <div class="form-group">
+                                    
+                                    <input type="email" class="form-control" name="email_forget_password" id="email_forget" placeholder="Enter Email" onkeyup="nospaces(this)"
+                                    required data-bv-emailaddress-message="The input is not a valid email address" />
+                                    <span id="status_email_forget_password"></span>
+                                </div>
+                                <br>
+                                <button type="submit" class="btn-primary" name="request_password"><font size="3" >Send Link</font></button>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -138,7 +172,18 @@ if (!isset($_SESSION['first_name'])) {
 
             <script src="js/jquery-1.js"></script>
             <script src="js/bootstrap.js"></script>
+            <script src="js/bootstrapValidator.js"></script>
+         
+            
+            <script>
+        
 
+$(document).ready(function() {
+    $('#html5Form').bootstrapValidator();
+});
+
+    
+        </script>
             <script type="text/javascript">
                 function checkForm() {
                     if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
@@ -160,7 +205,7 @@ if (!isset($_SESSION['first_name'])) {
             <script type="text/javascript">
                 function nospaces(t){
                     if(t.value.match(/\s/g)){
-                        alert('Sorry, you are not allowed to enter any spaces');
+                        bootstrap_alert(".alert_placeholder_nospace", "Sorry, you are not allowed to enter any spaces", 5000,"alert-warning");
                         t.value=t.value.replace(/\s/g,'');
                     }
                 }
