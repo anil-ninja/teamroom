@@ -14,7 +14,7 @@ $data=mysqli_query($db_handle,$sql);
 $sql="SELECT * FROM user_info where email='$email_check'";
 $data=mysqli_query($db_handle,$sql);
 if(mysqli_num_rows($data)==0) {
-    print "<span style=\"color:green;\">No user registered with this Email, <br>Please try again with different Email-id or Signup</span><br>";
+    print "<span style=\"color:red;\">No user registered with this Email, <br>Please try again with different Email-id or Signup</span><br>";
     return false;
 }
 ?>

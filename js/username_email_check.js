@@ -49,9 +49,9 @@ document.getElementById("usernameR").onblur = function() {
             
             //check for email exist or not for forget password request starts
             
-            document.getElementById("email_forget_password").onblur = function() {
+            document.getElementById("email_forget").onblur = function() {
                 var xmlhttp;
-                var email_forget=document.getElementById("email_forget_password");
+                var email_forget=document.getElementById("email_forget");
                 if (email_forget.value != ""){
                     if (window.XMLHttpRequest){
                         xmlhttp=new XMLHttpRequest();
