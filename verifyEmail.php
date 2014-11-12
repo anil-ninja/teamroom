@@ -16,8 +16,6 @@ if ($accessed_or_not == 1) {
     $response = mysqli_query($db_handle,"select * from user_info where user_id = $verify_check_user_id;") ;
 	$num_rows = mysqli_num_rows($response);
 	if ( $num_rows){
-		//echo "hi";
-		//header('Location: ninjas.php');
 		$responseRow = mysqli_fetch_array($response);
 		$id = $responseRow['user_id'];
 		$lastlogintime = $responseRow['last_login'];
