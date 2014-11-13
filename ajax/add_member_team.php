@@ -3,11 +3,11 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 
-if (isset($_POST['add_member'])) {
-    $team_name = $_POST['teamname'];
+if (isset($_POST['emailadd_member1'])) {
+    $team_name = $_POST['teamName1'];
     $user_id = $_SESSION['user_id'] ;
-    $email = $_POST['projectid'];
-    $pro_id = $_POST['project_id'] ;
+    $email = $_POST['emailadd_member1'];
+    $pro_id = $_POST['project_id1'] ;
     $respo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE email = '$email';");
     $row = mysqli_num_rows($respo);
     if ($row == 1) {
