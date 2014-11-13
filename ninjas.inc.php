@@ -215,7 +215,7 @@ function checkProject($projectID, $userId, $db_handle){
 			return true ;
 		}
 		else if(!isset($_SESSION['user_id'])) return false;
-	else {
+	else if ($typerow['project_type'] == 2) {
 		$access = mysqli_query($db_handle,"(select user_id from projects where project_id = '$projectID' and user_id = '$userId')
 											UNION 
 											(SELECT DISTINCT a.user_id FROM teams as a join projects as b WHERE a.user_id = '$userId' and a.project_id = b.project_id and b.project_id = '$projectID');") ;
@@ -224,6 +224,9 @@ function checkProject($projectID, $userId, $db_handle){
 		}
 	 return false ;
 	}
+	else {
+		return false ;
+		}
 	//check user have access if access the return true
 	
 	}

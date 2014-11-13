@@ -103,11 +103,11 @@
                         ?>
                     </select><br/><br/>
 								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
-                               	<div class="inline-form">
+                              	<div class="inline-form">
                     Show After(Set Date and Time) :  
                     <select class="btn-info btn-xs"  id= "month" >	
                         <option value='0' selected >Month</option>
-                        <?php
+                        <?php 
                         $m = 1;
                         while ($m <= 12) {
                             echo "<option value='" . $m . "' >" . $m . "</option>";
@@ -141,11 +141,12 @@
                         $o = 1;
                         while ($o <= 59) {
                             echo "<option value='" . $o . "' >" . $o . "</option>";
-                            $o++;
-                        }
+                            $o++; 
+                        } 
                         ?>
                     </select>				
-                       </div><br/><br/>     	
+                       </div><br/><br/> 
+               <!---         //<div id="asdf" ></div> --->   	
                             <input type="submit" class="btn btn-primary btn-sm" id = "remind" value = "Set"><br/><br/>
                         </div>
                         <div class="modal-footer">

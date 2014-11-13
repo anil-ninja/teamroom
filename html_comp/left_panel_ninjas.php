@@ -9,9 +9,7 @@
 	 		<td> <font size="2"> Classified</font></td>
 	 		
 		</tr>
-				
-	
-			   <?php
+		   <?php
 					$project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
 																		as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
 																		UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id' and project_type= '2');");

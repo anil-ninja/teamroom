@@ -49,7 +49,10 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath); 
 				} 
 				 else {
-					 unlink("../uploads/profilePictures/".$picname) ;
+					 unlink("../uploads/profilePictures/".$username.".jpg") ;
+					 unlink("../uploads/profilePictures/".$username.".png") ;
+					 unlink("../uploads/profilePictures/".$username.".jpeg") ;
+					 unlink("../uploads/profilePictures/".$username.".gif") ;
 					 saveFile($filePath);					 
 					 }
 				echo substr($filePath, 3);
