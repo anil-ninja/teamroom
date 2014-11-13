@@ -174,7 +174,12 @@ function bootstrap_alert(elem, message, timeout,type) {
 		var _progress = document.getElementById('_progress');
 		
 		if(_file.files.length === 0){
-				submitCreateArticle("",data1,url1);
+			if(typeOfPic == "profilepic") {
+				bootstrap_alert(".alert_placeholder", "Please upload a pic", 5000,"alert-warning");
+				}
+				  else{
+						submitCreateArticle("",data1,url1);
+					}
 				return false ;
 		} else {
 
@@ -203,6 +208,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		//alert(request.response);
 		//alert(responceTx);
 		//return responceTx;
+		
 		
 	}
 	function submitCreateArticle(ilink,data,url){
@@ -252,7 +258,17 @@ function bootstrap_alert(elem, message, timeout,type) {
 			//alert(uploadFile(_file,"articlePic"));
 			uploadFile(_file,"articlePic",String(dataString),"ajax/submit_article.php");
 		
-	}
+			}
+		});
+		
+		$("#upload_image").click(function(){
+      		//$("#upload_image").attr('disabled','disabled');
+      		var profile = "profilepic" ;
+      		var dataString = 'profile='+ profile ;
+			var _file = document.getElementById('_fileprofilepic');
+			//alert(_file + "bhschjsdhsbd");
+			//alert(uploadFile(_file,"articlePic"));
+			uploadFile(_file,"profilepic",String(dataString),"ajax/change_profile.php");
 		});
 		
 		$("#remind").click(function(){

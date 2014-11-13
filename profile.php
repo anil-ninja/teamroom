@@ -238,30 +238,6 @@ $obj = new profile($UserName);
 
 <div id="InfoBox"></div>
         <script src="js/add_remove_skill.js"> </script>
-        <script> 
-$(document).ready(function(){
-    $("#challegecreForm").toggle();
-    $("#chcre").click(function(){
-        $("#challegecreForm").toggle(3000);
-        $("#challegeownForm").hide(1500);
-        $("#challegeForm").hide(1500);
-    });
-    $("#challegeForm").toggle();
-    $("#chcomp").click(function(){
-  	$("#challegeownForm").hide(1500);
-        $("#challegeForm").toggle(3000);
-  	$("#challegecreForm").hide(1500);
-    });
-
-    $("#challegeownForm").toggle();
-    $("#chown").click(function(){
-  	$("#challegecreForm").hide(1500);
-  	$("#challegeForm").hide(1500);
-        $("#challegeownForm").toggle(3000);
-    });
-});
-</script>
-        
             <!---Modal --->
             <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
@@ -276,16 +252,16 @@ $(document).ready(function(){
                     </div>
                     <div class="modal-body">
                         <div class="input-group">
-                            <input class="btn btn-default btn-sm" type="file" id="_file" style ="width: auto;"><br>
+                            <input class="btn btn-default btn-sm" type="file" id="_fileprofilepic" style ="width: auto;"><br>
                         </div>
-                        <input class="btn btn-primary btn-sm" type="submit" id="upload_image" onclick="validateUploadImage()" value="Change"><br>
+                        <input class="btn btn-primary btn-sm" type="submit" id="upload_image"  value="Change"><br>
                     </div>
                 </div>
             </div>
         </div>
-            <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
+      <!---      <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
                   
-            </form>
+            </form> --->
             <!---End OF Modal --->
             <!---Modal --->
             <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -325,7 +301,6 @@ $(document).ready(function(){
             </div>
         </div>
             <!---End OF Modal --->            
-              <!-- Modal 
         <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="width:350px; height:auto">
@@ -403,7 +378,7 @@ $(document).ready(function(){
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootswatch.js"></script>
         <script src="js/date_time.js"></script>
-        <script src="js/uploadpic.js"></script>
+    <!---   <script src="js/uploadpic.js"></script> --->
         <script src="js/project.js"></script>
         
         <script src="js/custom.js"></script>

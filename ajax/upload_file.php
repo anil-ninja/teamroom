@@ -41,7 +41,20 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					break;
 			
 			case "profilepic":
-				$fileName = $username.".".pathinfo( $_FILES["file"]["name"], PATHINFO_EXTENSION);
+				$pic = explode(".", $_FILES["file"]["name"]) ;
+				$pict = $pic['1'] ;
+				$picname = $username.".".$pict ; 
+				$filePath = "../uploads/profilePictures/".$picname;
+				if(!file_exists("../uploads/profilePictures/".$picname)) {
+					saveFile($filePath); 
+				} 
+				 else {
+					 unlink("../uploads/profilePictures/".$picname) ;
+					 saveFile($filePath);					 
+					 }
+				echo substr($filePath, 3);
+				exit;
+				
 				break;
 				
 			case "challengePic"	:
