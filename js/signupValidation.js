@@ -49,8 +49,10 @@ function validateSignupFormOnSubmit() {
 			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
 		} else if(password==''){
 			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
-		} else if(password2==''){
-			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
+		} else if(password.length <'6'){
+			bootstrap_alert(".alert-placeholder", "password length should be atleast 6", 5000,"alert-warning");
+                }else if(password2==''){
+                        bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		} else {
           $.ajax({
 					type: "POST",
