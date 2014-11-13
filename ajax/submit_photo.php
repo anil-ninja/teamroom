@@ -9,7 +9,7 @@ if($_POST['picturech']){
 	$articletext = $_POST['picturech'] ;
 	$article_title = $_POST['picture_title'] ;
 	$image = $_POST['img'] ;
-	$article = $image." ".$articletext ;
+	$article = $image."<br/> ".$articletext ;
  if (strlen($article) < 400) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
                                     VALUES ('$user_id', '$article_title', '$article', '1', '1', '3', '6') ; ") ;

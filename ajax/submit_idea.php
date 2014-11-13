@@ -7,7 +7,7 @@ if($_POST['idea']){
 	$articletext = $_POST['idea'] ;
 	$article_title = $_POST['idea_title'] ;
 	$image = $_POST['img'] ;
-	$article = $image." ".$articletext ;
+	$article = $image."<br/> ".$articletext ;
  if (strlen($article) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
                                     VALUES ('$user_id', '$article_title', '$article', '1', '1', '4') ; ") ;

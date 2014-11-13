@@ -10,7 +10,7 @@ if($_POST['project_title']){
 	$project_eta = $_POST['project_eta'] ;
 	$type = $_POST['type'] ;
 	$image = $_POST['img'] ;
-	$project_st = $image." ".$project_sttext ;
+	$project_st = $image." <br/>".$project_sttext ;
 if (strlen($project_st) < 1000) {
         mysqli_query($db_handle, "INSERT INTO projects (user_id, project_title, stmt, project_ETA, project_type) 
                                   VALUES ('$user_id', '$project_title', '$project_st', '$project_eta', '$type');");

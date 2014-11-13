@@ -7,7 +7,7 @@ if($_POST['notes']){
 	$pro_id = $_SESSION['project_id'] ;
 	$notestext = $_POST['notes'] ;
 	$image = $_POST['img'] ;
-	$notes = $image." ".$notestext ;
+	$notes = $image." <br/>".$notestext ;
 	$notes_title = $_POST['notes_title'] ;
  if (strlen($notes) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, project_id, stmt, challenge_open_time, challenge_ETA, challenge_type) 

@@ -12,7 +12,7 @@ if($_POST['challange']){
 	$challenge_title = $_POST['challenge_title'] ;
 	$challange_eta = $_POST['challange_eta'] ; 
 	$image = $_POST['img'] ;
-	$challange = $image." ".$challangetext ;
+	$challange = $image."<br/> ".$challangetext ;
 	$type = $_POST['type'] ;
 	
 	//echo "i am not working POST";

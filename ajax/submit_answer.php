@@ -7,7 +7,7 @@ if($_POST['answer']){
 		$pro_id = $_POST['cid'] ;
 		$notestext = $_POST['answer'] ;
 		$image = $_POST['img'] ;
-		$notes = $image." ".$notestext ;
+		$notes = $image."<br/> ".$notestext ;
 		$a = date("y-m-d H:i:s") ;
 		involve_in($db_handle,$user_id,"5",$pro_id); 
        events($db_handle,$user_id,"5",$pro_id);

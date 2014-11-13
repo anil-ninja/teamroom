@@ -10,7 +10,7 @@ if($_POST['challange']){
 	$challenge_title = $_POST['challenge_title'] ;
 	$image = $_POST['img'] ;
 	$challange_eta = $_POST['challange_eta'] ;
-	$challange = $image." ".$challangetext ;
+	$challange = $image."<br/> ".$challangetext ;
 if ($chall == '1') {
  if (strlen($challange) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA) 

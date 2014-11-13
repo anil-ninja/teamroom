@@ -10,7 +10,7 @@ if($_POST['videos']){
 	$pro_id = $_SESSION['project_id'] ;	
 	$challenge_title = $_POST['title'] ;
 	$videodes = $_POST['videodes'] ;
-	$challange = $challangetext." ".$videodes ;
+	$challange = $challangetext."<br/> ".$videodes ;
 	if (strlen($challange) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
                                     VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '1', '1', '8') ; ") ;
