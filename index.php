@@ -172,18 +172,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
             <script src="js/jquery-1.js"></script>
             <script src="js/bootstrap.js"></script>
-            <script src="js/bootstrapValidator.js"></script>
-         
             
-            <script>
-        
-
-$(document).ready(function() {
-    $('#html5Form').bootstrapValidator();
-});
-
-    
-        </script>
             <script type="text/javascript">
                 function checkForm() {
                     if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
