@@ -52,7 +52,6 @@ $accessed_or_not = mysqli_num_rows($verify_check);
         //mysqli_close($db_handle);
     }
     else {
-        echo "there   xs";
     }
 }
 ?>
@@ -95,18 +94,27 @@ $accessed_or_not = mysqli_num_rows($verify_check);
                 }
                 else {
             ?>
-        <form method='POST' class="form-horizontal">
+        <form method='POST' class="form-horizontal" id="form_elem">
             <div class="form-group">
                 <div class="col-lg-5">
-                    <input type="password" class="form-control" name="passwordnewchange1" placeholder="sword" /><br>
+                    <input type="password" class="form-control" name="passwordnewchange1" id="example" placeholder="password" /><br>
+                    <span id="error_msg" style="color:red"></span>
                     <input type="password" class="form-control" name="passwordnewchange2" placeholder="Re-enter password"/><br/><br/>
-                    <input type="submit" class="btn btn-primary btn-lg" name = "updatePassword" value = "Update">
+                    <input type="submit" class="btn btn-primary btn-lg" name = "updatePassword" id="validate" value = "Update">
                 </div>
             </div>
         </form>
             <?php   } ?>
         </div>
-       
+    <script>
+        $("#validate").click(function(){
+        var inputStr = $("#example").val();
+    if(inputStr.length<5)
+        $("#error_msg").html("enter atleast 5 chars in the input box");
+    else
+        $("#form_elem").submit();      
+})
+    </script>
     </body>
 </html>
 
