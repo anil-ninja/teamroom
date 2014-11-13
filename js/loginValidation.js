@@ -7,12 +7,19 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-
+$(document).ready(function() {
+    $('#passwordlogin').keydown(function(event) {
+        if (event.keyCode == 13) {
+            validateLoginFormOnSubmit();
+            return false;
+         }
+    });
+});
 
 function validateLoginFormOnSubmit() {
     var reason = "";
     var username = $("#username").val() ;
-    var password = $("#password").val() ;
+    var password = $("#passwordlogin").val() ;
     //accept_challenge
     //reason += validateUsername(username);
     //reason += validatePassword(password);

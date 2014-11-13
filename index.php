@@ -82,9 +82,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <br/>
                                     <div class="input-group">
                                         <span class="input-group-addon">Password&nbsp;</span>
-                                        <input type="password" class="form-control" id="password" placeholder="Password">
+                                        <input type="password" class="form-control" id="passwordlogin" placeholder="Password">
                                     </div><br/>
-                                    <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
+                                    <button type="submit" class="btn btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
                                     <a data-toggle="modal" data-target="#forgetPassword" style="float: right; cursor:pointer;"><font size="3" >Forget Password</font></a>
                                 </div>
                                 <div class="modal-footer">
@@ -131,7 +131,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 								</div><div class="col-md-6">
 								<input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
 							</div></div></div>
-                            <input type="submit" class="btn btn-primary btn-lg" name = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
+                            <input type="submit" class="btn btn-primary btn-lg" id = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
                         </div>
                     </div>
                 </div>

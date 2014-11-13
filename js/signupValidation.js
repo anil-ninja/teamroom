@@ -7,8 +7,15 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-
-function validateSignupFormOnSubmit(theForm) {
+$(document).ready(function() {
+    $('#password2R').keydown(function(event) {
+        if (event.keyCode == 13) {
+            validateSignupFormOnSubmit();
+            return false;
+         }
+    });
+});
+function validateSignupFormOnSubmit() {
         var reason = "";
 		var firstname = $("#firstname").val() ;
 		var lastname = $("#lastname").val() ;

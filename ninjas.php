@@ -26,6 +26,7 @@ if(!isset($_SESSION['user_id'])){
 <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
 	<script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
 	<script src="js/ninjas.js" type="text/javascript"></script>
+	
   </head>
   <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>

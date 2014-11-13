@@ -13,13 +13,14 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
               <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">
               <img src ='img/collap.gif' style="width:70px;">collap</a>
         </div>
+        <script src="js/search.js" type="text/javascript"></script>
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
                 <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
                     <li class='navbar-text' >
                      <div class="input-group">
-                             <input type="text"  id="search" placeholder="search" style="height : 26px;padding-bottom: 0px; padding-top: 0px;" class="form-control">
+                             <input type="text"  id="searchfor" placeholder="search" style="height : 26px;padding-bottom: 0px; padding-top: 0px;" class="form-control">
                              <span class="input-group-btn">
-                                 <button type="button" id="keyword"  class="btn btn-default" style="height : 26px; border-bottom-width: 0px;">
+                                 <button type="submit" id="keyword" onclick="searchingform()" class="btn btn-default" style="height : 26px;">
                                     <p class="glyphicon glyphicon-search">
                                  </button>
                              </span>
@@ -164,56 +165,6 @@ if ($requestedPage == "project.php") {
 </div>
   </div>
  
-<script>
-	
-    function show_search_results(challenges){
-        var resp = "<div class='list-group'><div class='list-group-item'> <p style='line-height: 20.50px;font-size: 15px'>Search Results</p></div>";
-        for (var i = 0; i < challenges.length; i++) {
-            var resultNumber = i+1;
-            
-            resp = resp +"<div class='list-group-item'><div class ='row'><div class='col-md-1' style = 'width : 1%;'>"+"</div><div class ='col-md-9'> <a class='btn btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id="+challenges[i].challenge_id+"'>"+challenges[i].challenge_title+"</a><br>&nbsp;&nbsp;"+challenges[i].stmt+"..</br></div></div></div>"; 
-        }
-        return resp+"</div>";
-    }
-    function show_search_results_id(challenges){
-        var id = "";
-        for (var i = 0; i < challenges.length; i++) {
-            id = id + challenges[i].challenge_id+"<br/>" ; 
-        }
-        return id;
-    }
-    $(document).ready(function(){
-        $("#keyword").click(function(){
-            var keyword1 = $("#search").val() ;
-            //alert(keyword1);
-            var dataString = 'keyword='+ keyword1 ;
-            //alert(dataString);
-            if(keyword1==''){
-                alert("Please Enter Something !!!");
-            }	else {
-                $.ajax({
-                    type: "GET",
-                    url: "search.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        //alert(result);
-                        challenges = JSON.parse(result);
-                        //alert(challenges);
-                        //alert(show_search_results(challenges));
-                        document.getElementById("home-ch").innerHTML = show_search_results(challenges);
-                        //document.getElementById("home").innerHTML = show_search_results_id(challenges);
-                        //alert(show_search_results(challenges));
-                        //alert(challenges[0].stmt);			
-                    }
-                });
-            }
-        });
-    });	
-
-
-
-</script>
 <!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">

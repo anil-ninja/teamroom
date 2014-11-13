@@ -1,6 +1,6 @@
 <?php
 include_once "../models/rank.php";
-include_once '../functions/delete_comment.php';
+//include_once '../functions/delete_comment.php';
 include_once '../functions/collapMail.php';
 function signup(){
 	include_once "db_connect.php";
@@ -13,12 +13,10 @@ function signup(){
 	$awe = mysqli_real_escape_string($db_handle, $_POST['password2']) ;
 	
 	if ( $pas == $awe ) {
-            $email_already_registered = mysqli_query($db_handle, "SELECT COUNT('email') as email FROM user_info WHERE email = '$email';");
-            $already_registered_email = mysqli_fetch_array($email_already_registered);
-            $email_exists = $already_registered_email['email'];
-            $username_already_registered = mysqli_query($db_handle, "SELECT COUNT('username') as username FROM user_info WHERE username = '$username';");
-            $already_registered_username = mysqli_fetch_array($username_already_registered);
-            $username_registered = $already_registered_username['username'];
+            $email_already_registered = mysqli_query($db_handle, "SELECT email FROM user_info WHERE email = '$email';");
+            $email_exists = mysqli_num_rows($email_already_registered) ;
+            $username_already_registered = mysqli_query($db_handle, "SELECT username FROM user_info WHERE username = '$username';");
+            $username_registered = mysqli_num_rows($username_already_registered);
             if ($email_exists != 0) {
                 //header('Location: ./index.php?status=3');
                 echo "User is reistered with this Email,<br>
@@ -31,20 +29,20 @@ function signup(){
             }
             else {
 				$pas = md5($pas);
-		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password) VALUES 
-				('$firstname', '$lastname', '$email', '$username', '$pas') ; ") ;
+		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password) VALUES ('$firstname', '$lastname', '$email', '$username', '$pas') ; ") ;		
                 $user_create_id = mysqli_insert_id($db_handle);
-                $hash_key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
-                mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ($user_create_id, $hash_key);");
-                //$id_access_id = mysqli_query($db_handle, "SELECT id FROM user_access_aid WHERE user_id = $user_create_id;");
-                $id_access_id = mysqli_insert_id($db_handle);
-                $hash_key= $hash_key.".".$id_access_id;
-                $body = "http://collap.com/verifyEmail.php?hash_key=$hash_key";
+               // echo $user_create_id ;
+                $hash_keyR = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
+                mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_create_id', '$hash_keyR');");
+                $id_access_id =  mysqli_insert_id($db_handle);
+                $hash_keyR = $hash_keyR.".".$id_access_id;
+                //echo $hash_keyR ;
+                $body = "http://collap.com/verifyEmail.php?hash_key='".$hash_keyR."'";
                 
                 collapMail($email, "notification", $body);
                 
 		if(mysqli_error($db_handle)){
-			echo "Please try again";
+			echo "Please Try Again";
 		} else {
 
 		$_SESSION['user_id'] = $user_create_id;
