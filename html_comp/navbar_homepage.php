@@ -68,7 +68,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                         <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
                                         <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
                                     //team name with related project       
-                                            $teams_name_display = mysqli_query($db_handle, ("select team_name, project_id from teams where user_id= '$user_id' AND project_id='$pro_id';"));
+                                            $teams_name_display = mysqli_query($db_handle, ("select DISTINCT team_name, project_id from teams where user_id= '$user_id' AND project_id='$pro_id';"));
                                             while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                                 $team_name = $teams_name_displayRow['team_name'];
                                                 $team_project_id = $teams_name_displayRow['project_id'];
