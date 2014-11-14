@@ -7,8 +7,12 @@ $hash_and_id = explode('.', $hash_key_access_id);
 $hash_key = $hash_and_id[0];
 $access_aid_id = $hash_and_id[1];
 
-$verify_check = mysqli_query($db_handle, "SELECT user_id FROM user_access_aid WHERE hash_key ='$hash_key' AND id = '$access_aid_id';");
-mysqli_query ($db_handle, "UPDATE user_access_aid SET status='1' WHERE user_id = $access_aid_id;");
+$verify_check = mysqli_query($db_handle, "SELECT user_id FROM user_access_aid WHERE hash_key ='$hash_key' AND id = '$access_aid_id' AND status='0';");
+if (mysqli_num_rows($verify_check) == 0) {
+    header('location: index.php');
+    exit;
+}
+
 $accessed_or_not = mysqli_num_rows($verify_check);
 
     $verify_checkRow = mysqli_fetch_array($verify_check);
@@ -20,6 +24,7 @@ $accessed_or_not = mysqli_num_rows($verify_check);
         if ($passnew == $passnew2) {
             $passnew = md5($passnew);
             mysqli_query($db_handle,"UPDATE user_info SET  password ='$passnew' WHERE user_id = '$verify_check_user_id';");
+            mysqli_query ($db_handle, "UPDATE user_access_aid SET status='1' WHERE id = $access_aid_id;");
             $user_info = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$verify_check_user_id';");
             $user_infoRow = mysqli_fetch_array($user_info);
             $user_create_id = $user_infoRow['user_id'];
@@ -41,10 +46,12 @@ $accessed_or_not = mysqli_num_rows($verify_check);
                 if (isset($_SESSION['first_name'])) {
                     header ('location: ninjas.php');
                 } else {
-                    
+                    header('location: #');
                 }
                 exit;
             }
+            
+            
         }
         else {
             echo "Password don't match, Try again";
@@ -98,7 +105,6 @@ $accessed_or_not = mysqli_num_rows($verify_check);
             <div class="form-group">
                 <div class="col-lg-5">
                     <input type="password" class="form-control" name="passwordnewchange1" id="example" placeholder="password" /><br>
-                    <span id="error_msg" style="color:red"></span>
                     <input type="password" class="form-control" name="passwordnewchange2" placeholder="Re-enter password"/><br/><br/>
                     <input type="submit" class="btn btn-primary btn-lg" name = "updatePassword" id="validate" value = "Update">
                 </div>
@@ -107,13 +113,7 @@ $accessed_or_not = mysqli_num_rows($verify_check);
             <?php   } ?>
         </div>
     <script>
-        $("#validate").click(function(){
-        var inputStr = $("#example").val();
-    if(inputStr.length<5)
-        $("#error_msg").html("enter atleast 5 chars in the input box");
-    else
-        $("#form_elem").submit();      
-})
+
     </script>
     </body>
 </html>
