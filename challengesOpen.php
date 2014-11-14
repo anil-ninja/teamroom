@@ -43,9 +43,10 @@
     </head>
     <body>
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
+       <div class=" media-body" style="padding-top: 35px;">
         <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-7">
+            <div class="col-md-1"></div>
+            <div class="col-md-7">
                 <?php
                 
                     challenge_display($db_handle, $challengeSearchID);
@@ -128,6 +129,7 @@
                 <li>Posted by: Dpower4</li>
                 <li>Copyright @ 2014</li>
             </ul>
+        </div>
         </div>
         
         <script>

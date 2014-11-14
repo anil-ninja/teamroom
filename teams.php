@@ -64,8 +64,9 @@ $total_members = mysqli_num_rows($teams_member_display);
         	<div class="panel">
             <div class='panel-body'>
         	    <?php
-        	    	echo "<p style='color :#3B5998';>".$project_team_title." Teams </p><br>";
-        	    	$teams_name_display = mysqli_query($db_handle, ("select team_name, project_id from teams where user_id= '$user_id' AND project_id='$team_project_id';"));
+        	    	echo "<p style='color :#3B5998;' class='color strong'>
+                                <a href='project.php?project_id=$team_project_id'>".ucfirst($project_team_title)."</a> Teams </p><br>";
+        	    	$teams_name_display = mysqli_query($db_handle, ("select DISTINCT team_name, project_id from teams where user_id= '$user_id' AND project_id='$team_project_id';"));
                         while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                             $list_of_teams = $teams_name_displayRow['team_name'];
                             $team_project_id = $teams_name_displayRow['project_id'];
