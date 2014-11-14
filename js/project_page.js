@@ -141,12 +141,12 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var answerchal = $("#answerchal").val() ;
 			var answercid = $("#answercid").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal)))) + '&cid='+ answercid ;
-			//alert(dataString);
 			if(answerchal==''){
 				bootstrap_alert(".alert_placeholder", "Answer can not be empty", 5000,"alert-warning");
 			}
 			else {
+                        var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal)))) + '&cid='+ answercid ;
+			alert(dataString);
 				//$("#answerForm").hide();
 				//file upload
 			var _file = document.getElementById('_fileanswer');
