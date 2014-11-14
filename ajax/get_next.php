@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
@@ -7,11 +6,8 @@ if ($_POST['chal']) {
     $user_id = $_SESSION['user_id'];
     $limit = $_SESSION['lastpanel'];
     $username = $_SESSION['username'];
-
     $a = (int) $limit;
-
     $b = $a + 5;
-
     $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
                                                 a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation, b.first_name, b.last_name, b.username from challenges
                                             as a join user_info as b where a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' 

@@ -120,7 +120,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}	
 		});
 
-
 		$("#submit_ch").click(function(){
       		$("#submit_ch").attr('disabled','disabled');
 			var challenge = $("#challange").val() ;
