@@ -45,7 +45,7 @@ include_once 'functions/delete_comment.php';
        <div class='footer' style='margin-left: 1000px; margin-right: 50px;'><button id='talkpro' class='btn-link' type='submit' >Project Talk</button> </div>
        <div class='footer' id='talkprForm' style='margin-left: 1000px; margin-right: 50px; margin-bottom: 30px; height: 300px; overflow-y: auto; overflow-x: hidden;'>  
        <?php 
-       echo "<div id='protalk'><div class='list-group'>
+       echo "<div class='list-group'>
 				<div class='list-group-item'>" ;
 
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
@@ -81,7 +81,6 @@ echo "<div class='comments clearfix'>
 			</form>
 		</div>
 	</div>
-</div>
 </div>" ;
 ?>
 </div>
@@ -89,8 +88,8 @@ echo "<div class='comments clearfix'>
        $(document).ready(function(){
 			$("#talkprForm").toggle();
 			$("#talkpro").click(function(){
-				$("#talkprForm").toggle(100);
-				//$("#protalk").scrollTop($('#protalk').height()) ;
+				$("#talkprForm").toggle();
+				$("#talkprForm").scrollTop($('#talkprForm').height()) ;
 				//$("#protalk").animate({ scrollTop: $(document).height() }, "fast") ;
 				//return false;
 				//var box = document.getElementById('protalk');
