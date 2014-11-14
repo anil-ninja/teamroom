@@ -15,22 +15,23 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     $user_id_access = $user_id_access_aidRow['user_id'];
     $hash_key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
     mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_id_access', '$hash_key');");
-    
+
     $id_access_id = mysqli_insert_id($db_handle);
     $hash_key = $hash_key.".".$id_access_id;
-    $body = "http://collap.com/forgetPassword.php?hash_key='$hash_key'";
+    $body = "http://collap.com/forgetPassword.php?hash_key=$hash_key";
 
     collapMail($email_req, "Update password", $body);
+    if(mysqli_error($db_handle)){
+        header('location: #');
+    } 
+    else {
     echo "<div class='jumbotron'>
             <p align='center'> Please check your Email, shortly you get an email, Go through your email and change your password<br>
             <a href='index.php'><br>Go Back</a></p>
         </div>";
-
-    if(mysqli_error($db_handle)){
-            echo "Please try again";
     }
+    
 }
-//include_once "controllers/login_controller.php";
 ?>
 
 <!DOCTYPE html>
@@ -199,7 +200,6 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     }
                 }
             </script>
-            <!-----signup valiation ends -------------and login validation added here--->
 
             <script type="text/javascript" src="js/username_email_check.js"></script>
             
