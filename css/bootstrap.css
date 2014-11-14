@@ -29,6 +29,16 @@ section,
 summary {
   display: block;
 }
+.footer {
+  position: fixed;
+  right: 0;
+  min-height: 20px;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  background-color: lightblue;
+  text-align: center;
+}
 audio,
 canvas,
 progress,

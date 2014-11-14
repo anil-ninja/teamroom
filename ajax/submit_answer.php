@@ -8,7 +8,7 @@ if($_POST['answer']){
 		$notestext = $_POST['answer'] ;
 		$image = $_POST['img'] ;
 		$notes = $image."<br/> ".$notestext ;
-		$a = date("y-m-d H:i:s") ;
+		$a = date("Y-m-d H:i:s") ;
 		involve_in($db_handle,$user_id,"5",$pro_id); 
        events($db_handle,$user_id,"5",$pro_id);
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $pro_id ; ") ;
