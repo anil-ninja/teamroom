@@ -74,6 +74,9 @@ if(!isset($_SESSION['user_id'])){
     <script src="js/bootswatch.js"></script>
     <script src="js/project_page.js"></script>
    <script src="js/date_time.js"></script>
+   
+   <script type="text/javascript" src="date.js"></script>
+<script type="text/javascript" src="jquery.simple-dtpicker.js"></script>
 </body></html>
 <?php
 mysqli_close($db_handle);

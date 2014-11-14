@@ -6,11 +6,8 @@ if($_POST['reminder']){
 	$reminder = $_POST['reminder'] ;
 	$self = $_POST['self'] ;
 	$eventtime = $_POST['eventtime'] ;
-	$timestr = time() + $eventtime ;
-	//echo = $timestr ;
-	$time = date("Y-m-d H:i:s", $timestr);
 	//echo $time ;
-	
+	$time = $eventtime.":00" ;
  if (strlen($reminder) < 250) {
         mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time) 
                                     VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;

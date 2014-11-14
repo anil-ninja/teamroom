@@ -273,16 +273,12 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$("#remind").click(function(){
 			var reminder = $("#reminder").val() ;
 			var self = $("#self").val() ;
-			var month = parseInt($("#month").val());
-			var date = parseInt($("#date").val());
-			var hour = parseInt($("#hour").val());
-			var minute = parseInt($("#minute").val());
-			var eventtime = parseInt((((month*30+date)*24+hour)*60+minute)*60) ;
+			var eventtime = $("#datepick").val() ;
 			if(reminder==''){
 				bootstrap_alert(".alert_placeholder", "Reminder can not be empty", 5000,"alert-warning");
 				return false;
 			}
-			else if (month == '0' && date == '0' && hour == '0' && minute == '0') {
+			else if (eventtime == "") {
 				bootstrap_alert(".alert_placeholder", "Please Select Date and Time ", 5000,"alert-warning");
 				return false;
 				}
@@ -299,10 +295,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					if(result=='Reminder Set succesfully!'){
 						$("#reminder").val("") ;
 						$("#self").val("") ;
-						$("#month").val("") ;
-						$("#date").val("") ;
-						$("#hour").val("") ;
-						$("#minute").val("") ;
+						$("#datepick").val("") ;
 					location.reload();
 					}
 				}

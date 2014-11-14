@@ -103,50 +103,8 @@
                         ?>
                     </select><br/><br/>
 								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
-                              	<div class="inline-form">
-                    Show After(Set Date and Time) :  
-                    <select class="btn-info btn-xs"  id= "month" >	
-                        <option value='0' selected >Month</option>
-                        <?php 
-                        $m = 1;
-                        while ($m <= 12) {
-                            echo "<option value='" . $m . "' >" . $m . "</option>";
-                            $m++;
-                        }
-                        ?>
-                    </select>&nbsp;&nbsp;
-                    <select class="btn-info btn-xs"  id= "date" >	
-                        <option value='0' selected >Date</option>
-                        <?php
-                        $d = 1;
-                        while ($d <= 30) {
-                            echo "<option value='" . $d . "' >" . $d . "</option>";
-                            $d++;
-                        }
-                        ?>
-                    </select>&nbsp;&nbsp;&nbsp;
-                    <select class="btn-info btn-xs"  id= "hour" >	
-                        <option value='0' selected >hour</option>
-                        <?php
-                        $h = 1;
-                        while ($h <= 23) {
-                            echo "<option value='" . $h . "' >" . $h . "</option>";
-                            $h++;
-                        }
-                        ?>
-                    </select>&nbsp;&nbsp;&nbsp;
-                    <select class="btn-info btn-xs"  id= "minute" >	
-                        <option value='0' selected >minute</option>
-                        <?php
-                        $o = 1;
-                        while ($o <= 59) {
-                            echo "<option value='" . $o . "' >" . $o . "</option>";
-                            $o++; 
-                        } 
-                        ?>
-                    </select>				
-                       </div><br/><br/> 
-               <!---         //<div id="asdf" ></div> --->   	
+                              	<input type="text" id ="datepick" ><br/><br/>
+	   	
                             <input type="submit" class="btn btn-primary btn-sm" id = "remind" value = "Set"><br/><br/>
                         </div>
                         <div class="modal-footer">
@@ -156,3 +114,10 @@
                 </div>
             </div>
             <!--end modle-->
+<script type="text/javascript">
+	$(function(){
+		$('#datepick').appendDtpicker();
+	});
+</script>
+
+<link type="text/css" href="jquery.simple-dtpicker.css" rel="stylesheet" />
