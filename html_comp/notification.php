@@ -286,7 +286,8 @@
 			else {
 				echo "<p class='navbar-text' style ='cursor: pointer; color: red;'>" ;
 				}
-				echo "<i class='glyphicon glyphicon-bell'></i><span class='badge'>".$y."</span></p></a>
+				echo "
+				<i class='glyphicon glyphicon-bell'></i><span class='badge'>".$y."</span></p></a>
 						<ul class='dropdown-menu multi-level' style=' max-height: 300px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
 							<li>".$notice."</li>
 							<li>See All</li>
