@@ -6,7 +6,6 @@ $headers[] = "Content-type: text/plain; charset=iso-8859-1";
 $headers[] = "From: Collap.com Support <support@collap.com>";
 $headers[] = "Bcc: ";
 $headers[] = "Reply-To: Collap.com Support <support@collap.com>";
-$headers[] = "Subject: {$subject}";
 $headers[] = "X-Mailer: PHP/".phpversion();
 
 mail($to, $subject, $body, implode("\r\n", $headers));
