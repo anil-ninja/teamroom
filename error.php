@@ -34,9 +34,9 @@ if (isset($_POST['logout'])) {
 <?php 
     include_once 'html_comp/navbar_homepage.php'; 
 ?>
-        <div class="row">
+        <div class="row" style="padding-top: 35px;">
             <div class="col-lg-1"></div>
-            <div class="col-lg-6">
+            <div class="col-lg-8">
                 <?php
                     $top_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.blob_id, a.challenge_title, a.challenge_creation, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                                         WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND blob_id = '0' AND challenge_status ='1' and a.user_id=b.user_id)
@@ -118,9 +118,10 @@ if (isset($_POST['logout'])) {
         }
     ?>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
            <?php 
                 echo "<div class='bs-component'>
+                <div class = 'list-group'>
                         <font size='4'><h3 class='panel-title'><p>Projects</p></h3></font><hr>";
                 $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 100) as stmt FROM projects 
                                                         WHERE project_type = '1' AND blob_id = '0')  
@@ -131,9 +132,9 @@ if (isset($_POST['logout'])) {
                     $project_id_display = $projectsRow['project_id'];
                     $project_title_display = $projectsRow['project_title'];
                     $project_title_stmt = str_replace("<s>", "&nbsp;", $projectsRow['stmt']) ;
-                    echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>
-                        <a href='project.php?project_id=$project_id_display'>".$project_title_display."</a></b></p>"
-                    .$project_title_stmt."....<br>";
+                    echo " <div class='list-group-item' ><b>
+                        <a href='project.php?project_id=$project_id_display'>".$project_title_display.":</a></b>"
+                    .$project_title_stmt."....<br></div>";
                     }
                 echo "<br><hr><font size='4'><h3 class='panel-title'><p>Top Users</p></h3></font><hr>";
                 $top_users = mysqli_query($db_handle, "SELECT first_name, last_name, username FROM user_info ORDER BY rand() LIMIT 10 ;");
@@ -148,6 +149,8 @@ if (isset($_POST['logout'])) {
             ?>
                 
             </div>
+            </div>
+        </div>
         </div>
         <div class="col-md-6 pull-right">
             <ul class="list-inline">
