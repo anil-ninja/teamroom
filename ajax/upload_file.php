@@ -133,8 +133,26 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				break;
 		}
     //  echo "fileName: ".$fileName; taskPic
-  } else {
-    echo "Invalid File type only jpeg, jpg and png are allowed";
+  } 
+  else if (($_FILES["file"]["type"] == "application/doc")
+            || ($_FILES["file"]["type"] == "application/docx") 
+            ||  ($_FILES["file"]["type"] == "application/pdf")
+            ||  ($_FILES["file"]["type"] == "application/ppt")
+            ||  ($_FILES["file"]["type"] == "application/odt")
+            ||  ($_FILES["file"]["type"] == "application/rar")
+            ||  ($_FILES["file"]["type"] == "application/zip")
+            ||  ($_FILES["file"]["type"] == "application/xls")
+            ||  ($_FILES["file"]["type"] == "application/txt")){
+				$pictu = explode(".", $_FILES["file"]["name"]) ;
+				$picture = $pictu['1'] ;
+				$link = "<img src= \"img/".$picture.".jpg\" style= \"max-width: 100%;\" />" ;
+				$filePath = checkNCreateFolder($username,"files")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
+					saveFile($filePath) ;
+					echo "<a href=\"".substr($filePath, 3)."\" >".$link."</a> ";
+	  
+	  }
+  else {
+    echo "File Format Not Supported";
     //echo "Type: " . $_FILES["file"]["type"] . "<br>";
   }
 }
