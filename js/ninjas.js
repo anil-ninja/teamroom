@@ -28,6 +28,41 @@ function bootstrap_alert(elem, message, timeout,type) {
   }
 };
 
+function getnewtalk(unix, id) {	
+	//alert (unix) ;
+	var dataString = 'talks='+ id + '&time=' + unix ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/protalk.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('.newtalks').append(result);
+				}
+			});
+}
+
+function timeStamp() {
+// Create a date object with the current time
+var now = new Date();
+ 
+// Create an array with the current month, day and time
+var date = [ now.getFullYear(), now.getMonth() + 1, now.getDate() ];
+ 
+// Create an array with the current hour, minute and second
+var time = [ now.getHours(), now.getMinutes(), now.getSeconds() - 2 ];
+ 
+// If seconds and minutes are less than 10, add a zero
+for ( var i = 0; i < 3; i++ ) {
+if ( time[i] < 10 ) {
+time[i] = "0" + time[i];
+}
+}
+ 
+// Return the formatted string
+return date.join("/") + " " + time.join(":") ;
+}
 	$(document).ready(function(){
 		
 		$("#create_video").click(function(){
@@ -310,6 +345,34 @@ function bootstrap_alert(elem, message, timeout,type) {
 			 });
 			}	
 		});
+		
+		$("#resp_projecttalk").click(function(){
+			var pr_resptalk = $("#pr_resptalk").val() ;
+			var id = $("#talkid").val() ;
+			var unix = timeStamp();
+			//alert (id) ;
+			if(pr_resptalk==''){
+				bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
+				return false;
+			}
+			 else {
+				var dataString = 'talk='+ pr_resptalk ;
+				$.ajax({
+					type: "POST",
+					url: "ajax/project_talks.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						//alert(result);
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						if(result=='Posted succesfully!'){
+							$("#pr_resptalk").val("") ;
+							getnewtalk(unix,id) ;
+						}
+					}
+				 });
+				}	
+			});
 			
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
