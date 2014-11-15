@@ -213,7 +213,15 @@ function bootstrap_alert(elem, message, timeout,type) {
 	function submitCreateArticle(ilink,data,url){
 		//alert(ilink) ;
 		if (ilink != "") {
-		var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" />";
+		var res = ilink.split(".");
+		//alert (res['1']);
+			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
+				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" />";
+			}
+				else {
+					var imgTx = ilink+"" ;
+					}
+			//alert(imgTx);
 		var dataString = data + '&img='+ imgTx ;
 		//alert(dataString) ;
 		}
@@ -228,7 +236,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				cache: false,
 				success: function(result){
 					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					bootstrap_alert(".alert_placeholder", result, 55000,"alert-success");
 					if(result=='Posted succesfully!'){
 					location.reload();
 					}
