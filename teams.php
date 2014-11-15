@@ -53,14 +53,9 @@ $total_members = mysqli_num_rows($teams_member_display);
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
         <div class=" media-body" style="padding-top: 35px;"></div>
+        
         <div class='row'>
-        	<p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>
-        	<?= ucfirst($team_name)." (<a href='project.php?project_id=$team_project_id'>".$project_team_title."</a>) <a class='badge'>".$total_members."</a>";?>
-        		
-        	</b></p>
-        </div>
-        <div class='row'>
-        <div class='col-md-2'>
+        <div class='col-md-3'>
         	<div class="panel">
             <div class='panel-body'>
         	    <?php
@@ -77,20 +72,26 @@ $total_members = mysqli_num_rows($teams_member_display);
         	</div>
             </div>
     	</div>
-    	<div class="col-md-9">
+    	<div class="col-md-8">
         <div class="panel">
-        <div class='panel-body'>
+        <div class='panel-body' style="padding-left: 35px;">
             <div class='alert_placeholder'> </div>
-            
-    	<?php
-                $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$team_project_id';");
+            <div class='row'>
+            <div class="col-md-8">
+            <p  style='font-size: 14pt; color :#3B5998;'  ><b>
+            <?= ucfirst($team_name)." (<a href='project.php?project_id=$team_project_id'>".$project_team_title."</a>) <a class='badge'>".$total_members."</a>";?>
+                
+            </b></p>
+        </div>
+        <div class="col-md-3">
+        <?php
+            $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$team_project_id';");
                 $team_ownerRow = mysqli_fetch_array($teams_owner_add);
                 $team_owner_project = $team_ownerRow['team_owner'];
                     if ($team_owner_project == $user_id) {
-                       echo "<div class='col-md-2'>
-                           
+                       echo "                        
                                 <div class='dropdown'>
-                                    <button class='btn btn-success dropdown-toggle glyphicon glyphicon-plus' id='dropdownMenu1' data-toggle='dropdown'> Add</button>
+                                    <button class='btn-link dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'> + Add New Teammate</button>
                                     <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
                                         <li><form method='POST'>
                                             <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/>
@@ -101,8 +102,16 @@ $total_members = mysqli_num_rows($teams_member_display);
                                         </li>
                                     </ul>
                                 </div>
-                            </div>";
+                            ";
                     }
+                    ?>
+        </div>
+        </div>
+
+        <hr/>
+            
+    	<?php
+                
     		while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
                     $firstname = $teams_member_displayRow['first_name'];
                     $username = $teams_member_displayRow['username'];
@@ -110,17 +119,25 @@ $total_members = mysqli_num_rows($teams_member_display);
                     $rank = $teams_member_displayRow['rank'];
                     $user_id_member = $teams_member_displayRow['user_id'];
                     
-                        echo "<div class='col-md-2'>
-                                <img src='uploads/profilePictures/$username.jpg'  style='width:25%' onError=this.src='img/default.gif' class='img-circle img-responsive'>";
+                        echo "<div class='row col-md-3' style='background : #EEF8F2;padding: 5px; margin-right:60px;margin-bottom:10px;'>
+                                <div class ='col-md-3' style='padding:1px;'>
+                                <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
+                                </div>";
+                        
+                        echo "<div class = 'col-md-8' style='font-size:12px;padding: 7px;'><span class='color pull-left' ><a href ='profile.php?username=" . $username . "'>" 
+                                    .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br/><span style='font-size:10px;'>"
+                                    .$rank."</span></div>";
                         if ($team_owner_project == $user_id && $user_id_member != $user_id) {
-                          echo "<input type='hidden' id ='team_name' value='" .$team_name. "'/>
+                          echo "<div class = 'col-md-1' style='font-size:12px;padding-left: 3px; padding-right: 0px;'><input type='hidden' id ='team_name' value='" .$team_name. "'/>
                                 <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
                                 <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
-                                <button type='submit' class='glyphicon glyphicon-minus pull-top' style='top: -28px; margin: -20px;' id='remove_member' onclick='remove_member_team();'></button>";
+                                <button type='submit' class='btn-link' id='remove_member' onclick='remove_member_team();'data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>x</button>
+                                </div>";
                         }
-                        echo "<span class='color strong pull-left'><a href ='profile.php?username=" . $username . "'>" 
-                                    .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br>"
-                                    .$rank."</div>";
+
+
+
+                        echo "</div>";
                 }
         ?>
 </div>
