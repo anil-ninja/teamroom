@@ -219,9 +219,9 @@ function bootstrap_alert(elem, message, timeout,type) {
 				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" />";
 			}
 				else {
-					var imgTx = ilink+"" ;
+					var imgTx = ilink ;
 					}
-			//alert(imgTx);
+			if (imgTx.length < 30) { alert(imgTx); }
 		var dataString = data + '&img='+ imgTx ;
 		//alert(dataString) ;
 		}

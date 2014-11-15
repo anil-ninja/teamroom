@@ -25,6 +25,7 @@ function saveFile($filePath){
 	
 if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
   $username = $_SESSION['username'];
+  //echo $_FILES["file"]["type"];
   if(($_FILES["file"]["type"] == "image/jpeg")
             || ($_FILES["file"]["type"] == "image/jpg") 
             ||  ($_FILES["file"]["type"] == "image/png")
@@ -134,15 +135,15 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 		}
     //  echo "fileName: ".$fileName; taskPic
   } 
-  else if (($_FILES["file"]["type"] == "application/doc")
-            || ($_FILES["file"]["type"] == "application/docx") 
+  else if (($_FILES["file"]["type"] == "application/msword")
+            || ($_FILES["file"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") 
             ||  ($_FILES["file"]["type"] == "application/pdf")
-            ||  ($_FILES["file"]["type"] == "application/ppt")
-            ||  ($_FILES["file"]["type"] == "application/odt")
-            ||  ($_FILES["file"]["type"] == "application/rar")
-            ||  ($_FILES["file"]["type"] == "application/zip")
-            ||  ($_FILES["file"]["type"] == "application/xls")
-            ||  ($_FILES["file"]["type"] == "application/txt")){
+            ||  ($_FILES["file"]["type"] == "application/vnd.ms-powerpoint")
+            ||  ($_FILES["file"]["type"] == "application/vnd.oasis.opendocument.text")
+            ||  ($_FILES["file"]["type"] == "application/x-rar")
+            ||  ($_FILES["file"]["type"] == "application/x-zip")
+            ||  ($_FILES["file"]["type"] == "application/vnd.ms-excel")
+            ||  ($_FILES["file"]["type"] == "application/plain")){
 				$pictu = explode(".", $_FILES["file"]["name"]) ;
 				$picture = $pictu['1'] ;
 				$link = "<img src= \"img/".$picture.".jpg\" style= \"max-width: 100%;\" />" ;
