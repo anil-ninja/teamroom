@@ -106,16 +106,30 @@ $obj = new profile($UserName);
 
     <body style="background:#FFF;">
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
-         <div class='alert_placeholder'></div>
+         
         <div class=" media-body" style="padding-top: 35px;">
         <div class="col-md-3">
         <?php
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>";
-            }
-            echo "<br/><hr/><span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong>
-                  <br/>&nbsp;&nbsp;(".$_SESSION['rank'].")</span>
+                echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>
+                    <div class='alert_placeholder'> </div>";
+            
+            echo "<br/><hr/><span class='glyphicon glyphicon-user'></span><strong> <span id='first_name'>" 
+                        . ucfirst($profileViewFirstName)."</span> <span id='last_name'>".ucfirst($profileViewLastName)."</span></strong>
+                            <button onclick='showMsg();' id='showEdit' class='glyphicon glyphicon-pencil'></button>";
+                            echo "<div id='editName'>
+                                <form class='inline-form'>
+                                    <input type ='text' id='edit_first' value=".ucfirst($profileViewFirstName).">
+                                    <input type ='text' id='edit_last' value=".ucfirst($profileViewLastName).">
+                                </form>
+                            </div>
+                            <button onclick='hideMsg();' id='showUpdate'>Update</button>";
+            } 
+            else {
+                echo "<br/><hr/><span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong>";
+            } 
+             echo "<br/>&nbsp;&nbsp;(".$_SESSION['rank'].")</span>
                   <br/><span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>
                   <br/><span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
                   <br/><span><br/>Skills:";
@@ -387,7 +401,74 @@ $obj = new profile($UserName);
 
         <script type="text/javascript" src="js/loginValidation.js"></script>
         <script type="text/javascript" src="js/signupValidation.js"></script>
-        
+        <script>
+            var hiddenFirst = document.getElementById("first_name");
+            var hiddenLast = document.getElementById("last_name");
+            var hideEdit = document.getElementById("showEdit");
+            var hideUpdate = document.getElementById("showUpdate");
+            var element = document.getElementById("editName");
+            element.style.visibility = "hidden";
+            hideUpdate.style.visibility = "hidden";
+            
+            function showMsg(){
+                element.style.visibility = "visible";
+                hiddenFirst.style.visibility = "hidden";
+                hiddenLast.style.visibility = "hidden";
+                hideEdit.style.visibility = "hidden";
+                hideUpdate.style.visibility = "visible";
+            }
+            
+            function hideMsg() {
+                var edited_first = document.getElementById("edit_first").value;
+                var edited_last = document.getElementById("edit_last").value;
+                var dataString = 'new_first=' + edited_first + ('&new_last=') + edited_last;
+                alert(dataString);
+                if (edited_first == "") {
+                    bootstrap_alert(".alert_placeholder", "First name can not be empty", 5000,"alert-warning");
+                }
+                else if (edited_first.length > 11) {
+                    bootstrap_alert(".alert_placeholder", "First name can not be more than 11", 5000,"alert-warning");
+                } 
+                if (edited_last == "") {
+                    bootstrap_alert(".alert_placeholder", "Last name can not be empty", 5000,"alert-warning");
+                }
+                else if (edited_last.length > 11) {
+                    bootstrap_alert(".alert_placeholder", "Last name can not be more than 11", 5000,"alert-warning");
+                }
+                else {
+                    $.ajax ({
+                        type: "POST",
+                        url: "ajax/editNameProfile.php",
+                        data: dataString,
+                        cache: false,
+                        success: function(result){
+                            bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+                            if(result=='Updated successfuly'){
+                                //location.reload();
+                                document.getElementById("first_name").innerHTML = edited_first;
+                                document.getElementById("last_name").innerHTML = edited_last;
+                                hiddenFirst.style.visibility = "visible";
+                                hiddenLast.style.visibility = "visible";
+                                hideEdit.style.visibility = "visible";
+                            }
+                        }
+                    });
+                }
+                element.style.visibility = "hidden";
+                hideUpdate.style.visibility = "hidden";
+            }
+        </script>
+        <script>
+            function bootstrap_alert(elem, message, timeout,type) {
+                $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; right: 20%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
+
+                if (timeout || timeout === 0) {
+                    setTimeout(function() { 
+                    $(elem).show().html('');
+                    }, timeout);    
+                }
+            };
+        </script>
         <script type="text/javascript">
             function checkForm() {
                 if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
