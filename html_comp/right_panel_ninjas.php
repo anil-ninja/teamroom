@@ -103,7 +103,7 @@
                         ?>
                     </select><br/><br/>
 								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
-                              	<input type="text" id ="datepick" ><br/><br/>
+                              	<input type="text" id ="datepick" placeholder='Reminder Time & Date'><br/><br/>
 	   	
                             <input type="submit" class="btn btn-primary btn-sm" id = "remind" value = "Set"><br/><br/>
                         </div>

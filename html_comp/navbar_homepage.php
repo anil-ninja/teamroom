@@ -145,7 +145,7 @@ if ($requestedPage == "project.php") {
             </div>
         </div>" ;
 }
-	else {
+	else if ($requestedPage == "ninjas.php"){
 		echo "     
         <div class='nav navbar-inverse ' >
             <div class='col-md-offset-3 col-md-9 col-lg-9'>
@@ -160,6 +160,15 @@ if ($requestedPage == "project.php") {
             </div>
         </div> " ;
 }
+else {
+	echo "     
+        <div class='nav navbar-inverse ' >
+            <div class='col-md-offset-3 col-md-9 col-lg-9'>
+                <div class='list-inline' style='background:#3BD78C;'>
+                </div>
+            </div>
+        </div> " ;
+	}
 }
 ?>
 </div>

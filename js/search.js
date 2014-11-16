@@ -22,7 +22,31 @@
          }
     });
 });
-
+//setInterval(function(){
+	//	var time = $("#sessiontime").val() ;
+		//var uid = $("#noteiceid").val() ;
+			//	getnewnote(time, uid) ;
+//},30000)();
+function getnewnote(unix, id) {	
+	//alert (unix) ;
+	var dataString = 'time='+ unix + '&uid=' + id ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/newnote.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					var notice = result.split("+") ;
+					alert (notice['0']) ;
+					//document.getElementById("newtalks").innerHTML = result ;
+					$('.newnotices').append(notice['0']);
+					var num = parseInt($("#countnotice").val()) ;
+					var newnum = parseInt(num + parseInt(notice['1'])) ;
+					document.getElementById("countnotice").innerHTML = newnum+='' ;
+				}
+			});
+}
      function searchingform() {
             var keyword1 = $("#searchfor").val() ;
             //alert(keyword1);

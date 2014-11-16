@@ -1,102 +1,3 @@
-<?php
- //include_once 'kanban.php';
-$project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
-												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
-                                                UNION
-                                                (SELECT a.user_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
-                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
-$project_row = mysqli_fetch_array($project);
-$p_uid = $project_row['user_id'];
-$projectst = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_row['stmt'])));
-$fname = $project_row['first_name'];
-$projectcreation = $project_row['project_creation'];
-$lname = $project_row['last_name'];
-$username_project = $project_row['username'];
-$projecteta = $project_row['project_ETA'];
-$timepr = eta($projecteta);
-$prtime = remaining_time($projectcreation, $projecteta);
-echo "<div class='list-group'>
-        <div class='list-group-item'>
-            <div class='pull-left lh-fix'>     
-                <span class='glyphicon glyphicon-question-sign'></span>
-                <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-            </div>
-            <div style='line-height: 16.50px;'>";
-if ($p_uid == $user_id) {
-    echo "<div class='pull-right'>
-                    <div class='list-group-item'>
-                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                        <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                <li><button class='btn-link' href='#'>Edit Project</button></li>
-                  <li><button class='btn-link' pID='" . $pro_id . "' onclick='delProject(" . $pro_id . ");'>Delete Project</button></li>
-                  <li>";
-    if ($prtime == 'Closed') {
-        echo "<form method='POST' class='inline-form'>
-                        <input type='hidden' name='id' value='" . $pro_id . "'/>
-                        <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>
-                    </form>";
-    }
-    echo "</li>
-        </ul>
-        </div>
-    </div>";
-}
-                             
-        echo "<div class='row'>
-                    <div class='col-md-4'>
-                        <span class='color strong' style= 'color :lightblue;'>
-                            <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
-                        </span>  <br>" . $timef ."
-                    </div> 
-                    <div class='col-md-5'>
-                        ETA in &nbsp".$timepr."<br>Time Left:".$prtime."
-                    </div>
-            </div>
-            </div>
-    </div>
-            <div class='list-group-item'>
-            <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . ucfirst($projttitle) . "</p></span>                
-            " . str_replace("<s>", "&nbsp;", $projectst) . "<br/><br/>
-            ";
-
-$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
-                                        where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
-                                        UNION
-                                        (SELECT DISTINCT c.stmt, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b join blobs as c 
-                                        where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_pr_creation ASC;");
-while ($displayrowc = mysqli_fetch_array($displayb)) {
-    $frstnam = $displayrowc['first_name'];
-    $lnam = $displayrowc['last_name'];
-    $username_pr_comment = $displayrowc['username'];
-    $ida = $displayrowc['response_pr_id'];
-    $projectres = $displayrowc['stmt'];
-    echo "<div id='commentscontainer'>
-            <div class='comments clearfix'>
-                <div class='pull-left lh-fix'>
-                    <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
-                </div>
-                <div class='comment-text'>
-                    <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
-                    <small>" . $projectres . "</small>";
-    dropDown_delete_comment_project($db_handle, $ida, $user_id);
-
-        echo "</div>
-            </div> 
-        </div>";
-}
-echo "<div class='comments clearfix'>
-			<div class='pull-left lh-fix'>
-				<img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp
-			</div>
-			<form method='POST' class='inline-form'>
-				<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Comment' />
-				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
-			</form>
-		</div>
-	</div>
-</div>" ;
-?>
-
 <div class='list-group'>
     <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span>
      | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span>
@@ -292,6 +193,106 @@ echo "<div class='comments clearfix'>
         </div><br/>
     </div>
 </div>
+
+<?php
+ //include_once 'kanban.php';
+$project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
+												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
+                                                UNION
+                                                (SELECT a.user_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
+                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
+$project_row = mysqli_fetch_array($project);
+$p_uid = $project_row['user_id'];
+$projectst = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_row['stmt'])));
+$fname = $project_row['first_name'];
+$projectcreation = $project_row['project_creation'];
+$lname = $project_row['last_name'];
+$username_project = $project_row['username'];
+$projecteta = $project_row['project_ETA'];
+$timepr = eta($projecteta);
+$prtime = remaining_time($projectcreation, $projecteta);
+echo "<div class='list-group'>
+        <div class='list-group-item'>
+            <div class='pull-left lh-fix'>     
+                <span class='glyphicon glyphicon-question-sign'></span>
+                <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+            </div>
+            <div style='line-height: 16.50px;'>";
+if ($p_uid == $user_id) {
+    echo "<div class='pull-right'>
+                    <div class='list-group-item'>
+                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                        <ul class='dropdown-menu' aria-labelledby='dropdown'>
+                <li><button class='btn-link' href='#'>Edit Project</button></li>
+                  <li><button class='btn-link' pID='" . $pro_id . "' onclick='delProject(" . $pro_id . ");'>Delete Project</button></li>
+                  <li>";
+    if ($prtime == 'Closed') {
+        echo "<form method='POST' class='inline-form'>
+                        <input type='hidden' name='id' value='" . $pro_id . "'/>
+                        <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>
+                    </form>";
+    }
+    echo "</li>
+        </ul>
+        </div>
+    </div>";
+}
+                             
+        echo "<div class='row'>
+                    <div class='col-md-4'>
+                        <span class='color strong' style= 'color :lightblue;'>
+                            <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
+                        </span>  <br>" . $timef ."
+                    </div> 
+                    <div class='col-md-5'>
+                        ETA in &nbsp".$timepr."<br>Time Left:".$prtime."
+                    </div>
+            </div>
+            </div>
+    </div>
+            <div class='list-group-item'>
+            <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . ucfirst($projttitle) . "</p></span>                
+            " . str_replace("<s>", "&nbsp;", $projectst) . "<br/><br/>
+            ";
+
+$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
+                                        where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
+                                        UNION
+                                        (SELECT DISTINCT c.stmt, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b join blobs as c 
+                                        where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_pr_creation ASC;");
+while ($displayrowc = mysqli_fetch_array($displayb)) {
+    $frstnam = $displayrowc['first_name'];
+    $lnam = $displayrowc['last_name'];
+    $username_pr_comment = $displayrowc['username'];
+    $ida = $displayrowc['response_pr_id'];
+    $projectres = $displayrowc['stmt'];
+    echo "<div id='commentscontainer'>
+            <div class='comments clearfix'>
+                <div class='pull-left lh-fix'>
+                    <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
+                </div>
+                <div class='comment-text'>
+                    <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
+                    <small>" . $projectres . "</small>";
+    dropDown_delete_comment_project($db_handle, $ida, $user_id);
+
+        echo "</div>
+            </div> 
+        </div>";
+}
+echo "<div class='comments clearfix'>
+			<div class='pull-left lh-fix'>
+				<img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp
+			</div>
+			<form method='POST' class='inline-form'>
+				<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Comment' />
+				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
+			</form>
+		</div>
+	</div>
+</div>" ;
+?>
+
 <div class="panel-primary eye_open" id="prch">
 	<p id='home-ch'></p>
 <?php

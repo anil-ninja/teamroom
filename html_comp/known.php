@@ -2,7 +2,8 @@
 	<?php
 	$user_id = $_SESSION['user_id'] ;
 	$userProjects = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
-												where a.user_id = '$profileViewUserID' and a.team_name = b.team_name and b.user_id != '$profileViewUserID')
+												where a.user_id = '$profileViewUserID' and a.team_name = b.team_name and 
+												b.user_id != '$profileViewUserID' and b.user_id != '$user_id')
 											    as b where a.user_id = b.user_id ;");
 	
 	while ($userProjectsRow = mysqli_fetch_array($userProjects)) {

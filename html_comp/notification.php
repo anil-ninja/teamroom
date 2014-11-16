@@ -246,6 +246,8 @@
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname19." Deleted Your Friend Request </p><hr/>" ;
 			$y++ ;
 			} 
+			
+			$notice = $notice ."<div class='newnotices' ></div>" ;
 	$notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
 											join challenges as b where b.challenge_id = a.challenge_id and a.status = '1' 
 											and a.user_id = '$user_id';") ;
@@ -273,6 +275,7 @@
 					} 
 				}
 			}
+		 
 	function updatetime($id,$db_handle) {
 		$time = date("Y-m-d H:i:s") ;
 		$_SESSION['last_login'] = $time ;
@@ -287,10 +290,10 @@
 				echo "<p class='navbar-text' style ='cursor: pointer; color: red;'>" ;
 				}
 				echo "
-				<i class='glyphicon glyphicon-bell'></i><span class='badge'>".$y."</span></p></a>
+				<i class='glyphicon glyphicon-bell'></i><span class='badge'><input type='submit' class='btn-link btn-xs' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; color: white;' id='countnotice' value='".$y."'/></span></p></a>
 						<ul class='dropdown-menu multi-level' style=' max-height: 300px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
 							<li>".$notice."</li>
-							<li><button class='btn-link' id='allnotice' type='submit' >See All</button></li>
+							<li><input type='hidden' id='sessiontime' value='".$_SESSION['last_login']."'/><input type='hidden' id='noteiceid' value='".$user_id."'/><button class='btn-link' id='allnotice' type='submit' >See All</button></li>
 						</ul>
 					</div>" ;
 if(isset($_POST['requestaccept'])){
