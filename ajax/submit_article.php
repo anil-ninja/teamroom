@@ -16,7 +16,7 @@ if($_POST['article']){
 		$article = $image."<br/> ".$articletext ;
 		}
 
- if (strlen($article) < 400) {
+ if (strlen($article) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
                                     VALUES ('$user_id', '$article_title', '$article', '1', '1', '7') ; ") ;
     $idp = mysqli_insert_id($db_handle);

@@ -10,12 +10,16 @@ if($_POST['challange']){
 	$challenge_title = $_POST['challenge_title'] ;
 	$image = $_POST['img'] ;
 	$challange_eta = $_POST['challange_eta'] ;
-	$challange = $image."<br/> ".$challangetext ;
-        $project_id_default = 0;
+	if (strlen($image) < 30 ) {
+		$challange = $challangetext ;
+	}
+	else {
+		$challange = $image."<br/> ".$challangetext ;
+		}
 if ($chall == '1') {
  if (strlen($challange) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, project_id, stmt, challenge_open_time, challenge_ETA) 
-                                    VALUES ('$user_id', '$challenge_title', '$project_id_default', '$challange', '$opentime', '$challange_eta') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA) 
+                                    VALUES ('$user_id', '$challenge_title', '$challange', '$opentime', '$challange_eta') ; ") ;
       $idp = mysqli_insert_id($db_handle);
       involve_in($db_handle,$user_id,"1",$idp);
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }

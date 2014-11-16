@@ -12,7 +12,12 @@ if($_POST['challange']){
 	$challenge_title = $_POST['challenge_title'] ;
 	$challange_eta = $_POST['challange_eta'] ; 
 	$image = $_POST['img'] ;
-	$challange = $image."<br/> ".$challangetext ;
+	if (strlen($image) < 30 ) {
+		$challange = $challangetext ;
+	}
+	else {
+		$challange = $image."<br/> ".$challangetext ;
+		}
 	$type = $_POST['type'] ;
 	
 	//echo "i am not working POST";

@@ -7,10 +7,14 @@ if($_POST['answer']){
 		$pro_id = $_POST['cid'] ;
 		$notestext = $_POST['answer'] ;
 		$image = $_POST['img'] ;
-		$notes = $image."<br/> ".$notestext ;
+		if (strlen($image) < 30 ) {
+		$notes = $articletext ;
+		}
+			else {
+				$notes = $image."<br/> ".$articletext ;
+			}
 		$a = date("Y-m-d H:i:s") ;
 		involve_in($db_handle,$user_id,"5",$pro_id); 
-                echo "vbhbghbgbgfdk";
        events($db_handle,$user_id,"5",$pro_id);
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $pro_id ; ") ;
 		mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $pro_id and user_id = '$user_id'; ") ;

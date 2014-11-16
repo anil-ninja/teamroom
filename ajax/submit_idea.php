@@ -7,11 +7,15 @@ if($_POST['idea']){
 	$articletext = $_POST['idea'] ;
 	$article_title = $_POST['idea_title'] ;
 	$image = $_POST['img'] ;
-	$article = $image."<br/> ".$articletext ;
-        $project_id_default = 0;
+	if (strlen($image) < 30 ) {
+		$article = $articletext ;
+	}
+	else {
+		$article = $image."<br/> ".$articletext ;
+		}
  if (strlen($article) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title,project_id, stmt, challenge_open_time, challenge_ETA, challenge_type) 
-                                    VALUES ('$user_id', '$article_title','$project_id_default', '$article', '1', '1', '4') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
+                                    VALUES ('$user_id', '$article_title', '$article', '1', '1', '4') ; ") ;
       $idp = mysqli_insert_id($db_handle);
       involve_in($db_handle,$user_id,"1",$idp); 
     if(mysqli_error($db_handle)) { echo "Failed to Post IDEA!"; }

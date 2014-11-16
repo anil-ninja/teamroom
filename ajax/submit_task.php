@@ -11,7 +11,12 @@ if($_POST['taskdetails']){
 	$users = $_POST['users'] ;
 	$title = $_POST['title'] ;
 	$image = $_POST['img'] ;
-	$details = $image."<br/> ".$detailstext ;
+	if (strlen($image) < 30 ) {
+		$details = $detailstext ;
+	}
+	else {
+		$details = $image."<br/> ".$detailstext ;
+		}
 	$challange_eta = $_POST['challange_eta'] ;
 if ($users != 0) {
 		$owner = $users ;		
