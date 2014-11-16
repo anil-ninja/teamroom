@@ -5,7 +5,7 @@ include_once '../functions/delete_comment.php';
 
 if ($_POST['talk']) {
 		$user_id = $_SESSION['user_id'] ;
-		$pro_id = $_SESSION['project_id'] ;
+		$pro_id = $_POST['id'] ;
 		$pr_respon = $_POST['talk'] ;
     if (strlen($pr_respon) < 1000) {
 			mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt, status) VALUES ('$user_id', '$pro_id', '$pr_respon', '5') ; ") ;

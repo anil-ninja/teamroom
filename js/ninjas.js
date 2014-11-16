@@ -38,7 +38,8 @@ function getnewtalk(unix, id) {
 				cache: false,
 				success: function(result){
 					//alert(result) ;
-					$('.newtalks').append(result);
+					document.getElementById("newtalks").innerHTML = result ;
+					//$('.newtalks').append(result);
 				}
 			});
 }
@@ -349,14 +350,15 @@ return date.join("/") + " " + time.join(":") ;
 		$("#resp_projecttalk").click(function(){
 			var pr_resptalk = $("#pr_resptalk").val() ;
 			var id = $("#talkid").val() ;
-			var unix = timeStamp();
+			var unix = $("#inlasttalkid").val() ;
+			//var unix = timeStamp();
 			//alert (id) ;
 			if(pr_resptalk==''){
 				bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
 				return false;
 			}
 			 else {
-				var dataString = 'talk='+ pr_resptalk ;
+				var dataString = 'talk='+ pr_resptalk + '&id=' + id ;
 				$.ajax({
 					type: "POST",
 					url: "ajax/project_talks.php",

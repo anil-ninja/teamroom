@@ -1,8 +1,8 @@
 <div class='footer' id='talkprForm' style='margin-left: 1000px; margin-right: 50px; margin-bottom: 30px; height: 300px; overflow-y: auto; overflow-x: hidden;'>  
        <?php 
        echo "<div class='list-group'>
-				<div class='list-group-item'>" ;
-
+				<div class='list-group-item'>
+				<div id = 'newtalks' >" ;
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '5')
                                         UNION
@@ -13,6 +13,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
     $lnam = $displayrowc['last_name'];
     $username_pr_comment = $displayrowc['username'];
     $ida = $displayrowc['response_pr_id'];
+    $idb = $displayrowc['response_pr_creation'];
     $projectres = $displayrowc['stmt'];
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
@@ -20,13 +21,12 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
                     <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
                 </div>
                 <div class='comment-text'>
-                    <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
-                    <small>" . $projectres . "</small>";
-        echo "</div>
+                    <small>" . $projectres . "</small>
+                </div>
             </div> 
         </div>";
 }
-echo "<div class = 'newtalks' ></div><div class='comments clearfix'>
+echo "</div><div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
 				<img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>
@@ -35,6 +35,6 @@ echo "<div class = 'newtalks' ></div><div class='comments clearfix'>
 				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' id ='resp_projecttalk' ></button>
 		</div>
 	</div>
-</div>" ;
+</div><input type='hidden' id='inlasttalkid' value='". $idb."'/>" ;
 ?>
 </div>

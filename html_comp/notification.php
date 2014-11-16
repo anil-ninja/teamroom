@@ -290,7 +290,7 @@
 				<i class='glyphicon glyphicon-bell'></i><span class='badge'>".$y."</span></p></a>
 						<ul class='dropdown-menu multi-level' style=' max-height: 300px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
 							<li>".$notice."</li>
-							<li>See All</li>
+							<li><button class='btn-link' id='allnotice' type='submit' >See All</button></li>
 						</ul>
 					</div>" ;
 if(isset($_POST['requestaccept'])){
