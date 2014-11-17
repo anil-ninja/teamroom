@@ -1,16 +1,21 @@
-<?php
- function insert($id, $user_ID,  $db_handle) {
+<?php 
+session_start();
+include_once "../lib/db_connect.php";
+function insert($id, $user_ID,  $db_handle) {
 	 mysqli_query($db_handle, "INSERT INTO notifications (event_id, user_id) VALUES ('$id', '$user_ID') ;") ;
 	 }
  function update($id,$db_handle) {
 		mysqli_query($db_handle, " UPDATE notifications SET status = '1' WHERE user_id = '$id' ;") ;
 		}
-	  $a = $_SESSION['last_login'] ;
-	  $user_id = $_SESSION['user_id'] ;
-	  $notice = "" ;
+if ($_POST['time']) {
+    $user_id = $_SESSION['user_id'];
+    $lid = $_POST['eid'] ;
+    $id = $_POST['uid'] ;
+    $time = $_POST['time'] ;
+    $notice = "" ;
 	  $y = 0 ;
 	  $notice1 = mysqli_query($db_handle, " select Distinct a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
-											as b where a.person_id = '$user_id' and a.user_id = b.user_id;") ;
+											as b where a.person_id = '$id' and a.user_id = b.user_id;") ;
 				while ($notice1row = mysqli_fetch_array($notice1)) {
 					$reminders = $notice1row['reminder'] ;
 					$ruser_id = $notice1row['user_id'] ;
@@ -36,8 +41,8 @@
 				}
 		$notice2 = mysqli_query($db_handle, " SELECT id, event_creater, event_type, p_c_id FROM events WHERE
 												p_c_id IN 
-												(SELECT p_c_id  FROM involve_in WHERE user_id = '$user_id')
-												 and timestamp > '$a' 
+												(SELECT p_c_id  FROM involve_in WHERE user_id = '$id')
+												 and timestamp > '$time'  and id > '$lid' and id != '$lid'
 												 and event_creater != '$user_id' ;") ;
 		while($notice2row = mysqli_fetch_array($notice2)) {
 			$newid = $notice2row['id'] ;
@@ -136,7 +141,7 @@
 			
 			case 11:
 		$notice10 = mysqli_query($db_handle, " select Distinct a.project_id, a.project_title, b.team_name from projects as a join teams as b where
-												a.project_id = '$search_id' and b.project_id = '$search_id' and b.team_creation > '$a';") ;
+												a.project_id = '$search_id' and b.project_id = '$search_id' and b.team_creation > '$time';") ;
 			while ($notice10row = mysqli_fetch_array($notice10)) {
 				$challenge_id10 = $notice10row['project_id'] ;
 				$team_name = $notice10row['team_name'] ;
@@ -164,7 +169,7 @@
 		
 			case 15:
 		$notice14 = mysqli_query($db_handle, " select Distinct a.project_id, a.project_title, b.team_name from projects as a join teams as b where
-												a.project_id = '$search_id' and b.project_id = '$search_id' and b.team_creation > '$a';") ;
+												a.project_id = '$search_id' and b.project_id = '$search_id' and b.team_creation > '$time';") ;
 		
 			while ($notice14row = mysqli_fetch_array($notice14)) {
 				$challenge_id14 = $notice14row['project_id'] ;
@@ -208,7 +213,7 @@
 			}
 		}
 	$notice15 = mysqli_query($db_handle, " select Distinct b.first_name, a.project_id, a.project_title from projects as a join user_info as b
-											where a.project_creation > '$a' and a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+											where a.project_creation > '$time' and a.project_type = '1' and a.user_id != '$id' and a.user_id = b.user_id ;") ;
 		while($notice15row = mysqli_fetch_array($notice15)) {
 			$fname5 = $notice15row['first_name'] ;
 			$project_id15 = $notice15row['project_id'] ;
@@ -217,7 +222,7 @@
 			$y++ ;
 			}
 	$notice18 = mysqli_query($db_handle, " SELECT a.id, a.requesting_user_id, b.first_name, b.username FROM known_peoples as a join user_info as b
-											where a.last_action_time > '$a' and a.status = '1' and a.knowning_id = '$user_id' and a.requesting_user_id = b.user_id ;") ;
+											where a.last_action_time > '$time' and a.status = '1' and a.knowning_id = '$id' and a.requesting_user_id = b.user_id ;") ;
 		while($notice18row = mysqli_fetch_array($notice18)) {
 			$fname18 = $notice18row['first_name'] ;
 			$id1 = $notice18row['id'] ;
@@ -231,7 +236,7 @@
 			$y++ ;
 			}
 	$notice20 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
-											where a.last_action_time > '$a' and a.status = '2' and a.requesting_user_id = '$user_id' and a.knowning_id = b.user_id ;") ;
+											where a.last_action_time > '$time' and a.status = '2' and a.requesting_user_id = '$id' and a.knowning_id = b.user_id ;") ;
 		while($notice20row = mysqli_fetch_array($notice20)) {
 			$fname20 = $notice20row['first_name'] ;
 			$id2 = $notice20row['id'] ;
@@ -239,63 +244,18 @@
 			$y++ ;
 			}
 	$notice19 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
-											where a.last_action_time > '$a' and a.status = '3' and a.requesting_user_id = '$user_id' and a.knowning_id = b.user_id ;") ;
+											where a.last_action_time > '$time' and a.status = '3' and a.requesting_user_id = '$id' and a.knowning_id = b.user_id ;") ;
 		while($notice19row = mysqli_fetch_array($notice19)) {
 			$fname19 = $notice19row['first_name'] ;
 			$id3 = $notice19row['id'] ;
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname19." Deleted Your Friend Request </p><hr/>" ;
 			$y++ ;
 			} 
-			
-	$notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
-											join challenges as b where b.challenge_id = a.challenge_id and a.status = '1' 
-											and a.user_id = '$user_id';") ;
-		while($notice16row = mysqli_fetch_array($notice16)) {
-			$comp_ch_ETA = strtotime($notice16row['comp_ch_ETA']*60) ;
-			$ownership_creation = strtotime($notice16row['ownership_creation']) ;
-			$challenge_id16 = $notice16row['challenge_id'] ;
-			$title16 = $notice16row['challenge_title'] ;
-			if (time() > ($comp_ch_ETA + $ownership_creation)) { 
-					//$dead_time = "Closed" ;
-					$y++ ;
-					$notice = $notice ."<span class='glyphicon glyphicon-time'></span><p style='font-size: 10px;'> Remaining Time Over</p><br/>
-										<a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "' >".$title16."</a><hr/>" ;
-				}
-			else {	
-					$remainingtime = (($comp_ch_ETA + $ownership_creation)-time()) ;
-				if ($remainingtime < ((24*60*60)-1)) {	
-						$hour = floor($remainingtime/(60*60)) ;
-						$hoursec = $remainingtime%(60*60) ;
-						$minute = floor($hoursec/60) ;
-						$notice = $notice ."<span class='glyphicon glyphicon-time'></span><p style='font-size: 10px;'> &nbsp; Deadline Reached (Remaining Time)
-											: ".$hour." Hours : ".$minute." Mins</p><br/><a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "'>
-											".$title16."</a><hr/>" ;
-						$y++ ;
-					} 
-				}
-			}
-		echo "<input type='hidden' id='lasteventid' value='".$newid."'/>";		
-			echo "<div class='dropdown'>
-					<a data-toggle='dropdown' onclick='updatetime()'>" ;
-			if ($y == 0) {
-				echo "<p class='navbar-text' style ='cursor: pointer;'>" ;
-			}
-			else {
-				echo "<p class='navbar-text' style ='cursor: pointer; color: red;'>" ;
-				}
-				echo "<i class='glyphicon glyphicon-bell'></i>
-					  <span class='badge'>
-					   <input type='submit' class='btn-link btn-xs' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; 
-					   color: white;' id='countnotice' value='".$y."'/>
-					  </span>
-					 </p>
-				   </a>
-					<ul class='dropdown-menu multi-level' style=' max-height: 300px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
-						<li>".$notice."</li>
-						<div class='newnotices' ></div>
-						<li><input type='hidden' id='sessiontime' value='".$_SESSION['last_login']."'/><input type='hidden' id='noteiceid' value='".$user_id."'/><button class='btn-link' id='allnotice' type='submit' >See All</button></li>
-					</ul>
-				</div>" ;
+echo $notice."+".$y."+".$newid ;
+}
+else {
+	echo "invalid" ;
+	}
 if(isset($_POST['requestaccept'])){
 	$request_id = $_POST['request_id'] ;
 	$time = date("Y-m-d H:i:s") ;

@@ -22,14 +22,35 @@
          }
     });
 });
-//setInterval(function(){
-	//	var time = $("#sessiontime").val() ;
-		//var uid = $("#noteiceid").val() ;
-			//	getnewnote(time, uid) ;
-//},30000)();
-function getnewnote(unix, id) {	
+
+function updatetime() {
+	var update = "update" ;
+	var dataString = 'update='+ update ;
+	setTimeout(function(){
+			$.ajax({
+				type: "POST",
+				url: "ajax/updatetime.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					if (result == "Updated Successfully") {
+						location.reload() ;
+						}
+				}
+			}); 
+			} , 10000) ;
+		}
+setInterval(function(){
+		var time = $("#sessiontime").val() ;
+		var uid = $("#noteiceid").val() ;
+		var eid = $("#lasteventid").val() ;
+		//alert (eid) ;
+		getnewnote(time, uid, eid) ;
+},60000)();
+function getnewnote(unix, id, lid) {	
 	//alert (unix) ;
-	var dataString = 'time='+ unix + '&uid=' + id ;
+	var dataString = 'time='+ unix + '&uid=' + id + '&eid=' + lid ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/newnote.php",
@@ -38,12 +59,15 @@ function getnewnote(unix, id) {
 				success: function(result){
 					//alert(result) ;
 					var notice = result.split("+") ;
-					alert (notice['0']) ;
+					//alert (notice['0']) ;
 					//document.getElementById("newtalks").innerHTML = result ;
 					$('.newnotices').append(notice['0']);
-					var num = parseInt($("#countnotice").val()) ;
-					var newnum = parseInt(num + parseInt(notice['1'])) ;
-					document.getElementById("countnotice").innerHTML = newnum+='' ;
+					var num = $("#countnotice").val() ;
+					var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
+					var neid = parseInt(notice['2']) ;
+					//alert(notice['1']) ;
+					$("#countnotice").val(newnum+='') ;
+					$("#lasteventid").val(neid+='') ;
 				}
 			});
 }
