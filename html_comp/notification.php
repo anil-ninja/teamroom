@@ -293,7 +293,7 @@
 					<ul class='dropdown-menu multi-level' style=' max-height: 300px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
 						<li>".$notice."</li>
 						<div class='newnotices' ></div>
-						<li><input type='hidden' id='sessiontime' value='".$_SESSION['last_login']."'/><input type='hidden' id='noteiceid' value='".$user_id."'/><button class='btn-link' id='allnotice' type='submit' >See All</button></li>
+						<li><a href='notifications.php'>See All</a></li>
 					</ul>
 				</div>" ;
 if(isset($_POST['requestaccept'])){

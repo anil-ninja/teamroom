@@ -28,5 +28,6 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
 				</div> 
 			</div>";
 }
+mysqli_close($db_handle);
 }
 ?>

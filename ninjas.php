@@ -36,16 +36,19 @@ if(!isset($_SESSION['user_id'])){
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
           <div class=" media-body" style="padding-top: 35px;">
-          <div class="col-md-9">
-			  <div class="panel-primary" id='panel-cont'>
+          <div class="col-md-8">
+			  <div class="panelprimary" id='panel-cont'>
 				  <p id='home-ch'></p>
 				  <p id='home'></p>
-		    	<?php include_once 'html_comp/ninjas_page.php'   ?>
+		    	<?php include_once 'html_comp/ninjas_page.php' ; ?>
 			</div>
 		  </div>
-		<div class="col-md-3 ">
-			<?php include_once 'html_comp/right_panel_ninjas.php'   ?>
+		<div class="col-md-3">
+			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>
 		</div>
+        <div class="col-md-1 bs-component">
+              <?php include_once 'html_comp/friends.php' ; ?>
+        </div>
 	</div>
 	<script>
 		$(document).ready(function(){
@@ -70,6 +73,7 @@ if(!isset($_SESSION['user_id'])){
 }); 
 	</script>
     <script src="js/jquery-1.js"></script>
+    <script src="js/chat.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/bootswatch.js"></script>
     <script src="js/project_page.js"></script>

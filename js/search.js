@@ -71,6 +71,21 @@ function getnewnote(unix, id, lid) {
 				}
 			});
 }
+function getallnotices() {
+	var all = "all" ;
+	var dataString = 'all='+ all ; 
+	$.ajax({
+		type: "POST",
+		url: "ajax/allnotices.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			alert(result) ;
+			document.getElementById("allnotices").innerHTML = result ;
+			//$('.newnotices').append(notice['0']);
+		}
+	});
+} ;
      function searchingform() {
             var keyword1 = $("#searchfor").val() ;
             //alert(keyword1);
