@@ -1,13 +1,18 @@
 <?php
- function insert($id, $user_ID,  $db_handle) {
+session_start();
+include_once "../lib/db_connect.php";
+function insert($id, $user_ID,  $db_handle) {
 	 mysqli_query($db_handle, "INSERT INTO notifications (event_id, user_id) VALUES ('$id', '$user_ID') ;") ;
 	 }
  function update($id,$db_handle) {
 		mysqli_query($db_handle, " UPDATE notifications SET status = '1' WHERE user_id = '$id' ;") ;
 		}
-	  $a = $_SESSION['last_login'] ;
+if ($_POST['notice']) {
+    $a = $_SESSION['last_login'] ;
 	  $user_id = $_SESSION['user_id'] ;
 	  $notice = "" ;
+	  $data = "" ;
+	  $data1 = "" ;
 	  $y = 0 ;
 	  $notice1 = mysqli_query($db_handle, " select Distinct a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
 											as b where a.person_id = '$user_id' and a.user_id = b.user_id;") ;
@@ -40,7 +45,7 @@
 												 and timestamp > '$a' 
 												 and event_creater != '$user_id' ;") ;
 		while($notice2row = mysqli_fetch_array($notice2)) {
-			$newid = $notice2row['id'] ;
+			$neweventid = $notice2row['id'] ;
 			$creater = $notice2row['event_creater'] ;
 			$type2 = $notice2row['event_type'] ;
 			$search_id = $notice2row['p_c_id'] ;
@@ -59,7 +64,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>
 									<a href='challengesOpen.php?challenge_id=" . $challenge_id4 . "' onclick=".update($user_id,$db_handle).">".$challenge_title4."</a><hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 			
 			break;
@@ -73,7 +78,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-fire'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Accepted </p><br/>
 									<a href='challengesOpen.php?challenge_id=" . $challenge_id5 . "' onclick=".update($user_id,$db_handle).">".$challenge_title5."</a><hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 			
 			break;
@@ -87,7 +92,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-ok'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Submitted </p><br/>
 									<a href='challengesOpen.php?challenge_id=" . $challenge_id6 . "' onclick=".update($user_id,$db_handle).">".$challenge_title6."</a><hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 			
 			break;
@@ -101,7 +106,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-flag'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Closed </p><br/>
 									<a href='challengesOpen.php?challenge_id=" . $challenge_id7 . "' onclick=".update($user_id,$db_handle).">".$challenge_title7."</a><hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 			
 			break;
@@ -115,7 +120,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-eye-close'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Spemmed </p><br/>
 									<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "' onclick=".update($user_id,$db_handle).">".$challenge_title8."</a><hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 		
 			break;
@@ -129,7 +134,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Created </p><br/>
 									<a href='challengesOpen.php?challenge_id=" . $challenge_id9 . "' onclick=".update($user_id,$db_handle).">".$challenge_title9."</a><hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 		
 			break;
@@ -144,7 +149,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Created Team ".$team_name." in </p><br/>
 									<a href='project.php?project_id=" . $challenge_id10 . "' onclick=".update($user_id,$db_handle).">".$challenge_title10."<hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 			
 			break;
@@ -157,7 +162,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Joined in </p><br/>
 									<a href='project.php?project_id=" . $challenge_id17 . "' onclick=".update($user_id,$db_handle).">".$challenge_title17."<hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 			
 			break;
@@ -173,7 +178,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Add member in ".$team_name2." in </p>
 									<a href='project.php?project_id=" . $challenge_id14 . "' onclick=".update($user_id,$db_handle)."><br/>".$challenge_title14."<hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 		
 			break;
@@ -187,7 +192,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>
 										<a href='project.php?project_id=" . $challenge_id11 . "' onclick=".update($user_id,$db_handle).">".$challenge_title11."<hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 		
 			break;
@@ -201,7 +206,7 @@
 				$notice = $notice ."<span class='glyphicon glyphicon-screenshot'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Assigned Task </p><br/>
 									<a href='challengesOpen.php?challenge_id=" . $challenge_id12 . "' onclick=".update($user_id,$db_handle).">".$challenge_title12."</a><hr/>" ;
 				$y++ ;
-				insert($newid, $user_id,  $db_handle) ;
+				insert($neweventid, $user_id,  $db_handle) ;
 			}
 		
 			break;		
@@ -274,16 +279,16 @@
 					} 
 				}
 			}
-		echo "<input type='hidden' id='lasteventid' value='".$newid."'/>";		
-			echo "<div class='dropdown'>
+		$data1 .= "<input type='hidden' id='lasteventid' value='".$neweventid."'/>";		
+			$data .= "<div class='dropdown'>
 					<a data-toggle='dropdown' onclick='updatetime()'>" ;
 			if ($y == 0) {
-				echo "<p class='navbar-text' style ='cursor: pointer;'>" ;
+				$data = $data . "<p class='navbar-text' style ='cursor: pointer;'>" ;
 			}
 			else {
-				echo "<p class='navbar-text' style ='cursor: pointer; color: red;'>" ;
+				$data = $data . "<p class='navbar-text' style ='cursor: pointer; color: red;'>" ;
 				}
-				echo "<i class='glyphicon glyphicon-bell'></i>
+			$data = $data . "<i class='glyphicon glyphicon-bell'></i>
 					  <span class='badge'>
 					   <input type='submit' class='btn-link btn-xs' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; 
 					   color: white;' id='countnotice' value='".$y."'/>
@@ -296,24 +301,7 @@
 						<li><a href='notifications.php'>See All</a></li>
 					</ul>
 				</div>" ;
-if(isset($_POST['requestaccept'])){
-	$request_id = $_POST['request_id'] ;
-	$time = date("Y-m-d H:i:s") ;
-	$user_id = $_SESSION['user_id'] ;
-	echo $knownid ;
-	mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
-	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
-	else { echo "<script>alert('Request Accepted succesfully!')</script>"; }
-	//header('Location: #');
-	}
-if(isset($_POST['requestdelete'])){
-	$request_id = $_POST['request_id'] ;
-	$time = date("Y-m-d H:i:s") ;
-	$user_id = $_SESSION['user_id'] ;
-	echo $knownid ;
-	mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
-	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
-	else { echo "<script>alert('Request Deleted succesfully!')</script>"; }
-	//header('Location: #');
-	}							
+	echo $data."+".$data1 ;
+mysqli_close($db_handle);
+}
 ?>

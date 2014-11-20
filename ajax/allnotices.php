@@ -22,7 +22,7 @@ if ($_POST['all']) {
 					}
 		$notice2 = mysqli_query($db_handle, " SELECT id, event_creater, event_type, p_c_id FROM events WHERE
 												p_c_id IN 
-												(SELECT p_c_id  FROM involve_in WHERE user_id = '$id')
+												(SELECT p_c_id  FROM involve_in WHERE user_id = '$user_id')
 												 and event_creater != '$user_id' ;") ;
 		while($notice2row = mysqli_fetch_array($notice2)) {
 			$newid = $notice2row['id'] ;
@@ -42,7 +42,7 @@ if ($_POST['all']) {
 				$challenge_id4 = $notice4row['challenge_id'] ;
 				$challenge_title4 = $notice4row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id4 . "' onclick=".update($user_id,$db_handle).">".$challenge_title4."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id4 . "'>".$challenge_title4."</a><hr/>" ;
 				}
 			
 			break;
@@ -54,7 +54,7 @@ if ($_POST['all']) {
 				$challenge_id5 = $notice5row['challenge_id'] ;
 				$challenge_title5 = $notice5row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-fire'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Accepted </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id5 . "' onclick=".update($user_id,$db_handle).">".$challenge_title5."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id5 . "' >".$challenge_title5."</a><hr/>" ;
 				}
 			
 			break;
@@ -66,7 +66,7 @@ if ($_POST['all']) {
 				$challenge_id6 = $notice6row['challenge_id'] ;
 				$challenge_title6 = $notice6row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-ok'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Submitted </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id6 . "' onclick=".update($user_id,$db_handle).">".$challenge_title6."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id6 . "' >".$challenge_title6."</a><hr/>" ;
 				}
 
 			break;
@@ -78,7 +78,7 @@ if ($_POST['all']) {
 				$challenge_id7 = $notice7row['challenge_id'] ;
 				$challenge_title7 = $notice7row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-flag'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Closed </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id7 . "' onclick=".update($user_id,$db_handle).">".$challenge_title7."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id7 . "' >".$challenge_title7."</a><hr/>" ;
 				}
 			
 			break;
@@ -90,7 +90,7 @@ if ($_POST['all']) {
 				$challenge_id8 = $notice8row['challenge_id'] ;
 				$challenge_title8 = $notice8row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-eye-close'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Spemmed </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "' onclick=".update($user_id,$db_handle).">".$challenge_title8."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id8 . "'>".$challenge_title8."</a><hr/>" ;
 				}
 		
 			break;
@@ -102,7 +102,7 @@ if ($_POST['all']) {
 				$challenge_id9 = $notice9row['challenge_id'] ;
 				$challenge_title9 = $notice9row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Created </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id9 . "' onclick=".update($user_id,$db_handle).">".$challenge_title9."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id9 . "'>".$challenge_title9."</a><hr/>" ;
 				}
 		
 			break;
@@ -115,7 +115,7 @@ if ($_POST['all']) {
 				$team_name = $notice10row['team_name'] ;
 				$challenge_title10 = $notice10row['project_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Created Team ".$team_name." in </p><br/>
-									<a href='project.php?project_id=" . $challenge_id10 . "' onclick=".update($user_id,$db_handle).">".$challenge_title10."<hr/>" ;
+									<a href='project.php?project_id=" . $challenge_id10 . "'>".$challenge_title10."</a><hr/>" ;
 				}
 			
 			break;
@@ -126,7 +126,7 @@ if ($_POST['all']) {
 				$challenge_id17 = $notice17row['project_id'] ;
 				$challenge_title17 = $notice17row['project_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-phone-alt'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Joined in </p><br/>
-									<a href='project.php?project_id=" . $challenge_id17 . "' onclick=".update($user_id,$db_handle).">".$challenge_title17."<hr/>" ;
+									<a href='project.php?project_id=" . $challenge_id17 . "' >".$challenge_title17."</a><hr/>" ;
 				}
 			
 			break;
@@ -140,7 +140,7 @@ if ($_POST['all']) {
 				$team_name2 = $notice11row['team_name'] ;
 				$challenge_title14 = $notice14row['project_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Add member in ".$team_name2." in </p>
-									<a href='project.php?project_id=" . $challenge_id14 . "' onclick=".update($user_id,$db_handle)."><br/>".$challenge_title14."<hr/>" ;
+									<a href='project.php?project_id=" . $challenge_id14 . "'>".$challenge_title14."</a><hr/>" ;
 				}
 		
 			break;
@@ -152,7 +152,7 @@ if ($_POST['all']) {
 				$challenge_id11 = $notice11row['project_id'] ;
 				$challenge_title11 = $notice11row['project_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-star'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Commented On </p><br/>
-										<a href='project.php?project_id=" . $challenge_id11 . "' onclick=".update($user_id,$db_handle).">".$challenge_title11."<hr/>" ;
+										<a href='project.php?project_id=" . $challenge_id11 . "'>".$challenge_title11."</a><hr/>" ;
 				}
 		
 			break;
@@ -164,7 +164,7 @@ if ($_POST['all']) {
 				$challenge_id12 = $notice12row['challenge_id'] ;
 				$challenge_title12 = $notice12row['challenge_title'] ;	
 				$notice = $notice ."<span class='glyphicon glyphicon-screenshot'></span><p style='font-size: 10px;'> &nbsp; ".$fname3." Assigned Task </p><br/>
-									<a href='challengesOpen.php?challenge_id=" . $challenge_id12 . "' onclick=".update($user_id,$db_handle).">".$challenge_title12."</a><hr/>" ;
+									<a href='challengesOpen.php?challenge_id=" . $challenge_id12 . "'>".$challenge_title12."</a><hr/>" ;
 				}
 		
 			break;		
@@ -176,7 +176,8 @@ if ($_POST['all']) {
 			$fname5 = $notice15row['first_name'] ;
 			$project_id15 = $notice15row['project_id'] ;
 			$title15 = $notice15row['project_title'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname5." Created </p><br/>".$title15."<hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname5." Created </p><br/>
+								<a href='challengesOpen.php?challenge_id=" . $project_id15 . "'>".$title15."</a><hr/>" ;
 			}
 	$notice18 = mysqli_query($db_handle, " SELECT a.id, a.requesting_user_id, b.first_name, b.username FROM known_peoples as a join user_info as b
 											where a.status = '1' and a.knowning_id = '$id' and a.requesting_user_id = b.user_id ;") ;

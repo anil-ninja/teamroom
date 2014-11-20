@@ -17,6 +17,7 @@ if(!isset($_SESSION['user_id'])) {
         <meta name="author" content="Anil">
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.css">
+        <script src="js/jquery.js"> </script>
         <script src="js/search.js"> </script>
 
     </head>
@@ -42,9 +43,7 @@ if(!isset($_SESSION['user_id'])) {
 			</div>
 		</div>
     <script>
-		(function(){
-			getallnotices();
-			})();		
+		getallnotices();	
     </script>
     </body>
 </html>

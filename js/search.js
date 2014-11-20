@@ -22,7 +22,41 @@
          }
     });
 });
-
+(function() {showUp();})();
+function showUp() {
+	var update = "update" ;
+	var dataString = 'notice='+ update ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/notifications.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			var notice = result.split("+") ;
+			document.getElementById("notifications").innerHTML = notice['0'];
+			document.getElementById("notificationlastid").innerHTML = notice['1'];
+		}
+	});
+};
+function timeStamp() {
+// Create a date object with the current time
+var now = new Date();
+ 
+// Create an array with the current month, day and time
+var date = [ now.getFullYear(), now.getMonth() + 1, now.getDate() ];
+ 
+// Create an array with the current hour, minute and second
+var time = [ now.getHours(), now.getMinutes(), now.getSeconds()];
+ 
+// If seconds and minutes are less than 10, add a zero
+for ( var i = 0; i < 3; i++ ) {
+if ( time[i] < 10 ) {
+time[i] = "0" + time[i];
+}
+}
+// Return the formatted string
+return date.join("/") + " " + time.join(":") ;
+}
 function updatetime() {
 	var update = "update" ;
 	var dataString = 'update='+ update ;
@@ -33,24 +67,22 @@ function updatetime() {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result) ;
-					if (result == "Updated Successfully") {
-						location.reload() ;
-						}
+					var notice = result.split("+") ;
+					document.getElementById("notifications").innerHTML = notice['0'];
+					document.getElementById("notificationlastid").innerHTML = notice['1'];
 				}
 			}); 
 			} , 10000) ;
-		}
+		} ;
 setInterval(function(){
-		var time = $("#sessiontime").val() ;
-		var uid = $("#noteiceid").val() ;
-		var eid = $("#lasteventid").val() ;
-		//alert (eid) ;
-		getnewnote(time, uid, eid) ;
+	var eid = parseInt($("#lasteventid").val()) ;
+	var time = timeStamp() ;
+	//alert (time + "," + eid) ;
+	getnewnote(time, eid+='') ;
 },60000)();
-function getnewnote(unix, id, lid) {	
+function getnewnote(time, lid) {	
 	//alert (unix) ;
-	var dataString = 'time='+ unix + '&uid=' + id + '&eid=' + lid ;
+	var dataString = 'time='+ time + '&lid=' + lid ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/newnote.php",
@@ -59,20 +91,22 @@ function getnewnote(unix, id, lid) {
 				success: function(result){
 					//alert(result) ;
 					var notice = result.split("+") ;
-					//alert (notice['0']) ;
-					//document.getElementById("newtalks").innerHTML = result ;
 					$('.newnotices').append(notice['0']);
 					var num = $("#countnotice").val() ;
 					var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
 					var neid = parseInt(notice['2']) ;
-					//alert(notice['1']) ;
-					$("#countnotice").val(newnum+='') ;
-					$("#lasteventid").val(neid+='') ;
+					//alert(neid+='' + "," + newnum ) ;
+					if (neid != 0) {
+						$("#countnotice").val(newnum+='') ;
+						}
+					if (newnum != 0) {
+						$("#lasteventid").val(neid+='') ;
+						}
 				}
 			});
 }
 function getallnotices() {
-	var all = "all" ;
+	var all = 'all' ;
 	var dataString = 'all='+ all ; 
 	$.ajax({
 		type: "POST",
@@ -80,7 +114,7 @@ function getallnotices() {
 		data: dataString,
 		cache: false,
 		success: function(result){
-			alert(result) ;
+			//alert(result) ;
 			document.getElementById("allnotices").innerHTML = result ;
 			//$('.newnotices').append(notice['0']);
 		}
