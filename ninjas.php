@@ -37,7 +37,7 @@ if(!isset($_SESSION['user_id'])){
            </div> 
           <div class=" media-body" style="padding-top: 35px;">
           <div class="col-md-8">
-			  <div class="panelprimary" id='panel-cont'>
+			  <div class="panel-primary" id='panel-cont'>
 				  <p id='home-ch'></p>
 				  <p id='home'></p>
 		    	<?php include_once 'html_comp/ninjas_page.php' ; ?>

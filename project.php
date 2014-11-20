@@ -46,31 +46,22 @@ include_once 'functions/delete_comment.php';
 		<?php include_once 'html_comp/project_talk.php'; ?>
        <script>
        $(document).ready(function(){
-			$("#talkprForm").toggle();
 			$("#talkpro").click(function(){
 				$("#talkprForm").toggle();
-				$("#talkprForm").scrollTop($('#talkprForm').height()) ;
-				//$("#protalk").animate({ scrollTop: $(document).height() }, "fast") ;
-				//return false;
-				//var box = document.getElementById('protalk');
-				//box.scrollTop = box.scrollHeight;
+				$("#talkformdata").toggle();
+				$("#talkformin").toggle();
+				$("#talkformdata").scrollTop($('#talkformdata').height()) ;
+				projecttalk() ;
 			});
 		});   
-       </script>   
+       </script>
+       <script src="js/chat.js"></script>   
        <script src="js/jquery-1.js"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/ninjas.js"></script>
     <script src="js/bootswatch.js"></script>
     <script src="js/project_page.js"></script>
      <script src="js/date_time.js"></script>
-     <script>
-		 //setInterval(function () {myTimer()}, 1000);
-     setInterval(function(){
-		var id = $("#inlasttalkid").val() ;
-		var pid = $("#talkid").val() ;
-				getnewtalk(id, pid) ;
-			},10000)();
-     </script>
         <!-- jQuery and jQuery UI (REQUIRED) -->
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
