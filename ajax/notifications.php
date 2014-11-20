@@ -295,7 +295,7 @@ if ($_POST['notice']) {
 					  </span>
 					 </p>
 				   </a>
-					<ul class='dropdown-menu multi-level' style=' max-height: 300px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
+					<ul class='dropdown-menu multi-level' style=' max-height: 300px; width: 200px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
 						<li>".$notice."</li>
 						<div class='newnotices' ></div>
 						<li><a href='notifications.php'>See All</a></li>
