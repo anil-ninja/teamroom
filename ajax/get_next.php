@@ -288,7 +288,7 @@ if ($_POST['chal']) {
     } 
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
-                        <div class='list-group-item' style='line-height: 16.50px;'></span>
+                        <div class='list-group-item' style='line-height: 24.50px;'></span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -314,13 +314,7 @@ if ($_POST['chal']) {
     //dropdown for delete/edit/span idea ends here
         $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                         .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
-                             
-                                <div class='row'>
-                                <div class='col-md-8'>
-                                    <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p>
-                                </div>
-                            </div>
-                        </div>";
+                             </div>";
     } 
     if ($ctype == 3) {
 		if ($status == 1) {
@@ -378,7 +372,7 @@ if ($_POST['chal']) {
 	}	
 		if ($status == 6) {
         $show = $show . "<div class='list-group film'>
-                <div class='list-group-item' >
+                <div class='list-group-item' style='line-height: 24.50px;>
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-picture'>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
@@ -415,7 +409,7 @@ if ($_POST['chal']) {
               </div>";
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . "<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
+        $show = $show . "</div>";
 	}
         if ($status == 2) {
 			$show = $show . "<div class='list-group challenge'>
@@ -568,7 +562,7 @@ if ($_POST['chal']) {
         }
     
     }
-    $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>" . ucfirst($ch_title) . "</b></p>
+    $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
 			<br/>" .$chelange . "<br/><br/>";
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
