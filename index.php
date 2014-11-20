@@ -43,6 +43,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem, article, collaborate, collaboration">
         <meta name="author" content="Anil">
+	<meta name="google-site-verification" content="T9t0-1XNcBUnzXn72xeFMde2N8j7v7IjT0gHy2jweq4" />
         <link rel="stylesheet" href="css/bootstrap.css" media="screen">
         <link rel="stylesheet" href="css/bootswatch.css">
 

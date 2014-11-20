@@ -1,5 +1,5 @@
 <div class='list-group'>
-    <div class='list-group-item'>
+    <div class='list-group-item' >
         <span class="glyphicon glyphicon-question-sign" id='challenge' style="cursor: pointer"> Challenge</span>
         &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;
         <span class="glyphicon glyphicon-book" id='artical' style="cursor: pointer"> Article</span>
