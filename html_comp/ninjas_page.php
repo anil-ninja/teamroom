@@ -289,7 +289,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     } 
      if ($ctype == 4) {
         echo "<div class='list-group idea'>
-                        <div class='list-group-item' style='line-height: 16.50px;'></span>
+                        <div class='list-group-item' style='line-height: 24.50px;'></span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -297,12 +297,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         dropDown_delete_idea($db_handle, $chelangeid, $user_id);
                     echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                         .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
-                        <div class='row'>
-                            <div class='col-md-8'>
-                                <p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>IDEA</b></p>
-                            </div>
-                        </div>
-                    </div>";
+                        </div>";
     } 
     if ($ctype == 3) {
 		if ($status == 1) {
@@ -332,16 +327,17 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 	}	
 		if ($status == 6) {
         echo "<div class='list-group film'>
-                <div class='list-group-item' >
+                <div class='list-group-item' style='line-height: 24.50px;'>
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-picture'>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
                         style='width: 50px; height: 50px'></span>
-                    </div>
-                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                    </div>";
+                    dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+                   echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> " . $timefunction ;
-        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-        echo "<p align='center' style='font-size: 14pt; color :#3B5998;'  >Photo</p></div>";
+        
+        echo "</div>";
 	}
         if ($status == 2) {
 			echo "<div class='list-group challenge'>
@@ -494,7 +490,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         }
     
     }
-    echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'  ><b>" . ucfirst($ch_title) . "</b></p>
+    echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
 			<br/>" .$chelange . "<br/><br/>";
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
