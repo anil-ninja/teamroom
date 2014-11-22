@@ -15,11 +15,11 @@
             </div>
                 
     <?php
-    $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
+    $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
 						b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
 						AND a.challenge_type = '5' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id)
 						UNION
-                		(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, 
+                		(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, b.last_name, 
                 		b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND 
                 		(a.challenge_type = '1' OR a.challenge_type = '2') and a.challenge_status = '2' AND a.user_id = b.user_id AND
                 		 a.challenge_id = c.challenge_id) ;");
@@ -30,7 +30,7 @@
         } else {
             $chtitle = ucfirst($title);
         }
-        $time = $titlesrow['challenge_creation'];
+        $time = $titlesrow['creation_time'];
         $timefun = date("j F, g:i a", strtotime($time));
         $eta = $titlesrow['challenge_ETA'];
         $fname = $titlesrow['first_name'];
@@ -52,7 +52,7 @@
                 <font size="2">Tasks Get Done</font>
             </div>
     <?php
-    $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
+    $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
 											b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE
 											 a.user_id = '$user_id' AND a.challenge_type = '5' AND c.user_id = b.user_id AND a.challenge_id = c.challenge_id ;");
     while ($titlesrowass = mysqli_fetch_array($titlesass)) {
@@ -62,7 +62,7 @@
         } else {
             $chtitleas = ucfirst($titleas);
         }
-        $timeas = $titlesrowass['challenge_creation'];
+        $timeas = $titlesrowass['creation_time'];
         $timefunas = date("j F, g:i a", strtotime($timeas));
         $etaas = $titlesrowass['challenge_ETA'];
         $fnameas = $titlesrowass['first_name'];

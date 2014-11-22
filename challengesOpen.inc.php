@@ -133,10 +133,10 @@ if (isset($_POST['projectphp'])) {
     exit;
 }
 function challenge_display($db_handle, $challengeSearchID) {
-        $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
+        $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.creation_time, a.challenge_ETA, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                             WHERE a.challenge_status != 3 AND a.challenge_status != 7 AND blob_id = '0' and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID')
                         UNION
-                            (SELECT DISTINCT a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.challenge_creation, a.challenge_ETA, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
+                            (SELECT DISTINCT a.project_id, a.challenge_id, a.blob_id, a.challenge_title, a.challenge_open_time, a.creation_time, a.challenge_ETA, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
                             WHERE a.challenge_status != 3 AND a.challenge_status != 7 AND a.blob_id = c.blob_id and a.user_id = b.user_id AND a.challenge_id='$challengeSearchID');");
         while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             $chellange_open_stmt = str_replace("<s>", "&nbsp;", $open_chalangerow['stmt']);
@@ -146,7 +146,7 @@ function challenge_display($db_handle, $challengeSearchID) {
             $lstname = $open_chalangerow['last_name'];
             $username_ch_ninjas = $open_chalangerow['username'];
             $chelangeid = $open_chalangerow['challenge_id'];
-            $times = $open_chalangerow['challenge_creation'];
+            $times = $open_chalangerow['creation_time'];
             $timeopen = $open_chalangerow['challenge_open_time'];
             $challenge_status = $open_chalangerow['challenge_status'];
             $challenge_type = $open_chalangerow['challenge_type'];
