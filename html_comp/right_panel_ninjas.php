@@ -1,15 +1,15 @@
 <div class="bs-component">
-    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;">
+    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);">
         <div class='list-group'>
             <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;">
             <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
             <font size="2">Add Reminder </font></a> 
             </div>
         </div>
-        <div class='list-group'style="cursor: pointer;">
-            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;" >
-                    <a class='btn-link glyphicon glyphicon-bullhorn'>
-                    <font size="2">Tasks To Do</font></a>
+        <div class='list-group'>
+            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor:default;" >
+                    <a class='btn-link glyphicon glyphicon-bullhorn'></a>
+                    <font size="2">Tasks To Do</font>
             </div>
                 
     <?php
@@ -45,9 +45,9 @@
     }
     ?></div>
             <div class='list-group' style="cursor: pointer;">
-            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;" >
-                <a class='btn-link glyphicon glyphicon-tasks'>
-                <font size="2">Tasks Get Done</font></a>
+            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32); cursor:default;" >
+                <a class='btn-link glyphicon glyphicon-tasks'></a>
+                <font size="2">Tasks Get Done</font>
             </div>
     <?php
     $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
