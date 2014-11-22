@@ -16,8 +16,8 @@
 						while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
 						$p_title = $project_title_displayRow['project_title'] ;
 						$idpro = $project_title_displayRow['project_id'] ;
-						if (strlen($p_title) > 25) {
-						$prtitle = substr(ucfirst($p_title),0,25)."...";
+						if (strlen($p_title) > 30) {
+						$prtitle = substr(ucfirst($p_title),0,30)."...";
 						} else {
 							$prtitle = ucfirst($p_title) ;
 						}								   
@@ -52,8 +52,8 @@
 						while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
 								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
 								$idproject = $project_public_title_displayRow['project_id'] ;
-							if (strlen($public_pr_titlep) > 25) {
-								$prtitlep = substr(ucfirst($public_pr_titlep),0,25)."....";
+							if (strlen($public_pr_titlep) > 30) {
+								$prtitlep = substr(ucfirst($public_pr_titlep),0,30)."....";
 								} else {
 									$prtitlep = ucfirst($public_pr_titlep) ;
 								}								   

@@ -159,9 +159,8 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>
                             <div style='line-height: 16.50px;'>
-                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-            . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a>
-                                </span>";
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>";
             dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
             
             //if ($remaintime != "Closed") {
@@ -169,7 +168,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                                     <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
                                 </form>
-                                <br> " ;
+                               <br>" . $timefunction ;
                                 //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";

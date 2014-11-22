@@ -87,7 +87,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                         <input type="password" class="form-control" id="passwordlogin" placeholder="Password">
                                     </div><br/>
                                     <button type="submit" class="btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
-                                    <a data-toggle="modal" data-target="#forgetPassword" style="float: right; font-size:11pt; padding-top: 5px ; cursor:pointer;">Forget Password</a>
+                                    <a data-toggle="modal" data-target="#forgetPassword" style="float: right; font-size:11pt; padding-top: 5px ; cursor:pointer;">Forgot Password</a>
                                 </div>
                                 <div class="modal-footer">
                                     <button data-toggle="modal" class="btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up</font></button>
@@ -174,7 +174,13 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
             <script src="js/jquery-1.js"></script>
             <script src="js/bootstrap.js"></script>
-            
+            <script type="text/javascript">
+window.onload = function(){
+  var text_input = document.getElementById ('username');
+  text_input.focus ();
+  text_input.select ();
+}
+</script>
             <script type="text/javascript">
                 function checkForm() {
                     if (document.getElementById('password_1').value == document.getElementById('password_2').value) {

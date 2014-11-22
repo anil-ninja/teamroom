@@ -216,7 +216,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		var res = ilink.split(".");
 		//alert (res['1']);
 			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
-				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" />";
+				var imgTx = "<img onerror=\"this.src=\"img/default.gif\"\" src=\""+ilink+"\" style=\"max-width: 100%;\" />";
 			}
 				else {
 					var imgTx = ilink ;
