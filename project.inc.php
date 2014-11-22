@@ -8,9 +8,6 @@ if(!checkProject($pro_id,$user_id,$db_handle))
 	{	 
 	header("location: ninjas.php") ;
 		exit ;
-	}
-if(!isset($_SESSION['user_id'])) {
-	header('Location:index.php') ;
 	} 	
 $user_id = $_SESSION['user_id'] ;
 $name = $_SESSION['first_name'];
