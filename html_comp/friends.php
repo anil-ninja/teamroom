@@ -1,3 +1,6 @@
+<div class="bs-component">
+	 <div class='list-group  style="background-color:#F0F1F2;cursor: pointer;'>
+	 <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);">
 <?php
 $idb = 0 ;
 $userProjects = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
@@ -10,13 +13,17 @@ while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
 	$useridFriends = $userProjectsRow['user_id'];
 	$tooltip = ucfirst($friendFirstName)." ".ucfirst($friendLastName);
 		   
-	echo "<input type='hidden' id='friendname' value = '".$usernameFriends."'/>
+	echo "
+			<input type='hidden' id='friendname' value = '".$usernameFriends."'/>
 		  <input type='hidden' id='friendid' value = '".$useridFriends."'/>
-		  <button class='btn-link' data-toggle='tooltip' onclick = 'chatform(\"".$useridFriends."\",\"".$usernameFriends."\")' data-placement='bottom' data-original-title='".$tooltip."'>
+		  <button class='btn-link' data-toggle='tooltip' onErrorclick = 'chatform(\"".$useridFriends."\",\"".$usernameFriends."\")' data-placement='bottom' data-original-title='".$tooltip."'>
 				<img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:30px; margin-bottom:5px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
-		  </button></br>";
+		  </button>";
 }
 ?>
+</div>
+</div>
+</div>
 <div class='footer' id='chatform' style='margin-left: 1000px; margin-right: 50px; margin-bottom: 50px; height: 300px; display: none ;'><span class='badge' style='margin-right: 0; cursor: pointer; margin-bottom: 345px; margin-left: 280px;' onclick='closechat()'>x</span></div>  
 <div class='footer' id='chatformdata' style='margin-left: 1005px; margin-right: 65px; margin-bottom: 65px; height: 270px; padding-top : 0; overflow-y: auto; overflow-x: hidden; display: none ;'>  
 <?php 
