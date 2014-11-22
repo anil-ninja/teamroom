@@ -97,17 +97,17 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                     $name = $_SESSION['first_name'];
                               echo "<img style='width: 25px; height: 25px' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp &nbsp<b>".ucfirst($name)."</b>&nbsp"; 
                                     ?></p></a>
-                        <ul class='dropdown-menu multi-level' role='menu' aria-labelledby='dropdownMenu'>
+                        <ul class='dropdown-menu' role='menu' >
                             <li><p class="navbar-text">
                                 <form method='GET' action='profile.php'>
-                                    <button type='submit' name='username' class='btn btn-link btn-sm' value='<?php echo $username; ?>'>View Profile</button>
+                                    <button type='submit' name='username' class='btn-link btn-sm' value='<?php echo $username; ?>'>View Profile</button>
                                 </form>
                                 </p>
                             </li>
                             <li>
                                 <p class="navbar-text">
                                 <form method="POST" onsubmit="return confirm('Meet you soon!!!!');">
-                                    <button type="submit" class="btn btn-link btn-xs" name="logout" >Log out<span class="glyphicon glyphicon-off"></span></button>
+                                    <button type="submit" class="btn-link btn-xs" name="logout" >Log out<span class="glyphicon glyphicon-off"></span></button>
                                 </form>
                                 </p>   
                             </li>

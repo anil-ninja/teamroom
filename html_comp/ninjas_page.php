@@ -15,7 +15,7 @@
             <form>
 
                 <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/><br/>
-                <input id="_fileChallenge" class="btn btn-primary" type="file" title="Upload Photo" label="Add photos to your post" style ="width: auto;">
+                <input id="_fileChallenge" class="btn btn-default" type="file" title="Upload Photo" label="Add photos to your post" style ="width: auto;">
                 <br/>
                 <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
                 <br>
