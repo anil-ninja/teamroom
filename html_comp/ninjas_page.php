@@ -118,7 +118,7 @@ $_SESSION['lastpanel'] = '10';
 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
     $ETA = $open_chalangerow['challenge_ETA'];
-    $ch_title = $open_chalangerow['challenge_title'];
+    $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
     $ch_id = $open_chalangerow['user_id'];
     $ctype = $open_chalangerow['challenge_type'];
     $frstname = $open_chalangerow['first_name'];
@@ -503,7 +503,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         while ($answerrow = mysqli_fetch_array($answer)) {
             echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
                     <p align='center'>Answer</p></span>"
-					. $answerrow['stmt'] . "<br/>";
+					. str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))) . "<br/>";
         }
     }
     $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a

@@ -251,9 +251,8 @@ if ($p_uid == $user_id) {
             </div>
     </div>
             <div class='list-group-item'>
-            <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . ucfirst($projttitle) . "</p></span>                
-            " . str_replace("<s>", "&nbsp;", $projectst) . "<br/><br/>
-            ";
+            <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", ucfirst($projttitle)))) . "</p></span>                
+            " .$projectst. "<br/><br/>";
 
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
@@ -311,7 +310,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
     $id_create = $tasksrow['user_id'];
-    $title_task = $tasksrow['challenge_title'];
+    $title_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title'])));
     $type_task = $tasksrow['challenge_type'];
     $status_task = $tasksrow['challenge_status'];
     $eta_task = $tasksrow['challenge_ETA'];
@@ -587,7 +586,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $answerrow = mysqli_fetch_array($answer);
         echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-        . $answerrow['stmt'] . "<br/>";
+        . str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))) . "<br/>";
     }
 
     $displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -640,7 +639,7 @@ $display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.
 
 while ($displayrow = mysqli_fetch_array($display_notes)) {
     $notes = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrow['stmt'])));
-    $title = $displayrow['challenge_title'];
+    $title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrow['challenge_title'])));
     $fname = $displayrow['first_name'];
     $lname = $displayrow['last_name'];
     $username_notes = $displayrow['username'];

@@ -92,12 +92,14 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 			}); 
 		}
-		
+function convertSpecialChar(str){
+		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+	}		
 		$("#create_challange_pb_pr").click(function(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			//alert("i am geting fucked");
-			var challenge = $("#challangepr").val() ;
-			var challenge_title = $("#challange_title").val() ;
+			var challenge = convertSpecialChar($("#challangepr").val()) ;
+			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
 			//var open_time = parseInt($("#open_time").val());
 			//var open = parseInt($("#open").val());
 			//var opentime = parseInt(open_time*60+open) ;
@@ -109,7 +111,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ challenge_title + '&type='+ type ;//+ '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') ;
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title)))) + '&type='+ type ;//+ '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
@@ -127,10 +129,10 @@ function bootstrap_alert(elem, message, timeout,type) {
 	
 		$("#create_notes").click(function(){
 			$("#create_notes").attr('disabled','disabled');
-			var notes = $("#notestmt").val() ;
-			var notes_title = $("#notes_title").val() ;
+			var notes = convertSpecialChar($("#notestmt").val()) ;
+			var notes_title = convertSpecialChar($("#notes_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&notes_title='+ notes_title ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) ;
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
@@ -145,7 +147,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 		$("#answerch").click(function(){
 			$("#answerch").attr('disabled','disabled');
-			var answerchal = $("#answerchal").val() ;
+			var answerchal = convertSpecialChar($("#answerchal").val()) ;
 			var answercid = $("#answercid").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
 			if(answerchal==''){
@@ -162,7 +164,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 	});
 	$(document).ready(function(){
 		$("#response").click(function(){
-			var notes = $("#pr_resp").val() ;
+			var notes = convertSpecialChar($("#pr_resp").val()) ;
 			var id = $("#challenge_id").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&id='+ id ;
