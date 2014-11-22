@@ -1,9 +1,9 @@
 <?php include_once 'functions/delete_comment.php';
 $totaltask = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status != '3' AND challenge_status != '7';") ;
-$totaltaskopen = mysqli_query($db_handle, "select challenge_id, challenge_creation, challenge_ETA from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '2';") ;
+$totaltaskopen = mysqli_query($db_handle, "select challenge_id, creation_time, challenge_ETA from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '2';") ;
 $z = 0 ;
 while ($ab = mysqli_fetch_array($totaltaskopen)) {
-		$time = remaining_time($ab['challenge_creation'], $ab['challenge_ETA']) ;
+		$time = remaining_time($ab['creation_time'], $ab['challenge_ETA']) ;
 		if($time == "Closed") {
 			$z++ ;
 		}
@@ -14,10 +14,10 @@ $totaltasksubmitted = mysqli_query($db_handle, "select challenge_id from challen
 $totaltaskclosed = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '5';") ;
 
 $totalchallenges = mysqli_query($db_handle, "select DISTINCT challenge_id from challenges WHERE project_id = '$pro_id' AND (challenge_type = '1' OR challenge_type = '2') AND challenge_status != '3' AND challenge_status != '7';") ;
-$totalchallengesopen = mysqli_query($db_handle, "select challenge_id, challenge_creation, challenge_ETA from challenges WHERE project_id = '$pro_id' AND (challenge_type = '1' OR challenge_type = '2') AND challenge_status = '1';") ;
+$totalchallengesopen = mysqli_query($db_handle, "select challenge_id, creation_time, challenge_ETA from challenges WHERE project_id = '$pro_id' AND (challenge_type = '1' OR challenge_type = '2') AND challenge_status = '1';") ;
 $y = 0 ;
 while ($ac = mysqli_fetch_array($totalchallengesopen)) {
-		$timec = remaining_time($ac['challenge_creation'], $ac['challenge_ETA']) ;
+		$timec = remaining_time($ac['creation_time'], $ac['challenge_ETA']) ;
 		if($timec == "Closed") {
 			$y++ ;
 		}
@@ -132,11 +132,11 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 						<td>Remaining Time</td>
 					</tr>" ;
 		
-	 $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, challenge_creation FROM challenges WHERE project_id = '$pro_id' AND challenge_type = '2' AND challenge_status = '1' ;");
+	 $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, creation_time FROM challenges WHERE project_id = '$pro_id' AND challenge_type = '2' AND challenge_status = '1' ;");
       while($ocrow = mysqli_fetch_array($oc)) {
 				$ocid = $ocrow['challenge_id'] ;
 				$octitle = $ocrow['challenge_title'] ;
-				$occtime = $ocrow['challenge_creation'] ;
+				$occtime = $ocrow['creation_time'] ;
 				$oceta = $ocrow['challenge_ETA'] ;
 				$rtoc = remaining_time($occtime, $oceta) ;
 		echo "<tr>
