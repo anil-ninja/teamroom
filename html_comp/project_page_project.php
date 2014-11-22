@@ -7,7 +7,7 @@
      | <span class="glyphicon glyphicon-film" id='videopr' style="cursor: pointer"> Videos</span>
     </div>
     <div class='list-group-item'>
-		<p style="color: grey;"><I>Please Select Post Type From Above ......</I></p>
+		<div id='textForm'><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
 		<?php
 		$_SESSION['project_id'] = $pro_id;
 		?>
