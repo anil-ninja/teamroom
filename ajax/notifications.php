@@ -278,7 +278,7 @@ if ($_POST['notice']) {
 						$y++ ;
 					} 
 				} */
-			}
+			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$neweventid."'/>";		
 			$data .= "<div class='dropdown'>
 					<a data-toggle='dropdown' onclick='updatetime()'>" ;
