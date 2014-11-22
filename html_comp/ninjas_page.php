@@ -1,13 +1,13 @@
 <div class='list-group'>
     <div class='list-group-item' >
         <span class="glyphicon glyphicon-question-sign" id='challenge' style="cursor: pointer"> Challenge</span>
-        &nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;
         <span class="glyphicon glyphicon-book" id='artical' style="cursor: pointer"> Article</span>
-        &nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
         <span class="glyphicon glyphicon-picture" id='picture' style="cursor: pointer"> Photos</span>
-        &nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
         <span class="glyphicon glyphicon-film" id='video' style="cursor: pointer"> Videos</span>
-        &nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
         <span class="glyphicon glyphicon-flash" id='idea' style="cursor: pointer"> Ideas</span></div>
     <div class='list-group-item'>
 		<p style="color: grey;"><I>Please Select Post Type From Above ......</I></p>
