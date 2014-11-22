@@ -43,7 +43,7 @@
     </head>
     <body>
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
-       <div class=" media-body" style="padding-top: 35px;">
+       <div class=" media-body" style="padding-top: 5px;">
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-7">
