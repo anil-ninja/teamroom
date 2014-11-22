@@ -354,6 +354,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   		$("#challenge").click(function(){
   			$("#ArticleForm").hide(1500);
   			$("#PictureForm").hide(1500);
+  			$("#selecttext").hide(1500);
   			$("#IdeaForm").hide(3000);
   			$("#VideoForm").hide(1500);
     		$("#challegeForm").show(3000);
@@ -362,6 +363,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   		$("#artical").click(function(){
   			$("#challegeForm").hide(1500);
   			$("#PictureForm").hide(1500);
+  			$("#selecttext").hide(1500);
   			$("#IdeaForm").hide(3000);
   			$("#VideoForm").hide(1500);
     		$("#ArticleForm").show(3000);
@@ -371,6 +373,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   			$("#challegeForm").hide(1500);
   			$("#PictureForm").show(1500);
   			$("#IdeaForm").hide(3000);
+  			$("#selecttext").hide(1500);
   			$("#VideoForm").hide(1500);
     		$("#ArticleForm").hide(3000);
   		});
@@ -378,6 +381,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   		$("#video").click(function(){
   			$("#challegeForm").hide(1500);
   			$("#PictureForm").hide(1500);
+  			$("#selecttext").hide(1500);
   			$("#IdeaForm").hide(3000);
   			$("#VideoForm").show(1500);
     		$("#ArticleForm").hide(3000);
@@ -386,6 +390,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   		$("#idea").click(function(){
 		  	$("#challegeForm").hide(1500);
 		  	$("#PictureForm").hide(1500);
+		  	$("#selecttext").hide(1500);
 		  	$("#VideoForm").hide(1500);
 		    $("#ArticleForm").hide(3000);
 		    $("#IdeaForm").show(3000);
