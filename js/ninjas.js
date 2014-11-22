@@ -119,10 +119,12 @@ function bootstrap_alert(elem, message, timeout,type) {
 				  });
 				}	
 		});
-
+	function convertSpecialChar(str){
+		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+	}
 		$("#submit_ch").click(function(){
       		$("#submit_ch").attr('disabled','disabled');
-			var challenge = $("#challange").val() ;
+			var challenge = convertSpecialChar($("#challange").val()) ;
 			var domain = url_domain(challenge);
 			//alert(domain);
 			if (domain == "www.youtube.com"){
@@ -133,7 +135,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
 			//alert(challenge);
-			var challenge_title = $("#challange_title").val() ;			
+			var challenge_title = convertSpecialChar($("#challange_title").val()) ;			
 			//var type = document.getElementById("Chall_type").checked;
 			//alert(type) ;
 			//if (type) {
