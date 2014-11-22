@@ -46,7 +46,7 @@ if(!isset($_SESSION['user_id'])){
 		<div class="col-md-3">
 			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>
 		</div>
-        <div class="col-md-1 bs-component">
+        <div class="col-md-1">
               <?php include_once 'html_comp/friends.php' ; ?>
         </div>
 	</div>
