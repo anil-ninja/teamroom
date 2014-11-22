@@ -20,7 +20,7 @@ if ($_POST['reminders']) {
 						else {
 							$rname = $notice1row['first_name'] ;
 							}
-						$notice .= "<p onclick='editreminder(".$reminderid.")' >".$reminders. "</p><br/><p style='font-size: 10px;'>To : ".$rname."</p><hr/>";
+						$notice .= "<p onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' >".$reminders. "</p><br/><p style='font-size: 10px;'>To : ".$rname."</p><hr/>";
 				}		
 		
 	echo $notice."+".$reminderid ;

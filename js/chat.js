@@ -72,20 +72,40 @@ $("#changeremindervalue").click(function(){
 			var reminder = $("#newremindervalue").val() ;
 			var date = $("#datepicker").val() ;
 			var value = $("#datepickervalue").val() ;
-			//alert(value) ;
-			if(reminder == "") {
-					var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
-				}
-				else if (date == "") {
-					var dataString = 'value='+ value + '&reminder='+ reminder + '&case=2' ;
-					}
-					else if(reminder == "" || date == "") {
-						location.reload() ;
-						return false ;
+			var userid = $("#valueuserid").val() ;
+			var newuserid = $("#selfremind").val() ;
+			alert(newuserid + "," + userid) ;
+			if(newuserid == userid) {
+					if(reminder == "") {
+							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
 						}
-						else {
-							var dataString = 'value='+ value + '&date='+ date + '&reminder='+ reminder + '&case=1' ;
+						else if (date == "") {
+							var dataString = 'value='+ value + '&reminder='+ reminder + '&case=2' ;
 							}
+							else if(reminder == "" || date == "") {
+								location.reload() ;
+								return false ;
+								}
+								else {
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ reminder + '&case=1' ;
+									}
+				}
+				else {
+					if(reminder == "") {
+							var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
+						}
+						else if (date == "") {
+							var dataString = 'value='+ value + '&reminder='+ reminder + '&case=5' + '&user='+ newuserid ;
+							}
+							else if(reminder == "" || date == "") {
+								var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
+								}
+								else {
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ reminder + '&case=7' + '&user='+ newuserid ;
+									}
+					
+					
+					}
 			$.ajax({
 				type: "POST",
 				url: "ajax/change_reminder.php",
@@ -98,12 +118,14 @@ $("#changeremindervalue").click(function(){
 						$("#datepicker").val("") ;
 						$("#datepickervalue").val("") ;
 						$("#newremindervalue").val("") ;
+						$("#valueuserid").val("") ;
 						}
 					}
 				  });	
 		});
-function editreminder(id) {
+function editreminder(id, uid) {
 	$("#datepickervalue").val(id) ;
+	$("#valueuserid").val(uid) ;	
 	$("#changeremindervalues").modal("show");
 	$("#challegeForm").hide();
 	$("#PictureForm").hide();

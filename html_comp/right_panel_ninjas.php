@@ -124,10 +124,21 @@
                             <h4 class="modal-title" id="myModalLabel"><font size="5" >Change Reminder</font></h4>
                         </div><div class='alert_placeholder'></div>
                         <div class="modal-body">
-                        		<textarea row='3' class="form-control" id="newremindervalue" placeholder="Type your message here"></textarea><br/>	
-                              	<input type="text" id ="datepicker" placeholder='Reminder Time & Date'><br/><br/>
+							To : <select class="btn-default btn-xs"  id= "selfremind" >
+							<option value="<?= $user_id ; ?>" selected >Self</option>
+				<?php
+                  $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
+														a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id') as b where a.user_id=b.user_id;");
+                         while ($friendsrow = mysqli_fetch_array($friends)) {
+                            echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
+                        }
+                        ?> 
+                        </select> &nbsp;&nbsp;&nbsp;&nbsp; Time : 
+                                <input type="text" id ="datepicker" placeholder='Reminder Time & Date'><br/><br/>
+                        		<textarea row='3' class="form-control" id="newremindervalue" placeholder="Type your message here"></textarea><br/><br/>
                               	<input type="hidden" id ="datepickervalue" value="0">
-                            <input type="submit" class="btn btn-primary btn-sm" id = "changeremindervalue" value = "Set"><br/><br/>
+                              	<input type="hidden" id ="valueuserid" value="0">
+                            <input type="submit" class="btn btn-primary btn-sm" id = "changeremindervalue" value = "Set"><br/>
                         </div>
                         <div class="modal-footer">
 							<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
