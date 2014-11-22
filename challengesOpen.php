@@ -143,39 +143,38 @@
             });
         </script>
         <!-- Modal -->
-        <div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+       <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content" style="width:auto; height:auto">
+                <div class="modal-content" style="width:350px; height:auto">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>
                             <span class="sr-only">Close</span>
                         </button>
-                        <div class="modal-title" id="myModalLabel"><p align="center"><font size="5" >Vade the Clan</font></p></div>
-
+                        <h4 class="modal-title" id="myModalLabel">Collaborations</h4>
+                        
                         <div class='alert_placeholder'></div>
                     </div>
                     <div class="modal-body">
                         <div class="input-group">
                             <span class="input-group-addon">Username</span>
-                            <input type="text" class="form-control" id="username" placeholder="Enter email or username">
+                            <input type="text" style="font-size:10pt" class="form-control" id="username" placeholder="Enter email or username">
                         </div>
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon">Password</span>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" style="font-size:10pt" class="form-control" id="passwordlogin" placeholder="Password">
                         </div><br/>
-                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLogin1()">Log in</button> &nbsp;&nbsp;
-                        <button class="btn btn-success" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
+                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
+                        
                     </div>
 
-                    <div class  ="modal-footer">
+						<div class  ="modal-footer">
                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
         </div>
-
         <!--end modle-->
 
         <!-- Modal -->

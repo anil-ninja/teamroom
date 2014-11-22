@@ -69,6 +69,7 @@ function login(){
 	$username = mysqli_real_escape_string($db_handle, $_POST['username']);
 	$email = mysqli_real_escape_string($db_handle, $_POST['email']); 
 	$password = md5(mysqli_real_escape_string($db_handle, $_POST['password']));
+	//echo $password ;
 	$response = mysqli_query($db_handle,"select * from user_info where (username = '$username' OR email = '$username') AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
 	if ( $num_rows){

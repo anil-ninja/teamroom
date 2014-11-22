@@ -102,6 +102,8 @@ $obj = new profile($UserName);
 <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
 	<script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
 	<script src="js/ninjas.js" type="text/javascript"></script>
+	<script type="text/javascript" src="js/signupValidation.js"></script>
+	<script type="text/javascript" src="js/loginValidation.js"></script>
     </head>
 
     <body style="background:#FFF;">
@@ -335,9 +337,9 @@ $obj = new profile($UserName);
                         <br>
                         <div class="input-group">
                             <span class="input-group-addon">Password</span>
-                            <input type="password" style="font-size:10pt" class="form-control" id="password" placeholder="Password">
+                            <input type="password" style="font-size:10pt" class="form-control" id="passwordlogin" placeholder="Password">
                         </div><br/>
-                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLogin1()">Log in</button>
+                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
                         
                     </div>
 
