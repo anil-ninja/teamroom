@@ -32,17 +32,20 @@ include_once 'functions/delete_comment.php';
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div>  
             <div class=" media-body" style="padding-top: 35px;">
-          <div class="col-md-9">
+          <div class="col-md-8">
               <div class="panel-primary" id='panel-cont'>
                        <?php include_once 'html_comp/project_page_project.php'; ?>
                 </div>
             </div>
             <div class="col-md-3">
 				   <?php include_once 'html_comp/project_page_challenge.php'; ?>
-            </div>	
+            </div>
+            <div class="col-md-1">
+              <?php include_once 'html_comp/project_members.php' ; ?>
+        </div>	
             </div>
            </div>
-       <div class='footer' style='margin-left: 1000px; margin-right: 50px;'><button id='talkpro' class='btn-link' type='submit' >Project Talk</button> </div>
+       <div id='talkFormproject' class='footer' style='margin-left: 1000px; margin-right: 50px;'><button id='talkpro' class='btn-link' type='submit' >Project Talk</button> </div>
 		<?php include_once 'html_comp/project_talk.php'; ?>
        <script>
        $(document).ready(function(){

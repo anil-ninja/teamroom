@@ -2,6 +2,7 @@ function chatform(userid , username){
 	$("#chatform").show();
 	$("#chatformdata").show();
 	$("#chatformin").show();
+	$("#talkFormproject").hide();
 	$("#chatformdata").scrollTop($('#chatformdata').height()) ;
 	//var username = $("#friendname").val() ;
 	//var userid = parseInt($("#friendid").val()) ;
@@ -49,6 +50,7 @@ function closechat() {
 	$("#chatform").hide();
 	$("#chatformdata").hide();
 	$("#chatformin").hide();
+	$("#talkFormproject").show();
 } ;
 function submittalk() {
 	var pr_resptalk = $("#pr_resptalk").val() ;

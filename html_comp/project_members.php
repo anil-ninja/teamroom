@@ -2,17 +2,20 @@
 	 <div class='list-group  style="background-color:#F0F1F2;cursor: pointer;'>
 	 <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);">
 <?php
-$idb = 0 ;
-$userProjects = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
-										where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id')
-										as b where a.user_id = b.user_id ;");
+$pro_id = $_GET['project_id'] ;
+//echo $pro_id ;
+$userProjects = mysqli_query($db_handle, "SELECT DISTINCT user_id FROM teams where user_id != '$user_id' and project_id = '$pro_id' ;");
 while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
-	$friendFirstName = $userProjectsRow['first_name'];
-	$friendLastName = $userProjectsRow['last_name'];
-	$usernameFriends = $userProjectsRow['username'];
 	$useridFriends = $userProjectsRow['user_id'];
+	//echo $useridFriends ;
+	$projectmembers = mysqli_query($db_handle, "SELECT first_name, last_name, username FROM user_info where user_id = '$useridFriends' ;");
+	$projectmembersRow = mysqli_fetch_array($projectmembers) ;
+	$friendFirstName = $projectmembersRow['first_name'];
+	$friendLastName = $projectmembersRow['last_name'];
+	$usernameFriends = $projectmembersRow['username'];
+	
 	$tooltip = ucfirst($friendFirstName)." ".ucfirst($friendLastName);
-		   
+	//echo $tooltip ;	   
 	echo "
 			<input type='hidden' id='friendname' value = '".$usernameFriends."'/>
 		  <input type='hidden' id='friendid' value = '".$useridFriends."'/>
