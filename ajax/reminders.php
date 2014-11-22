@@ -19,7 +19,7 @@ if ($_POST['reminder']) {
 						else {
 							$rname = $notice1row['first_name'] ;
 							}
-						$notice .= "<p onclick='editreminder(".$reminderid.")' >".$reminders. "</p><br/><p style='font-size: 10px;'>to : ".$rname."</p><hr/>";
+						$notice .= "<p onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' >".$reminders. "</p><br/><p style='font-size: 10px;'>to : ".$rname."</p><hr/>";
 				}		
 		$data .= "<div class='dropdown'>
 					<a data-toggle='dropdown'>
