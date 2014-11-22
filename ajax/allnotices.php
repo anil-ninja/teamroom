@@ -7,8 +7,8 @@ include_once "../lib/db_connect.php";
 if ($_POST['all']) {
     $user_id = $_SESSION['user_id'];
     $notice = "" ;
-	  $notice1 = mysqli_query($db_handle, " select Distinct a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
-											as b where a.person_id = '$id' and a.user_id = b.user_id;") ;
+	  $notice1 = mysqli_query($db_handle, " select a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
+											as b where a.person_id = '$user_id' and a.user_id = b.user_id;") ;
 				while ($notice1row = mysqli_fetch_array($notice1)) {
 					$reminders = $notice1row['reminder'] ;
 					$ruser_id = $notice1row['user_id'] ;
