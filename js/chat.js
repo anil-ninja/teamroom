@@ -45,13 +45,66 @@ function getnewtalk() {
 				}
 			});
 }
+function getnewreminder() {	
+	var uid = parseInt($("#lastreminderid").val()) ;
+	alert(uid) ;
+	var dataString = 'reminders='+ uid  ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/newreminders.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					var notice = result.split("+") ;
+					var neid = parseInt(notice['1']) ;
+					alert(neid) ;
+					$('.newreminders').append(notice['0']);
+					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+					if (neid != "") {
+							$("#lastreminderid").val(neid+='') ;
+						}
+				}
+			});
+}
+$("#changeremindervalue").click(function(){
+      		//$("#create_video").attr('disabled','disabled');
+			var reminder = $("#newremindervalue").val() ;
+			var date = $("#datepicker").val() ;
+			var value = $("#datepickervalue").val() ;
+			//alert(value) ;
+			if(reminder == "") {
+					var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
+				}
+				else if (date == "") {
+					var dataString = 'value='+ value + '&reminder='+ reminder + '&case=2' ;
+					}
+					else if(reminder == "" || date == "") {
+						location.reload() ;
+						return false ;
+						}
+						else {
+							var dataString = 'value='+ value + '&date='+ date + '&reminder='+ reminder + '&case=1' ;
+							}
+			$.ajax({
+				type: "POST",
+				url: "ajax/change_reminder.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result = "Changed Successfully !!!") {
+						location.reload() ;
+						$("#datepicker").val("") ;
+						$("#datepickervalue").val("") ;
+						$("#newremindervalue").val("") ;
+						}
+					}
+				  });	
+		});
 function editreminder(id) {
-	var modal = "<h4> Change Reminder </h4><div class\='input-group'><span class\='input-group-addon'>New Message </span><input type='text' class\='form-control' id='newmessage' placeholder='Details'></div><br/><div class\='input-group'><span class\='input-group-addon'>Change Time </span><input type='text' class\='form-control' onclick='appendDtpicker()' id ='datepicker' placeholder='Reminder Time & Date'></div><input type='hidden' id='reminderchangeid' value=" + id + "<br/><br><input type='submit' class\='btn btn-success' id='changereminder'  value='Change' /><br/>";
-	//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
-	//$(function(){
-		//$('#datepicker').appendDtpicker();
-	//});
-	$("#remindervalue").show().html(modal);
+	$("#datepickervalue").val(id) ;
+	$("#changeremindervalues").modal("show");
 	$("#challegeForm").hide();
 	$("#PictureForm").hide();
 	$("#selecttext").hide();
@@ -76,6 +129,7 @@ function getallreminders() {
 					$("#lastreminderid").val(neid+='') ;
 				}
 			});
+	setInterval(function(){ getnewreminder() },400000)();
 }
 function closechat() {
 	$("#chatform").hide();
