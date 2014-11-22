@@ -52,7 +52,7 @@ $total_members = mysqli_num_rows($teams_member_display);
 
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
-        <div class=" media-body" style="padding-top: 35px;"></div>
+        <div class=" media-body" style="padding-top: 65px;">
         
         <div class='row'>
         <div class='col-md-3'>
@@ -143,6 +143,7 @@ $total_members = mysqli_num_rows($teams_member_display);
 </div>
     	</div>
             <?php include_once 'html_comp/kanban.php'; ?>
+        </div>
         </div>
     	</div>
         <script language="JavaScript" type="text/javascript">
