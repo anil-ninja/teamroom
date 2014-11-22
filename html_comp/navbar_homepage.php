@@ -70,15 +70,18 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             if ($requestedPage == "project.php") {
                             echo "<li>
                                     <div class='dropdown'>
-                                        <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
-                                        <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
+                                        <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff;'><b>Teams</b>
+                                        <span class='caret'></span></p></a>
+                                        <ul class='dropdown-menu' role='menu' style='background-color: rgba(79, 183, 121, 0.8);color: #fff;'>";
                                     //team name with related project       
                                             $teams_name_display = mysqli_query($db_handle, ("select DISTINCT team_name, project_id from teams where user_id= '$user_id' AND project_id='$pro_id';"));
                                             while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                                 $team_name = $teams_name_displayRow['team_name'];
                                                 $team_project_id = $teams_name_displayRow['project_id'];
 
-                                                echo "<a href='teams.php?project_id=$team_project_id&team_name=$team_name'>" . ucfirst($team_name) . "</a><br>";
+                                                echo "<li>
+                                                <a class='btn-link pull-left' style='color: #fff; font-size:12px;' href='teams.php?project_id=$team_project_id&team_name=$team_name'><strong>" . ucfirst($team_name) . "</strong></a><hr/>
+                                               </li>";
                                             }
                                     echo "</ul>
                                     </div>
@@ -86,7 +89,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             }
                         ?>
                        
-    
                         <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
                         <li><p class="navbar-text" style='cursor: pointer;color: #fff;'><b> Rank :  <?php $rank = $_SESSION['rank'];
                                 echo $rank; ?></b>
