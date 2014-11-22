@@ -94,7 +94,7 @@
                             <h4 class="modal-title" id="myModalLabel"><font size="5" >Add Reminder</font></h4>
                         </div><div class='alert_placeholder'></div>
                         <div class="modal-body">
-                        Reminder To : <select class="btn-info btn-xs"  id= "self" >
+                        To : <select class="btn-default btn-xs"  id= "self" >
 							<option value="<?= $user_id ; ?>" selected >Self</option>
 				<?php
                   $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
@@ -103,15 +103,11 @@
                             echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
                         }
                         ?>
-                    </select><br/><br/>
+                    </select> &nbsp;&nbsp;&nbsp;&nbsp; Time : 
+                                <input type="text" id ="datepick" placeholder='Reminder Time & Date'>
+                                <input type="submit" class="btn btn-primary btn-sm pull-right" id = "remind" value = "Set"><br/><br/>
 								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
-                              	<input type="text" id ="datepick" placeholder='Reminder Time & Date'><br/><br/>
-	   	
-                            <input type="submit" class="btn btn-primary btn-sm" id = "remind" value = "Set"><br/><br/>
                         </div>
-                        <div class="modal-footer">
-							<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-						</div>
                     </div>
                 </div>
             </div>
