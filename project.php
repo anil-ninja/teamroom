@@ -28,10 +28,10 @@ include_once 'functions/delete_comment.php';
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
     <div class='alert_placeholder'></div>
         <div class='row'>
-          <div class="col-md-3" style="width:260px; padding-top: 35px; position: auto;">
+          <div class="col-md-3" style="width:260px; padding-top: 5px; position: auto;">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div>  
-            <div class=" media-body" style="padding-top: 35px;">
+            <div class=" media-body" style="padding-top: 5px;">
           <div class="col-md-8">
               <div class="panel-primary" id='panel-cont'>
                        <?php include_once 'html_comp/project_page_project.php'; ?>

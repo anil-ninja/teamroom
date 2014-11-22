@@ -107,7 +107,7 @@ $obj = new profile($UserName);
     <body style="background:#FFF;">
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          
-        <div class=" media-body" style="padding-top: 35px;">
+        <div class=" media-body" style="padding-top: 5px;">
         <div class="col-md-3">
         <?php
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
