@@ -154,7 +154,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ; 
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ challenge_title  + '&opentime='+ (opentime+='') ;//+ '&challange_eta='+ (challange_eta+='') + '&challtype='+ challtype;
+			'&challenge_title='+ challenge_title ;// + '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') + '&challtype='+ challtype;
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
