@@ -39,7 +39,7 @@ function getnewtalk() {
 					//alert(neid) ;
 					$('.newtalkspr').append(notice['0']);
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid != 0) {
+					if (neid+='' != 0) {
 							$("#lastprchatid").val(neid+='') ;
 						}
 				}
@@ -47,7 +47,7 @@ function getnewtalk() {
 }
 function getnewreminder() {	
 	var uid = parseInt($("#lastreminderid").val()) ;
-	alert(uid) ;
+	//alert(uid) ;
 	var dataString = 'reminders='+ uid  ;
 			$.ajax({
 				type: "POST",
@@ -58,10 +58,10 @@ function getnewreminder() {
 					//alert(result) ;
 					var notice = result.split("+") ;
 					var neid = parseInt(notice['1']) ;
-					alert(neid) ;
+					//alert(neid) ;
 					$('.newreminders').append(notice['0']);
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid != "") {
+					if (neid+='' != "0") {
 							$("#lastreminderid").val(neid+='') ;
 						}
 				}
@@ -243,7 +243,7 @@ function getnewmessages(userid , username) {
 					//alert(neid) ;
 					$('.newmassages').append(notice['0']);
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid != 0) {
+					if (neid+='' != 0) {
 							$("#lastchatid").val(neid+='') ;
 						}
 				}
