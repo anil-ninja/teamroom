@@ -14,7 +14,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     $user_id_access_aidRow = mysqli_fetch_array($user_id_access_aid);
     $user_id_access = $user_id_access_aidRow['user_id'];
     
-    $already_sent_mail = mysqli_query($db_handle, "SELECT id, status, hash_key FROM user_access_id WHERE user_id= '$user_id_access' AND status = '0';");
+    $already_sent_mail = mysqli_query($db_handle, "SELECT id, status, hash_key FROM user_access_aid WHERE user_id= '$user_id_access' AND status = '0';");
     $already_hash_set = mysqli_num_rows($already_sent_mail);
     if ($already_hash_set == 1) {
         $already_sent_mailRow = mysqli_fetch_array($already_sent_mail);
