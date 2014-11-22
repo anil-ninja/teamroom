@@ -19,11 +19,11 @@
                 <br/>
                 <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
                 <br>
-				 <div class="inline-form">
+			<!---	 <div class="inline-form">
                     Challenge Open For 
                     <select class="btn-info btn-xs"  id= "open_time" >	
                         <option value='0' selected >hour</option>
-                        <?php 
+                        <?php  /*
                         $o = 1;
                         while ($o <= 24) {
                             echo "<option value='" . $o . "' >" . $o . "</option>";
@@ -65,16 +65,16 @@
                         while ($h <= 23) {
                             echo "<option value='" . $h . "' >" . $h . "</option>";
                             $h++;
-                        } 
+                        } */
                         ?>
                     </select>&nbsp;
                     <select class="btn-info btn-xs" id= "c_etad" >	
                         <option value='15' selected >minute</option>
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
-                    </select><br/><br/> 
-                    <input type="checkbox" id="Chall_type" value='off' /> Always Open<br/>
-                    </div><br/>
+                    </select><br/><br/></div><br/> --->
+                    <input type="hidden" id="Chall_type" value='on' /><br/>
+                    
                     <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
                </form>
         </div>
@@ -164,15 +164,16 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 </span>";
             dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
             
-            if ($remaintime != "Closed") {
+            //if ($remaintime != "Closed") {
                 echo "<form method='POST' class='inline-form pull-right'>
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                                     <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
                                 </form>
-                                <br> " . $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
-            } else {
-                echo " <br> " . $timefunction."<br>Closed";
-            }
+                                <br> " ;
+                                //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
+            //} else {
+               // echo " <br> " . $timefunction."<br>Closed";
+            //}
                     echo "</div>
                     </div>";
         } 
@@ -191,8 +192,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 </div>
                                 <div class='col-md-5'>    
                                     Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br/> Time Remaining : " . $remaintimeown ."<br>
-                                </div>
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
+                                  //  <br/> Time Remaining : " . $remaintimeown ."<br>
+                               echo "</div>
                                 <div class='col-md-2 pull-right'>";
             dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
           if($ownuser == $user_id) {			
@@ -221,9 +223,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             </div>
                             <div class='col-md-5'>
                                 Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm . "<br/>
-                                ETA Taken : " . $timeo ."
-                            </div>";
+                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
+                                //. "<br/>  ETA Taken : " . $timeo ."
+                           echo "</div>";
           if($ch_id == $user_id) {			
                 echo "<div class='col-md-2 pull-right'>
                         <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
@@ -251,9 +253,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 </div>
                                 <div class='col-md-5'>
                                     Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm . "<br/>
-                                    ETA Taken : " . $timetakennin . "
-                                </div>
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
+                                    //. "<br/> ETA Taken : " . $timetakennin . "
+                               echo "</div>
                                 <div class='col-md-1 pull-right'>";
                                 dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
                             echo "</div>
@@ -439,8 +441,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 			 if  ($owlstatus==2){
                 echo "<div class='list-group-item'>
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit." and Time
-                 Taken : ".$timetakennin."</div>";
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit ;
+                //." and Time Taken : ".$timetakennin."
+                echo "</div>";
 			}
             }
         }
@@ -483,8 +486,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 			 if  ($owlstatus==2){
                 echo "<div class='list-group-item'>
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit." and Time
-                 Taken : ".$timetakennin."</div>";
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit ;
+                //." and Time Taken : ".$timetakennin."
+                echo "</div>";
 			}
             }
         }

@@ -56,7 +56,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                  <img src ='img/collap.gif' style="width:70px;">collap</a>
             </div>
             <div class="span3 pull-right">
-                <ul class="list-inline">
+                <ul class="list-inline" style='padding-top: 10px;'>
                     <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
                     <li><a class="btn-link" style='font-size:12pt; color: #fff; font-weight: bold;' href="http://dpower4.com/" target="_blank">Dpower4.com</a></li>
                 </ul>
@@ -86,11 +86,11 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                         <span class="input-group-addon">Password&nbsp;</span>
                                         <input type="password" class="form-control" id="passwordlogin" placeholder="Password">
                                     </div><br/>
-                                    <button type="submit" class="btn btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
-                                    <a data-toggle="modal" data-target="#forgetPassword" style="float: right; cursor:pointer;"><font size="3" >Forget Password</font></a>
+                                    <button type="submit" class="btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
+                                    <a data-toggle="modal" data-target="#forgetPassword" style="float: right; font-size:11pt; padding-top: 5px ; cursor:pointer;">Forget Password</a>
                                 </div>
                                 <div class="modal-footer">
-                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up for Collap</font></button>
+                                    <button data-toggle="modal" class="btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up</font></button>
                                 </div>
                             </div>
                         </div>

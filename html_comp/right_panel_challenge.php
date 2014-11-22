@@ -10,11 +10,11 @@
                           <form >
                         <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
                         <textarea rows="3" class="form-control" placeholder="Details of Challange" id='challange'></textarea><br/>
-                        <div class="inline-form">
+                      <!---  <div class="inline-form">
                         Challenge Open For 
                         <select class="btn btn-default btn-xs"  id= "open_time" >	
                             <option value='0' selected >hour</option>
-                            <?php
+                            <?php /*
                                 $o = 1 ;
                                 while ($o <= 24){
                                     echo "<option value='".$o."' >".$o."</option>" ;
@@ -56,14 +56,14 @@
                                     while ($h <= 23){
                                         echo "<option value='".$h."' >".$h."</option>" ;
                                         $h++ ;
-                                    }
+                                    } */
                                 ?>
                         </select>&nbsp;
                         <select class="btn btn-default btn-xs" id= "c_etad" >	
                             <option value='15' selected >minute</option>
                             <option value='30' >30</option>
                             <option value='45'  >45</option>
-                        </select><br/><br/>                          
+                        </select><br/><br/> --->                         
                         <input id="submit_ch" class="btn btn-success" type="button" value="Create Challange"/>
                         </div>
                     </form>

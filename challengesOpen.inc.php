@@ -111,7 +111,7 @@ if (isset($_POST['chlange'])) {
     $youretab = $_POST['y_etab'];
     $youretac = $_POST['y_etac'];
     $youretad = $_POST['y_etad'];
-    $your_eta = (($youreta * 30 + $youretab) * 24 + $youretac) * 60 + $youretad;
+    $your_eta = 1 ;//(($youreta * 30 + $youretab) * 24 + $youretac) * 60 + $youretad;
     events($db_handle,$user_id,"4",$chalange);
     involve_in($db_handle,$user_id,"4",$chalange);
     mysqli_query($db_handle, "UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ");
@@ -195,8 +195,8 @@ function challenge_display($db_handle, $challengeSearchID) {
                                 <a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                 .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " 
                                 </a>
-                            </span><br>" . $timefunction . "<br>".$remaining_time_own."
-                        </div>";
+                            </span><br>" . $timefunction ;//. "<br>".$remaining_time_own."
+              echo "</div>";
             switch ($challenge_status) {
                 case 1:
                     if (isset($_SESSION['user_id'])) {
@@ -260,7 +260,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                             <a href ='profile.php?username=" . $owned_username . "'>"
                         . "$owned_f_name" . "&nbsp" . $owned_l_name . "
                             </a>
-                        </span>&nbsp on &nbsp" . $own_created."<br>". $remaining_time_own;
+                        </span>&nbsp on &nbsp" . $own_created ;//."<br>". $remaining_time_own;
                     } else {
                         echo"<a data-toggle='modal' data-target='#SignIn'>
                             <button class='btn btn-primary btn-sm pull-right' >Accept</button>

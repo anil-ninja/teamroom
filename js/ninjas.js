@@ -134,27 +134,27 @@ function bootstrap_alert(elem, message, timeout,type) {
 			}
 			//alert(challenge);
 			var challenge_title = $("#challange_title").val() ;			
-			var type = document.getElementById("Chall_type").checked;
+			//var type = document.getElementById("Chall_type").checked;
 			//alert(type) ;
-			if (type) {
-			if(!confirm("Challenge will be open always and there will be no ETA"))
-				return false;
-			var challtype = '2' ;
-			}
-			 else {
-				 var challtype = '1' ;
-				}
-			var open_time = parseInt($("#open_time").val());
-			var open = parseInt($("#open").val());
-			var opentime = parseInt(open_time*60+open) ;
-			var eta = parseInt($("#c_eta").val());
-			var etab = parseInt($("#c_etab").val());
-			var etac = parseInt($("#c_etac").val());
-			var etad = parseInt($("#c_etad").val());
-			var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ; 
+			//if (type) {
+			//if(!confirm("Challenge will be open always and there will be no ETA"))
+				//return false;
+			//var challtype = '2' ;
+			//}
+			// else {
+				// var challtype = '1' ;
+				//}
+			//var open_time = parseInt($("#open_time").val());
+			//var open = parseInt($("#open").val());
+			//var opentime = parseInt(open_time*60+open) ;
+			//var eta = parseInt($("#c_eta").val());
+			//var etab = parseInt($("#c_etab").val());
+			//var etac = parseInt($("#c_etac").val());
+			//var etad = parseInt($("#c_etad").val());
+			//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ; 
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ challenge_title  + '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') + '&challtype='+ challtype;
+			'&challenge_title='+ challenge_title ;// + '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') + '&challtype='+ challtype;
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
@@ -316,14 +316,14 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var project_title = $("#project_title").val() ;
 			var project_stmt = $("#project_stmt").val();
 			var type = $("#type").val();
-			var eta = parseInt($("#eta").val());
-			var etab = parseInt($("#etab").val());
-			var etac = parseInt($("#etac").val());
-			var etad = parseInt($("#etad").val());
-			var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
+			//var eta = parseInt($("#eta").val());
+			//var etab = parseInt($("#etab").val());
+			//var etac = parseInt($("#etac").val());
+			//var etad = parseInt($("#etad").val());
+			//var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'project_title='+ project_title + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
-			'&project_eta='+ (project_eta+='') + '&type='+ type ;
+			'&type='+ type ;//+ '&project_eta='+ (project_eta+='')  ;
 			//alert(dataString);
 			if(project_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
@@ -502,14 +502,14 @@ $("#pencil").click(function(){
 					if (result == 'true') {
 							var title = $("#title").val() ;
 							var taskdetails = $("#taskdetails").val() ;
-							var eta = parseInt($("#c_eta").val());
-							var etab = parseInt($("#c_etab").val());
-							var etac = parseInt($("#c_etac").val());
-							var etad = parseInt($("#c_etad").val());
-							var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
+							//var eta = parseInt($("#c_eta").val());
+							//var etab = parseInt($("#c_etab").val());
+							//var etac = parseInt($("#c_etac").val());
+							//var etad = parseInt($("#c_etad").val());
+							//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 							// Returns successful data submission message when the entered information is stored in database.
 							var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-							 + '&email='+ email + '&title='+ title + '&team='+ team + '&users='+ users + '&challange_eta='+ (challange_eta+='') ;
+							 + '&email='+ email + '&title='+ title + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
 							//alert(dataString);
 							if(title==''){
 								bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
@@ -539,14 +539,14 @@ $("#pencil").click(function(){
 			else {
 				var title = $("#title").val() ;
 				var taskdetails = $("#taskdetails").val() ;
-				var eta = parseInt($("#c_eta").val());
-				var etab = parseInt($("#c_etab").val());
-				var etac = parseInt($("#c_etac").val());
-				var etad = parseInt($("#c_etad").val());
-				var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
+				//var eta = parseInt($("#c_eta").val());
+				//var etab = parseInt($("#c_etab").val());
+				//var etac = parseInt($("#c_etac").val());
+				//var etad = parseInt($("#c_etad").val());
+				//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 				// Returns successful data submission message when the entered information is stored in database.
 				var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-				 + '&title='+ title + '&team='+ team + '&users='+ users + '&challange_eta='+ (challange_eta+='') ;
+				 + '&title='+ title + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
 				//alert(dataString);
 				if(title==''){
 					bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");

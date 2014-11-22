@@ -39,9 +39,9 @@
         echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);cursor: pointer;'> <a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 				    data-placement='bottom' data-original-title='" . $tooltip . 
-                    "' style='height: 25px;font-size:12px;text-align: left;height: 37px'>" . $chtitle . "
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
-                </button></a></div>";
+                    "' style='height: 25px;font-size:12px;text-align: left;height: 37px'>" . $chtitle ;
+                    //. "<p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
+         echo "</button></a></div>";
     }
     ?></div>
             <div class='list-group' style="cursor: pointer;">
@@ -72,9 +72,9 @@
                 <a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
     				data-placement='bottom' data-original-title='" . $tooltipas .
-                     "'style='height: 37px;font-size:13px;text-align: left;'>" . $chtitleas ."
-                <p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
-                </button></a></div>";
+                     "'style='height: 37px;font-size:13px;text-align: left;'>" . $chtitleas ;
+                     //."<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
+             echo "</button></a></div>";
     }
     ?>
         </div>

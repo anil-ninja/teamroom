@@ -8,9 +8,9 @@ if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
 	$pro_id = $_SESSION['project_id'] ;	
 	$challangetext = $_POST['challange'];
-	$opentime = $_POST['opentime'] ;
+	//$opentime = $_POST['opentime'] ;
 	$challenge_title = $_POST['challenge_title'] ;
-	$challange_eta = $_POST['challange_eta'] ; 
+	$challange_eta = 1 ;//$_POST['challange_eta'] ; 
 	$image = $_POST['img'] ;
 	if (strlen($image) < 30 ) {
 		$challange = $challangetext ;

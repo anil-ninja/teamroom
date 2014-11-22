@@ -32,7 +32,9 @@
 							<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 							data-placement='bottom' data-original-title=' ".$title."' style='height: 20px;font-size:11px;text-align: left;'>
 							</b>".$prtitle."</b>
-							<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_own."</p></td></tr> 
+							<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>" ;
+					//echo $remaining_time_own ;
+					echo "</p></td></tr> 
 						</button></form>" ;
 						
 						
@@ -68,9 +70,9 @@
 								<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 								data-placement='bottom' data-original-title='".$titlep."' style='height: 20px;font-size:11px;text-align: left;'>
 								".$prtitlep."
-								<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>".$remaining_time_ownp."</p></button></td>
-							</form>
-							" ;
+								<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>" ;
+								//$remaining_time_ownp.
+								echo "</p></button></td></form>" ;
 					$join =  mysqli_query($db_handle, "select user_id from teams where project_id = '$idproject' and user_id = '$user_id';") ;
 					if (mysqli_num_rows($join) == 0) {		
 					echo	"<td>
