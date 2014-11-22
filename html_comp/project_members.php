@@ -1,6 +1,5 @@
 <div class="bs-component">
-	 <div class='list-group  style="background-color:#F0F1F2;cursor: pointer;'>
-	 <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);">
+	<div style="padding-top:20px;">
 <?php
 $pro_id = $_GET['project_id'] ;
 //echo $pro_id ;
@@ -24,7 +23,6 @@ while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
 		  </button>";
 }
 ?>
-</div>
 </div>
 </div>
 <div class='footer' id='chatform' style='margin-left: 1000px; margin-right: 50px; margin-bottom: 50px; height: 300px; display: none ;'><span class='badge' style='margin-right: 0; cursor: pointer; margin-bottom: 345px; margin-left: 280px;' onclick='closechat()'>x</span></div>  
