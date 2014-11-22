@@ -50,11 +50,11 @@ include_once 'functions/delete_comment.php';
        <script>
        $(document).ready(function(){
 			$("#talkpro").click(function(){
-				$("#talkprForm").toggle();
-				$("#talkformdata").toggle();
-				$("#talkformin").toggle();
+				$("#talkprForm").show();
+				$("#talkformdata").show();
+				$("#talkformin").show();
 				$("#talkformdata").scrollTop($('#talkformdata').height()) ;
-				projecttalk() ;
+				projecttalk();
 			});
 		});   
        </script>

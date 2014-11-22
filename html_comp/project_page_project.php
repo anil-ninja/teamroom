@@ -307,12 +307,6 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 								  a.challenge_creation, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
 								  WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
 								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10 ;");
-if (mysqli_num_rows($tasks) > 0) {
-    echo "<h3 class='panel-title'><p align='center'>Challenges</p></h3>";
-} else {
-    echo "<h3 class='panel-title'><p align='center'>You have no Challenges</p></h3>";
-}
-
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
@@ -634,13 +628,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     </div></div></div>";
 }
 ?>
-</div>
-<?php
-$echo = mysqli_query($db_handle, "select * from challenges where challenge_type = '6' ;");
-if (mysqli_num_rows($echo) > 0) {
-    echo "<h3 ><p align='center'> Notes</p></h3>";
-}
-?>             
+</div>             
 <?php
 $display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b where a.project_id = '$pro_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 

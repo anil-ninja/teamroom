@@ -283,17 +283,18 @@ if ($_POST['notice']) {
 			$data .= "<div class='dropdown'>
 					<a data-toggle='dropdown' onclick='updatetime()'>" ;
 			if ($y == 0) {
-				$data = $data . "<p class='navbar-text' style ='cursor: pointer;'>" ;
+				$data = $data . "<p class='navbar-text' style ='cursor: pointer;'>
+								<i class='glyphicon glyphicon-bell'></i>" ;
 			}
 			else {
-				$data = $data . "<p class='navbar-text' style ='cursor: pointer; color: red;'>" ;
+				$data = $data . "<p class='navbar-text' style ='cursor: pointer; color: red;'>
+								<i class='glyphicon glyphicon-bell'></i>
+								<span class='badge'>
+									<input type='submit' class='btn-link btn-xs' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; 
+									color: white;' id='countnotice' value='".$y."'/>
+								</span>" ;
 				}
-			$data = $data . "<i class='glyphicon glyphicon-bell'></i>
-					  <span class='badge'>
-					   <input type='submit' class='btn-link btn-xs' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; 
-					   color: white;' id='countnotice' value='".$y."'/>
-					  </span>
-					 </p>
+	$data = $data . "</p>
 				   </a>
 					<ul class='dropdown-menu multi-level' style=' max-height: 300px; width: 200px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
 						<li>".$notice."</li>
