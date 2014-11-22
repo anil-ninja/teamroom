@@ -11,6 +11,7 @@
         <span class="glyphicon glyphicon-flash" id='idea' style="cursor: pointer"> Ideas</span></div>
     <div class='list-group-item'>
 		<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
+		<div id='remindervalue'></div>
         <div id='challegeForm'>
             <form>
 

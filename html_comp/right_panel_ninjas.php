@@ -2,8 +2,10 @@
     <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);">
         <div class='list-group'>
             <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;">
-            <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
-            <font size="2">Add Reminder </font></a> 
+				<div class='list-inline'>
+            <li><a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
+            <font size="2">Add Reminder </font></a></li> | <li><div id='allreminders' style='width:100px;'></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?></li>
+            </div>
             </div>
         </div>
         <div class='list-group'>
@@ -80,7 +82,6 @@
         </div>
 </div>
 </div>
-
  <!-- Modal -->
             <div class="modal fade" id="myreminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">

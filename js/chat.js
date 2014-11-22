@@ -45,7 +45,38 @@ function getnewtalk() {
 				}
 			});
 }
- 
+function editreminder(id) {
+	var modal = "<h4> Change Reminder </h4><div class\='input-group'><span class\='input-group-addon'>New Message </span><input type='text' class\='form-control' id='newmessage' placeholder='Details'></div><br/><div class\='input-group'><span class\='input-group-addon'>Change Time </span><input type='text' class\='form-control' onclick='appendDtpicker()' id ='datepicker' placeholder='Reminder Time & Date'></div><input type='hidden' id='reminderchangeid' value=" + id + "<br/><br><input type='submit' class\='btn btn-success' id='changereminder'  value='Change' /><br/>";
+	//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
+	//$(function(){
+		//$('#datepicker').appendDtpicker();
+	//});
+	$("#remindervalue").show().html(modal);
+	$("#challegeForm").hide();
+	$("#PictureForm").hide();
+	$("#selecttext").hide();
+	$("#VideoForm").hide();
+	$("#ArticleForm").hide();
+	$("#IdeaForm").hide();
+}
+function getallreminders() {	
+	var dataString = 'reminder=true'  ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/reminders.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					var notice = result.split("+") ;
+					var neid = parseInt(notice['1']) ;
+					//alert(neid) ;
+					document.getElementById("allreminders").innerHTML = notice['0'];
+					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+					$("#lastreminderid").val(neid+='') ;
+				}
+			});
+}
 function closechat() {
 	$("#chatform").hide();
 	$("#chatformdata").hide();
