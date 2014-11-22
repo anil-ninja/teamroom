@@ -86,25 +86,23 @@ $total_members = mysqli_num_rows($teams_member_display);
         <div class="col-md-3">
         <?php
             $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$team_project_id';");
-                $team_ownerRow = mysqli_fetch_array($teams_owner_add);
-                $team_owner_project = $team_ownerRow['team_owner'];
-                    if ($team_owner_project == $user_id) {
-                       echo "                        
-                                <div class='dropdown'>
-                                    <button class='btn-link dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'> + Add New Teammate</button>
-                                    <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
-                                        <li><form method='POST'>
-                                            <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/>
-                                            <input type='hidden' id ='team_name' value='" .$team_name. "'/>
-                                            <input type='hidden' id ='project_no' value='" .$team_project_id."'/>
-                                            <input type='button' class='btn-success btn-sm submit' id='add_member' onclick='add_member_to_team()' value='Add' />
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
-                            ";
-                    }
-                    ?>
+            $team_ownerRow = mysqli_fetch_array($teams_owner_add);
+            $team_owner_project = $team_ownerRow['team_owner'];
+            if ($team_owner_project == $user_id) {
+                echo "<div class='dropdown'>
+                        <button class='btn-link dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'> + Add New Teammate</button>
+                        <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
+                            <li><form method='POST'>
+                                    <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/>
+                                    <input type='hidden' id ='team_name' value='" .$team_name. "'/>
+                                    <input type='hidden' id ='project_no' value='" .$team_project_id."'/>
+                                    <input type='button' class='btn-success btn-sm submit' id='add_member' onclick='add_member_to_team()' value='Add' />
+                                </form>
+                            </li>
+                        </ul>
+                    </div>";
+            }
+        ?>
         </div>
         </div>
 
@@ -180,7 +178,6 @@ $total_members = mysqli_num_rows($teams_member_display);
                     var project_id = $("#project_id").val();
                     var member_remove_id = $("#user_remove_id").val();
                     var dataString = 'team_name=' + team_name + '&project_id='+ project_id + '&mem_remove_id=' + member_remove_id;
-                    alert(dataString);
                     $.ajax({
                         type: "POST",
                         url: "ajax/add_member_team.php",

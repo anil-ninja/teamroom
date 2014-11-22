@@ -13,11 +13,17 @@ if (isset($_POST['emailadd_member1'])) {
     if ($row == 1) {
             $responserow = mysqli_fetch_array($respo);
             $uid = $responserow['user_id'];
-            mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id, team_owner) VALUES ('$uid', '$team_name', '$pro_id', '$user_id');");
-            events($db_handle,$user_id,"12",$pro_id) ;
-            involve_in($db_handle,$user_id,"12",$pro_id) ;
-            //header('Location: projct.php');
-            echo "Member Added succesfully!";
+            $already_member = mysqli_query($db_handle, "SELECT user_id FROM teams WHERE user_id = '$uid' AND project_id = '$pro_id' AND member_status = '1' AND status = '1' AND team_name = '$team_name';");
+            $already_memberRow = mysqli_num_rows($already_member);
+            if ($already_memberRow == 1) {
+                echo "Already a member of this team";
+            } 
+            else {
+                mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id, team_owner) VALUES ('$uid', '$team_name', '$pro_id', '$user_id');");
+                events($db_handle,$user_id,"12",$pro_id);
+                involve_in($db_handle,$user_id,"12",$pro_id);
+                echo "Member Added succesfully!";
+            }
     } 
     else { 
         echo "Member Not Registered Yet" ;
