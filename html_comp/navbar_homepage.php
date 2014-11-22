@@ -11,7 +11,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 <span class="icon-bar"></span>
               </button>
               <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">
-              <img src ='img/collap.gif' style="width:70px;">collap</a>
+              <img src ='img/collap.gif' style="width:50px;">collap</a>
         </div>
         <script src="js/search.js" type="text/javascript"></script>
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
