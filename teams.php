@@ -23,7 +23,7 @@ $project_team_title = $project_name_displayRow['project_title'];
 
 
 $teams_member_display = mysqli_query($db_handle, "select b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
-                                                    from teams as a join user_info as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1' and a.project_id=$team_project_id;");
+                                                    from teams as a join user_info as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1' and a.project_id=$team_project_id ORDER BY team_creation ASC;");
 $total_members = mysqli_num_rows($teams_member_display);
 
 
@@ -105,12 +105,9 @@ $total_members = mysqli_num_rows($teams_member_display);
         ?>
         </div>
         </div>
-
         <hr/>
-            
     	<?php
-                
-    		while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
+                while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
                     $firstname = $teams_member_displayRow['first_name'];
                     $username = $teams_member_displayRow['username'];
                     $lastname = $teams_member_displayRow['last_name'];
@@ -119,22 +116,19 @@ $total_members = mysqli_num_rows($teams_member_display);
                     
                         echo "<div class='row col-md-3' style='background : #EEF8F2;padding: 5px; margin-right:60px;margin-bottom:10px;'>
                                 <div class ='col-md-3' style='padding:1px;'>
-                                <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
+                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
                                 </div>";
                         
-                        echo "<div class = 'col-md-8' style='font-size:12px;padding: 7px;'><span class='color pull-left' ><a href ='profile.php?username=" . $username . "'>" 
+                        echo "<div class = 'col-md-8' style='font-size:12px;padding: 7px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $username . "'>" 
                                     .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br/><span style='font-size:10px;'>"
                                     .$rank."</span></div>";
                         if ($team_owner_project == $user_id && $user_id_member != $user_id) {
                           echo "<div class = 'col-md-1' style='font-size:12px;padding-left: 3px; padding-right: 0px;'><input type='hidden' id ='team_name' value='" .$team_name. "'/>
-                                <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
-                                <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
-                                <button type='submit' class='btn-link' id='remove_member' onclick='remove_member_team();'data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>x</button>
+                                    <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
+                                    <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
+                                    <button type='submit' class='btn-link' id='remove_member' onclick='remove_member_team(".$user_id_member.");' data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>x</button>
                                 </div>";
                         }
-
-
-
                         echo "</div>";
                 }
         ?>
@@ -172,11 +166,12 @@ $total_members = mysqli_num_rows($teams_member_display);
                         }
         </script>
                 <script>
-            function remove_member_team(href){
+            function remove_member_team(id){
                 if(confirm("Do u really want to Remove this member?")){
                     var team_name = $("#team_name").val();
                     var project_id = $("#project_id").val();
-                    var member_remove_id = $("#user_remove_id").val();
+                    var member_remove_id = id;
+                    alert ("user id is" +id);
                     var dataString = 'team_name=' + team_name + '&project_id='+ project_id + '&mem_remove_id=' + member_remove_id;
                     $.ajax({
                         type: "POST",
