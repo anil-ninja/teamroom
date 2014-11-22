@@ -1,6 +1,5 @@
 <?php 
     include_once 'challengesOpen.inc.php'; 
-
 ?>
 <html lang="en">
     <head>

@@ -65,12 +65,8 @@ if ($_POST['chal']) {
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                             </div>
                             <div style='line-height: 16.50px;'>
-                               <div class='row'>
-                                <div class='col-md-3'>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-										<br>" . $timefunction . "
-                                </div></div>";
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>";
     
 //dropdown for delete/edit/span challenge starts
         $show = $show . "<div class='list-group-item pull-right'>
@@ -111,7 +107,7 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                    $show = $show . "</div>
+                    $show = $show . "<br/>" . $timefunction."<br/><br/></div>
                     </div>";
         } 
         if ($status == 2) {
@@ -126,7 +122,7 @@ if ($_POST['chal']) {
                                 <div class='col-md-3'>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                     . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-										<br>" . $timefunction . "
+										<br>" . $timefunction . "<br/><br/>
                                 </div>
                                 <div class='col-md-5'>    
                                     Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
@@ -167,7 +163,7 @@ if ($_POST['chal']) {
                         <div class='row' style='line-height: 16.50px;'>
                             <div class='col-md-3'>
                                 <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
+                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
                             </div>
                             <div class='col-md-5'>
                                 Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
@@ -209,7 +205,7 @@ if ($_POST['chal']) {
                             <div class='row'>
                                 <div class='col-md-3'>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction ;
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction."<br/><br/>" ;
                                     //. "<br/> ETA Given : " . $timeo . "
              $show = $show . "</div>
                                 <div class='col-md-5'>
@@ -260,7 +256,7 @@ if ($_POST['chal']) {
                         </div>
                             <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                 . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                            <br> " . $timefunction . "
+                            <br> " . $timefunction . "<br/><br/>
                         </div>";
     }
     if ($ctype == 8) {
@@ -289,7 +285,7 @@ if ($_POST['chal']) {
                         </div>
                             <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                 . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                            <br> " . $timefunction . "
+                            <br> " . $timefunction . "<br/><br/>
                         </div>";
     } 
      if ($ctype == 4) {
@@ -319,7 +315,7 @@ if ($_POST['chal']) {
                         </div>";
     //dropdown for delete/edit/span idea ends here
         $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "
+                                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
                              </div>";
     } 
     if ($ctype == 3) {
@@ -332,7 +328,7 @@ if ($_POST['chal']) {
                         style='width: 50px; height: 50px'></span>
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>";
     //dropdown for delete/edit/span challenge starts
         $show = $show . "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
@@ -374,7 +370,7 @@ if ($_POST['chal']) {
                     <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                 </form>";
         }
-        $show = $show . "</div>";
+        $show = $show . "<br/>".$timefunction."<br/><br/></div>";
 	}	
 		if ($status == 6) {
         $show = $show . "<div class='list-group film'>
@@ -385,7 +381,7 @@ if ($_POST['chal']) {
                         style='width: 50px; height: 50px'></span>
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> " . $timefunction;
+                         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> ";
         //dropdown for delete/edit/span challenge starts
         $show = $show . "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
@@ -415,7 +411,7 @@ if ($_POST['chal']) {
               </div>";
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . "</div>";
+        $show = $show . "<br/>".$timefunction."<br/><br/></div>";
 	}
         if ($status == 2) {
 			$show = $show . "<div class='list-group challenge'>
@@ -425,8 +421,7 @@ if ($_POST['chal']) {
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-			<br/>" . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>" ;
         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
          if ($ch_id != $user_id ) {
 			 if(mysqli_num_rows($owneduser) == 0){
@@ -460,7 +455,7 @@ if ($_POST['chal']) {
                             <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
                         </form>";
                 }
-                $show = $show . "</div>";
+                $show = $show . "<br/>".$timefunction."<br/><br/></div>";
             }
         }
         if ($status == 4) {
@@ -471,8 +466,7 @@ if ($_POST['chal']) {
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-				<br/>" . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>" ;
         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
          if ($ch_id != $user_id ) {
 			 if(mysqli_num_rows($owneduser) == 0){
@@ -488,7 +482,7 @@ if ($_POST['chal']) {
                     <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                 </form>";
         }
-           $show = $show . "</div>";
+           $show = $show . "<br/>".$timefunction."<br/><br/></div>";
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
@@ -533,7 +527,7 @@ if ($_POST['chal']) {
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."</div>";
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/></div>";
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {

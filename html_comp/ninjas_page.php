@@ -167,13 +167,12 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 echo "<form method='POST' class='inline-form pull-right'>
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                                     <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
-                                </form>
-                               <br>" . $timefunction ;
+                                </form>" ;
                                 //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";
             //}
-                    echo "</div>
+                    echo "<br/>" . $timefunction."<br/><br/></div>
                     </div>";
         } 
         if ($status == 2) {
@@ -187,7 +186,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             <div class='row'>
                                 <div class='col-md-3'>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
                                 </div>
                                 <div class='col-md-5'>    
                                     Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
@@ -218,7 +217,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         <div class='row' style='line-height: 16.50px;'>
                             <div class='col-md-3'>
                                 <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
+                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
                             </div>
                             <div class='col-md-5'>
                                 Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
@@ -248,8 +247,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             <div class='row'>
                                 <div class='col-md-3'>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/> ETA Given : " . $timeo . "
-                                </div>
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/><br/>" ;
+                                    // ETA Given : " . $timeo . "
+                         echo  "</div>
                                 <div class='col-md-5'>
                                     Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
@@ -272,7 +272,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         dropDown_delete_article($db_handle, $chelangeid, $user_id);
                             echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                                    <br> " . $timefunction . "<br/>
+                                    <br> " . $timefunction . "<br/><br/>
                                 </div>";
     }
     if ($ctype == 8) {
@@ -285,7 +285,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         dropDown_delete_article($db_handle, $chelangeid, $user_id);
                             echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
                                         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                                    <br> " . $timefunction . "<br/>
+                                    <br> " . $timefunction . "<br/><br/>
                                 </div>";
     } 
      if ($ctype == 4) {
@@ -297,7 +297,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             </div>";
         dropDown_delete_idea($db_handle, $chelangeid, $user_id);
                     echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/>
+                                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
                         </div>";
     } 
     if ($ctype == 3) {
@@ -310,7 +310,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         style='width: 50px; height: 50px'></span>
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>" ;
         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
         if ($ch_id != $user_id) {
             echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
@@ -324,7 +324,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                 </form>";
         }
-        echo "</div>";
+        echo "<br/>" . $timefunction."<br/><br/></div>";
 	}	
 		if ($status == 6) {
         echo "<div class='list-group film'>
@@ -336,7 +336,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     </div>";
                     dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                    echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> " . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> " . $timefunction."<br/><br/>" ;
         
         echo "</div>";
 	}
@@ -348,7 +348,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/>" ;
         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
          if ($ch_id != $user_id ) {
 			 if(mysqli_num_rows($owneduser) == 0){
@@ -393,7 +393,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction ;
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/>" ;
         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
          if ($ch_id != $user_id ) {
 			 if(mysqli_num_rows($owneduser) == 0){
@@ -454,7 +454,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."</div>";
+        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/></div>";
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
