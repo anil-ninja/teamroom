@@ -37,31 +37,36 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                 </li>";
                         }
 
-                        if ($requestedPage == "ninjas.php") {
-                            echo "<li>
-                                    <div class='dropdown'>
-                                        <a data-toggle='dropdown'><p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'><b>Teams</b><span class='caret'></span></p></a>
-                                        <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
-                                            $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
-                                            while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
-                                                $team_name = $teams_name_displayRow['team_name'];
-                                                echo "<li class='dropdown-submenu'>
-                                                        <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
-                                                            <ul class='dropdown-menu'>";
-                                                $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
-                                                                                                as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
-                                                while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
-                                                    $firstname = $teams_names_displayRow['first_name'];
-                                                    $username = $teams_names_displayRow['username'];
-                                                    $lastname = $teams_names_displayRow['last_name'];
-                                                    echo "<li><p><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
-                                                }
-                                            echo "</ul></li>";
-                                            }
-                                    echo "</ul>
-                                    </div>
-                                </li>";
-                            }
+                        // if ($requestedPage == "ninjas.php") {
+                        //     echo "<li >
+                        //             <div class='dropdown'>
+                        //                 <a data-toggle='dropdown'>
+                        //                 <p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'>
+                        //                 <b>Teams</b><span class='caret'>
+                        //                 </span>
+                        //                 </p>
+                        //                 </a>
+                        //                 <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
+                        //                     $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
+                        //                     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
+                        //                         $team_name = $teams_name_displayRow['team_name'];
+                        //                         echo "<li class='dropdown-submenu'>
+                        //                                 <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
+                        //                                     <ul class='dropdown-menu'>";
+                        //                         $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
+                        //                                                                         as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
+                        //                         while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
+                        //                             $firstname = $teams_names_displayRow['first_name'];
+                        //                             $username = $teams_names_displayRow['username'];
+                        //                             $lastname = $teams_names_displayRow['last_name'];
+                        //                             echo "<li><p><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
+                        //                         }
+                        //                     echo "</ul></li>";
+                        //                     }
+                        //             echo "</ul>
+                        //             </div>
+                        //         </li>";
+                        //     }
                             if ($requestedPage == "project.php") {
                             echo "<li>
                                     <div class='dropdown'>
@@ -97,19 +102,17 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                     $name = $_SESSION['first_name'];
                               echo "<img style='width: 25px; height: 25px' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp &nbsp<b>".ucfirst($name)."</b>&nbsp"; 
                                     ?></p></a>
-                        <ul class='dropdown-menu' role='menu' >
-                            <li><p class="navbar-text">
-                                <form method='GET' action='profile.php'>
-                                    <button type='submit' name='username' class='btn-link btn-sm' value='<?php echo $username; ?>'>View Profile</button>
-                                </form>
-                                </p>
-                            </li>
+                        <ul class='dropdown-menu' role='menu' style="background-color: rgba(79, 183, 121, 0.8);color: #fff;">
                             <li>
-                                <p class="navbar-text">
-                                <form method="POST" onsubmit="return confirm('Meet you soon!!!!');">
-                                    <button type="submit" class="btn-link btn-xs" name="logout" >Log out<span class="glyphicon glyphicon-off"></span></button>
+                                <form method='GET' action='profile.php'>
+                                    <b><button type='submit' name='username' class='btn-link' style="color: #fff;" value='<?php echo $username; ?>'>View Profile</button></b>
                                 </form>
-                                </p>   
+                            </li>
+                            <hr/>
+                            <li>
+                                <form method="POST" onsubmit="return confirm('Meet you soon!!!!');">
+                                    <b><button type="submit" class="btn-link " name="logout" style="color: #fff;"><span class="glyphicon glyphicon-off"></span> Log out </button></b>
+                                </form>  
                             </li>
                         </ul>
                     </div>

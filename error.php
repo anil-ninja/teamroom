@@ -34,7 +34,7 @@ if (isset($_POST['logout'])) {
 <?php 
     include_once 'html_comp/navbar_homepage.php'; 
 ?>
-        <div class="row" style="padding-top: 5px;">
+        <div class="row" style="padding-top: 50px;">
             <div class="col-lg-1"></div>
             <div class="col-lg-8">
                 <?php
