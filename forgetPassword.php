@@ -117,6 +117,3 @@ $accessed_or_not = mysqli_num_rows($verify_check);
     </script>
     </body>
 </html>
-
-
-

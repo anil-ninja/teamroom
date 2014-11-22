@@ -7,7 +7,7 @@ if($_POST['project_title']){
 	$user_id = $_SESSION['user_id'];
 	$project_title = $_POST['project_title'] ;
 	$project_sttext = $_POST['project_stmt'] ;
-	$project_eta = $_POST['project_eta'] ;
+	$project_eta = 1 ;//$_POST['project_eta'] ;
 	$type = $_POST['type'] ;
 	$image = $_POST['img'] ;
 	if (strlen($image) < 30 ) {

@@ -252,7 +252,7 @@ if ($_POST['notice']) {
 			$y++ ;
 			} 
 			
-	$notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
+	/* $notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
 											join challenges as b where b.challenge_id = a.challenge_id and a.status = '1' 
 											and a.user_id = '$user_id';") ;
 		while($notice16row = mysqli_fetch_array($notice16)) {
@@ -277,7 +277,7 @@ if ($_POST['notice']) {
 											".$title16."</a><hr/>" ;
 						$y++ ;
 					} 
-				}
+				} */
 			}
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$neweventid."'/>";		
 			$data .= "<div class='dropdown'>

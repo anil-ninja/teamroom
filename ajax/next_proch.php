@@ -78,13 +78,13 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                 $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                                         <li><button class='btn-link' cID='" . $id_task . "' onclick='delChallenge(" . $id_task . ");'>Delete</button></li>
                                         ";
-                                if ($remaintimeown == 'Closed') {
+                             /*   if ($remaintimeown == 'Closed') {
                     $show = $show . "<li><form method='POST' class='inline-form'>
                                             <input type='hidden' name='id' value='" . $id_task . "'/>
                                             <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
                                         </form>
                                     </li>";
-                                }
+                                } */
                             }
                             else {
                     $show = $show . "<li><button class='btn-link' >Report Spam</button></li>";
@@ -98,9 +98,9 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                 <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span><br>" . $timefunct."
                     </div>
                     <div class='col-md-4'>
-                        Task Assigned To:<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span><br>
-                        ETA Given: " . $etaown . " <br/>" . $remaintimeown . "
-                    </div>";
+                        Task Assigned To:<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>" ;
+                        //<br>ETA Given: " . $etaown . " <br/>" . $remaintimeown . "
+                    $show = $show . "</div>";
             if ($ownid == $user_id) {
                 $show = $show . "<div class='col-md-1 pull-right'>
                                     <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
@@ -125,8 +125,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 				   <button type='submit' class='btn-primary' name='closechallenge'>Close</button></form>";
             }
             $show = $show . "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
-					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
+				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>" ;
+					 //ETA Given : " . $etaown . " 
+					 $show = $show . "<br/> and Submitted On : " . $timecom ;
+					 //. " ETA Taken : " . $timetaken . "
+					 $show = $show . "</div></div>";
         }
         if ($status_task == 5) {
 			$show = $show . "<div class='list-group flag'>
@@ -138,8 +141,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                             <div style='line-height: 16.50px;'>";
             $show = $show . "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span><br/>
 				<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
-				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
-					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
+				Task Assigned To &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>" ;
+					// ETA Given : " . $etaown . " 
+					$show = $show . "<br/> and Submitted On : " . $timecom ;
+					//. " ETA Taken : " . $timetaken . "
+					$show = $show . "</div></div>";
         }
     }
     if ($type_task == 1 || $type_task == 2) {
@@ -153,7 +159,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                     <div style='line-height: 16.50px;'>";
                 $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
                                 .ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span><br>" 
-                                .$timetask . "<br>ETA :" . $tasketa . " " . $remaintime;
+                                .$timetask ;//. "<br>ETA :" . $tasketa . " " . $remaintime;
             
     //dropdown for delete/edit/span challenge starts
         $show = $show . "<div class='list-group-item pull-right'>
@@ -165,14 +171,14 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                 if($challenge_dropdown_userID == $user_id) {
                                     $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                    
-                                    if($remaining_time_ETA_over == 'Time over') {        
+                                  /*  if($remaining_time_ETA_over == 'Time over') {        
                                         $show = $show . "<li>
                                                 <form method='POST' class='inline-form'>
                                                     <input type='hidden' name='id' value='".$id_task."'/>
                                                     <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
                                                 </form>
                                             </li>";
-                                    }                                    
+                                    } */                                   
                                 }
                             else {
                             $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
@@ -206,8 +212,8 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                                 <div class='col-md-5'>";
                                     $show = $show . "Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br>" 
-                                                    . $timefunct . "<br>ETA Taken: " . $etaown . "<br>Time Remaining : " . $remaintimeown . "
-                                                </div>
+                                                    . $timefunct ;//. "<br>ETA Taken: " . $etaown . "<br>Time Remaining : " . $remaintimeown . "
+                                               $show = $show . " </div>
                                                 <div class='col-md-1 pull-right'>";
                                                 if ($ownid == $user_id) {
                                     $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
@@ -265,8 +271,9 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
             }
             $show = $show . "&nbsp&nbsp On : " . $timetask . "<br/>
 				Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp Submitted On : " . $timefunct . " and 
-				ETA Taken : " . $timetaken . "</div></div>";
+            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp Submitted On : " . $timefunct ;
+            //. " and ETA Taken : " . $timetaken . "
+            $show = $show . "</div></div>";
         }
 
         if ($status_task == 5) {
@@ -293,8 +300,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 //dropdown for delete/edit/span challenge ends here
             $show = $show . "</span><span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>
 				<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span> On " . $timefunct . "<br/>
-				Owned By &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>
-					 ETA Given : " . $etaown . " <br/> and Submitted On : " . $timecom . " ETA Taken : " . $timetaken . "</div></div>";
+				Owned By &nbsp <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> </span>" ;
+					// ETA Given : " . $etaown . " 
+					$show = $show . "<br/> and Submitted On : " . $timecom ;
+					//. " ETA Taken : " . $timetaken . "
+					$show = $show . "</div></div>";
         }
     }				 
 				

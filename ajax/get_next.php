@@ -79,14 +79,14 @@ if ($_POST['chal']) {
                     if($challenge_dropdown_userID == $user_id) {
                         $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                               <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
-                        if($remaining_time_ETA_over == 'Time over') {        
+                      /*  if($remaining_time_ETA_over == 'Time over') {        
                             $show = $show . "<li>
                                     <form method='POST' class='inline-form'>
                                         <input type='hidden' name='id' value='".$chelangeid."'/>
                                         <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
                                     </form>
                                 </li>";
-                        }                                    
+                        }              */                      
                      }
                     else {
                        $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
@@ -99,15 +99,16 @@ if ($_POST['chal']) {
         //dropdown for delete/edit/span challenge ends here
 
             
-            if ($remaintime != "Closed") {
+        //    if ($remaintime != "Closed") {
                 $show = $show . "<form method='POST' class='inline-form pull-right'>
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                                     <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
                                 </form>
-                                <br> " . $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
-            } else {
-                $show = $show . " <br> " . $timefunction."<br>Closed";
-            }
+                                <br> " . $timefunction ;
+                                //. "<br> ETA : " . $sutime . "<br/>" . $remaintime;
+          //  } else {
+            //    $show = $show . " <br> " . $timefunction."<br>Closed";
+          //  }
                     $show = $show . "</div>
                     </div>";
         } 
@@ -126,8 +127,9 @@ if ($_POST['chal']) {
                                 </div>
                                 <div class='col-md-5'>    
                                     Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br/> Time Remaining : " . $remaintimeown ."<br>
-                                </div>";
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
+                                    //<br/> Time Remaining : " . $remaintimeown ."<br>
+               $show = $show . "</div>";
           if($ownuser == $user_id) {			
 			$show = $show . " <div class='col-md-2'>  
                                     <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
@@ -166,9 +168,9 @@ if ($_POST['chal']) {
                             </div>
                             <div class='col-md-5'>
                                 Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm . "<br/>
-                                ETA Taken : " . $timeo ."
-                            </div>
+                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
+                                //. "<br/>  ETA Taken : " . $timeo ."
+            $show = $show . "</div>
                             <div class='col-md-2 pull-right'>";
           
             $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
@@ -204,13 +206,14 @@ if ($_POST['chal']) {
                             <div class='row'>
                                 <div class='col-md-3'>
                                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/> ETA Given : " . $timeo . "
-                                </div>
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction ;
+                                    //. "<br/> ETA Given : " . $timeo . "
+             $show = $show . "</div>
                                 <div class='col-md-5'>
                                     Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm . "<br/>
-                                    ETA Taken : " . $timetakennin . "
-                                </div>";
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
+                                    //. "<br/>  ETA Taken : " . $timetakennin . "
+             $show = $show . "</div>";
                                 $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                                 $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                                 $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
@@ -337,14 +340,14 @@ if ($_POST['chal']) {
                     if($challenge_dropdown_userID == $user_id) {
                         $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                               <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
-                        if($remaining_time_ETA_over == 'Time over') {        
+                    /*    if($remaining_time_ETA_over == 'Time over') {        
                             $show = $show . "<li>
                                     <form method='POST' class='inline-form'>
                                         <input type='hidden' name='id' value='".$chelangeid."'/>
                                         <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
                                     </form>
                                 </li>";
-                        }                                    
+                        }    */                                
                      }
                     else {
                        $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
@@ -390,14 +393,14 @@ if ($_POST['chal']) {
                     if($challenge_dropdown_userID == $user_id) {
                         $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                               <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
-                        if($remaining_time_ETA_over == 'Time over') {        
+                 /*       if($remaining_time_ETA_over == 'Time over') {        
                             $show = $show . "<li>
                                     <form method='POST' class='inline-form'>
                                         <input type='hidden' name='id' value='".$chelangeid."'/>
                                         <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
                                     </form>
                                 </li>";
-                        }                                    
+                        }   */                                 
                      }
                     else {
                        $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
@@ -511,8 +514,9 @@ if ($_POST['chal']) {
 			 if  ($owlstatus==2){
                 $show = $show . "<div class='list-group-item'>
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit." and Time
-                 Taken : ".$timetakennin."</div>";
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit ;
+                //." and Time Taken : ".$timetakennin."
+            $show = $show . "</div>";
 			}
             }
         }
@@ -555,8 +559,9 @@ if ($_POST['chal']) {
 			 if  ($owlstatus==2){
                 $show = $show . "<div class='list-group-item'>
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit." and Time
-                 Taken : ".$timetakennin."</div>";
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit ;
+                //." and Time  Taken : ".$timetakennin."
+                $show = $show . "</div>";
 			}
             }
         }

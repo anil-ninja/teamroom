@@ -187,10 +187,10 @@ else {
                     <input type="text" class="form-control" id="project_title" placeholder="Enter Project Title"><br>
                     <input class="btn btn-default btn-sm" type="file" id="_fileProject" style ="width: auto;"><br/>
                     <textarea rows="3" class="form-control" id="project_stmt" placeholder="Details about Project"></textarea><br/>
-                    Estimated Time (ETA)
+                 <!---   Estimated Time (ETA)
                     <select id = "eta" >	
                         <option value='0' selected >Month</option>
-                        <?php
+                        <?php /*
                         $m = 1;
                         while ($m <= 11) {
                             echo "<option value='" . $m . "' >" . $m . "</option>";
@@ -213,14 +213,14 @@ else {
                         while ($h <= 23) {
                             echo "<option value='" . $h . "' >" . $h . "</option>";
                             $h++;
-                        }
+                        } */
                         ?>
                     </select>&nbsp;<select id= "etad" >	
                         <option value='15' selected >minute</option>
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
                     </select>
-                    <br/><br/>Project Type 
+                    <br/><br/> --->Project Type 
                     <select id= "type" >	
                         <option value='2' selected >Private</option>
                         <option value='1' >Public</option>

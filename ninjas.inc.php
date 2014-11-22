@@ -145,7 +145,7 @@ if(isset($_POST['pr_spem'])) {
 	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='7' WHERE challenge_id = '$idch'; ") ;
 	header('Location: #');
 	}
-if(isset($_POST['eta'])) {
+/* if(isset($_POST['eta'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
 			<div class='modal-dialog'> 
@@ -172,7 +172,7 @@ if(isset($_POST['eta'])) {
 		</div>
 	</div>" ;
 }
-
+*/
 if (isset($_POST['chlange'])) {
 		$user_id = $_SESSION['user_id'];
 		$chalange = $_POST['cid'] ;
@@ -180,7 +180,7 @@ if (isset($_POST['chlange'])) {
 		$youretab = $_POST['y_etab'] ;
 		$youretac = $_POST['y_etac'] ;
 		$youretad = $_POST['y_etad'] ;
-		$your_eta = (($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
+		$your_eta = 1 ;//(($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
 		events($db_handle,$user_id,"4",$chalange);
     involve_in($db_handle,$user_id,"4",$chalange);
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ") ;
@@ -195,7 +195,7 @@ if (isset($_POST['closechal'])) {
     involve_in($db_handle,$user_id,"6",$chalange);
     mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
 }
-if (isset($_POST['change_eta'])) {
+/*if (isset($_POST['change_eta'])) {
 		$user_id = $_SESSION['user_id'];
 		$a = date("y-m-d H:i:s") ;
 		$chalange = $_POST['cid'] ;
@@ -206,7 +206,7 @@ if (isset($_POST['change_eta'])) {
 		$your_eta = (($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='$a' WHERE challenge_id = $chalange ; ") ;
 header('Location: #');
-}
+} */
 function checkProject($projectID, $userId, $db_handle){
 	//returns true in case of public
 	$type = mysqli_query($db_handle,"select project_type from projects where project_id = '$projectID' ;") ;

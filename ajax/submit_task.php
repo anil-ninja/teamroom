@@ -17,7 +17,7 @@ if($_POST['taskdetails']){
 	else {
 		$details = $image."<br/> ".$detailstext ;
 		}
-	$challange_eta = $_POST['challange_eta'] ;
+	$challange_eta = 1 ;//$_POST['challange_eta'] ;
 if ($users != 0) {
 		$owner = $users ;		
  if (strlen($details) < 1000) {
