@@ -33,8 +33,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$("#create_video").click(function(){
       		//$("#create_video").attr('disabled','disabled');
 			var challenge = $("#videosub").val() ;
-			var video_title = $("#video_title").val() ;
-			var videodes = $("#videodes").val() ;
+			var video_title = convertSpecialChar($("#video_title").val()) ;
+			var videodes = convertSpecialChar($("#videodes").val()) ;
 			var domain = url_domain(challenge);
 			//alert(domain);
 			if (domain == "www.youtube.com"){
@@ -78,8 +78,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$("#create_videopr").click(function(){
       		//$("#create_videopr").attr('disabled','disabled');
 			var challenge = $("#videoprjt").val() ;
-			var video_title = $("#video_titlepr").val() ;
-			var videodes = $("#videodespr").val() ;
+			var video_title = convertSpecialChar($("#video_titlepr").val()) ;
+			var videodes = convertSpecialChar($("#videodespr").val()) ;
 			var domain = url_domain(challenge);
 			//alert(domain);
 			if (domain == "www.youtube.com"){
@@ -248,8 +248,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 		$("#create_article").click(function(){
       		$("#create_article").attr('disabled','disabled');
-			var article = $("#articlech").val() ;
-			var article_title = $("#article_title").val() ;
+			var article = convertSpecialChar($("#articlech").val()) ;
+			var article_title = convertSpecialChar($("#article_title").val()) ;
 			if(article==''){
 				bootstrap_alert(".alert_placeholder", "Article can not be empty", 5000,"alert-warning");
 				return false;
@@ -281,7 +281,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		});
 		
 		$("#remind").click(function(){
-			var reminder = $("#reminder").val() ;
+			var reminder = convertSpecialChar($("#reminder").val()) ;
 			var self = $("#self").val() ;
 			var eventtime = $("#datepick").val() ;
 			if(reminder==''){
@@ -315,8 +315,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 			
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
-			var project_title = $("#project_title").val() ;
-			var project_stmt = $("#project_stmt").val();
+			var project_title = convertSpecialChar($("#project_title").val()) ;
+			var project_stmt = convertSpecialChar($("#project_stmt").val());
 			var type = $("#type").val();
 			//var eta = parseInt($("#eta").val());
 			//var etab = parseInt($("#etab").val());
@@ -451,8 +451,8 @@ $("#pencil").click(function(){
 	
 		$("#create_idea").click(function(){
       		$("#create_idea").attr('disabled','disabled');
-			var idea = $("#ideaA").val() ;
-			var idea_title = $("#idea_titleA").val() ;		
+			var idea = convertSpecialChar($("#ideaA").val()) ;
+			var idea_title = convertSpecialChar($("#idea_titleA").val()) ;		
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',idea)))) + '&idea_title='+ idea_title  ;
 			//alert(dataString);
@@ -471,8 +471,8 @@ $("#pencil").click(function(){
 	
 		$("#create_picture").click(function(){
       		$("#create_picture").attr('disabled','disabled');
-			var picturech = $("#picturech").val() ;
-			var picture_title = $("#picture_title").val() ;			
+			var picturech = convertSpecialChar($("#picturech").val()) ;
+			var picture_title = convertSpecialChar($("#picture_title").val()) ;			
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',picturech)))) + '&picture_title='+ picture_title  ;
 			//alert(dataString);
@@ -507,8 +507,8 @@ $("#pencil").click(function(){
 				success: function(result){
 					//alert(result);
 					if (result == 'true') {
-							var title = $("#title").val() ;
-							var taskdetails = $("#taskdetails").val() ;
+							var title = convertSpecialChar($("#title").val()) ;
+							var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
 							//var eta = parseInt($("#c_eta").val());
 							//var etab = parseInt($("#c_etab").val());
 							//var etac = parseInt($("#c_etac").val());
@@ -544,8 +544,8 @@ $("#pencil").click(function(){
 				  });
 				}
 			else {
-				var title = $("#title").val() ;
-				var taskdetails = $("#taskdetails").val() ;
+				var title = convertSpecialChar($("#title").val()) ;
+				var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
 				//var eta = parseInt($("#c_eta").val());
 				//var etab = parseInt($("#c_etab").val());
 				//var etac = parseInt($("#c_etac").val());
