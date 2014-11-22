@@ -115,6 +115,11 @@ function newchat(userid , username) {
 			});
 		}
 } ;
+function closetalk() {
+	$("#talkprForm").hide();
+	$("#talkformdata").hide();
+	$("#talkformin").hide();
+}
 function projecttalk() {
 	var username = 'name' ;
 	var dataString = 'prtalk='+ username ;
