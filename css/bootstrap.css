@@ -4121,14 +4121,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 14px;
 }
 .navbar-text {
-  margin-top: 5px;
+  margin-top:8px;
   margin-bottom: 5px;
 }
 @media (min-width: 768px) {
   .navbar-text {
     float: left;
-    margin-left: 15px;
-    margin-right: 3px;
+    margin-left: 8px;
+    margin-right: 10px;
   }
   .navbar-text.navbar-right:last-child {
     margin-right: 0;
@@ -4283,7 +4283,7 @@ tbody td:last-child, thead th:last-child {
     border-right: none;
 }
 .navbar-inverse {
-    height: 25px;
+    height: 23px;
     margin-right: 0;
     width:100%;
   background-color: #3BD78C;
