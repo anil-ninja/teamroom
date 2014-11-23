@@ -28,9 +28,9 @@
 		if ($flag) {			
 				echo "<div class ='row' style='border-width: 1px; border-style: solid;margin:4px;background : #E1F9E4;'>
 						<div class ='col-md-3 ' style='padding:1px;'>
-                        <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
+                        <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
                       </div>
-                	  <div class = 'col-md-8' style='font-size:12px;padding: 7px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriends. "'>" 
+                	  <div class = 'col-md-8' style='font-size:12px;padding: 1px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriends. "'>" 
                                     .ucfirst($friendFirstName)." ".ucfirst($friendLastName)."</a></span><br/><span style='font-size:10px;'>"
                                     .$friendRank."</span>
                       </div><br/>
@@ -40,15 +40,15 @@
 			else {
 				echo "<div class ='row' style='border-width: 1px; border-style: solid;margin:4px;background : #E1F9E4;'>
 						<div class ='col-md-2' style='padding:1px;'>
-                         <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
+                         <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
                       </div>
-                      <div class = 'col-md-7' style='font-size:12px;padding: 7px;'>
+                      <div class = 'col-md-7' style='font-size:12px;padding: 1px;'>
                       	<span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriends. "'>" 
                                     .ucfirst($friendFirstName)." ".ucfirst($friendLastName)."</a>
                         </span><br/>
                         <span style='font-size:10px;'>".$friendRank."</span>
                        </div>
-                       <div class = 'col-md-2' style='font-size:12px;padding-left: 3px; padding-right: 0px;'>
+                       <div class = 'col-md-2' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
 							<form method='POST' action='' onsubmit=\"return confirm('Really Know this Person !!!')\">
 								<input type = 'hidden' name = 'knownid' value = '".$useridFriends."'/><br/>
 								<input type = 'submit' class = 'btn-success' name = 'knownperson' value = 'link'/>
