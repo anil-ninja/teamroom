@@ -41,15 +41,28 @@ class challenge{
         if (substr($this->stmt, 0, 4) == "<img") {
             $arrayStmt = explode(">", $this->stmt);
             
-            return substr($this->stmt,strlen($arrayStmt[0])+1,155);
+            return substr($this->stmt,strlen($arrayStmt[0])+1,255);
+        }
+        if (substr($this->stmt, 0, 2) == "<a") {
+            $arrayStmt = explode("</a>", $this->stmt);
+            
+            return substr($this->stmt,strlen($arrayStmt[0])+4,255);
         }
         return substr($this->stmt, 0, 200);
     }
     function getUrl($stmt){
         if (substr($stmt, 0, 4) == "<img") {
+           
 			$arrayStmt = explode("\"", $stmt);
             return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).$arrayStmt[1];
+        } else 
+        if (substr($stmt, 0, 2) == "<a") {
+            $xpath = new DOMXPath(@DOMDocument::loadHTML($stmt));
+            $src = $xpath->evaluate("string(//img/@src)");
+            //$arrayStmt = explode("\"", $stmt);
+            return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).$src;
         }
+        
         else {
             return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."uploads/profilePictures/$this->username.jpg";
         }
