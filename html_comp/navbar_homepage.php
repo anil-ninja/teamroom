@@ -116,6 +116,10 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                     <b><button type="submit" class="btn-link " name="logout" style="color: #fff;"><span class="glyphicon glyphicon-off"></span> Log out </button></b>
                                 </form>  
                             </li>
+                            <hr/>
+                            <li>
+                                <b><a href="settings.php" class="btn-link" style="color: #fff;"><span class="glyphicon glyphicon-cog"></span> Settings </a></b>
+                            </li>
                         </ul>
                     </div>
                 </li>
