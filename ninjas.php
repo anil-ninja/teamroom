@@ -54,13 +54,13 @@ if(!isset($_SESSION['user_id'])){
         </div>
 	</div>
 	<script>
-		getallreminders() ;
 		$(document).ready(function(){
 			
 	$(window).scroll(function(event) {
 		
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();
+         alert('bhh');
 		var dataString = 'chal=10' ;
 			  $.ajax({
 				type: "POST",
@@ -75,6 +75,7 @@ if(!isset($_SESSION['user_id'])){
 	}
 });
 }); 
+getallreminders() ;
 	</script>
     <script src="js/jquery-1.js"></script>
     <script src="date.js"></script>
