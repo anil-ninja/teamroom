@@ -1,7 +1,15 @@
 <?php
 session_start();
+$user_id = $_SESSION['user_id'];
 if(!isset($_SESSION['user_id'])){
 	header("location: index.php") ;
+}
+if (isset($_POST['logout'])) {
+    header('Location: index.php');
+    unset($_SESSION['user_id']);
+    unset($_SESSION['first_name']);
+    session_destroy();
+    exit ;
 }
 ?>
 
@@ -105,5 +113,14 @@ if(!isset($_SESSION['user_id'])){
                 }
 
     </script>
+    <script src="js/jquery-1.js"></script>
+    <script src="date.js"></script>
+    <script src="js/bootstrap.js"></script>
+   
+   <script src="js/date_time.js"></script>
   </body>
 </html>
+
+<?php
+mysqli_close($db_handle);
+?>
