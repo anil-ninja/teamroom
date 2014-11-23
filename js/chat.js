@@ -180,7 +180,7 @@ function submittalk() {
 				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 				if(result=='Posted succesfully!'){
 					$("#pr_resptalk").val("") ;
-					getnewtalk() ;
+					//getnewtalk() ;
 				}
 			}
 		 });
@@ -219,7 +219,7 @@ function newchat(userid , username) {
 					//alert(result) ;
 					if (result == "Posted Successfully!") {
 						$("#chattalk").val("") ;
-						getnewmessages(userid , username) ;
+						//getnewmessages(userid , username) ;
 					}
 				}
 			});
