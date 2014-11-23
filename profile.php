@@ -129,20 +129,26 @@ $obj = new profile($UserName);
             else {
                 echo "<br/><hr/><span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong>";
             } 
-             echo "<br/>&nbsp;&nbsp;(".$_SESSION['rank'].")</span>
+             echo "&nbsp;&nbsp;(".$_SESSION['rank'].")</span>
                   <br/><span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>" ;
              if($profileViewPhone != 1) {    
                 echo "<br/><span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
-                  <br/><span><br/>Skills:";
+                  <br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:";
 			  }
 			  else {
-				  echo "<br/><span><br/>Skills:" ; 
+				  echo "<br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:" ; 
 				  }
             $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
             while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                 echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
                 }
+                
             echo "<br/></span>";
+            if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
+                echo "<br/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
+                           <i class='glyphicon glyphicon-plus'></i> Skill
+                        </a><br/>";
+					}
              $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
              $aboutuserRow = mysqli_fetch_array($aboutuser) ;
              echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['organisation_name']."<br/><span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['about_user'] ;
