@@ -77,7 +77,7 @@ $("#changeremindervalue").click(function(){
 			var value = $("#datepickervalue").val() ;
 			var userid = $("#valueuserid").val() ;
 			var newuserid = $("#selfremind").val() ;
-			alert(newuserid + "," + userid) ;
+			//alert(newuserid + "," + userid) ;
 			if(newuserid == userid) {
 					if(reminder == "") {
 							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;

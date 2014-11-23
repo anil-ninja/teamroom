@@ -47,11 +47,13 @@ function signup(){
 
 		$_SESSION['user_id'] = $user_create_id;
 		$_SESSION['first_name'] = $firstname ;
+		$_SESSION['first_time'] = "true" ;
 		$_SESSION['username'] = $username ;
 		$_SESSION['email'] = $email;
 		$obj = new rank(mysqli_insert_id($db_handle));
     	//echo $obj->user_rank;
 		$_SESSION['rank'] = $obj->user_rank;
+		//header('Location: ../profile.php') ;
 		exit;
 		}
 		//header('Location: ./index.php?status=0');

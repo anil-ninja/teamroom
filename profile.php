@@ -112,58 +112,61 @@ $obj = new profile($UserName);
         <div class=" media-body" style="padding-top: 50px;">
         <div class="col-md-3">
         <?php
+			echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 250px;'>Edit</a>";
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                 echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>
                     <div class='alert_placeholder'> </div>";
+                   } 
+            ?>
             
+            <div class="viewprofile">
+            <?php
+            if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
             echo "<br/><hr/><span class='glyphicon glyphicon-user'></span><strong> <span id='first_name'>" 
-                        . ucfirst($profileViewFirstName)."</span> <span id='last_name'>".ucfirst($profileViewLastName)."</span></strong>
-                            <button onclick='showMsg();' id='showEdit' class='glyphicon glyphicon-pencil'></button>";
-                            echo "<div id='editName'>
-                                <form class='inline-form'>
-                                    <input type ='text' id='edit_first' value=".ucfirst($profileViewFirstName).">
-                                    <input type ='text' id='edit_last' value=".ucfirst($profileViewLastName).">
-                                </form>
-                            </div>
-                            <button onclick='hideMsg();' id='showUpdate'>Update</button>";
-            } 
+                        . ucfirst($profileViewFirstName)."</span> <span id='last_name'>".ucfirst($profileViewLastName)."</span></strong>";
+                   } 
             else {
                 echo "<br/><hr/><span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong>";
             } 
              echo "<br/>&nbsp;&nbsp;(".$_SESSION['rank'].")</span>
-                  <br/><span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>
-                  <br/><span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
+                  <br/><span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>" ;
+             if($profileViewPhone != 1) {    
+                echo "<br/><span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
                   <br/><span><br/>Skills:";
+			  }
+			  else {
+				  echo "<br/><span><br/>Skills:" ; 
+				  }
             $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
             while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                 echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
                 }
             echo "<br/></span>";
-                                
-                   
+             $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
+             $aboutuserRow = mysqli_fetch_array($aboutuser) ;
+             echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['organisation_name']."<br/><span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['about_user'] ;
+             ?>
+             </div>
+             <div class="editprofile">
+             <?php    
             if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                echo "
-                        <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
-                            <i class='glyphicon glyphicon-plus'></i>
-                            Skill
+                echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
+                           <i class='glyphicon glyphicon-plus'></i> Skill
                         </a><br/>";
+                echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
+					  <input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
+					  <input type='text' id='newemailid' class='form-control' value='".$profileViewEmail."'/>
+					  <input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>
+					  <textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea>
+					  <input type='text' id='livingtown' class='form-control' placeholder='Current Living Town'/>
+					  <input type='text' id='companyname' class='form-control' placeholder='Organisation Name'/><br/>
+					  <a class='btn-success btn-sm' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
+					  "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
                 }
-                        
-                        // echo "<span>
-                        //     <select class='btn-xs' id='remove'>
-                        //     <option value='0' selected></option>";  
-                        //         $skill_remove_names= mysqli_query($db_handle, "SELECT b.skill_id, b.skill_name FROM user_skills as a join skill_names as b
-                        //                                                         WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id;");
-                        //        while ($skill_remove_namesRow = mysqli_fetch_array($skill_remove_names)) {
-                        //             echo "<option value= '".$skill_remove_namesRow['skill_id']."'>".$skill_remove_namesRow['skill_name']."</option>";
-                        //        }
-                        // echo "</select>&nbsp
-                        //     <input id='remove_skill' class='btn-xs btn-primary' type='submit' value='Remove Skill'/>
-                        // </span>";
-            ?>
-            
-        </div>
+                ?>
+                </div>
+          </div>
           <div class="col-md-7" style="background-color:#FFF;">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
@@ -251,7 +254,14 @@ $obj = new profile($UserName);
 					<?php include_once 'html_comp/known.php' ?>
                 </div>
                 </div>
-
+<script>
+$(".editprofile").hide();
+$(".viewprofile").show();
+$("#editprofile").click(function(){
+	$(".viewprofile").toggle();
+	$(".editprofile").toggle();
+});
+</script>
 <div id="InfoBox"></div>
         <script src="js/add_remove_skill.js"> </script>
             <!---Modal --->
@@ -275,9 +285,6 @@ $obj = new profile($UserName);
                 </div>
             </div>
         </div>
-      <!---      <form action="lib/upload_file.php" method="post" enctype="multipart/form-data">
-                  
-            </form> --->
             <!---End OF Modal --->
             <!---Modal --->
             <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
@@ -403,62 +410,43 @@ $obj = new profile($UserName);
 
         <script type="text/javascript" src="js/loginValidation.js"></script>
         <script type="text/javascript" src="js/signupValidation.js"></script>
-        <script>
-            var hiddenFirst = document.getElementById("first_name");
-            var hiddenLast = document.getElementById("last_name");
-            var hideEdit = document.getElementById("showEdit");
-            var hideUpdate = document.getElementById("showUpdate");
-            var element = document.getElementById("editName");
-            element.style.visibility = "hidden";
-            hideUpdate.style.visibility = "hidden";
-            
-            function showMsg(){
-                element.style.visibility = "visible";
-                hiddenFirst.style.visibility = "hidden";
-                hiddenLast.style.visibility = "hidden";
-                hideEdit.style.visibility = "hidden";
-                hideUpdate.style.visibility = "visible";
-            }
-            
-            function hideMsg() {
-                var edited_first = document.getElementById("edit_first").value;
-                var edited_last = document.getElementById("edit_last").value;
-                var dataString = 'new_first=' + edited_first + ('&new_last=') + edited_last;
-                alert(dataString);
-                if (edited_first == "") {
-                    bootstrap_alert(".alert_placeholder", "First name can not be empty", 5000,"alert-warning");
-                }
-                else if (edited_first.length > 11) {
-                    bootstrap_alert(".alert_placeholder", "First name can not be more than 11", 5000,"alert-warning");
-                } 
-                if (edited_last == "") {
-                    bootstrap_alert(".alert_placeholder", "Last name can not be empty", 5000,"alert-warning");
-                }
-                else if (edited_last.length > 11) {
-                    bootstrap_alert(".alert_placeholder", "Last name can not be more than 11", 5000,"alert-warning");
-                }
-                else {
-                    $.ajax ({
-                        type: "POST",
-                        url: "ajax/editNameProfile.php",
-                        data: dataString,
-                        cache: false,
-                        success: function(result){
-                            bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-                            if(result=='Updated successfuly'){
-                                //location.reload();
-                                document.getElementById("first_name").innerHTML = edited_first;
-                                document.getElementById("last_name").innerHTML = edited_last;
-                                hiddenFirst.style.visibility = "visible";
-                                hiddenLast.style.visibility = "visible";
-                                hideEdit.style.visibility = "visible";
-                            }
-                        }
-                    });
-                }
-                element.style.visibility = "hidden";
-                hideUpdate.style.visibility = "hidden";
-            }
+       <script>
+		   function editProfile(fname, lname, email, phone) {
+			   //alert (fname + "," + lname + "," + email + "," + phone);
+			   var newfname = $("#newfirstname").val() ;
+			   var newlname = $("#newlastname").val() ;
+			   var newemail = $("#newemailid").val() ;
+			   var newphone = $("#newphoneno").val() ;
+			   var about = $("#aboutuser").val() ;
+			   var townname = $("#livingtown").val() ;
+			   var comp = $("#companyname").val() ;
+			   if ((newfname == fname) && (newlname == lname) && (newemail == email) && (newphone == phone) && (about == "") && (townname == "") && (comp == "")) {
+				   //location.reload();
+				   return false ;				   
+				   }
+				   else if (newfname == "" || newlname == "" || newemail == "" || newphone == "") {
+					   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
+					   return false ;
+					   }
+						else {
+							var dataString = 'fname='+ newfname + '&lname='+ newlname + '&email='+ newemail + '&phone='+ newphone + '&about='+ about 
+										+ '&townname='+ townname + '&comp='+ comp ;
+							$.ajax ({ 
+								type: "POST",
+								url: "ajax/editNameProfile.php",
+								data: dataString,
+								cache: false,
+								success: function(result){
+									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+									if(result=='Updated successfuly'){
+										location.reload();
+										//document.getElementById("first_name").innerHTML = edited_first;
+										//document.getElementById("last_name").innerHTML = edited_last;
+									}
+								}
+							});
+						}
+			};
         </script>
         <script>
             function bootstrap_alert(elem, message, timeout,type) {
