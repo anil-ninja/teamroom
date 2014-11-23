@@ -60,7 +60,6 @@ if(!isset($_SESSION['user_id'])){
 		
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();
-         alert('bhh');
 		var dataString = 'chal=10' ;
 			  $.ajax({
 				type: "POST",
