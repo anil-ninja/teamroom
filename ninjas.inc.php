@@ -201,7 +201,7 @@ if (isset($_POST['closechal'])) {
 		$youretac = $_POST['y_etac'] ;
 		$youretad = $_POST['y_etad'] ;
 		$your_eta = (($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
-		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='$a' WHERE challenge_id = $chalange ; ") ;
+		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', creation_time='$a' WHERE challenge_id = $chalange ; ") ;
 header('Location: #');
 } */
 function checkProject($projectID, $userId, $db_handle){

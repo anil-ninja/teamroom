@@ -38,11 +38,11 @@ if (isset($_POST['logout'])) {
             <div class="col-lg-1"></div>
             <div class="col-lg-8">
                 <?php
-                    $top_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.blob_id, a.challenge_title, a.challenge_creation, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
+                    $top_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.blob_id, a.challenge_title, a.creation_time, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                                         WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND blob_id = '0' AND challenge_status ='1' and a.user_id=b.user_id)
                                     UNION
-                                        (SELECT DISTINCT a.challenge_id, a.blob_id, a.challenge_title, a.challenge_creation, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-                                        WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND  challenge_status ='1' AND a.blob_id = c.blob_id and a.user_id=b.user_id ) ORDER BY challenge_creation DESC LIMIT 10;");
+                                        (SELECT DISTINCT a.challenge_id, a.blob_id, a.challenge_title, a.creation_time, a.challenge_type, a.challenge_status, c.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
+                                        WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND  challenge_status ='1' AND a.blob_id = c.blob_id and a.user_id=b.user_id ) ORDER BY creation_time DESC LIMIT 10;");
                    while ($top_challengesRow = mysqli_fetch_array($top_challenges)) {
                        $challenge_type_id = $top_challengesRow['challenge_id'];
                        $challenge_type_title = $top_challengesRow['challenge_title'];
@@ -52,7 +52,7 @@ if (isset($_POST['logout'])) {
                        $challenge_type_username = $top_challengesRow['username'];
                        $challenge_type_type = $top_challengesRow['challenge_type'];
                        $challenge_type_status = $top_challengesRow['challenge_status'];
-                       $challenge_type_time = $top_challengesRow['challenge_creation'];
+                       $challenge_type_time = $top_challengesRow['creation_time'];
                        $time_display = date("j F, g:i a", strtotime($challenge_type_time));
                      echo "<div class='list-group'>";
                     if ($challenge_type_type == 1) {
