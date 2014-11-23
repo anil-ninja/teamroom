@@ -57,18 +57,15 @@ if (isset($_POST['logout'])) {
                      echo "<div class='list-group'>";
                     if ($challenge_type_type == 1) {
                         if ($challenge_type_status == 1 || $challenge_type_status == 2 || $challenge_type_status == 4 || $challenge_type_status == 5) {
-                            echo "
-                                        <div class='list-group-item'>
-                                            <div class='pull-left lh-fix'>     
-                                                <span class='glyphicon glyphicon-question-sign'></span>
-                                                <img src='uploads/profilePictures/$challenge_type_username.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                            </div>
-                                            <div style='line-height: 24.50px;'>
-                                                <span class='color strong'><a href ='profile.php?username=" . $challenge_type_username . "'>"
-                                                    .ucfirst($challenge_type_first) . '&nbsp' . ucfirst($challenge_type_username) . " </a>
-                                                </span><br> " . $time_display."
-                                            </div>
-                                        </div>";
+                            echo "<div class='list-group-item' style='line-height: 24.50px;'>
+                                <div class='pull-left lh-fix'>     
+                                    <span class='glyphicon glyphicon-question-sign'></span>
+                                    <img src='uploads/profilePictures/$challenge_type_username.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                </div>
+                                <span class='color strong'><a href ='profile.php?username=" . $challenge_type_username . "'>"
+                                    . ucfirst($challenge_type_first) . '&nbsp' . ucfirst($challenge_type_last) . " </a></span>
+                                <br> " . $time_display . "<br/>
+                            </div>";
                         } 
                     }
                 else if ($challenge_type_type == 7) {

@@ -34,6 +34,7 @@
 
         <link href="css/font-awesome.css" rel="stylesheet">
         <script src="js/jquery.js"> </script>
+        <script src="js/project_page.js" type="text/javascript"></script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
         <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
