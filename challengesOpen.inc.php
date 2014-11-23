@@ -270,7 +270,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     }
             }
 
-            echo "</div>";
+            echo "";
              
             echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'><b>" . ucfirst($ch_title) . "</b></p><br/>" .
             $chellange_open_stmt . "<br/><br/>";

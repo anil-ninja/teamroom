@@ -106,7 +106,7 @@ $obj = new profile($UserName);
 	<script type="text/javascript" src="js/loginValidation.js"></script>
     </head>
 
-    <body style="background:#FFF;">
+    <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          
         <div class=" media-body" style="padding-top: 50px;">
