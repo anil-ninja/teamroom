@@ -6,12 +6,12 @@
 }
 
 .chatboxhead {
-	background-color: #f99d39;
+	background-color: #4EC67F;
 	padding:7px;
 	color: #ffffff;
 
-	border-right:1px solid #f99d39;
-	border-left:1px solid #f99d39;
+	border-right:1px solid #4EC67F;
+	border-left:1px solid #4EC67F;
 }
 
 .chatboxblink {
@@ -25,7 +25,7 @@
 	font-size: 13px;
 	color: #333333;
 	height:200px;
-	width:209px;
+	width:225px;
 	overflow-y:auto;
 	overflow-x:auto;
 	padding:7px;
@@ -54,7 +54,7 @@
 }
 
 .chatboxtextareaselected {
-	border: 2px solid #f99d39;
+	border: 2px solid #4EC67F;
 	margin:0;
 }
 
