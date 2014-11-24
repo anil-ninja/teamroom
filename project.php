@@ -23,6 +23,17 @@ include_once 'functions/delete_comment.php';
        <script src="js/content_edit.js"> </script>
         <script src="js/project.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
+
+        <!-- chat box -->
+  
+  <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
+
+  <!--[if lte IE 7]>
+  <link type="text/css" rel="stylesheet" media="all" href="css/screen_ie.css" />
+  <![endif]-->
+
+  <!-- end chat box-->
    </head>
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
@@ -111,6 +122,10 @@ include_once 'functions/delete_comment.php';
 	});	
 	});
         </script>
+
+        <!-- chat box -->
+   <script type="text/javascript" src="js/chat_box.js"></script>
+   <!-- end Chat box-->
         </body>
     </html>
 <?php
