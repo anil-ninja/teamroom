@@ -27,13 +27,7 @@ if ($_POST['prtalk']) {
 			</div>";
 	}
 	$data = $data ."</div><div class='newtalkspr'></div>" ;
-	$data2 .= "<div class='comments clearfix'>
-					<div class='pull-left lh-fix'>
-						<img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp
-					</div>
-					<input type='text' STYLE='border: 1px solid #bdc7d8; width: 65%; height: 30px;' id ='pr_resptalk' placeholder='Whats on your mind about this project' />
-					<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' onclick='submittalk()' ></button>
-				</div>" ;
+	$data2 .= "<input type='text' class='chatboxtextarea' id ='pr_resptalk' onkeydown='submittalk()'/>" ;
 	echo $data."+".$data2."+".$ida ;
 mysqli_close($db_handle);
 }

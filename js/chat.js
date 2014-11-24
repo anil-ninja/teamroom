@@ -166,10 +166,21 @@ function closechat() {
 	$("#chatformin").hide();
 	$("#talkFormproject").show();
 } ;
+/*
+$(document).ready(function() {
+    $('#pr_resptalk').keydown(function(event) {
+        if (event.keyCode == 13) {
+            submittalk() ;
+            return false;
+         }
+    });
+});
+*/
 function submittalk() {
+	if (event.keyCode == 13) {
 	var pr_resptalk = $("#pr_resptalk").val() ;
 	if(pr_resptalk==''){
-		bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
+		//bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
 		return false;
 	}
 	 else {
@@ -181,7 +192,7 @@ function submittalk() {
 			cache: false,
 			success: function(result){
 				//alert(result);
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				//bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 				if(result=='Posted succesfully!'){
 					$("#pr_resptalk").val("") ;
 					//getnewtalk() ;
@@ -190,6 +201,7 @@ function submittalk() {
 		 });
 	}	
 };
+}
 $(document).ready(function() {
     $('#chattalk').keydown(function(event) {
         if (event.keyCode == 13) {
@@ -198,14 +210,7 @@ $(document).ready(function() {
          }
     });
 });
-$(document).ready(function() {
-    $('#pr_resptalk').keydown(function(event) {
-        if (event.keyCode == 13) {
-            submittalk() ;
-            return false;
-         }
-    });
-});  
+  
 function newchat(userid , username) {
 	//var uid = parseInt($("#friendid").val()) ;
 	var chat = $("#chattalk").val() ;
@@ -251,7 +256,7 @@ function projecttalk() {
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
-	setInterval(function(){ getnewtalk() },3000)();
+	//setInterval(function(){ getnewtalk() },3000)();
 };	
 function getnewmessages(userid , username) {
 	var uid = parseInt($("#lastchatid").val()) ;

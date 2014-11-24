@@ -174,37 +174,4 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
     //echo "Type: " . $_FILES["file"]["type"] . "<br>";
   }
 }
-/*
-if ($_FILES["file"]["size"] < 1000000) {
-  if ($_FILES["file"]["error"] > 0) {
-    echo "File size is larger than Limit";
-  } else {
-    //echo "Upload: " . $_FILES["file"]["name"] . "<br>";
-   // echo "Type: " . $_FILES["file"]["type"] . "<br>";
-    //echo "Size: " . ($_FILES["file"]["size"] / 1024) . " kB<br>";
-    //echo "Temp file: " . $_FILES["file"]["tmp_name"] . "<br>";
-   // if ($fileName == ""){
-      
-    } else {
-
-      if (file_exists("../uploads/profilePictures/" . $fileName)) {
-
-		for($i=0;$i<=10;$i++){
-			if(!file_exists("../uploads/profilePictures/" . $fileName.$i))
-			break;
-			}
-        rename("../uploads/profilePictures/" . $fileName, "../uploads/profilePictures/" . $fileName.$i);
-        move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/profilePictures/" . $fileName);
-        echo "Profile pic changed successfully";
-        
-      } else {
-        
-        move_uploaded_file($_FILES["file"]["tmp_name"], "../uploads/profilePictures/" . $fileName);
-        echo "Profile pic changed successfully";
-      }
-    }
-  }
-} else {
-  echo "Invalid file";
-} */
 ?> 

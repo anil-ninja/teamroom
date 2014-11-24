@@ -27,13 +27,7 @@ if ($_POST['name']) {
 			</div>";
 	}
 	$data = $data ."</div><div class='newmassages'></div>" ;
-	$data2 .= "<div class='comments clearfix'>
-						<div class='pull-left lh-fix'>
-							<img src='uploads/profilePictures/".$username.".jpg'  onError=this.src='img/default.gif'>&nbsp
-						</div>
-						<input type='text' STYLE='border: 1px solid #bdc7d8; width: 65%; height: 30px;' id ='chattalk' placeholder='' />
-						<button onclick='newchat(\"".$fid."\",\"".$fname."\")' class='btn-primary btn-sm glyphicon glyphicon-play' id ='resp_talk' ></button>
-					</div>" ;
+	$data2 .= "<textarea class='chatboxtextarea' id ='chattalk' onkeydown='newchat(\"".$fid."\",\"".$fname."\")'></textarea>" ;
 	echo $data."+".$data2."+".$ida ;
 mysqli_close($db_handle);
 }
