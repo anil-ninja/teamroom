@@ -12,12 +12,9 @@ while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
 	$useridFriends = $userProjectsRow['user_id'];
 	$tooltip = ucfirst($friendFirstName)." ".ucfirst($friendLastName);
 		   
-	echo " <button class='btn-link' data-toggle='tooltip' onclick = 'chatform(\"".$useridFriends."\",\"".$usernameFriends."\")' data-placement='left' data-original-title='".$tooltip."'>
-			<input type='hidden' id='friendname' value = '".$usernameFriends."'/>
-		  <input type='hidden' id='friendid' value = '".$useridFriends."'/>
-		 
-				<img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:30px; margin-bottom:5px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
-		  </button>";
+	echo "<a href=\"javascript:void(0)\" onclick=\"javascript:chatWith('".$usernameFriends."')\">
+			<img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:30px; margin-bottom:5px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+		  </a>";
 }
 ?>
 

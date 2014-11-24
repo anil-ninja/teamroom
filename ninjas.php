@@ -30,6 +30,16 @@ if(!isset($_SESSION['user_id'])){
 	<script src="js/jquery-1.js"></script>
     <script src="js/chat.js"></script>
 	
+	<!-- chat box -->
+	
+	<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
+
+	<!--[if lte IE 7]>
+	<link type="text/css" rel="stylesheet" media="all" href="css/screen_ie.css" />
+	<![endif]-->
+
+	<!-- end chat box-->	
   </head>
   <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
@@ -85,7 +95,9 @@ getallreminders() ;
     <script src="js/project_page.js"></script>
    <script src="js/date_time.js"></script>
    
-   
+   <!-- chat box -->
+   <script type="text/javascript" src="js/chat_box.js"></script>
+   <!-- end Chat box-->
 </body></html>
 <?php
 mysqli_close($db_handle);
