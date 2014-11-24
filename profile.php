@@ -104,6 +104,18 @@ $obj = new profile($UserName);
 	<script src="js/ninjas.js" type="text/javascript"></script>
 	<script type="text/javascript" src="js/signupValidation.js"></script>
 	<script type="text/javascript" src="js/loginValidation.js"></script>
+
+  <!-- chat box -->
+  
+  <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
+  <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
+
+  <!--[if lte IE 7]>
+  <link type="text/css" rel="stylesheet" media="all" href="css/screen_ie.css" />
+  <![endif]-->
+
+  <!-- end chat box-->
+
     </head>
 
     <body>
@@ -408,7 +420,7 @@ $("#editprofile").click(function(){
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootswatch.js"></script>
         <script src="js/date_time.js"></script>
-    <!---   <script src="js/uploadpic.js"></script> --->
+    <!--   <script src="js/uploadpic.js"></script> -->
         <script src="js/project.js"></script>
         <script src="js/chat.js"></script>
         <script src="js/custom.js"></script>
@@ -483,5 +495,9 @@ $("#editprofile").click(function(){
             }
         </script>
         <script type="text/javascript" src="js/username_email_check.js"></script>
+
+        <!-- chat box -->
+   <script type="text/javascript" src="js/chat_box.js"></script>
+   <!-- end Chat box-->
     </body>
 </html>
