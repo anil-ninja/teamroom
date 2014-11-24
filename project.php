@@ -57,7 +57,7 @@ include_once 'functions/delete_comment.php';
             </div>
            </div>
            <?php include_once 'html_comp/signup.php' ; ?>
-       <div id='talkFormproject' class='footer' style='margin-left: 1000px; margin-right: 50px;'><button id='talkpro' class='btn-link' type='submit' >Project Talk</button> </div>
+       
 		<?php include_once 'html_comp/project_talk.php'; ?>
        <script>
        $(document).ready(function(){
@@ -68,6 +68,8 @@ include_once 'functions/delete_comment.php';
 				$("#talkformdata").scrollTop($('#talkformdata').height()) ;
 				projecttalk();
 			});
+			projecttalk();
+			
 		});   
        </script>
        <script src="js/chat.js"></script>   
@@ -102,6 +104,9 @@ include_once 'functions/delete_comment.php';
                 }).elfinder('instance');
             });
         </script>
+        <!-- chat box -->
+   <script type="text/javascript" src="js/chat_box.js"></script>
+   <!-- end Chat box-->         
         <script>
         $(document).ready(function(){
 	$(window).scroll(function(event) {
@@ -121,11 +126,10 @@ include_once 'functions/delete_comment.php';
 		}
 	});	
 	});
+	chatBoxes.push('<?= $projttitle ?>');
         </script>
 
-        <!-- chat box -->
-   <script type="text/javascript" src="js/chat_box.js"></script>
-   <!-- end Chat box-->
+        
         </body>
     </html>
 <?php
