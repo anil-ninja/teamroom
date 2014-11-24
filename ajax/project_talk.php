@@ -27,7 +27,9 @@ if ($_POST['prtalk']) {
 			</div>";
 	}
 	$data = $data ."</div><div class='newtalkspr'></div>" ;
-	$data2 .= "<input type='text' class='chatboxtextarea' id ='pr_resptalk' onkeydown='submittalk()'/>" ;
+	$data2 .= "<div class='input-group'>
+				<input type='text' class='chatboxtextarea' id ='project_resptalk'/>
+			   </div>" ;
 	echo $data."+".$data2."+".$ida ;
 mysqli_close($db_handle);
 }

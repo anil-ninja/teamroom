@@ -166,19 +166,8 @@ function closechat() {
 	$("#chatformin").hide();
 	$("#talkFormproject").show();
 } ;
-/*
-$(document).ready(function() {
-    $('#pr_resptalk').keydown(function(event) {
-        if (event.keyCode == 13) {
-            submittalk() ;
-            return false;
-         }
-    });
-});
-*/
 function submittalk() {
-	if (event.keyCode == 13) {
-	var pr_resptalk = $("#pr_resptalk").val() ;
+	var pr_resptalk = $("#project_resptalk").val() ;
 	if(pr_resptalk==''){
 		//bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
 		return false;
@@ -201,7 +190,6 @@ function submittalk() {
 		 });
 	}	
 };
-}
 $(document).ready(function() {
     $('#chattalk').keydown(function(event) {
         if (event.keyCode == 13) {
@@ -256,7 +244,7 @@ function projecttalk() {
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
-	//setInterval(function(){ getnewtalk() },3000)();
+	setInterval(function(){ getnewtalk() },3000)();
 };	
 function getnewmessages(userid , username) {
 	var uid = parseInt($("#lastchatid").val()) ;

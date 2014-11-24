@@ -241,10 +241,3 @@ else {
 		</div>
 	</div>
 </div>
-<script type="text/javascript">
-modal.onload = function(){
-  var text_input = document.getElementById ('subscriptionid');
-  text_input.focus ();
-  text_input.select ();
-}
-</script>

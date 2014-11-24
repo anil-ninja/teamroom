@@ -210,20 +210,25 @@ $obj = new profile($UserName);
                   $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND (project_type!=3 OR project_type!=5))
                                                                         UNION 
                                                                        (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.user_id = $profileViewUserID AND a.blob_id=b.blob_id AND (a.project_type!=3 OR a.project_type!=5));");
-                  while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-                  $project_title_table = $project_table_displayRow['project_title'];
-                  $project_stmt_table = $project_table_displayRow['stmt'];
-                  $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table)));
-                  $project_id_table = $project_table_displayRow['project_id'];
-                  //project title created by profile user
-                  echo  "<div class='col-md-12 text-left list-group-item'>
-                         <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
-                       .$project_title_table.":&nbsp<br/></strong></a>
-                        "
-                       .substr($project_stmt_table,0, 70).
-                       "
-                       </left></div>";
-                    }
+                  if(mysqli_num_rows($project_created_display) == 0){
+					  echo "<a href='ninjas.php' class='btn-link'>Create Project</a>" ;
+					  }
+					  else {
+						  while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
+						  $project_title_table = $project_table_displayRow['project_title'];
+						  $project_stmt_table = $project_table_displayRow['stmt'];
+						  $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table)));
+						  $project_id_table = $project_table_displayRow['project_id'];
+						  //project title created by profile user
+						  echo  "<div class='col-md-12 text-left list-group-item'>
+								 <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
+							   .$project_title_table.":&nbsp<br/></strong></a>
+								"
+							   .substr($project_stmt_table,0, 70).
+							   "
+							   </left></div>";
+							}
+						}
                     ?>   
                     </div>
                     <div class="col-md-6">

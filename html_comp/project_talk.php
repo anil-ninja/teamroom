@@ -18,3 +18,15 @@
 ?>
 </div> 
 </div>
+<script>
+$(document).ready(function(){
+	$('#project_resptalk').keydown(function(event) {
+		if (event.keyCode == 13) {
+			submittalk() ;
+			alert('gygy');
+			//return false;
+		 }
+	});
+	//projecttalk();
+});   
+</script>

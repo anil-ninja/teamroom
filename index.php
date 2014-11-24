@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (isset($_SESSION['first_time'])) {
-	unset ($_SESSION['first_time']) ;
-    header('Location: profile.php?username='.$_SESSION['username']);
-} else
 if (isset($_SESSION['first_name'])) {  
     header('Location: ninjas.php');
 }
