@@ -221,11 +221,19 @@ else {
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel"><font size="5" >Change Reminder</font></h4>
+				<h4 class="modal-title" id="myModalLabel"><font size="5" >Let's Join</font></h4>
 			</div>
 			<div class='alert_placeholder'></div>
 			<div class="modal-body">
-				dahbfdhba vf dsgfve fdsvfty fhdgvftfec vtyfeTDW VDTWFdtf BFUHSGUS AFSRHFhegfrf agfygerfba
+				<div class='row'>
+					<div class='col-md-6'>
+						<input type='text' class='form-control' style='width: 100%;' id='subscriptionid' placeholder='Enter Email-ID'/>
+					</div>
+					<div class='col-md-2'>
+						<input type='submit' class='btn-success btn-xs' id='Subscribe' value='Subscribe'/><br/>
+					</div>
+				</div>
+				<input type='text' class='form-control' id='' placeholder=''/><br/>
 			</div>
 			<div class="modal-footer">
 				<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -233,3 +241,10 @@ else {
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+modal.onload = function(){
+  var text_input = document.getElementById ('subscriptionid');
+  text_input.focus ();
+  text_input.select ();
+}
+</script>
