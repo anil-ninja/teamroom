@@ -45,6 +45,7 @@ include_once 'functions/delete_comment.php';
         </div>	
             </div>
            </div>
+           <?php include_once 'html_comp/signup.php' ; ?>
        <div id='talkFormproject' class='footer' style='margin-left: 1000px; margin-right: 50px;'><button id='talkpro' class='btn-link' type='submit' >Project Talk</button> </div>
 		<?php include_once 'html_comp/project_talk.php'; ?>
        <script>
@@ -110,7 +111,6 @@ include_once 'functions/delete_comment.php';
 	});	
 	});
         </script>
-
         </body>
     </html>
 <?php

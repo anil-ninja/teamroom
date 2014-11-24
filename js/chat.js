@@ -126,6 +126,10 @@ $("#changeremindervalue").click(function(){
 					}
 				  });	
 		});
+function test() {
+	//alert("dcjdsf") ;
+  $("#signupwithoutlogin").modal("show");
+};
 function editreminder(id, uid) {
 	$("#datepickervalue").val(id) ;
 	$("#valueuserid").val(uid) ;	

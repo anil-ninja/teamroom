@@ -36,37 +36,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                     </i><b>Create Challenge</b></a></p>    
                                 </li>";
                         }
-
-                        // if ($requestedPage == "ninjas.php") {
-                        //     echo "<li >
-                        //             <div class='dropdown'>
-                        //                 <a data-toggle='dropdown'>
-                        //                 <p class='navbar-text' style ='cursor: pointer; color: #fff; text-decoration: none;'>
-                        //                 <b>Teams</b><span class='caret'>
-                        //                 </span>
-                        //                 </p>
-                        //                 </a>
-                        //                 <ul class='dropdown-menu multi-level' role='menu' style ='cursor: pointer;' aria-labelledby='dropdownMenu'>";
-                        //                     $teams_name_display = mysqli_query($db_handle, ("select team_name from teams where user_id= '$user_id' ;"));
-                        //                     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
-                        //                         $team_name = $teams_name_displayRow['team_name'];
-                        //                         echo "<li class='dropdown-submenu'>
-                        //                                 <a style='white-space: normal;'>" . ucfirst($team_name) . "</a>
-                        //                                     <ul class='dropdown-menu'>";
-                        //                         $teams_names_display = mysqli_query($db_handle, ("select b.first_name, b.username, b.last_name,a.team_name,b.email,b.contact_no,b.rank from teams as a join user_info
-                        //                                                                         as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1';"));
-                        //                         while ($teams_names_displayRow = mysqli_fetch_array($teams_names_display)) {
-                        //                             $firstname = $teams_names_displayRow['first_name'];
-                        //                             $username = $teams_names_displayRow['username'];
-                        //                             $lastname = $teams_names_displayRow['last_name'];
-                        //                             echo "<li><p><a href ='profile.php?username=" . $username . "'>" . ucfirst($firstname) . " " . ucfirst($lastname) . "</a></p></li>";
-                        //                         }
-                        //                     echo "</ul></li>";
-                        //                     }
-                        //             echo "</ul>
-                        //             </div>
-                        //         </li>";
-                        //     }
                             if ($requestedPage == "project.php") {
                             echo "<li>
                                     <div class='dropdown'>
@@ -244,3 +213,23 @@ else {
         </div>
     </div>
     </div>
+<div class="modal fade" id="signupwithoutlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"><font size="5" >Change Reminder</font></h4>
+			</div>
+			<div class='alert_placeholder'></div>
+			<div class="modal-body">
+				dahbfdhba vf dsgfve fdsvfty fhdgvftfec vtyfeTDW VDTWFdtf BFUHSGUS AFSRHFhegfrf agfygerfba
+			</div>
+			<div class="modal-footer">
+				<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>

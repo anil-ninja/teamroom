@@ -260,6 +260,7 @@ $obj = new profile($UserName);
 					<?php include_once 'html_comp/known.php' ?>
                 </div>
                 </div>
+                <?php include_once 'html_comp/signup.php' ; ?>
 <script>
 $(".editprofile").hide();
 $(".viewprofile").show();
@@ -409,11 +410,8 @@ $("#editprofile").click(function(){
         <script src="js/date_time.js"></script>
     <!---   <script src="js/uploadpic.js"></script> --->
         <script src="js/project.js"></script>
-        
+        <script src="js/chat.js"></script>
         <script src="js/custom.js"></script>
-
-        
-
         <script type="text/javascript" src="js/loginValidation.js"></script>
         <script type="text/javascript" src="js/signupValidation.js"></script>
        <script>
