@@ -105,8 +105,7 @@ $obj = new profile($UserName);
   <!-- end chat box-->
 
     </head>
-
-    <body>
+    <body style="background:#F0F1F2;">
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          
         <div class="media-body" style="padding-top: 60px;">
@@ -178,8 +177,8 @@ $obj = new profile($UserName);
                                             "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
                     }
                     ?>
+        </div>
                 </div>
-          </div>
           <div class="col-md-7" style="background-color:#FFF;">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
