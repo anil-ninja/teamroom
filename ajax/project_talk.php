@@ -15,18 +15,9 @@ if ($_POST['prtalk']) {
 		$ida = $displayrowc['response_pr_id'];
 		$idb = $displayrowc['username'];
 		$projectres = $displayrowc['stmt'];
-		$data.= "<div id='commentscontainer'>
-				<div class='comments clearfix'>
-					<div class='pull-left lh-fix'>
-						<img src='uploads/profilePictures/$idb.jpg'  onError=this.src='img/default.gif'>
-					</div>
-					<div class='comment-text'>
-						<small>" . $projectres . "</small>
-					</div>
-				</div> 
-			</div>";
+		$data.= "<b>".$idb."</b>:	<small>" . $projectres . "</small><br/>";
 	}
-	$data = $data ."</div><div class='newtalkspr'></div>" ;
+	$data = $data ."<div class='newtalkspr'></div>" ;
 	$data2 .= "<textarea class='chatboxtextarea' onkeydown='javascript:return submittalk(event,this);'></textarea>" ;
 	echo $data."+".$data2."+".$ida ;
 mysqli_close($db_handle);

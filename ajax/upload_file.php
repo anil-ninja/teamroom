@@ -82,7 +82,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					
 					$filePath = checkNCreateFolder($username,"challengePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/challengePic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
@@ -91,7 +96,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			
 					$filePath = checkNCreateFolder($username,"ideaPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/ideaPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
@@ -100,7 +110,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			
 					$filePath = checkNCreateFolder($username,"photoPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/photoPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
@@ -109,7 +124,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			
 					$filePath = checkNCreateFolder($username,"projectPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/projectPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
@@ -118,7 +138,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			
 					$filePath = checkNCreateFolder($username,"taskPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/taskPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
@@ -127,7 +152,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			
 					$filePath = checkNCreateFolder($username,"projectchalPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/projectchalPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
@@ -136,7 +166,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			
 					$filePath = checkNCreateFolder($username,"projectnotesPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/projectnotesPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
@@ -145,7 +180,12 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			
 					$filePath = checkNCreateFolder($username,"answerPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo substr($filePath, 3);
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/answerPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+					}
+					else
+						echo substr($filePath, 3);
 					exit;
 					
 				break;
