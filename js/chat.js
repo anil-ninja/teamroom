@@ -166,14 +166,17 @@ function closechat() {
 	$("#chatformin").hide();
 	$("#talkFormproject").show();
 } ;
-function submittalk() {
-	var pr_resptalk = $("#project_resptalk").val() ;
-	if(pr_resptalk==''){
+function submittalk(event,chatboxtextarea) {
+	if(event.keyCode == 13 && event.shiftKey == 0)  {
+		message = $(chatboxtextarea).val();
+		$(chatboxtextarea).val('');
+		$(chatboxtextarea).focus();
+	if(message==''){
 		//bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
 		return false;
 	}
 	 else {
-		var dataString = 'talk='+ pr_resptalk ;
+		var dataString = 'talk='+ message ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/project_talks.php",
@@ -183,21 +186,22 @@ function submittalk() {
 				//alert(result);
 				//bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 				if(result=='Posted succesfully!'){
-					$("#pr_resptalk").val("") ;
+					$(chatboxtextarea).val('');
 					//getnewtalk() ;
 				}
 			}
 		 });
 	}	
+}
 };
-$(document).ready(function() {
-    $('#chattalk').keydown(function(event) {
-        if (event.keyCode == 13) {
-            newchat(userid , username);
-            return false;
-         }
-    });
-});
+//$(document).ready(function() {
+  //  $('#chattalk').keydown(function(event) {
+    //    if (event.keyCode == 13) {
+      //      newchat(userid , username);
+        //    return false;
+        // }
+  //  });
+//});
   
 function newchat(userid , username) {
 	//var uid = parseInt($("#friendid").val()) ;
