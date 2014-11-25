@@ -339,78 +339,7 @@ $("#editprofile").click(function(){
                 </div>
             </div>
         </div>
-            <!---End OF Modal --->            
-        <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width:350px; height:auto">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Collaborations</h4>
-                        
-                        <div class='alert_placeholder'></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <span class="input-group-addon">Username</span>
-                            <input type="text" style="font-size:10pt" class="form-control" id="username" placeholder="Enter email or username">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <span class="input-group-addon">Password</span>
-                            <input type="password" style="font-size:10pt" class="form-control" id="passwordlogin" placeholder="Password">
-                        </div><br/>
-                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
-                        
-                    </div>
-
-                    <div class  ="modal-footer">
-						<button class="btn btn-primary" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--end modle-->
-         
-        <!-- Modal -->
-        <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                
-                <div class="modal-content" style="width:390px; height:500px">
-                   
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                         
-                        <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
-                    </div>
-                    <div class="modal-body">
-                            <div class="inline-form">					
-                                <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
-                                <input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
-                            </div><br/>	
-                            <div class="inline-form">				
-                                <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)" /> <span id="status_email"></span>
-                                <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
-                            </div><br/>					
-                            <input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
-                            <input type="password" class="form-control" id="passwordR" placeholder="password"/>
-                            <input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
-
-                            <input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
-                    </div>
-                    <div class  ="modal-footer">
-                        <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end modle-->
+        
         
         <script src="js/jquery.js"></script>
         <script src="js/ajaxupload-v1.2.js"></script>
@@ -421,8 +350,7 @@ $("#editprofile").click(function(){
         <script src="js/project.js"></script>
         <script src="js/chat.js"></script>
         <script src="js/custom.js"></script>
-        <script type="text/javascript" src="js/loginValidation.js"></script>
-        <script type="text/javascript" src="js/signupValidation.js"></script>
+        
        <script>
 		   function editProfile(fname, lname, email, phone) {
 			   //alert (fname + "," + lname + "," + email + "," + phone);
@@ -472,26 +400,9 @@ $("#editprofile").click(function(){
                 }
             };
         </script>
-        <script type="text/javascript">
-            function checkForm() {
-                if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
-                    return true;
-                }
-                else {
-                    alert("Passwords don't match");
-                    return false;
-                }
-            }
-        </script>
-        <script type="text/javascript">
-            function nospaces(t){
-                if(t.value.match(/\s/g)){
-                    alert('Sorry, you are not allowed to enter any spaces');
-                    t.value=t.value.replace(/\s/g,'');
-                }
-            }
-        </script>
-        <script type="text/javascript" src="js/username_email_check.js"></script>
+         <!----Login and Signup Modal included here ---->         
+        <?php include_once 'html_comp/login_signup_modal.php'; ?>
+         
 
         <!-- chat box -->
    <script type="text/javascript" src="js/chat_box.js"></script>
