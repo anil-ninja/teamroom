@@ -1,29 +1,3 @@
-function chatform(userid , username){
-	$("#chatform").show();
-	$("#chatformdata").show();
-	$("#chatformin").show();
-	$("#talkFormproject").hide();
-	$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-	//var username = $("#friendname").val() ;
-	//var userid = parseInt($("#friendid").val()) ;
-	//alert (userid) ;
-	var dataString = 'name='+ username + '&fid='+ userid ;
-	$.ajax({
-		type: "POST",
-		url: "ajax/chatting.php",
-		data: dataString,
-		cache: false,
-		success: function(result){
-			var notice = result.split("+") ;
-			var neid = parseInt(notice['2']) ;
-			document.getElementById("showchatting").innerHTML = notice['0'];
-			document.getElementById("showchattingform").innerHTML = notice['1'];
-			//document.getElementById("lastchatid").innerHTML = neid+='';
-			$("#lastchatid").val(neid+='') ;
-		}
-	});
-	setInterval(function(){ getnewmessages(userid , username) },3000)();
-};
 function getnewtalk() {	
 	var uid = parseInt($("#lastprchatid").val()) ;
 	var dataString = 'talks='+ uid  ;
@@ -39,27 +13,139 @@ function getnewtalk() {
 					//alert(neid) ;
 					$('.newtalkspr').append(notice['0']);
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid != 0) {
+					if (neid+='' != 0) {
 							$("#lastprchatid").val(neid+='') ;
 						}
 				}
 			});
 }
- 
-function closechat() {
-	$("#chatform").hide();
-	$("#chatformdata").hide();
-	$("#chatformin").hide();
-	$("#talkFormproject").show();
-} ;
-function submittalk() {
-	var pr_resptalk = $("#pr_resptalk").val() ;
-	if(pr_resptalk==''){
-		bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
+function getnewreminder() {	
+	var uid = parseInt($("#lastreminderid").val()) ;
+	//alert(uid) ;
+	var dataString = 'reminders='+ uid  ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/newreminders.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					var notice = result.split("+") ;
+					var neid = parseInt(notice['1']) ;
+					//alert(neid) ;
+					$('.newreminders').append(notice['0']);
+					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+					if (neid+='' != "0") {
+							$("#lastreminderid").val(neid+='') ;
+						}
+				}
+			});
+}
+function convertSpecialChar(str){
+		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+	}
+$("#changeremindervalue").click(function(){
+      		//$("#create_video").attr('disabled','disabled');
+			var reminder = convertSpecialChar($("#newremindervalue").val()) ;
+			var date = $("#datepicker").val() ;
+			var value = $("#datepickervalue").val() ;
+			var userid = $("#valueuserid").val() ;
+			var newuserid = $("#selfremind").val() ;
+			//alert(newuserid + "," + userid) ;
+			if(newuserid == userid) {
+					if(reminder == "") {
+							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
+						}
+						else if (date == "") {
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
+							}
+							else if(reminder == "" || date == "") {
+								location.reload() ;
+								return false ;
+								}
+								else {
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
+									}
+				}
+				else {
+					if(reminder == "") {
+							var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
+						}
+						else if (date == "") {
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
+							}
+							else if(reminder == "" || date == "") {
+								var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
+								}
+								else {
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
+									}
+					
+					
+					}
+			$.ajax({
+				type: "POST",
+				url: "ajax/change_reminder.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result = "Changed Successfully !!!") {
+						location.reload() ;
+						$("#datepicker").val("") ;
+						$("#datepickervalue").val("") ;
+						$("#newremindervalue").val("") ;
+						$("#valueuserid").val("") ;
+						}
+					}
+				  });	
+		});
+function test() {
+	//alert("dcjdsf") ;
+  $("#signupwithoutlogin").modal("show");
+};
+function editreminder(id, uid) {
+	$("#datepickervalue").val(id) ;
+	$("#valueuserid").val(uid) ;	
+	$("#changeremindervalues").modal("show");
+	$("#challegeForm").hide();
+	$("#PictureForm").hide();
+	$("#selecttext").hide();
+	$("#VideoForm").hide();
+	$("#ArticleForm").hide();
+	$("#IdeaForm").hide();
+}
+function getallreminders() {	
+	var dataString = 'reminder=true'  ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/reminders.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					var notice = result.split("+") ;
+					var neid = parseInt(notice['1']) ;
+					//alert(neid) ;
+					document.getElementById("allreminders").innerHTML = notice['0'];
+					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+					$("#lastreminderid").val(neid+='') ;
+				}
+			});
+	setInterval(function(){ getnewreminder() },400000)();
+}
+
+function submittalk(event,chatboxtextarea) {
+	if(event.keyCode == 13 && event.shiftKey == 0)  {
+		message = $(chatboxtextarea).val();
+		$(chatboxtextarea).val('');
+		$(chatboxtextarea).focus();
+	if(message==''){
+		//bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
 		return false;
 	}
 	 else {
-		var dataString = 'talk='+ pr_resptalk ;
+		var dataString = 'talk='+ message ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/project_talks.php",
@@ -67,59 +153,16 @@ function submittalk() {
 			cache: false,
 			success: function(result){
 				//alert(result);
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				//bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 				if(result=='Posted succesfully!'){
-					$("#pr_resptalk").val("") ;
-					getnewtalk() ;
+					$(chatboxtextarea).val('');
+					//getnewtalk() ;
 				}
 			}
 		 });
 	}	
-};
-$(document).ready(function() {
-    $('#chattalk').keydown(function(event) {
-        if (event.keyCode == 13) {
-            newchat(userid , username);
-            return false;
-         }
-    });
-});
-$(document).ready(function() {
-    $('#pr_resptalk').keydown(function(event) {
-        if (event.keyCode == 13) {
-            submittalk() ;
-            return false;
-         }
-    });
-});  
-function newchat(userid , username) {
-	//var uid = parseInt($("#friendid").val()) ;
-	var chat = $("#chattalk").val() ;
-	var dataString = 'friendid='+ userid + '&message='+ chat ;
-	if (chat == "") {
-		alert('enter something') ;
-		}
-		else {
-			$.ajax({
-				type: "POST",
-				url: "ajax/submitchat.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					if (result == "Posted Successfully!") {
-						$("#chattalk").val("") ;
-						getnewmessages(userid , username) ;
-					}
-				}
-			});
-		}
-} ;
-function closetalk() {
-	$("#talkprForm").hide();
-	$("#talkformdata").hide();
-	$("#talkformin").hide();
 }
+};
 function projecttalk() {
 	var username = 'name' ;
 	var dataString = 'prtalk='+ username ;
@@ -137,30 +180,5 @@ function projecttalk() {
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
-	setInterval(function(){ getnewtalk() },3000)();
+	setInterval(function(){ getnewtalk() },2000)();
 };	
-function getnewmessages(userid , username) {
-	var uid = parseInt($("#lastchatid").val()) ;
-	//alert(uid) ;
-	//var username = $("#friendname").val() ;
-	//var userid = parseInt($("#friendid").val()) ;
-	//alert(userid) ;
-	var dataString = 'getnew='+ uid + '&name='+ username + '&fid='+ userid;
-			$.ajax({
-				type: "POST",
-				url: "ajax/getnewmessages.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					var notice = result.split("+") ;
-					var neid = parseInt(notice['1']) ;
-					//alert(neid) ;
-					$('.newmassages').append(notice['0']);
-					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid != 0) {
-							$("#lastchatid").val(neid+='') ;
-						}
-				}
-			}); 
-		}

@@ -10,19 +10,19 @@
 	 		
 		</tr>
 		   <?php
-					$project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.project_creation FROM teams as a join projects 
+					$project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
 																		as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
-																		UNION (SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE user_id = '$user_id' and project_type= '2');");
+																		UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '2');");
 						while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
 						$p_title = $project_title_displayRow['project_title'] ;
 						$idpro = $project_title_displayRow['project_id'] ;
-						if (strlen($p_title) > 30) {
-						$prtitle = substr(ucfirst($p_title),0,30)."...";
+						if (strlen($p_title) > 26) {
+						$prtitle = substr(ucfirst($p_title),0,26)."...";
 						} else {
 							$prtitle = ucfirst($p_title) ;
 						}								   
 						$p_eta = $project_title_displayRow['project_ETA'] ;
-						$p_time = $project_title_displayRow['project_creation'] ;
+						$p_time = $project_title_displayRow['creation_time'] ;
 						$timefunc = date("j F, g:i a",strtotime($p_time));
 						$title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
 						$remaining_time_own = remaining_time($p_time, $p_eta);
@@ -47,18 +47,18 @@
 		<div>
 				<table>
 					   <?php 
-							$project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, project_creation FROM projects WHERE project_type= '1';");
+							$project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE project_type= '1';");
 						
 						while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
 								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
 								$idproject = $project_public_title_displayRow['project_id'] ;
-							if (strlen($public_pr_titlep) > 30) {
-								$prtitlep = substr(ucfirst($public_pr_titlep),0,30)."....";
+							if (strlen($public_pr_titlep) > 26) {
+								$prtitlep = substr(ucfirst($public_pr_titlep),0,26)."....";
 								} else {
 									$prtitlep = ucfirst($public_pr_titlep) ;
 								}								   
 								$p_etap = $project_public_title_displayRow['project_ETA'] ;
-								$p_timep = $project_public_title_displayRow['project_creation'] ;
+								$p_timep = $project_public_title_displayRow['creation_time'] ;
 								$timefuncp = date("j F, g:i a",strtotime($p_time));
 								$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
 								$remaining_time_ownp = remaining_time($p_timep, $p_etap);	

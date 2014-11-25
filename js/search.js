@@ -79,7 +79,7 @@ setInterval(function(){
 	var time = timeStamp() ;
 	//alert (time + "," + eid) ;
 	getnewnote(time, eid+='') ;
-},60000)();
+},120000)();
 function getnewnote(time, lid) {	
 	//alert (unix) ;
 	var dataString = 'time='+ time + '&lid=' + lid ;
@@ -96,10 +96,10 @@ function getnewnote(time, lid) {
 					var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
 					var neid = parseInt(notice['2']) ;
 					//alert(neid+='' + "," + newnum ) ;
-					if (neid != 0) {
+					if (neid+='' != 0) {
 						$("#countnotice").val(newnum+='') ;
 						}
-					if (newnum != 0) {
+					if (newnum+='' != 0) {
 						$("#lasteventid").val(neid+='') ;
 						}
 				}
@@ -138,10 +138,7 @@ function getallnotices() {
                         challenges = JSON.parse(result);
                         //alert(challenges);
                         //alert(show_search_results(challenges));
-                        document.getElementById("home-ch").innerHTML = show_search_results(challenges);
-                        //document.getElementById("home").innerHTML = show_search_results_id(challenges);
-                        //alert(show_search_results(challenges));
-                        //alert(challenges[0].stmt);			
+                        document.getElementById("home-ch").innerHTML = show_search_results(challenges);			
                     }
                 });
             }

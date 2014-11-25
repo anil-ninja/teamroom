@@ -11,6 +11,7 @@
         <span class="glyphicon glyphicon-flash" id='idea' style="cursor: pointer"> Ideas</span></div>
     <div class='list-group-item'>
 		<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
+		<div id='remindervalue'></div>
         <div id='challegeForm'>
             <form>
 
@@ -105,19 +106,19 @@
     </div></div>
 <?php
 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
-											a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation, b.first_name, b.last_name, b.username from challenges
+											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b where a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' 
 										   and blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
+											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
 											WHERE a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
-											 ORDER BY challenge_creation DESC LIMIT 0, 10;");
+											 ORDER BY creation_time DESC LIMIT 0, 10;");
 $_SESSION['lastpanel'] = '10';
 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
     $ETA = $open_chalangerow['challenge_ETA'];
-    $ch_title = $open_chalangerow['challenge_title'];
+    $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
     $ch_id = $open_chalangerow['user_id'];
     $ctype = $open_chalangerow['challenge_type'];
     $frstname = $open_chalangerow['first_name'];
@@ -125,7 +126,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $username_ch_ninjas = $open_chalangerow['username'];
     $chelangeid = $open_chalangerow['challenge_id'];
     $status = $open_chalangerow['challenge_status'];
-    $times = $open_chalangerow['challenge_creation'];
+    $times = $open_chalangerow['creation_time'];
     $timefunction = date("j F, g:i a", strtotime($times));
     $timeopen = $open_chalangerow['challenge_open_time'];
     $sutime = eta($ETA);
@@ -502,7 +503,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         while ($answerrow = mysqli_fetch_array($answer)) {
             echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
                     <p align='center'>Answer</p></span>"
-					. $answerrow['stmt'] . "<br/>";
+					. str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))) . "<br/>";
         }
     }
     $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a

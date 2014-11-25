@@ -3,11 +3,11 @@
 		if(mysqli_num_rows($message) > 0) {
 		while ($messagerow = mysqli_fetch_array($message)) {
 			$id = $messagerow['challenge_id'] ;
-			$challange = mysqli_query($db_handle,"(select a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, b.ownership_creation, b.time, b.user_id, c.first_name, c.last_name 
+			$challange = mysqli_query($db_handle,"(select a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, b.ownership_creation, b.time, b.user_id, c.first_name, c.last_name 
 													from challenges as a join challenge_ownership as b join user_info as c where a.challenge_id = '$id' and a.blob_id = '0'
 													and a.challenge_id = b.challenge_id and b.user_id = c.user_id)
 													UNION
-													(select a.challenge_title, a.challenge_ETA, b.stmt, a.challenge_creation, c.ownership_creation, c.time, c.user_id, d.first_name, d.last_name
+													(select a.challenge_title, a.challenge_ETA, b.stmt, a.creation_time, c.ownership_creation, c.time, c.user_id, d.first_name, d.last_name
 													 from challenges as a join blobs as b join challenge_ownership as c join user_info as d where a.challenge_id = '$id' and a.blob_id = b.blob_id
 													 and a.challenge_id = c.challenge_id and c.user_id = d.user_id);") ;
 			$challangerow = mysqli_fetch_array($challange) ;
@@ -37,7 +37,7 @@
 			$answerrow = mysqli_fetch_array($answer) ;
 			echo "<div class='list-group'>
 					 <div class='list-group-item'>
-						Challenged by <span class='color strong' style= 'color :#3B5998;'> You </span> On : ".date("j F, g:i a",strtotime($challangerow['challenge_creation'])).
+						Challenged by <span class='color strong' style= 'color :#3B5998;'> You </span> On : ".date("j F, g:i a",strtotime($challangerow['creation_time'])).
 						"<br/>ETA Given : ".$etagiven."</div><div class='list-group-item'>Accepted By <span class='color strong' style= 'color :#3B5998;'>".ucfirst($challangerow['first_name'])." ".ucfirst($challangerow['last_name']).
 						"</span> and Submitted On : ".$timecom."<br/>ETA Taken : ".$timetaken."</div><div class='list-group-item'>
 						<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'><p align='center'>".ucfirst($challangerow['challenge_title'])."</p></span>

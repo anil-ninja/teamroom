@@ -9,14 +9,14 @@ if ($_POST['chal']) {
     $a = (int) $limit;
     $b = $a + 5;
     $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
-                                                a.challenge_ETA, a.challenge_type, a.stmt, a.challenge_creation, b.first_name, b.last_name, b.username from challenges
+                                                a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
                                             as a join user_info as b where a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' 
                                             and blob_id = '0' and a.user_id = b.user_id)
                                                 UNION
-                                                (SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.challenge_creation,
+                                                (SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
                                                 b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
                                                 WHERE a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
-                                                    ORDER BY challenge_creation DESC LIMIT $a,$b;");
+                                                    ORDER BY creation_time DESC LIMIT $a,$b;");
     $show = "";
     $iR = 0;
     while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
@@ -31,7 +31,7 @@ if ($_POST['chal']) {
     $username_ch_ninjas = $open_chalangerow['username'];
     $chelangeid = $open_chalangerow['challenge_id'];
     $status = $open_chalangerow['challenge_status'];
-    $times = $open_chalangerow['challenge_creation'];
+    $times = $open_chalangerow['creation_time'];
     $timefunction = date("j F, g:i a", strtotime($times));
     $timeopen = $open_chalangerow['challenge_open_time'];
     $sutime = eta($ETA);

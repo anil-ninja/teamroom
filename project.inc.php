@@ -8,9 +8,6 @@ if(!checkProject($pro_id,$user_id,$db_handle))
 	{	 
 	header("location: ninjas.php") ;
 		exit ;
-	}
-if(!isset($_SESSION['user_id'])) {
-	header('Location:index.php') ;
 	} 	
 $user_id = $_SESSION['user_id'] ;
 $name = $_SESSION['first_name'];
@@ -21,7 +18,7 @@ $project_idrow = mysqli_fetch_array($project_id) ;
 $eta = $project_idrow['project_ETA'] ;
 $creater_id = $project_idrow['user_id'] ;
 $projttitle = $project_idrow['project_title'] ;
-$starttime = $project_idrow['project_creation'] ;
+$starttime = $project_idrow['creation_time'] ;
 $timef = date("j F, g:i a",strtotime($starttime));
 $prtime = remaining_time($starttime, $eta) ;	//resp_projecttalk
 

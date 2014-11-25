@@ -1,10 +1,7 @@
 <?php
 include_once 'lib/db_connect.php';
 include_once 'functions/delete_comment.php';
-session_start();
-if(!isset($_SESSION['user_id'])) {
-	header('Location:index.php') ;
-	} 
+session_start(); 
     $user_id = $_SESSION['user_id'];
 $name = $_SESSION['first_name'];
 $username = $_SESSION['username'];
@@ -204,7 +201,7 @@ if (isset($_POST['closechal'])) {
 		$youretac = $_POST['y_etac'] ;
 		$youretad = $_POST['y_etad'] ;
 		$your_eta = (($youreta*30+$youretab)*24+$youretac)*60+$youretad ;
-		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', challenge_creation='$a' WHERE challenge_id = $chalange ; ") ;
+		mysqli_query($db_handle,"UPDATE challenges SET challenge_ETA='$your_eta', creation_time='$a' WHERE challenge_id = $chalange ; ") ;
 header('Location: #');
 } */
 function checkProject($projectID, $userId, $db_handle){

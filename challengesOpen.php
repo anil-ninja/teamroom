@@ -34,6 +34,7 @@
 
         <link href="css/font-awesome.css" rel="stylesheet">
         <script src="js/jquery.js"> </script>
+        <script src="js/project_page.js" type="text/javascript"></script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
         <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
@@ -121,7 +122,7 @@
             
             </div>
     </div>
-      
+      <?php include_once 'html_comp/signup.php' ; ?>
         
         <div class="col-md-6 pull-right">
             <ul class="list-inline">
@@ -223,7 +224,7 @@
         <script src="js/custom.js"></script>
         <script type="text/javascript" src="js/loginValidation.js"></script>
         <script type="text/javascript" src="js/signupValidation.js"></script>
-
+		<script src="js/chat.js"></script>
         <script type="text/javascript">
             function checkForm() {
                 if (document.getElementById('password_1').value == document.getElementById('password_2').value) {

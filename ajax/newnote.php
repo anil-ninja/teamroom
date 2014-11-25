@@ -212,7 +212,7 @@ if ($_POST['time']) {
 			}
 		}
 	$notice15 = mysqli_query($db_handle, " select Distinct b.first_name, a.project_id, a.project_title from projects as a join user_info as b
-											where a.project_creation > '$time' and a.project_type = '1' and a.user_id != '$id' and a.user_id = b.user_id ;") ;
+											where a.creation_time > '$time' and a.project_type = '1' and a.user_id != '$id' and a.user_id = b.user_id ;") ;
 		while($notice15row = mysqli_fetch_array($notice15)) {
 			$fname5 = $notice15row['first_name'] ;
 			$project_id15 = $notice15row['project_id'] ;

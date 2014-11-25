@@ -1,8 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['first_name'])) {
-    
-} else {
+if (isset($_SESSION['first_name'])) {  
     header('Location: ninjas.php');
 }
 if (isset($_POST['request_password']) && $_POST['email_forget_password']) {

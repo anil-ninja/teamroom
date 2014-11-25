@@ -6,12 +6,12 @@
                         
 <?php 
 
-$challange_display = mysqli_query($db_handle, ("(SELECT DISTINCT challenge_id, challenge_status, challenge_title, user_id, challenge_ETA, stmt, challenge_creation from challenges where
-											user_id = '$user_id' and (challenge_type = '1' OR challenge_type = '2') and blob_id = '0' ORDER BY challenge_creation DESC )
+$challange_display = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_status, challenge_title, user_id, challenge_ETA, stmt, creation_time from challenges where
+											user_id = '$user_id' and (challenge_type = '1' OR challenge_type = '2') and blob_id = '0' )
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, b.stmt, a.challenge_creation from challenges as a
+											(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, b.stmt, a.creation_time from challenges as a
 											join blobs as b WHERE a.user_id = '$user_id' and (a.challenge_type = '1' OR a.challenge_type = '2') and 
-											a.blob_id = b.blob_id ORDER BY challenge_creation DESC);"));
+											a.blob_id = b.blob_id ) ORDER BY creation_time DESC ;");
 while($challange_displayRow = mysqli_fetch_array($challange_display)) {
 	echo "<div class='list-group'>
 				<div class='list-group-item'>";

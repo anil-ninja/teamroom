@@ -196,16 +196,16 @@
 
 <?php
  //include_once 'kanban.php';
-$project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.project_creation, a.stmt, b.first_name, b.last_name, b.username FROM
+$project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM
 												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
                                                 UNION
-                                                (SELECT a.user_id, a.project_ETA, a.project_creation, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
+                                                (SELECT a.user_id, a.project_ETA, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
                                                 join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
 $projectst = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_row['stmt'])));
 $fname = $project_row['first_name'];
-$projectcreation = $project_row['project_creation'];
+$projectcreation = $project_row['creation_time'];
 $lname = $project_row['last_name'];
 $username_project = $project_row['username'];
 $projecteta = $project_row['project_ETA'];
@@ -251,9 +251,8 @@ if ($p_uid == $user_id) {
             </div>
     </div>
             <div class='list-group-item'>
-            <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . ucfirst($projttitle) . "</p></span>                
-            " . str_replace("<s>", "&nbsp;", $projectst) . "<br/><br/>
-            ";
+            <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", ucfirst($projttitle)))) . "</p></span>                
+            " .$projectst. "<br/><br/>";
 
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
@@ -298,24 +297,24 @@ echo "<div class='comments clearfix'>
 <?php
 $_SESSION['lastpr'] = '10';
 $_SESSION['project_id'] = $pro_id;
-$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.challenge_creation, a.challenge_type,
+$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
 									a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
 									 WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
 									AND a.blob_id = '0' and a.user_id = b.user_id)
 									UNION
-								 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.challenge_creation, a.challenge_type,
-								  a.challenge_creation, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
+								 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
+								  a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
 								  WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
-								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY challenge_creation DESC LIMIT 0, 10 ;");
+								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time DESC LIMIT 0, 10 ;");
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
     $id_create = $tasksrow['user_id'];
-    $title_task = $tasksrow['challenge_title'];
+    $title_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title'])));
     $type_task = $tasksrow['challenge_type'];
     $status_task = $tasksrow['challenge_status'];
     $eta_task = $tasksrow['challenge_ETA'];
-    $creation_task = $tasksrow['challenge_creation'];
+    $creation_task = $tasksrow['creation_time'];
     $timetask = date("j F, g:i a", strtotime($creation_task));
     $stmt_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt'])));
     $fname_task = $tasksrow['first_name'];
@@ -587,7 +586,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $answerrow = mysqli_fetch_array($answer);
         echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-        . $answerrow['stmt'] . "<br/>";
+        . str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))) . "<br/>";
     }
 
     $displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -630,23 +629,23 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 ?>
 </div>             
 <?php
-$display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.challenge_creation, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
+$display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.creation_time, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b where a.project_id = '$pro_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 
 												)
 												UNION
-												(select DISTINCT a.challenge_title,a.challenge_id,a.challenge_creation, a.user_id, c.stmt, b.first_name, b.last_name, b.username from challenges as a 
+												(select DISTINCT a.challenge_title,a.challenge_id,a.creation_time, a.user_id, c.stmt, b.first_name, b.last_name, b.username from challenges as a 
 												join user_info as b join blobs as c where a.project_id = '$pro_id' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
-												) ORDER BY challenge_creation DESC;");
+												) ORDER BY creation_time DESC;");
 
 while ($displayrow = mysqli_fetch_array($display_notes)) {
     $notes = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrow['stmt'])));
-    $title = $displayrow['challenge_title'];
+    $title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrow['challenge_title'])));
     $fname = $displayrow['first_name'];
     $lname = $displayrow['last_name'];
     $username_notes = $displayrow['username'];
     $note_posted_user_id = $displayrow['user_id'];
     $note_ID = $displayrow['challenge_id'];
-    $note_created_on = $displayrow['challenge_creation'];
+    $note_created_on = $displayrow['creation_time'];
     $note_creation = date("j F, g:i a", strtotime($note_created_on));
     echo "<div class='list-group deciduous'>
 		  <div class='list-group-item'>

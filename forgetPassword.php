@@ -7,7 +7,7 @@ $hash_and_id = explode('.', $hash_key_access_id);
 $hash_key = $hash_and_id[0];
 $access_aid_id = $hash_and_id[1];
 
-$verify_check = mysqli_query($db_handle, "SELECT user_id FROM user_access_aid WHERE hash_key ='$hash_key' AND id = '$access_aid_id' AND status='0';");
+$verify_check = mysqli_query($db_handle, "SELECT user_id FROM user_access_aid WHERE hash_key ='$hash_key' AND id = '$access_aid_id';");
 if (mysqli_num_rows($verify_check) == 0) {
     header('location: index.php');
     exit;

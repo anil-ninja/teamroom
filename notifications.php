@@ -19,24 +19,13 @@ if(!isset($_SESSION['user_id'])) {
         <link rel="stylesheet" href="css/bootswatch.css">
         <script src="js/jquery.js"> </script>
         <script src="js/search.js"> </script>
+        <script src="js/date_time.js"></script>
 
     </head>
     <body>
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div>
-            <div class="col-md-2 navbar-header">
-                 <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">
-                 <img src ='img/collap.gif' style="width:70px;">collap</a>
-            </div>
-            <div class="span3 pull-right">
-                <ul class="list-inline">
-                    <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
-                    <li><a class="btn-link" style='font-size:12pt; color: #fff; font-weight: bold;' href="http://dpower4.com/" target="_blank">Dpower4.com</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-        <div class="row">
+    	<?php include_once 'html_comp/navbar_homepage.php'; ?>
+    <div class='alert_placeholder'></div>
+        <div class="row" style='padding-top: 30px;'>
 			<div class='col-md-6'>
 				<div class="alert-placeholder"> </div>
 				<div id="allnotices"></div>
@@ -45,5 +34,8 @@ if(!isset($_SESSION['user_id'])) {
     <script>
 		getallnotices();	
     </script>
+    <script src="js/jquery.js"> </script>
+        <script src="js/search.js"> </script>
+        <script src="js/date_time.js"></script>
     </body>
 </html>

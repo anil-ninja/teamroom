@@ -40,6 +40,8 @@ function signup(){
                 $body = "http://collap.com/verifyEmail.php?hash_key='".$hash_keyR."'";
                 
                 collapMail($email, "notification", $body);
+                $body2 = "http://collap.com/profile.php?username=".$username ;
+                collapMail($email, "complete your profile", $body2);
                 
 		if(mysqli_error($db_handle)){
 			echo "Please Try Again";
@@ -52,6 +54,7 @@ function signup(){
 		$obj = new rank(mysqli_insert_id($db_handle));
     	//echo $obj->user_rank;
 		$_SESSION['rank'] = $obj->user_rank;
+		//header('Location: ../profile.php') ;
 		exit;
 		}
 		//header('Location: ./index.php?status=0');

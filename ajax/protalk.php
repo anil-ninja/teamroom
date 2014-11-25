@@ -15,16 +15,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
 		$ida = $displayrowc['response_pr_id'];
 		$idb = $displayrowc['username'];
 		$projectres = $displayrowc['stmt'];
-		$data.= "<div id='commentscontainer'>
-				<div class='comments clearfix'>
-					<div class='pull-left lh-fix'>
-						<img src='uploads/profilePictures/$idb.jpg'  onError=this.src='img/default.gif'>
-					</div>
-					<div class='comment-text'>
-						<small>" . $projectres . "</small>
-					</div>
-				</div> 
-			</div>";
+		$data.= "<b>".$idb."</b>:	<small>" . $projectres . "</small><br/>";
 	}
 	if (mysqli_num_rows($displayb) != 0) {
 			echo $data."+".$ida ;

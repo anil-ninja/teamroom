@@ -2,8 +2,10 @@
     <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);">
         <div class='list-group'>
             <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;">
-            <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
-            <font size="2">Add Reminder </font></a> 
+				<div class='list-inline'>
+            <li><a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
+            <font size="2">Add Reminder </font></a></li> | <li><div id='allreminders' style='width:100px;'></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?></li>
+            </div>
             </div>
         </div>
         <div class='list-group'>
@@ -13,11 +15,11 @@
             </div>
                 
     <?php
-    $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
+    $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
 						b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
 						AND a.challenge_type = '5' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id)
 						UNION
-                		(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, b.last_name, 
+                		(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, b.last_name, 
                 		b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND 
                 		(a.challenge_type = '1' OR a.challenge_type = '2') and a.challenge_status = '2' AND a.user_id = b.user_id AND
                 		 a.challenge_id = c.challenge_id) ;");
@@ -28,7 +30,7 @@
         } else {
             $chtitle = ucfirst($title);
         }
-        $time = $titlesrow['challenge_creation'];
+        $time = $titlesrow['creation_time'];
         $timefun = date("j F, g:i a", strtotime($time));
         $eta = $titlesrow['challenge_ETA'];
         $fname = $titlesrow['first_name'];
@@ -50,7 +52,7 @@
                 <font size="2">Tasks Get Done</font>
             </div>
     <?php
-    $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.challenge_creation, c.user_id, b.first_name, 
+    $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
 											b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE
 											 a.user_id = '$user_id' AND a.challenge_type = '5' AND c.user_id = b.user_id AND a.challenge_id = c.challenge_id ;");
     while ($titlesrowass = mysqli_fetch_array($titlesass)) {
@@ -60,7 +62,7 @@
         } else {
             $chtitleas = ucfirst($titleas);
         }
-        $timeas = $titlesrowass['challenge_creation'];
+        $timeas = $titlesrowass['creation_time'];
         $timefunas = date("j F, g:i a", strtotime($timeas));
         $etaas = $titlesrowass['challenge_ETA'];
         $fnameas = $titlesrowass['first_name'];
@@ -80,7 +82,6 @@
         </div>
 </div>
 </div>
-
  <!-- Modal -->
             <div class="modal fade" id="myreminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -93,7 +94,7 @@
                             <h4 class="modal-title" id="myModalLabel"><font size="5" >Add Reminder</font></h4>
                         </div><div class='alert_placeholder'></div>
                         <div class="modal-body">
-                        Reminder To : <select class="btn-info btn-xs"  id= "self" >
+                        To : <select class="btn-default btn-xs"  id= "self" >
 							<option value="<?= $user_id ; ?>" selected >Self</option>
 				<?php
                   $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
@@ -102,11 +103,42 @@
                             echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
                         }
                         ?>
-                    </select><br/><br/>
+                    </select> &nbsp;&nbsp;&nbsp;&nbsp; Time : 
+                                <input type="text" id ="datepick" placeholder='Reminder Time & Date'>
+                                <input type="submit" class="btn btn-primary btn-sm pull-right" id = "remind" value = "Set"><br/><br/>
 								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
-                              	<input type="text" id ="datepick" placeholder='Reminder Time & Date'><br/><br/>
-	   	
-                            <input type="submit" class="btn btn-primary btn-sm" id = "remind" value = "Set"><br/><br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end modle-->
+<!-- Modal -->
+            <div class="modal fade" id="changeremindervalues" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Change Reminder</font></h4>
+                        </div><div class='alert_placeholder'></div>
+                        <div class="modal-body">
+							To : <select class="btn-default btn-xs"  id= "selfremind" >
+							<option value="<?= $user_id ; ?>" selected >Self</option>
+				<?php
+                  $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
+														a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id') as b where a.user_id=b.user_id;");
+                         while ($friendsrow = mysqli_fetch_array($friends)) {
+                            echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
+                        }
+                        ?> 
+                        </select> &nbsp;&nbsp;&nbsp;&nbsp; Time : 
+                                <input type="text" id ="datepicker" placeholder='Reminder Time & Date'><br/><br/>
+                        		<textarea row='3' class="form-control" id="newremindervalue" placeholder="Type your message here"></textarea><br/><br/>
+                              	<input type="hidden" id ="datepickervalue" value="0">
+                              	<input type="hidden" id ="valueuserid" value="0">
+                            <input type="submit" class="btn btn-primary btn-sm" id = "changeremindervalue" value = "Set"><br/>
                         </div>
                         <div class="modal-footer">
 							<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -118,6 +150,9 @@
 <script type="text/javascript">
 	$(function(){
 		$('#datepick').appendDtpicker();
+	});
+	$(function(){
+		$('#datepicker').appendDtpicker();
 	});
 </script>
 
