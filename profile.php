@@ -106,10 +106,10 @@ $obj = new profile($UserName);
 	<script type="text/javascript" src="js/loginValidation.js"></script>
     </head>
 
-    <body style="background:#FFF;">
+    <body style="background:#F0F1F2;">
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          
-        <div class=" media-body" style="padding-top: 50px;">
+        <div class="" style="padding-top: 50px;">
         <div class="col-md-3">
         <?php
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
@@ -164,7 +164,7 @@ $obj = new profile($UserName);
             ?>
             
         </div>
-          <div class="col-md-7" style="background-color:#FFF;">
+          <div class="col-md-7" style="background-color:#FEFEFE;">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
                   <li role="presentation" class="active">
