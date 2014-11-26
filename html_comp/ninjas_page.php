@@ -341,6 +341,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 2) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item'>";
+                        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($ch_id != $user_id ) {
                             if(mysqli_num_rows($owneduser) == 0){
@@ -383,6 +384,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 4) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item'>";
+                        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($ch_id != $user_id ) {
                             if(mysqli_num_rows($owneduser) == 0){
@@ -441,8 +443,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         }
         if ($status == 5) {
 			echo "<div class='list-group openchalhide'>
-                <div class='list-group-item' >
-                    <div class='pull-left lh-fix'>     
+                <div class='list-group-item' >";
+                        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+                   echo "<div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-flag'></span>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
