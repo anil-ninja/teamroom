@@ -103,10 +103,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                     $show = $show . "</div>";
             if ($ownid == $user_id) {
                 $show = $show . "<div class='col-md-1 pull-right'>
-                                    <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-					<input type='hidden' name='id' value='" . $id_task . "'/>
-					<input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-                                    </form>
+                                    <input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$id_task.")' value='Submit'/>
                                 </div>";
             }
                  $show = $show . "</div></div></div>";
@@ -216,10 +213,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                                $show = $show . " </div>
                                                 <div class='col-md-1 pull-right'>";
                                                 if ($ownid == $user_id) {
-                                    $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                                        <input type='hidden' name='id' value='" . $id_task . "'/>
-                                                        <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-                                                    </form>";
+                                    $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$id_task.")' value='Submit'/>";
                                                 }
                             $show = $show . "</div>
                                         ";

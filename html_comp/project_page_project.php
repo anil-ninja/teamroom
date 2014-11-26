@@ -389,10 +389,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                    echo "</div>
                     <div class='col-md-1 pull-right'>";
                         if ($ownid == $user_id) {
-                            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                    <input type='hidden' name='id' value='" . $id_task . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-                                </form>";
+                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$id_task.")' value='Submit'/>" ;
                         }
               echo "</div>
                 </div>
@@ -507,10 +504,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                       echo "</div>
                         <div class='col-md-1 pull-right'>";
                             if ($ownid == $user_id) {
-                                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                        <input type='hidden' name='id' value='" . $id_task . "'/>
-                                        <input class='btn btn-primary btn-sm' type='submit' name='submitchl' value='Submit'/>
-                                    </form>";
+                                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$id_task.")' value='Submit'/>" ;
                             } 
                             else {
                                 dropDown_delete_after_accept($db_handle, $id_task, $user_id);

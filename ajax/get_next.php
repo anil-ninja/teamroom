@@ -131,10 +131,7 @@ if ($_POST['chal']) {
                $show = $show . "</div>";
           if($ownuser == $user_id) {			
 			$show = $show . " <div class='col-md-2'>  
-                                    <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                        <input type='hidden' name='id' value='".$chelangeid."'/>
-                                        <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                                    </form>
+                                  <input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>
                             </div>";
 				}
                                 $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
@@ -450,10 +447,7 @@ if ($_POST['chal']) {
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                        </form>";
+                    $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
                 }
                 $show = $show . "<br/>".$timefunction."<br/><br/></div>";
             }
@@ -502,10 +496,7 @@ if ($_POST['chal']) {
                 if  ($owlstatus==1){
                     $show = $show . "<div class='list-group-item'>";
                     if ($ownedbrow['user_id'] == $user_id ) {
-                        $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                                        </form>";
+                        $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
                     }
                     $show = $show . "Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                     . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct."
@@ -549,10 +540,7 @@ if ($_POST['chal']) {
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                        </form>";
+                    $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
                 }
                 $show = $show . "</div>";
 			}

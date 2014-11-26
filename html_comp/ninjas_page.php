@@ -197,10 +197,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 <div class='col-md-2 pull-right'>";
             dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
           if($ownuser == $user_id) {			
-			echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                                <input type='hidden' name='id' value='".$chelangeid."'/>
-                                <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                            </form>";
+			echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
         }
                     
 			echo "</div>
@@ -376,10 +373,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 $owname = $ownedbrow['username'];
                 echo "<div class='list-group-item'>";
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                        </form>";
+                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
                 }
                 echo "Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                     .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
@@ -432,10 +426,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                        </form>";
+                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
                 }
                 echo "</div>";
 			}
@@ -477,10 +468,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
-                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
-                        </form>";
+                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
                 }
                 echo "</div>";
 			}
