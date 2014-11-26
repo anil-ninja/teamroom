@@ -53,13 +53,13 @@ $("#changeremindervalue").click(function(){
 			var newuserid = $("#selfremind").val() ;
 			//alert(newuserid + "," + userid) ;
 			if(newuserid == userid) {
-					if(reminder == "") {
+					if(reminder == "" && date != "") {
 							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
 						}
-						else if (date == "") {
+						else if (date == "" && reminder != "") {
 							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
 							}
-							else if(reminder == "" || date == "") {
+							else if(reminder == "" && date == "") {
 								location.reload() ;
 								return false ;
 								}
@@ -68,13 +68,13 @@ $("#changeremindervalue").click(function(){
 									}
 				}
 				else {
-					if(reminder == "") {
+					if(reminder == "" && date != "") {
 							var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
 						}
-						else if (date == "") {
+						else if (date == "" && reminder != "") {
 							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
 							}
-							else if(reminder == "" || date == "") {
+							else if(reminder == "" && date == "") {
 								var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
 								}
 								else {
@@ -98,7 +98,7 @@ $("#changeremindervalue").click(function(){
 						$("#valueuserid").val("") ;
 						}
 					}
-				  });	
+			});	
 		});
 function test() {
 	//alert("dcjdsf") ;

@@ -326,9 +326,15 @@ function bootstrap_alert(elem, message, timeout,type) {
 						$("#datepick").val("") ;
 					location.reload();
 					}
+					else {
+						$("#remind").removeAttr('disabled');
+						return false;
+						}
 				}
 			 });
 			}	
+			$("#remind").removeAttr('disabled');
+				return false;
 		});
 			
 		$("#create_project").click(function(){

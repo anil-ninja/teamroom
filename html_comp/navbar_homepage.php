@@ -201,7 +201,7 @@ else {
                     </select>
                     <br/><br/> --->Project Type 
                     <select id= "type" >	
-                        <option value='2' selected >Private</option>
+                        <option value='2' selected >Classified</option>
                         <option value='1' >Public</option>
                     </select>
                     <br/><br/>

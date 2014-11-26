@@ -13,24 +13,24 @@ if($_POST['value']){
 	$time = $eventtime.":00" ;
 switch($event){ 
 	case 1:
-	if ($a == $eventtime){
-		if (strlen($reminder) < 250) {
-			mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder' where id = '$self' and user_id = '$user_id' ;") ;
-			if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-				else { echo "Changed Successfully !!!"; }
-			} 
-			else {
-				echo "Max length 250 characters!";
-				}
+	if ($eventtime == $a || $eventtime < $a) {
+		echo "Please Enter Valid Date and Time !";
 		}
-		else {
-			if (strlen($reminder) < 250) {
-				mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder', time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
-				if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-					else { echo "Changed Successfully !!!"; }
-				} 
+		else { 
+			if($reminder != '') {
+				if (strlen($reminder) < 250) {
+					mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder', time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
+					if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+						else { echo "Changed Successfully !!!"; }
+					} 
+					else {
+						echo "Max length 250 characters!";
+						}
+				}
 				else {
-					echo "Max length 250 characters!";
+					mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder' where id = '$self' and user_id = '$user_id' ;") ;
+					if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+					else { echo "Changed Successfully !!!"; }
 					}
 			}
 	break;
@@ -49,8 +49,8 @@ switch($event){
 	exit ;
 	
 	case 3:
-	if ($a == $eventtime){
-		echo "Changed Successfully !!!";
+	if ($eventtime == $a || $eventtime < $a) {
+		echo "Please Enter Valid Date and Time !";
 		}
 		else {
 			mysqli_query($db_handle,"UPDATE reminders SET time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
@@ -80,10 +80,8 @@ switch($event){
 	exit ;
 	
 	case 6:
-	if ($a == $eventtime){
-			mysqli_query($db_handle,"UPDATE reminders SET person_id = '$user' where id = '$self' and user_id = '$user_id' ;") ;
-			if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-				else { echo "Changed Successfully !!!"; }
+	if ($eventtime == $a || $eventtime < $a) {
+		echo "Please Enter Valid Date and Time !";
 		}
 		else {
 			mysqli_query($db_handle,"UPDATE reminders SET person_id = '$user', time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
@@ -94,15 +92,8 @@ switch($event){
 	exit ;
 	
 	case 7:
-	if ($a == $eventtime){
-		if (strlen($reminder) < 250) {
-			mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder', person_id = '$user' where id = '$self' and user_id = '$user_id' ;") ;
-			if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-				else { echo "Changed Successfully !!!"; }
-			} 
-			else {
-				echo "Max length 250 characters!";
-				}
+	if ($eventtime == $a || $eventtime < $a) {
+		echo "Please Enter Valid Date and Time !";
 		}
 		else {
 			if (strlen($reminder) < 250) {

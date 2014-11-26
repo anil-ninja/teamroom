@@ -8,14 +8,21 @@ if($_POST['reminder']){
 	$eventtime = $_POST['eventtime'] ;
 	//echo $time ;
 	$time = $eventtime.":00" ;
- if (strlen($reminder) < 250) {
-        mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time) 
-                                    VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;
-    if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-	else { echo "Reminder Set succesfully!"; }
-} else {
-         echo "Max length 250 characters!"; 
-}
+	$a = date("Y-m-d H:i") ;
+	if ($eventtime == $a || $eventtime < $a) {
+		echo "Please Enter Valid Date and Time !";
+		}
+		else {
+			if (strlen($reminder) < 250) {
+					mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time) 
+												VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;
+					if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+					else { echo "Reminder Set succesfully!"; }
+				} 
+				else {
+					 echo "Max length 250 characters!"; 
+					}
+			}
 	mysqli_close($db_handle);
 } 
 else echo "Invalid parameters!";
