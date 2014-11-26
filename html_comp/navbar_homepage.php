@@ -49,8 +49,8 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                                                 $team_project_id = $teams_name_displayRow['project_id'];
 
                                                 echo "<li>
-                                                <a class='btn-link pull-left' style='color: #fff; font-size:12px;' href='teams.php?project_id=$team_project_id&team_name=$team_name'><strong>" . ucfirst($team_name) . "</strong></a><hr/>
-                                               </li>";
+                                                        <a class='btn-link pull-left' style='color: #fff; font-size:12px;' href='teams.php?project_id=$team_project_id&team_name=$team_name'><strong>" . ucfirst($team_name) . "</strong></a>
+                                                    </li><hr style='margin-top: 26px'/>";
                                             }
                                     echo "</ul>
                                     </div>
@@ -81,14 +81,15 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             </li>
                             <hr/>
                             <li>
+                                <b><a href="settings.php" class="btn-link" style="color: #fff;"><span class="glyphicon glyphicon-cog"></span> Settings </a></b>
+                            </li>
+                            <hr/>
+                            <li>
                                 <form method="POST" onsubmit="return confirm('Meet you soon!!!!');">
                                     <b><button type="submit" class="btn-link " name="logout" style="color: #fff;"><span class="glyphicon glyphicon-off"></span> Log out </button></b>
                                 </form>  
                             </li>
-                            <hr/>
-                            <li>
-                                <b><a href="settings.php" class="btn-link" style="color: #fff;"><span class="glyphicon glyphicon-cog"></span> Settings </a></b>
-                            </li>
+                            
                         </ul>
                     </div>
                 </li>

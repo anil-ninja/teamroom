@@ -342,30 +342,30 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "</div>";
 	}
         if ($status == 2) {
-			echo "<div class='list-group challenge'>
-                <div class='list-group-item' >
-                    <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-question-sign'>
-                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                    </div>
-                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/>" ;
-        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
-         if ($ch_id != $user_id ) {
-			 if(mysqli_num_rows($owneduser) == 0){
-            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                </form>" ;
-			}
-		}
-        else {
-            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                </form>";
-        }
-           echo "</div>";
+            echo "<div class='list-group challenge'>
+                    <div class='list-group-item'>";
+                        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
+                        if ($ch_id != $user_id ) {
+                            if(mysqli_num_rows($owneduser) == 0){
+                                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
+                                        <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                                        <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
+                                    </form>" ;
+                            }
+                        }
+                        else {
+                            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
+                                </form>";
+                        }
+                    echo "<div class='pull-left lh-fix'>     
+                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                        </div>
+                        <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/>" ;
+                echo "</div>";
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
@@ -374,43 +374,44 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 $owfname = $ownedbrow['first_name'];
                 $owlname = $ownedbrow['last_name'];
                 $owname = $ownedbrow['username'];
-                echo "<div class='list-group-item'>
-                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
+                echo "<div class='list-group-item'>";
                 if ($ownedbrow['user_id'] == $user_id ) {
                     echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
                             <input type='hidden' name='id' value='" . $chelangeid . "'/>
                             <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
                         </form>";
                 }
+                echo "Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                    .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
                 echo "</div>";
             }
         }
         if ($status == 4) {
-			echo "<div class='list-group challenge'>
-                <div class='list-group-item' >
-                    <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-question-sign'>
+            echo "<div class='list-group challenge'>
+                    <div class='list-group-item'>";
+                        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
+                        if ($ch_id != $user_id ) {
+                            if(mysqli_num_rows($owneduser) == 0){
+                                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
+                                        <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                                        <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
+                                    </form>" ;
+                            }
+                        }
+                        else {
+                            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
+                                </form>";
+                        }
+                 echo"<div class='pull-left lh-fix'>     
+                        <span class='glyphicon glyphicon-question-sign'></span>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/>" ;
-        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
-         if ($ch_id != $user_id ) {
-			 if(mysqli_num_rows($owneduser) == 0){
-            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                </form>" ;
-			}
-		}
-        else {
-            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                </form>";
-        }
-           echo "</div>";
+                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" 
+                    .$timefunction."<br/><br/>" ;
+        echo "</div>";
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
@@ -451,7 +452,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 			echo "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
                     <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-flag'>
+                        <span class='glyphicon glyphicon-flag'></span>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"

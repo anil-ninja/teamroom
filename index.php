@@ -166,19 +166,14 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                             <div class="alert_placeholder_nospace"> </div>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" id="html5Form"  class="form-horizontal"
-                                    data-bv-message="This value is not valid"
-                                    data-bv-feedbackicons-valid="glyphicon glyphicon-ok"
-                                    data-bv-feedbackicons-invalid="glyphicon glyphicon-remove"
-                                    data-bv-feedbackicons-validating="glyphicon glyphicon-refresh">
+                            <form method="POST" id="html5Form"  class="form-horizontal">
                                 <div class="form-group">
-                                    
                                     <input type="email" class="form-control" name="email_forget_password" id="email_forget" placeholder="Enter Email" onkeyup="nospaces(this)"
                                     required data-bv-emailaddress-message="The input is not a valid email address" />
                                     <span id="status_email_forget_password"></span>
                                 </div>
                                 <br>
-                                <button type="submit" class="btn-primary" name="request_password"><font size="3" >Send Link</font></button>
+                                <button type="submit" class="btn-primary" name="request_password"><font size="3" >Submit</font></button>
                             </form>
                         </div>
                     </div>
@@ -224,34 +219,5 @@ window.onload = function(){
 
             <script type="text/javascript" src="js/username_email_check.js"></script>
             
-            <?php
-            if (isset($_GET['status'])) {
-                if ($_GET['status'] == 2) {
-                    echo "<script> 
-					alert('Invalid Username and Password');
-				</script>";
-                }
-                if ($_GET['status'] == 0) {
-                    echo "<script>
-				alert('User registered successfully');
-			</script>";
-                }
-                if ($_GET['status'] == 1) {
-                    echo "<script>
-				alert('Password don't match, Try again');
-			</script>";
-                }
-                if ($_GET['status'] == 3) {
-                    echo "<script>
-				alert('Email ID already registered, Please Sign In');
-			</script>";
-                }
-                if ($_GET['status'] == 4) {
-                    echo "<script>
-				alert('Username is already registered, Please Sign In');
-			</script>";
-                }
-            }
-            ?>
     </body>
 </html>

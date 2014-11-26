@@ -17,25 +17,13 @@ if (isset($_POST['logout'])) {
     session_destroy();
     exit;
 }
-if(isset($_POST['projectphp'])){
-    $user_id = $_SESSION['user_id'];
-    $name = $_SESSION['first_name'];
-    $username = $_SESSION['username'];
-    $rank = $_SESSION['rank'];
-    $email = $_SESSION['email'];
-        header('location: project.php') ;   
-        $_SESSION['user_id'] = $user_id;
-        $_SESSION['first_name'] = $name;
-        $_SESSION['project_id'] = $_POST['project_id'] ;
-        $_SESSION['rank'] = $rank;
-        exit ;
-}
 $user_InformationRow = mysqli_fetch_array($userInfo);
 $profileViewFirstName = $user_InformationRow['first_name'];
 $profileViewLastName = $user_InformationRow['last_name'];
 $profileViewEmail = $user_InformationRow['email'];
 $profileViewPhone = $user_InformationRow['contact_no'];
 $profileViewUserID = $user_InformationRow['user_id'];
+$profileViewRank = $user_InformationRow['rank'];
 
 $challengeCreated = mysqli_query($db_handle, "SELECT COUNT(challenge_id) FROM challenges WHERE user_id = $profileViewUserID;");
 $counter = mysqli_fetch_assoc($challengeCreated);
@@ -117,15 +105,16 @@ $obj = new profile($UserName);
   <!-- end chat box-->
 
     </head>
-
-    <body>
+    <body style="background:#F0F1F2;">
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          
-        <div class=" media-body" style="padding-top: 50px;">
-        <div class="col-md-3">
+        <div class="media-body" style="padding-top: 60px;">
+            <div class="col-md-3">
         <?php
-			echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 250px;'>Edit</a>";
-            echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+            if (isset($_SESSION['user_id'])) {
+                echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 250px;'>Edit</a>";
+            }
+            echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:250px; height:250px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                 echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>
                     <div class='alert_placeholder'> </div>";
@@ -134,14 +123,11 @@ $obj = new profile($UserName);
             
             <div class="viewprofile">
             <?php
-            if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-            echo "<br/><hr/><span class='glyphicon glyphicon-user'></span><strong> <span id='first_name'>" 
-                        . ucfirst($profileViewFirstName)."</span> <span id='last_name'>".ucfirst($profileViewLastName)."</span></strong>";
-                   } 
-            else {
-                echo "<br/><hr/><span class='glyphicon glyphicon-user'><strong> " . ucfirst($profileViewFirstName) . " " . ucfirst($profileViewLastName) . "</strong>";
-            } 
-             echo "&nbsp;&nbsp;(".$_SESSION['rank'].")</span>
+            
+            echo "<br/><hr/><span class='glyphicon glyphicon-user'></span><strong> <span id='first_name'>&nbsp" 
+                        .ucfirst($profileViewFirstName)."</span> <span id='last_name'>".ucfirst($profileViewLastName)."</span></strong>";
+                    
+            echo "&nbsp;(".$profileViewRank.")</span>
                   <br/><span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>" ;
              if($profileViewPhone != 1) {    
                 echo "<br/><span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
@@ -151,10 +137,14 @@ $obj = new profile($UserName);
 				  echo "<br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:" ; 
 				  }
             $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
-            while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-                echo "<span class='tags'>".$skill_displayRow['skill_name']."</span> ";
+            if (mysqli_num_rows($skill_display) == 0) {
+                    echo " <span class='tags'>No Skill added</span> ";
+            } 
+            else {
+                while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+                    echo " <span class='tags'>".$skill_displayRow['skill_name']."</span> ";
                 }
-                
+            }
             echo "<br/></span>";
             if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
                 echo "<br/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
@@ -162,29 +152,33 @@ $obj = new profile($UserName);
                         </a><br/>";
 					}
              $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
-             $aboutuserRow = mysqli_fetch_array($aboutuser) ;
-             echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['organisation_name']."<br/><span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;".$aboutuserRow['about_user'] ;
+             $aboutuserRow = mysqli_fetch_array($aboutuser);
+             echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;"
+                        .$aboutuserRow['organisation_name']."<br/>
+                        <span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;"
+                        .$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;"
+                        .$aboutuserRow['about_user'];
              ?>
              </div>
              <div class="editprofile">
-             <?php    
-            if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
-                           <i class='glyphicon glyphicon-plus'></i> Skill
-                        </a><br/>";
-                echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
-					  <input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
-					  <input type='text' id='newemailid' class='form-control' value='".$profileViewEmail."'/>
-					  <input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>
-					  <textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea>
-					  <input type='text' id='livingtown' class='form-control' placeholder='Current Living Town'/>
-					  <input type='text' id='companyname' class='form-control' placeholder='Organisation Name'/><br/>
-					  <a class='btn-success btn-sm' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
-					  "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
-                }
-                ?>
+                <?php    
+                if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
+                    echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
+                            <i class='glyphicon glyphicon-plus'></i> Skill
+                            </a><br/>";
+                    echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
+                                            <input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
+                                            <input type='text' id='newemailid' class='form-control' value='".$profileViewEmail."'/>
+                                            <input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>
+                                            <textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea>
+                                            <input type='text' id='livingtown' class='form-control' placeholder='Current Living Town'/>
+                                            <input type='text' id='companyname' class='form-control' placeholder='Organisation Name'/><br/>
+                                            <a class='btn-success btn-sm' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
+                                            "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
+                    }
+                    ?>
+        </div>
                 </div>
-          </div>
           <div class="col-md-7" style="background-color:#FFF;">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
@@ -207,52 +201,50 @@ $obj = new profile($UserName);
                    
                                          
                   <?php
-                  $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND (project_type!=3 OR project_type!=5))
+                    $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND (project_type!=3 OR project_type!=5))
                                                                         UNION 
                                                                        (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.user_id = $profileViewUserID AND a.blob_id=b.blob_id AND (a.project_type!=3 OR a.project_type!=5));");
-                  if(mysqli_num_rows($project_created_display) == 0){
-					  echo "<a href='ninjas.php' class='btn-link'>Create Project</a>" ;
-					  }
-					  else {
-						  while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-						  $project_title_table = $project_table_displayRow['project_title'];
-						  $project_stmt_table = $project_table_displayRow['stmt'];
-						  $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table)));
-						  $project_id_table = $project_table_displayRow['project_id'];
-						  //project title created by profile user
-						  echo  "<div class='col-md-12 text-left list-group-item'>
-								 <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
-							   .$project_title_table.":&nbsp<br/></strong></a>
-								"
-							   .substr($project_stmt_table,0, 70).
-							   "
-							   </left></div>";
-							}
-						}
-                    ?>   
+                    if(mysqli_num_rows($project_created_display) == 0){
+                        echo "<a href='ninjas.php' class='btn-link'>Create Project</a>" ;
+                    }
+                    else {
+                        while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
+                            $project_title_table = $project_table_displayRow['project_title'];
+                            $project_stmt_table = $project_table_displayRow['stmt'];
+                            $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table)));
+                            $project_id_table = $project_table_displayRow['project_id'];
+                            //project title created by profile user
+                            echo  "<div class='col-md-12 text-left list-group-item'>
+                                    <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
+                                        .$project_title_table.":&nbsp<br/></strong>
+                                    </a>"
+                                    .substr($project_stmt_table,0, 70)."
+                                    </left>
+                                </div>";
+                        }
+                    }
+                ?>   
                     </div>
                     <div class="col-md-6">
-                      <div class='col-md-12 pull-right list-group-item'>
-                          <strong>Joined(<?php echo $projectsJoined;?>)</strong>
-                      </div>
+                        <div class='col-md-12 pull-right list-group-item'>
+                            <strong>Joined(<?php echo $projectsJoined;?>)</strong>
+                        </div>
                       <?php
-                      $project_joined_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5 AND blob_id = 0)
-                                                                          UNION 
-                                                                      (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND a.user_id != $profileViewUserID and a.project_type != 4 and a.project_type!=3 and a.project_type!=5 AND a.blob_id = b.blob_id);");
-                      while($project_joined_displayRow = mysqli_fetch_array($project_joined_display)) {
-                      $project_joined_title = $project_joined_displayRow['project_title'];
-                      $project_joined_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$project_joined_displayRow['stmt'])));
-                      $project_joined_id = $project_joined_displayRow['project_id'];
-                      //project title created by profile user
-                      echo  "<div class='col-md-12 text-left list-group-item' >
-                             <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
-                           .$project_joined_title.": &nbsp<br/></strong></a>
-                           "
-                           .substr($project_joined_stmt,0,70).
-                           "
-                           </left></div>";
-
-                      }
+                        $project_joined_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5 AND blob_id = 0)
+                                                                            UNION 
+                                                                            (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND a.user_id != $profileViewUserID and a.project_type != 4 and a.project_type!=3 and a.project_type!=5 AND a.blob_id = b.blob_id);");
+                        while($project_joined_displayRow = mysqli_fetch_array($project_joined_display)) {
+                            $project_joined_title = $project_joined_displayRow['project_title'];
+                            $project_joined_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$project_joined_displayRow['stmt'])));
+                            $project_joined_id = $project_joined_displayRow['project_id'];
+                            //project title created by profile user
+                            echo  "<div class='col-md-12 text-left list-group-item' >
+                                        <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
+                                            .$project_joined_title.": &nbsp<br/></strong></a>"
+                                        .substr($project_joined_stmt,0,70)."
+                                        </left>
+                                    </div>";
+                        }
                       ?>           
                     </div>
                     </div>
@@ -272,9 +264,9 @@ $obj = new profile($UserName);
                     </div>
                   </div>
                 </div>
-                </div>
+                </div> 
                 <div class ="col-md-2">
-					<?php include_once 'html_comp/known.php' ?>
+                    <?php include_once 'html_comp/known.php' ?>
                 </div>
                 </div>
                 <?php include_once 'html_comp/signup.php' ; ?>
@@ -347,78 +339,7 @@ $("#editprofile").click(function(){
                 </div>
             </div>
         </div>
-            <!---End OF Modal --->            
-        <div class="modal fade" id="SignIn" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width:350px; height:auto">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Collaborations</h4>
-                        
-                        <div class='alert_placeholder'></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <span class="input-group-addon">Username</span>
-                            <input type="text" style="font-size:10pt" class="form-control" id="username" placeholder="Enter email or username">
-                        </div>
-                        <br>
-                        <div class="input-group">
-                            <span class="input-group-addon">Password</span>
-                            <input type="password" style="font-size:10pt" class="form-control" id="passwordlogin" placeholder="Password">
-                        </div><br/>
-                        <button type="submit" class="btn btn-success" name="request" value='login' onclick="validateLoginFormOnSubmit()">Log in</button>
-                        
-                    </div>
-
-                    <div class  ="modal-footer">
-						<button class="btn btn-primary" data-toggle='modal' data-target='#SignUp'>Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--end modle-->
-         
-        <!-- Modal -->
-        <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                
-                <div class="modal-content" style="width:390px; height:500px">
-                   
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                         
-                        <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
-                    </div>
-                    <div class="modal-body">
-                            <div class="inline-form">					
-                                <input type="text" class="inline-form" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
-                                <input type="text" class="inline-form" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
-                            </div><br/>	
-                            <div class="inline-form">				
-                                <input type="text" class="inline-form" id="email" placeholder="Email" onkeyup="nospaces(this)" /> <span id="status_email"></span>
-                                <input type="text" class="inline-form" id="phone" placeholder="Mobile Number" onkeyup="nospaces(this)"/>
-                            </div><br/>					
-                            <input type="text" class="form-control" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
-                            <input type="password" class="form-control" id="passwordR" placeholder="password"/>
-                            <input type="password" class="form-control" id="password2R" placeholder="Re-enter password"/><br/><br/>
-
-                            <input type="submit" class="btn btn-primary" name = "request" value = "Signup" onclick="validateSignupFormOnSubmit()">
-                    </div>
-                    <div class  ="modal-footer">
-                        <button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--end modle-->
+        
         
         <script src="js/jquery.js"></script>
         <script src="js/ajaxupload-v1.2.js"></script>
@@ -429,8 +350,7 @@ $("#editprofile").click(function(){
         <script src="js/project.js"></script>
         <script src="js/chat.js"></script>
         <script src="js/custom.js"></script>
-        <script type="text/javascript" src="js/loginValidation.js"></script>
-        <script type="text/javascript" src="js/signupValidation.js"></script>
+        
        <script>
 		   function editProfile(fname, lname, email, phone) {
 			   //alert (fname + "," + lname + "," + email + "," + phone);
@@ -480,26 +400,9 @@ $("#editprofile").click(function(){
                 }
             };
         </script>
-        <script type="text/javascript">
-            function checkForm() {
-                if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
-                    return true;
-                }
-                else {
-                    alert("Passwords don't match");
-                    return false;
-                }
-            }
-        </script>
-        <script type="text/javascript">
-            function nospaces(t){
-                if(t.value.match(/\s/g)){
-                    alert('Sorry, you are not allowed to enter any spaces');
-                    t.value=t.value.replace(/\s/g,'');
-                }
-            }
-        </script>
-        <script type="text/javascript" src="js/username_email_check.js"></script>
+         <!----Login and Signup Modal included here ---->         
+        <?php include_once 'html_comp/login_signup_modal.php'; ?>
+         
 
         <!-- chat box -->
    <script type="text/javascript" src="js/chat_box.js"></script>
