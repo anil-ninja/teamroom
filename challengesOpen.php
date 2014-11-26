@@ -36,6 +36,8 @@
         <script src="js/jquery.js"> </script>
         <script src="js/project_page.js" type="text/javascript"></script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
+        <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
+		<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
         <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
@@ -131,7 +133,7 @@
         <script src="js/project.js"></script>
         <script src="js/date_time.js"></script>
         <script src="js/custom.js"></script>
-        
+        <script type="text/javascript" src="js/chat_box.js"></script>
         <script src="js/chat.js"></script>
 
         <!----Login and Signup Modal included here ---->

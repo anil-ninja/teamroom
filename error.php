@@ -21,7 +21,8 @@ if (isset($_POST['logout'])) {
         <link rel="stylesheet" href="css/bootswatch.css">
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
-
+		<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
+		<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
         <link href="css/font-awesome.css" rel="stylesheet">
         <script src="js/jquery.js"> </script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
@@ -143,8 +144,7 @@ if (isset($_POST['logout'])) {
                     <a href ='profile.php?username=" . $top_user_username . "'>".ucfirst($top_user_first)."&nbsp ".ucfirst($top_user_last)."</a></b></p><br>
                     ";
                 }
-            ?>
-                
+            ?>  
             </div>
             </div>
         <?php include_once 'html_comp/signup.php' ; ?>
@@ -154,11 +154,6 @@ if (isset($_POST['logout'])) {
                 <li>Copyright @ 2014</li>
             </ul>
         </div>
-        
-        
-
-    
-        
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/bootswatch.js"></script>
@@ -166,10 +161,8 @@ if (isset($_POST['logout'])) {
         <script src="js/project.js"></script>
         <script src="js/date_time.js"></script>
         <script src="js/custom.js"></script>
-        
+        <script type="text/javascript" src="js/chat_box.js"></script>
         <script src="js/chat.js"></script>
-        
-    
         <!----Login and Signup Modal included here ---->
         <?php include_once 'html_comp/login_signup_modal.php'; ?>
         <script type="text/javascript" src="js/loginValidation.js"></script>

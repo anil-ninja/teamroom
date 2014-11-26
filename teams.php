@@ -43,11 +43,13 @@ $total_members = mysqli_num_rows($teams_member_display);
 	<script src="js/jquery.js"> </script>
 	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="js/jquery.autosize.js"></script>
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script src="js/jquery-1.js"></script>
-        <script src="js/bootstrap.js"></script>
-        <script src="js/bootswatch.js"></script>
-        <script src="js/date_time.js"></script>
+	<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/jquery-1.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/bootswatch.js"></script>
+    <script src="js/date_time.js"></script>
     </head>
 
     <body>
@@ -197,5 +199,6 @@ function bootstrap_alert(elem, message, timeout,type) {
   }
 };
         </script>
+        <script type="text/javascript" src="js/chat_box.js"></script>
             </body>
     	</html>
