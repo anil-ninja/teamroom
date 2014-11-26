@@ -371,13 +371,7 @@ if ($_POST['chal']) {
 	}	
 		if ($status == 6) {
         $show = $show . "<div class='list-group film'>
-                <div class='list-group-item' style='line-height: 24.50px;>
-                    <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-picture'></span>
-                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>
-                    </div>
-                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                         . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/> ";
+                <div class='list-group-item'>";
         //dropdown for delete/edit/span challenge starts
         $show = $show . "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
@@ -407,7 +401,13 @@ if ($_POST['chal']) {
               </div>";
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . "<br/>".$timefunction."<br/><br/></div>";
+        $show = $show . "<div class='pull-left lh-fix'>     
+                            <span class='glyphicon glyphicon-picture'></span>
+                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                        </div>
+                        <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                            .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>".$timefunction."<br/><br/>
+                </div>";
 	}
         if ($status == 2) {
 			$show = $show . "<div class='list-group challenge'>
@@ -432,9 +432,9 @@ if ($_POST['chal']) {
                                     <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                                 </div>
                     <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>" ;
-        
-           $show = $show . "</div>";
+                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>"
+                       .$timefunction."<br/><br>
+                </div>";
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
