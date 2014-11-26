@@ -60,30 +60,6 @@ if(isset($_POST['requestdelete'])){
 	else { echo "<script>alert('Request Deleted succesfully!')</script>"; }
 	header('Location: #');
 	}	
-if(isset($_POST['submitchl'])) {
-	$id = $_POST['id'] ;
-	echo "<div style='display: block;' class='modal fade in' id='answerForm' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
-			<div class='modal-dialog'> 
-				<div class='modal-content'>
-				 <div class='modal-header'> 
-				   <a href = 'project.php' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
-				   <h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
-				 </div> 
-				 <div class='modal-body'><form>
-				  <div class='input-group-addon'>
-				  <textarea row='5' id='answerchal' class='form-control' placeholder='submit your answer'></textarea>
-				  </div><br/>
-				  <input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'><br/>
-				    <input type='hidden' id='answercid' value='".$id."'>
-				    <input type='submit' class='btn btn-success btn-sm' id='answerch' value = 'Submit' ></small>
-				</form></div> 
-				<div class='modal-footer'>
-				   <a type='button' href = 'project.php' class='btn btn-default' data-dismiss='modal'>Close</a>
-				</div>
-			</div> 
-		</div>
-	</div>" ;
-}
 
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;

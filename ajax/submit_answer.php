@@ -8,10 +8,10 @@ if($_POST['answer']){
 		$notestext = $_POST['answer'] ;
 		$image = $_POST['img'] ;
 		if (strlen($image) < 30 ) {
-		$notes = $articletext ;
+		$notes = $notestext ;
 		}
 			else {
-				$notes = $image."<br/> ".$articletext ;
+				$notes = $image."<br/> ".$notestext ;
 			}
 		$a = date("Y-m-d H:i:s") ;
 		involve_in($db_handle,$user_id,"5",$pro_id); 

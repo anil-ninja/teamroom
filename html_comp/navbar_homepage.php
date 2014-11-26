@@ -241,3 +241,29 @@ else {
 		</div>
 	</div>
 </div>
+<div class='modal fade' id='answerForm' tabindex='-1' role='dialog' aria-labelledby='myModalLabel1' aria-hidden='true'>
+			<div class='modal-dialog'> 
+				<div class='modal-content'>
+					<div class='modal-header'> 
+						<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+					<span class="sr-only">Close</span>
+				</button>
+						<h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
+					</div> 
+					<div class='modal-body'><form>  
+						<div class='input-group-addon'>
+							<textarea row='5' id='answerchal' class='form-control' placeholder='submit your answer'></textarea>
+						</div>
+						<br/>
+						<input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'>
+						<br/>
+						<input type='hidden' id='answercid' value=''>
+						<button type='submit' class='btn btn-success btn-sm' id='answerch' >Submit</button> 
+					</form></div> 
+					<div class='modal-footer'>
+						<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+					</div>
+				</div> 
+			</div>
+		  </div>

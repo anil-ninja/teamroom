@@ -6,6 +6,10 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+function answersubmit(chelangeid){
+	$("#answercid").val(chelangeid) ;
+	$("#answerForm").modal("show");
+} ;
 	$(document).ready(function(){	
 	var $table = $('table.scroll'),
     $bodyCells = $table.find('tbody tr:first').children(),
@@ -115,9 +119,13 @@ function convertSpecialChar(str){
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
+				$("#create_challange_pb_pr").removeAttr('disabled');
+				return false ;
 			}
 			else if(challenge_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				$("#create_challange_pb_pr").removeAttr('disabled');
+				return false ;
 			}
 			else {
 				//file upload
@@ -136,6 +144,8 @@ function convertSpecialChar(str){
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
+				$("#create_notes").removeAttr('disabled');
+				return false ;
 			}
 			else {
 				//file upload
@@ -152,6 +162,8 @@ function convertSpecialChar(str){
 			// Returns successful data submission message when the entered information is stored in database.
 			if(answerchal==''){
 				bootstrap_alert(".alert_placeholder", "Answer can not be empty", 5000,"alert-warning");
+				$("#answerch").removeAttr('disabled');
+				return false ;
 			}
 			else {
 				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal)))) + '&cid='+ answercid ;
@@ -164,13 +176,16 @@ function convertSpecialChar(str){
 	});
 	$(document).ready(function(){
 		$("#response").click(function(){
+			$("#response").attr('disabled','disabled');
 			var notes = convertSpecialChar($("#pr_resp").val()) ;
 			var id = $("#challenge_id").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&id='+ id ;
 			//alert(dataString);
 			if(notes==''){
-				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
+				bootstrap_alert(".alert_placeholder", "comment can not be empty", 5000,"alert-warning");
+				$("#response").removeAttr('disabled');
+				return false ;
 			}
 			else
 			{
@@ -189,7 +204,8 @@ function convertSpecialChar(str){
 				}
 			});
 			}
-			return false;
+		$("#response").removeAttr('disabled');
+				return false ;
 		});
 		     $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);
