@@ -5,29 +5,30 @@ $(document).ready(function(){
 			$("#challenge_"+ID).hide();
 			$("#challenge_input_"+ID).show();
 			}
-			else { return false; } 				
-			}).change(function(){
-					var ID=$(this).attr('id') ;
-					if ( ID != null){
-						var project=$("#challenge_input_"+ID).val();
-					
-						var dataString = 'id='+ ID +'&projectsmt='+project;
-						$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
-
-						if(project.length>0){
-
+			else { return false; 
+				} 				
+		}).change(function(){
+				var ID=$(this).attr('id') ;
+				if ( ID != null){
+					var project=convertSpecialChar($("#challenge_input_"+ID).val());
+					var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))));
+					$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
+					if(project.length>0){
 							$.ajax({
-							type: "POST",
-							url: "ajax/edit_cha_stmt.php",
-							data: dataString,
-							cache: false,
-							success: function(html){
-							$("#challenge_"+ID).html(project);
+								type: "POST",
+								url: "ajax/edit_cha_stmt.php",
+								data: dataString,
+								cache: false,
+								success: function(html){
+										$("#challenge_"+ID).html(project);
+									}
+								});
 							}
-							});
-							}
-							} }) ;
-						});
+					}
+			$(".editbox").hide();
+			$(".text").show(); 
+			}) ;
+});
 
 			// Edit input box click action
 			$(".editbox").mouseup(function(){
@@ -39,4 +40,3 @@ $(document).ready(function(){
 			$(".editbox").hide();
 			$(".text").show();
 			});
-		
