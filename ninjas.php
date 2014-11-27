@@ -93,6 +93,7 @@ getallreminders() ;
     <script src="js/bootstrap.js"></script>
     <script src="js/bootswatch.js"></script>
     <script src="js/project_page.js"></script>
+    <script src="js/content_edit.js"></script>
    <script src="js/date_time.js"></script>
    
    <!-- chat box -->

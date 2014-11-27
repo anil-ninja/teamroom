@@ -484,7 +484,13 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     
     }
     echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
-			<br/>" .$chelange . "<br/><br/>";
+			<br/><table>
+			<tr id='".$chelangeid."' class='edit_tr'>
+				<td class='edit_td'>
+					<span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
+					<input type='text' value='".$chelange."' class='editbox' style='width: 500px ; height: 30px;' id= 'challenge_input_".$chelangeid."' />
+				</td>
+			</tr></table><br/><br/>";
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION
