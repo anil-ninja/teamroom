@@ -63,7 +63,7 @@ if ($_POST['chal']) {
                                 $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                                 $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                                 if($challenge_dropdown_userID == $user_id) {
-                                    $show_add_dropdown = $show_add_dropdown . "<li><button class='btn-link' href='#'>Edit</button></li>
+                                    $show_add_dropdown = $show_add_dropdown . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
                                 /*    if($remaining_time_ETA_over == 'Time over') {        
                                         $show = $show . "<li>
@@ -143,7 +143,7 @@ if ($_POST['chal']) {
                                     $show = $show . "<div class='list-group-item pull-right'>
                                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                             <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                                <li><button class='btn-link' href='#'>Edit</button></li>
+                                                <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
                                             </ul>
                                         </div>";                    
@@ -178,7 +178,7 @@ if ($_POST['chal']) {
                                     $show = $show . "<div class='list-group-item pull-right'>
                                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                             <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                                <li><button class='btn-link' href='#'>Edit</button></li>
+                                                <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
                                             </ul>
                                         </div>";                    
@@ -219,7 +219,7 @@ if ($_POST['chal']) {
                                     $show = $show . "<div class='list-group-item pull-right'>
                                                         <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                                         <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                                            <li><button class='btn-link' href='#'>Edit</button></li>
+                                                            <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                                             <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
                                                         </ul>
                                                     </div>";                    
@@ -243,7 +243,7 @@ if ($_POST['chal']) {
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                         $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                         if($challenge_dropdown_userID == $user_id) {
-                            $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                            $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
                         }
                         else {
@@ -272,7 +272,7 @@ if ($_POST['chal']) {
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                         $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                         if($challenge_dropdown_userID == $user_id) {
-                            $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                            $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
                         }
                         else {
@@ -506,7 +506,20 @@ if ($_POST['chal']) {
     
     }
     $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
-			<br/>" .$chelange . "<br/><br/>";
+			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>" ;
+	if(isset($_SESSION['user_id'])){
+		if(substr($chelange, 0, 1) != '<') {
+	$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_input_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs edit-button' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/><br/><br/>";
+			}
+		else {
+			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
+			$cha = strstr($chelange, '<br/>' , true) ;
+	$show = $show . "<div class='edit_pic_video_file' style='width : 90%;' id='challenge_inputaa_".$chelangeid."' >".$cha."</div><br/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_input_".$chelangeid."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs edit-button' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/><br/><br/>";
+			}
+		}
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION

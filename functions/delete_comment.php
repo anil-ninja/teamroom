@@ -8,7 +8,7 @@ function dropDown_delete_comment_challenge($db_handle, $deleteid, $user_ID) {
                     $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
                     $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
                     if($challenge_dropdown_comment_userID == $user_ID) {
-                        echo "<li><button class='btn-link' href='#'>Edit</button></li>
+                        echo "<li><button class='btn-link' onclick='edit_content(".$deleteid.")'>Edit</button></li>
                               <li><button class='btn-link' cID='".$deleteid."' onclick='delcomment(".$deleteid.");'>Delete</button></li>";
                     } 
                     else {
@@ -30,7 +30,7 @@ function dropDown_delete_comment_project($db_handle, $deleteid, $user_ID) {
                     $project_dropdown_comment_userID = $project_dropdown_commentRow['user_id'];
                     if($project_dropdown_comment_userID == $user_ID) {
                         echo "
-                        <li><button class='btn-link' href='#'>Edit</button></li>
+                        <li><button class='btn-link' onclick='edit_content(".$deleteid.")'>Edit</button></li>
                         <li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
                     } 
                     else {
@@ -51,7 +51,7 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
                     $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                     $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                     if($challenge_dropdown_userID == $user_ID) {
-                        echo "<li><button class='btn-link' href='#'>Edit</button></li>
+                        echo "<li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
                               <li><button class='btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete</button></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
@@ -79,7 +79,7 @@ function dropDown_delete_after_accept($db_handle, $challenge_ID, $user_ID) {
         echo "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                    <li><button class='btn-link' href='#'>Edit</button></li>
+                    <li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
                     <li><button class='btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete</button></li>
                 </ul>
             </div>";                    
@@ -93,7 +93,7 @@ function dropDown_delete_article($db_handle, $challenge_ID, $user_ID) {
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                         $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                         if($challenge_dropdown_userID == $user_ID) {
-                            echo "<li><button class='btn-link' href='#'>Edit</button></li>
+                            echo "<li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
                                   <li><button class='btn-link' cID='".$challenge_ID."' onclick='delArticle(".$challenge_ID.");'>Delete</button></li>";
                         }
                         else {
@@ -113,7 +113,7 @@ function dropDown_delete_idea($db_handle, $challenge_ID, $user_ID) {
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                         $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                         if($challenge_dropdown_userID == $user_ID) {
-                            echo "<li><button class='btn-link' href='#'>Edit</button></li>
+                            echo "<li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$challenge_ID."' onclick='delIdea(".$challenge_ID.");'>Delete</button></li>";
                         }
                         else {

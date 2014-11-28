@@ -487,13 +487,20 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     
     }
     echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
-			<br/><table>
-			<tr id='".$chelangeid."' class='edit_tr'>
-				<td class='edit_td'>
-					<span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
-					<input type='text' value='".$chelange."' class='editbox' style='width: 500px ; height: 30px;' id= 'challenge_input_".$chelangeid."' />
-				</td>
-			</tr></table><br/><br/>";
+			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>" ;
+	if(isset($_SESSION['user_id'])){
+		if(substr($chelange, 0, 1) != '<') {
+				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_input_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs edit-button' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/><br/><br/>";
+			}
+		else {
+			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
+			$cha = strstr($chelange, '<br/>' , true) ;
+			echo "<div class='edit_pic_video_file' style='width : 90%;' id='challenge_inputaa_".$chelangeid."' >".$cha."</div><br/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_input_".$chelangeid."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs edit-button' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/><br/><br/>";
+			}
+		}
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION

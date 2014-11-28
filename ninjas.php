@@ -63,8 +63,6 @@ if(!isset($_SESSION['user_id'])){
         </div>
 	</div>
 	<script>
-		$(document).ready(function(){
-			
 	$(window).scroll(function(event) {
 		
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
@@ -81,9 +79,14 @@ if(!isset($_SESSION['user_id'])){
 					}
 			});	
 	}
-});
 }); 
 getallreminders() ;
+	</script>
+	<script>
+	$(".text").show();
+	$(".editbox").hide();
+	$(".edit-button").hide();
+	$(".edit_pic_video_file").hide();
 	</script>
     <script src="js/jquery-1.js"></script>
     <script src="date.js"></script>
