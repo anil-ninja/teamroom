@@ -44,7 +44,7 @@ if(!isset($_SESSION['user_id'])){
   <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class='alert_placeholder'></div>
-        
+        <div class='row'>
           <div class="col-md-3" style="width:260px; padding-top: 50px">
            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
            </div> 
@@ -62,6 +62,7 @@ if(!isset($_SESSION['user_id'])){
         <div class="col-md-1">
               <?php include_once 'html_comp/friends.php' ; ?>
         </div>
+	</div>
 	</div>
 	<script>
 		$(document).ready(function(){
