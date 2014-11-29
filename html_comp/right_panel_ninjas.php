@@ -1,28 +1,45 @@
 <div class="bs-component">
     <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);">
-        <div class='list-group'>
-            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor: pointer;">
-				<div class='list-inline'>
-            <li><a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
-            <font size="2">Add Reminder </font></a></li> | <li><div id='allreminders' style='width:100px;'></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?></li>
-            </div>
-            </div>
-        </div>
-        <div class='list-group'>
-            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);cursor:default;" >
-                    <a class='btn-link glyphicon glyphicon-bullhorn'></a>
-                    <font size="2">Tasks To Do</font>
-            </div>
-                
-    <?php
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingOne">
+      <h4 class="panel-title">
+         <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
+            <font size="2">Add Reminder </font></a>
+      </h4>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingTwo">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <i class='glyphicon glyphicon-eye-open'></i> <font size="2">All Reminder </font>
+        </a>
+      </h4>
+    </div>
+    
+       <div id='allreminders' style='width:100px;'></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <i class='btn-link glyphicon glyphicon-bullhorn'></i>
+            <font size="2">Tasks To Do</font>
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <?php
     $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
-						b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
-						AND a.challenge_type = '5' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id)
-						UNION
-                		(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, b.last_name, 
-                		b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND 
-                		(a.challenge_type = '1' OR a.challenge_type = '2') and a.challenge_status = '2' AND a.user_id = b.user_id AND
-                		 a.challenge_id = c.challenge_id) ;");
+                        b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
+                        AND a.challenge_type = '5' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id)
+                        UNION
+                        (SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, b.last_name, 
+                        b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND 
+                        (a.challenge_type = '1' OR a.challenge_type = '2') and a.challenge_status = '2' AND a.user_id = b.user_id AND
+                         a.challenge_id = c.challenge_id) ;");
     while ($titlesrow = mysqli_fetch_array($titles)) {
         $title = $titlesrow['challenge_title'];
         if (strlen($title) > 25) {
@@ -38,23 +55,32 @@
         $challengeOpen_pageID = $titlesrow['challenge_id'];
         $remaining_time_own = remaining_time($time, $eta);
         $tooltip = "Assigned By : " . ucfirst($fname) . " " . ucfirst($lname) . " On " . $timefun;
-        echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);cursor: pointer;'> <a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
+        echo " <a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-				    data-placement='bottom' data-original-title='" . $tooltip . 
-                    "' style='height: 25px;font-size:12px;text-align: left;height: 37px'>" . $chtitle ;
+                    data-placement='bottom' data-original-title='" . $tooltip . 
+                    "'>" . $chtitle ;
                     //. "<p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
-         echo "</button></a></div>";
+         echo "</button></a><br/>";
     }
-    ?></div>
-            <div class='list-group' style="cursor: pointer;">
-            <div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32); cursor:default;" >
-                <a class='btn-link glyphicon glyphicon-tasks'></a>
+    ?>
+          </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="headingThree">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+          <i class='btn-link glyphicon glyphicon-tasks'></i>
                 <font size="2">Tasks Get Done</font>
-            </div>
-    <?php
+        </a>
+      </h4>
+    </div>
+    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body">
+        <?php
     $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
-											b.last_name, b.username	FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE
-											 a.user_id = '$user_id' AND a.challenge_type = '5' AND c.user_id = b.user_id AND a.challenge_id = c.challenge_id ;");
+                                            b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE
+                                             a.user_id = '$user_id' AND a.challenge_type = '5' AND c.user_id = b.user_id AND a.challenge_id = c.challenge_id ;");
     while ($titlesrowass = mysqli_fetch_array($titlesass)) {
         $titleas = $titlesrowass['challenge_title'];
         if (strlen($titleas) > 25) {
@@ -68,18 +94,22 @@
         $fnameas = $titlesrowass['first_name'];
         $lnameas = $titlesrowass['last_name'];
         $challenge_pageID = $titlesrowass['challenge_id'];
-		$remaining_time_ownas = remaining_time($timeas, $etaas);
+        $remaining_time_ownas = remaining_time($timeas, $etaas);
         $tooltipas = "Assigned To : " . ucfirst($fnameas) . " " . ucfirst($lnameas) . " On " . $timefunas;
-        echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);cursor: pointer;'>
+        echo "
                 <a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-    				data-placement='bottom' data-original-title='" . $tooltipas .
+                    data-placement='bottom' data-original-title='" . $tooltipas .
                      "'style='height: 37px;font-size:13px;text-align: left;'>" . $chtitleas ;
                      //."<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
-             echo "</button></a></div>";
+             echo "</button></a><br/>";
     }
     ?>
+       </div>
+    </div>
+  </div>
         </div>
+    </div>
 </div>
 </div>
  <!-- Modal -->
