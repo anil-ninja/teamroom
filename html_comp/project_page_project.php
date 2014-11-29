@@ -361,6 +361,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 2) {
             echo "<div class='list-group pushpin'>
                     <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                        <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-pushpin'></span>
                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -409,13 +410,14 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         }
         if ($status_task == 4) {
             echo "<div class='list-group pushpin'>
-                                <div class='list-group-item'>
-                                    <div class='pull-left lh-fix'>     
-                                    <span class='glyphicon glyphicon-pushpin'></span>
-                                    <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                </div>
-                                <div class='row' style='line-height: 16.50px;'>
-                                    <div class='col-md-3'>";
+					<div class='list-group-item'>
+					<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+						<div class='pull-left lh-fix'>     
+						<span class='glyphicon glyphicon-pushpin'></span>
+						<img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+					</div>
+					<div class='row' style='line-height: 16.50px;'>
+						<div class='col-md-3'>";
             echo "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span><br> " . $timefunct;
             //	. "<br/> ETA Given:" .$etaown."
 
@@ -437,13 +439,14 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         }
         if ($status_task == 5) {
             echo "<div class='list-group flag'>
-                                <div class='list-group-item'>
-                                    <div class='pull-left lh-fix'>     
-                                    <span class='glyphicon glyphicon-flag'></span>
-                                    <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                </div>
-                                <div class='row' style='line-height: 16.50px;'>
-                                    <div class='col-md-3'>";
+					<div class='list-group-item'>
+					<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+						<div class='pull-left lh-fix'>     
+						<span class='glyphicon glyphicon-flag'></span>
+						<img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+					</div>
+					<div class='row' style='line-height: 16.50px;'>
+						<div class='col-md-3'>";
             echo "<span class='color strong' style= 'color :#3B5998;'>" . ucfirst($fname_task) . "</a></span><br>"
             . $timefunct;
             //. "<br/>ETA Given:" .$etaown."
@@ -464,6 +467,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     if ($type_task == 8) {
         echo "<div class='list-group videofilm'>
                     <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-film'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -480,6 +484,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 1) {
             echo "<div class='list-group sign'>
                     <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -503,8 +508,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 2) {
             echo "<div class='list-group sign'>
                     <div class='list-group-item' style='line-height: 16.50px;'>
-                    <div class='pull-left lh-fix'>     
-
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <div class='pull-left lh-fix'> 
                         <span class='glyphicon glyphicon-question-sign'></span>
                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
                     </div>
@@ -531,10 +536,10 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     </div>
                 </div>";
         }
-
         if ($status_task == 4) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-flag'></span>
                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -559,10 +564,10 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             }
             echo "</div></div></div>";
         }
-
         if ($status_task == 5) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item' style='line-height: 16.50px;'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -692,7 +697,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $note_created_on = $displayrow['creation_time'];
         $note_creation = date("j F, g:i a", strtotime($note_created_on));
         echo "<div class='list-group deciduous'>
-		  <div class='list-group-item'>";
+		  <div class='list-group-item'>
+		  <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>";
         if (isset($_SESSION['user_id'])) {
 		     echo "<div class='pull-right'>
 	 	        <div class='list-group-item'>
