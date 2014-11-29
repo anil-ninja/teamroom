@@ -111,7 +111,7 @@ function user_idea ($db_handle, $user_id) {
                 <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'><strong>
                         <p align='center'>"                          
                         .ucfirst($idea_title)."</p></strong></a><br>
-                ".$idea_stmt.".....
+                ".$idea_stmt."
              </div>";
          comments_all_type_challenges ($db_handle, $idea_id);
     }

@@ -206,24 +206,24 @@ $obj = new profile($UserName);
                         joined_projects ($db_handle, $profileViewUserID);
                       ?>           
                    
-                    </div>
-                  <div role="tabpanel" class="tab-pane" id="tabArticles">
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tabArticles">
                     <div class="col-md-12">
                       <?php user_articles($db_handle,$profileViewUserID); ?>
                     </div>
-                  </div>
-                  <div role="tabpanel" class="tab-pane" id="tabChallanges">
-                      <div class="col-md-12">
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tabChallanges">
+                    <div class="col-md-12">
                         <?php user_challenges($db_handle,$profileViewUserID); ?>
                     </div>
-                  </div>
-                  <div role="tabpanel" class="tab-pane" id="tabIdeas">
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tabIdeas">
                     <div class="col-md-12">
                       <?php user_idea($db_handle,$profileViewUserID); ?>
                     </div>
-                  </div>
                 </div>
-                </div> 
+            </div>
+        </div> 
                 <div class ="col-md-2">
                     <?php include_once 'html_comp/known.php' ?>
                 </div>
