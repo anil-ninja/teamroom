@@ -16,9 +16,9 @@
             ?>
             <div id='challegeprForm'>
 
-                <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte"/><br>
+                <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte .."/><br>
                 <input class="btn btn-default btn-sm" type="file" id="_fileChallengepr" style ="width: auto;"><br/>
-                <textarea rows="3" class="form-control" id="challangepr" placeholder="Details of Challange"></textarea><br>
+                <textarea rows="3" class="form-control" id="challangepr" placeholder="Description .. "></textarea><br>
                 <!---<div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                         <option value='0' selected >hour</option>
@@ -114,12 +114,12 @@
                         $task = $task . "</select>&nbsp;&nbsp;&nbsp; <input type='email' id='emailtask' placeholder='Enter email-id'/></div><br/>
             <div class='input-group' >
                 <span class='input-group-addon'>Title : </span>						
-                <input type='text' class='form-control' id='title' placeholder='Tilte'/>
+                <input type='text' class='form-control' id='title' placeholder='Tilte ..'/>
             </div><br>
             <input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/><br/>
             <div class='input-group' >
                 <span class='input-group-addon'>Task : </span>						
-                <textarea rows='3' class='form-control' id='taskdetails' placeholder='Details of Tasks'></textarea>
+                <textarea rows='3' class='form-control' id='taskdetails' placeholder='Description .. '></textarea>
             </div><br> ";
                         /* <div class='inline-form'>
                           ETA :
@@ -160,14 +160,14 @@
                         echo "You hane no teams, Please create Team First";
                     }
                 } else {
-                    echo "You are not authorised only Project Manager can assign Tassk";
+                    echo "Not authorised, please contact project owner";
                 }
                 ?>
             </div>
             <div id='teamForm'>
                 <div class="input-group" >
                     <span class="input-group-addon">Team Name</span>
-                    <input type="text" class="form-control" id="team_name_A" placeholder="Enter your team name">
+                    <input type="text" class="form-control" id="team_name_A" placeholder="Team name ..">
                 </div>
                 <br>
                 <div class="input-group">
@@ -178,13 +178,13 @@
                 <input type="submit" class="btn btn-success" id = "create_team" value = "Create New Team" >
             </div>
             <div id='VideoFormpr'>
-                <input type='text' class="form-control" id="video_titlepr" placeholder="Title"/><br>
+                <input type='text' class="form-control" id="video_titlepr" placeholder="Vedio title .."/><br>
                 <input type='text' class="form-control" id="videoprjt" placeholder="Add Youtube URL"><br>
-                <textarea rows="3" class="form-control" id="videodespr" placeholder="About Video"></textarea><br><br>
+                <textarea rows="3" class="form-control" id="videodespr" placeholder="Description .."></textarea><br><br>
                 <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
             </div>
             <div id='notesForm'>
-                <input type='text' class="form-control" id="notes_title" placeholder="Title"/><br>
+                <input type='text' class="form-control" id="notes_title" placeholder="Heading .."/><br>
                 <input class="btn btn-default btn-sm" type="file" id="_fileNotes" style ="width: auto;"><br/>
                 <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
                 <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
