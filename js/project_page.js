@@ -11,7 +11,7 @@ function answersubmit(chelangeid){
 	$("#answerForm").modal("show");
 } ;
 function like(Id) {
-	var uid = parseInt(parseInt($("#likes_"+Id).val())+1) ;
+	var uid = $("#likes_"+Id).val() ;
 	var dataString = 'id='+ Id + '&case=1';
 	alert(uid) ;
 			$.ajax({
@@ -22,7 +22,7 @@ function like(Id) {
 				success: function(result){
 					alert(result) ;
 					if(result == 'Posted successfully') {
-						$("#likes_"+Id).val(uid+='') ;
+						$("#likes_"+Id).val(uid + 1) ;
 					}
 				}
 			});
