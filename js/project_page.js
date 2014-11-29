@@ -12,23 +12,37 @@ function answersubmit(chelangeid){
 } ;
 function like(Id) {
 	var uid = $("#likes_"+Id).val() ;
+	if (uid == '') {
+		var nied = 1 ;
+		}
+		else {
+			var nied = parseInt(parseInt(uid)+1) ;
+			}
 	var dataString = 'id='+ Id + '&case=1';
-	alert(uid) ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/likes.php",
 				data: dataString,
 				cache: false,
 				success: function(result){
-					alert(result) ;
+					//alert(result) ;
 					if(result == 'Posted successfully') {
-						$("#likes_"+Id).val(uid + 1) ;
+						$("#likes_"+Id).val(nied+='') ;
 					}
+					else {
+						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
+						}
 				}
 			});
 	}
 function dislike(Id) {
-	var uid = parseInt(parseInt($("#dislikes_"+Id).val())+1) ;
+	var uid = $("#dislikes_"+Id).val() ;
+	if (uid == '') {
+		var nied = 1 ;
+		}
+		else {
+			var nied = parseInt(parseInt(uid)+1) ;
+			}
 	var dataString = 'id='+ Id + '&case=2' ;
 			$.ajax({
 				type: "POST",
@@ -37,8 +51,11 @@ function dislike(Id) {
 				cache: false,
 				success: function(result){
 					if(result == 'Posted successfully') {
-						$("#dislikes_"+Id).val(uid+='') ;
+						$("#dislikes_"+Id).val(nied+='') ;
 					}
+					else {
+						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
+						}
 				}
 			});
 	}
