@@ -673,23 +673,25 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $note_created_on = $displayrow['creation_time'];
         $note_creation = date("j F, g:i a", strtotime($note_created_on));
         echo "<div class='list-group deciduous'>
-		  <div class='list-group-item'>
-		      <div class='pull-right'>
+		  <div class='list-group-item'>";
+        if (isset($_SESSION['user_id'])) {
+		     echo "<div class='pull-right'>
 	 	        <div class='list-group-item'>
 				   <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 				   <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-        if (isset($_SESSION['user_id'])) {
+        
             if ($note_posted_user_id == $user_id) {
                 echo "<li><a class='btn-link' href='#'>Edit Note</a></li>
                                 <li><a class='btn-link' noteID='" . $note_ID . "' onclick='delNote(" . $note_ID . ");'>Delete Note</a></li>";
             } else {
                 echo "<li><a class='btn-link' >Report Spam</a></li>";
             }
-        }
+        
         echo "</ul>
               </div>
-			</div>
-			<p align='center' style='font-size: 14pt;color :#3B5998;'>" . $title . "</p>
+			</div>";
+        }
+	echo "<p align='center' style='font-size: 14pt;color :#3B5998;'>" . $title . "</p>
 			<div class='pull-left lh-fix'>     
 				<span class='glyphicon glyphicon-tree-deciduous'></span>
 				<img src='uploads/profilePictures/$username_notes.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -721,10 +723,12 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_notes_comment . "'>" . ucfirst($fstname) . " " . ucfirst($lstname) . "</a>&nbsp</span> 
 						" . $chalangeres . "";
-            dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+            if (isset($_SESSION['user_id'])) { 
+                dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+            }
             echo "</div>
-				</div> 
-			</div>";
+                </div> 
+            </div>";
         }
         echo "<div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
