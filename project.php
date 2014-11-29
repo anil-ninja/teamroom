@@ -82,7 +82,7 @@ include_once 'functions/delete_comment.php';
                     <?php 
                         }
                 ?>
-          
+         <script src="js/content_edit.js"></script> 
         <script src="js/jquery-1.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/ninjas.js"></script>
@@ -113,6 +113,8 @@ include_once 'functions/delete_comment.php';
                     // lang: 'ru',             // language (OPTIONAL)
                 }).elfinder('instance');
             });
+      	$(".text").show();
+		$(".editbox").hide();
         </script>
                  
         <script>

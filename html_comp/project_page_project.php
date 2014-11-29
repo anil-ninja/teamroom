@@ -589,9 +589,35 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     </div>";
         }
     }
-
-    echo "<div class='list-group-item'><p align='center' style='font-size: 14pt; color :#3B5998;'><b>" . ucfirst($title_task) . "</b></p>
-				<small>" . str_replace("<s>", "&nbsp;", $stmt_task) . "</small><br/><br/>";
+	echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$id_task."' class='text' ><b>" . ucfirst($title_task) . "</b></p>
+			<br/><span id='challenge_".$id_task."' class='text' >".$stmt_task."</span>
+			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>" ;
+	if(isset($_SESSION['user_id'])){
+		if(substr($stmt_task, 0, 1) != '<' || substr($stmt_task, 0, 4) == ' <br') {
+				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+			}
+		else {
+			$chaaa = substr(strstr($stmt_task, '<br/>'), 5) ;
+			$cha = strstr($stmt_task, '<br/>' , true) ;
+			if(substr($stmt_task, 0, 4) == '<img') {
+					echo "<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					}
+			if(substr($stmt_task, 0, 2) == '<a') {
+					echo "<div class='editbox' style='width : 90%;' id='challenge_file_".$id_task."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					}
+			if(substr($stmt_task, 0, 3) == '<if') {
+					echo "<div class='editbox' style='width : 90%;' id='challenge_video_".$id_task."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$id_task."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+			echo "<input id='_fileChallenge_".$id_task."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$id_task.")' id='pic_file_save_".$id_task."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$id_task."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$id_task.")' id='doneediting_".$id_task."'/>";		
+			}
+		}
     if (($type_task == 1 || $type_task == 2 || $type_task == 5) && ($status_task == 4 || $status_task == 5)) {
 
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$id_task' and blob_id = '0' and status = '2')
