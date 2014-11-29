@@ -1,6 +1,7 @@
 <?php
 include_once 'lib/db_connect.php';
 include_once 'functions/profile_page_function.php';
+include_once 'functions/delete_comment.php';
 $UserName = $_GET['username'];
 session_start();
 $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '$UserName';");
@@ -111,7 +112,7 @@ $obj = new profile($UserName);
         <div class="media-body" style="padding-top: 60px;">
             <div class="col-md-3">
         <?php
-            if (isset($_SESSION['user_id'])) {
+            if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
                 echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 250px;'>Edit</a>";
             }
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:250px; height:250px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
@@ -183,70 +184,28 @@ $obj = new profile($UserName);
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
                   <li role="presentation" class="active">
-                    <a href="#tabProjects" role="tab" data-toggle="tab">Projects</a></li>
+                    <a href="#tabCreatedProjects" role="tab" data-toggle="tab">Created Projects (<?= $totalProjectCreated?>)</a></li>
+                  <li role="presentation">
+                    <a href="#tabJoinedProjects" role="tab" data-toggle="tab">Joined Projects (<?= $projectsJoined?>)</a></li>
                   <li role="presentation">
                     <a href="#tabArticles" role="tab" data-toggle="tab">Articles</a></li>
                   <li role="presentation">
-                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challanges</a></li>
+                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challenges</a></li>
                   <li role="presentation">
                     <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas</a></li>
               </ul>
             </div>
             <div class="tab-content" >
-              <div role="tabpanel" class="row tab-pane active" id="tabProjects" >
-                <div class="col-md-6">
-                  <div class='col-md-12 pull-left list-group-item'>
-                      <strong>Created(<?php echo $totalProjectCreated;?>)</strong>
-                  </div>
-                   
-                                         
-                  <?php
-                    $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND project_type=1)
-                                                                        UNION 
-                                                                       (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.user_id = $profileViewUserID AND a.blob_id=b.blob_id AND a.project_type=1);");
-                    if(mysqli_num_rows($project_created_display) == 0){
-                        echo "<a href='ninjas.php' class='btn-link'>Create Project</a>" ;
-                    }
-                    else {
-                        while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-                            $project_title_table = $project_table_displayRow['project_title'];
-                            $project_stmt_table = $project_table_displayRow['stmt'];
-                            $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table)));
-                            $project_id_table = $project_table_displayRow['project_id'];
-                            //project title created by profile user
-                            echo  "<div class='col-md-12 text-left list-group-item'>
-                                    <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."'><strong> "                          
-                                        .$project_title_table.":&nbsp<br/></strong>
-                                    </a>"
-                                    .substr($project_stmt_table,0, 70)."
-                                    </left>
-                                </div>";
-                        }
-                    }
+                <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects" >
+                <?php
+                    created_projects ($db_handle, $profileViewUserID);
                 ?>   
-                    </div>
-                    <div class="col-md-6">
-                        <div class='col-md-12 pull-right list-group-item'>
-                            <strong>Joined(<?php echo $projectsJoined;?>)</strong>
-                        </div>
+                </div>
+                <div role="tabpanel" class="row tab-pane" id="tabJoinedProjects" >
                       <?php
-                        $project_joined_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type = 1 AND blob_id = 0)
-                                                                            UNION 
-                                                                            (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND a.user_id != $profileViewUserID AND a.project_type = 1 AND a.blob_id = b.blob_id);");
-                        while($project_joined_displayRow = mysqli_fetch_array($project_joined_display)) {
-                            $project_joined_title = $project_joined_displayRow['project_title'];
-                            $project_joined_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$project_joined_displayRow['stmt'])));
-                            $project_joined_id = $project_joined_displayRow['project_id'];
-                            //project title created by profile user
-                            echo  "<div class='col-md-12 text-left list-group-item' >
-                                        <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_joined_id."'> <strong>"                          
-                                            .$project_joined_title.": &nbsp<br/></strong></a>"
-                                        .substr($project_joined_stmt,0,70)."
-                                        </left>
-                                    </div>";
-                        }
+                        joined_projects ($db_handle, $profileViewUserID);
                       ?>           
-                    </div>
+                   
                     </div>
                   <div role="tabpanel" class="tab-pane" id="tabArticles">
                     <div class="col-md-12">
