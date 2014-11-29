@@ -37,48 +37,58 @@ include_once 'functions/delete_comment.php';
    </head>
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
-    <div class='alert_placeholder'></div>
+    
         <div class='row'>
-          <div class="col-md-3" style="width:260px; padding-top: 50px; position: auto;">
-           <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
-           </div>  
+            <div class="col-md-3" style="width:260px; padding-top: 50px; position: auto;">
+            <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
+            </div>  
             <div class=" media-body" style="padding-top: 50px;">
-          <div class="col-md-8">
-              <div class="panel-primary" id='panel-cont'>
-                       <?php include_once 'html_comp/project_page_project.php'; ?>
+            <div class="col-md-8">
+                <div class='alert_placeholder'></div>
+                <div class="panel-primary" id='panel-cont'>
+                    <?php include_once 'html_comp/project_page_project.php'; ?>
                 </div>
             </div>
             <div class="col-md-3">
-				   <?php include_once 'html_comp/project_page_challenge.php'; ?>
+                <?php include_once 'html_comp/project_page_challenge.php'; ?>
             </div>
             <div class="col-md-1">
-              <?php include_once 'html_comp/project_members.php' ; ?>
+              <?php include_once 'html_comp/project_members.php'; ?>
         </div>	
-            </div>
-           </div>
-           <?php include_once 'html_comp/signup.php' ; ?>
+    </div>
+    </div>
+           <?php include_once 'html_comp/signup.php'; ?>
        
-		<?php include_once 'html_comp/project_talk.php'; ?>
-       <script>
-       $(document).ready(function(){
-			$("#talkpro").click(function(){
-				$("#talkprForm").show();
-				$("#talkformdata").show();
-				$("#talkformin").show();
-				$("#talkformdata").scrollTop($('#talkformdata').height()) ;
-				projecttalk();
-			});
-			projecttalk();
-			
-		});   
-       </script>
-       <script src="js/chat.js"></script>   
-       <script src="js/jquery-1.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/ninjas.js"></script>
-    <script src="js/bootswatch.js"></script>
-    <script src="js/project_page.js"></script>
-     <script src="js/date_time.js"></script>
+		<?php 
+                    if (isset($_SESSION['user_id'])) {
+                        include_once 'html_comp/project_talk.php'; 
+                 ?>
+                        <script>
+                            $(document).ready(function(){
+                                $("#talkpro").click(function(){
+                                    $("#talkprForm").show();
+                                    $("#talkformdata").show();
+                                    $("#talkformin").show();
+                                    $("#talkformdata").scrollTop($('#talkformdata').height()) ;
+                                    projecttalk();
+                                });
+                                projecttalk();
+                            });   
+                        </script>
+                        <script src="js/chat.js"></script>
+                        <!-- chat box -->
+                        <script type="text/javascript" src="js/chat_box.js"></script>
+                        <!-- end Chat box-->
+                    <?php 
+                        }
+                ?>
+          
+        <script src="js/jquery-1.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/ninjas.js"></script>
+        <script src="js/bootswatch.js"></script>
+        <script src="js/project_page.js"></script>
+        <script src="js/date_time.js"></script>
         <!-- jQuery and jQuery UI (REQUIRED) -->
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
@@ -104,9 +114,7 @@ include_once 'functions/delete_comment.php';
                 }).elfinder('instance');
             });
         </script>
-        <!-- chat box -->
-   <script type="text/javascript" src="js/chat_box.js"></script>
-   <!-- end Chat box-->         
+                 
         <script>
         $(document).ready(function(){
 	$(window).scroll(function(event) {
@@ -133,5 +141,6 @@ include_once 'functions/delete_comment.php';
         </body>
     </html>
 <?php
+include_once 'html_comp/login_signup_modal.php';
 mysqli_close($db_handle);
 ?>

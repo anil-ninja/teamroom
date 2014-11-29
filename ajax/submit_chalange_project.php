@@ -9,6 +9,7 @@ if($_POST['challange']){
 	$pro_id = $_SESSION['project_id'] ;	
 	$challangetext = $_POST['challange'];
 	//$opentime = $_POST['opentime'] ;
+        $opentime = 1;
 	$challenge_title = $_POST['challenge_title'] ;
 	$challange_eta = 1 ;//$_POST['challange_eta'] ; 
 	$image = $_POST['img'] ;
