@@ -48,7 +48,7 @@ if(!isset($_SESSION['user_id'])) {
               <div class="panel-primary" id='panel-cont'>
                   <p id='home-ch'></p>
                   <p id='home'></p>
-                <div class="list-group-item pull-center"style="margin-top: 20px;"><h5> <strong> All Notices For You</strong></h5>
+                <div class="list-group-item pull-center" style="margin-top: 20px;"><h5> <strong> All Notices For You</strong></h5>
                <div id="allnotices" class= "list-group"></div></div>
             </div>
           </div>
@@ -63,33 +63,16 @@ if(!isset($_SESSION['user_id'])) {
 		getallnotices();	
     </script>
     <script src="js/jquery.js"> </script>
-        <script src="js/search.js"> </script>
-        <script src="js/date_time.js"></script>
-        <script>
-            $(window).scroll(function(event) {
-                
-            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-                 event.preventDefault();
-                var dataString = 'chal=10' ;
-                      $.ajax({
-                        type: "POST",
-                        url: "ajax/get_next.php",
-                        data: dataString,
-                        cache: false,
-                        success: function(result){
-                            //alert(result) ;
-                            $('#panel-cont').append(result);
-                            }
-                    }); 
-                    }
-                }); 
-                getallreminders() ;
+    <script src="js/search.js"> </script>
+    <script src="js/date_time.js"></script>
+    <script>
+        getallreminders() ;
     </script>
     <script>
-    $(".text").show();
-    $(".editbox").hide();
-    $(".edit-button").hide();
-    $(".edit_pic_video_file").hide();
+        $(".text").show();
+        $(".editbox").hide();
+        $(".edit-button").hide();
+        $(".edit_pic_video_file").hide();
     </script>
     <script src="js/jquery-1.js"></script>
     <script src="date.js"></script>
