@@ -1,38 +1,237 @@
 function edit_content(ID) {
-		if ( ID != null){
-			$("#challenge_"+ID).hide();
-			$("#challenge_input_"+ID).show();
-			$("#doneedit_"+ID).show();
-			$("#challenge_inputaa_"+ID).show();
-			}
-			else { return false; }
-			} ;	
+	if ( ID != null){
+		$("#challenge_"+ID).hide();
+		$("#challenge_ti_"+ID).hide();
+		$("#challenge_title_"+ID).show();
+		$("#challenge_stmt_"+ID).show();
+		$("#doneedit_"+ID).show();
+		$("#pic_file_"+ID).show();
+		$("#challenge_pic_"+ID).show();
+		$("#challenge_file_"+ID).show();
+		$("#challenge_video_"+ID).show();
+		$("#url_video_"+ID).show();
+		$("#challenge_stmt_p_"+ID).show();
+		$("#doneediting_"+ID).show();
+		}
+		else { return false; }
+} ;
+function upload_pic_file(ID) {
+	if ( ID != null){
+		$("#challenge_"+ID).hide();
+		$("#challenge_ti_"+ID).show();
+		$("#_fileChallenge_"+ID).show();
+		$("#pic_file_save_"+ID).show();
+		$("#challenge_title_"+ID).hide();
+		$("#challenge_stmt_"+ID).hide();
+		$("#doneedit_"+ID).hide();
+		$("#pic_file_"+ID).hide();
+		$("#challenge_pic_"+ID).hide();
+		$("#challenge_file_"+ID).hide();
+		$("#challenge_video_"+ID).hide();
+		$("#url_video_"+ID).hide();
+		$("#challenge_stmt_p_"+ID).hide();
+		$("#doneediting_"+ID).hide();
+		}
+		else { return false; }
+} ;		
+function bootstrap_alert(elem, message, timeout,type) {
+  $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
+
+  if (timeout || timeout === 0) {
+    setTimeout(function() { 
+      $(elem).show().html('');
+    }, timeout);    
+  }
+};
+function url_domain(data) {
+  var    a      = document.createElement('a');
+         a.href = data;
+
+  return a.hostname;
+}
+function getVedioId(str) {
+    return str.split('v=')[1];
+}
+
+function refineVedioId(str){
+	if(str.indexOf('&') === -1){
+		return str;
+		}
+		return str.split('&')[0];
+}
 function saveedited(ID)  {				
-		var project = convertSpecialChar($("#challenge_input_"+ID).val());
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))));
+		var title = convertSpecialChar($("#challenge_title_"+ID).val());
+		var project = convertSpecialChar($("#challenge_stmt_"+ID).val());
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
 		$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
-		if(project.length>0){
-				$.ajax({
-					type: "POST",
-					url: "ajax/edit_cha_stmt.php",
-					data: dataString,
-					cache: false,
-					success: function(html){
+		if(project == ""){
+			bootstrap_alert(".alert_placeholder", "Statement can not be empty", 5000,"alert-warning");
+			return false ;
+			}
+			else if (title == ""){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				return false ;
+				}
+				else {
+					$.ajax({
+						type: "POST",
+						url: "ajax/edit_cha_stmt.php",
+						data: dataString,
+						cache: false,
+						success: function(html){
 							$("#challenge_"+ID).html(project);
-						}
+							$("#challenge_ti_"+ID).html(title);
+							}
 					});
 				}
 	$(".editbox").hide();
-	$(".edit-button").hide();
 	$(".text").show(); 
 } ;
+function saveeditedchallenge(ID)  {				
+		var title = convertSpecialChar($("#challenge_title_"+ID).val());
+		var project = convertSpecialChar($("#challenge_stmt_p_"+ID).val());
+		var challenge = $("#url_video_"+ID).val();
+		if (challenge != "") {
+			var domain = url_domain(challenge);
+			//alert(domain);
+			if (domain == "www.youtube.com"){
+				var linkId = refineVedioId(getVedioId(challenge));
+				//alert(linkId);
+				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
+				challenge = challenge.concat(linkId);
+				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&video='+ challenge ;
+				}
+				else {
+					bootstrap_alert(".alert_placeholder", "Add You-tube Url Only", 5000,"alert-warning");
+					return false ;
+					}
+			}
+			else {
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+						+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+				}
+		$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
+		if(project == ""){
+			bootstrap_alert(".alert_placeholder", "Statement can not be empty", 5000,"alert-warning");
+			return false ;
+			}
+			else if (title == ""){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				return false ;
+				}
+				else {
+					$.ajax({
+						type: "POST",
+						url: "ajax/edit_cha_stmt.php",
+						data: dataString,
+						cache: false,
+						success: function(result){
+							//alert (result) ;
+							$("#challenge_"+ID).html(replaceAll('<s>','  ',result));
+							$("#challenge_ti_"+ID).html(title);
+							$("#url_video_"+ID).val('');
+							}
+					});
+				}
+	$(".editbox").hide();
+	$(".text").show(); 
+} ;
+function save_pic_file(ID) {
+	var _filech = document.getElementById("_fileChallenge_"+ID);
+	var dataString = 'id='+ID ;
+	if(_filech.files.length === 0){
+		bootstrap_alert(".alert_placeholder", "Please upload Something", 5000,"alert-warning");
+		return false ;
+		}
+		else {
+			uploadFile(_filech,"challengePic",String(dataString),"ajax/update_chalange.php",ID);
+			}
+	
+}
+function uploadFile(_file,typeOfPic,data1,url1,ID){
+		var _progress = document.getElementById('_progress');
+		
+		if(_file.files.length === 0){
+			if(typeOfPic == "profilepic") {
+				bootstrap_alert(".alert_placeholder", "Please upload a pic", 5000,"alert-warning");
+				}
+				  else{
+						submitCreateArticle("",data1,url1,ID);
+					}
+				return false ;
+		} else {
+
+		var data = new FormData();
+		data.append('file', _file.files[0]);
+
+		var request = new XMLHttpRequest();
+		var responceTx = "";
+		request.onreadystatechange = function(){
+			if(request.readyState == 4){
+				responceTx = request.response;
+				submitCreateArticle(responceTx,data1,url1,ID);
+				//alert(responceTx);
+				//alert(request.response);
+				//return request.response;
+				}
+			};
+		}
+
+		request.upload.addEventListener('progress', function(e){
+        _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
+		}, false);
+		
+		request.open('POST', 'ajax/upload_file.php?typeOfPic='+typeOfPic);
+		request.send(data);
+		//alert(request.response);
+		//alert(responceTx);
+		//return responceTx;
+		
+		
+	}
+	function submitCreateArticle(ilink,data,url,ID){
+		//alert(ilink) ;
+		if (ilink != "") {
+		var res = ilink.split(".");
+		//alert (res['1']);
+			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
+				var imgTx = "<img onError=\"this.src=\"img/default.gif\"\" src=\""+ilink+"\" style=\"max-width: 100%;\" />";
+			}
+				else {
+					var imgTx = ilink ;
+					}
+			if (imgTx.length < 30) { alert(imgTx); }
+		var dataString = data + '&img='+ imgTx ;
+		//alert(dataString) ;
+		}
+			else {
+				var	dataString =  data ;
+				//alert(dataString) ;			
+				}
+			$.ajax({
+				type: "POST",
+				url: url,
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result);
+					$("#challenge_"+ID).html(replaceAll('<s>','  ',result));
+					$("#_fileChallenge_"+ID).val('');
+				}
+			});
+	$(".editbox").hide();
+	$(".text").show();  
+	}
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}
 			// Edit input box click action
-			//$(".editbox").mouseup(function(){
-			//return false
-			//});
+			$(".editbox").mouseup(function(){
+			return false
+			});
 
 			// Outside click action
 			$(document).mouseup(function(){

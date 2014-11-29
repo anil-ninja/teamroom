@@ -486,19 +486,33 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         }
     
     }
-    echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
-			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>" ;
+    echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$chelangeid."' class='text' ><b>" . ucfirst($ch_title) . "</b></p>
+			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
+			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>" ;
 	if(isset($_SESSION['user_id'])){
 		if(substr($chelange, 0, 1) != '<') {
-				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_input_".$chelangeid."' >".$chelange."</textarea>
-						<input type='submit' class='btn-success btn-xs edit-button' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/><br/><br/>";
+				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 			}
 		else {
 			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
 			$cha = strstr($chelange, '<br/>' , true) ;
-			echo "<div class='edit_pic_video_file' style='width : 90%;' id='challenge_inputaa_".$chelangeid."' >".$cha."</div><br/>
-					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_input_".$chelangeid."' >".$chaaa."</textarea>
-						<input type='submit' class='btn-success btn-xs edit-button' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/><br/><br/>";
+			if(substr($chelange, 0, 4) == '<img') {
+					echo "<div class='editbox' style='width : 90%;' id='challenge_pic_".$chelangeid."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
+					}
+			if(substr($chelange, 0, 2) == '<a') {
+					echo "<div class='editbox' style='width : 90%;' id='challenge_file_".$chelangeid."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
+					}
+			if(substr($chelange, 0, 3) == '<if') {
+					echo "<div class='editbox' style='width : 90%;' id='challenge_video_".$chelangeid."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$chelangeid."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+			echo "<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
 			}
 		}
     if ($status == 4 || $status == 5) {

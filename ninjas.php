@@ -85,8 +85,6 @@ getallreminders() ;
 	<script>
 	$(".text").show();
 	$(".editbox").hide();
-	$(".edit-button").hide();
-	$(".edit_pic_video_file").hide();
 	</script>
     <script src="js/jquery-1.js"></script>
     <script src="date.js"></script>

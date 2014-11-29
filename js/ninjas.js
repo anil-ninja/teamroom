@@ -257,7 +257,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 			}); 
 	}
-		
+	
 		$("#create_article").click(function(){
       		$("#create_article").attr('disabled','disabled');
 			var article = convertSpecialChar($("#articlech").val()) ;

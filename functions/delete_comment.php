@@ -8,8 +8,7 @@ function dropDown_delete_comment_challenge($db_handle, $deleteid, $user_ID) {
                     $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
                     $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
                     if($challenge_dropdown_comment_userID == $user_ID) {
-                        echo "<li><button class='btn-link' onclick='edit_content(".$deleteid.")'>Edit</button></li>
-                              <li><button class='btn-link' cID='".$deleteid."' onclick='delcomment(".$deleteid.");'>Delete</button></li>";
+                        echo "<li><button class='btn-link' cID='".$deleteid."' onclick='delcomment(".$deleteid.");'>Delete</button></li>";
                     } 
                     else {
                        echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
@@ -29,9 +28,7 @@ function dropDown_delete_comment_project($db_handle, $deleteid, $user_ID) {
                     $project_dropdown_commentRow = mysqli_fetch_array($project_dropdown_comment);
                     $project_dropdown_comment_userID = $project_dropdown_commentRow['user_id'];
                     if($project_dropdown_comment_userID == $user_ID) {
-                        echo "
-                        <li><button class='btn-link' onclick='edit_content(".$deleteid.")'>Edit</button></li>
-                        <li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
+                        echo "<li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
                     } 
                     else {
                        echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
