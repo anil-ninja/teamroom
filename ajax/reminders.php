@@ -19,16 +19,16 @@ if ($_POST['reminder']) {
 						else {
 							$rname = $notice1row['first_name'] ;
 							}
-						$notice .= "<p onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' >".$reminders. "</p><br/><p style='font-size: 10px;'>to : ".$rname."</p><hr/>";
+						$notice .= "<p style='font-size: 10px;'>to : ".$rname."</p><br/>
+									<p onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' >
+									".$reminders. "</p>
+									<br/><hr/>";
 				}		
-		$data .= "<div class='dropdown'>
-					<a data-toggle='dropdown'>
-						<i class='glyphicon glyphicon-eye-open'></i> Reminders
-				   </a>
-					<ul class='dropdown-menu multi-level' style=' max-height: 300px; width: 200px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
-						<li>".$notice."</li>
+		$data .= "<div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>
+      				<div class='panel-body'>
+					".$notice."
 						<div class='newreminders' ></div>
-					</ul>
+					</div>
 				</div>" ;
 	echo $data."+".$reminderid ;
 mysqli_close($db_handle);
