@@ -170,9 +170,9 @@ $obj = new profile($UserName);
                                             <input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
                                             <input type='text' id='newemailid' class='form-control' value='".$profileViewEmail."'/>
                                             <input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>
-                                            <textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea>
+                                            <input type='text' id='companyname' class='form-control' placeholder='Organisation Name'/>
                                             <input type='text' id='livingtown' class='form-control' placeholder='Current Living Town'/>
-                                            <input type='text' id='companyname' class='form-control' placeholder='Organisation Name'/><br/>
+                                            <textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea><br/>
                                             <a class='btn-success btn-sm' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
                                             "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
                     }
