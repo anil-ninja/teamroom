@@ -18,7 +18,7 @@
       </h4>
     </div>
     
-       <div id='allreminders' style='width:100px;'></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
+       <div id='allreminders' style='width:100%;'></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
@@ -58,7 +58,7 @@
         echo " <a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                     data-placement='bottom' data-original-title='" . $tooltip . 
-                    "'>" . $chtitle ;
+                    "'style='height: 37px;font-size:13px;text-align: left;'>" . $chtitle ;
                     //. "<p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
          echo "</button></a><br/>";
     }

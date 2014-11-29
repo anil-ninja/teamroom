@@ -19,13 +19,14 @@ if ($_POST['reminder']) {
 						else {
 							$rname = $notice1row['first_name'] ;
 							}
-						$notice .= "<p style='font-size: 10px;'>to : ".$rname."</p><br/>
-									<p onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' >
-									".$reminders. "</p>
-									<br/><hr/>";
+						$notice .= "To : ".$rname."
+									<a onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' style = 'cursor:pointer;'>
+									<i class = 'glyphicon glyphicon-pencil pull-right '></i></a><br/><br/>
+									".$reminders. "
+									<br/><br/><hr/>";
 				}		
 		$data .= "<div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>
-      				<div class='panel-body'>
+      				 <div class='panel-body '>
 					".$notice."
 						<div class='newreminders' ></div>
 					</div>
