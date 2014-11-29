@@ -182,7 +182,7 @@ $obj = new profile($UserName);
                 </div>
           <div class="col-md-7" style="background-color:#FFF;">
             <div>
-              <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
+              <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
                   <li role="presentation" class="active">
                     <a href="#tabCreatedProjects" role="tab" data-toggle="tab">Created Projects (<?= $totalProjectCreated?>)</a></li>
                   <li role="presentation">
@@ -207,20 +207,14 @@ $obj = new profile($UserName);
                       ?>           
                    
                 </div>
-                <div role="tabpanel" class="tab-pane" id="tabArticles">
-                    <div class="col-md-12">
+                <div role="tabpanel" class="row tab-pane" id="tabArticles">
                       <?php user_articles($db_handle,$profileViewUserID); ?>
-                    </div>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="tabChallanges">
-                    <div class="col-md-12">
-                        <?php user_challenges($db_handle,$profileViewUserID); ?>
-                    </div>
+                <div role="tabpanel" class="row tab-pane" id="tabChallanges">
+                    <?php user_challenges($db_handle,$profileViewUserID); ?>
                 </div>
-                <div role="tabpanel" class="tab-pane" id="tabIdeas">
-                    <div class="col-md-12">
-                      <?php user_idea($db_handle,$profileViewUserID); ?>
-                    </div>
+                <div role="tabpanel" class="row tab-pane" id="tabIdeas">
+                    <?php user_idea($db_handle,$profileViewUserID); ?>
                 </div>
             </div>
         </div> 
@@ -309,7 +303,7 @@ $("#editprofile").click(function(){
         <script src="js/project.js"></script>
         <script src="js/chat.js"></script>
         <script src="js/custom.js"></script>
-        
+        <script src="js/ninjas.js" type="text/javascript"></script>
        <script>
 		   function editProfile(fname, lname, email, phone) {
 			   //alert (fname + "," + lname + "," + email + "," + phone);
