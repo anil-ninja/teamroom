@@ -19,6 +19,7 @@ function getnewtalk() {
 				}
 			});
 }
+
 function getnewreminder() {	
 	var uid = parseInt($("#lastreminderid").val()) ;
 	//alert(uid) ;

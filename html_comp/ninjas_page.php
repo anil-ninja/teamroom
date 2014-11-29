@@ -683,12 +683,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
-                        <form action='' method='POST' class='inline-form'>
-                            <input type='hidden' value='" . $chelangeid . "' name='own_challen_id' />
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' name='own_ch_response'
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
                              placeholder='Whats on your mind about this'/>
-                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' name='own_chl_response' ></button>
-                        </form>
+                            <button type='submit' class='btn-primary btn-sm' onclick='comment(".$chelangeid.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                     </div>";
     echo "</div> </div> ";
 }
