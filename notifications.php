@@ -41,23 +41,25 @@ if(!isset($_SESSION['user_id'])) {
     <body>
     	<?php include_once 'html_comp/navbar_homepage.php'; ?>
     <div class='alert_placeholder'></div>
-    <div class="col-md-3" style="width:260px; padding-top: 50px">
-           <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
-           </div> 
-          <div class=" media-body" style="padding-top: 50px;">
-          <div class="col-md-8">
-              <div class="panel-primary" id='panel-cont'>
-                  <p id='home-ch'></p>
-                  <p id='home'></p>
+    <div class=" media-body " style="padding-top: 50px;">
+        <div class="col-md-2">
+                <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
+        </div>       
+         <div class="col-md-6">
+            <div class="panel-primary" id='panel-cont'>
+                <p id='home-ch'></p>
+                <p id='home'></p>
                 <div class="list-group-item pull-center" style="margin-top: 20px;"><h5> <strong> All Notices For You</strong></h5>
                <div id="allnotices" class= "list-group"></div></div>
             </div>
           </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
+            <div class="col-md-7">
             <?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>
-        </div>
-        <div class="col-md-1">
-              <?php include_once 'html_comp/friends.php' ; ?>
+            </div>
+            <div class="col-md-5" style="padding-top: 20px;">
+                <?php include_once 'html_comp/friends.php' ; ?>
+            </div>
         </div>
     </div>
     <script>
