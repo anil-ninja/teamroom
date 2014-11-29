@@ -18,7 +18,7 @@ while ($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_proje
 }
 
 $td2 = "";
-$td2_delay ="";
+//$td2_delay ="";
 $td5 = "";
 $td3 = "";
 $td4 = "";
@@ -56,10 +56,10 @@ while ($kanban2row = mysqli_fetch_array($kanban2)) {
             $comp_ch_ETA = $delayed_challengesRow['comp_ch_ETA'];
             $ownership_creation = $delayed_challengesRow['ownership_creation'];
             $delayed = remaining_time($ownership_creation, $comp_ch_ETA) ;
-            if ($delayed == "Closed") {
-                $td2_delay .= "<p style='font-size: 10px;'><a href='challengesOpen.php?challenge_id=$challenge_id12'>
-                        ".$challenge_title12."</a></p><hr/>";
-            }
+            //if ($delayed == "Closed") {
+               // $td2_delay .= "<p style='font-size: 10px;'><a href='challengesOpen.php?challenge_id=$challenge_id12'>
+              //          ".$challenge_title12."</a></p><hr/>";
+           // }
             
             
             
@@ -76,15 +76,16 @@ while ($kanban2row = mysqli_fetch_array($kanban2)) {
                       <span class='color strong pull-left'><a href ='profile.php?username=".$username2."'>" 
                     .ucfirst($first_name2)." ".ucfirst($last_name2)."</a></span><br/>".$rank2."</td>
                 <td style='width:150px;'>" . $td2 . "</td>
-                <td style='width:150px;'>" .$td2_delay."</td>
                 <td style='width:150px;'>". $td3 . "</td>
                 <td style='width:150px;'>" . $td4 . "</td>
             </tr>";
+           // <td style='width:150px;'>" .$td2_delay."</td>
     $td2 = "";
-    $td2_delay ="";
+    //$td2_delay ="";
     $td3 = "";
     $td4 = "";
 }
+//<th style='width:150px;'>Delay</th>
 echo "<table class='table table-striped' border='1'>
             <thead>
                 <tr>
@@ -95,7 +96,6 @@ echo "<table class='table table-striped' border='1'>
                             <tr>
                                 <th style='width:150px;'>Team Members</th>
                                 <th style='width:150px'>In-Progress</th>
-                                <th style='width:150px;'>Delay</th>
                                 <th style='width:150px;'>In-Review</th>
                                 <th style='width:150px;'>Completed</th>
                             </tr>
