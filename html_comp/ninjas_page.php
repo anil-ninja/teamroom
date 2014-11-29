@@ -107,18 +107,28 @@
 <?php
 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
 											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
-										   as a join user_info as b where a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' 
-										   and blob_id = '0' and a.user_id = b.user_id)
+										   as a join user_info as b where a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' 
+										   and a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
 											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
-											WHERE a.challenge_type != '2' and a.challenge_type != '5' and a.challenge_type != '6' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
+											WHERE a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
+											UNION
+											(SELECT DISTINCT a.challenge_id, c.project_title, a.challenge_title, a.challenge_status, a.user_id, 
+											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
+										   as a join user_info as b join projects as c where a.project_id = c.project_id and c.project_type='1' and a.challenge_type !='5' and a.challenge_status != '3' and a.challenge_status != '7' 
+										   and a.blob_id = '0' and a.user_id = b.user_id)
+											UNION
+											(SELECT DISTINCT a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
+											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
+											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											 ORDER BY creation_time DESC LIMIT 0, 10;");
 $_SESSION['lastpanel'] = '10';
 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
     $ETA = $open_chalangerow['challenge_ETA'];
     $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
+    //$pr_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['project_title'])));
     $ch_id = $open_chalangerow['user_id'];
     $ctype = $open_chalangerow['challenge_type'];
     $frstname = $open_chalangerow['first_name'];
@@ -260,7 +270,131 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     </div>" ;	
             }
     } 
-     if ($ctype == 7) {
+    if($ctype == 2) {
+	if ($status == 1) {
+            echo "<div class='list-group challenge'>
+                        <div class='list-group-item'>
+                            <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-question-sign'></span>
+                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>";
+            dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
+            
+            //if ($remaintime != "Closed") {
+                echo "<form method='POST' class='inline-form pull-right'>
+                                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                                    <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                                </form>" ;
+                                //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
+            //} else {
+               // echo " <br> " . $timefunction."<br>Closed";
+            //}
+                    echo "<br/>" . $timefunction."<br/><br/></div>
+                    </div>";
+        } 
+        if ($status == 2) {
+            echo "<div class='list-group challenge'>
+                    <div class='list-group-item' >
+                        <div class='pull-left lh-fix'>     
+                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                        </div>
+                        <div style='line-height: 16.50px;'>
+                            <div class='row'>
+                                <div class='col-md-3'>
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
+                                </div>
+                                <div class='col-md-5'>    
+                                    Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
+                                  //  <br/> Time Remaining : " . $remaintimeown ."<br>
+                               echo "</div>
+                                <div class='col-md-2 pull-right'>";
+            dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+          if($ownuser == $user_id) {			
+			echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
+        }
+                    
+			echo "</div>
+                            </div>
+                            </div>
+                        </div>" ;	
+        }
+        if ($status == 4) {
+            echo "<div class='list-group openchalhide'>
+                    <div class='list-group-item' >
+                        <div class='pull-left lh-fix' >     
+                            <span class='glyphicon glyphicon-flag'></span>
+                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                        </div>
+                        <div class='row' style='line-height: 16.50px;'>
+                            <div class='col-md-3'>
+                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
+                            </div>
+                            <div class='col-md-5'>
+                                Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
+                                //. "<br/>  ETA Taken : " . $timeo ."
+                           echo "</div>";
+          if($ch_id == $user_id) {			
+                echo "<div class='col-md-2 pull-right'>
+                        <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                            <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                            <button type='submit' class='btn-primary' name='closechal'>Close</button>
+                        </form>
+                    </div>";
+            }
+            dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+                echo "</div>
+                    </div>" ;	
+        }
+        if ($status == 5) {
+            echo "<div class='list-group openchalhide'>
+                    <div class='list-group-item' >
+                        <div class='pull-left lh-fix'>     
+                            <span class='glyphicon glyphicon-flag'></span>
+                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                        </div>
+                        <div style='line-height: 16.50px;'>
+                            <div class='row'>
+                                <div class='col-md-3'>
+                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction . "<br/><br/>" ;
+                                    // ETA Given : " . $timeo . "
+                         echo  "</div>
+                                <div class='col-md-5'>
+                                    Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
+                                    //. "<br/> ETA Taken : " . $timetakennin . "
+                               echo "</div>
+                                <div class='col-md-1 pull-right'>";
+                                dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+                            echo "</div>
+                                </div></div>
+                    </div>" ;	
+            }
+       echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'>Posted in <b>" . ucfirst($timeopen) . "</b></p></div>" ;		
+	}
+     if ($ctype == 6) {
+        echo "<div class='list-group articlesch'>
+				<div class='list-group-item' style='line-height: 24.50px;'>
+                                    <div class='pull-left lh-fix'>     
+                                        <span class='glyphicon glyphicon-plus'></span>
+                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                                    </div>";
+        dropDown_delete_article($db_handle, $chelangeid, $user_id);
+                            echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                                        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
+                                    <br> " . $timefunction . "<br/>
+                                </div>";
+      echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'>Posted in <b>" . ucfirst($timeopen) . "</b></p></div>" ;
+    }
+    if ($ctype == 7) {
         echo "<div class='list-group articlesch'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
                                     <div class='pull-left lh-fix'>     
