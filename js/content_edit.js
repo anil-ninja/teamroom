@@ -30,9 +30,9 @@ function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}
 			// Edit input box click action
-			$(".editbox").mouseup(function(){
-			return false
-			});
+			//$(".editbox").mouseup(function(){
+			//return false
+			//});
 
 			// Outside click action
 			$(document).mouseup(function(){
