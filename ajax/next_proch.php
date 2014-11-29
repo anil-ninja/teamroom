@@ -70,7 +70,12 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
          if ($status_task == 2) {
 			 $show .= "<div class='list-group pushpin'>
                                     <div class='list-group-item'>
-                                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                                    <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                                         <div class='pull-left lh-fix'>     
                                             <span class='glyphicon glyphicon-pushpin'></span>
                                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -112,12 +117,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                     <input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$id_task.")' value='Submit'/>
                                 </div>";
             }
-                 $show = $show . "</div></div></div>";
+                 $show = $show . "</div></div></div></div></div>";
         }
         if ($status_task == 4) {
 			$show = $show . "<div class='list-group flag'>
                                             <div class='list-group-item'>
-                                            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                                            <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                                             <div class='pull-left lh-fix'>     
                                                 <span class='glyphicon glyphicon-pushpin'></span>
                                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -133,12 +143,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 					 //ETA Given : " . $etaown . " 
 					 $show = $show . "<br/> and Submitted On : " . $timecom ;
 					 //. " ETA Taken : " . $timetaken . "
-					 $show = $show . "</div></div>";
+					 $show = $show . "</div></div></div></div>";
         }
         if ($status_task == 5) {
 			$show = $show . "<div class='list-group flag'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                    <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-pushpin'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -150,13 +165,18 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 					// ETA Given : " . $etaown . " 
 					$show = $show . "<br/> and Submitted On : " . $timecom ;
 					//. " ETA Taken : " . $timetaken . "
-					$show = $show . "</div></div>";
+					$show = $show . "</div></div></div></div>";
         }
     }
     if ($type_task == 8) {
         $show = $show . "<div class='list-group videofilm'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                    <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-film'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -184,13 +204,18 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                $show = $show . "</ul>
               </div>";
         }
-      $show = $show . "<br>" . $timetask . "</div></div>";
+      $show = $show . "<br>" . $timetask . "</div></div></div></div>";
     }
     if ($type_task == 1 || $type_task == 2) {
         if ($status_task == 1) {
             $show = $show . "<div class='list-group sign'>
                                 <div class='list-group-item'>
-                                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                                <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-question-sign'></span>
                                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -234,12 +259,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                             <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
                                         </form>
                                         </div>
-                                    </div>";
+                                    </div></div></div>";
         }
         if ($status_task == 2) {
                     $show = $show . "<div class='list-group sign'>
                                         <div class='list-group-item'>
-                                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                                        <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                                             <div class='pull-left lh-fix'>     
                                                 <span class='glyphicon glyphicon-question-sign'></span>
                                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -258,8 +288,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                                 if ($ownid == $user_id) {
                                     $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$id_task.")' value='Submit'/>";
                                                 }
-                            $show = $show . "</div>
-                                        ";
+                            $show = $show . "</div>";
                 //dropdown for delete/edit/span challenge starts
        $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$id_task' AND user_id='$user_id';"));
             $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
@@ -274,12 +303,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                 </div>";                    
             }
         //dropdown for delete/edit/span challenge ends here
-            $show = $show . "</div></div>";
+            $show = $show . "</div></div></div></div>";
             }
         if ($status_task == 4) {
 			$show = $show . "<div class='list-group flag'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                    <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -310,12 +344,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 				Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>&nbsp&nbsp Submitted On : " . $timefunct ;
             //. " and ETA Taken : " . $timetaken . "
-            $show = $show . "</div></div>";
+            $show = $show . "</div></div></div></div>";
         }
         if ($status_task == 5) {
             $show = $show . "<div class='list-group flag'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
+                    <div class='row'>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$id_task .")'><input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$id_task .")'><input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -341,7 +380,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 					// ETA Given : " . $etaown . " 
 					$show = $show . "<br/> and Submitted On : " . $timecom ;
 					//. " ETA Taken : " . $timetaken . "
-					$show = $show . "</div></div>";
+					$show = $show . "</div></div></div></div>";
         }
     }				 
 	$show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$id_task."' class='text' ><b>" . ucfirst($title_task) . "</b></p>
