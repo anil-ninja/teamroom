@@ -9,7 +9,7 @@ while ($ab = mysqli_fetch_array($totaltaskopen)) {
 		}
 }
 $az = $z ;
-$bz = mysqli_num_rows($totaltaskopen) - $az ;
+$bz = mysqli_num_rows($totaltaskopen) ;//- $az ;
 $totaltasksubmitted = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '4';") ;
 $totaltaskclosed = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '5';") ;
 
@@ -33,11 +33,19 @@ while ($ad = mysqli_fetch_array($totalchallengesaccepted)) {
 		}
 }
 $ax = $x ;
-$bx = mysqli_num_rows($totalchallengesaccepted) - $ax ;
+$bx = mysqli_num_rows($totalchallengesaccepted) ;//- $ax ;
 $totalchallengessubmitted = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND (challenge_type = '1' OR challenge_type = '2') AND challenge_status = '4';") ;
 $totalchallengesclosed = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND (challenge_type = '1' OR challenge_type = '2') AND challenge_status = '5';") ;
 
 $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '6' AND challenge_status = '1';") ;
+ /*<tr>
+	<td>Delayed</td>
+	<td class='warning'>".$az."</td>
+</tr>
+<tr>
+	<td>Delayed</td>
+	<td  class='warning'>".$ax."</td>
+</tr> */
   echo "<div class='list-group'  style='cursor: pointer;'>
   			<div class='list-group-item' style='font-size:14px; text-align: center;'>
   				<b>PROJECT DASHBOARD</b>
@@ -52,10 +60,6 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 					<tr class='active'>
 						<td>On Track</td>
 						<td>".$bz."</td>
-					</tr>
-					<tr>
-						<td>Delayed</td>
-						<td class='warning'>".$az."</td>
 					</tr>
 					<tr class='active'>	
 						<td>Submitted</td>
@@ -85,10 +89,6 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 					<tr>
 						<td>Accepted</td>
 						<td>".$bx."</td>
-					</tr>
-					<tr>
-						<td>Delayed</td>
-						<td  class='warning'>".$ax."</td>
 					</tr>
 					<tr>
 						<td>Submitted</td>

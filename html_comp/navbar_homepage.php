@@ -1,5 +1,25 @@
 <?php
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+if(isset($_POST['requestaccept'])){
+	$request_id = $_POST['request_id'] ;
+	$time = date("Y-m-d H:i:s") ;
+	$user_id = $_SESSION['user_id'] ;
+	echo $knownid ;
+	mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
+	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
+	else { echo "<script>alert('Request Accepted succesfully!')</script>"; }
+	header('Location: #');
+	}
+if(isset($_POST['requestdelete'])){
+	$request_id = $_POST['request_id'] ;
+	$time = date("Y-m-d H:i:s") ;
+	$user_id = $_SESSION['user_id'] ;
+	echo $knownid ;
+	mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
+	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
+	else { echo "<script>alert('Request Deleted succesfully!')</script>"; }
+	header('Location: #');
+	}
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="row">
