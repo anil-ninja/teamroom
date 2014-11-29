@@ -14,7 +14,8 @@ function user_articles ($db_handle, $user_id) {
         $article_firstname = $user_articles_displayRow['first_name'];
         $article_lastname = $user_articles_displayRow['last_name'];
         $article_username = $user_articles_displayRow['username'];
-        $article_created = $user_articles_displayRow['creation_time'];
+        $article_created1 = $user_articles_displayRow['creation_time'];
+        $article_created = date("j F, g:i a", strtotime($article_created1));
         echo "<div class='list-group articlesch'>
                 <div class='list-group-item' style='line-height: 16.50px;'>
                     <div class='pull-left lh-fix'>     
@@ -34,9 +35,9 @@ function user_articles ($db_handle, $user_id) {
                 <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'><strong>
                         <p align='center'>"                          
                         .ucfirst($article_title)."</p></strong></a><br>
-                ".$article_stmt.".....
-             </div>";
+                ".$article_stmt;
         comments_all_type_challenges ($db_handle, $article_id);
+        echo "</div>";
     }
 }
 function user_challenges ($db_handle, $user_id) {
@@ -54,7 +55,8 @@ function user_challenges ($db_handle, $user_id) {
         $chall_firstname = $user_challenges_displayRow['first_name'];
         $chall_lastname = $user_challenges_displayRow['last_name'];
         $chall_username = $user_challenges_displayRow['username'];
-        $chall_creation = $user_challenges_displayRow['creation_time'];
+        $chall_creation1 = $user_challenges_displayRow['creation_time'];
+        $chall_creation = date("j F, g:i a", strtotime($chall_creation1));
         echo "<div class='list-group challenge'>
                 <div class='list-group-item' >";
         if (isset($_SESSION['user_id'])) {
@@ -64,7 +66,7 @@ function user_challenges ($db_handle, $user_id) {
         echo "<div class='pull-left lh-fix'>     
                 <span class='glyphicon glyphicon-question-sign'>
                 <img src='uploads/profilePictures/$chall_username.jpg'  onError=this.src='img/default.gif' 
-                style='width: 50px; height: 50px'></span>
+                style='width: 50px; height: 50px'></span>&nbsp &nbsp
             </div>
             <span class='color strong'><a href ='profile.php?username=" . $chall_username . "'>"
                 .ucfirst($chall_firstname) . '&nbsp' . ucfirst($chall_lastname) . " </a></span><br/>" 
@@ -74,9 +76,9 @@ function user_challenges ($db_handle, $user_id) {
                 <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'><strong>
                         <p align='center'>"                          
                         .ucfirst($challenge_title)."</p></strong></a><br>
-                ".$challenge_stmt."
-        </div>";
+                ".$challenge_stmt;
          comments_all_type_challenges ($db_handle, $challenge_id);
+         echo "</div>";
     }
 }
 function user_idea ($db_handle, $user_id) {
@@ -90,7 +92,8 @@ function user_idea ($db_handle, $user_id) {
         $idea_title = $user_idea_displayRow['challenge_title'];
         $idea_stmt1 = $user_idea_displayRow['stmt'];
         $idea_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1)));
-        $idea_creation = $user_idea_displayRow['creation_time'];
+        $idea_creation1 = $user_idea_displayRow['creation_time'];
+        $idea_creation = date("j F, g:i a", strtotime($idea_creation1));
         $idea_firstname = $user_idea_displayRow['first_name'];
         $idea_lastname = $user_idea_displayRow['last_name'];
         $idea_username = $user_idea_displayRow['username'];
@@ -111,9 +114,9 @@ function user_idea ($db_handle, $user_id) {
                 <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'><strong>
                         <p align='center'>"                          
                         .ucfirst($idea_title)."</p></strong></a><br>
-                ".$idea_stmt."
-             </div>";
+                ".$idea_stmt;
          comments_all_type_challenges ($db_handle, $idea_id);
+         echo "</div>";
     }
 }
 
@@ -130,7 +133,8 @@ function created_projects ($db_handle, $user_id) {
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
-            $projectcreation = $project_table_displayRow['creation_time'];
+            $projectcreation1 = $project_table_displayRow['creation_time'];
+            $projectcreation = date("j F, g:i a", strtotime($projectcreation1));
             $lname = $project_table_displayRow['last_name'];
             $username_project = $project_table_displayRow['username'];
             echo "<div class='list-group'>
@@ -151,10 +155,9 @@ function created_projects ($db_handle, $user_id) {
                     </div>
                     <div class='list-group-item'>
                     <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", ucfirst($project_title_table)))) . "</p></span>                
-                        ".$project_stmt_table."<br/><br/>
-                    </div>";
+                        ".$project_stmt_table;
                     project_comments($db_handle, $project_id_table);
-               //echo "</div>";
+               echo "</div>";
 
         }   
     }
@@ -171,7 +174,8 @@ function joined_projects ($db_handle, $user_id) {
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
-            $projectcreation = $project_table_displayRow['creation_time'];
+            $projectcreation1 = $project_table_displayRow['creation_time'];
+            $projectcreation = date("j F, g:i a", strtotime($projectcreation1));
             $lname = $project_table_displayRow['last_name'];
             $username_project = $project_table_displayRow['username'];
             echo "<div class='list-group'>
@@ -186,10 +190,9 @@ function joined_projects ($db_handle, $user_id) {
                     </div>
                     <div class='list-group-item'>
                         <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", ucfirst($project_title_table)))) . "</p></span>
-                            ".$project_stmt_table."<br/><br/>
-                        </div>";
+                            ".$project_stmt_table;
                     project_comments($db_handle, $project_id_table);
-               //echo "</div>";
+               echo "</div>";
         }   
     }
 
@@ -253,7 +256,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
                                             JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$challenge_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
     while ($commenterRow = mysqli_fetch_array($commenter)) {
         $comment_id = $commenterRow['response_ch_id'];
-        $challenge_ID = $commenterRow['challenge_id'];
+        //$challenge_ID = $commenterRow['challenge_id'];
         $username_comment_ninjas = $commenterRow['username'];
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
@@ -273,12 +276,9 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
-                        <form action='' method='POST' class='inline-form'>
-                            <input type='hidden' value='" . $challenge_id . "' name='own_challen_id' />
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' name='own_ch_response'
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
                              placeholder='Whats on your mind about this'/>
-                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' name='own_chl_response' ></button>
-                        </form>
+                            <button type='submit' class='btn-primary btn-sm' onclick='comment(".$challenge_id.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                     </div>";
     echo "</div>";
 }
