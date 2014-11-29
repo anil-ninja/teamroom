@@ -7,16 +7,17 @@ $hash_key_access_id = explode('.', $url_value);
 $hash_key= $hash_key_access_id[0];
 $user_access_aid = $hash_key_access_id[1];
 
-$verify_check = mysqli_query($db_handle, "SELECT user_id FROM user_access_aid WHERE hash_key ='$hash_key' AND id = $user_access_aid;");
+$verify_check = mysqli_query($db_handle, "SELECT user_id FROM user_access_aid WHERE hash_key ='$hash_key' AND id = '$user_access_aid' AND status = 0;");
 $accessed_or_not = mysqli_num_rows($verify_check);
 if ($accessed_or_not == 1) {
     $verify_checkRow = mysqli_fetch_array($verify_check);
     $verify_check_user_id = $verify_checkRow['user_id'];
     mysqli_query ($db_handle, "UPDATE user_access_aid SET status='1' WHERE user_id = $verify_check_user_id;");
-    $response = mysqli_query($db_handle,"select * from user_info where user_id = $verify_check_user_id;") ;
+    $response = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = $verify_check_user_id;") ;
 	$num_rows = mysqli_num_rows($response);
-	if ( $num_rows){
-		$responseRow = mysqli_fetch_array($response);
+	if ($num_rows == 1){
+            session_start();
+            	$responseRow = mysqli_fetch_array($response);
 		$id = $responseRow['user_id'];
 		$lastlogintime = $responseRow['last_login'];
 		$_SESSION['last_login'] = $lastlogintime ;
@@ -30,7 +31,7 @@ if ($accessed_or_not == 1) {
 		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime', rank = '$new_rank' where user_id = '$id' ;" ) ;
 		//$obj = new rank($id);
 		$_SESSION['rank'] = $obj->user_rank;
-		exit;
+		//exit;
 	}
 	mysqli_close($db_handle);
 }
@@ -66,13 +67,20 @@ else {
             </div>
         </div>
     </div>
+        <div class=" media-body" style="padding-top: 50px;"></div>
         <div class="jumbotron">
             <?php 
                 if ($accessed_or_not == 0) {
-                    echo "<p align='center'>Something going wrong, Please try again<p>";
+                    echo "<p align='center'>Something going wrong, Please try again<br>
+                    <a href = 'index.php'>Go Back</a></p>";
                 }
                 else {
-                    echo "<p align='center'>Please wait while your email has been verified</p>";
+                    
+                    if (isset($_SESSION['first_name'])) {
+                        echo "<p align='center'>Your Email and account has been succussfully verified. You are redirected to your home page after 10 seconds<br>
+                    Or <a href = 'ninjas.php'>Click Here</a></p>";
+                        header("refresh:10;url=ninjas.php");
+                    }
                 }
             ?>
             

@@ -1,6 +1,6 @@
 <div class="bs-component">
-    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);style = 'font-size:11px'">
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingOne">
       <h4 class="panel-title">
@@ -17,8 +17,9 @@
         </a>
       </h4>
     </div>
-    
-       <div id='allreminders' style='width:100px;'></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
+    <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>   
+            <div id='allreminders' ></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
+    </div>
   </div>
   <div class="panel panel-default">
     <div class="panel-heading" role="tab" id="headingThree">
@@ -58,9 +59,9 @@
         echo " <a href='challengesOpen.php?challenge_id=" . $challengeOpen_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                     data-placement='bottom' data-original-title='" . $tooltip . 
-                    "'>" . $chtitle ;
+                    "'style='text-align: left;'>" . $chtitle ;
                     //. "<p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
-         echo "</button></a><br/>";
+         echo "</button></a><br/><br/>";
     }
     ?>
           </div>
@@ -100,9 +101,9 @@
                 <a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                     data-placement='bottom' data-original-title='" . $tooltipas .
-                     "'style='height: 37px;font-size:13px;text-align: left;'>" . $chtitleas ;
+                     "'style='text-align: left;'>" . $chtitleas ;
                      //."<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
-             echo "</button></a><br/>";
+             echo "</button></a><br/><br/>";
     }
     ?>
        </div>
@@ -163,15 +164,13 @@
                         }
                         ?> 
                         </select> &nbsp;&nbsp;&nbsp;&nbsp; Time : 
-                                <input type="text" id ="datepicker" placeholder='Reminder Time & Date'><br/><br/>
-                        		<textarea row='3' class="form-control" id="newremindervalue" placeholder="Type your message here"></textarea><br/><br/>
+                                <input type="text" id ="datepicker" placeholder='Reminder Time & Date'>
+                                 <input type="submit" class="btn btn-primary btn-sm pull-right" id = "changeremindervalue" value = "Set"><br/><br/>
+                        		<textarea row='3' class="form-control" id="newremindervalue" placeholder="Type your message here"></textarea><br/>
                               	<input type="hidden" id ="datepickervalue" value="0">
                               	<input type="hidden" id ="valueuserid" value="0">
-                            <input type="submit" class="btn btn-primary btn-sm" id = "changeremindervalue" value = "Set"><br/>
+                           
                         </div>
-                        <div class="modal-footer">
-							<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-						</div>
                     </div>
                 </div>
             </div>
