@@ -53,93 +53,105 @@ $total_members = mysqli_num_rows($teams_member_display);
     </head>
 
     <body>
-        <?php include_once 'html_comp/navbar_homepage.php'; ?>
-        <div class=" media-body" style="padding-top: 65px;">
-        
-        <div class='row'>
-        <div class='col-md-3'>
-        	<div class="panel">
-            <div class='panel-body'>
-        	    <?php
-        	    	echo "<p style='color :#3B5998;' class='color strong'>
-                                <a href='project.php?project_id=$team_project_id'>".ucfirst($project_team_title)."</a> Teams </p><br>";
-        	    	$teams_name_display = mysqli_query($db_handle, ("select DISTINCT team_name, project_id from teams where user_id= '$user_id' AND project_id='$team_project_id';"));
-                        while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
-                            $list_of_teams = $teams_name_displayRow['team_name'];
-                            $team_project_id = $teams_name_displayRow['project_id'];
-
-                            echo "<a href='teams.php?project_id=$team_project_id&team_name=$list_of_teams'>" . ucfirst($list_of_teams)."</a><br>";
-                        }
-        	    ?>
-        	</div>
+         <?php include_once 'html_comp/navbar_homepage.php'; ?>
+   <div class='alert_placeholder'></div>
+   <div class=" media-body " style="padding-top: 50px;">
+        <div class="col-md-2">
+                <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
+        </div>       
+        <div class="col-md-6" style="padding-top: 20px;">
+            <div class="panel-primary" id='panel-cont'>
+                <p id='home-ch'></p>
+                <p id='home'></p>
+                <div class="panel">
+                    <div class='panel-body' style="padding-left: 35px;">
+                        <div class='alert_placeholder'> </div>
+                        <div class='row'>
+                            <div class="col-md-8">
+                                <p  style='font-size: 12pt; color :#3B5998;'  ><b>
+                                <?= ucfirst($team_name)." (<a href='project.php?project_id=$team_project_id'>".$project_team_title."</a>) <a class='badge'>".$total_members."</a>";?>
+                                    
+                                </b></p>
+                            </div>
+                            <div class="col-md-3">
+                            <?php
+                                $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$team_project_id';");
+                                $team_ownerRow = mysqli_fetch_array($teams_owner_add);
+                                $team_owner_project = $team_ownerRow['team_owner'];
+                                if ($team_owner_project == $user_id) {
+                                    echo "<div class='dropdown'>
+                                            <button class='btn-link dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'> + Add New Teammate</button>
+                                            <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
+                                                <li><form method='POST'>
+                                                        <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/>
+                                                        <input type='hidden' id ='team_name' value='" .$team_name. "'/>
+                                                        <input type='hidden' id ='project_no' value='" .$team_project_id."'/>
+                                                        <input type='button' class='btn-success btn-sm submit' id='add_member' onclick='add_member_to_team()' value='Add' />
+                                                    </form>
+                                                </li>
+                                            </ul>
+                                        </div>";
+                                }
+                            ?>
+                            </div>
+                        </div>
+                        <hr/>
+                    	<?php
+                                while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
+                                    $firstname = $teams_member_displayRow['first_name'];
+                                    $username = $teams_member_displayRow['username'];
+                                    $lastname = $teams_member_displayRow['last_name'];
+                                    $rank = $teams_member_displayRow['rank'];
+                                    $user_id_member = $teams_member_displayRow['user_id'];
+                                    
+                                        echo "<div class='row col-md-3' style='background : #EEF8F2;padding: 5px; margin-right:60px;margin-bottom:10px;'>
+                                                <div class ='col-md-3' style='padding:1px;'>
+                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
+                                                </div>";
+                                        
+                                        echo "<div class = 'col-md-8' style='font-size:12px;padding: 7px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $username . "'>" 
+                                                    .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br/><span style='font-size:10px;'>"
+                                                    .$rank."</span></div>";
+                                        if ($team_owner_project == $user_id && $user_id_member != $user_id) {
+                                          echo "<div class = 'col-md-1' style='font-size:12px;padding-left: 3px; padding-right: 0px;'><input type='hidden' id ='team_name' value='" .$team_name. "'/>
+                                                    <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
+                                                    <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
+                                                    <button type='submit' class='btn-link' id='remove_member' onclick='remove_member_team(".$user_id_member.");' data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>x</button>
+                                                </div>";
+                                        }
+                                        echo "</div>";
+                                }
+                        ?>
+                    </div>
+    	       </div>
+                <?php include_once 'html_comp/kanban.php'; ?>
             </div>
-    	</div>
-    	<div class="col-md-8">
-        <div class="panel">
-        <div class='panel-body' style="padding-left: 35px;">
-            <div class='alert_placeholder'> </div>
-            <div class='row'>
-            <div class="col-md-8">
-            <p  style='font-size: 14pt; color :#3B5998;'  ><b>
-            <?= ucfirst($team_name)." (<a href='project.php?project_id=$team_project_id'>".$project_team_title."</a>) <a class='badge'>".$total_members."</a>";?>
-                
-            </b></p>
         </div>
-        <div class="col-md-3">
-        <?php
-            $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$team_project_id';");
-            $team_ownerRow = mysqli_fetch_array($teams_owner_add);
-            $team_owner_project = $team_ownerRow['team_owner'];
-            if ($team_owner_project == $user_id) {
-                echo "<div class='dropdown'>
-                        <button class='btn-link dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'> + Add New Teammate</button>
-                        <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
-                            <li><form method='POST'>
-                                    <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/>
-                                    <input type='hidden' id ='team_name' value='" .$team_name. "'/>
-                                    <input type='hidden' id ='project_no' value='" .$team_project_id."'/>
-                                    <input type='button' class='btn-success btn-sm submit' id='add_member' onclick='add_member_to_team()' value='Add' />
-                                </form>
-                            </li>
-                        </ul>
-                    </div>";
-            }
-        ?>
+         <div class="col-md-4" style="padding-top: 20px;">
+            <div class="col-md-7">
+                <div class="panel">
+                    <div class='panel-body' style="font-size:10px">
+                        <?php
+                            echo "<p style='color :#3B5998;' class='color strong'>
+                                        <a href='project.php?project_id=$team_project_id'>".ucfirst($project_team_title)."</a> Teams </p><br>";
+                            $teams_name_display = mysqli_query($db_handle, ("select DISTINCT team_name, project_id from teams where user_id= '$user_id' AND project_id='$team_project_id';"));
+                                while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
+                                    $list_of_teams = $teams_name_displayRow['team_name'];
+                                    $team_project_id = $teams_name_displayRow['project_id'];
+
+                                    echo "<a href='teams.php?project_id=$team_project_id&team_name=$list_of_teams'>" . ucfirst($list_of_teams)."</a><br>";
+                                }
+                        ?>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5" >
+                <?php include_once 'html_comp/friends.php' ; ?>
+            </div>
         </div>
-        </div>
-        <hr/>
-    	<?php
-                while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
-                    $firstname = $teams_member_displayRow['first_name'];
-                    $username = $teams_member_displayRow['username'];
-                    $lastname = $teams_member_displayRow['last_name'];
-                    $rank = $teams_member_displayRow['rank'];
-                    $user_id_member = $teams_member_displayRow['user_id'];
-                    
-                        echo "<div class='row col-md-3' style='background : #EEF8F2;padding: 5px; margin-right:60px;margin-bottom:10px;'>
-                                <div class ='col-md-3' style='padding:1px;'>
-                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
-                                </div>";
-                        
-                        echo "<div class = 'col-md-8' style='font-size:12px;padding: 7px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $username . "'>" 
-                                    .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br/><span style='font-size:10px;'>"
-                                    .$rank."</span></div>";
-                        if ($team_owner_project == $user_id && $user_id_member != $user_id) {
-                          echo "<div class = 'col-md-1' style='font-size:12px;padding-left: 3px; padding-right: 0px;'><input type='hidden' id ='team_name' value='" .$team_name. "'/>
-                                    <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
-                                    <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
-                                    <button type='submit' class='btn-link' id='remove_member' onclick='remove_member_team(".$user_id_member.");' data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>x</button>
-                                </div>";
-                        }
-                        echo "</div>";
-                }
-        ?>
-</div>
-    	</div>
-            <?php include_once 'html_comp/kanban.php'; ?>
-        </div>
-        </div>
-    	</div>
+    
+
+    </div>
         <script language="JavaScript" type="text/javascript">
         function add_member_to_team () {
 			var emailadd_member =document.getElementById("email_add_member").value;

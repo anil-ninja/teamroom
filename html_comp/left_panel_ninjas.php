@@ -25,7 +25,7 @@
                                     $p_time = $project_title_displayRow['creation_time'] ;
                                     $timefunc = date("j F, g:i a",strtotime($p_time));
                                     $title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
-                                    $remaining_time_own = remaining_time($p_time, $p_eta);
+                                    // $remaining_time_own = remaining_time($p_time, $p_eta);
                             echo "<form method='GET' action=''>
                                             <input type='hidden' name='project_id' value='".$idpro."'/>
                                             <tr><td>
@@ -65,7 +65,7 @@
 								$p_timep = $project_public_title_displayRow['creation_time'] ;
 								$timefuncp = date("j F, g:i a",strtotime($p_time));
 								$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
-								$remaining_time_ownp = remaining_time($p_timep, $p_etap);	
+								// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
 					echo "<tr>
                                                 <td>
                                                 <form method='GET' action=''>
