@@ -18,8 +18,7 @@ include_once 'functions/delete_comment.php';
         <link href="css/custom.css" rel="stylesheet">
         <link href="css/font-awesome.css" rel="stylesheet">
         <script src="js/jquery.js"> </script>
-        <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-        
+        <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
        <script src="js/content_edit.js"> </script>
         <script src="js/project.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
