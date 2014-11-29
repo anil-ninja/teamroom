@@ -1,37 +1,31 @@
 <div class="bs-component">
-    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);style = 'font-size:11px'">
-        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);style = 'font-size:10px'">
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
+    <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
          <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
-            <font size="2">Add Reminder </font></a>
-      </h4>
+          &nbsp;Add Reminder
+          </a>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
+    <div class="panel-heading" style="padding: 5px;"role="tab" id="headingTwo">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <i class='glyphicon glyphicon-eye-open'></i> <font size="2">All Reminder </font>
+          <i class='glyphicon glyphicon-eye-open'></i> &nbsp;All Reminder
         </a>
-      </h4>
     </div>
     <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>   
             <div id='allreminders' ></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
+    <div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <i class='btn-link glyphicon glyphicon-bullhorn'></i>
-            <font size="2">Tasks To Do</font>
-        </a>
-      </h4>
+          <i class='btn-link glyphicon glyphicon-bullhorn'></i>&nbsp;
+            To Do</a>
     </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
+      <div class="panel-body" style="padding: 1px;">
         <?php
     $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
                         b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
@@ -61,23 +55,21 @@
                     data-placement='bottom' data-original-title='" . $tooltip . 
                     "'style='text-align: left;'>" . $chtitle ;
                     //. "<p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
-         echo "</button></a><br/><br/>";
+         echo "</button></a><br/>";
     }
     ?>
           </div>
     </div>
   </div>
   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
+    <div class="panel-heading" style="padding: 5px;"role="tab" id="headingThree">
         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-          <i class='btn-link glyphicon glyphicon-tasks'></i>
-                <font size="2">Tasks Get Done</font>
+          <i class='btn-link glyphicon glyphicon-tasks'></i>&nbsp;
+               Get Done
         </a>
-      </h4>
     </div>
     <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
+      <div class="panel-body" style="padding: 1px;">
         <?php
     $titlesass = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
                                             b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE
@@ -97,20 +89,21 @@
         $challenge_pageID = $titlesrowass['challenge_id'];
         $remaining_time_ownas = remaining_time($timeas, $etaas);
         $tooltipas = "Assigned To : " . ucfirst($fnameas) . " " . ucfirst($lnameas) . " On " . $timefunas;
-        echo "
-                <a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
+        echo "<a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                     data-placement='bottom' data-original-title='" . $tooltipas .
                      "'style='text-align: left;'>" . $chtitleas ;
                      //."<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
-             echo "</button></a><br/><br/>";
+             echo "</button></a><br/>";
     }
     ?>
        </div>
     </div>
   </div>
-        </div>
-    </div>
+   <?php include_once 'html_comp/friends.php' ; ?>
+</div>
+</div>
+
 </div>
  <!-- Modal -->
             <div class="modal fade" id="myreminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
