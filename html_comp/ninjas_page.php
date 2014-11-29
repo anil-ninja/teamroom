@@ -15,10 +15,10 @@
         <div id='challegeForm'>
             <form>
 
-                <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte"/><br/>
+                <input type="text" class="form-control" id="challange_title" placeholder="Challenge Tilte .."/><br/>
                 <input id="_fileChallenge" class="btn btn-default" type="file" title="Upload Photo" label="Add photos to your post" style ="width: auto;">
                 <br/>
-                <textarea rows="3" class="form-control" placeholder="Details" id='challange'></textarea>
+                <textarea rows="3" class="form-control" placeholder="Description .. " id='challange'></textarea>
                 <br>
 			<!---	 <div class="inline-form">
                     Challenge Open For 
@@ -80,27 +80,27 @@
                </form>
         </div>
         <div id='ArticleForm'>
-            <input type='text' class="form-control" id="article_title" placeholder="Title"/><br>
+            <input type='text' class="form-control" id="article_title" placeholder="Heading .."/><br>
             <input class="btn btn-default btn-sm" type="file" id="_fileArticle" style ="width: auto;">
-            <textarea rows="3" class="form-control" id="articlech" placeholder="article"></textarea><br><br>
+            <textarea rows="3" class="form-control" id="articlech" placeholder="Article text.."></textarea><br><br>
             <input type="submit" value="Post" class="btn btn-success" id="create_article"/>
         </div>
         <div id='PictureForm'>
-            <input type='text' class="form-control" id="picture_title" placeholder="Title"/><br>
+            <input type='text' class="form-control" id="picture_title" placeholder="Picture caption .."/><br>
             <input class="btn btn-default btn-sm" type="file" id="_filePhotos" style ="width: auto;">
-            <textarea rows="3" class="form-control" id="picturech" placeholder="About picture"></textarea><br><br>
+            <textarea rows="3" class="form-control" id="picturech" placeholder="Description .."></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_picture"/>
         </div>
         <div id='VideoForm'>
-            <input type='text' class="form-control" id="video_title" placeholder="Title"/><br>
+            <input type='text' class="form-control" id="video_title" placeholder="Vedio title .."/><br>
             <input type='text' class="form-control" id="videosub" placeholder="Add Youtube URL"><br>
-            <textarea rows="3" class="form-control" id="videodes" placeholder="About Video"></textarea><br><br>
+            <textarea rows="3" class="form-control" id="videodes" placeholder="Description.."></textarea><br><br>
             <input type="button" value="Post" class="btn btn-success" id="create_video"/>
         </div>
         <div id='IdeaForm'>
-            <input type='text' class="form-control" id="idea_titleA" placeholder="Title"/><br>
+            <input type='text' class="form-control" id="idea_titleA" placeholder="Idea heading .."/><br>
             <input class="btn btn-default btn-sm" type="file" id="_fileIdea" style ="width: auto;">
-            <textarea rows="3" class="form-control" id="ideaA" placeholder="About Idea"></textarea><br><br>
+            <textarea rows="3" class="form-control" id="ideaA" placeholder="Description .."></textarea><br><br>
             <input type="submit" value="Post" class="btn btn-success" id="create_idea"/>
         </div><br/>
     </div></div>

@@ -30,12 +30,12 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                 <ul class='ccol-md-9 nav navbar-nav navbar-right' style='margin-right: 0px;'>
                     <?php
                     if (isset($_SESSION['user_id'])) {
-                        if ($requestedPage == "challenges.php") {
-                            echo "<li><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>
-                                    <a data-toggle='modal' style='color: #fff;' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'>
-                                    </i><b>Create Challenge</b></a></p>    
-                                </li>";
-                        }
+                        // if ($requestedPage == "challenges.php") {
+                        //     echo "<li><p class='navbar-text' style ='cursor: pointer; text-decoration: none;'>
+                        //             <a data-toggle='modal' style='color: #fff;' data-target='#createChallenge'><i class='glyphicon glyphicon-edit'>
+                        //             </i><b>Create Challenge</b></a></p>    
+                        //         </li>";
+                        // }
                             if ($requestedPage == "project.php") {
                             echo "<li>
                                     <div class='dropdown'>
@@ -58,7 +58,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                             }
                         ?>
                        
-                        <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li>
+                       <!--  <li><p class="navbar-text" style ="text-decoration: none;"> <a href="challenges.php" style='color: #fff;'><b>Challenges</b></a></p></li> -->
                         <li><p class="navbar-text" style='cursor: pointer;color: #fff;'><b> Rank :  <?php $rank = $_SESSION['rank'];
                                 echo $rank; ?></b>
                             </p>
