@@ -453,33 +453,42 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		if ($status == 1) {
         echo "<div class='list-group challenge'>
                 <div class='list-group-item' >
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p></span><span class='glyphicon glyphicon-hand-down pull-left' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p>&nbsp;</span>
-                    <div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-question-sign'>
-                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
-                        style='width: 50px; height: 50px'></span>
+                    <div class='row'>
+                        <div class='col-md-1 pull-left' style='width:2%'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p></span><br><br>
+                            <span class='glyphicon glyphicon-hand-down pull-left' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p>&nbsp;</span>
+                        </div>    
+                        <div class='col-md-11'>
+                            <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-question-sign'>
+                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
+                                style='width: 50px; height: 50px'></span>
+                            </div>
+                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
+                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>" ;
+                dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+                if ($ch_id != $user_id) {
+                    echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
+                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
+                            <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
+                        </form>" ;
+                }
+                else {
+                    echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                            <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                            <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
+                        </form>";
+                }
+                echo "<br/>" . $timefunction."<br/><br/>
                     </div>
-                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>" ;
-        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-        if ($ch_id != $user_id) {
-            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                </form>" ;
-			}
-        else {
-            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                </form>";
-        }
-        echo "<br/>" . $timefunction."<br/><br/></div>";
+                </div>
+            </div>";
 	}	
 		if ($status == 6) {
         echo "<div class='list-group film'>
                 <div class='list-group-item' style='line-height: 24.50px;'>
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/>
+                    <span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-picture'>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
