@@ -65,6 +65,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
          if ($status_task == 2) {
 			 $show .= "<div class='list-group pushpin'>
                                     <div class='list-group-item'>
+                                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                                         <div class='pull-left lh-fix'>     
                                             <span class='glyphicon glyphicon-pushpin'></span>
                                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -75,7 +76,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                             if ($id_create == $user_id) {
-                                $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                                $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='" . $id_task . "' onclick='delChallenge(" . $id_task . ");'>Delete</button></li>
                                         ";
                              /*   if ($remaintimeown == 'Closed') {
@@ -111,6 +112,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
         if ($status_task == 4) {
 			$show = $show . "<div class='list-group flag'>
                                             <div class='list-group-item'>
+                                            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                                             <div class='pull-left lh-fix'>     
                                                 <span class='glyphicon glyphicon-pushpin'></span>
                                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -131,6 +133,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
         if ($status_task == 5) {
 			$show = $show . "<div class='list-group flag'>
                     <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-pushpin'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -145,10 +148,44 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 					$show = $show . "</div></div>";
         }
     }
+    if ($type_task == 8) {
+        $show = $show . "<div class='list-group videofilm'>
+                    <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <div class='pull-left lh-fix'>     
+                                <span class='glyphicon glyphicon-film'></span>
+                                <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
+                            </div>
+                            <div style='line-height: 16.50px;'>";
+        $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
+        . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
+        if (isset($_SESSION['user_id'])) {
+            $show = $show . "<div class='list-group-item pull-right'>
+                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$id_task' AND user_id='$user_id';"));
+                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                                if($challenge_dropdown_userID == $user_id) {
+                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
+                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                                                     
+                                }
+                            else {
+                            $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                            <button type='submit' name='pr_spem' value='".$id_task."' class='btn-link' >Report Spam</button>
+                                        </form>
+                                    </li>";
+                            } 
+               $show = $show . "</ul>
+              </div>";
+        }
+      $show = $show . "<br>" . $timetask . "</div></div>";
+    }
     if ($type_task == 1 || $type_task == 2) {
         if ($status_task == 1) {
             $show = $show . "<div class='list-group sign'>
                                 <div class='list-group-item'>
+                                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-question-sign'></span>
                                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -166,7 +203,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                 $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                                 $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                                 if($challenge_dropdown_userID == $user_id) {
-                                    $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
+                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                    
                                   /*  if($remaining_time_ETA_over == 'Time over') {        
                                         $show = $show . "<li>
@@ -197,6 +234,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
         if ($status_task == 2) {
                     $show = $show . "<div class='list-group sign'>
                                         <div class='list-group-item'>
+                                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                                             <div class='pull-left lh-fix'>     
                                                 <span class='glyphicon glyphicon-question-sign'></span>
                                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -225,7 +263,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                 $show = $show . "<div class='list-group-item pull-right'>
                                     <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                     <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                        <li><button class='btn-link' href='#'>Edit</button></li>
+                                        <li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
                                     </ul>
                                 </div>";                    
@@ -237,6 +275,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
         if ($status_task == 4) {
 			$show = $show . "<div class='list-group flag'>
                     <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -252,7 +291,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                 $show = $show . "<div class='list-group-item pull-right'>
                                     <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                     <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                        <li><button class='btn-link' href='#'>Edit</button></li>
+                                        <li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
                                     </ul>
                                 </div>";                    
@@ -273,6 +312,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
         if ($status_task == 5) {
             $show = $show . "<div class='list-group flag'>
                     <div class='list-group-item'>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -286,7 +326,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                 $show = $show . "<div class='list-group-item pull-right'>
                                     <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                     <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                        <li><button class='btn-link' href='#'>Edit</button></li>
+                                        <li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
                                     </ul>
                                 </div>";                    
@@ -389,7 +429,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 		}
 		$show = $show . "<div class='comments clearfix'>
                         <div class='pull-left'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
                         </div>
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."'
                              placeholder='Whats on your mind about this'/>
