@@ -37,24 +37,27 @@ include_once 'functions/delete_comment.php';
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
     
-        <div class='row'>
-            <div class="col-md-3" style="width:260px; padding-top: 50px; position: auto;">
+
+        <div class=" media-body" style="padding-top: 50px;">
+            <div class="col-md-2">
             <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>  
-            <div class=" media-body" style="padding-top: 50px;">
-            <div class="col-md-8">
+            
+            <div class="col-md-6">
                 <div class='alert_placeholder'></div>
                 <div class="panel-primary" id='panel-cont'>
                     <?php include_once 'html_comp/project_page_project.php'; ?>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
+            <div class="col-md-7">
                 <?php include_once 'html_comp/project_page_challenge.php'; ?>
             </div>
-            <div class="col-md-1">
-              <?php include_once 'html_comp/project_members.php'; ?>
+            <div class="col-md-5" style="padding-top: 20px;">
+            <?php include_once 'html_comp/friends.php' ; ?>
+             <!--  <?php include_once 'html_comp/project_members.php'; ?> -->
         </div>	
-    </div>
+        </div>
     </div>
            <?php include_once 'html_comp/signup.php'; ?>
        
