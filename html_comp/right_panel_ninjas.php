@@ -1,6 +1,6 @@
 <div class="bs-component">
     <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);style = 'font-size:10px'">
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel-group" id="accordion" role="tablist" >
   <div class="panel panel-default">
     <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
          <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
@@ -100,10 +100,9 @@
        </div>
     </div>
   </div>
-   <?php include_once 'html_comp/friends.php' ; ?>
+   
 </div>
 </div>
-
 </div>
  <!-- Modal -->
             <div class="modal fade" id="myreminder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

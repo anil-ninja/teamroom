@@ -47,11 +47,11 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 	<td  class='warning'>".$ax."</td>
 </tr> */
   echo "<div class='list-group'  style='cursor: pointer;'>
-  			<div class='list-group-item' style='font-size:14px; text-align: center;'>
+  			<div class='list-group-item' style='font-size:12px; text-align: center;'>
   				<b>PROJECT DASHBOARD</b>
   			</div>
 
-			<div class='list-group-item'>
+			<div class='list-group-item' style='font-size:10px;'>
 				<table class='table table-striped'>
 					<thead> <center>TASKS (".mysqli_num_rows($totaltaskclosed)."/"
 											.mysqli_num_rows($totaltask).") </center> </thead>
@@ -73,7 +73,7 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				</table>
 			</div>
 
-			<div class='list-group-item'>
+			<div class='list-group-item' style='font-size:10px;'>
 				<table class='table table-striped table-hover '>
 				<thead> <center>CHALLENGES (".mysqli_num_rows($totalchallengesclosed)."/"
 					.mysqli_num_rows($totalchallenges).") </center></thead>
@@ -101,8 +101,7 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 					</tbody>
 				</table>
 			</div>
-			</div>
-		<br/>" ;
+			</div>" ;
 
 			// <div class='list-group-item'>
 			// 	<table class='table table-striped table-hover '>
@@ -116,13 +115,13 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 			// </div>
 		
 	  
-  
+ 
   	echo "
   		<div class='list-group'  style='cursor: pointer;'>
-  			<div class='list-group-item' style='font-size:14px; text-align: center;'>
+  			<div class='list-group-item' style='font-size:12px; text-align: center;'>
   				<b>WORK SUMMARY </b>
   			</div>
-  			<div class='list-group-item'>
+  			<div class='list-group-item' style='font-size:10px;'>
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>Not Accepted</b></center>
 				 </thead>
@@ -148,7 +147,7 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
             </table></div>" ;
 
 
-  	echo "<div class='list-group-item'>
+  	echo "<div class='list-group-item' style='font-size:10px;'>
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>In Progress</b></center>
 				 </thead>
@@ -189,7 +188,7 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 	echo "</tbody>
             </table></div>" ;
 echo 
-		"<div class='list-group-item'>
+		"<div class='list-group-item' style='font-size:10px;'>
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>In Review</b></center>
 				 </thead>
@@ -231,7 +230,7 @@ echo
 	}
 	echo "</tbody>
             </table></div>" ;
-echo  "<div class='list-group-item'>
+echo  "<div class='list-group-item'style='font-size:10px;'>
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>Completed</b></center>
 				 </thead>
