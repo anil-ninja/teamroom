@@ -24,10 +24,10 @@
                                               as b where a.user_id = b.user_id)
                                               UNION
 											  (select a.user_id FROM user_info as a join known_peoples as b
-											  where b.requesting_user_id = '$profileViewUserID' and a.user_id = b.knowning_id and b.status != '4')
+											  where b.requesting_user_id = '$user_id' and a.user_id = b.knowning_id and b.status != '4')
 											  UNION
 											  (select a.user_id FROM user_info as a join known_peoples as b
-											  where b.knowning_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2') ;");
+											  where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
 		while($firendsRow = mysqli_fetch_array($firends)) {
                     $firendsuserid = $firendsRow['user_id'];
                     if ($firendsuserid == $useridFriends) {	
