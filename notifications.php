@@ -35,7 +35,8 @@ if(!isset($_SESSION['user_id'])) {
         <link type="text/css" href="jquery.simple-dtpicker.css" rel="stylesheet" />
         <script src="js/jquery-1.js"></script>
         <script src="js/chat.js"></script>
-
+		<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
+		<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
     </head>
     <body>
     	<?php include_once 'html_comp/navbar_homepage.php'; ?>
