@@ -187,15 +187,15 @@ if ($_POST['all']) {
 			
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname18." Send Friend Request </p><hr/>" ;
 			}
-	$notice20 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
-											where and a.status = '2' and a.requesting_user_id = '$id' and a.knowning_id = b.user_id ;") ;
-		while($notice20row = mysqli_fetch_array($notice20)) {
+	$notice20 = mysqli_query($db_handle, "SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
+											where a.status = '2' and a.requesting_user_id = '$id' and a.knowning_id = b.user_id ;") ;
+        while($notice20row = mysqli_fetch_array($notice20)) {
 			$fname20 = $notice20row['first_name'] ;
 			$id2 = $notice20row['id'] ;
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname20." Accepted Your Friend Request </p><hr/>" ;
 			}
 	$notice19 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
-											where and a.status = '3' and a.requesting_user_id = '$id' and a.knowning_id = b.user_id ;") ;
+											where a.status = '3' and a.requesting_user_id = '$id' and a.knowning_id = b.user_id ;") ;
 		while($notice19row = mysqli_fetch_array($notice19)) {
 			$fname19 = $notice19row['first_name'] ;
 			$id3 = $notice19row['id'] ;
