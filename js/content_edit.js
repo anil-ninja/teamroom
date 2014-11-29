@@ -236,7 +236,5 @@ function convertSpecialChar(str){
 			// Outside click action
 			$(document).mouseup(function(){
 			$(".editbox").hide();
-			$(".edit-button").hide();
-			$(".edit_pic_video_file").hide();
 			$(".text").show();
 			});

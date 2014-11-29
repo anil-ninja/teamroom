@@ -27,7 +27,30 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-
+function comment(ID) {				
+		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
+		//alert(ID) ;
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))));
+		//alert(dataString) ;
+		if(project == ""){
+			return false ;
+			}
+				else {
+					$.ajax({
+						type: "POST",
+						url: "ajax/submit_comment.php",
+						data: dataString,
+						cache: false,
+						success: function(result){
+							alert(result) ;
+							if(result== 'Posted succesfully!'){
+							location.reload();
+							$("#own_ch_response_"+ID).val('') ;
+							}
+						}
+					});
+				}
+} ;
 	$(document).ready(function(){
 		
 		$("#create_video").click(function(){
@@ -256,8 +279,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					}
 				}
 			}); 
-	}
-	
+	} ;
 		$("#create_article").click(function(){
       		$("#create_article").attr('disabled','disabled');
 			var article = convertSpecialChar($("#articlech").val()) ;

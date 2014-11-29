@@ -636,18 +636,11 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
     if (isset($_SESSION['user_id'])) {
-        echo "<form action='' method='POST' class='inline-form'>
-                                <input type='hidden' value='" . $id_task . "' name='own_challen_id' />
-                                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 84%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-                        </form>";
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Whats on your mind about this'/>
+              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$id_task.")' ></button>";
     } else {
-        echo "<form action='' method='POST' class='inline-form'>
-                                    <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
-                                    <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
-                                    </a>
-                                </form>";
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Whats on your mind about this'/>
+              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$id_task.")' ></button>";
     }
     echo "</div></div></div>";
 }

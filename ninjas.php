@@ -25,7 +25,6 @@ if(!isset($_SESSION['user_id'])){
 	<script type="text/javascript" src="js/jquery.autosize.js"></script>
 <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
 	<script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-	<script src="js/ninjas.js" type="text/javascript"></script>
 	<link type="text/css" href="jquery.simple-dtpicker.css" rel="stylesheet" />
 	<script src="js/jquery-1.js"></script>
     <script src="js/chat.js"></script>
@@ -87,6 +86,7 @@ getallreminders() ;
 	$(".editbox").hide();
 	</script>
     <script src="js/jquery-1.js"></script>
+    <script src="js/ninjas.js" type="text/javascript"></script>
     <script src="date.js"></script>
 	<script src="jquery.simple-dtpicker.js"></script>
     <script src="js/chat.js"></script>
