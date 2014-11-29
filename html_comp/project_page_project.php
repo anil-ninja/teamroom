@@ -356,12 +356,17 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $minute = floor($hoursec / 60);
     $timetaken = $day . " Days :" . $hour . " Hours :" . $minute . " Min :";
     $remaintimeown = remaining_time($owntime, $owneta);
-
+	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$id_task' and like_status = '1' ;");
+	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
+	else { $likes = '' ; }
+	$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$id_task' and like_status = '2' ;");
+	if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
+	else { $dislikes = '' ; }
     if ($type_task == 5) {
         if ($status_task == 2) {
             echo "<div class='list-group pushpin'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
                        <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-pushpin'></span>
                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -411,7 +416,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 4) {
             echo "<div class='list-group pushpin'>
 					<div class='list-group-item'>
-					<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+					<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
 						<div class='pull-left lh-fix'>     
 						<span class='glyphicon glyphicon-pushpin'></span>
 						<img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -440,7 +445,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 5) {
             echo "<div class='list-group flag'>
 					<div class='list-group-item'>
-					<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+					<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
 						<div class='pull-left lh-fix'>     
 						<span class='glyphicon glyphicon-flag'></span>
 						<img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -467,7 +472,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     if ($type_task == 8) {
         echo "<div class='list-group videofilm'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-film'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -484,7 +489,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 1) {
             echo "<div class='list-group sign'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -508,7 +513,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 2) {
             echo "<div class='list-group sign'>
                     <div class='list-group-item' style='line-height: 16.50px;'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
                     <div class='pull-left lh-fix'> 
                         <span class='glyphicon glyphicon-question-sign'></span>
                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -539,7 +544,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 4) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-flag'></span>
                         <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -567,7 +572,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 5) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item' style='line-height: 16.50px;'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$id_task .")'><p id='likes_".$id_task ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$id_task .")'><p id='dislikes_".$id_task ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_task.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp

@@ -160,12 +160,17 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $timetakennin = eta($time_taken);
     $timeo = eta($owneta);
     $remaintimeown = remaining_time($owntime, $owneta);
-
+	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$chelangeid' and like_status = '1' ;");
+	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
+	else { $likes = '' ; }
+	$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$chelangeid' and like_status = '2' ;");
+	if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
+	else { $dislikes = '' ; }
     if ($ctype == 1) {
         if ($status == 1) {
             echo "<div class='list-group challenge'>
                         <div class='list-group-item'>
-                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -190,7 +195,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 2) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-question-sign'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -220,7 +225,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 4) {
             echo "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix' >     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -250,7 +255,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 5) {
             echo "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -278,7 +283,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 	if ($status == 1) {
             echo "<div class='list-group challenge'>
                         <div class='list-group-item'>
-                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -303,7 +308,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 2) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-question-sign'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -333,7 +338,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 4) {
             echo "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix' >     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -363,7 +368,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 5) {
             echo "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -391,7 +396,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
      if ($ctype == 6) {
         echo "<div class='list-group articlesch'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
-				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-plus'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -406,7 +411,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     if ($ctype == 7) {
         echo "<div class='list-group articlesch'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
-				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-book'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -420,7 +425,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     if ($ctype == 8) {
         echo "<div class='list-group film'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
-				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-film'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -434,7 +439,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
      if ($ctype == 4) {
         echo "<div class='list-group idea'>
                         <div class='list-group-item' style='line-height: 24.50px;'></span>
-                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -448,7 +453,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		if ($status == 1) {
         echo "<div class='list-group challenge'>
                 <div class='list-group-item' >
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p></span><span class='glyphicon glyphicon-hand-down pull-left' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-question-sign'>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
@@ -474,7 +479,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 		if ($status == 6) {
         echo "<div class='list-group film'>
                 <div class='list-group-item' style='line-height: 24.50px;'>
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                     <div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-picture'>
                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' 
@@ -489,7 +494,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 2) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>";
                         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($ch_id != $user_id ) {
@@ -533,9 +538,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 4) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item'>
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>";
                         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
-                        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
+                       $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($ch_id != $user_id ) {
                             if(mysqli_num_rows($owneduser) == 0){
                                 echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
@@ -594,7 +599,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         if ($status == 5) {
 			echo "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p></span><br/><br/><span class='glyphicon glyphicon-hand-down pull-left' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p>&nbsp;</span>";
                         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                    echo "<div class='pull-left lh-fix'>     
                         <span class='glyphicon glyphicon-flag'></span>

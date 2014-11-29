@@ -10,6 +10,38 @@ function answersubmit(chelangeid){
 	$("#answercid").val(chelangeid) ;
 	$("#answerForm").modal("show");
 } ;
+function like(Id) {
+	var uid = parseInt(parseInt($("#likes_"+Id).val())+1) ;
+	var dataString = 'id='+ Id + '&case=1';
+	alert(uid) ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/likes.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					alert(result) ;
+					if(result == 'Posted successfully') {
+						$("#likes_"+Id).val(uid+='') ;
+					}
+				}
+			});
+	}
+function dislike(Id) {
+	var uid = parseInt(parseInt($("#dislikes_"+Id).val())+1) ;
+	var dataString = 'id='+ Id + '&case=2' ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/likes.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result == 'Posted successfully') {
+						$("#dislikes_"+Id).val(uid+='') ;
+					}
+				}
+			});
+	}
 	$(document).ready(function(){	
 	var $table = $('table.scroll'),
     $bodyCells = $table.find('tbody tr:first').children(),

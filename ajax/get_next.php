@@ -64,7 +64,12 @@ if ($_POST['chal']) {
     $timetakennin = eta($time_taken);
     $timeo = eta($owneta);
     $remaintimeown = remaining_time($owntime, $owneta);
-
+	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$chelangeid' and like_status = '1' ;");
+	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
+	else { $likes = '' ; }
+	$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$chelangeid' and like_status = '2' ;");
+	if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
+	else { $dislikes = '' ; }
     $show_add_dropdown = "<div class='list-group-item pull-right'>
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
@@ -96,7 +101,7 @@ if ($_POST['chal']) {
         if ($status == 1) {
             $show .= "<div class='list-group challenge'>
                         <div class='list-group-item'>
-                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -125,7 +130,7 @@ if ($_POST['chal']) {
         if ($status == 2) {
             $show = $show . "<div class='list-group challenge'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-question-sign'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -166,7 +171,7 @@ if ($_POST['chal']) {
         if ($status == 4) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix' >     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -208,7 +213,7 @@ if ($_POST['chal']) {
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -246,7 +251,7 @@ if ($_POST['chal']) {
         if ($status == 1) {
             $show .= "<div class='list-group challenge'>
                         <div class='list-group-item'>
-                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-question-sign'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -275,7 +280,7 @@ if ($_POST['chal']) {
         if ($status == 2) {
             $show = $show . "<div class='list-group challenge'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-question-sign'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -316,7 +321,7 @@ if ($_POST['chal']) {
         if ($status == 4) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix' >     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -358,7 +363,7 @@ if ($_POST['chal']) {
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item' >
-                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                    <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                         <div class='pull-left lh-fix'>     
                             <span class='glyphicon glyphicon-flag'></span>
                             <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -396,7 +401,7 @@ if ($_POST['chal']) {
      if ($ctype == 6) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
-				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-book'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -427,7 +432,7 @@ if ($_POST['chal']) {
      if ($ctype == 7) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
-				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-book'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -457,7 +462,7 @@ if ($_POST['chal']) {
     if ($ctype == 8) {
         $show = $show . "<div class='list-group film'>
 				<div class='list-group-item' style='line-height: 24.50px;'>
-				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+				<span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                                     <div class='pull-left lh-fix'>     
                                         <span class='glyphicon glyphicon-film'></span>
                                         <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -487,7 +492,7 @@ if ($_POST['chal']) {
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
                         <div class='list-group-item' style='line-height: 24.50px;'></span>
-                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>
+                        <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>
                             <div class='pull-left lh-fix'>     
                                 <span class='glyphicon glyphicon-flash'></span>
                                 <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
@@ -499,12 +504,11 @@ if ($_POST['chal']) {
                                         .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
                              </div>";
     } 
-    if ($ctype == 3) {
-        
+    if ($ctype == 3) {  
 		if ($status == 1) {
         $show = $show . "<div class='list-group challenge'>
                 <div class='list-group-item'>
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>";
             //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
                     //dropdown for delete/edit/span challenge ends here
@@ -533,7 +537,7 @@ if ($_POST['chal']) {
 		if ($status == 6) {
         $show = $show . "<div class='list-group film'>
                 <div class='list-group-item'>
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>";
         //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
         //dropdown for delete/edit/span challenge ends here
@@ -549,7 +553,7 @@ if ($_POST['chal']) {
         if ($status == 2) {
 			$show = $show . "<div class='list-group challenge'>
                                             <div class='list-group-item' >
-                                            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+                                            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>";
                             //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
                     //dropdown for delete/edit/span challenge ends here
@@ -597,7 +601,7 @@ if ($_POST['chal']) {
         if ($status == 4) {
             $show = $show . "<div class='list-group challenge'>
             <div class='list-group-item'>
-            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>";
                 //dropdown for delete/edit/span challenge starts
             
         $show = $show .$show_add_dropdown ;
@@ -662,7 +666,7 @@ if ($_POST['chal']) {
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
                 <div class='list-group-item' >
-                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'></span>&nbsp;</span>";
+                <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p><br/><br/><span class='glyphicon glyphicon-hand-down' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p></span>&nbsp;</span>";
                 //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
                     //dropdown for delete/edit/span challenge ends here
@@ -706,8 +710,7 @@ if ($_POST['chal']) {
 			}
             }
         }
-    
-    }
+     }
    $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$chelangeid."' class='text' ><b>" . ucfirst($ch_title) . "</b></p>
 			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
 			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>" ;
