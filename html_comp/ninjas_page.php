@@ -454,9 +454,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "<div class='list-group challenge'>
                 <div class='list-group-item' >
                     <div class='row'>
-                        <div class='col-md-1 pull-left' style='width:2%'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' onclick='like(".$chelangeid .")'><p id='likes_".$chelangeid ."'>".$likes."</p></span><br><br>
-                            <span class='glyphicon glyphicon-hand-down pull-left' onclick='dislike(".$chelangeid .")'><p id='dislikes_".$chelangeid ."'>".$dislikes."</p>&nbsp;</span>
+                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
+                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
+                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
                         </div>    
                         <div class='col-md-11'>
                             <div class='pull-left lh-fix'>     
