@@ -37,9 +37,9 @@ function signup(){
                 $id_access_id =  mysqli_insert_id($db_handle);
                 $hash_keyR = $hash_keyR.".".$id_access_id;
                 //echo $hash_keyR ;
-                $body = "http://collap.com/verifyEmail.php?hash_key='".$hash_keyR."'";
+                $body = "http://collap.com/verifyEmail.php?hash_key=".$hash_keyR;
                 
-                collapMail($email, "notification", $body);
+                collapMail($email, "Email Verification From Collap", $body);
                 $body2 = "http://collap.com/profile.php?username=".$username ;
                 collapMail($email, "complete your profile", $body2);
                 
