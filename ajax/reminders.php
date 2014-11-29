@@ -19,17 +19,15 @@ if ($_POST['reminder']) {
 						else {
 							$rname = $notice1row['first_name'] ;
 							}
-						$notice .= "To : ".$rname."
+						$notice .= "<p style = 'font-size:11px'><strong>To : ".$rname."</strong>
 									<a onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' style = 'cursor:pointer;'>
-									<i class = 'glyphicon glyphicon-pencil pull-right '></i></a><br/><br/>
+									<i class = 'glyphicon glyphicon-pencil pull-right '></i></a></p>
+									<p style = 'font-size:11px'>
 									".$reminders. "
-									<br/><br/><hr/>";
+									</p><br/>";
 				}		
-		$data .= "<div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>
-      				 <div class='panel-body '>
-					".$notice."
-						<div class='newreminders' ></div>
-					</div>
+		$data .= "<div class='panel-body '>
+					".$notice."<div class='newreminders' ></div>
 				</div>" ;
 	echo $data."+".$reminderid ;
 mysqli_close($db_handle);
