@@ -16,9 +16,9 @@ function user_articles ($db_handle, $user_id) {
     }
 }
 function user_challenges ($db_handle, $user_id) {
-    $user_challenges_display = mysqli_query($db_handle, "(SELECT a.challenge_id,a.challenge_title,b.user_id, LEFT(a.stmt, 200) as stmt FROM challenges as a JOIN challenge_ownership as b WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_id AND b.user_id=$user_id AND (a.challenge_status!=3 OR a.challenge_status!=7) AND a.blob_id=0)
+    $user_challenges_display = mysqli_query($db_handle, "(SELECT a.challenge_id,a.challenge_title,b.user_id, LEFT(a.stmt, 200) as stmt FROM challenges as a JOIN challenge_ownership as b WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_id AND b.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0)
                                                         UNION
-                                                        (SELECT a.challenge_id,a.challenge_title,c.user_id, LEFT(b.stmt, 200) as stmt FROM challenges as a JOIN blobs as b JOIN challenge_ownership as c WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_id AND c.user_id=$user_id AND (a.challenge_status!=3 OR a.challenge_status!=7) AND a.blob_id=b.blob_id) ORDER BY challenge_id DESC;");
+                                                        (SELECT a.challenge_id,a.challenge_title,c.user_id, LEFT(b.stmt, 200) as stmt FROM challenges as a JOIN blobs as b JOIN challenge_ownership as c WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_id AND c.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id) ORDER BY challenge_id DESC;");
     while($user_challenges_displayRow= mysqli_fetch_array($user_challenges_display)) {
         $challenge_id=$user_challenges_displayRow['challenge_id'];
         $challenge_title = $user_challenges_displayRow['challenge_title'];
