@@ -37,11 +37,11 @@ $challengeCompleted = mysqli_query($db_handle, "SELECT COUNT(status) FROM challe
 $counter = mysqli_fetch_assoc($challengeCompleted);
 $totalChallengeCompleted = $counter["COUNT(status)"];
 
-$projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID AND (project_type!=3 OR  project_type!=5);");
+$projectCreated = mysqli_query($db_handle, "SELECT COUNT(project_id) FROM projects WHERE user_id = $profileViewUserID AND project_type=1;");
 $counter = mysqli_fetch_assoc($projectCreated);
 $totalProjectCreated = $counter["COUNT(project_id)"];
 
-$projectJoined = mysqli_query($db_handle, "SELECT count(project_id) FROM projects WHERE projects.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 5 and projects.project_type!=3;");
+$projectJoined = mysqli_query($db_handle, "SELECT count(project_id) FROM projects WHERE projects.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type = 1;");
 $counter = mysqli_fetch_assoc($projectJoined);
 $projectsJoined = $counter["count(project_id)"];
 
@@ -201,9 +201,9 @@ $obj = new profile($UserName);
                    
                                          
                   <?php
-                    $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND (project_type!=3 OR project_type!=5))
+                    $project_created_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE user_id = $profileViewUserID AND blob_id=0 AND project_type=1)
                                                                         UNION 
-                                                                       (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.user_id = $profileViewUserID AND a.blob_id=b.blob_id AND (a.project_type!=3 OR a.project_type!=5));");
+                                                                       (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.user_id = $profileViewUserID AND a.blob_id=b.blob_id AND a.project_type=1);");
                     if(mysqli_num_rows($project_created_display) == 0){
                         echo "<a href='ninjas.php' class='btn-link'>Create Project</a>" ;
                     }
@@ -230,9 +230,9 @@ $obj = new profile($UserName);
                             <strong>Joined(<?php echo $projectsJoined;?>)</strong>
                         </div>
                       <?php
-                        $project_joined_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type != 4 and project_type!=3 and project_type!=5 AND blob_id = 0)
+                        $project_joined_display = mysqli_query($db_handle, "(SELECT project_id, project_title, stmt FROM projects WHERE projects.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND projects.user_id != $profileViewUserID and projects.project_type = 1 AND blob_id = 0)
                                                                             UNION 
-                                                                            (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND a.user_id != $profileViewUserID and a.project_type != 4 and a.project_type!=3 and a.project_type!=5 AND a.blob_id = b.blob_id);");
+                                                                            (SELECT a.project_id, a.project_title, b.stmt FROM projects as a JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profileViewUserID)AND a.user_id != $profileViewUserID AND a.project_type = 1 AND a.blob_id = b.blob_id);");
                         while($project_joined_displayRow = mysqli_fetch_array($project_joined_display)) {
                             $project_joined_title = $project_joined_displayRow['project_title'];
                             $project_joined_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$project_joined_displayRow['stmt'])));
