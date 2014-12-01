@@ -26,6 +26,9 @@ $profileViewPhone = $user_InformationRow['contact_no'];
 $profileViewUserID = $user_InformationRow['user_id'];
 $profileViewRank = $user_InformationRow['rank'];
 
+//profile view user id added to session for loading panel content data with ajax 
+$_SESSION['profile_view_userID'] = $profileViewUserID;
+
 $challengeCreated = mysqli_query($db_handle, "SELECT COUNT(challenge_id) FROM challenges WHERE user_id = $profileViewUserID;");
 $counter = mysqli_fetch_assoc($challengeCreated);
 $totalChallengeCreated = $counter["COUNT(challenge_id)"];
@@ -185,44 +188,64 @@ $obj = new profile($UserName);
               <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
                   <li role="presentation" class="active">
                     <a href="#tabCreatedProjects" role="tab" data-toggle="tab">Created Projects (<?= $totalProjectCreated?>)</a></li>
-                  <li role="presentation">
-                    <a href="#tabJoinedProjects" role="tab" data-toggle="tab">Joined Projects (<?= $projectsJoined?>)</a></li>
-                  <li role="presentation">
+                  <li role="presentation" id="joined_project">
+                     <a href="#tabJoinedProjects" role="tab" data-toggle="tab">Joined Projects (<?= $projectsJoined?>)</a></li>
+                  <li role="presentation" id="user_articles">
                     <a href="#tabArticles" role="tab" data-toggle="tab">Articles</a></li>
-                  <li role="presentation">
+                  <li role="presentation" id="user_challenges">
                     <a href="#tabChallanges" role="tab" data-toggle="tab">Challenges</a></li>
-                  <li role="presentation">
+                  <li role="presentation" id="user_idea">
                     <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas</a></li>
               </ul>
             </div>
             <div class="tab-content" >
-                <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects" >
-                <?php
-                    created_projects ($db_handle, $profileViewUserID);
-                ?>   
-                </div>
-                <div role="tabpanel" class="row tab-pane" id="tabJoinedProjects" >
-                      <?php
-                        joined_projects ($db_handle, $profileViewUserID);
-                      ?>           
-                   
-                </div>
-                <div role="tabpanel" class="row tab-pane" id="tabArticles">
-                      <?php user_articles($db_handle,$profileViewUserID); ?>
-                </div>
-                <div role="tabpanel" class="row tab-pane" id="tabChallanges">
-                    <?php user_challenges($db_handle,$profileViewUserID); ?>
-                </div>
+                <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">       
+                    <?php created_projects($db_handle,$profileViewUserID); ?>
+            </div>
+            <div role="tabpanel" class="row tab-pane" id="tabJoinedProjects" >
+                <div id="joined_project_content"></div>
+            </div>
+            <div role="tabpanel" class="row tab-pane" id="tabArticles">
+                <div id="user_articles_content"></div>
+            </div>
+            <div role="tabpanel" class="row tab-pane" id="tabChallanges">
+                <div id="user_challenges_content"></div>
+            </div>
                 <div role="tabpanel" class="row tab-pane" id="tabIdeas">
-                    <?php user_idea($db_handle,$profileViewUserID); ?>
+                    <div id="user_idea_content"></div>
                 </div>
             </div>
         </div> 
                 <div class ="col-md-2">
                     <?php include_once 'html_comp/known.php' ?>
+                   
                 </div>
                 </div>
                 <?php include_once 'html_comp/signup.php' ; ?>
+        <script type="text/javascript" src="js/jquery-latest.min.js"></script>
+        <script language="javascript">
+            $(document).ready(function(){
+                $('#joined_project').click(function(){
+                    $('#joined_project_content').load('ajax/profile_page_ajax/joined_projects.php');
+                });
+            })
+            $(document).ready(function(){
+                $('#user_articles').click(function(){
+                    $('#user_articles_content').load('ajax/profile_page_ajax/user_articles.php');
+                });
+            })
+            $(document).ready(function(){
+                $('#user_challenges').click(function(){
+                    $('#user_challenges_content').load('ajax/profile_page_ajax/user_challenges.php');
+                });
+            })
+            $(document).ready(function(){
+                $('#user_idea').click(function(){
+                    $('#user_idea_content').load('ajax/profile_page_ajax/user_idea.php');
+                });
+            })
+        </script>
+           
 <script>
 $(".editprofile").hide();
 $(".viewprofile").show();
