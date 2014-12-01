@@ -565,16 +565,16 @@ function challenge_display($db_handle, $challengeSearchID) {
             }
             else if ($ctype == 7) {
                 echo "<div class='list-group articlesch'>
-                                        <div class='list-group-item' style='line-height: 24.50px;'>
-                                            <div class='pull-left lh-fix'>     
-                                                <span class='glyphicon glyphicon-book'></span>
-                                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                            </div>";
+                                        <div class='list-group-item'>";
                 dropDown_delete_article($db_handle, $chelangeid, $user_id);
-                                    echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                                            <br> " . $timefunction . "<br/><br/>
-                                        </div>";
+                
+                echo "<p style='font-famiy: Calibri,sans-serif; font-size: 32px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>" 
+                            .ucfirst($ch_title)."</b></p>
+                                <span style= 'color: #808080'>
+                        By: ".$frstname." ".$lstname." | Posted ".$timefunction."</span></div>
+                    
+                    <div class='list-group-item'>
+                        <br/>" .$chelange . "<br/><br/>";
             }
             else if ($ctype == 8) {
                 echo "<div class='list-group film'>
@@ -589,9 +589,10 @@ function challenge_display($db_handle, $challengeSearchID) {
                                             <br> " . $timefunction . "<br/><br/>
                                         </div>";
             } 
-            
-            echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
+            if ($ctype != 7) {
+                echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
                                 <br/>" .$chelange . "<br/><br/>";
+            }
             if ($status == 4 || $status == 5) {
                 $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                                     UNION
@@ -647,15 +648,14 @@ function challenge_display($db_handle, $challengeSearchID) {
                 }
                 else if ($ctype == 7) {
                     echo "<div class='list-group articlesch'>
-                                        <div class='list-group-item' style='line-height: 16.50px;'>
-                                            <div class='pull-left lh-fix'>     
-                                                <span class='glyphicon glyphicon-book'></span>
-                                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                            </div>";
-                                    echo "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                                            <br> " . $timefunction . "<br/><br/>
-                                        </div>";
+                                        <div class='list-group-item'>";
+                                    echo "<p style='font-famiy: Calibri,sans-serif; font-size: 32px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>" 
+                            .ucfirst($ch_title)."</b></p>
+                                <span style= 'color: #808080'>
+                        By: ".$frstname." ".$lstname." | Posted ".$timefunction."</span></div>
+                    
+                    <div class='list-group-item'>
+                        <br/>" .$chelange . "<br/><br/>";
                 }
                 else if ($ctype == 8) {
                     echo "<div class='list-group film'>
@@ -670,9 +670,10 @@ function challenge_display($db_handle, $challengeSearchID) {
                                                 <br> " . $timefunction . "<br/><br/>
                                             </div>";
                 }
-
-                echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
+                if ($ctype != 7) {
+                    echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;'  ><b>" . ucfirst($ch_title) . "</b></p>
                                 <br/>" .$chelange . "<br/><br/>";
+                }
             }
             $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                     JOIN user_info as b WHERE a.challenge_id = $challengeSearchID AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
