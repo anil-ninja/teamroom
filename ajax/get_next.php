@@ -32,7 +32,7 @@ if ($_POST['chal']) {
         $i++;
        $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
     $ETA = $open_chalangerow['challenge_ETA'];
-    $ch_title = $open_chalangerow['challenge_title'];
+    $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
     $ch_id = $open_chalangerow['user_id'];
     $ctype = $open_chalangerow['challenge_type'];
     $frstname = $open_chalangerow['first_name'];

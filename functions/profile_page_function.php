@@ -8,7 +8,7 @@ function user_articles ($db_handle, $user_id) {
                                                         WHERE a.challenge_type=7 AND a.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id DESC;");
     while($user_articles_displayRow= mysqli_fetch_array($user_articles_display)) {
         $article_id=$user_articles_displayRow['challenge_id'];
-        $article_title = $user_articles_displayRow['challenge_title'];
+        $article_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_articles_displayRow['challenge_title'])));
         $article_stmt1 = $user_articles_displayRow['stmt'];
         $article_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1)));
         $article_firstname = $user_articles_displayRow['first_name'];
@@ -35,7 +35,7 @@ function user_articles ($db_handle, $user_id) {
                 <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'><strong>
                         <p align='center'>"                          
                         .ucfirst($article_title)."</p></strong></a><br>
-                ".$article_stmt;
+                ".$article_stmt."<br><br>";
         comments_all_type_challenges ($db_handle, $article_id);
         echo "</div>";
     }
@@ -48,7 +48,7 @@ function user_challenges ($db_handle, $user_id) {
                                                         WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_id AND c.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=d.user_id) ORDER BY challenge_id DESC;");
     while($user_challenges_displayRow= mysqli_fetch_array($user_challenges_display)) {
         $challenge_id=$user_challenges_displayRow['challenge_id'];
-        $challenge_title = $user_challenges_displayRow['challenge_title'];
+        $challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title'])));
         $challenge_stmt1 = $user_challenges_displayRow['stmt'];
         $challenge_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1)));
         $you_owned_or_not = $user_challenges_displayRow['user_id'];
@@ -76,7 +76,7 @@ function user_challenges ($db_handle, $user_id) {
                 <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'><strong>
                         <p align='center'>"                          
                         .ucfirst($challenge_title)."</p></strong></a><br>
-                ".$challenge_stmt;
+                ".$challenge_stmt."<br><br>";
          comments_all_type_challenges ($db_handle, $challenge_id);
          echo "</div>";
     }
@@ -89,7 +89,7 @@ function user_idea ($db_handle, $user_id) {
                                                         WHERE a.challenge_type=4 AND a.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id DESC;");
     while($user_idea_displayRow= mysqli_fetch_array($user_idea_display)) {
         $idea_id= $user_idea_displayRow['challenge_id'];
-        $idea_title = $user_idea_displayRow['challenge_title'];
+        $idea_title =str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_idea_displayRow['challenge_title'])));
         $idea_stmt1 = $user_idea_displayRow['stmt'];
         $idea_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1)));
         $idea_creation1 = $user_idea_displayRow['creation_time'];
@@ -114,7 +114,7 @@ function user_idea ($db_handle, $user_id) {
                 <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'><strong>
                         <p align='center'>"                          
                         .ucfirst($idea_title)."</p></strong></a><br>
-                ".$idea_stmt;
+                ".$idea_stmt."<br><br>";
          comments_all_type_challenges ($db_handle, $idea_id);
          echo "</div>";
     }
@@ -128,7 +128,7 @@ function created_projects ($db_handle, $user_id) {
                                                             WHERE a.user_id = $user_id AND a.blob_id=b.blob_id AND a.project_type=1 AND a.user_id=c.user_id);");
     
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-            $project_title_table = $project_table_displayRow['project_title'];
+            $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
             $project_id_table = $project_table_displayRow['project_id'];
@@ -155,7 +155,7 @@ function created_projects ($db_handle, $user_id) {
                     </div>
                     <div class='list-group-item'>
                     <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", ucfirst($project_title_table)))) . "</p></span>                
-                        ".$project_stmt_table;
+                        ".$project_stmt_table."<br><br>";
                     project_comments($db_handle, $project_id_table);
                echo "</div>";
 
@@ -169,7 +169,7 @@ function joined_projects ($db_handle, $user_id) {
                                                         (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a 
                                                             JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $user_id) AND a.user_id != $user_id AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id);");
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-            $project_title_table = $project_table_displayRow['project_title'];
+            $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
             $project_id_table = $project_table_displayRow['project_id'];
@@ -190,7 +190,7 @@ function joined_projects ($db_handle, $user_id) {
                     </div>
                     <div class='list-group-item'>
                         <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", ucfirst($project_title_table)))) . "</p></span>
-                            ".$project_stmt_table;
+                            ".$project_stmt_table."<br><br>";
                     project_comments($db_handle, $project_id_table);
                echo "</div>";
         }   
@@ -208,7 +208,7 @@ function project_comments($db_handle, $project_id) {
         $lnam = $displayrowc['last_name'];
         $username_pr_comment = $displayrowc['username'];
         $ida = $displayrowc['response_pr_id'];
-        $projectres = $displayrowc['stmt'];
+        $projectres = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt'])));
         echo "<div id='commentscontainer'>
                 <div class='comments clearfix'>
                     <div class='pull-left lh-fix'>
@@ -258,6 +258,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
         $comment_id = $commenterRow['response_ch_id'];
         //$challenge_ID = $commenterRow['challenge_id'];
         $username_comment_ninjas = $commenterRow['username'];
+        $comment_all_ch = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt'])));
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
@@ -265,7 +266,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
-						&nbsp&nbsp&nbsp" . $commenterRow['stmt'];
+						&nbsp&nbsp&nbsp" .$comment_all_ch ;
         if (isset($_SESSION['user_id'])) {
             $user_session_id = ($_SESSION['user_id']);
             dropDown_delete_comment_challenge($db_handle, $comment_id, $user_session_id);

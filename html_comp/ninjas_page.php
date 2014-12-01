@@ -138,7 +138,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $status = $open_chalangerow['challenge_status'];
     $times = $open_chalangerow['creation_time'];
     $timefunction = date("j F, g:i a", strtotime($times));
-    $timeopen = $open_chalangerow['challenge_open_time'];
+    $timeopen = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_open_time'])));
     $sutime = eta($ETA);
     $remaintime = remaining_time($times, $ETA);
     $ownedby = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, a.time, b.first_name, b.last_name,b.username
@@ -778,6 +778,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         $comment_id = $commenterRow['response_ch_id'];
         $challenge_ID = $commenterRow['challenge_id'];
         $username_comment_ninjas = $commenterRow['username'];
+        $comment_of_ch = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt'])));
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
@@ -785,7 +786,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
-						&nbsp&nbsp&nbsp" . $commenterRow['stmt'];
+						&nbsp&nbsp&nbsp" . $comment_of_ch;
         dropDown_delete_comment_challenge($db_handle, $comment_id, $user_id);
         echo "</div></div></div>";
     }
