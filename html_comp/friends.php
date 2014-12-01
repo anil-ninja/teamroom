@@ -2,12 +2,12 @@
   <div class="panel-group" id="collapChat" role="tablist" aria-multiselectable="true">
 <div class="panel panel-default">
     <div class="panel-heading" style="padding: 5px;"role="tab" id="collapChatHead">
-       <!--  <a class="collapsed" data-toggle="collapse" data-parent="#collapChat" href="#collapChatBody" aria-expanded="false" aria-controls="collapseFive"> -->
+         <a class="collapsed" data-toggle="collapse" data-parent="#collapChat" href="#collapChatBody" aria-expanded="false" aria-controls="collapseFive"> 
           <p class="glyphicon glyphicon-comment">
 			collap chat</p>
-			<!-- </a> -->
+			</a>
     </div>
-   <!--  <div id='collapChatBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='collapChatHead'>    -->
+     <div id='collapChatBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='collapChatHead'>   
         <div class="panel-body" style="padding: 1px;">
 			<?php
 			$idb = 0 ;

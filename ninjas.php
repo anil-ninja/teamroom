@@ -47,22 +47,21 @@ if(!isset($_SESSION['user_id'])){
   		<div class="col-md-2">
    				<?php include_once 'html_comp/left_panel_ninjas.php'   ?>
    		</div>       
-         <div class="col-md-6">
+         <div class="col-md-7">
 			<div class="panel-primary" id='panel-cont'>
 			  	<p id='home-ch'></p>
 			 	<p id='home'></p>
 	    		<?php include_once 'html_comp/ninjas_page.php' ; ?>
 			</div>
 		</div>
-		 <div class="col-md-4">
-			<div class="col-md-7">
+		 <div class="col-md-3">
+			
 			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>
-			</div>
-			<div class="col-md-5" style="padding-top: 20px;">
-				<?php include_once 'html_comp/friends.php' ; ?>
+			
+				
 			</div>
 		</div>
-	</div>
+	
 	<script>
 	$(window).scroll(function(event) {
 		
