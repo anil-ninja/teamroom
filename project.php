@@ -52,32 +52,11 @@ include_once 'functions/delete_comment.php';
             </div>
             <div class="col-md-5" style="padding-top: 20px;">
             <?php include_once 'html_comp/friends.php' ; ?>
-             <!--  <?php include_once 'html_comp/project_members.php'; ?> -->
+             <!--  <?php //include_once 'html_comp/project_members.php'; ?> -->
         </div>	
         </div>
     </div>
            <?php //include_once 'html_comp/signup.php'; ?>
-        <script>
-        $(document).ready(function(){
-	$(window).scroll(function(event) {
-		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-			event.preventDefault();
-			var dataString = 'proch=10' ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/next_proch.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					$('#prch').append(result);
-				}
-			});
-		}
-	});	
-	});
-	chatBoxes.push('<?= $projttitle ?>');
-        </script>
 		<?php 
                     if (isset($_SESSION['user_id'])) {
                         include_once 'html_comp/project_talk.php'; 
@@ -101,6 +80,27 @@ include_once 'functions/delete_comment.php';
                     <?php 
                         }
                 ?>
+                 <script>
+        $(document).ready(function(){
+	$(window).scroll(function(event) {
+		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+			event.preventDefault();
+			var dataString = 'proch=10' ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/next_proch.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#prch').append(result);
+				}
+			});
+		}
+	});	
+	});
+	chatBoxes.push('<?= $projttitle ?>');
+        </script>
          <script src="js/content_edit.js"></script> 
         <script src="js/jquery-1.js"></script>
         <script src="js/bootstrap.js"></script>
