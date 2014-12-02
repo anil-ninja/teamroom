@@ -287,17 +287,15 @@ echo "<div class='comments clearfix'>
 				<img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>";
 if (isset($_SESSION['user_id'])) {
-    echo "<form method='POST' class='inline-form'>
-            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$pro_id."' placeholder='Comment' />
-            <button type='submit' onclick='comment_project(".$pro_id.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>
-        </form>";
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$pro_id."' placeholder='Comment' />
+            <button type='submit' onclick='comment_project(".$pro_id.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
 } else {
     echo "<form action='' method='POST' class='inline-form'>
-                                    <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
-                                    <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
-                                    </a>
-                                </form>";
+			<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
+			<a data-toggle='modal' data-target='#SignIn'>
+				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+			</a>
+		</form>";
 }
 echo "</div>
 	</div>
@@ -643,11 +641,19 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 			<br/><span id='challenge_".$id_task."' class='text' >".$stmt_task."</span>
 			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>" ;
 	if(isset($_SESSION['user_id'])){
-		if(substr($stmt_task, 0, 1) != '<' || substr($stmt_task, 0, 4) == ' <br') {
+		if(substr($stmt_task, 0, 1) != '<') {
 				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
+			if (substr($stmt_task, 0, 4) == ' <br') {
+				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+				}
+			if (substr($stmt_task, 0, 3) == '<s>') {
+				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+				}
 			$chaaa = substr(strstr($stmt_task, '<br/>'), 5) ;
 			$cha = strstr($stmt_task, '<br/>' , true) ;
 			if(substr($stmt_task, 0, 4) == '<img') {
@@ -805,11 +811,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
         if (isset($_SESSION['user_id'])) {
-            echo "<form action='' method='POST' class='inline-form'>
-                <input type='hidden' value='" . $note_ID . "' name='own_challen_id' />
-                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
-                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
-            </form>";
+            echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$note_ID."' placeholder='Whats on your mind about this'/>
+              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$note_ID.")' ></button>";
         } else {
             echo "<form action='' method='POST' class='inline-form'>
                 <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>

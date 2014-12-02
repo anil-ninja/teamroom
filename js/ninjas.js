@@ -30,7 +30,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 function comment(ID) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
 		//alert(ID) ;
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))));
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project)))) + '&case=1';
 		//alert(dataString) ;
 		if(project == ""){
 			return false ;
@@ -42,7 +42,7 @@ function comment(ID) {
 						data: dataString,
 						cache: false,
 						success: function(result){
-							alert(result) ;
+							//alert(result) ;
 							if(result== 'Posted succesfully!'){
 							location.reload();
 							$("#own_ch_response_"+ID).val('') ;
@@ -53,10 +53,10 @@ function comment(ID) {
 } ;
 
 function comment_project (ID) {				
-    var res_project = convertSpecialChar($("#pr_resp_"+ID).val());
-    var dataString = 'project_id='+ID +'&comment_project='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',res_project))));
-    alert(dataString) ;
-    if(res_project == ""){
+    var project = convertSpecialChar($("#pr_resp_"+ID).val());
+    var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project)))) + '&case=2';
+    //alert(dataString) ;
+    if(project == ""){
         return false ;
     }
     else {
@@ -66,9 +66,9 @@ function comment_project (ID) {
                 data: dataString,
                 cache: false,
                 success: function(result){
-                        alert(result) ;
+                        //alert(result) ;
                         if(result== 'Posted succesfully!'){
-                            //location.reload();
+                            location.reload();
                             $("#pr_resp_"+ID).val('') ;
                         }
                 }

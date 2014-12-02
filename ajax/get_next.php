@@ -805,6 +805,14 @@ if ($_POST['chal']) {
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 			}
 		else {
+			if (substr($chelange, 0, 4) == ' <br') {
+		$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+				}
+			if (substr($chelange, 0, 3) == '<s>') {
+		$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+				}
 			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
 			$cha = strstr($chelange, '<br/>' , true) ;
 			if(substr($chelange, 0, 4) == '<img') {
