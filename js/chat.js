@@ -181,5 +181,5 @@ function projecttalk() {
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
-	setInterval(function(){ getnewtalk() },2000)();
+	setInterval(function(){ getnewtalk() },5000)();
 };	
