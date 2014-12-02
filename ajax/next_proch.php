@@ -392,6 +392,14 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
+			if (substr($stmt_task, 0, 4) == ' <br') {
+			$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+				}
+			if (substr($stmt_task, 0, 3) == '<s>') {
+		$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+				}
 			$chaaa = substr(strstr($stmt_task, '<br/>'), 5) ;
 			$cha = strstr($stmt_task, '<br/>' , true) ;
 			if(substr($stmt_task, 0, 4) == '<img') {
