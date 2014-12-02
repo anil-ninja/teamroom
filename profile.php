@@ -193,7 +193,8 @@ $obj = new profile($UserName);
                   <li role="presentation" id="user_articles">
                     <a href="#tabArticles" role="tab" data-toggle="tab">Articles</a></li>
                   <li role="presentation" id="user_challenges">
-                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challenges</a></li>
+                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challenges</a>
+                    </li>
                   <li role="presentation" id="user_idea">
                     <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas</a></li>
               </ul>
@@ -210,10 +211,14 @@ $obj = new profile($UserName);
             </div>
             <div role="tabpanel" class="row tab-pane" id="tabChallanges">
                 <div id="user_challenges_content"></div>
-            </div>
-                <div role="tabpanel" class="row tab-pane" id="tabIdeas">
-                    <div id="user_idea_content"></div>
+                    <div id='panel-cont'>
+                        <p id='home-ch'></p>
+                        <p id='home'></p>
+                    </div>
                 </div>
+            <div role="tabpanel" class="row tab-pane" id="tabIdeas">
+                <div id="user_idea_content"></div>
+            </div>
             </div>
         </div> 
                 <div class ="col-md-2">
@@ -365,6 +370,25 @@ $("#editprofile").click(function(){
 						}
 			};
         </script>
+        	<script>
+	$(window).scroll(function(event) {
+            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+                event.preventDefault();
+                var dataString = 'next=5' ;
+                $.ajax({
+                    type: "POST",
+                    url: "ajax/profile_page_ajax/get_next_user_challenges.php",
+                    data: dataString,
+                    cache: false,
+                    success: function(result){
+                        //alert(result) ;
+                        $('#panel-cont').append(result);
+                        }
+                });	
+            }
+        }); 
+	</script>
+
         <script>
             function bootstrap_alert(elem, message, timeout,type) {
                 $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; right: 20%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
