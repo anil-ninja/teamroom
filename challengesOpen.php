@@ -89,13 +89,13 @@
                 echo "<div class='bs-component'>
                         <font size='4'><h3 class='panel-title'><p> Explore more </p></h3></font><hr>";
                 $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 100) as stmt FROM challenges 
-                                                        WHERE challenge_type != '2' AND (challenge_status !='3' OR challenge_status != '7') AND challenge_id != $challengeSearchID AND blob_id = '0')  
+                                                        WHERE challenge_type != '2' AND (challenge_status !='3' AND challenge_status != '7') AND challenge_id != $challengeSearchID AND blob_id = '0')  
                                                     UNION 
                                                     (SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 100) as stmt FROM challenges as a JOIN blobs as b 
-                                                        WHERE a.blob_id = b.blob_id AND challenge_type != '2' AND (challenge_status !='3' OR challenge_status != '7') AND challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
+                                                        WHERE a.blob_id = b.blob_id AND challenge_type != '2' AND (challenge_status !='3' AND challenge_status != '7') AND challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                 while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                     $challenge_user_chID = $challenge_userRow['challenge_id'];
-                    $challenge_user_title = $challenge_userRow['challenge_title'];
+                    $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
                     $challenge_user_stmt = $stmt_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
                     //echo $challenge_user_stmt;
                     echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>
@@ -114,7 +114,7 @@
                                                     (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 100) as stmt FROM projects as a JOIN blobs as b 
                                                         WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 3 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
-                    $project_title_display = $projectsRow['project_title'];
+                    $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                     $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
                 echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>"
                     .$project_title_display."</b></p>"
@@ -124,6 +124,7 @@
             
             </div>
     </div>
+       </div>
       <?php include_once 'html_comp/signup.php' ; ?>
         
         <script src="js/jquery.js"></script>
