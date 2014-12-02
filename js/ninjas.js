@@ -90,7 +90,6 @@ function comment_project (ID) {
 				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
-			}
 			if (challenge == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
 				$("#create_video").removeAttr('disabled');
@@ -125,6 +124,12 @@ function comment_project (ID) {
 				  });
 				}
 				$("#create_video").removeAttr('disabled');	
+			}
+			else {
+				bootstrap_alert(".alert_placeholder", "Add You-Tube URL Only", 5000,"alert-warning");
+				$("#create_video").removeAttr('disabled');
+				return false ;
+				}
 		});
 
 		$("#create_videopr").click(function(){
@@ -140,7 +145,6 @@ function comment_project (ID) {
 				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
-			}
 			if (challenge == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
 				$("#create_videopr").removeAttr('disabled');
@@ -174,7 +178,13 @@ function comment_project (ID) {
 					}
 				  });
 				}
-				$("#create_videopr").removeAttr('disabled');	
+				$("#create_videopr").removeAttr('disabled');
+			}
+			else {
+				bootstrap_alert(".alert_placeholder", "Add You-Tube URL Only", 5000,"alert-warning");
+				$("#create_videopr").removeAttr('disabled');
+				return false ;
+				}		
 		});
 	function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -581,6 +591,7 @@ $("#pencil").click(function(){
 			if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team != '0' && users !='0' && email =="")
 			||(team != '0' && users =='0' && email !="")||(team == '0' && users !='0' && email !="")) {
 				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
+				$("#create_task").removeAttr('disabled');
 				return false ;
 			}
 			if (email != "") {

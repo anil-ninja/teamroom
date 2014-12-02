@@ -88,7 +88,7 @@ getallreminders() ;
 	$(".text").show();
 	$(".editbox").hide();
 	</script>
-    <script src="js/jquery-1.js"></script>
+    
     <script src="js/ninjas.js" type="text/javascript"></script>
     <script src="date.js"></script>
 	<script src="jquery.simple-dtpicker.js"></script>

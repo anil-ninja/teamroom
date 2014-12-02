@@ -520,9 +520,9 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                             <div style='line-height: 24.50px;'>";
             if (isset($_SESSION['user_id'])) {
                 dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
-                echo "<form method='POST' class='inline-form pull-right'>
+                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
                     <input type='hidden' name='id' value='" . $id_task . "'/>
-                    <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                 </form>
                 ";
             }
@@ -730,11 +730,11 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 </div>             
     <?php
     $display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.creation_time, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
-												join user_info as b where a.project_id = '$pro_id' and a.challenge_type = '6' and a.blob_id = '0' and a.user_id = b.user_id 
+												join user_info as b where a.project_id = '$pro_id' and a.challenge_type = '6' and a.challenge_status = '3' and a.challenge_status = '7' and a.blob_id = '0' and a.user_id = b.user_id 
 												)
 												UNION
 												(select DISTINCT a.challenge_title,a.challenge_id,a.creation_time, a.user_id, c.stmt, b.first_name, b.last_name, b.username from challenges as a 
-												join user_info as b join blobs as c where a.project_id = '$pro_id' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
+												join user_info as b join blobs as c where a.project_id = '$pro_id' and a.challenge_status = '3' and a.challenge_status = '7' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
 												) ORDER BY creation_time DESC;");
 
     while ($displayrow = mysqli_fetch_array($display_notes)) {
@@ -758,7 +758,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         
             if ($note_posted_user_id == $user_id) {
                 echo "<li><a class='btn-link' href='#'>Edit Note</a></li>
-                                <li><a class='btn-link' noteID='" . $note_ID . "' onclick='delNote(" . $note_ID . ");'>Delete Note</a></li>";
+                                <li><a class='btn-link' cID='" . $note_ID . "' onclick='delChallenge(" . $note_ID . ");'>Delete Note</a></li>";
             } else {
                 echo "<li><a class='btn-link' >Report Spam</a></li>";
             }

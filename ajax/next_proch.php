@@ -254,9 +254,9 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
               </div>";
         //dropdown for delete/edit/span challenge ends here
 
-                           $show = $show . "<form method='POST' class='inline-form pull-right'>
+                           $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
                                             <input type='hidden' name='id' value='" . $id_task . "'/>
-                                            <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                                            <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                                         </form>
                                         </div>
                                     </div></div></div>";

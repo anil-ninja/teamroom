@@ -28,7 +28,7 @@ if (strlen($project_st) < 1000) {
 			  involve_in($db_handle,$user_id,"9",$idp);
 	   }
     if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
-	else { echo "Project posted succesfully!"; }
+	else { echo "Posted succesfully!"; }
 }
     else {
         mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
@@ -46,7 +46,7 @@ if (strlen($project_st) < 1000) {
 			  involve_in($db_handle,$user_id,"9",$idp);
 	   }
 	if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
-	else { echo "Project posted succesfully!"; }
+	else { echo "Posted succesfully!"; }
 }
 	mysqli_close($db_handle);
 }

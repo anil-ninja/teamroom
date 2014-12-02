@@ -20,7 +20,6 @@ include_once 'functions/delete_comment.php';
         <script src="js/jquery.js"> </script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
        <script src="js/content_edit.js"> </script>
-        <script src="js/project.js"></script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
 
         <!-- chat box -->
@@ -36,8 +35,6 @@ include_once 'functions/delete_comment.php';
    </head>
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
-    
-
         <div class=" media-body" style="padding-top: 50px;">
             <div class="col-md-2">
             <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
@@ -59,23 +56,43 @@ include_once 'functions/delete_comment.php';
         </div>	
         </div>
     </div>
-           <?php include_once 'html_comp/signup.php'; ?>
-       
+           <?php //include_once 'html_comp/signup.php'; ?>
+        <script>
+        $(document).ready(function(){
+	$(window).scroll(function(event) {
+		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+			event.preventDefault();
+			var dataString = 'proch=10' ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/next_proch.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#prch').append(result);
+				}
+			});
+		}
+	});	
+	});
+	chatBoxes.push('<?= $projttitle ?>');
+        </script>
 		<?php 
                     if (isset($_SESSION['user_id'])) {
                         include_once 'html_comp/project_talk.php'; 
                  ?>
                         <script>
                             $(document).ready(function(){
-                                $("#talkpro").click(function(){
+                           /*     $("#talkpro").click(function(){
                                     $("#talkprForm").show();
                                     $("#talkformdata").show();
                                     $("#talkformin").show();
                                     $("#talkformdata").scrollTop($('#talkformdata').height()) ;
                                     projecttalk();
-                                });
+                                }); */
                                 projecttalk();
-                            });   
+                            }); 
                         </script>
                         <script src="js/chat.js"></script>
                         <!-- chat box -->
@@ -88,7 +105,6 @@ include_once 'functions/delete_comment.php';
         <script src="js/jquery-1.js"></script>
         <script src="js/bootstrap.js"></script>
         <script src="js/ninjas.js"></script>
-        <script src="js/bootswatch.js"></script>
         <script src="js/project_page.js"></script>
         <script src="js/date_time.js"></script>
         <!-- jQuery and jQuery UI (REQUIRED) -->
@@ -117,31 +133,7 @@ include_once 'functions/delete_comment.php';
             });
       	$(".text").show();
 		$(".editbox").hide();
-        </script>
-                 
-        <script>
-        $(document).ready(function(){
-	$(window).scroll(function(event) {
-		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-			event.preventDefault();
-			var dataString = 'proch=10' ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/next_proch.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					$('#prch').append(result);
-				}
-			});
-		}
-	});	
-	});
-	chatBoxes.push('<?= $projttitle ?>');
-        </script>
-
-        
+        </script>     
         </body>
     </html>
 <?php

@@ -21,7 +21,7 @@ if($_POST['notes']){
       involve_in($db_handle,$user_id,"10",$idp); 
        events($db_handle,$user_id,"10",$idp);
     if(mysqli_error($db_handle)) { echo "Failed to Post Notes!"; }
-	else { echo "Notes posted succesfully!"; }
+	else { echo "Posted succesfully!"; }
 } else {
         mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
                                 VALUES (default, '$notes');");
@@ -33,7 +33,7 @@ if($_POST['notes']){
       involve_in($db_handle,$user_id,"10",$idp); 
        events($db_handle,$user_id,"10",$idp);
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Notes!"; }
-	else { echo "Notes posted succesfully!"; }
+	else { echo "Posted succesfully!"; }
 }
 	mysqli_close($db_handle);
 } 

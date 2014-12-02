@@ -22,25 +22,6 @@ $starttime = $project_idrow['creation_time'] ;
 $timef = date("j F, g:i a",strtotime($starttime));
 $prtime = remaining_time($starttime, $eta) ;	//resp_projecttalk
 
-if (isset($_POST['resp_project'])) {
-	$user_id = $_SESSION['user_id'] ;
-	$pro_id = $_SESSION['project_id'] ;
-	$pr_respon = $_POST['pr_resp'] ;
-	events($db_handle,$user_id,"14",$pro_id);
-    involve_in($db_handle,$user_id,"14",$pro_id);
-  if(strlen($pr_respon)>1) {
-  if (strlen($pr_respon) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$pro_id', '$pr_respon') ; ") ;
-		header('Location: #');
-} else {
-        mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$pr_respon');");
-          $id = mysqli_insert_id($db_handle);
-       mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, blob_id, stmt) VALUES ('$user_id', '$pro_id', '$id', ' ') ; ") ;
-		header('Location: #');
-}
-} else { echo "<script>alert('Enter something!')</script>"; }
-}	
-
 $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$user_id';");
 $contactrow = mysqli_fetch_array($contact) ;
 $con_no = $contactrow['contact_no'] ;
