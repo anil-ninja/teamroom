@@ -51,6 +51,30 @@ function comment(ID) {
 					});
 				}
 } ;
+
+function comment_project (ID) {				
+    var res_project = convertSpecialChar($("#pr_resp_"+ID).val());
+    var dataString = 'project_id='+ID +'&comment_project='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',res_project))));
+    alert(dataString) ;
+    if(res_project == ""){
+        return false ;
+    }
+    else {
+        $.ajax({
+                type: "POST",
+                url: "ajax/submit_comment.php",
+                data: dataString,
+                cache: false,
+                success: function(result){
+                        alert(result) ;
+                        if(result== 'Posted succesfully!'){
+                            //location.reload();
+                            $("#pr_resp_"+ID).val('') ;
+                        }
+                }
+        });
+    }
+};
 	$(document).ready(function(){
 		
 		$("#create_video").click(function(){

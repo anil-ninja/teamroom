@@ -288,9 +288,9 @@ echo "<div class='comments clearfix'>
 			</div>";
 if (isset($_SESSION['user_id'])) {
     echo "<form method='POST' class='inline-form'>
-                                    <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Comment' />
-                                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
-                                </form>";
+            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$pro_id."' placeholder='Comment' />
+            <button type='submit' onclick='comment_project(".$pro_id.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>
+        </form>";
 } else {
     echo "<form action='' method='POST' class='inline-form'>
                                     <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
