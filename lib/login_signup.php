@@ -1,6 +1,5 @@
 <?php
 include_once "../models/rank.php";
-//include_once '../functions/delete_comment.php';
 include_once '../functions/collapMail.php';
 function signup(){
 	include_once "db_connect.php";

@@ -28,10 +28,7 @@ if(!isset($_SESSION['user_id'])){
 	<link type="text/css" href="jquery.simple-dtpicker.css" rel="stylesheet" />
 	<script src="js/jquery-1.js"></script>
     <script src="js/chat.js"></script>
-    <script src="js/bootbox.js"></script>
-	
 	<!-- chat box -->
-	
 	<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 	<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
 
@@ -81,14 +78,12 @@ if(!isset($_SESSION['user_id'])){
 			});	
 	}
 }); 
-getallreminders() ;
- 
+getallreminders() ; 
 	</script>
 	<script>
 	$(".text").show();
 	$(".editbox").hide();
 	</script>
-    
     <script src="js/ninjas.js" type="text/javascript"></script>
     <script src="date.js"></script>
 	<script src="jquery.simple-dtpicker.js"></script>
@@ -97,16 +92,12 @@ getallreminders() ;
     <script src="js/bootswatch.js"></script>
     <script src="js/project_page.js"></script>
     <script src="js/content_edit.js"></script>
+    <script src="js/bootbox.js"></script>
    <script src="js/date_time.js"></script>
    
    <!-- chat box -->
    <script type="text/javascript" src="js/chat_box.js"></script>
    <!-- end Chat box-->
-   <script>
-   bootbox.confirm("Are you sure?", function(result) {
- Example.show("Confirm result: "+result);
-});
-   </script>
 </body></html>
 <?php
 mysqli_close($db_handle);

@@ -105,9 +105,7 @@ if(isset($_POST['requestdelete'])){
                             </li>
                             <hr/>
                             <li>
-                                <form method="POST" onsubmit="return confirm('Meet you soon!!!!');">
-                                    <b><button type="submit" class="btn-link " name="logout" style="color: #fff;"><span class="glyphicon glyphicon-off"></span> Log out </button></b>
-                                </form>  
+                                <b><button type='submit' class="btn-link" onclick='confLogout()' name="logout" style="color: #fff;"><span class="glyphicon glyphicon-off"></span> Log out </button></b>  
                             </li>
                             
                         </ul>
@@ -122,10 +120,6 @@ if(isset($_POST['requestdelete'])){
         </ul>
         </div>
    </div>
-
- 
-
-
 <!-- sub nav bar-->
 <?php
 if (isset($_SESSION['user_id'])) {
@@ -172,6 +166,17 @@ else {
 ?>
 </div>
   </div>
+  <script>
+  function confLogout(){
+		   bootbox.confirm("Are you sure?", function(result) {
+		//Example.show("Confirm result: "+result);
+		if(result){
+			//call logout wall
+			 window.location='http://localhost/Bank_test/reso/teamroom/html_comp/logout.php' ;
+			}
+		});
+	} ;
+  </script>
  
 <!-- Modal  -->
 <div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
