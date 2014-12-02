@@ -126,8 +126,8 @@ function created_projects ($db_handle, $user_id) {
                                                             JOIN user_info as b WHERE a.user_id = $user_id AND a.blob_id=0 AND a.project_type=1 AND a.user_id=b.user_id)
                                                         UNION 
                                                         (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a JOIN blobs as b JOIN user_info as c 
-                                                            WHERE a.user_id = $user_id AND a.blob_id=b.blob_id AND a.project_type=1 AND a.user_id=c.user_id);");
-    
+                                                            WHERE a.user_id = $user_id AND a.blob_id=b.blob_id AND a.project_type=1 AND a.user_id=c.user_id) ORDER BY creation_time DESC LIMIT 0, 3;");
+    $_SESSION['last_CP_3'] = 3;
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];

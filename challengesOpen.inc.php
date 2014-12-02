@@ -544,6 +544,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 $comment_id = $commenterRow['response_ch_id'];
                 $challenge_ID = $commenterRow['challenge_id'];
                 $username_comment_ninjas = $commenterRow['username'];
+                $comment_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt'])));
                 echo "<div id='commentscontainer'>
                     <div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
@@ -551,7 +552,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                         </div>
                     <div class='comment-text'>
                     <span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
-                        &nbsp&nbsp&nbsp" . $commenterRow['stmt'] . "";
+                        &nbsp&nbsp&nbsp".$comment_stmt;
                 if (isset($_SESSION['user_id'])) {
                     $userID = $_SESSION['user_id'];
                     dropDown_delete_comment_challenge($db_handle, $comment_id, $userID);
