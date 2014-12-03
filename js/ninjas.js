@@ -22,7 +22,7 @@ function getnextchal (clas, int) {
 				cache: false,
 				success: function(result){
 					//alert(result) ;
-					$('.panel-cont').append(result);
+					$('#panel-cont').append(result);
 					$('.loading').remove();
 					//alert(getnextflag) ;
 					getnextflag = 1 ;

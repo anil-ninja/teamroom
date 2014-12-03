@@ -536,5 +536,4 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
                     </div>";
     echo "</div> </div> ";
 }
-	echo "<div class='panel-cont'></div>";
 ?>
