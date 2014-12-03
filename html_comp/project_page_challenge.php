@@ -1,4 +1,5 @@
 <?php include_once 'functions/delete_comment.php';
+include_once 'friends.php';
 $totaltask = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status != '3' AND challenge_status != '7';") ;
 $totaltaskopen = mysqli_query($db_handle, "select challenge_id, creation_time, challenge_ETA from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '2';") ;
 $z = 0 ;
@@ -46,15 +47,19 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 	<td>Delayed</td>
 	<td  class='warning'>".$ax."</td>
 </tr> */
-  echo "<div class='list-group'  style='cursor: pointer;'>
-  			<div class='list-group-item' style='font-size:12px; text-align: center;'>
-  				<b>PROJECT DASHBOARD</b>
+            echo "<div class='panel-group' id= 'Dashboard' role='tablist' aria-multiselectable='true'>
+                    <div class='panel panel-default'>
+                        <div class='panel-heading' style='padding: 5px;' role='tab' id='DashboardHead'>
+                            <a class='collapsed' data-toggle='collapse' data-parent='#Dashboard' href='#DashboardBody' aria-expanded='false' aria-controls='collapseFive'>
+                                <b>PROJECT DASHBOARD</b>
+                            </a>
   			</div>
-
-			<div class='list-group-item' style='font-size:10px;'>
-				<table class='table table-striped'>
+                        <div id='DashboardBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='DashboardHead'>   
+                            <div class='panel-body' style='padding: 1px;'>
+                                <div class='list-group-item' style='font-size:10px;'>
+                                    <table class='table table-striped'>
 					<thead> <center>TASKS (".mysqli_num_rows($totaltaskclosed)."/"
-											.mysqli_num_rows($totaltask).") </center> </thead>
+                                                .mysqli_num_rows($totaltask).") </center> </thead>
 					<tbody>
 					
 					<tr class='active'>
@@ -70,38 +75,40 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 						<td>".mysqli_num_rows($totaltaskclosed)."</td>
 					</tr>
 					</tbody>
-				</table>
-			</div>
+                                    </table>
+                                </div>
 
-			<div class='list-group-item' style='font-size:10px;'>
-				<table class='table table-striped table-hover '>
-				<thead> <center>CHALLENGES (".mysqli_num_rows($totalchallengesclosed)."/"
+                                <div class='list-group-item' style='font-size:10px;'>
+                                    <table class='table table-striped table-hover '>
+                                        <thead> <center>CHALLENGES (".mysqli_num_rows($totalchallengesclosed)."/"
 					.mysqli_num_rows($totalchallenges).") </center></thead>
-					<tbody>
-					<tr>
-						<td>Open</td>
-						<td>".$by."</td>
-					</tr>
-					<tr>
+                                            <tbody>
+                                                <tr>
+                                                    <td>Open</td>
+                                                    <td>".$by."</td>
+                                                </tr>
+                                            <tr>
 						<td>Closed</td>
 						<td  class='warning'>".$ay."</td>
-					</tr>
-					<tr>
+                                            </tr>
+                                            <tr>
 						<td>Accepted</td>
 						<td>".$bx."</td>
-					</tr>
-					<tr>
+                                            </tr>
+                                            <tr>
 						<td>Submitted</td>
 						<td>".mysqli_num_rows($totalchallengessubmitted)."</td>
-					</tr>
-					<tr>
+                                            </tr>
+                                            <tr>
 						<td>Completed</td>
 						<td>".mysqli_num_rows($totalchallengesclosed)."</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
-			</div>" ;
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>" ;
 
 			// <div class='list-group-item'>
 			// 	<table class='table table-striped table-hover '>
@@ -116,23 +123,27 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 		
 	  
  
-  	echo "
-  		<div class='list-group'  style='cursor: pointer;'>
-  			<div class='list-group-item' style='font-size:12px; text-align: center;'>
-  				<b>WORK SUMMARY </b>
-  			</div>
-  			<div class='list-group-item' style='font-size:10px;'>
-				<table class='table table-striped scroll '>
-				 <thead> <center><b>Not Accepted</b></center>
-				 </thead>
-				 <tbody>
+                echo "<div class='panel-group' id= 'SUMMARY' role='tablist' aria-multiselectable='true'>
+                        <div class='panel panel-default'>
+                            <div class='panel-heading' style='padding: 5px;' role='tab' id='SUMMARYHead'>
+                                <a class='collapsed' data-toggle='collapse' data-parent='#SUMMARY' href='#SUMMARYBody' aria-expanded='false' aria-controls='collapseFive'>
+                                    <b>WORK SUMMARY</b>
+                                </a>
+                            </div>
+                            <div id='SUMMARYBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='SUMMARYHead'>   
+                                <div class='panel-body' style='padding: 1px;'>
+                                <div class='list-group-item' style='font-size:10px;'>
+                                    <table class='table table-striped scroll '>
+                                        <thead> <center><b>Not Accepted</b></center>
+                                        </thead>
+                                        <tbody>
 					<tr>
-						<td style='width:180px'>Name</td>
-						<td>Remaining Time</td>
+                                            <td style='width:180px'>Name</td>
+                                            <td>Remaining Time</td>
 					</tr>" ;
 		
-	 $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, creation_time FROM challenges WHERE project_id = '$pro_id' AND challenge_type = '2' AND challenge_status = '1' ;");
-      while($ocrow = mysqli_fetch_array($oc)) {
+            $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, creation_time FROM challenges WHERE project_id = '$pro_id' AND challenge_type = '2' AND challenge_status = '1' ;");
+            while($ocrow = mysqli_fetch_array($oc)) {
 				$ocid = $ocrow['challenge_id'] ;
 				$octitle = $ocrow['challenge_title'] ;
 				$occtime = $ocrow['creation_time'] ;
@@ -143,8 +154,8 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				<td>".$rtoc."</td>
 			  </tr>" ;
 	}
-	echo "</tbody>
-            </table></div>" ;
+            echo "</tbody>
+                </table></div>" ;
 
 
   	echo "<div class='list-group-item' style='font-size:10px;'>
@@ -187,8 +198,7 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 	}
 	echo "</tbody>
             </table></div>" ;
-echo 
-		"<div class='list-group-item' style='font-size:10px;'>
+        echo "<div class='list-group-item' style='font-size:10px;'>
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>In Review</b></center>
 				 </thead>

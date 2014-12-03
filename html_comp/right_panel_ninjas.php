@@ -1,33 +1,34 @@
 <div class="bs-component">
-    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32);style = 'font-size:10px'">
+    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32); font-size:10px'">
         <?php include_once 'friends.php';  ?>
-  <div class="panel-group" id="accordion" role="tablist" >
-  <div class="panel panel-default">
-    <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
-         <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
-          &nbsp;Add Reminder
-          </a>
+    <div class="panel-group" id="accordion" role="tablist" >
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
+            <a data-toggle='modal' data-target="#myreminder" class='btn-link'><i class='glyphicon glyphicon-bell'></i>
+                &nbsp;Add Reminder
+            </a>
+        </div>
     </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" style="padding: 5px;"role="tab" id="headingTwo">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <i class='glyphicon glyphicon-eye-open'></i> &nbsp;All Reminder
-        </a>
-    </div>
-    <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>   
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 5px;" role="tab" id="headingTwo">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <i class='glyphicon glyphicon-eye-open'></i> &nbsp;All Reminder
+            </a>
+        </div>
+        <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>   
             <div id='allreminders' ></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
+        </div>
     </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
-        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <i class='btn-link glyphicon glyphicon-bullhorn'></i>&nbsp;
-            To Do</a>
-    </div>
+    <div class="panel panel-default">
+        <div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <i class='btn-link glyphicon glyphicon-bullhorn'></i>&nbsp;
+                To Do
+            </a>
+        </div>
     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body" style="padding: 1px;">
-        <?php
+        <div class="panel-body" style="padding: 1px;">
+<?php
     $titles = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, 
                         b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' 
                         AND a.challenge_type = '5' AND a.user_id = b.user_id AND a.challenge_id = c.challenge_id)
@@ -129,7 +130,7 @@
                     </select> &nbsp;&nbsp;&nbsp;&nbsp; Time : 
                                 <input type="text" id ="datepick" placeholder='Reminder Time & Date'>
                                 <input type="submit" class="btn btn-primary btn-sm pull-right" id = "remind" value = "Set"><br/><br/>
-								<textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
+                                <textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>	
                         </div>
                     </div>
                 </div>
