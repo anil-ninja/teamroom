@@ -76,7 +76,7 @@ function knownperson(ID){
 	//alert(ID) ;
 		   bootbox.confirm("Really Know this Person !!!", function(result) {
 		if(result){
-			var dataString = 'id='+ ID ;
+			var dataString = 'id='+ ID + '&case=1';
 			$.ajax({
 				type: "POST",
 				url: "ajax/knownperson.php",

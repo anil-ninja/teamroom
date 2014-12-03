@@ -8,13 +8,6 @@ $username = $_SESSION['username'];
 $rank = $_SESSION['rank'];
 $email = $_SESSION['email'];
 
-if (isset($_POST['closechallenge'])) {
-		$chalange = $_POST['cid'] ;
-		$user_id = $_SESSION['user_id'];
-	events($db_handle,$user_id,"6",$chalange);
-    involve_in($db_handle,$user_id,"6",$chalange);
-    mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
-}
 if(isset($_POST['accept'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='eye' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
@@ -41,16 +34,6 @@ if(isset($_POST['accept'])) {
 			</div> 
 		</div>
 	</div>" ;
-}
-if(isset($_POST['accept_pub'])) {
-	$id = $_POST['id'] ;
-	$user_id = $_SESSION['user_id'];
-	events($db_handle,$user_id,"4",$id);
-    involve_in($db_handle,$user_id,"4",$id);
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$id' ; ") ;
-		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
-									VALUES ('$user_id', '$id', '1');") ;
-header('Location: #');
 }
 if (isset($_POST['joinproject'])) {
 	$user_id = $_SESSION['user_id'];
@@ -126,13 +109,6 @@ if (isset($_POST['chlange'])) {
 		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$chalange', '$your_eta');") ;
 header('Location: #');
-}
-if (isset($_POST['closechal'])) {
-		$chalange = $_POST['cid'] ;
-		$user_id = $_SESSION['user_id'];
-	events($db_handle,$user_id,"6",$chalange);
-    involve_in($db_handle,$user_id,"6",$chalange);
-    mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
 }
 /*if (isset($_POST['change_eta'])) {
 		$user_id = $_SESSION['user_id'];

@@ -6,9 +6,67 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+function accept_pub(ID){
+	//alert(ID) ;
+		   bootbox.confirm("Really Accept Challenge !!!", function(result) {
+		if(result){
+			var dataString = 'id='+ ID + '&case=2';
+			$.ajax({
+				type: "POST",
+				url: "ajax/knownperson.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					location.reload() ;
+				}
+			 });
+			}
+		});
+	} ;
+function closechal(ID){
+	//alert(ID) ;
+		   bootbox.confirm("Really Close Challenge !!!", function(result) {
+		if(result){
+			var dataString = 'id='+ ID + '&case=3';
+			$.ajax({
+				type: "POST",
+				url: "ajax/knownperson.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					location.reload() ;
+				}
+			 });
+			}
+		});
+	} ;
+function joinproject(ID){
+	//alert(ID) ;
+		   bootbox.confirm("Really Join This Project !!!", function(result) {
+		if(result){
+			var dataString = 'id='+ ID + '&case=4';
+			$.ajax({
+				type: "POST",
+				url: "ajax/knownperson.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					location.reload() ;
+				}
+			 });
+			}
+		});
+	} ;
 function answersubmit(chelangeid){
-	$("#answercid").val(chelangeid) ;
-	$("#answerForm").modal("show");
+	bootbox.confirm("Completed Challenge !!!", function(result) {
+		if(result){
+			$("#answercid").val(chelangeid) ;
+			$("#answerForm").modal("show");
+			}
+		});
 } ;
 function like(Id) {
 	var uid = $("#likes_"+Id).val() ;

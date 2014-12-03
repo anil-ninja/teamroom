@@ -222,10 +222,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                         dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
             
             //if ($remaintime != "Closed") {
-                echo "<form method='POST' class='inline-form pull-right'>
-                                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                                </form>" ;
+                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
                                 //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";
@@ -252,10 +249,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                     <div class='list-group-item'>";
                     dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
                     if($ch_id == $user_id) {			
-                        echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                <button type='submit' class='btn-primary' name='closechal'>Close</button>
-                            </form>";
+                        echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
             }
                     echo $display_tilte_fname_likes."<br> <hr>Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
@@ -282,10 +276,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
             
             //if ($remaintime != "Closed") {
-                echo "<form method='POST' class='inline-form pull-right'>
-                        <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                        <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                    </form>" ;
+                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
                                 //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";
@@ -312,10 +303,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                     <div class='list-group-item'>";
             dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
             if($ch_id == $user_id) {			
-                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                            <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                            <button type='submit' class='btn-primary' name='closechal'>Close</button>
-                        </form>";
+                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
             }
             echo $display_tilte_fname_likes."<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timecomm ;
@@ -370,16 +358,10 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                     <div class='list-group-item' >";
                 dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                 if ($ch_id != $user_id) {
-                    echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                            <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                        </form>" ;
+                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
                 }
                 else {
-                    echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                            <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                            <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                        </form>";
+                    echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                 }
                 echo $display_tilte_fname_likes.$display_ch_stmt_content;
                 $display_ch_stmt_content = "";
@@ -399,17 +381,11 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($ch_id != $user_id ) {
                             if(mysqli_num_rows($owneduser) == 0){
-                                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                                        <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                        <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                                    </form>" ;
+                                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
                             }
                         }
                         else {
-                            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                                </form>";
+                            echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                         }
                         echo $display_tilte_fname_likes;
 $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
@@ -437,17 +413,11 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
                        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($ch_id != $user_id ) {
                             if(mysqli_num_rows($owneduser) == 0){
-                                echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                                        <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                        <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                                    </form>" ;
+                                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
                             }
                         }
                         else {
-                            echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                                </form>";
+                            echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                         }
                            echo $display_tilte_fname_likes;
                  $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username

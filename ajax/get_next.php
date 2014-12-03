@@ -153,10 +153,7 @@ if ($_POST['chal']) {
         //dropdown for delete/edit/span challenge ends here
 
         //    if ($remaintime != "Closed") {
-                $show = $show . "<form method='POST' class='inline-form pull-right'>
-                                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                                </form>"       ;
+                $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>"       ;
                                 //. "<br> ETA : " . $sutime . "<br/>" . $remaintime;
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
@@ -206,10 +203,7 @@ if ($_POST['chal']) {
                                         </div>";                    
                                 }
                                 if($ch_id == $user_id) {			
-                    $show = $show . " <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                        <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                        <button type='submit' class='btn-primary' name='closechal'>Close</button>
-                                    </form>";
+                    $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                                 }
                                 
                                 $show = $show.$get_display_tilte_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
@@ -251,10 +245,7 @@ if ($_POST['chal']) {
 
             
         //    if ($remaintime != "Closed") {
-                $show = $show . "<form method='POST' class='inline-form pull-right'>
-                                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                                </form>"       ;
+                $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>"       ;
                                 //. "<br> ETA : " . $sutime . "<br/>" . $remaintime;
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
@@ -306,10 +297,7 @@ if ($_POST['chal']) {
                                                     </div>";                    
                                 }
                                 if($ch_id == $user_id) {			
-                    $show = $show . " <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                        <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                        <button type='submit' class='btn-primary' name='closechal'>Close</button>
-                                    </form>";
+                    $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                                 }
                 $show = $show .$get_display_tilte_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timecomm ;
@@ -420,16 +408,10 @@ if ($_POST['chal']) {
                     //dropdown for delete/edit/span challenge ends here
 
         if ($ch_id != $user_id) {
-            $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                </form>" ;
+            $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
         }
         else {
-            $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                    <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                    <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                </form>";
+            $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
         }
         $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
         $get_display_ch_stmt_content = "" ;
@@ -456,17 +438,11 @@ if ($_POST['chal']) {
                         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($ch_id != $user_id ) {
                             if(mysqli_num_rows($owneduser) == 0){
-                                $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                                                    <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                                                </form>" ;
+                                $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
                             }
                         }
                         else {
-                            $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                                <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                                <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                                            </form>";
+                            $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                         }
                $show = $show . $get_display_tilte_fname_likes;
                
@@ -500,17 +476,11 @@ if ($_POST['chal']) {
                 $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                 if ($ch_id != $user_id ) {
                     if(mysqli_num_rows($owneduser) == 0){
-                        $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
-                                            <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                            <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
-                                        </form>" ;
+                        $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$chelangeid.")' value='Accept'/>" ;
                     }
                 }
                 else {
-                    $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                        <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                        <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
-                                    </form>";
+                    $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                 }
                 $show = $show .$get_display_tilte_fname_likes;
                         
