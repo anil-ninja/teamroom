@@ -74,10 +74,7 @@ if ($_POST['chal']) {
     $show_add_dropdown = "<div class='list-group-item pull-right'>
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
+                               if ($ch_id == $user_id) {
                                     $show_add_dropdown = $show_add_dropdown . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>";                    
                                 /*    if($remaining_time_ETA_over == 'Time over') {        
@@ -168,10 +165,7 @@ if ($_POST['chal']) {
         if($ownuser == $user_id) {			
             $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
         }
-            $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-            $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-            $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-            if($challenge_dropdown_userID == $user_id) {
+            if($ch_id == $user_id) {
                 $show = $show . "<div class='list-group-item pull-right'>
                                     <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                     <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -190,10 +184,7 @@ if ($_POST['chal']) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
                     
-            $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
+                                if($ch_id == $user_id) {
                                     $show = $show . "<div class='list-group-item pull-right'>
                                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                             <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -215,10 +206,7 @@ if ($_POST['chal']) {
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
-                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
+                                if($ch_id == $user_id) {
                                     $show = $show . "<div class='list-group-item pull-right'>
                                                         <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                                         <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -260,11 +248,7 @@ if ($_POST['chal']) {
         if($ownuser == $user_id) {			
             $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
         }
-        
-        $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-        if($challenge_dropdown_userID == $user_id) {
+        if($ch_id == $user_id) {
             $show = $show . "<div class='list-group-item pull-right'>
                                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -283,11 +267,7 @@ if ($_POST['chal']) {
         if ($status == 4) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
-                    
-            $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
+                                if($ch_id == $user_id) {
                                     $show = $show . "<div class='list-group-item pull-right'>
                                                         <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                                         <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -308,10 +288,7 @@ if ($_POST['chal']) {
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                    $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                    $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                    if($challenge_dropdown_userID == $user_id) {
+                    if($ch_id == $user_id) {
                         $show = $show . "<div class='list-group-item pull-right'>
                                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                             <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -331,10 +308,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item'>
                         <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                        $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                        if($challenge_dropdown_userID == $user_id) {
+                        if($ch_id == $user_id) {
                             $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
                         }
@@ -353,10 +327,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item'>
                                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                        if($challenge_dropdown_userID == $user_id) {
+                        if($ch_id == $user_id) {
                             $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
                         }
@@ -373,10 +344,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group film'>
 				<div class='list-group-item'>
                                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                        if($challenge_dropdown_userID == $user_id) {
+                        if($ch_id == $user_id) {
                             $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
                         }
@@ -574,6 +542,7 @@ if ($_POST['chal']) {
                                         (SELECT DISTINCT a.challenge_id, a.response_ch_id,a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
                                             JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$chelangeid' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
     while ($commenterRow = mysqli_fetch_array($commenter)) {
+        $comment_user_id = $commenterRow['user_id'];
         $comment_id = $commenterRow['response_ch_id'];
         $challenge_ID = $commenterRow['challenge_id'];
         $username_comment_ninjas = $commenterRow['username'];
@@ -591,10 +560,7 @@ if ($_POST['chal']) {
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
             
-            $challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$comment_id' AND user_id='$user_id';"));
-                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
-                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
-                    if($challenge_dropdown_comment_userID == $user_id) {
+                    if($comment_user_id == $user_id) {
                         $show = $show . "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
                     } 
                     else {

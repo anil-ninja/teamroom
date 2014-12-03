@@ -188,10 +188,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
             $show = $show . "<div class='list-group-item pull-right'>
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$id_task' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
+                                if($id_create == $user_id) {
                                     $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                                                     
                                 }
@@ -229,10 +226,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
         $show = $show . "<div class='list-group-item pull-right'>
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$id_task' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
+                                if($id_create == $user_id) {
                                     $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                    
                                   /*  if($remaining_time_ETA_over == 'Time over') {        
@@ -290,10 +284,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                                 }
                             $show = $show . "</div>";
                 //dropdown for delete/edit/span challenge starts
-       $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$id_task' AND user_id='$user_id';"));
-            $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-            $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-            if($challenge_dropdown_userID == $user_id) {
+            if($id_create == $user_id) {
                 $show = $show . "<div class='list-group-item pull-right'>
                                     <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                     <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -322,10 +313,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
             $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_task . "'>"
             . ucfirst($fname_task) . '&nbsp' . ucfirst($lname_task) . " </a></span>";
     //dropdown for delete/edit/span challenge starts
-        $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$id_task' AND user_id='$user_id';"));
-            $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-            $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-            if($challenge_dropdown_userID == $user_id) {
+            if($id_create == $user_id) {
                 $show = $show . "<div class='list-group-item pull-right'>
                                     <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                     <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -361,10 +349,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                             </div>
                             <div style='line-height: 16.50px;'>";
 //dropdown for delete/edit/span challenge starts
-            $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$id_task' AND user_id='$user_id';"));
-            $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-            $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-            if($challenge_dropdown_userID == $user_id) {
+            if($id_create == $user_id) {
                 $show = $show . "<div class='list-group-item pull-right'>
                                     <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                                     <ul class='dropdown-menu' aria-labelledby='dropdown'>
@@ -442,6 +427,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                 $username_commenter = $displayrowb['username'];
 				$idc = $displayrowb['response_ch_id'] ;
 				$chalangeres = $displayrowb['stmt'] ;
+                                $comment_user_id = $displayrowb['user_id'];
 		$show = $show . "
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
@@ -457,10 +443,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
 
-                            $challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$idc' AND user_id='$user_id';"));
-                                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
-                                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
-                                    if($challenge_dropdown_comment_userID == $user_id) {
+                            if($comment_user_id == $user_id) {
                     $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                                      <li><button class='btn-link' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete</button></li>";
                                     } 
