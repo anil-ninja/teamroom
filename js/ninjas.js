@@ -10,7 +10,74 @@ function url_domain(data) {
 function getVedioId(str) {
     return str.split('v=')[1];
 }
-
+function getnextchal (clas, int) {
+	var numItems = $('div.'+clas).length;
+	if (numItems < 6 || clas == 'all') {
+	var dataString = 'chal=10' ;
+			  $.ajax({
+				type: "POST",
+				url: "ajax/get_next.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#panel-cont').append(result);
+					showclass(int);
+					}
+			});
+		}
+	}
+function showclass(int) {
+	switch(int){
+		case 1:
+			$(".articlesch").show(1000);
+			$(".openchalhide").show(1000);
+			$(".idea").show(1000);
+			$(".film").show(1000);
+			$(".challenge").show(1000);
+			break;
+			
+		case 2:
+			$(".articlesch").hide(1000);
+			$(".openchalhide").hide(1000);
+			$(".idea").hide(1000);
+			$(".film").hide(1000);
+			$(".challenge").show(1000);
+			break;
+			
+		case 3:
+			$(".challenge").hide(1000);
+			$(".openchalhide").hide(1000);
+			$(".idea").hide(1000);
+			$(".film").hide(1000);
+			$(".articlesch").show(1000);
+			break;
+			
+		case 4:
+			$(".challenge").hide(1000);
+			$(".openchalhide").show(1000);
+			$(".idea").hide(1000);
+			$(".film").hide(1000);
+			$(".articlesch").hide(1000);
+			break;
+			
+		case 5:
+			$(".challenge").hide(1000);
+			$(".openchalhide").hide(1000);
+			$(".idea").hide(1000);
+			$(".film").show(1000);
+			$(".articlesch").hide(1000);
+			break;
+			
+		case 6:
+			$(".challenge").hide(1000);
+			$(".openchalhide").hide(1000);
+			$(".film").hide(1000);
+			$(".articlesch").hide(1000);
+			$(".idea").show(1000);
+			break;
+		}
+	}
 function refineVedioId(str){
 	if(str.indexOf('&') === -1){
 		return str;
@@ -462,6 +529,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(1000);
   	$(".film").hide(1000);
     $(".challenge").show(1000);
+    getnextchal('challenge',2) ;
   });
 
   $("#globe").click(function(){
@@ -470,6 +538,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(1000);
   	$(".film").hide(1000);
     $(".articlesch").show(1000);
+    getnextchal('articlesch', 3) ;
   });
   
   $("#okch").click(function(){
@@ -478,6 +547,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(1000);
   	$(".film").hide(1000);
     $(".articlesch").hide(1000);
+    getnextchal('openchalhide', 4) ;
   });
   
   $("#filmnin").click(function(){
@@ -486,6 +556,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(1000);
   	$(".film").show(1000);
     $(".articlesch").hide(1000);
+    getnextchal('film', 5) ;
   });
   
   $("#tree").click(function(){
@@ -494,6 +565,7 @@ $("#pencil").click(function(){
   	$(".film").hide(1000);
     $(".articlesch").hide(1000);
     $(".idea").show(1000);
+    getnextchal('idea', 6) ;
   });
 	
 		$("#create_idea").click(function(){

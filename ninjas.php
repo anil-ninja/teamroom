@@ -60,20 +60,9 @@ if(!isset($_SESSION['user_id'])){
 	
 	<script>
 	$(window).scroll(function(event) {
-		
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();
-		var dataString = 'chal=10' ;
-			  $.ajax({
-				type: "POST",
-				url: "ajax/get_next.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					$('#panel-cont').append(result);
-					}
-			});	
+		getnextchal('all', 1) ;	
 	}
 }); 
 getallreminders() ; 

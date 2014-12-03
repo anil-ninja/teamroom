@@ -619,7 +619,6 @@ if ($_POST['chal']) {
                     </div>";
     $show = $show . "</div> </div> ";
     }
-
     if (mysqli_error($db_handle)) {
         echo "Failed!";
     } else {
