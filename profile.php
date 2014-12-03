@@ -213,6 +213,10 @@ $obj = new profile($UserName);
             </div>
             <div role="tabpanel" class="row tab-pane" id="tabArticles">
                 <div id="user_articles_content"></div>
+                <div id='next_user_article'>
+                        <p id='home-ch'></p>
+                        <p id='home'></p>
+                    </div>
             </div>
             <div role="tabpanel" class="row tab-pane" id="tabChallanges">
                 <div id="user_challenges_content"></div>
@@ -388,6 +392,22 @@ $("#editprofile").click(function(){
                     success: function(result){
                         //alert(result) ;
                         $('#next_user_chall').append(result);
+                        }
+                });	
+            }
+        });
+        $(window).scroll(function(event) {
+            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+                event.preventDefault();
+                var dataString = 'last_article=3';
+                $.ajax({
+                    type: "POST",
+                    url: "ajax/profile_page_ajax/get_next_user_articles.php",
+                    data: dataString,
+                    cache: false,
+                    success: function(result){
+                        //alert(result) ;
+                        $('#next_user_article').append(result);
                         }
                 });	
             }
