@@ -2,7 +2,7 @@
 <div class="chatboxhead">
 	<div class="chatboxtitle"><?= $projttitle ?></div>
 	<div class="chatboxoptions">
-		<a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth('<?= $projttitle  ?>')">-</a> 
+		<a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth('<?= $projttitle ; ?>')">-</a> 
 	</div>
 	<br clear="all"/>
 </div>
