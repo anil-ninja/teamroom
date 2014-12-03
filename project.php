@@ -107,6 +107,7 @@ include_once 'functions/delete_comment.php';
         <script src="js/ninjas.js"></script>
         <script src="js/project_page.js"></script>
         <script src="js/date_time.js"></script>
+        <script src="js/bootbox.js"></script>
         <!-- jQuery and jQuery UI (REQUIRED) -->
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>

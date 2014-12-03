@@ -50,6 +50,7 @@ $total_members = mysqli_num_rows($teams_member_display);
     <script src="js/bootstrap.js"></script>
     <script src="js/bootswatch.js"></script>
     <script src="js/date_time.js"></script>
+    <script src="js/bootbox.js"></script>
     </head>
 
     <body>

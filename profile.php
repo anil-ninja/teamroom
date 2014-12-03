@@ -336,6 +336,7 @@ $("#editprofile").click(function(){
         <script src="js/chat.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/ninjas.js" type="text/javascript"></script>
+        <script src="js/bootbox.js"></script>
        <script>
 		   function editProfile(fname, lname, email, phone) {
 			   //alert (fname + "," + lname + "," + email + "," + phone);
