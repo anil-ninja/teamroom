@@ -27,6 +27,7 @@ if ($_POST['chal']) {
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											 ORDER BY creation_time DESC LIMIT $a,$b;");
     $show = "";
+    $get_display_ch_stmt_content = "" ;
     $iR = 0;
     while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         $i++;
@@ -98,7 +99,7 @@ if ($_POST['chal']) {
                         </div>";
         // list grp item header for all type chall/article/idea/photo/video
             $get_display_tilte_fname_likes = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$chelangeid."' class='text'><b>" 
-                    .ucfirst($ch_title)."</b></p>
+                    .ucfirst($ch_title)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>
                         <span style= 'color: #808080'>
                 By: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>
                     <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$chelangeid .")'>
@@ -109,13 +110,44 @@ if ($_POST['chal']) {
         $get_display_ch_stmt_content = "</div>                    
                                 <div class='list-group-item'>
                         <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/><br/>";
-    
+    if(isset($_SESSION['user_id'])){
+		if(substr($chelange, 0, 1) != '<') {
+	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+			}
+		else {
+			if (substr($chelange, 0, 4) == ' <br') {
+		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+				}
+			if (substr($chelange, 0, 3) == '<s>') {
+		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+				}
+			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
+			$cha = strstr($chelange, '<br/>' , true) ;
+			if(substr($chelange, 0, 4) == '<img') {
+	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<div class='editbox' style='width : 90%;' id='challenge_pic_".$chelangeid."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
+					}
+			if(substr($chelange, 0, 2) == '<a') {
+	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<div class='editbox' style='width : 90%;' id='challenge_file_".$chelangeid."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
+					}
+			if(substr($chelange, 0, 3) == '<if') {
+	$get_display_ch_stmt_content = $get_display_ch_stmt_content ."<div class='editbox' style='width : 90%;' id='challenge_video_".$chelangeid."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$chelangeid."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
+					<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
+			}
+		}
     if ($ctype == 1) {
         if ($status == 1) {
             $show .= "<div class='list-group challenge'>
-                        <div class='list-group-item'>";
-                        
-    
+                        <div class='list-group-item'>";    
         //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
         //dropdown for delete/edit/span challenge ends here
@@ -123,15 +155,14 @@ if ($_POST['chal']) {
         //    if ($remaintime != "Closed") {
                 $show = $show . "<form method='POST' class='inline-form pull-right'>
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                                 </form>"       ;
                                 //. "<br> ETA : " . $sutime . "<br/>" . $remaintime;
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
                 $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
-
-                    
+                $get_display_ch_stmt_content = "" ;                    
         } 
         if ($status == 2) {
             $show = $show . "<div class='list-group challenge'>
@@ -155,7 +186,8 @@ if ($_POST['chal']) {
             $show = $show . $get_display_tilte_fname_likes. "<br> <hr>Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname ."'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
                                   //  <br/> Time Remaining : " . $remaintimeown ."<br>
-                  $show = $show . $get_display_ch_stmt_content;	
+                  $show = $show . $get_display_ch_stmt_content;
+                  $get_display_ch_stmt_content = "" ;	
         }
         if ($status == 4) {
             $show = $show . "<div class='list-group openchalhide'>
@@ -184,6 +216,7 @@ if ($_POST['chal']) {
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | " . $timecomm ;
                                                 //. "<br/>  ETA Taken : " . $timeo ."
                                 $show = $show. $get_display_ch_stmt_content;
+                                $get_display_ch_stmt_content = "" ;
                 }
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
@@ -204,6 +237,7 @@ if ($_POST['chal']) {
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                 $show = $show . $get_display_ch_stmt_content;
+                $get_display_ch_stmt_content = "" ;
                     }
     }
     if ($ctype == 2) {
@@ -219,13 +253,14 @@ if ($_POST['chal']) {
         //    if ($remaintime != "Closed") {
                 $show = $show . "<form method='POST' class='inline-form pull-right'>
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                                 </form>"       ;
                                 //. "<br> ETA : " . $sutime . "<br/>" . $remaintime;
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
                 $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+                $get_display_ch_stmt_content = "" ;
         } 
         if ($status == 2) {
             $show = $show . "<div class='list-group challenge'>
@@ -251,6 +286,7 @@ if ($_POST['chal']) {
                                         . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
                                     //  <br/> Time Remaining : " . $remaintimeown ."<br>
             $show = $show .$get_display_ch_stmt_content;
+            $get_display_ch_stmt_content = "" ;
                                 
         }
         if ($status == 4) {
@@ -278,7 +314,8 @@ if ($_POST['chal']) {
                 $show = $show .$get_display_tilte_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timecomm ;
                                 //. "<br/>  ETA Taken : " . $timeo ."
-                $show = $show .$get_display_ch_stmt_content;	
+                $show = $show .$get_display_ch_stmt_content;
+                $get_display_ch_stmt_content = "" ;	
         }
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
@@ -298,7 +335,8 @@ if ($_POST['chal']) {
                 $show = $show . $get_display_tilte_fname_likes."At: ".ucfirst($timeopen)."<br><hr>"
                                     .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
 
-                $show = $show .$get_display_ch_stmt_content;           
+                $show = $show .$get_display_ch_stmt_content; 
+                $get_display_ch_stmt_content = "" ;          
         }
     } 
      if ($ctype == 6) {
@@ -321,6 +359,7 @@ if ($_POST['chal']) {
                         
                         $show = $show .$get_display_tilte_fname_likes."At: ".ucfirst($timeopen);
                         $show = $show .$get_display_ch_stmt_content;
+                        $get_display_ch_stmt_content = "" ;
     } 
      if ($ctype == 7) {
         $show = $show . "<div class='list-group articlesch'>
@@ -340,6 +379,7 @@ if ($_POST['chal']) {
                         }
                         $show = $show . "</ul>";
                     $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+                    $get_display_ch_stmt_content = "" ;
     }
     if ($ctype == 8) {
         $show = $show . "<div class='list-group film'>
@@ -359,6 +399,7 @@ if ($_POST['chal']) {
                         }
                         $show = $show . "</ul>";
                         $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+                        $get_display_ch_stmt_content = "" ;
     } 
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
@@ -368,6 +409,7 @@ if ($_POST['chal']) {
         $show = $show . $show_add_dropdown;
     //dropdown for delete/edit/span idea ends here
        $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+       $get_display_ch_stmt_content = "" ;
     } 
     if ($ctype == 3) {  
         if ($status == 1) {
@@ -390,6 +432,7 @@ if ($_POST['chal']) {
                 </form>";
         }
         $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+        $get_display_ch_stmt_content = "" ;
 	}	
 		if ($status == 6) {
         $show = $show . "<div class='list-group film'>
@@ -400,6 +443,7 @@ if ($_POST['chal']) {
         //dropdown for delete/edit/span challenge ends here
 
         $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+        $get_display_ch_stmt_content = "" ;
 	}
         if ($status == 2) {
 			$show = $show . "<div class='list-group challenge'>
@@ -443,6 +487,7 @@ if ($_POST['chal']) {
                     .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>| " . $timfunct;
             }
             $show = $show. $get_display_ch_stmt_content;
+            $get_display_ch_stmt_content = "" ;
         }
         if ($status == 4) {
             $show = $show . "<div class='list-group challenge'>
@@ -497,6 +542,7 @@ if ($_POST['chal']) {
                 }
             }
             $show = $show . $get_display_ch_stmt_content;
+            $get_display_ch_stmt_content = "" ;
         }
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
@@ -536,47 +582,12 @@ if ($_POST['chal']) {
             }
         }
         $show = $show . $get_display_ch_stmt_content;
+        $get_display_ch_stmt_content = "" ;
         }
      }
    /*$show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$chelangeid."' class='text' ><b>" . ucfirst($ch_title) . "</b></p>
 			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
-			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";
-    * 
-    */
-	if(isset($_SESSION['user_id'])){
-		if(substr($chelange, 0, 1) != '<') {
-	$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-			}
-		else {
-			if (substr($chelange, 0, 4) == ' <br') {
-		$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			if (substr($chelange, 0, 3) == '<s>') {
-		$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
-			$cha = strstr($chelange, '<br/>' , true) ;
-			if(substr($chelange, 0, 4) == '<img') {
-	$show = $show . "<div class='editbox' style='width : 90%;' id='challenge_pic_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelange, 0, 2) == '<a') {
-	$show = $show . "<div class='editbox' style='width : 90%;' id='challenge_file_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelange, 0, 3) == '<if') {
-					echo "<div class='editbox' style='width : 90%;' id='challenge_video_".$chelangeid."' >".$cha."</div>
-					<input type='text' class='editbox' id='url_video_".$chelangeid."' placeholder='Add You-tube URL'/><br/><br/>" ;
-					}
-	$show = $show . "<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
-					<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
-					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
-			}
-		}
+			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";    */
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION

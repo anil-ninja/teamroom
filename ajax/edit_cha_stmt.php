@@ -11,7 +11,7 @@ if($_POST['id']){
 	$myqueryRow = mysqli_fetch_array($myquery) ;
 	$stmt = $myqueryRow['stmt'] ;
 	if($video == '') {
-		if(substr($stmt, 0, 3) == '<if') {
+		if(substr($stmt, 0, 1) == '<') {
 			$newstmt = strstr($stmt, '<br/>' , true)."<br/>".$projectsmt ;
 			}
 			else {

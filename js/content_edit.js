@@ -105,8 +105,10 @@ function saveeditedchallenge(ID)  {
 					+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&video='+ challenge ;
 				}
 				else {
-					bootstrap_alert(".alert_placeholder", "Add You-tube Url Only", 5000,"alert-warning");
-					return false ;
+					var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+						+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+					//bootstrap_alert(".alert_placeholder", "Add You-tube Url Only", 5000,"alert-warning");
+					//return false ;
 					}
 			}
 			else {
