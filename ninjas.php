@@ -59,10 +59,15 @@ if(!isset($_SESSION['user_id'])){
 		</div>
 	
 	<script>
+		var getnextflag = 1 ;
 	$(window).scroll(function(event) {
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();
-		getnextchal('all', 1) ;	
+         if(getnextflag == 1) {
+         getnextflag = 0 ;
+         alert(getnextflag) ;
+		getnextchal('all', 1) ; 
+		}
 	}
 }); 
 getallreminders() ; 
@@ -70,6 +75,7 @@ getallreminders() ;
 	<script>
 	$(".text").show();
 	$(".editbox").hide();
+	//setTimeout(function(){alert("hi")}, 100000);
 	</script>
     <script src="js/ninjas.js" type="text/javascript"></script>
     <script src="date.js"></script>

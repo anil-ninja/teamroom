@@ -1,5 +1,4 @@
 <?php
-
 include_once 'functions/delete_comment.php';
 $td1 = "";
 

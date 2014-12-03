@@ -21,10 +21,12 @@ function getnextchal (clas, int) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result) ;
-					$('#panel-cont').append(result);
+					alert(result) ;
+					//$('#panel-cont').append(result);
 					showclass(int);
 					$('.loading').remove();
+					alert(getnextflag) ;
+					getnextflag = 1 ;
 				}
 			});
 		}
