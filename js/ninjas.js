@@ -12,7 +12,7 @@ function getVedioId(str) {
 }
 function getnextchal (clas, int) {
 	var numItems = $('div.'+clas).length;
-	if (numItems < 6 || clas == 'all') {
+	if (numItems < 3 || clas == 'all') {
 	var dataString = 'chal=10' ;
 			  $.ajax({
 				type: "POST",
@@ -23,58 +23,58 @@ function getnextchal (clas, int) {
 					//alert(result) ;
 					$('#panel-cont').append(result);
 					showclass(int);
-					}
+				}
 			});
 		}
 	}
 function showclass(int) {
 	switch(int){
 		case 1:
-			$(".articlesch").show(1000);
-			$(".openchalhide").show(1000);
-			$(".idea").show(1000);
-			$(".film").show(1000);
-			$(".challenge").show(1000);
+			$(".articlesch").show(100);
+			$(".openchalhide").show(100);
+			$(".idea").show(100);
+			$(".film").show(100);
+			$(".challenge").show(100);
 			break;
 			
 		case 2:
-			$(".articlesch").hide(1000);
-			$(".openchalhide").hide(1000);
-			$(".idea").hide(1000);
-			$(".film").hide(1000);
-			$(".challenge").show(1000);
+			$(".articlesch").hide(100);
+			$(".openchalhide").hide(100);
+			$(".idea").hide(100);
+			$(".film").hide(100);
+			$(".challenge").show(100);
 			break;
 			
 		case 3:
-			$(".challenge").hide(1000);
-			$(".openchalhide").hide(1000);
-			$(".idea").hide(1000);
-			$(".film").hide(1000);
-			$(".articlesch").show(1000);
+			$(".challenge").hide(100);
+			$(".openchalhide").hide(100);
+			$(".idea").hide(100);
+			$(".film").hide(100);
+			$(".articlesch").show(100);
 			break;
 			
 		case 4:
-			$(".challenge").hide(1000);
-			$(".openchalhide").show(1000);
-			$(".idea").hide(1000);
-			$(".film").hide(1000);
-			$(".articlesch").hide(1000);
+			$(".challenge").hide(100);
+			$(".openchalhide").show(100);
+			$(".idea").hide(100);
+			$(".film").hide(100);
+			$(".articlesch").hide(100);
 			break;
 			
 		case 5:
-			$(".challenge").hide(1000);
-			$(".openchalhide").hide(1000);
-			$(".idea").hide(1000);
-			$(".film").show(1000);
-			$(".articlesch").hide(1000);
+			$(".challenge").hide(100);
+			$(".openchalhide").hide(100);
+			$(".idea").hide(100);
+			$(".film").show(100);
+			$(".articlesch").hide(100);
 			break;
 			
 		case 6:
-			$(".challenge").hide(1000);
-			$(".openchalhide").hide(1000);
-			$(".film").hide(1000);
-			$(".articlesch").hide(1000);
-			$(".idea").show(1000);
+			$(".challenge").hide(100);
+			$(".openchalhide").hide(100);
+			$(".film").hide(100);
+			$(".articlesch").hide(100);
+			$(".idea").show(100);
 			break;
 		}
 	}
@@ -515,56 +515,56 @@ function bootstrap_alert(elem, message, timeout,type) {
 		//allPanels
 		$("#allPanels").click(function(){
 	 // alert("I am pencil!!! :)");
-  	$(".articlesch").show(1000);
-  	$(".openchalhide").show(1000);
-  	$(".idea").show(1000);
-  	$(".film").show(1000);
-    $(".challenge").show(1000);
+  	$(".articlesch").show(100);
+  	$(".openchalhide").show(100);
+  	$(".idea").show(100);
+  	$(".film").show(100);
+    $(".challenge").show(100);
   });
 
 $("#pencil").click(function(){
 	 // alert("I am pencil!!! :)");
-  	$(".articlesch").hide(1000);
-  	$(".openchalhide").hide(1000);
-  	$(".idea").hide(1000);
-  	$(".film").hide(1000);
-    $(".challenge").show(1000);
+  	$(".articlesch").hide(100);
+  	$(".openchalhide").hide(100);
+  	$(".idea").hide(100);
+  	$(".film").hide(100);
+    $(".challenge").show(100);
     getnextchal('challenge',2) ;
   });
 
   $("#globe").click(function(){
-  	$(".challenge").hide(1000);
-  	$(".openchalhide").hide(1000);
-  	$(".idea").hide(1000);
-  	$(".film").hide(1000);
-    $(".articlesch").show(1000);
+  	$(".challenge").hide(100);
+  	$(".openchalhide").hide(100);
+  	$(".idea").hide(100);
+  	$(".film").hide(100);
+    $(".articlesch").show(100);
     getnextchal('articlesch', 3) ;
   });
   
   $("#okch").click(function(){
-  	$(".challenge").hide(1000);
-  	$(".openchalhide").show(1000);
-  	$(".idea").hide(1000);
-  	$(".film").hide(1000);
-    $(".articlesch").hide(1000);
+  	$(".challenge").hide(100);
+  	$(".openchalhide").show(100);
+  	$(".idea").hide(100);
+  	$(".film").hide(100);
+    $(".articlesch").hide(100);
     getnextchal('openchalhide', 4) ;
   });
   
   $("#filmnin").click(function(){
-  	$(".challenge").hide(1000);
-  	$(".openchalhide").hide(1000);
-  	$(".idea").hide(1000);
-  	$(".film").show(1000);
-    $(".articlesch").hide(1000);
+  	$(".challenge").hide(100);
+  	$(".openchalhide").hide(100);
+  	$(".idea").hide(100);
+  	$(".film").show(100);
+    $(".articlesch").hide(100);
     getnextchal('film', 5) ;
   });
   
   $("#tree").click(function(){
-  	$(".challenge").hide(1000);
-  	$(".openchalhide").hide(1000);
-  	$(".film").hide(1000);
-    $(".articlesch").hide(1000);
-    $(".idea").show(1000);
+  	$(".challenge").hide(100);
+  	$(".openchalhide").hide(100);
+  	$(".film").hide(100);
+    $(".articlesch").hide(100);
+    $(".idea").show(100);
     getnextchal('idea', 6) ;
   });
 	

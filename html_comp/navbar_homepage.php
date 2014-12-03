@@ -170,11 +170,11 @@ else {
   </div>
   <script>
   function confLogout(){
-		   bootbox.confirm("Are you sure?", function(result) {
+		   bootbox.confirm("Meet You Soon !", function(result) {
 		//Example.show("Confirm result: "+result);
 		if(result){
 			//call logout wall
-			 window.location='<?=$linktologout ; ?>'+'/logout.php?url='+'<?=$actual_link ; ?>' ;
+			 window.location='http://localhost/Bank_test/reso/teamroom/logout.php?url='+'<?=$actual_link ; ?>' ;
 			}
 		});
 	} ;

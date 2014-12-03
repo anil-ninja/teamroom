@@ -3,17 +3,14 @@
 include_once 'functions/delete_comment.php';
 $td1 = "";
 
-$open_chalange_of_project = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.challenge_title, b.first_name, b.last_name from challenges as a join user_info as b 
-                                                        WHERE a.project_id = '$team_project_id' AND (a.challenge_type = '1' or a.challenge_type = '2') and a.challenge_status = '1'
-                                                        and a.user_id = b.user_id ;");
+$open_chalange_of_project = mysqli_query($db_handle, "select challenge_id, challenge_title from challenges WHERE project_id = '$team_project_id' 
+														AND (challenge_type = '1' or challenge_type = '2') and challenge_status = '1' ;");
 while ($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_project)) {
-    $first_name1 = $open_chalange_of_projectrow['first_name'];
-    $last_name2 = $open_chalange_of_projectrow['last_name'];
+    //$first_name1 = $open_chalange_of_projectrow['first_name'];
+    //$last_name2 = $open_chalange_of_projectrow['last_name'];
     $challenge_id11 = $open_chalange_of_projectrow['challenge_id'];
     $challenge_title11 = $open_chalange_of_projectrow['challenge_title'];
-    $td1 .= "<p style='font-size: 10px;'><span class='color strong'><a href ='profile.php?username=".$username2."'>"
-                    .ucfirst($first_name1)." ".ucfirst($last_name2)."</a></span></p>
-                        <a href='challengesOpen.php?challenge_id=$challenge_id11'>" 
+    $td1 .= "<a href='challengesOpen.php?challenge_id=$challenge_id11'>" 
                     .ucfirst($challenge_title11)."</a><br/><br>";
 }
 
