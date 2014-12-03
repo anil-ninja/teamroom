@@ -137,11 +137,14 @@ function dislike(Id) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result=='Posted succesfully!'){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					location.reload();
 					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+						location.reload();
+						}
 				}
 			}); 
 		}		
@@ -224,38 +227,6 @@ function convertSpecialChar(str){
 		});
 	});
 	$(document).ready(function(){
-		$("#response").click(function(){
-			$("#response").attr('disabled','disabled');
-			var notes = convertSpecialChar($("#pr_resp").val()) ;
-			var id = $("#challenge_id").val() ;
-			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&id='+ id ;
-			//alert(dataString);
-			if(notes==''){
-				bootstrap_alert(".alert_placeholder", "comment can not be empty", 5000,"alert-warning");
-				$("#response").removeAttr('disabled');
-				return false ;
-			}
-			else
-			{
-			// AJAX Code To Submit Form.
-			$.ajax({
-				type: "POST",
-				url: "ajax/submit_project_challenge_response.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Comment posted succesfully!'){
-						$("#challenge_of_pr_resp").val("");
-						location.reload();
-					}
-				}
-			});
-			}
-		$("#response").removeAttr('disabled');
-				return false ;
-		});
 		     $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);
 });	
