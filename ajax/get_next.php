@@ -307,7 +307,9 @@ if ($_POST['chal']) {
      if ($ctype == 6) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item'>
-                        <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                                    <div class='list-group-item pull-right'>
+                                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                        <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                         if($ch_id == $user_id) {
                             $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
@@ -317,7 +319,7 @@ if ($_POST['chal']) {
                                         <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
                                     </form></li>";
                         }
-                        $show = $show . "</ul>";
+                        $show = $show . "</ul></div>";
                         
                         $show = $show .$get_display_tilte_fname_likes."At: ".ucfirst($timeopen);
                         $show = $show .$get_display_ch_stmt_content;
@@ -326,7 +328,9 @@ if ($_POST['chal']) {
      if ($ctype == 7) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item'>
-                                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                                    <div class='list-group-item pull-right'>
+                                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                        <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                         if($ch_id == $user_id) {
                             $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
@@ -336,14 +340,16 @@ if ($_POST['chal']) {
                                         <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
                                     </form></li>";
                         }
-                        $show = $show . "</ul>";
+                        $show = $show . "</ul></div>";
                     $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
                     $get_display_ch_stmt_content = "" ;
     }
     if ($ctype == 8) {
         $show = $show . "<div class='list-group film'>
 				<div class='list-group-item'>
-                                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                                    <div class='list-group-item pull-right'>
+                                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                        <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                         if($ch_id == $user_id) {
                             $show = $show . "<li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
                                 <li><button class='btn-link' cID='".$chelangeid."' onclick='delArticle(".$chelangeid.");'>Delete</button></li>";
@@ -353,7 +359,7 @@ if ($_POST['chal']) {
                                         <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
                                     </form></li>";
                         }
-                        $show = $show . "</ul>";
+                        $show = $show . "</ul></div>";
                         $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 
