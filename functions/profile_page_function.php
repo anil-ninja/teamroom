@@ -64,20 +64,19 @@ function user_challenges ($db_handle, $user_IDF) {
             $user_session_id = ($_SESSION['user_id']);
             dropDown_challenge($db_handle, $challenge_id, $user_session_id, "");
         }
-        echo "<div class='pull-left lh-fix'>     
-                <span class='glyphicon glyphicon-question-sign'>
-                <img src='uploads/profilePictures/$chall_username.jpg'  onError=this.src='img/default.gif' 
-                style='width: 50px; height: 50px'></span>&nbsp &nbsp
-            </div>
-            <span class='color strong'><a href ='profile.php?username=" . $chall_username . "'>"
-                .ucfirst($chall_firstname) . '&nbsp' . ucfirst($chall_lastname) . " </a></span><br/>" 
-                .$chall_creation."<br/><br/>
-            </div>";
-	echo "<div class='list-group-item'>
-                <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'><strong>
-                        <p align='center'>"                          
-                        .ucfirst($challenge_title)."</p></strong></a><br>
-                ".$challenge_stmt."<br><br>";
+        echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
+                    .ucfirst($challenge_title)."</a></b></p>
+                
+                <span class='glyphicon glyphicon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
+                By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$challenge_id .")'>
+                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$challenge_id .")'>
+                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
+                </div>
+                <div class='list-group-item'>
+            <br/>".$challenge_stmt."</span><br/><br/>";
          comments_all_type_challenges ($db_handle, $challenge_id);
          echo "</div>";
     }
