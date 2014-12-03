@@ -232,13 +232,13 @@ function project_comments($db_handle, $project_id) {
             </div>";
     if (isset($_SESSION['user_id'])) {
     echo "<form method='POST' class='inline-form'>
-            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Comment' />
+            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Want to know your comment....' />
             <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
         </form>";
     } 
     else {
         echo "<form action='' method='POST' class='inline-form'>
-                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
+                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
                     <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
                 </a>
@@ -279,7 +279,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
-                             placeholder='Whats on your mind about this'/>
+                             placeholder='Want to know your comment....'/>
                             <button type='submit' class='btn-primary btn-sm' onclick='comment(".$challenge_id.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                     </div>";
     echo "</div>";
