@@ -42,7 +42,7 @@ if ($_POST['chal']) {
     $status = $open_chalangerow['challenge_status'];
     $times = $open_chalangerow['creation_time'];
     $timefunction = date("j F, g:i a", strtotime($times));
-    $timeopen = $open_chalangerow['challenge_open_time'];
+    $timeopen = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_open_time'])));
     $sutime = eta($ETA);
     $remaintime = remaining_time($times, $ETA);
     $ownedby = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, a.time, b.first_name, b.last_name,b.username
@@ -96,30 +96,30 @@ if ($_POST['chal']) {
                                 } 
                         $show_add_dropdown = $show_add_dropdown . "</ul>
                         </div>";
+        // list grp item header for all type chall/article/idea/photo/video
+            $get_display_tilte_fname_likes = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$chelangeid."' class='text'><b>" 
+                    .ucfirst($ch_title)."</b></p>
+                        <span style= 'color: #808080'>
+                By: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$chelangeid .")'>
+                        <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'>
+                        <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>";
+        // list grp item stmt content for all type chall/article/idea/photo/video
+        $get_display_ch_stmt_content = "</div>                    
+                                <div class='list-group-item'>
+                        <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/><br/>";
     
     if ($ctype == 1) {
         if ($status == 1) {
             $show .= "<div class='list-group challenge'>
-                        <div class='list-group-item'>
-                        <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                            <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-question-sign'></span>
-                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>
-                            <div style='line-height: 16.50px;'>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>";
+                        <div class='list-group-item'>";
+                        
     
-//dropdown for delete/edit/span challenge starts
+        //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
         //dropdown for delete/edit/span challenge ends here
 
-            
         //    if ($remaintime != "Closed") {
                 $show = $show . "<form method='POST' class='inline-form pull-right'>
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
@@ -129,80 +129,38 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                    $show = $show . "<br/>" . $timefunction."<br/><br/></div>
-                    </div></div></div>";
+                $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+
+                    
         } 
         if ($status == 2) {
             $show = $show . "<div class='list-group challenge'>
-                    <div class='list-group-item' >
-                    <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                        <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-question-sign'></span>
-                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <div style='line-height: 16.50px;'>
-                            <div class='row'>
-                                <div class='col-md-3'>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-										<br>" . $timefunction . "<br/><br/>
-                                </div>
-                                <div class='col-md-5'>    
-                                    Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
-                                    //<br/> Time Remaining : " . $remaintimeown ."<br>
-               $show = $show . "</div>";
-          if($ownuser == $user_id) {			
-			$show = $show . " <div class='col-md-2'>  
-                                  <input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>
-                            </div>";
-				}
-                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
-                                    $show = $show . "<div class='list-group-item pull-right'>
-                                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                                <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
-                                                <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
-                                            </ul>
-                                        </div>";                    
-                                }
-			$show = $show . "</div></div></div>
-                            </div>
-                        </div>" ;	
+                    <div class='list-group-item' >";
+                                   
+        if($ownuser == $user_id) {			
+            $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
+        }
+            $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+            $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+            $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+            if($challenge_dropdown_userID == $user_id) {
+                $show = $show . "<div class='list-group-item pull-right'>
+                                    <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                    <ul class='dropdown-menu' aria-labelledby='dropdown'>
+                                        <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
+                                        <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
+                                    </ul>
+                                </div>";                    
+            }
+            $show = $show . $get_display_tilte_fname_likes. "<br> <hr>Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname ."'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
+                                  //  <br/> Time Remaining : " . $remaintimeown ."<br>
+                  $show = $show . $get_display_ch_stmt_content;	
         }
         if ($status == 4) {
             $show = $show . "<div class='list-group openchalhide'>
-                    <div class='list-group-item' >
-                    <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                        <div class='pull-left lh-fix' >     
-                            <span class='glyphicon glyphicon-flag'></span>
-                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <div class='row' style='line-height: 16.50px;'>
-                            <div class='col-md-3'>
-                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
-                            </div>
-                            <div class='col-md-5'>
-                                Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
-                                //. "<br/>  ETA Taken : " . $timeo ."
-            $show = $show . "</div>
-                            <div class='col-md-2 pull-right'>";
-          
+                    <div class='list-group-item'>";
+                    
             $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                                 $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                                 $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
@@ -221,35 +179,15 @@ if ($_POST['chal']) {
                                         <button type='submit' class='btn-primary' name='closechal'>Close</button>
                                     </form>";
                                 }
-                $show = $show . "</div></div></div>
-                            </div>
-                        </div>" ;	
-        }
+                                
+                                $show = $show.$get_display_tilte_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | " . $timecomm ;
+                                                //. "<br/>  ETA Taken : " . $timeo ."
+                                $show = $show. $get_display_ch_stmt_content;
+                }
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
-                    <div class='list-group-item' >
-                    <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                        <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-flag'></span>
-                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <div style='line-height: 16.50px;'>
-                            <div class='row'>
-                                <div class='col-md-3'>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction."<br/><br/>" ;
-                                    //. "<br/> ETA Given : " . $timeo . "
-             $show = $show . "</div>
-                                <div class='col-md-5'>
-                                    Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
-                                    //. "<br/>  ETA Taken : " . $timetakennin . "
-             $show = $show . "</div>";
+                    <div class='list-group-item'>";
                                 $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                                 $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                                 $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
@@ -262,29 +200,17 @@ if ($_POST['chal']) {
                                                         </ul>
                                                     </div>";                    
                                 }
-                         $show = $show . "</div>
-                        </div>
-                    </div></div></div>" ;	
-            }
+            $show = $show .  $get_display_tilte_fname_likes. "<br> <hr>Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
+                                    //. "<br/> ETA Taken : " . $timetakennin . "
+                $show = $show . $get_display_ch_stmt_content;
+                    }
     }
     if ($ctype == 2) {
         if ($status == 1) {
             $show .= "<div class='list-group challenge'>
-                        <div class='list-group-item'>
-                        <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                            <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-question-sign'></span>
-                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>
-                            <div style='line-height: 16.50px;'>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>";
-    
+                        <div class='list-group-item'>";
+                        
 //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
         //dropdown for delete/edit/span challenge ends here
@@ -299,128 +225,39 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                    $show = $show . "<br/>" . $timefunction."<br/><br/></div>
-                    </div></div></div>";
+                $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
         } 
         if ($status == 2) {
             $show = $show . "<div class='list-group challenge'>
-                    <div class='list-group-item' >
-                    <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                        <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-question-sign'></span>
-                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <div style='line-height: 16.50px;'>
-                            <div class='row'>
-                                <div class='col-md-3'>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-										<br>" . $timefunction . "<br/><br/>
-                                </div>
-                                <div class='col-md-5'>    
-                                    Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
-                                    //<br/> Time Remaining : " . $remaintimeown ."<br>
-               $show = $show . "</div>";
-          if($ownuser == $user_id) {			
-			$show = $show . " <div class='col-md-2'>  
-                                  <input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>
-                            </div>";
-				}
-                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
-                                    $show = $show . "<div class='list-group-item pull-right'>
-                                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                                <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
-                                                <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
-                                            </ul>
-                                        </div>";                    
-                                }
-			$show = $show . "</div>
-                            </div>
-                        </div></div></div>" ;	
+                    <div class='list-group-item'>";
+                    
+        if($ownuser == $user_id) {			
+            $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
+        }
+        
+        $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+        if($challenge_dropdown_userID == $user_id) {
+            $show = $show . "<div class='list-group-item pull-right'>
+                                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                <ul class='dropdown-menu' aria-labelledby='dropdown'>
+                                    <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
+                                    <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
+                                </ul>
+                            </div>";                    
+        }
+            $show = $show . $get_display_tilte_fname_likes. "<br> <hr> Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                        . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
+                                    //  <br/> Time Remaining : " . $remaintimeown ."<br>
+            $show = $show .$get_display_ch_stmt_content;
+                                
         }
         if ($status == 4) {
             $show = $show . "<div class='list-group openchalhide'>
-                    <div class='list-group-item' >
-                    <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                        <div class='pull-left lh-fix' >     
-                            <span class='glyphicon glyphicon-flag'></span>
-                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <div class='row' style='line-height: 16.50px;'>
-                            <div class='col-md-3'>
-                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
-                            </div>
-                            <div class='col-md-5'>
-                                Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
-                                //. "<br/>  ETA Taken : " . $timeo ."
-            $show = $show . "</div>
-                            <div class='col-md-2 pull-right'>";
-          
+                    <div class='list-group-item'>";
+                    
             $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
-                                $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                                $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                                if($challenge_dropdown_userID == $user_id) {
-                                    $show = $show . "<div class='list-group-item pull-right'>
-                                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                                <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
-                                                <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
-                                            </ul>
-                                        </div>";                    
-                                }
-                                if($ch_id == $user_id) {			
-                    $show = $show . " <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
-                                        <input type='hidden' name='cid' value='" . $chelangeid . "'/>
-                                        <button type='submit' class='btn-primary' name='closechal'>Close</button>
-                                    </form>";
-                                }
-                $show = $show . "</div>
-                            </div>
-                        </div></div></div>" ;	
-        }
-        if ($status == 5) {
-            $show = $show . "<div class='list-group openchalhide'>
-                    <div class='list-group-item' >
-                    <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                        <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-flag'></span>
-                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <div style='line-height: 16.50px;'>
-                            <div class='row'>
-                                <div class='col-md-3'>
-                                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                    . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br> " . $timefunction."<br/><br/>" ;
-                                    //. "<br/> ETA Given : " . $timeo . "
-             $show = $show . "</div>
-                                <div class='col-md-5'>
-                                    Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
-                                    //. "<br/>  ETA Taken : " . $timetakennin . "
-             $show = $show . "</div>";
-                                $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                                 $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                                 $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                                 if($challenge_dropdown_userID == $user_id) {
@@ -432,29 +269,43 @@ if ($_POST['chal']) {
                                                         </ul>
                                                     </div>";                    
                                 }
-                         $show = $show . "</div>
-                        </div>
-                    </div></div></div>" ;	
-            }
-    $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;'>Posted in <b>" . ucfirst($timeopen) . "</b></p></div>" ;
+                                if($ch_id == $user_id) {			
+                    $show = $show . " <form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
+                                        <input type='hidden' name='cid' value='" . $chelangeid . "'/>
+                                        <button type='submit' class='btn-primary' name='closechal'>Close</button>
+                                    </form>";
+                                }
+                $show = $show .$get_display_tilte_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timecomm ;
+                                //. "<br/>  ETA Taken : " . $timeo ."
+                $show = $show .$get_display_ch_stmt_content;	
+        }
+        if ($status == 5) {
+            $show = $show . "<div class='list-group openchalhide'>
+                    <div class='list-group-item'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+                    $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                    $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                    if($challenge_dropdown_userID == $user_id) {
+                        $show = $show . "<div class='list-group-item pull-right'>
+                                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
+                                                <li><button class='btn-link' onclick='edit_content(".$chelangeid.")'>Edit</button></li>
+                                                <li><button class='btn-link' cID='".$chelangeid."' onclick='delChallenge(".$chelangeid.");'>Delete</button></li>
+                                            </ul>
+                                        </div>";                    
+                    }
+                $show = $show . $get_display_tilte_fname_likes."At: ".ucfirst($timeopen)."<br><hr>"
+                                    .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
+
+                $show = $show .$get_display_ch_stmt_content;           
+        }
     } 
      if ($ctype == 6) {
         $show = $show . "<div class='list-group articlesch'>
-				<div class='list-group-item' style='line-height: 24.50px;'>
-				<div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                                    <div class='pull-left lh-fix'>     
-                                        <span class='glyphicon glyphicon-book'></span>
-                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                    </div>
-                           <div class='pull-right list-group-item'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                                <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
+				<div class='list-group-item'>
+                        <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                        $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                         $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                         if($challenge_dropdown_userID == $user_id) {
@@ -466,29 +317,14 @@ if ($_POST['chal']) {
                                         <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
                                     </form></li>";
                         }
-                        $show = $show . "</ul>
-                        </div>
-                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                            <br> " . $timefunction . "<br/><br/>
-                        </div></div></div>";
-    $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;'>Posted in <b>" . ucfirst($timeopen) . "</b></p></div>" ;
+                        $show = $show . "</ul>";
+                        
+                        $show = $show .$get_display_tilte_fname_likes."At: ".ucfirst($timeopen);
+                        $show = $show .$get_display_ch_stmt_content;
     } 
      if ($ctype == 7) {
         $show = $show . "<div class='list-group articlesch'>
-				<div class='list-group-item' style='line-height: 24.50px;'>
-				<div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                                    <div class='pull-left lh-fix'>     
-                                        <span class='glyphicon glyphicon-book'></span>
-                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                    </div>
-                           <div class='pull-right list-group-item'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+				<div class='list-group-item'>
                                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                     $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
@@ -502,28 +338,12 @@ if ($_POST['chal']) {
                                         <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
                                     </form></li>";
                         }
-                        $show = $show . "</ul>
-                        </div>
-                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                            <br> " . $timefunction . "<br/><br/>
-                        </div></div></div>";
+                        $show = $show . "</ul>";
+                    $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
     }
     if ($ctype == 8) {
         $show = $show . "<div class='list-group film'>
-				<div class='list-group-item' style='line-height: 24.50px;'>
-				<div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                                    <div class='pull-left lh-fix'>     
-                                        <span class='glyphicon glyphicon-film'></span>
-                                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                    </div>
-                           <div class='pull-right list-group-item'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+				<div class='list-group-item'>
                                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                     $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$chelangeid' AND user_id='$user_id';"));
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
@@ -537,43 +357,22 @@ if ($_POST['chal']) {
                                         <button type='submit' name='pr_spem' value='".$chelangeid."' class='btn-link' >Report Spam</button>
                                     </form></li>";
                         }
-                        $show = $show . "</ul>
-                        </div>
-                            <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span>
-                            <br> " . $timefunction . "<br/><br/>
-                        </div></div></div>";
+                        $show = $show . "</ul>";
+                        $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
     } 
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
-                        <div class='list-group-item' style='line-height: 24.50px;'></span>
-                        <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>
-                            <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-flash'></span>
-                                <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>";
+                        <div class='list-group-item'>";
+                        
     //dropdown for delete/edit/span idea starts here
         $show = $show . $show_add_dropdown;
     //dropdown for delete/edit/span idea ends here
-        $show = $show . "<span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br>" . $timefunction . "<br/><br/>
-                             </div></div></div>";
+       $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
     } 
     if ($ctype == 3) {  
-		if ($status == 1) {
+        if ($status == 1) {
         $show = $show . "<div class='list-group challenge'>
-                <div class='list-group-item'>
-                <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>";
+                <div class='list-group-item'>";
             //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
                     //dropdown for delete/edit/span challenge ends here
@@ -583,52 +382,29 @@ if ($_POST['chal']) {
                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
                     <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                 </form>" ;
-			}
+        }
         else {
             $show = $show . "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really Close Challenge !!!')\">
                     <input type='hidden' name='cid' value='" . $chelangeid . "'/>
                     <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                 </form>";
         }
-        $show = $show ."<div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-question-sign'></span>
-                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>
-                    </div>
-                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>"
-                        .$timefunction."<br/><br/>
-            </div></div></div>";
+        $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
 	}	
 		if ($status == 6) {
         $show = $show . "<div class='list-group film'>
-                <div class='list-group-item'>
-                <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>";
+                <div class='list-group-item'>";
+                
         //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . "<div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-picture'></span>
-                            <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                            .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>".$timefunction."<br/><br/>
-                </div></div></div>";
+        $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
 	}
         if ($status == 2) {
 			$show = $show . "<div class='list-group challenge'>
-							<div class='list-group-item' >
-							<div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>";
+                                            <div class='list-group-item'>";
+							
                             //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
                     //dropdown for delete/edit/span challenge ends here
@@ -648,15 +424,9 @@ if ($_POST['chal']) {
                                                 <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                                             </form>";
                         }
-               $show = $show . "<div class='pull-left lh-fix'>     
-                                    <span class='glyphicon glyphicon-question-sign'></span>
-                                    <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                </div>
-                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                        .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>"
-                       .$timefunction."<br/><br>
-                </div></div></div>";
-            $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
+               $show = $show . $get_display_tilte_fname_likes;
+               
+               $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
                 $owtime = $ownedbrow['ownership_creation'];
@@ -664,28 +434,23 @@ if ($_POST['chal']) {
                 $owfname = $ownedbrow['first_name'];
                 $owlname = $ownedbrow['last_name'];
                 $owname = $ownedbrow['username'];
-                $show = $show . "<div class='list-group-item'>
-                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
+                $show = $show . "<hr>";
+                           
                 if ($ownedbrow['user_id'] == $user_id ) {
                     $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
                 }
-                $show = $show . "<br/>".$timefunction."<br/><br/></div>";
+                $show = $show . "Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                    .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>| " . $timfunct;
             }
+            $show = $show. $get_display_ch_stmt_content;
         }
         if ($status == 4) {
             $show = $show . "<div class='list-group challenge'>
-            <div class='list-group-item'>
-            <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>";
-                //dropdown for delete/edit/span challenge starts
-            
+            <div class='list-group-item'>";
+    
+    //dropdown for delete/edit/span challenge starts
         $show = $show .$show_add_dropdown ;
-                    //dropdown for delete/edit/span challenge ends here
+    //dropdown for delete/edit/span challenge ends here
 
                 $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                 if ($ch_id != $user_id ) {
@@ -702,15 +467,9 @@ if ($_POST['chal']) {
                                         <button type='submit' class='btn-primary' name='closechallenge'>Close</button>
                                     </form>";
                 }
-                $show = $show . "<div class='pull-left lh-fix'>     
-                                    <span class='glyphicon glyphicon-question-sign'></span>
-                                    <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                </div>
-                                <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-                                .ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>"
-                                .$timefunction."<br/><br/>
-            </div></div></div>";
-            $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
+                $show = $show .$get_display_tilte_fname_likes;
+                        
+                $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
                 $owtime = $ownedbrow['ownership_creation'];
@@ -726,42 +485,28 @@ if ($_POST['chal']) {
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
                 if  ($owlstatus==1){
-                    $show = $show . "<div class='list-group-item'>";
+                    $show = $show . "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>| ".$timfunct;
                     if ($ownedbrow['user_id'] == $user_id ) {
-                        $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
+                        $show = $show . "<br><hr><input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
                     }
-                    $show = $show . "Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                    . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct."
-                    </div>";
                 }
                 if  ($owlstatus==2){
-                    $show = $show . "<div class='list-group-item'>
-                                Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                    . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit ;
-                    //." and Time Taken : ".$timetakennin."
-                    $show = $show . "</div>";
+                    $show = $show . "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span> | " . $timfunct." | Submitted: " .$owtimesubmit ;
                 }
             }
+            $show = $show . $get_display_ch_stmt_content;
         }
         if ($status == 5) {
             $show = $show . "<div class='list-group openchalhide'>
-                <div class='list-group-item' >
-                <div class='row'>
-                        <div class='col-md-1 pull-left' style='padding-right: 0px; padding-left: 0px; padding-top: 7px;'>
-                            <span class='glyphicon glyphicon-hand-up pull-left' style='cursor: pointer;' onclick='like(".$chelangeid .")'><input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span><br/>
-                            <span class='glyphicon glyphicon-hand-down pull-left' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'><input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        </div>    
-                        <div class='col-md-11'>";
+                                <div class='list-group-item'>";
                 //dropdown for delete/edit/span challenge starts
         $show = $show . $show_add_dropdown;
                     //dropdown for delete/edit/span challenge ends here
 
-              $show = $show . "<div class='pull-left lh-fix'>     
-                        <span class='glyphicon glyphicon-flag'></flag>
-                        <img src='uploads/profilePictures/$username_ch_ninjas.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                    </div>
-                    <span class='color strong'><a href ='profile.php?username=" . $username_ch_ninjas . "'>"
-        . ucfirst($frstname) . '&nbsp' . ucfirst($lstname) . " </a></span><br/>" . $timefunction."<br/><br/></div></div></div>";
+              $show = $show . $get_display_tilte_fname_likes;
+            
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
             while ($ownedbrow = mysqli_fetch_array($ownedb)) {
@@ -777,28 +522,27 @@ if ($_POST['chal']) {
 				$endtimen = strtotime($owtimesub) ;
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
-              if  ($owlstatus==1){
-                $show = $show . "<div class='list-group-item'>
-                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span><br/>" . $timfunct;
+            if  ($owlstatus==1){
+                $show = $show . "Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | " . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
                     $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
                 }
-                $show = $show . "</div>";
-			}
-			 if  ($owlstatus==2){
-                $show = $show . "<div class='list-group-item'>
-                            Owned By  <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> Submitted on : " .$owtimesubmit ;
+            }
+            if  ($owlstatus==2){
+                $show = $show . "Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span> | ".$timfunct."| Submitted: " .$owtimesubmit ;
                 //." and Time  Taken : ".$timetakennin."
-                $show = $show . "</div>";
-			}
             }
         }
+        $show = $show . $get_display_ch_stmt_content;
+        }
      }
-   $show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$chelangeid."' class='text' ><b>" . ucfirst($ch_title) . "</b></p>
+   /*$show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$chelangeid."' class='text' ><b>" . ucfirst($ch_title) . "</b></p>
 			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
-			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>" ;
+			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";
+    * 
+    */
 	if(isset($_SESSION['user_id'])){
 		if(substr($chelange, 0, 1) != '<') {
 	$show = $show . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
@@ -852,6 +596,7 @@ if ($_POST['chal']) {
         $comment_id = $commenterRow['response_ch_id'];
         $challenge_ID = $commenterRow['challenge_id'];
         $username_comment_ninjas = $commenterRow['username'];
+        $comment_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt'])));
         $show = $show . "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
@@ -859,7 +604,7 @@ if ($_POST['chal']) {
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
-						&nbsp&nbsp&nbsp" . $commenterRow['stmt'];
+						&nbsp&nbsp&nbsp" .$comment_stmt ;
         //delete comment dropdown chall function is not called due to function call witihin concatination string and then further concatenated to $show
         $show = $show . "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
