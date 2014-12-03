@@ -6,9 +6,7 @@ if($_POST['proch']){
 	$user_id = $_SESSION['user_id'];
 	$p_id = $_SESSION['project_id'];
 	$limitpr = $_SESSION['lastpr'];
-	
 	$a = (int)$limitpr ;
-	
 	$b = $a+5;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
                                     a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
@@ -443,7 +441,14 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
 
+<<<<<<< HEAD
+									$challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$idc' AND user_id='$user_id';"));
+                                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
+                                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
+                                    if($challenge_dropdown_comment_userID == $user_id) {
+=======
                             if($comment_user_id == $user_id) {
+>>>>>>> c9ed609de3a8871d6fa2bf2bd2c0128e58491ec4
                     $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                                      <li><button class='btn-link' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete</button></li>";
                                     } 
@@ -460,7 +465,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 			</div> 
                     </div>";
 		}
-		$show = $show . "<div class='comments clearfix'>
+		$show = $show . "<div class='comments_".$id_task."'></div><div class='comments clearfix'>
                         <div class='pull-left'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
                         </div>

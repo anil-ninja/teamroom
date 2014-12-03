@@ -21,10 +21,11 @@ function comment(ID) {
 						data: dataString,
 						cache: false,
 						success: function(result){
-							//alert(result) ;
-							if(result== 'Posted succesfully!'){
-							location.reload();
+							var notice = result.split("+") ;
+							//alert(notice['1']);
+							if(notice['1']== 'Posted succesfully!'){
 							$("#own_ch_response_"+ID).val('') ;
+							$('.comments_'+ID).append(notice['0']);
 							}
 						}
 					});
@@ -44,13 +45,14 @@ function comment_project (ID) {
                 data: dataString,
                 cache: false,
                 success: function(result){
-                        //alert(result) ;
-                        if(result== 'Posted succesfully!'){
-                            location.reload();
-                            $("#pr_resp_"+ID).val('') ;
-                        }
-                }
-        });
+                        var notice = result.split("+") ;
+							//alert(notice['1']);
+							if(notice['1']== 'Posted succesfully!'){
+							$("#own_ch_response_"+ID).val('') ;
+							$('.comments_'+ID).append(notice['0']);
+							}
+						}
+			});
     }
 };
 function accept_pub(ID){

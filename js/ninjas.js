@@ -23,7 +23,6 @@ function getnextchal (clas, int) {
 				success: function(result){
 					//alert(result) ;
 					$('#panel-cont').append(result);
-					showclass(int);
 					$('.loading').remove();
 					//alert(getnextflag) ;
 					getnextflag = 1 ;

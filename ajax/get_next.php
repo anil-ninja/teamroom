@@ -581,7 +581,7 @@ if ($_POST['chal']) {
         $show = $show . "</div></div></div>";
     }
 
-    $show = $show . "<div class='comments clearfix'>
+    $show = $show . "<div class='comments_".$chelangeid."'></div><div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
