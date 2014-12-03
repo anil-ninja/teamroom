@@ -11,10 +11,10 @@ if ($_POST['last_article']) {
     $art = (int) $limit;
     $b = $art + 3;
     
-    $user_articles_display = mysqli_query($db_handle, "(SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(a.stmt, 500) as stmt, b.first_name, b.last_name, b.username FROM challenges as a 
+    $user_articles_display = mysqli_query($db_handle, "(SELECT a.user_id, a.challenge_id, a.challenge_title, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM challenges as a 
                                                         JOIN user_info as b WHERE a.challenge_type=7 AND a.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
                                                         UNION
-                                                        (SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(b.stmt, 500) as stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
+                                                        (SELECT a.user_id, a.challenge_id, a.challenge_title, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
                                                         WHERE a.challenge_type=7 AND a.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id LIMIT $art, $b;");
     $show_article = "";
     while($user_articles_displayRow= mysqli_fetch_array($user_articles_display)) {
@@ -28,22 +28,18 @@ if ($_POST['last_article']) {
         $article_username = $user_articles_displayRow['username'];
         $article_created1 = $user_articles_displayRow['creation_time'];
         $article_created = date("j F, g:i a", strtotime($article_created1));
+        $art_user_id = $user_articles_displayRow['user_id'];
         
         $show_article = $show_article. "
             <div class='list-group articlesch'>
                 <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
-                $user_session_id = ($_SESSION['user_id']);
-                //dropDown_delete_article($db_handle, $article_id, $user_session_id);
-              $show_article = $show_article. "<div class='list-group-item pull-right'>
+                $show_article = $show_article. "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                     <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$article_id' AND user_id='$user_session_id';"));
-                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                        if($challenge_dropdown_userID == $user_session_id) {
+                        if($art_user_id == $user_id) {
                             $show_article = $show_article. "<li><button class='btn-link' onclick='edit_content(".$article_id.")'>Edit</button></li>
-                                  <li><button class='btn-link' cID='".$challenge_ID."' onclick='delArticle(".$article_id.");'>Delete</button></li>";
+                                  <li><button class='btn-link' cID='".$article_id."' onclick='delArticle(".$article_id.");'>Delete</button></li>";
                         }
                         else {
                             $show_article = $show_article. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
@@ -70,15 +66,16 @@ if ($_POST['last_article']) {
         //comments_all_type_challenges ($db_handle, $article_id);
         
     
-    $commenter = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
+    $commenter = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $article_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION
-                                        (SELECT DISTINCT a.challenge_id, a.response_ch_id,a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
+                                        (SELECT DISTINCT a.user_id, a.challenge_id, a.response_ch_id,a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
                                             JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$article_id' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
     while ($commenterRow = mysqli_fetch_array($commenter)) {
         $comment_id = $commenterRow['response_ch_id'];
         $username_comment_ninjas = $commenterRow['username'];
         $comment_all_ch = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt'])));
+        $comment_user_id = $commenterRow['user_id'];
         $show_article = $show_article. "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
@@ -89,24 +86,18 @@ if ($_POST['last_article']) {
                                             .ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
                                             &nbsp&nbsp&nbsp" .$comment_all_ch ;
         if (isset($_SESSION['user_id'])) {
-            //$user_session_id = ($_SESSION['user_id']);
-            //dropDown_delete_comment_challenge($db_handle, $comment_id, $user_session_id);
-                    $show_article = $show_article. "<div class='list-group-item pull-right'>
+            $show_article = $show_article. "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-            
-            $challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$comment_id' AND user_id='$user_id';"));
-                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
-                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
-                    if($challenge_dropdown_comment_userID == $user_id) {
-                        $show_article = $show_article. "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
-                    } 
-                    else {
-                      $show_article = $show_article. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                    <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
-                                </form>
-                            </li>";
-                    }
+                if($comment_user_id == $user_id) {
+                    $show_article = $show_article. "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
+                } 
+                else {
+                    $show_article = $show_article. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                                            <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
+                                                        </form>
+                                                    </li>";
+                }
              $show_article = $show_article. "</ul>
         </div>";
 

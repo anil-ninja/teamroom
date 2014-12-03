@@ -204,25 +204,21 @@ $obj = new profile($UserName);
                 <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">       
                     <?php created_projects($db_handle,$profileViewUserID); ?>
                     <div id='next_CP'>
-                        <p id='home-ch'></p>
-                        <p id='home'></p>
                     </div>
             </div>
             <div role="tabpanel" class="row tab-pane" id="tabJoinedProjects" >
                 <div id="joined_project_content"></div>
+                <div id='next_JnPr'>
+                </div>
             </div>
             <div role="tabpanel" class="row tab-pane" id="tabArticles">
                 <div id="user_articles_content"></div>
                 <div id='next_user_article'>
-                        <p id='home-ch'></p>
-                        <p id='home'></p>
-                    </div>
+                </div>
             </div>
             <div role="tabpanel" class="row tab-pane" id="tabChallanges">
                 <div id="user_challenges_content"></div>
                     <div id='next_user_chall'>
-                        <p id='home-ch'></p>
-                        <p id='home'></p>
                     </div>
                 </div>
             <div role="tabpanel" class="row tab-pane" id="tabIdeas">
@@ -423,6 +419,21 @@ $("#editprofile").click(function(){
                     cache: false,
                     success: function(result){
                         $('#next_CP').append(result);
+                        }
+                });	
+            }
+        });
+        $(window).scroll(function(event) {
+            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+                event.preventDefault();
+                var dataString = 'next_JnPr=3' ;
+                $.ajax({
+                    type: "POST",
+                    url: "ajax/profile_page_ajax/get_next_joined_projects.php",
+                    data: dataString,
+                    cache: false,
+                    success: function(result){
+                        $('#next_JnPr').append(result);
                         }
                 });	
             }

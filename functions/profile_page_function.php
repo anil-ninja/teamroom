@@ -172,8 +172,9 @@ function joined_projects ($db_handle, $user_IDF) {
                                                             JOIN user_info as b WHERE a.project_id IN (SELECT teams.project_id from teams where teams.user_id = $user_IDF) AND a.user_id != $user_IDF and a.project_type = 1 AND a.blob_id = 0 AND a.user_id = b.user_id)
                                                         UNION 
                                                         (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a 
-                                                            JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $user_IDF) AND a.user_id != $user_IDF AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id);");
-        while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
+                                                            JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $user_IDF) AND a.user_id != $user_IDF AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id) ORDER BY project_id DESC LIMIT 0, 3;");
+    $_SESSION['next_JP_3'] = 3;    
+    while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
@@ -184,18 +185,16 @@ function joined_projects ($db_handle, $user_IDF) {
             $lname = $project_table_displayRow['last_name'];
             $username_project = $project_table_displayRow['username'];
             echo "<div class='list-group'>
-                    <div class='list-group-item' style='line-height: 24.50px;'>
-                        <div class='pull-left lh-fix'>     
-                            <span class='glyphicon glyphicon-question-sign'></span>
-                            <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                        </div>
-                        <span class='color strong' style= 'color :lightblue;'>
-                            <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
-                        </span><br>" . $projectcreation . "
+                    <div class='list-group-item'>";
+            echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                        <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
+                        .ucfirst($project_title_table)."</a></b></p>
+                    <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
+                        .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                     </div>
-                    <div class='list-group-item'>
-                        <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", ucfirst($project_title_table)))) . "</p></span>
-                            ".$project_stmt_table."<br><br>";
+                <div class='list-group-item'>
+            <br/>".$project_stmt_table."</span><br/><br/>";
+                      
                     project_comments($db_handle, $project_id_table);
                echo "</div>";
         }   
