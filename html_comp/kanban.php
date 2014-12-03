@@ -83,8 +83,8 @@ while ($kanban2row = mysqli_fetch_array($kanban2)) {
     $td4 = "";
 }
 //<th style='width:150px;'>Delay</th>
-echo "<table class='table table-striped' border='1'>
-            <thead>
+echo "<table class='table table-striped' border='1' style='background-color: #fff;'>
+            <thead >
                 <tr>
                     <th style='width:200px;'>Open</th>
                     <th>
@@ -101,7 +101,7 @@ echo "<table class='table table-striped' border='1'>
                     </th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody style='background-color: #fff;' >
                 <tr>
                     <td>" . $td1 . "</td>
                     <td>

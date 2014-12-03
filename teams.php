@@ -57,6 +57,7 @@ $total_members = mysqli_num_rows($teams_member_display);
          <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
    <div class=" media-body " style="padding-top: 50px;">
+	   <div class="col-md-1"></div>
         <div class="col-md-2">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
         </div>       
@@ -128,8 +129,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                 <?php include_once 'html_comp/kanban.php'; ?>
             </div>
         </div>
-         <div class="col-md-4" style="padding-top: 20px;">
-            <div class="col-md-7">
+         <div class="col-md-2" style="padding-top: 20px;">
                 <div class="panel">
                     <div class='panel-body' style="font-size:10px">
                         <?php
@@ -143,16 +143,11 @@ $total_members = mysqli_num_rows($teams_member_display);
                                     echo "<a href='teams.php?project_id=$team_project_id&team_name=$list_of_teams'>" . ucfirst($list_of_teams)."</a><br>";
                                 }
                         ?>
-                    </div>
-                </div>
+                        </div>
             </div>
-            <div class="col-md-5" >
                 <?php include_once 'html_comp/friends.php' ; ?>
-            </div>
+                </div>
         </div>
-    
-
-    </div>
         <script language="JavaScript" type="text/javascript">
         function add_member_to_team () {
 			var emailadd_member =document.getElementById("email_add_member").value;

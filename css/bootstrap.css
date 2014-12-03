@@ -199,8 +199,8 @@ th {
 @media print {
   * {
     text-shadow: none !important;
-    color: #000 !important;
-    background: transparent !important;
+    color: #fff !important;
+    background: #fff !important;
     box-shadow: none !important;
   }
   a,
@@ -2170,7 +2170,7 @@ th {
 }
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #f9f9f9;
+  background-color: #fff;
 }
 .table-hover > tbody > tr:hover > td,
 .table-hover > tbody > tr:hover > th {
