@@ -42,17 +42,18 @@ if(!isset($_SESSION['user_id'])){
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
    <div class=" media-body " style="padding-top: 50px;">
-  		<div class="col-md-2">
+  	<div class="col-md-1">	</div>
+       <div class="col-md-2">
    				<?php include_once 'html_comp/left_panel_ninjas.php'   ?>
    		</div>       
-         <div class="col-md-7">
+         <div class="col-md-6">
 			<div class="panel-primary" id='panel-cont'>
 			  	<p id='home-ch'></p>
 			 	<p id='home'></p>
 	    		<?php include_once 'html_comp/ninjas_page.php' ; ?>
 			</div>
 		</div>
-		 <div class="col-md-3">
+		 <div class="col-md-2">
 			
 			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>
 			
