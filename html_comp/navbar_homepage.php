@@ -1,4 +1,5 @@
 <?php
+$linktologout = 'http://'.$_SERVER['HTTP_HOST'] ;
 $actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
 if(isset($_POST['requestaccept'])){
@@ -173,7 +174,7 @@ else {
 		//Example.show("Confirm result: "+result);
 		if(result){
 			//call logout wall
-			 window.location='http://localhost/Bank_test/reso/teamroom/html_comp/logout.php?url='+'<?=$actual_link ; ?>' ;
+			 window.location='<?=$linktologout ; ?>'+'/logout.php?url='+'<?=$actual_link ; ?>' ;
 			}
 		});
 	} ;
