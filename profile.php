@@ -184,7 +184,7 @@ $obj = new profile($UserName);
         </div>
                 </div>
                 <div class='alert_placeholder'></div>
-          <div class="col-md-7" style="background-color:#FFF;">
+          <div class="col-md-7">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
                   <li role="presentation" class="active">
