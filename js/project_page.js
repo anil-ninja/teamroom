@@ -6,6 +6,53 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+function comment(ID) {				
+		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
+		//alert(ID) ;
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project)))) + '&case=1';
+		//alert(dataString) ;
+		if(project == ""){
+			return false ;
+			}
+				else {
+					$.ajax({
+						type: "POST",
+						url: "ajax/submit_comment.php",
+						data: dataString,
+						cache: false,
+						success: function(result){
+							//alert(result) ;
+							if(result== 'Posted succesfully!'){
+							location.reload();
+							$("#own_ch_response_"+ID).val('') ;
+							}
+						}
+					});
+				}
+} ;
+function comment_project (ID) {				
+    var project = convertSpecialChar($("#pr_resp_"+ID).val());
+    var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project)))) + '&case=2';
+    //alert(dataString) ;
+    if(project == ""){
+        return false ;
+    }
+    else {
+        $.ajax({
+                type: "POST",
+                url: "ajax/submit_comment.php",
+                data: dataString,
+                cache: false,
+                success: function(result){
+                        //alert(result) ;
+                        if(result== 'Posted succesfully!'){
+                            location.reload();
+                            $("#pr_resp_"+ID).val('') ;
+                        }
+                }
+        });
+    }
+};
 function accept_pub(ID){
 	//alert(ID) ;
 		   bootbox.confirm("Really Accept Challenge !!!", function(result) {

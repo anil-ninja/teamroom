@@ -19,8 +19,8 @@ if($_POST['id']){
 				mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
 				}
 		}
-		else { 
-			$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
+	else { 
+			$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$id' and user_id = '$user_id';");
 			if(mysqli_num_rows($member_project) != 0) {
 			events($db_handle,$user_id,"14",$id);
 			involve_in($db_handle,$user_id,"14",$id);
