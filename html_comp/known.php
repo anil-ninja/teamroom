@@ -11,7 +11,10 @@
 											    UNION
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
 											    where b.knowning_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2');");
-	
+	if(mysqli_num_rows($userProjects) == 0) {
+		$userProjects = mysqli_query($db_handle, "SELECT first_name, last_name, username, user_id, rank FROM user_info where user_id != '$profileViewUserID'
+												and user_id != '$user_id' limit 0, 5;"); 
+		}
 	while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
 		$friendFirstName = $userProjectsRow['first_name'];
 		$friendLastName = $userProjectsRow['last_name'];
