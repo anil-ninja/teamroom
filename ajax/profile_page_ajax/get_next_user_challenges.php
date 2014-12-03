@@ -85,8 +85,27 @@ if ($_POST['next']) {
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
 						&nbsp&nbsp&nbsp" .$comment_all_ch ;
         if (isset($_SESSION['user_id'])) {
-            $user_session_id = ($_SESSION['user_id']);
+            //$user_session_id = ($_SESSION['user_id']);
             //dropDown_delete_comment_challenge($db_handle, $comment_id, $user_session_id);
+                    $show = $show . "<div class='list-group-item pull-right'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+            
+            $challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$comment_id' AND user_id='$user_id';"));
+                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
+                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
+                    if($challenge_dropdown_comment_userID == $user_id) {
+                        $show = $show . "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
+                    } 
+                    else {
+                      $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                    <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
+                                </form>
+                            </li>";
+                    }
+             $show = $show . "</ul>
+        </div>";
+
         }
         $show = $show."</div></div></div>";
     }
@@ -95,7 +114,7 @@ if ($_POST['next']) {
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
-                             placeholder='Whats on your mind about this'/>
+                             placeholder='Want to know your comment....'/>
                             <button type='submit' class='btn-primary btn-sm' onclick='comment(".$challenge_id.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                     </div></div>";
          $show = $show."</div>";

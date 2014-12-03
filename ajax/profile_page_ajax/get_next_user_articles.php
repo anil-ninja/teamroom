@@ -35,6 +35,24 @@ if ($_POST['last_article']) {
             if (isset($_SESSION['user_id'])) {
                 $user_session_id = ($_SESSION['user_id']);
                 //dropDown_delete_article($db_handle, $article_id, $user_session_id);
+              $show_article = $show_article. "<div class='list-group-item pull-right'>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                    <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$article_id' AND user_id='$user_session_id';"));
+                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
+                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
+                        if($challenge_dropdown_userID == $user_session_id) {
+                            $show_article = $show_article. "<li><button class='btn-link' onclick='edit_content(".$article_id.")'>Edit</button></li>
+                                  <li><button class='btn-link' cID='".$challenge_ID."' onclick='delArticle(".$article_id.");'>Delete</button></li>";
+                        }
+                        else {
+                            $show_article = $show_article. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                        <button type='submit' name='pr_spem' value='".$article_id."' class='btn-link' >Report Spam</button>
+                                    </form>
+                                </li>";
+                        }
+            $show_article = $show_article. "</ul>
+              </div>";
             }
 
         $show_article = $show_article. "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
@@ -71,8 +89,27 @@ if ($_POST['last_article']) {
                                             .ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
                                             &nbsp&nbsp&nbsp" .$comment_all_ch ;
         if (isset($_SESSION['user_id'])) {
-            $user_session_id = ($_SESSION['user_id']);
+            //$user_session_id = ($_SESSION['user_id']);
             //dropDown_delete_comment_challenge($db_handle, $comment_id, $user_session_id);
+                    $show_article = $show_article. "<div class='list-group-item pull-right'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+            
+            $challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$comment_id' AND user_id='$user_id';"));
+                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
+                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
+                    if($challenge_dropdown_comment_userID == $user_id) {
+                        $show_article = $show_article. "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
+                    } 
+                    else {
+                      $show_article = $show_article. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
+                                    <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
+                                </form>
+                            </li>";
+                    }
+             $show_article = $show_article. "</ul>
+        </div>";
+
         }
         $show_article = $show_article."</div></div></div>";
     }
