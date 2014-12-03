@@ -36,7 +36,7 @@ include_once 'functions/delete_comment.php';
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
         <div class=" media-body" style="padding-top: 50px;">
-            <div class="col-md-1"></div>
+            <div class="col-md-1"> </div>
             <div class="col-md-2">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>  
