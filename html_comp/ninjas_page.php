@@ -124,6 +124,7 @@ $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.ch
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											 ORDER BY creation_time DESC LIMIT 0, 10;");
 $_SESSION['lastpanel'] = '10';
+$display_ch_stmt_content = "";
 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
     $ETA = $open_chalangerow['challenge_ETA'];
@@ -169,7 +170,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         
         // list grp item header for all type chall/article/idea/photo/video
         $display_tilte_fname_likes = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$chelangeid."' class='text'><b>" 
-                    .ucfirst($ch_title)."</b></p>
+                    .ucfirst($ch_title)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>
                         <span style= 'color: #808080'>
                 By: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>
                     <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$chelangeid .")'>
@@ -177,9 +178,43 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
-        $display_ch_stmt_content = "</div>                    
+        $display_ch_stmt_content .= "</div>                    
                                 <div class='list-group-item'>
                         <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/><br/>";
+                        if(isset($_SESSION['user_id'])){
+		if(substr($chelange, 0, 1) != '<') {
+$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+			}
+		else {
+			if (substr($chelange, 0, 4) == ' <br') {
+$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+				}
+			if (substr($chelange, 0, 3) == '<s>') {
+$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+				}
+			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
+			$cha = strstr($chelange, '<br/>' , true) ;
+			if(substr($chelange, 0, 4) == '<img') {
+$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$chelangeid."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
+					}
+			if(substr($chelange, 0, 2) == '<a') {
+$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_file_".$chelangeid."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
+					}
+			if(substr($chelange, 0, 3) == '<if') {
+$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_video_".$chelangeid."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$chelangeid."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+$display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
+			}
+		}
     if ($ctype == 1) {
         if ($status == 1) {
             echo "<div class='list-group challenge'>
@@ -189,13 +224,14 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             //if ($remaintime != "Closed") {
                 echo "<form method='POST' class='inline-form pull-right'>
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                                    <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                                 </form>" ;
                                 //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";
             //}
                    echo $display_tilte_fname_likes.$display_ch_stmt_content;
+                   $display_ch_stmt_content = "";
         } 
         if ($status == 2) {
             echo "<div class='list-group challenge'>
@@ -209,6 +245,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
                         //  <br/> Time Remaining : " . $remaintimeown ."<br>
                    echo $display_ch_stmt_content;
+                   $display_ch_stmt_content = "";
         }
         if ($status == 4) {
             echo "<div class='list-group openchalhide'>
@@ -224,6 +261,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
                                             //. "<br/>  ETA Taken : " . $timeo ."
                     echo $display_ch_stmt_content;
+                    $display_ch_stmt_content = "";
         }
         if ($status == 5) {
             echo "<div class='list-group openchalhide'>
@@ -233,6 +271,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                 echo $display_ch_stmt_content;
+                $display_ch_stmt_content = "";
             }
     } 
     if($ctype == 2) {
@@ -245,13 +284,14 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             //if ($remaintime != "Closed") {
                 echo "<form method='POST' class='inline-form pull-right'>
                         <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                        <input class='btn btn-primary btn-sm' type='submit' name='accept' value='Accept'/>
+                        <input class='btn btn-primary btn-sm' type='submit' name='accept_pub' value='Accept'/>
                     </form>" ;
                                 //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";
             //}
                 echo $display_tilte_fname_likes.$display_ch_stmt_content;
+                $display_ch_stmt_content = "";
         } 
         if ($status == 2) {
             echo "<div class='list-group challenge'>
@@ -264,6 +304,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
                                   //  <br/> Time Remaining : " . $remaintimeown ."<br>
             echo $display_ch_stmt_content;
+            $display_ch_stmt_content = "";
         
         }
         if ($status == 4) {
@@ -280,6 +321,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timecomm ;
                                 //. "<br/>  ETA Taken : " . $timeo ."
             echo $display_ch_stmt_content;
+            $display_ch_stmt_content = "";
         }
         if ($status == 5) {
             echo "<div class='list-group openchalhide'>
@@ -291,6 +333,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             echo  $display_tilte_fname_likes."At: ".ucfirst($timeopen)."<br><hr>"
                             .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
             echo $display_ch_stmt_content;
+            $display_ch_stmt_content = "";
         }
     }
     if ($ctype == 6) {
@@ -298,24 +341,28 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 <div class='list-group-item'>";
                 dropDown_delete_article($db_handle, $chelangeid, $user_id);
         echo $display_tilte_fname_likes.$display_ch_stmt_content;
+        $display_ch_stmt_content = "";
     }
     if ($ctype == 7) {
         echo "<div class='list-group articlesch'>
                 <div class='list-group-item'>";
             dropDown_delete_article($db_handle, $chelangeid, $user_id);
-          echo $display_tilte_fname_likes.$display_ch_stmt_content;    
+          echo $display_tilte_fname_likes.$display_ch_stmt_content; 
+          $display_ch_stmt_content = "";   
     }
     if ($ctype == 8) {
         echo "<div class='list-group film'>
                 <div class='list-group-item'>";
                         dropDown_delete_article($db_handle, $chelangeid, $user_id);
-          echo $display_tilte_fname_likes.$display_ch_stmt_content;          
+          echo $display_tilte_fname_likes.$display_ch_stmt_content; 
+          $display_ch_stmt_content = "";         
     } 
      if ($ctype == 4) {
         echo "<div class='list-group idea'>
                         <div class='list-group-item'>";
             dropDown_delete_idea($db_handle, $chelangeid, $user_id);
         echo $display_tilte_fname_likes.$display_ch_stmt_content;
+        $display_ch_stmt_content = "";
     } 
     if ($ctype == 3) {
         if ($status == 1) {
@@ -335,12 +382,14 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         </form>";
                 }
                 echo $display_tilte_fname_likes.$display_ch_stmt_content;
+                $display_ch_stmt_content = "";
         }	
         if ($status == 6) {
         echo "<div class='list-group film'>
                 <div class='list-group-item'>";
                     dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                echo $display_tilte_fname_likes.$display_ch_stmt_content;
+               $display_ch_stmt_content = "";
                     
         }
         if ($status == 2) {
@@ -379,6 +428,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
                     .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>| " . $timfunct;
             }                
             echo $display_ch_stmt_content;
+            $display_ch_stmt_content = "";
         }
         if ($status == 4) {
             echo "<div class='list-group challenge'>
@@ -429,6 +479,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
             }
         }
        echo $display_ch_stmt_content;
+       $display_ch_stmt_content = "";
     }
         if ($status == 5) {
             echo "<div class='list-group openchalhide'>
@@ -464,6 +515,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
             }
             }
             echo $display_ch_stmt_content;
+            $display_ch_stmt_content = "";
         }
     }
     /* if ($ctype != 7 && $ctype != 8 && $ctype != 6 && $ctype != 4) {
@@ -473,40 +525,6 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
     }
      * 
      */
-    if(isset($_SESSION['user_id'])){
-		if(substr($chelange, 0, 1) != '<') {
-				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-			}
-		else {
-			if (substr($chelange, 0, 4) == ' <br') {
-				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			if (substr($chelange, 0, 3) == '<s>') {
-				echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			$chaaa = substr(strstr($chelange, '<br/>'), 5) ;
-			$cha = strstr($chelange, '<br/>' , true) ;
-			if(substr($chelange, 0, 4) == '<img') {
-					echo "<div class='editbox' style='width : 90%;' id='challenge_pic_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelange, 0, 2) == '<a') {
-					echo "<div class='editbox' style='width : 90%;' id='challenge_file_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelange, 0, 3) == '<if') {
-					echo "<div class='editbox' style='width : 90%;' id='challenge_video_".$chelangeid."' >".$cha."</div>
-					<input type='text' class='editbox' id='url_video_".$chelangeid."' placeholder='Add You-tube URL'/><br/><br/>" ;
-					}
-			echo "<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
-					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
-					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
-			}
-		}
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION
