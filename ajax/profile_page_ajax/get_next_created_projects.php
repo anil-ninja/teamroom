@@ -12,10 +12,10 @@ if ($_POST['next_CP']) {
     $b = $a + 3;
     
     
-    $project_created_display = mysqli_query($db_handle, "(SELECT a.project_id, a.project_title, a.stmt, a.creation_time, b.first_name, b.last_name, b.username FROM projects as a 
+    $project_created_display = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_title, a.stmt, a.creation_time, b.first_name, b.last_name, b.username FROM projects as a 
                                                             JOIN user_info as b WHERE a.user_id = $user_id AND a.blob_id=0 AND a.project_type=1 AND a.user_id=b.user_id)
                                                         UNION 
-                                                        (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a JOIN blobs as b JOIN user_info as c 
+                                                        (SELECT a.user_id, a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a JOIN blobs as b JOIN user_info as c 
                                                             WHERE a.user_id = $user_id AND a.blob_id=b.blob_id AND a.project_type=1 AND a.user_id=c.user_id) ORDER BY creation_time DESC LIMIT $a, $b;");
     //$_SESSION['last_CP_3'] = 3;
     $show_CP = "";
@@ -30,27 +30,30 @@ if ($_POST['next_CP']) {
             $projectcreation = date("j F, g:i a", strtotime($projectcreation1));
             $lname = $project_table_displayRow['last_name'];
             $username_project = $project_table_displayRow['username'];
+            $user_id_project = $project_table_displayRow['user_id'];
+            
             $show_CP = $show_CP. "<div class='list-group'>
-                                    <div class='list-group-item'>
-                                        <div class='pull-left lh-fix'>     
-                                            <span class='glyphicon glyphicon-question-sign'></span>
-                                            <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                                        </div>
-                                        <div style='line-height: 16.50px;'>
-                                            <div class='row'>
-                                                <div class='col-md-4'>
-                                                    <span class='color strong' style= 'color :lightblue;'>
-                                                        <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
-                                                    </span>  <br>" . $projectcreation . "
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class='list-group-item'>
-                                    <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", ucfirst($project_title_table)))) . "</p></span>                
-                                    ".$project_stmt_table."<br><br>";
-            
-            
+                                    <div class='list-group-item'>";
+            if ($user_id_project == $_SESSION['user_id'] && isset($_SESSION['user_id'])) {
+                $show_CP = $show_CP.  "<div class='pull-right'>
+                        <div class='list-group-item'>
+                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
+                                <li><button class='btn-link' href='#'>Edit Project</button></li>
+                                <li><button class='btn-link' pID='" . $project_id_table . "' onclick='delProject(" . $project_id_table . ");'>Delete Project</button></li>
+                            </ul>
+                        </div>
+                    </div>";
+            }
+            $show_CP = $show_CP. "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                                    <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
+                                    .ucfirst($project_title_table)."</a></b></p>
+                                <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
+                                    .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
+                                </div>
+                            <div class='list-group-item'>
+                        <br/>".$project_stmt_table."</span><br/><br/>";
+                                       
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION
