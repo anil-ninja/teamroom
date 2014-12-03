@@ -114,12 +114,16 @@ function comment_project (ID) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result = "Video Posted Successfully !!!") {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 						location.reload() ;
 						$("#video_title").val("") ;
 						$("#video").val("") ;
 						}
+						else{
+							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							$("#create_video").removeAttr('disabled');
+							}
 					}
 				  });
 				}
@@ -169,12 +173,16 @@ function comment_project (ID) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result = "Video Posted Successfully !!!") {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 						location.reload() ;
 						$("#video_title").val("") ;
 						$("#video").val("") ;
 						}
+						else{
+							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							$("#create_videopr").removeAttr('disabled');
+							}
 					}
 				  });
 				}
@@ -307,10 +315,14 @@ function comment_project (ID) {
 				cache: false,
 				success: function(result){
 					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 55000,"alert-success");
 					if(result=='Posted succesfully!'){
+					bootstrap_alert(".alert_placeholder", result, 55000,"alert-success");
 					location.reload();
 					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 55000,"alert-warning");
+						location.reload();
+						}
 				}
 			}); 
 	} ;
@@ -374,15 +386,15 @@ function comment_project (ID) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					if(result=='Reminder Set succesfully!'){
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 						$("#reminder").val("") ;
 						$("#self").val("") ;
 						$("#datepick").val("") ;
 					location.reload();
 					}
 					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
 						$("#remind").removeAttr('disabled');
 						return false;
 						}
@@ -705,12 +717,15 @@ $("#pencil").click(function(){
 								data: dataString,
 								cache: false,
 								success: function(result){
-									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 								if(result = "Team Created Successfully !!!") {
+									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 									location.reload() ;
 									$("#team_name_A").val("") ;
 									$("#email_team").val("") ;
 									}
+									else{
+										bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+										}
 								}				
 							}) ;
 						}
