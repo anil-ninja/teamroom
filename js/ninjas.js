@@ -11,7 +11,7 @@ function getVedioId(str) {
     return str.split('v=')[1];
 }
 function getnextchal (clas, int) {
-	$('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center></div>");
+	$('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
 	var numItems = $('div.'+clas).length;
 	if (numItems < 3 || clas == 'all') {
 	var dataString = 'chal=10' ;
