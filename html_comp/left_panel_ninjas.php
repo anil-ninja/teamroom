@@ -1,11 +1,12 @@
 <div class="bs-component">
 	<div class='list-group'  style='cursor: pointer;'>
  		<div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);">
- 		<table >
- 		<tr><td><font size="2"> PROJECTS&nbsp;&nbsp;&nbsp;</font></td>
+ 		<table>
+			
+ 		<tr><td><font size="2"> PROJECTS&nbsp;&nbsp;&nbsp;</font>
                     <?php 
                         if (isset($_SESSION['user_id'])) {
-                            echo "<td><a data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a> </td>
+                            echo "<a class='pull-right'data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a> </td>
                 </tr>
  		<tr>
                     <td> <font size='2'> Classified</font></td>
@@ -16,8 +17,8 @@
                             while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
                                     $p_title = $project_title_displayRow['project_title'] ;
                                     $idpro = $project_title_displayRow['project_id'] ;
-                                    if (strlen($p_title) > 18) {
-                                    $prtitle = substr(ucfirst($p_title),0,18)." ...";
+                                    if (strlen($p_title) > 30) {
+                                    $prtitle = substr(ucfirst($p_title),0,30)." ...";
                                     } else {
                                             $prtitle = ucfirst($p_title) ;
                                     }								   
@@ -56,8 +57,8 @@
 						while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
 								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
 								$idproject = $project_public_title_displayRow['project_id'] ;
-							if (strlen($public_pr_titlep) > 18) {
-								$prtitlep = substr(ucfirst($public_pr_titlep),0,18)." ...";
+							if (strlen($public_pr_titlep) > 30) {
+								$prtitlep = substr(ucfirst($public_pr_titlep),0,30)." ...";
 								} else {
 									$prtitlep = ucfirst($public_pr_titlep) ;
 								}								   
