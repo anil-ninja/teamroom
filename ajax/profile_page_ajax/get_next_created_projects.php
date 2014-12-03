@@ -116,7 +116,7 @@ $show_CP = $show_CP. "<div class='list-group-item pull-right'>
             </form>";
     }
 $show_CP = $show_CP. "</div>
-    </div>";
+    </div></div>";
 }       
         
     if (mysqli_error($db_handle)) {

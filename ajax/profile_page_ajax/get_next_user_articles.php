@@ -50,7 +50,7 @@ if ($_POST['last_article']) {
                 <div class='list-group-item'>
             <br/>".$article_stmt."</span><br/><br/>";
         //comments_all_type_challenges ($db_handle, $article_id);
-        $show_article = $show_article. "</div>";
+        
     
     $commenter = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $article_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -86,7 +86,7 @@ if ($_POST['last_article']) {
                     <button type='submit' class='btn-primary btn-sm' onclick='comment(".$article_id.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                 </div>
             </div>";
-         $show_article = $show_article."</div>";
+         $show_article = $show_article."</div></div>";
     }
     if (mysqli_error($db_handle)) {
         echo "Failed!";
