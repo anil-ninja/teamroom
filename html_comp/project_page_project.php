@@ -1,6 +1,5 @@
 <?php if (isset($_SESSION['user_id'])) {
     ?>
-
     <div class='list-group'>
         <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span>
             | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span>
@@ -189,9 +188,14 @@
                 <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
                 <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
             </div>
-            <div id='manageForm'>
-                <div id="elfinder"></div>
-            </div><br/>
+        <?php 
+         $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
+         if(mysqli_num_rows($member_project) != 0) {
+					   echo "<div id='manageForm'>
+								<div id='elfinder'></div>
+							 </div><br/>" ;
+					}
+           ?>
         </div>
     </div>
 

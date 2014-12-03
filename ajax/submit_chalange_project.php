@@ -13,6 +13,8 @@ if($_POST['challange']){
 	$challenge_title = $_POST['challenge_title'] ;
 	$challange_eta = 1 ;//$_POST['challange_eta'] ; 
 	$image = $_POST['img'] ;
+	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
+    if(mysqli_num_rows($member_project) != 0) {
 	if (strlen($image) < 30 ) {
 		$challange = $challangetext ;
 	}
@@ -43,7 +45,8 @@ if (strlen($challange) < 1000) {
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
 }
-
+	}
+	else echo "Please Join Project First!";
 	mysqli_close($db_handle);
 }
 ?>

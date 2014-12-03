@@ -7,6 +7,8 @@ if($_POST['notes']){
 	$pro_id = $_SESSION['project_id'] ;
 	$notestext = $_POST['notes'] ;
 	$image = $_POST['img'] ;
+	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
+    if(mysqli_num_rows($member_project) != 0) {
 	if (strlen($image) < 30 ) {
 		$notes = $notestext ;
 	}
@@ -36,6 +38,8 @@ if($_POST['notes']){
 	else { echo "Posted succesfully!"; }
 }
 	mysqli_close($db_handle);
+}
+else echo "Please Join Project First!";
 } 
 else echo "Invalid parameters!";
 ?>

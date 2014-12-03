@@ -52,13 +52,6 @@ if(isset($_POST['accept_pub'])) {
 									VALUES ('$user_id', '$id', '1');") ;
 header('Location: #');
 }
-if (isset($_POST['logout'])) {
-    header('Location: index.php');
-    unset($_SESSION['user_id']);
-    unset($_SESSION['first_name']);
-    session_destroy();
-    exit ;
-}
 if (isset($_POST['joinproject'])) {
 	$user_id = $_SESSION['user_id'];
 	$idpt = $_POST['project_id'] ;
