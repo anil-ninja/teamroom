@@ -65,7 +65,7 @@ if(!isset($_SESSION['user_id'])){
          event.preventDefault();
          if(getnextflag == 1) {
          getnextflag = 0 ;
-         alert(getnextflag) ;
+         //alert(getnextflag) ;
 		getnextchal('all', 1) ; 
 		}
 	}

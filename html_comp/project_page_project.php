@@ -286,7 +286,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
             </div> 
         </div>";
 }
-echo "<div class='comments clearfix'>
+echo "<div class='comments_".$pro_id."'></div><div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
 				<img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>";
@@ -600,7 +600,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
 			</div> 
 		</div>";
     }
-    echo "<div class='comments clearfix'>
+    echo "<div class='comments_".$id_task."'></div><div class='comments clearfix'>
                         <div class='pull-left'>
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
@@ -688,7 +688,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 </div> 
             </div>";
         }
-        echo "<div class='comments clearfix'>
+        echo "<div class='comments_".$note_ID."'></div><div class='comments clearfix'>
 			<div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
