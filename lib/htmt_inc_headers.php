@@ -13,4 +13,3 @@
 <script src="js/date_time.js"></script>																																																			
 <script src="js/bootswatch.js"></script>																																																			
 <script src="js/bootbox.js"></script>
-<script src="js/bootstrap.min.js"></script>
