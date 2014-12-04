@@ -95,10 +95,10 @@ if ($_POST['chal']) {
                         $show_add_dropdown = $show_add_dropdown . "</ul>
                         </div>";
         // list grp item header for all type chall/article/idea/photo/video
-            $get_display_tilte_fname_likes = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$chelangeid."' class='text'><b>" 
-                    .ucfirst($ch_title)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>
-                        <span style= 'color: #808080'>
-                By: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>
+            $get_display_tilte = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$chelangeid."' class='text'><b>" 
+                    .ucfirst($ch_title)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";
+            $get_display_fname_likes ="<span style= 'color: #808080'>
+                &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
                     <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$chelangeid .")'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
                     <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$chelangeid .")'>
@@ -155,7 +155,7 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                 $get_display_ch_stmt_content = "" ;                    
         } 
         if ($status == 2) {
@@ -174,7 +174,7 @@ if ($_POST['chal']) {
                                     </ul>
                                 </div>";                    
             }
-            $show = $show . $get_display_tilte_fname_likes. "<br> <hr>Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname ."'>"
+            $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname ."'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
                                   //  <br/> Time Remaining : " . $remaintimeown ."<br>
                   $show = $show . $get_display_ch_stmt_content;
@@ -197,7 +197,7 @@ if ($_POST['chal']) {
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                                 }
                                 
-                                $show = $show.$get_display_tilte_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                                $show = $show.$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | " . $timecomm ;
                                                 //. "<br/>  ETA Taken : " . $timeo ."
                                 $show = $show. $get_display_ch_stmt_content;
@@ -215,7 +215,7 @@ if ($_POST['chal']) {
                                                         </ul>
                                                     </div>";                    
                                 }
-            $show = $show .  $get_display_tilte_fname_likes. "<br> <hr>Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+            $show = $show .  $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes. "<br> <hr>Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                 $show = $show . $get_display_ch_stmt_content;
@@ -238,7 +238,7 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                 $get_display_ch_stmt_content = "" ;
         } 
         if ($status == 2) {
@@ -257,7 +257,7 @@ if ($_POST['chal']) {
                                 </ul>
                             </div>";                    
         }
-            $show = $show . $get_display_tilte_fname_likes. "<br> <hr> Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+            $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr> Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                         . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
                                     //  <br/> Time Remaining : " . $remaintimeown ."<br>
             $show = $show .$get_display_ch_stmt_content;
@@ -279,7 +279,7 @@ if ($_POST['chal']) {
                                 if($ch_id == $user_id) {			
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                                 }
-                $show = $show .$get_display_tilte_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timecomm ;
                                 //. "<br/>  ETA Taken : " . $timeo ."
                 $show = $show .$get_display_ch_stmt_content;
@@ -297,7 +297,7 @@ if ($_POST['chal']) {
                                             </ul>
                                         </div>";                    
                     }
-                $show = $show . $get_display_tilte_fname_likes."At: ".ucfirst($timeopen)."<br><hr>"
+                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes."At: ".ucfirst($timeopen)."<br><hr>"
                                     .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
 
                 $show = $show .$get_display_ch_stmt_content; 
@@ -321,7 +321,7 @@ if ($_POST['chal']) {
                         }
                         $show = $show . "</ul></div>";
                         
-                        $show = $show .$get_display_tilte_fname_likes."At: ".ucfirst($timeopen);
+                        $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-tree-deciduous'></span>".$get_display_fname_likes."At: ".ucfirst($timeopen);
                         $show = $show .$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 
@@ -341,7 +341,7 @@ if ($_POST['chal']) {
                                     </form></li>";
                         }
                         $show = $show . "</ul></div>";
-                    $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+                    $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-book'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                     $get_display_ch_stmt_content = "" ;
     }
     if ($ctype == 8) {
@@ -360,7 +360,7 @@ if ($_POST['chal']) {
                                     </form></li>";
                         }
                         $show = $show . "</ul></div>";
-                        $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+                        $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-film'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 
      if ($ctype == 4) {
@@ -370,7 +370,7 @@ if ($_POST['chal']) {
     //dropdown for delete/edit/span idea starts here
         $show = $show . $show_add_dropdown;
     //dropdown for delete/edit/span idea ends here
-       $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+       $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-flash'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
        $get_display_ch_stmt_content = "" ;
     } 
     if ($ctype == 3) {  
@@ -387,7 +387,7 @@ if ($_POST['chal']) {
         else {
             $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
         }
-        $show = $show .$get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+        $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
         $get_display_ch_stmt_content = "" ;
 	}	
 		if ($status == 6) {
@@ -398,7 +398,7 @@ if ($_POST['chal']) {
         $show = $show . $show_add_dropdown;
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . $get_display_tilte_fname_likes.$get_display_ch_stmt_content;
+        $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-picture'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
         $get_display_ch_stmt_content = "" ;
 	}
         if ($status == 2) {
@@ -418,7 +418,7 @@ if ($_POST['chal']) {
                         else {
                             $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                         }
-               $show = $show . $get_display_tilte_fname_likes;
+               $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes;
                
                $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -456,7 +456,7 @@ if ($_POST['chal']) {
                 else {
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                 }
-                $show = $show .$get_display_tilte_fname_likes;
+                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes;
                         
                 $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -495,7 +495,7 @@ if ($_POST['chal']) {
         $show = $show . $show_add_dropdown;
                     //dropdown for delete/edit/span challenge ends here
 
-              $show = $show . $get_display_tilte_fname_likes;
+              $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes;
             
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -513,14 +513,14 @@ if ($_POST['chal']) {
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
             if  ($owlstatus==1){
-                $show = $show . "Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                $show = $show . "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | " . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
                     $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>";
                 }
             }
             if  ($owlstatus==2){
-                $show = $show . "Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                $show = $show . "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span> | ".$timfunct."| Submitted: " .$owtimesubmit ;
                 //." and Time  Taken : ".$timetakennin."
             }
