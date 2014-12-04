@@ -35,6 +35,8 @@ if ($_GET['action'] == "sendchat") { sendChat(); }
 if ($_GET['action'] == "closechat") { closeChat(); } 
 if ($_GET['action'] == "startchatsession") { startChatSession(); } 
 
+if ($_GET['action'] == "getoldchat") { getOldChat($_GET['chatuser']); } 
+
 if (!isset($_SESSION['chatHistory'])) {
 	$_SESSION['chatHistory'] = array();	
 }
@@ -43,6 +45,82 @@ if (!isset($_SESSION['openChatBoxes'])) {
 	$_SESSION['openChatBoxes'] = array();	
 }
 
+function getOldChat($chatuser){
+
+		//use chatuser
+	$sql = "(select * from chat where (((chat.to = '".mysql_real_escape_string($_SESSION['username'])."' and chat.from = '".$chatuser."') 
+			OR (chat.from = '".mysql_real_escape_string($_SESSION['username'])."' and chat.to = '".$chatuser."') ) AND recd = 1) order by id DESC LIMIT 0,10) ORDER BY id ASC";
+	$query = mysql_query($sql);
+	$items = '';
+
+	$chatBoxes = array();
+
+	while ($chat = mysql_fetch_array($query)) {
+
+		if (!isset($_SESSION['openChatBoxes'][$chat['from']]) && isset($_SESSION['chatHistory'][$chat['from']])) {
+			$items = $_SESSION['chatHistory'][$chat['from']];
+		}
+
+		$chat['message'] = sanitize($chat['message']);
+
+		$items .= <<<EOD
+					   {
+			"s": "0",
+			"f": "{$chat['from']}",
+			"m": "{$chat['message']}"
+	   },
+EOD;
+
+	if (!isset($_SESSION['chatHistory'][$chat['from']])) {
+		$_SESSION['chatHistory'][$chat['from']] = '';
+	}
+
+	$_SESSION['chatHistory'][$chat['from']] .= <<<EOD
+						   {
+			"s": "0",
+			"f": "{$chat['from']}",
+			"m": "{$chat['message']}"
+	   },
+EOD;
+		
+		unset($_SESSION['tsChatBoxes'][$chat['from']]);
+		$_SESSION['openChatBoxes'][$chat['from']] = $chat['sent'];
+	}
+
+	if (!empty($_SESSION['openChatBoxes'])) {
+	foreach ($_SESSION['openChatBoxes'] as $chatbox => $time) {
+		if (!isset($_SESSION['tsChatBoxes'][$chatbox])) {
+			$now = time()-strtotime($time);
+			$time = date('g:iA M dS', strtotime($time));
+
+			$message = "Sent at $time";
+			if ($now > 180) {
+				$items .= <<<EOD
+{
+"s": "2",
+"f": "$chatbox",
+"m": "{$message}"
+},
+EOD;
+
+	if (!isset($_SESSION['chatHistory'][$chatbox])) {
+		$_SESSION['chatHistory'][$chatbox] = '';
+	}
+
+	$_SESSION['chatHistory'][$chatbox] .= <<<EOD
+		{
+"s": "2",
+"f": "$chatbox",
+"m": "{$message}"
+},
+EOD;
+			$_SESSION['tsChatBoxes'][$chatbox] = 1;
+		}
+		}
+	}
+}	
+}
+	
 function chatHeartbeat() {
 	
 	$sql = "select * from chat where (chat.to = '".mysql_real_escape_string($_SESSION['username'])."' AND recd = 0) order by id ASC";

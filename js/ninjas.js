@@ -15,7 +15,7 @@ function getnextchal (clas, int) {
 	var numItems = $('div.'+clas).length;
 	if (numItems < 3 || clas == 'all') {
 	var dataString = 'chal=10' ;
-			  $.ajax({
+		$.ajax({
 				type: "POST",
 				url: "ajax/get_next.php",
 				data: dataString,
