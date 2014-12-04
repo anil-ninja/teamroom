@@ -276,7 +276,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     echo "<div class='list-group openchalhide'>
                             <div class='list-group-item' >";
                                 dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
-                    echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>
+                    echo $display_title."<span class='glyphicon glyphicon-flag'></span>
                             <span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a></span> | ".$timefunction."
                                 <br><hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
@@ -348,7 +348,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                         if ($ownedbrow['user_id'] == $user_id ) {
                             echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
-                                    <input class='btn btn-primary btn-sm' type='submit' name='submitchlnin' value='Submit'/>
+                                    <input class='btn btn-primary btn-sm' style='padding: 0px 0px;' type='submit' name='submitchlnin' value='Submit'/>
                                 </form>";
                         }
                     }
