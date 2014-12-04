@@ -62,7 +62,7 @@ include_once 'functions/delete_comment.php';
                         <!-- end Chat box-->
                     <?php 
                         }
-                ?>
+                ?>     
         <script src="js/ninjas.js"></script>
         <script src="js/project_page.js"></script>
         <script src="js/date_time.js"></script>
