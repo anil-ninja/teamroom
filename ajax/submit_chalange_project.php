@@ -2,7 +2,7 @@
 session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
-
+include_once '../functions/collapMail.php';
 
 if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
