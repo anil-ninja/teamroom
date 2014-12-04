@@ -149,7 +149,7 @@ function comment_project (ID) {
                         var notice = result.split("+") ;
 							//alert(notice['1']);
 							if(notice['1']== 'Posted succesfully!'){
-							$("#own_ch_response_"+ID).val('') ;
+							$("#pr_resp_"+ID).val('') ;
 							$('.comments_'+ID).append(notice['0']);
 							}
 						}

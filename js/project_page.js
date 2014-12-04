@@ -165,9 +165,30 @@ function convertSpecialChar(str){
 				return false ;
 			}
 			else {
-				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal)))) + '&cid='+ answercid ;
+				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal))))
+								+ '&cid='+ answercid + '&case= 1' ;
 				//alert(dataString);
 				var _file = document.getElementById('_fileanswer');
+				//alert(uploadFile(_file,"articlePic"));
+				uploadFile(_file,"answerPic",String(dataString),"ajax/submit_answer.php");
+			}
+		});
+		$("#answerchpr").click(function(){
+			$("#answerchpr").attr('disabled','disabled');
+			var answerchal = convertSpecialChar($("#answerchalpr").val()) ;
+			var answercid = $("#answercidpr").val() ;
+			var pid = $("#prcid").val() ;
+			// Returns successful data submission message when the entered information is stored in database.
+			if(answerchal==''){
+				bootstrap_alert(".alert_placeholder", "Answer can not be empty", 5000,"alert-warning");
+				$("#answerchpr").removeAttr('disabled');
+				return false ;
+			}
+			else {
+				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal))))
+									+ '&cid='+ answercid + '&pid=' + pid + '&case= 2';
+				//alert(dataString);
+				var _file = document.getElementById('_fileanswerpr');
 				//alert(uploadFile(_file,"articlePic"));
 				uploadFile(_file,"answerPic",String(dataString),"ajax/submit_answer.php");
 			}
