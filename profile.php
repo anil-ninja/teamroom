@@ -113,12 +113,13 @@ $obj = new profile($UserName);
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
          
         <div class="media-body" style="padding-top: 60px;">
-            <div class="col-md-3">
+            <div class="col-md-1"> </div>
+            <div class="col-md-2">
         <?php
             if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
                 echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 250px;'>Edit</a>";
             }
-            echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:250px; height:250px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+            echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                 echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>
                     <div class='alert_placeholder'> </div>";
@@ -184,7 +185,7 @@ $obj = new profile($UserName);
         </div>
                 </div>
                 <div class='alert_placeholder'></div>
-          <div class="col-md-7">
+          <div class="col-md-6">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
                   <li role="presentation" class="active" id="created_project">
@@ -400,10 +401,11 @@ $("#editprofile").click(function(){
     <!--   <script src="js/uploadpic.js"></script> -->
         <script src="js/project.js"></script>
         <script src="js/chat.js"></script>
+        <script src="js/project_page.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/ninjas.js" type="text/javascript"></script>
         <script src="js/bootbox.js"></script>
-       <script>
+        <script>
 		   function editProfile(fname, lname, email, phone) {
 			   //alert (fname + "," + lname + "," + email + "," + phone);
 			   var newfname = $("#newfirstname").val() ;

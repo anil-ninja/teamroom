@@ -28,7 +28,7 @@
             $useridFriends = $userProjectsRow['user_id'];
             $tooltip = ucfirst($friendFirstName)." ".ucfirst($friendLastName);
 
-            echo "<div class ='row' style='border-width: 1px; border-style: solid;margin:4px;background : #E1F9E4;'>
+            echo "<div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
                             <a href=\"javascript:void(0)\" onclick=\"javascript:chatWith('".$usernameFriends."')\">
                             <div class ='col-md-2 ' style='padding:1px;'>
                                     <img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:30px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>

@@ -1,3 +1,4 @@
+<div class="panel">
 <p> <b><u> Collaborating With </u></b></p>
  <div>
 	<?php
@@ -39,7 +40,7 @@
                     }		   
 		}
 		if ($flag) {			
-                    echo "<div class ='row' style='border-width: 1px; border-style: solid;margin:4px;background : #E1F9E4;'>
+                    echo "<div class ='row' style='margin:4px;background : rgb(240, 241, 242);'>
                             <div class ='col-md-3 ' style='padding:1px;'>
                                 <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:40px; width: 40px;' class='img-responsive'>
                             </div>
@@ -70,6 +71,7 @@
                 $flag = 0;
         }  
 	?>
+</div>
 </div>
 <script>
 function knownperson(ID){
