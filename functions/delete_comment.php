@@ -104,14 +104,14 @@ function dropDown_delete_article($db_handle, $challenge_ID, $user_ID) {
 }
 function dropDown_delete_idea($db_handle, $challenge_ID, $user_ID) {
         echo "<div class='pull-right list-group-item'>
-                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
                     <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                     $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$challenge_ID' AND user_id='$user_ID';"));
                         $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
                         $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
                         if($challenge_dropdown_userID == $user_ID) {
                             echo "<li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
-                                <li><button class='btn-link' cID='".$challenge_ID."' onclick='delIdea(".$challenge_ID.");'>Delete</button></li>";
+                                <li><button class='btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete</button></li>";
                         }
                         else {
                             echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">

@@ -213,7 +213,7 @@ function challenge_display($db_handle, $challengeSearchID) {
             $display_name_stmt = "<span style= 'color: #808080'>
                             By: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | Posted ".$timefunction."</span></div>                    
                             <div class='list-group-item'>
-                            <br/>" .$chelange . "<br/><br/>";
+                            <br/><span style='line-height: 25px; font-size: 16px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>" .$chelange . "</span><br/><br/>";
             if (isset ($_SESSION['user_id'])) {
                 $user_id = $_SESSION['user_id'];
             if ($ctype == 1 or $ctype == 2) {

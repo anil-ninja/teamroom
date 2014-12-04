@@ -17,19 +17,7 @@ if (isset($_POST['logout'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem">
         <meta name="author" content="Anil">
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="css/bootswatch.css">
-        <link href="css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="css/custom.css" rel="stylesheet">
-		<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
-		<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
-        <link href="css/font-awesome.css" rel="stylesheet">
-        <script src="js/jquery.js"> </script>
-        <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-        <script type="text/javascript" src="js/jquery.autosize.js"></script>
-        <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-
+        <?php include_once 'lib/htmt_inc_headers.php'; ?>
     </head>
     <body>
 <?php 
@@ -119,21 +107,8 @@ if (isset($_POST['logout'])) {
             </div>
             </div>
         <?php include_once 'html_comp/signup.php' ; ?>
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootswatch.js"></script>
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-        <script src="js/project.js"></script>
-        <script src="js/date_time.js"></script>
-        <script src="js/custom.js"></script>
-        <script type="text/javascript" src="js/chat_box.js"></script>
-        <script src="js/chat.js"></script>
-        <script src="js/bootbox.js"></script>
-        <!----Login and Signup Modal included here ---->
+        <?php include_once 'lib/html_inc_footers.php'; ?>
         <?php include_once 'html_comp/login_signup_modal.php'; ?>
-        <script type="text/javascript" src="js/loginValidation.js"></script>
-        <script type="text/javascript" src="js/signupValidation.js"></script>
-        <script type="text/javascript" src="js/username_email_check.js"></script>
 
     </body>
 </html>
