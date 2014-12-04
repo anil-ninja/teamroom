@@ -400,10 +400,11 @@ $("#editprofile").click(function(){
     <!--   <script src="js/uploadpic.js"></script> -->
         <script src="js/project.js"></script>
         <script src="js/chat.js"></script>
+        <script src="js/project_page.js"></script>
         <script src="js/custom.js"></script>
         <script src="js/ninjas.js" type="text/javascript"></script>
         <script src="js/bootbox.js"></script>
-       <script>
+        <script>
 		   function editProfile(fname, lname, email, phone) {
 			   //alert (fname + "," + lname + "," + email + "," + phone);
 			   var newfname = $("#newfirstname").val() ;

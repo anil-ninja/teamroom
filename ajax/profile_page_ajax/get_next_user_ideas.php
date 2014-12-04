@@ -102,7 +102,7 @@ if ($_POST['user_next_idea']) {
         $show_idea = $show_idea."</div></div></div>";
     }
     $show_idea = $show_idea. "
-            <div class='comments clearfix'>
+            <div class='comments_".$idea_id."'></div><div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                 </div>

@@ -97,23 +97,19 @@ $show_CP = $show_CP. "<div class='list-group-item pull-right'>
                 </div> 
             </div>";
     }
-    $show_CP = $show_CP. "<div class='comments clearfix'>
+    $show_CP = $show_CP. "<div class='comments_".$project_id_table."'></div><div class='comments clearfix'>
             <div class='pull-left lh-fix'>
                 <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
-    $show_CP = $show_CP. "<form method='POST' class='inline-form'>
-            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Want to know your comment....' />
-            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
-        </form>";
+    $show_CP = $show_CP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$project_id_table."' placeholder='Want to know your comment....' />
+                            <button type='submit' onclick='comment_project(".$project_id_table.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
     } 
     else {
-        $show_CP = $show_CP. "<form action='' method='POST' class='inline-form'>
-                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
-                <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
-                </a>
-            </form>";
+        $show_CP = $show_CP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+                            <a data-toggle='modal' data-target='#SignIn'>
+                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                            </a>";
     }
 $show_CP = $show_CP. "</div>
     </div></div>";

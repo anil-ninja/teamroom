@@ -105,7 +105,7 @@ if ($_POST['last_article']) {
         $show_article = $show_article."</div></div></div>";
     }
     $show_article = $show_article. "
-            <div class='comments clearfix'>
+            <div class='comments_".$article_id."'></div><div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                 </div>
