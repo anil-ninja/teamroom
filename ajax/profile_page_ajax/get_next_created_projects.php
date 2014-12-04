@@ -103,13 +103,13 @@ $show_CP = $show_CP. "<div class='list-group-item pull-right'>
             </div>";
     if (isset($_SESSION['user_id'])) {
     $show_CP = $show_CP. "<form method='POST' class='inline-form'>
-            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Comment' />
+            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' name='pr_resp' placeholder='Want to know your comment....' />
             <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='resp_project' ></button>
         </form>";
     } 
     else {
         $show_CP = $show_CP. "<form action='' method='POST' class='inline-form'>
-                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
+                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
                     <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
                 </a>

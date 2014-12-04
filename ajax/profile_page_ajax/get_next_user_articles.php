@@ -6,7 +6,7 @@ include_once '../../functions/delete_comment.php';
 
 if ($_POST['last_article']) {
     $user_id = $_SESSION['profile_view_userID'];
-    $limit = $_SESSION['last_article_3'];
+    $limit = $_SESSION['last_article'];
     $username = $_SESSION['username'];
     $art = (int) $limit;
     $b = $art + 3;
@@ -15,7 +15,7 @@ if ($_POST['last_article']) {
                                                         JOIN user_info as b WHERE a.challenge_type=7 AND a.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
                                                         UNION
                                                         (SELECT a.user_id, a.challenge_id, a.challenge_title, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
-                                                        WHERE a.challenge_type=7 AND a.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id LIMIT $art, $b;");
+                                                        WHERE a.challenge_type=7 AND a.user_id=$user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id DESC LIMIT $art, $b;");
     $show_article = "";
     while($user_articles_displayRow= mysqli_fetch_array($user_articles_display)) {
         $i++;
@@ -119,7 +119,7 @@ if ($_POST['last_article']) {
     if (mysqli_error($db_handle)) {
         echo "Failed!";
     } else {
-        $_SESSION['last_article_3'] = $art + $i;
+        $_SESSION['last_article'] = $art + $i;
         echo $show_article;
     }
 }

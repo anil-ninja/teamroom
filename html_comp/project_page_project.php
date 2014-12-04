@@ -291,11 +291,11 @@ echo "<div class='comments_".$pro_id."'></div><div class='comments clearfix'>
 				<img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>";
 if (isset($_SESSION['user_id'])) {
-    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$pro_id."' placeholder='Comment' />
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$pro_id."' placeholder='Want to know your comment....' />
             <button type='submit' onclick='comment_project(".$pro_id.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
 } else {
     echo "<form action='' method='POST' class='inline-form'>
-			<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
+			<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
 			<a data-toggle='modal' data-target='#SignIn'>
 				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
 			</a>
@@ -605,10 +605,10 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
     if (isset($_SESSION['user_id'])) {
-        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Whats on your mind about this'/>
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
               <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$id_task.")' ></button>";
     } else {
-        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Whats on your mind about this'/>
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
               <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$id_task.")' ></button>";
     }
     echo "</div></div></div>";
@@ -693,15 +693,13 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
         if (isset($_SESSION['user_id'])) {
-            echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$note_ID."' placeholder='Whats on your mind about this'/>
+            echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$note_ID."' placeholder='Want to know your comment....'/>
               <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$note_ID.")' ></button>";
         } else {
-            echo "<form action='' method='POST' class='inline-form'>
-                <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
+            echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
                     <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
-                </a>
-            </form>";
+                </a>";
         }
         echo "</div>
         </div>

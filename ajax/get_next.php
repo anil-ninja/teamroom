@@ -586,7 +586,7 @@ if ($_POST['chal']) {
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
-                             placeholder='Whats on your mind about this'/>
+                             placeholder='Want to know your comment....'/>
                             <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$chelangeid.")' ></button>
                     </div>";
     $show = $show . "</div> </div> ";

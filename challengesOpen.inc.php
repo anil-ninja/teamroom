@@ -567,12 +567,12 @@ function challenge_display($db_handle, $challengeSearchID) {
                 $userID = $_SESSION['user_id'];
                 echo "<form action='' method='POST' class='inline-form'>
                             <input type='hidden' value='" . $chelangeid . "' name='own_challen_id' />
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' name='own_ch_response' placeholder='Whats on your mind about this Challenge'/>
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' name='own_ch_response' placeholder='Want to know your comment....'/>
                             <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='own_chl_response' ></button>
                         </form>";
             } else {
                 echo "<form action='' method='POST' class='inline-form'>
-                        <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Whats on your mind about this Challenge'/>
+                        <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                             <a data-toggle='modal' data-target='#SignIn'>
                                 <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
                             </a>
