@@ -100,11 +100,11 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                         <span class="input-group-addon">Password&nbsp;</span>
                                         <input type="password" class="form-control" id="passwordlogin" placeholder="Password">
                                     </div><br/>
-                                    <button type="submit" class="btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
+                                    <button type="submit" class="btn btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
                                     <a data-toggle="modal" data-target="#forgetPassword" style="float: right; font-size:11pt; padding-top: 5px ; cursor:pointer;">Forgot Password</a>
                                 </div>
                                 <div class="modal-footer">
-                                    <button data-toggle="modal" class="btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up</font></button>
+                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up</font></button>
                                 </div>
                             </div>
                         </div>
