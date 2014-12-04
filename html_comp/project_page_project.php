@@ -367,12 +367,11 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 	else { $dislikes = '' ; }
         
         // list grp item header for all type chall/article/idea/photo/video
-        $display_tilte_task_fname = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>" 
-                    .ucfirst($title_task)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>
-                        <span style= 'color: #808080'>
-                By: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp";
+        $display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>" 
+                    .ucfirst($title_task)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
         
-        $dispaly_likes ="</span> | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
+        $dispaly_fname_likes ="<span style= 'color: #808080'>
+                &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | ".$timefunct." | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
                     <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$id_task .")'>
                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
@@ -442,10 +441,16 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             if (($ownid == $user_id) && (isset($_SESSION['user_id']))) {
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(" . $id_task . ")' value='Submit'/>";
             }
-            echo $display_tilte_task_fname."
-               | Assigned To:&nbsp <a href ='profile.php?username=".$username_task."'>"
-                .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | ".$timefunct;
-            echo $dispaly_likes;
+            
+            echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
+                &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span>
+                     | Assigned To:&nbsp <a href ='profile.php?username=".$username_task."'>"
+                .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | ".$timefunct." | 
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
+                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$id_task .")'>
+                        <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
+             
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
             // " . $remaintimeown . "
@@ -457,8 +462,8 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$id_task.")'>Close</button>";
             }
             //	. "<br/> ETA Given:" .$etaown."
-            echo $display_tilte_task_fname."| ".$timefunct;
-            echo $dispaly_likes.
+            echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span>".$dispaly_fname_likes.
+            
             "<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span>
                 | Submitted On: ".$timecom;
             // . " ETA Taken : " . $timetaken . "
@@ -470,8 +475,8 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
             echo "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span>";
-            echo $display_tilte_task_fname."| ".$timefunct;
-            echo $dispaly_likes."<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>"
+            echo $display_tilte_task."<span class='glyphicon glyphicon-flag'></span>".$dispaly_fname_likes.
+                "<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>"
                     .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | Submitted: " . $timecom;
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
@@ -486,8 +491,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         if (isset($_SESSION['user_id'])) {
             dropDown_delete_article($db_handle, $id_task, $user_id);
         }
-         echo $display_tilte_task_fname."| ".$timetask;
-         echo $dispaly_likes;
+         echo $display_tilte_task."<span class='glyphicon glyphicon-film'></span>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         
@@ -500,8 +504,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$id_task.")' value='Accept'/>";
             }
-            echo $display_tilte_task_fname."| ".$timetask;
-            echo $dispaly_likes;
+            echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
             // . "&nbsp&nbsp&nbsp with ETA : " . $tasketa . "<br/>" . $remaintime .             
@@ -516,8 +519,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     dropDown_delete_after_accept($db_handle, $id_task, $user_id);
                 }
             }
-            echo $display_tilte_task_fname."| ".$timetask;
-            echo $dispaly_likes;
+            echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
             echo "<br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
             .ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
             //. "<br>ETA Taken: ". $etaown." <br/> Time Remaining : " . $remaintimeown . "
@@ -531,9 +533,8 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$id_task.")'>Close</button>";
                 dropDown_delete_after_accept($db_handle, $id_task, $user_id);
             }           
-            echo $display_tilte_task_fname."| ".$timetask;
-            echo $dispaly_likes."
-            Owned By: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
+            echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes."
+            <br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | Submitted: ".$timefunct;
             //. "<br>    ETA Taken: " . $timetaken . "
             echo $display_task_stmt_content;
@@ -547,9 +548,8 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 dropDown_delete_after_accept($db_handle, $id_task, $user_id);
             }        
             //. "<br/>ETA Given: " . $etaown."
-            echo $display_tilte_task_fname."| ".$timetask;
-            echo $dispaly_likes."
-                Owned By: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> 
+            echo $display_tilte_task."<span class='glyphicon glyphicon-flag'></span>".$dispaly_fname_likes."
+                <br><hr>Owned By: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> 
                     </span> | Submitted On: " . $timecom;
             //. "<br>ETA Taken: ".$timetaken."
             echo $display_task_stmt_content;
@@ -653,7 +653,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
      echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>" 
                     .ucfirst($title)."</b></p>
                         <span style= 'color: #808080'><span class='glyphicon glyphicon-tree-deciduous'></span>
-                By: <a href ='profile.php?username=" . $username_notes . "'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp | ".$note_creation;
+                &nbspBy: <a href ='profile.php?username=" . $username_notes . "'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp | ".$note_creation;
      echo "</span> | <span class='glyphicon glyphicon-hand-up' onclick='like(".$note_ID .")'>
                     <span class='glyphicon glyphicon-hand-down' onclick='dislike(".$note_ID .")'></span>&nbsp;</span>";
 			echo "<br></div>                    
