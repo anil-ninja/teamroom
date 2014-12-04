@@ -13,15 +13,12 @@ include_once 'functions/delete_comment.php';
         <meta name="author" content="Anil">
         <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="css/bootswatch.css">
-        <script type="text/javascript" src="js/jquery.autosize.js"></script>
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
         <link href="css/font-awesome.css" rel="stylesheet">
         <script src="js/jquery.js"> </script>
+        <script type="text/javascript" src="js/jquery.autosize.js"></script>
         <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
-       <script src="js/content_edit.js"> </script>
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-
         <!-- chat box -->
   
   <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
@@ -83,7 +80,10 @@ include_once 'functions/delete_comment.php';
         <script src="js/project_page.js"></script>
         <script src="js/date_time.js"></script>
         <script src="js/bootbox.js"></script>
+        <script src="js/bootswatch.js"></script>
         <script src="js/content_edit.js"></script>
+        <script src="js/content_edit.js"> </script>
+        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
                  <script>
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
