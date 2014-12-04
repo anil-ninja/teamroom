@@ -66,6 +66,7 @@ if(!isset($_SESSION['user_id'])){
     <script src="js/content_edit.js"></script>
     <script src="js/bootbox.js"></script>
    <script src="js/date_time.js"></script>
+   <script src="js/functions.js"></script>
 	<script>
 		var getnextflag = 1 ;
 	$(window).scroll(function(event) {

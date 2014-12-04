@@ -82,7 +82,7 @@ include_once 'functions/delete_comment.php';
         <script src="js/bootbox.js"></script>
         <script src="js/bootswatch.js"></script>
         <script src="js/content_edit.js"></script>
-        <script src="js/content_edit.js"> </script>
+        <script src="js/functions.js"> </script>
         <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
                  <script>
 	$(window).scroll(function(event) {

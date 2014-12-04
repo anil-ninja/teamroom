@@ -294,12 +294,10 @@ if (isset($_SESSION['user_id'])) {
     echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$pro_id."' placeholder='Want to know your comment....' />
             <button type='submit' onclick='comment_project(".$pro_id.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
 } else {
-    echo "<form action='' method='POST' class='inline-form'>
-			<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
 			<a data-toggle='modal' data-target='#SignIn'>
 				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
-			</a>
-		</form>";
+			</a>";
 }
 echo "</div>
 	</div>

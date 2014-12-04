@@ -1,5 +1,4 @@
 function del_project_comment(href){
-    
     if(confirm("Do u really want to delete this comment?")){
         var dataString = 'pID='+ href;
         $.ajax({
@@ -30,8 +29,7 @@ function delcomment(href) {
               }
             }
 function delChallenge(href) {
-    if(confirm("Do u really want to delete this challenge?")){
-        
+    if(confirm("Do u really want to delete this challenge?")){ 
     var dataString = 'cID='+ href;
     $.ajax({
         type: "POST",
