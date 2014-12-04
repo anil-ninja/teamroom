@@ -48,8 +48,8 @@ if (!isset($_SESSION['openChatBoxes'])) {
 function getOldChat($chatuser){
 
 		//use chatuser
-	$sql = "(select * from chat where (((chat.to = '".mysql_real_escape_string($_SESSION['username'])."' and chat.from = '".$chatuser."') 
-			OR (chat.from = '".mysql_real_escape_string($_SESSION['username'])."' and chat.to = '".$chatuser."') ) AND recd = 1) order by id DESC LIMIT 0,10) ORDER BY id ASC";
+	$sql = "(select * from chat where (chat.to = '".mysql_real_escape_string($_SESSION['username'])."' and chat.from = '".$chatuser."') 
+			OR (chat.from = '".mysql_real_escape_string($_SESSION['username'])."' and chat.to = '".$chatuser."') order by id DESC LIMIT 0,10) ORDER BY id ASC";
 	$query = mysql_query($sql);
 	$items = '';
 
@@ -67,7 +67,7 @@ function getOldChat($chatuser){
 					   {
 			"s": "0",
 			"f": "{$chat['from']}",
-			"m": "{$chat['message']}"
+			"m":"{$chat['message']}"
 	   },
 EOD;
 
@@ -118,7 +118,25 @@ EOD;
 		}
 		}
 	}
-}	
+}
+
+	$sql = "update chat set recd = 1 where chat.to = '".mysql_real_escape_string($_SESSION['username'])."' and recd = 0";
+	$query = mysql_query($sql);
+
+	if ($items != '') {
+		$items = substr($items, 0, -1);
+	}
+header('Content-type: application/json');
+?>
+{
+		"items": [
+			<?php echo $items;?>
+        ]
+}
+
+<?php
+			exit(0);
+	
 }
 	
 function chatHeartbeat() {
