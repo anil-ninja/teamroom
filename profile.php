@@ -187,7 +187,7 @@ $obj = new profile($UserName);
           <div class="col-md-7">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
-                  <li role="presentation" class="active">
+                  <li role="presentation" class="active" id="created_project">
                     <a href="#tabCreatedProjects" role="tab" data-toggle="tab">Created Projects (<?= $totalProjectCreated?>)</a></li>
                   <li role="presentation" id="joined_project">
                      <a href="#tabJoinedProjects" role="tab" data-toggle="tab">Joined Projects (<?= $projectsJoined?>)</a></li>
@@ -237,21 +237,86 @@ $obj = new profile($UserName);
             $(document).ready(function(){
                 $('#joined_project').click(function(){
                     $('#joined_project_content').load('ajax/profile_page_ajax/joined_projects.php');
+                    
+                    $(window).scroll(function(event) {
+                        if ($(window).scrollTop() == ($(document).height() - $(window).height()) && $('#joined_project')) {
+                            event.preventDefault();
+                            var dataString = 'next_JnPr=3' ;
+                            $.ajax({
+                                type: "POST",
+                                url: "ajax/profile_page_ajax/get_next_joined_projects.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(result){
+                                    $('#next_JnPr').append(result);
+                                    }
+                            });	
+                        }
+                    });
                 });
             })
             $(document).ready(function(){
                 $('#user_articles').click(function(){
                     $('#user_articles_content').load('ajax/profile_page_ajax/user_articles.php');
+                    
+                    $(window).scroll(function(event) {
+                        if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+                            event.preventDefault();
+                            var dataString = 'last_article=3';
+                            $.ajax({
+                                type: "POST",
+                                url: "ajax/profile_page_ajax/get_next_user_articles.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(result){
+                                    //alert(result) ;
+                                    $('#next_user_article').append(result);
+                                    }
+                            });	
+                        }
+                    });
                 });
             })
             $(document).ready(function(){
                 $('#user_challenges').click(function(){
                     $('#user_challenges_content').load('ajax/profile_page_ajax/user_challenges.php');
+                    $(window).scroll(function(event) {
+                        if ($(window).scrollTop() == ($(document).height() - $(window).height()) && $('#user_challenges')) {
+                            event.preventDefault();
+                            var dataString = 'next=5' ;
+                            $.ajax({
+                                type: "POST",
+                                url: "ajax/profile_page_ajax/get_next_user_challenges.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(result){
+                                    //alert(result) ;
+                                    $('#next_user_chall').append(result);
+                                    }
+                            });	
+                        }
+                    });
                 });
             })
             $(document).ready(function(){
                 $('#user_idea').click(function(){
                     $('#user_idea_content').load('ajax/profile_page_ajax/user_idea.php');
+                    
+                    $(window).scroll(function(event) {
+                        if ($(window).scrollTop() == ($(document).height() - $(window).height())  && $('#user_idea')) {
+                            event.preventDefault();
+                            var dataString = 'user_next_idea=5' ;
+                            $.ajax({
+                                type: "POST",
+                                url: "ajax/profile_page_ajax/get_next_user_ideas.php",
+                                data: dataString,
+                                cache: false,
+                                success: function(result){
+                                    $('#user_next_idea').append(result);
+                                    }
+                            });	
+                        }
+                    });
                 });
             })
         </script>
@@ -377,40 +442,10 @@ $("#editprofile").click(function(){
 			};
         </script>
         	<script>
-	$(window).scroll(function(event) {
-            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-                event.preventDefault();
-                var dataString = 'next=5' ;
-                $.ajax({
-                    type: "POST",
-                    url: "ajax/profile_page_ajax/get_next_user_challenges.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        //alert(result) ;
-                        $('#next_user_chall').append(result);
-                        }
-                });	
-            }
-        });
+	    
+        
         $(window).scroll(function(event) {
-            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-                event.preventDefault();
-                var dataString = 'last_article=3';
-                $.ajax({
-                    type: "POST",
-                    url: "ajax/profile_page_ajax/get_next_user_articles.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        //alert(result) ;
-                        $('#next_user_article').append(result);
-                        }
-                });	
-            }
-        });
-        $(window).scroll(function(event) {
-            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+            if ($(window).scrollTop() == ($(document).height() - $(window).height()) && $('#created_project')) {
                 event.preventDefault();
                 var dataString = 'next_CP=3' ;
                 $.ajax({
@@ -424,36 +459,8 @@ $("#editprofile").click(function(){
                 });	
             }
         });
-        $(window).scroll(function(event) {
-            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-                event.preventDefault();
-                var dataString = 'next_JnPr=3' ;
-                $.ajax({
-                    type: "POST",
-                    url: "ajax/profile_page_ajax/get_next_joined_projects.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        $('#next_JnPr').append(result);
-                        }
-                });	
-            }
-        });
-        $(window).scroll(function(event) {
-            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-                event.preventDefault();
-                var dataString = 'user_next_idea=5' ;
-                $.ajax({
-                    type: "POST",
-                    url: "ajax/profile_page_ajax/get_next_user_ideas.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        $('#user_next_idea').append(result);
-                        }
-                });	
-            }
-        });
+        
+        
 	</script>
 
         <script>
