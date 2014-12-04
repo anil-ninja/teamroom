@@ -16,7 +16,69 @@ function refineVedioId(str){
 		}
 		return str.split('&')[0];
 }
-
+function getnextchal (clas, int) {
+	$('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
+	var numItems = $('div.'+clas).length;
+	if (numItems < 3) {
+	var dataString = 'chal=10' ;
+		$.ajax({
+				type: "POST",
+				url: "ajax/get_next.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#panel-cont').append(result);
+					$('.loading').remove();
+					showclass(int) ;
+				}
+			});
+		}
+	}
+function showclass(int) {
+	alert(int) ;
+	switch(int){
+		case 2:
+			$(".articlesch").hide(100);
+			$(".openchalhide").hide(100);
+			$(".idea").hide(100);
+			$(".film").hide(100);
+			$(".challenge").show(100);
+			break;
+			
+		case 3:
+			$(".challenge").hide(100);
+			$(".openchalhide").hide(100);
+			$(".idea").hide(100);
+			$(".film").hide(100);
+			$(".articlesch").show(100);
+			break;
+			
+		case 4:
+			$(".challenge").hide(100);
+			$(".openchalhide").show(100);
+			$(".idea").hide(100);
+			$(".film").hide(100);
+			$(".articlesch").hide(100);
+			break;
+			
+		case 5:
+			$(".challenge").hide(100);
+			$(".openchalhide").hide(100);
+			$(".idea").hide(100);
+			$(".film").show(100);
+			$(".articlesch").hide(100);
+			break;
+			
+		case 6:
+			$(".challenge").hide(100);
+			$(".openchalhide").hide(100);
+			$(".film").hide(100);
+			$(".articlesch").hide(100);
+			$(".idea").show(100);
+			break;
+		}
+	}
 function bootstrap_alert(elem, message, timeout,type) {
   $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
 

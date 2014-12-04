@@ -57,10 +57,8 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem, article, collaborate, collaboration">
         <meta name="author" content="Anil">
-	<meta name="google-site-verification" content="T9t0-1XNcBUnzXn72xeFMde2N8j7v7IjT0gHy2jweq4" />
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="css/bootswatch.css">
-
+		<meta name="google-site-verification" content="T9t0-1XNcBUnzXn72xeFMde2N8j7v7IjT0gHy2jweq4" />
+		<?php include_once 'lib/htmt_inc_headers.php'; ?>
     </head>
     <body >
     <div class="navbar navbar-default navbar-fixed-top">
@@ -180,9 +178,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                 </div>
             </div>
             <!--end modle-->
-
-            <script src="js/jquery-1.js"></script>
-            <script src="js/bootstrap.js"></script>
+            <?php include_once 'lib/html_inc_footers.php'; ?>
             <script type="text/javascript">
 window.onload = function(){
   var text_input = document.getElementById ('username');
@@ -201,13 +197,6 @@ window.onload = function(){
                     }
                 }
             </script>
-
-            <script src="js/jquery.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-
-            <script type="text/javascript" src="js/signupValidation.js"></script>
-            <script type="text/javascript" src="js/loginValidation.js"></script>
-
             <script type="text/javascript">
                 function nospaces(t){
                     if(t.value.match(/\s/g)){
@@ -216,8 +205,5 @@ window.onload = function(){
                     }
                 }
             </script>
-
-            <script type="text/javascript" src="js/username_email_check.js"></script>
-            
     </body>
 </html>

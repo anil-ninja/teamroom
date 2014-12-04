@@ -7,7 +7,7 @@ if($_POST['proch']){
 	$p_id = $_SESSION['project_id'];
 	$limitpr = $_SESSION['lastpr'];
 	$a = (int)$limitpr ;
-	$b = $a+5;
+	$b = 5;
 	$get_display_task_stmt = "" ;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
                                     a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
