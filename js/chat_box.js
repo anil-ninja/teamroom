@@ -75,16 +75,25 @@ function getOldChat(chatboxtitle){
 		$.each(data.items, function(i,item){
 			if (item)	{ // fix strange ie bug
 
-				//chatboxtitle = item.f;
+			/*chatboxtitle = item.f;
+
+				if ($("#chatbox_"+chatboxtitle).length <= 0) {
+					createChatBox(chatboxtitle);
+				}
+				if ($("#chatbox_"+chatboxtitle).css('display') == 'none') {
+					$("#chatbox_"+chatboxtitle).css('display','block');
+					restructureChatBoxes();
+				} */
+				
 				if (item.s == 1) {
 					item.f = username;
 				}
 
 				if (item.s == 2) {
-					//$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxinfo">'+item.m+'</span></div>');
-				//} else {
-					//newMessages[chatboxtitle] = true;
-					//newMessagesWin[chatboxtitle] = true;
+				/*	$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxinfo">'+item.m+'</span></div>');
+				} else {
+					newMessages[chatboxtitle] = true;
+					newMessagesWin[chatboxtitle] = true; */
 					$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxinfo">'+item.f+':&nbsp;&nbsp;'+item.m+'</span></div>');
 				}
 
@@ -98,8 +107,7 @@ function getOldChat(chatboxtitle){
 		if (itemsfound > 0) {
 			chatHeartbeatTime = minChatHeartbeat;
 			chatHeartbeatCount = 1;
-		} 
-		else if (chatHeartbeatCount >= 10) {
+		} else if (chatHeartbeatCount >= 10) {
 			chatHeartbeatTime *= 2;
 			chatHeartbeatCount = 1;
 			if (chatHeartbeatTime > maxChatHeartbeat) {
@@ -107,7 +115,7 @@ function getOldChat(chatboxtitle){
 			}
 		}
 		
-		//setTimeout('chatHeartbeat();',chatHeartbeatTime); */
+		//setTimeout('chatHeartbeat();',chatHeartbeatTime);
 	}});
 	
 	}
@@ -184,7 +192,6 @@ function createChatBox(chatboxtitle,minimizeChatBox) {
 	});
 	getOldChat(chatboxtitle);
 	$("#chatbox_"+chatboxtitle).show();
-	
 }
 
 

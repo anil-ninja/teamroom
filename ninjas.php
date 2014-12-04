@@ -62,7 +62,6 @@ if(!isset($_SESSION['user_id'])){
 	<script src="jquery.simple-dtpicker.js"></script>
     <script src="js/chat.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/bootswatch.js"></script>
     <script src="js/project_page.js"></script>
     <script src="js/content_edit.js"></script>
     <script src="js/bootbox.js"></script>
