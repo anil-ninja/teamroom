@@ -230,7 +230,7 @@ if ($p_uid == $user_id) {
                         <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                         <ul class='dropdown-menu' aria-labelledby='dropdown'>
                 <li><button class='btn-link' href='#'>Edit Project</button></li>
-                  <li><button class='btn-link' pID='" . $pro_id . "' onclick='delProject(" . $pro_id . ");'>Delete Project</button></li>
+                  <li><button class='btn-link' pID='".$pro_id."' onclick='delProject(".$pro_id.");'>Delete Project</button></li>
                   <li>";
     /* if ($prtime == 'Closed') {
       echo "<form method='POST' class='inline-form'>
@@ -425,7 +425,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                         <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                 if ($id_create == $user_id) {
                     echo "<li><button class='btn-link' href='#'>Edit</button></li>
-                        <li><button class='btn-link' cID='" . $id_task . "' onclick='delChallenge(" . $id_task . ");'>Delete</button></li>";
+                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";
                     /* if ($remaintimeown == 'Closed') {
                       echo "<li><form method='POST' class='inline-form'>
                       <input type='hidden' name='id' value='" . $id_task . "'/>
@@ -439,7 +439,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 </div>";
             }
             if (($ownid == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(" . $id_task . ")' value='Submit'/>";
+                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
             }
             
             echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
@@ -459,7 +459,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group pushpin'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$id_task.")'>Close</button>";
+                echo "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
             }
             //	. "<br/> ETA Given:" .$etaown."
             echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span>".$dispaly_fname_likes.
@@ -502,7 +502,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
                 dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(".$id_task.")' value='Accept'/>";
+                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pubpr(\"".$id_task."\",\"".$pro_id."\")' value='Accept'/>";
             }
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
             echo $display_task_stmt_content;
@@ -514,7 +514,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
                 if ($ownid == $user_id) {
-                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(" . $id_task . ")' value='Submit'/>";
+                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
                 } else {
                     dropDown_delete_after_accept($db_handle, $id_task, $user_id);
                 }
@@ -530,7 +530,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$id_task.")'>Close</button>";
+                echo "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
                 dropDown_delete_after_accept($db_handle, $id_task, $user_id);
             }           
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes."
@@ -606,10 +606,12 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                         </div>";
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$id_task.")' ></button>";
+              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='commentprch(\"".$id_task."\",\"".$pro_id."\")' ></button>";
     } else {
-        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$id_task.")' ></button>";
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+                <a data-toggle='modal' data-target='#SignIn'>
+                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                </a>";
     }
     echo "</div></div></div>";
 }
@@ -694,7 +696,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                         </div>";
         if (isset($_SESSION['user_id'])) {
             echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$note_ID."' placeholder='Want to know your comment....'/>
-              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(".$note_ID.")' ></button>";
+              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='commentprch(\"".$note_ID."\",\"".$pro_id."\")' ></button>";
         } else {
             echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
