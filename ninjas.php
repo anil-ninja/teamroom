@@ -75,7 +75,6 @@ getallreminders() ;
 	<script>
 	$(".text").show();
 	$(".editbox").hide();
-	//setTimeout(function(){alert("hi")}, 100000);
 	</script>
     <script src="js/ninjas.js" type="text/javascript"></script>
     <script src="date.js"></script>
