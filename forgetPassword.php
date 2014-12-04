@@ -72,11 +72,8 @@ $accessed_or_not = mysqli_num_rows($verify_check);
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem, article, collaborate, collaboration">
         <meta name="author" content="Anil">
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="css/bootswatch.css">
-        
-
-    </head>
+        <?php include_once 'lib/htmt_inc_headers.php'; ?>
+ </head>
     <body>
     <div class="navbar navbar-default navbar-fixed-top">
         <div>

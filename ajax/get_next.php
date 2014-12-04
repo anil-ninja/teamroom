@@ -6,8 +6,8 @@ if ($_POST['chal']) {
     $user_id = $_SESSION['user_id'];
     $limit = $_SESSION['lastpanel'];
     $username = $_SESSION['username'];
-    $a = (int) $limit;
-    $b = $a + 5;
+    $a = (int)$limit ;
+	$b = 5;
     $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
 											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b where a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' 
@@ -25,12 +25,12 @@ if ($_POST['chal']) {
 											(SELECT DISTINCT a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
-											 ORDER BY creation_time DESC LIMIT $a,$b;");
+											 ORDER BY creation_time DESC LIMIT $a, $b;");
     $show = "";
     $get_display_ch_stmt_content = "" ;
     $iR = 0;
     while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
-        $i++;
+        $iR++;
        $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
     $ETA = $open_chalangerow['challenge_ETA'];
     $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
@@ -594,8 +594,10 @@ if ($_POST['chal']) {
     if (mysqli_error($db_handle)) {
         echo "Failed!";
     } else {
-        $_SESSION['lastpanel'] = $a + $i;
-        echo $show;
+        $_SESSION['lastpanel'] = $a + $iR;
+        
+        echo $show ;
+        $iR = 0;
     }
 }
 else  echo "Invalid parameters!";

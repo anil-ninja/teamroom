@@ -26,22 +26,7 @@
         <meta name="twitter:title" content="<?= $obj->challenge_title; ?>" />
         <meta name="twitter:description" content="<?= $obj->getDiscription(); ?>" />
         <meta name="twitter:image" content="<?= $obj->url; ?>" />
-
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-        <link rel="stylesheet" href="css/bootswatch.css">
-        <link href="css/bootstrap-responsive.css" rel="stylesheet">
-        <link href="css/custom.css" rel="stylesheet">
-
-        <link href="css/font-awesome.css" rel="stylesheet">
-        <script src="js/jquery.js"> </script>
-        <script src="js/project_page.js" type="text/javascript"></script>
-        <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-        <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
-		<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
-        <script type="text/javascript" src="js/jquery.autosize.js"></script>
-        <!-- script fro challenge comment delete, it is common for all challenges comments.  -->
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-
+        <?php include_once 'lib/htmt_inc_headers.php'; ?>
     </head>
     <body>
       <?php include_once 'html_comp/navbar_homepage.php'; ?>

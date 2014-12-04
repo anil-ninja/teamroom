@@ -33,24 +33,7 @@ $total_members = mysqli_num_rows($teams_member_display);
     <head>
         <title><?= $team_name; ?></title>
         <meta charset="utf-8">
-        <link rel="stylesheet" href="css/profile_page_style.css">
-        
-        <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="css/bootswatch.css">
-	<link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
-	<link href="css/font-awesome.css" rel="stylesheet">
-	<script src="js/jquery.js"> </script>
-	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery.autosize.js"></script>
-	<link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
-	<link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/jquery-1.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootswatch.js"></script>
-    <script src="js/date_time.js"></script>
-    <script src="js/bootbox.js"></script>
+        <?php include_once 'lib/htmt_inc_headers.php'; ?>
     </head>
 
     <body>
