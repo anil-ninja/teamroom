@@ -257,9 +257,29 @@ function answersubmit(chelangeid){
 function answersubmitpr(chelangeid, PID){
 	bootbox.confirm("Completed Challenge !!!", function(result) {
 		if(result){
-			$("#answercid").val(chelangeid) ;
-			$("#prcid").val(PID) ;
-			$("#answerForm").modal("show");
+			var modal = "<div class='modal fade' id='answerForm' tabindex='-1' role='dialog' aria-labelledby='myModalLabel1' aria-hidden='true'>" +
+							"<div class='modal-dialog'>" +
+								"<div class='modal-content'>" +
+									"<div class='modal-header'>" + 
+										"<button type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>" +
+										"<h4 class='modal-title' id='myModalLabel'>Submit Answer</h4>" +
+									"</div>" +
+									"<div class='modal-body'>" +  
+										"<div class='input-group-addon'>" +
+											"<textarea row='5' id='answerchal' class='form-control' placeholder='submit your answer'></textarea>" +
+										"</div><br/>" +
+										"<input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'><br/>" +
+										"<input type='hidden' id='answercid' value=" + chelangeid + ">" +
+										"<input type='hidden' id='prcid' value=" + PID + ">" +
+										"<button type='submit' class='btn btn-success btn-sm' id='answerch' >Submit</button>" +
+									"</div>" +
+									"<div class='modal-footer'>" +
+										"<button id='newuser' type='button' class='btn btn-primary' data-dismiss='modal'>Close</button>" +
+									"</div>" +
+								"</div>" +
+							"</div>" +
+						  "</div>" ;
+			modal.show;
 			}
 		});
 } ;

@@ -16,19 +16,15 @@ include_once 'functions/delete_comment.php';
         <link href="css/bootstrap-responsive.css" rel="stylesheet">
         <link href="css/custom.css" rel="stylesheet">
         <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
         <script src="js/jquery.js"> </script>
         <script type="text/javascript" src="js/jquery.autosize.js"></script>
-        <link href="css/style.css" media="screen" rel="stylesheet" type="text/css" /> 
+        <script src="js/jquery-1.js"></script> 
         <!-- chat box -->
   
   <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
   <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
 
-  <!--[if lte IE 7]>
-  <link type="text/css" rel="stylesheet" media="all" href="css/screen_ie.css" />
-  <![endif]-->
-
-  <!-- end chat box-->
    </head>
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
@@ -57,13 +53,6 @@ include_once 'functions/delete_comment.php';
                  ?>
                         <script>
                             $(document).ready(function(){
-                           /*     $("#talkpro").click(function(){
-                                    $("#talkprForm").show();
-                                    $("#talkformdata").show();
-                                    $("#talkformin").show();
-                                    $("#talkformdata").scrollTop($('#talkformdata').height()) ;
-                                    projecttalk();
-                                }); */
                                 projecttalk();
                             }); 
                         </script>
@@ -74,11 +63,10 @@ include_once 'functions/delete_comment.php';
                     <?php 
                         }
                 ?>
-             <script src="js/jquery-1.js"></script>
-        <script src="js/bootstrap.js"></script>
         <script src="js/ninjas.js"></script>
         <script src="js/project_page.js"></script>
         <script src="js/date_time.js"></script>
+        <script src="js/bootstrap.js"></script>
         <script src="js/bootbox.js"></script>
         <script src="js/bootswatch.js"></script>
         <script src="js/content_edit.js"></script>
