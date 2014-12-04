@@ -64,20 +64,19 @@ function user_challenges ($db_handle, $user_IDF) {
             $user_session_id = ($_SESSION['user_id']);
             dropDown_challenge($db_handle, $challenge_id, $user_session_id, "");
         }
-        echo "<div class='pull-left lh-fix'>     
-                <span class='glyphicon glyphicon-question-sign'>
-                <img src='uploads/profilePictures/$chall_username.jpg'  onError=this.src='img/default.gif' 
-                style='width: 50px; height: 50px'></span>&nbsp &nbsp
-            </div>
-            <span class='color strong'><a href ='profile.php?username=" . $chall_username . "'>"
-                .ucfirst($chall_firstname) . '&nbsp' . ucfirst($chall_lastname) . " </a></span><br/>" 
-                .$chall_creation."<br/><br/>
-            </div>";
-	echo "<div class='list-group-item'>
-                <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'><strong>
-                        <p align='center'>"                          
-                        .ucfirst($challenge_title)."</p></strong></a><br>
-                ".$challenge_stmt."<br><br>";
+        echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
+                    .ucfirst($challenge_title)."</a></b></p>
+                
+                <span class='glyphicon glyphicon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
+                By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$challenge_id .")'>
+                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$challenge_id .")'>
+                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
+                </div>
+                <div class='list-group-item'>
+            <br/>".$challenge_stmt."</span><br/><br/>";
          comments_all_type_challenges ($db_handle, $challenge_id);
          echo "</div>";
     }
@@ -87,7 +86,8 @@ function user_idea ($db_handle, $user_IDF) {
                                                         JOIN user_info as b WHERE a.challenge_type=4 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
                                                         UNION
                                                         (SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(b.stmt, 500) as stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
-                                                        WHERE a.challenge_type=4 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id DESC;");
+                                                        WHERE a.challenge_type=4 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id DESC LIMIT 0, 5;");
+    $_SESSION['next_idea'] = 5;
     while($user_idea_displayRow= mysqli_fetch_array($user_idea_display)) {
         $idea_id= $user_idea_displayRow['challenge_id'];
         $idea_title =str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_idea_displayRow['challenge_title'])));
@@ -99,23 +99,25 @@ function user_idea ($db_handle, $user_IDF) {
         $idea_lastname = $user_idea_displayRow['last_name'];
         $idea_username = $user_idea_displayRow['username'];
         echo "<div class='list-group idea'>
-                        <div class='list-group-item' style='line-height: 16.50px;'></span>
-                            <div class='pull-left lh-fix'>     
-                                <span class='glyphicon glyphicon-flash'></span>
-                                <img src='uploads/profilePictures/$idea_username.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-                            </div>";
+                        <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
             $user_session_id = ($_SESSION['user_id']);
             dropDown_delete_idea($db_handle, $idea_id, $user_session_id);
         }
-                    echo "<span class='color strong'><a href ='profile.php?username=" . $idea_username . "'>"
-                                        .ucfirst($idea_firstname) . '&nbsp' . ucfirst($idea_lastname) . " </a></span><br>" . $idea_creation . "<br/><br/>
-                        </div>";
-         echo "<div class='list-group-item'>
-                <a class='btn-link' style='color:#3B5998; font-size: 14pt;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'><strong>
-                        <p align='center'>"                          
-                        .ucfirst($idea_title)."</p></strong></a><br>
-                ".$idea_stmt."<br><br>";
+        echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
+                    .ucfirst($idea_title)."</a></b></p>
+                
+                <span class='glyphicon glyphicon-flash'></span><span style= 'color: #808080'>
+                By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$idea_id .")'>
+                        <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$idea_id .")'>
+                        <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
+                </div>
+                <div class='list-group-item'>
+            <br/>".$idea_stmt."</span><br/><br/>";
+	
          comments_all_type_challenges ($db_handle, $idea_id);
          echo "</div>";
     }

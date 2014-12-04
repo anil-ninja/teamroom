@@ -223,6 +223,7 @@ $obj = new profile($UserName);
                 </div>
             <div role="tabpanel" class="row tab-pane" id="tabIdeas">
                 <div id="user_idea_content"></div>
+                <div id="user_next_idea"></div>
             </div>
             </div>
         </div> 
@@ -434,6 +435,21 @@ $("#editprofile").click(function(){
                     cache: false,
                     success: function(result){
                         $('#next_JnPr').append(result);
+                        }
+                });	
+            }
+        });
+        $(window).scroll(function(event) {
+            if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+                event.preventDefault();
+                var dataString = 'user_next_idea=5' ;
+                $.ajax({
+                    type: "POST",
+                    url: "ajax/profile_page_ajax/get_next_user_ideas.php",
+                    data: dataString,
+                    cache: false,
+                    success: function(result){
+                        $('#user_next_idea').append(result);
                         }
                 });	
             }
