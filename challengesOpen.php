@@ -113,18 +113,7 @@
     </div>
        </div>
       <?php include_once 'html_comp/signup.php' ; ?>
-        
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootswatch.js"></script>
-        <script src="js/delete_comment_challenge.js" type="text/javascript"> </script>
-        <script src="js/project.js"></script>
-        <script src="js/date_time.js"></script>
-        <script src="js/custom.js"></script>
-        <script type="text/javascript" src="js/chat_box.js"></script>
-        <script src="js/chat.js"></script>
-		<script src="js/bootbox.js"></script>
-        <!----Login and Signup Modal included here ---->
+        <?php include_once 'lib/html_inc_footers.php'; ?>
         <?php include_once 'html_comp/login_signup_modal.php'; ?>
        
     </body>

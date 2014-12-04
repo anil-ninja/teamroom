@@ -131,6 +131,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                 <?php include_once 'html_comp/friends.php' ; ?>
                 </div>
         </div>
+        <?php include_once 'lib/html_inc_footers.php'; ?>
         <script language="JavaScript" type="text/javascript">
         function add_member_to_team () {
 			var emailadd_member =document.getElementById("email_add_member").value;
@@ -190,6 +191,6 @@ function bootstrap_alert(elem, message, timeout,type) {
   }
 };
         </script>
-        <script type="text/javascript" src="js/chat_box.js"></script>
+        
             </body>
     	</html>

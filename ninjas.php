@@ -35,15 +35,7 @@ if(!isset($_SESSION['user_id'])){
 			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>				
 			</div>
 		</div>
-	<script src="js/ninjas.js" type="text/javascript"></script>
-    <script src="date.js"></script>
-	<script src="jquery.simple-dtpicker.js"></script>
-    <script src="js/chat.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/project_page.js"></script>
-    <script src="js/content_edit.js"></script>
-    <script src="js/bootbox.js"></script>
-   <script src="js/functions.js"></script>
+	<?php include_once 'lib/html_inc_footers.php'; ?>	
 	<script>
 	$(window).scroll(function(event) {
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
@@ -66,9 +58,6 @@ getallreminders() ;
 	$(".text").show();
 	$(".editbox").hide();
 	</script>   
-   <!-- chat box -->
-   <script type="text/javascript" src="js/chat_box.js"></script>
-   <!-- end Chat box-->
 </body></html>
 <?php
 mysqli_close($db_handle);

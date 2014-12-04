@@ -365,20 +365,7 @@ $("#editprofile").click(function(){
                 </div>
             </div>
         </div>
-        
-        
-        <script src="js/jquery.js"></script>
-        <script src="js/ajaxupload-v1.2.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/bootswatch.js"></script>
-        <script src="js/date_time.js"></script>
-    <!--   <script src="js/uploadpic.js"></script> -->
-        <script src="js/project.js"></script>
-        <script src="js/chat.js"></script>
-        <script src="js/project_page.js"></script>
-        <script src="js/custom.js"></script>
-        <script src="js/ninjas.js" type="text/javascript"></script>
-        <script src="js/bootbox.js"></script>
+        <?php include_once 'lib/html_inc_footers.php'; ?>
         <script>
 		   function editProfile(fname, lname, email, phone) {
 			   //alert (fname + "," + lname + "," + email + "," + phone);
@@ -449,13 +436,7 @@ $("#editprofile").click(function(){
                     }, timeout);    
                 }
             };
-        </script>
-         <!----Login and Signup Modal included here ---->         
+        </script> 
         <?php include_once 'html_comp/login_signup_modal.php'; ?>
-         
-
-        <!-- chat box -->
-   <script type="text/javascript" src="js/chat_box.js"></script>
-   <!-- end Chat box-->
     </body>
 </html>

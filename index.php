@@ -178,9 +178,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                 </div>
             </div>
             <!--end modle-->
-
-            <script src="js/jquery-1.js"></script>
-            <script src="js/bootstrap.js"></script>
+            <?php include_once 'lib/html_inc_footers.php'; ?>
             <script type="text/javascript">
 window.onload = function(){
   var text_input = document.getElementById ('username');
@@ -199,13 +197,6 @@ window.onload = function(){
                     }
                 }
             </script>
-
-            <script src="js/jquery.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-
-            <script type="text/javascript" src="js/signupValidation.js"></script>
-            <script type="text/javascript" src="js/loginValidation.js"></script>
-
             <script type="text/javascript">
                 function nospaces(t){
                     if(t.value.match(/\s/g)){
@@ -214,8 +205,5 @@ window.onload = function(){
                     }
                 }
             </script>
-
-            <script type="text/javascript" src="js/username_email_check.js"></script>
-            
     </body>
 </html>
