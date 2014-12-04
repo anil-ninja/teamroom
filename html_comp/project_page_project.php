@@ -201,12 +201,12 @@
 
     <?php
 }
-//include_once 'kanban.php';
+
 $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM
-												projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
-                                                UNION
-                                                (SELECT a.user_id, a.project_ETA, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
-                                                join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
+                                            projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
+                                        UNION
+                                            (SELECT a.user_id, a.project_ETA, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
+                                            join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
 $projectst = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
