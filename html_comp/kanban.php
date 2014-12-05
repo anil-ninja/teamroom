@@ -9,13 +9,13 @@ while ($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_proje
     $challenge_id11 = $open_chalange_of_projectrow['challenge_id'];
     $challenge_title11 = $open_chalange_of_projectrow['challenge_title'];
     $challenge_created1 = $open_chalange_of_projectrow['creation_time'];
-    $openChallenges .= "<div class='col-xs-6 col-md-4' style='height:120px;'>
+    $openChallenges .= "<div class='col-xs-6 col-md-4' style='height:135px;'>
                 <div class='panel panel-default'>
                   <div class = 'panel-heading' style = 'font-size:10px;'>
                     <span class='glyphicon glyphicon-question-sign'></span>
                     $challenge_created1
                   </div>
-                  <div class='panel-body' style='padding: 5px;height:75px'>
+                  <div class='panel-body' style='padding: 5px;height:90px'>
                     <a href='challengesOpen.php?challenge_id=$challenge_id11'>" 
                     .ucfirst($challenge_title11)."</a>
                   </div>
