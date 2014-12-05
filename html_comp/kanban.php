@@ -1,16 +1,27 @@
 <?php
 include_once 'functions/delete_comment.php';
-$td1 = "";
+$openChallenges = "";
 
-$open_chalange_of_project = mysqli_query($db_handle, "select challenge_id, challenge_title from challenges WHERE project_id = '$team_project_id' 
+$open_chalange_of_project = mysqli_query($db_handle, "select challenge_id, challenge_title,creation_time from challenges WHERE project_id = '$team_project_id' 
 														AND (challenge_type = '1' or challenge_type = '2') and challenge_status = '1' ;");
 while ($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_project)) {
     //$first_name1 = $open_chalange_of_projectrow['first_name'];
     //$last_name2 = $open_chalange_of_projectrow['last_name'];
     $challenge_id11 = $open_chalange_of_projectrow['challenge_id'];
     $challenge_title11 = $open_chalange_of_projectrow['challenge_title'];
-    $td1 .= "<a href='challengesOpen.php?challenge_id=$challenge_id11'>" 
-                    .ucfirst($challenge_title11)."</a><br/><br>";
+    $challenge_created1 = $open_chalange_of_projectrow['creation_time'];
+    $openChallenges .= "<div class='col-xs-6 col-md-4' style='height:120px;'>
+                <div class='panel panel-default'>
+                  <div class = 'panel-heading' style = 'font-size:10px;'>
+                    <span class='glyphicon glyphicon-question-sign'></span>
+                    $challenge_created1
+                  </div>
+                  <div class='panel-body' style='padding: 5px;height:75px'>
+                    <a href='challengesOpen.php?challenge_id=$challenge_id11'>" 
+                    .ucfirst($challenge_title11)."</a>
+                  </div>
+                </div>
+            </div>";
 }
 
 $td2 = "";
@@ -45,16 +56,18 @@ while ($kanban2row = mysqli_fetch_array($kanban2)) {
         if ($status3 == 2) {
             $td2 .= "<p style='font-size: 10px;'><a href='challengesOpen.php?challenge_id=$challenge_id12'>
                         ".$challenge_title12."</a></p><hr/>";
-            $delayed_challenges = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, b.comp_ch_ETA, b.ownership_creation from challenges as a 
-                                                            join challenge_ownership as b 
-                                                            where a.challenge_id=$challenge_id12 AND (a.challenge_type = '1' OR a.challenge_type = '2') AND a.challenge_status = '2' and a.challenge_id = b.challenge_id;") ;
-            $delayed_challengesRow = mysqli_fetch_array($delayed_challenges);
-            $comp_ch_ETA = $delayed_challengesRow['comp_ch_ETA'];
-            $ownership_creation = $delayed_challengesRow['ownership_creation'];
-            $delayed = remaining_time($ownership_creation, $comp_ch_ETA) ;
-            //if ($delayed == "Closed") {
-               // $td2_delay .= "<p style='font-size: 10px;'><a href='challengesOpen.php?challenge_id=$challenge_id12'>
-              //          ".$challenge_title12."</a></p><hr/>";
+
+           //  This is commented because ETA is not used in this release     
+           //  $delayed_challenges = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, b.comp_ch_ETA, b.ownership_creation from challenges as a 
+           //                                                  join challenge_ownership as b 
+           //                                                  where a.challenge_id=$challenge_id12 AND (a.challenge_type = '1' OR a.challenge_type = '2') AND a.challenge_status = '2' and a.challenge_id = b.challenge_id;") ;
+           //  $delayed_challengesRow = mysqli_fetch_array($delayed_challenges);
+           //  $comp_ch_ETA = $delayed_challengesRow['comp_ch_ETA'];
+           //  $ownership_creation = $delayed_challengesRow['ownership_creation'];
+           //  $delayed = remaining_time($ownership_creation, $comp_ch_ETA) ;
+           //  if ($delayed == "Closed") {
+           //     $td2_delay .= "<p style='font-size: 10px;'><a href='challengesOpen.php?challenge_id=$challenge_id12'>
+           //             ".$challenge_title12."</a></p><hr/>";
            // }
             
             
@@ -82,34 +95,51 @@ while ($kanban2row = mysqli_fetch_array($kanban2)) {
     $td4 = "";
 }
 //<th style='width:150px;'>Delay</th>
-echo "<table class='table table-striped' border='1' style='background-color: #fff;'>
-            <thead >
+echo "
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>Open Challenges</h3>
+          </div>
+          <div class='panel-body'>
+            " . $openChallenges . "
+          </div>
+        </div>
+         <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>Work In Progress</h3>
+          </div>
+          <div class='panel-body'>
+            " . $td2 . "
+          </div>
+        </div>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>Work In Review</h3>
+          </div>
+          <div class='panel-body'>
+            " . $td1 . "
+          </div>
+        </div>
+        <div class='panel panel-default'>
+          <div class='panel-heading'>
+            <h3 class='panel-title'>Completed</h3>
+          </div>
+          <div class='panel-body'>
+            " . $td1 . "
+          </div>
+        </div>
+
+        <table class='table table-striped' border='1' style='background-color: #fff;'>
+            <thead>
                 <tr>
-                    <th style='width:200px;'>Open</th>
-                    <th>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style='width:150px;'>Team Members</th>
-                                <th style='width:150px'>In-Progress</th>
-                                <th style='width:150px;'>In-Review</th>
-                                <th style='width:150px;'>Completed</th>
-                            </tr>
-                        </thead>
-                    </table>
-                    </th>
+                    <th>Team Members</th>
+                    <th>In-Progress</th>
+                    <th>In-Review</th>
+                    <th>Completed</th>
                 </tr>
             </thead>
             <tbody style='background-color: #fff;' >
-                <tr>
-                    <td>" . $td1 . "</td>
-                    <td>
-                        <table>
-                            <tbody>".$td5."
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
+                ".$td5."
             </tbody>
         </table>";
 ?>
