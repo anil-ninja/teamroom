@@ -1,3 +1,8 @@
+<?="<div class='list-group'>
+        <div class='list-group-item'>
+            <span class='color strong' style= 'font-size: 14pt;'>" .ucfirst($projttitle) . "</span>
+        </div>
+    </div>"?>
 <?php if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
@@ -257,7 +262,6 @@ echo "</div>
             </div>
     </div>
             <div class='list-group-item'>
-            <span class='color strong' style= 'font-size: 14pt; color :#3B5998;'><p align='center'>" . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", ucfirst($projttitle)))) . "</p></span>                
             " . $projectst . "<br/><br/>";
 
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
