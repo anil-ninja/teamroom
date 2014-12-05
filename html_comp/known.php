@@ -12,10 +12,7 @@
 											    UNION
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
 											    where b.knowning_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2');");
-	if(mysqli_num_rows($userProjects) == 0) {
-		$userProjects = mysqli_query($db_handle, "SELECT * FROM user_info where user_id != '$profileViewUserID'
-													and user_id != '$user_id' limit 0, 5;"); 
-		}
+
 	while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
 		$friendFirstName = $userProjectsRow['first_name'];
 		$friendLastName = $userProjectsRow['last_name'];
@@ -73,3 +70,42 @@
 	?>
 </div>
 </div>
+<!---
+<?php 
+	if($profileViewUserID == $user_id) {
+?>
+<div class="panel">
+<p> <b><u> Recommended </u></b></p>
+ <div>
+	<?php
+		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN () limit 0, 5 ;");
+		while ($RecommendedRow = mysqli_fetch_array($Recommended)) {
+			$friendFirstNamer = $RecommendedRow['first_name'];
+			$friendLastNamer = $RecommendedRow['last_name'];
+			$usernameFriendsr = $RecommendedRow['username'];
+			$useridFriendsr = $RecommendedRow['user_id'];
+			$friendRankr = $RecommendedRow['rank'];	     
+			echo "<div class ='row' style='border-width: 1px; border-style: solid;margin:4px;background : #E1F9E4;'>
+					<div class ='col-md-2' style='padding:1px;'>
+						<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
+					</div>
+					<div class = 'col-md-7' style='font-size:12px;padding: 1px;'>
+						<span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriendsr. "'>" 
+							.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."</a>
+						</span><br/>
+						<span style='font-size:10px;'>".$friendRankr."</span>
+					</div>";
+			if (isset($_SESSION['user_id'])) {
+				echo "<div class = 'col-md-2' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+							<input type = 'submit' class = 'btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'link'/>
+					</div>";
+				}
+			echo "</div>";
+			}
+	?>
+</div>
+</div>
+<?php
+	}
+?>
+--->

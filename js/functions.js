@@ -52,6 +52,54 @@ function requestaccept(ID) {
 		}
 	});
 }
+function add_member(PID, name) {
+	var email = $("#email_add_member").val() ;
+    var dataString = 'email='+ email + '&id='+ PID + '&name='+ name + '&case=1';
+    alert(dataString) ;
+    if (email == "") {
+         bootstrap_alert(".alert_placeholder", "Email can't be empty", 5000,"alert-success");
+         }
+         else {
+             $.ajax({
+				type: "POST",
+				url: "ajax/add_member_team.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Member Added succesfully!'){
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+                        location.reload();
+						}
+						else {
+							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							}
+                    }
+				});
+		}
+}
+ function remove_member(PID, name, Uid){
+	bootbox.confirm("Do u really want to Remove this member?", function(result) {
+		if(result){
+			var dataString = 'email=' + Uid + '&id='+ PID + '&name='+ name + '&case=2';
+			alert(dataString) ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/add_member_team.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Member Removed succesfully!') {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						location.reload();
+						}
+						else {
+							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							}
+					}
+				});
+		 }
+	});
+}
 function requestdelete(ID) {
 	bootbox.confirm("Delete Request !!!", function(result) {
 	if(result){

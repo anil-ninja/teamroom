@@ -638,6 +638,12 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         $note_ID = $displayrow['challenge_id'];
         $note_created_on = $displayrow['creation_time'];
         $note_creation = date("j F, g:i a", strtotime($note_created_on));
+        $totallikesn = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$note_ID' and like_status = '1' ;");
+		if (mysqli_num_rows($totallikesn) > 0) { $likesn = mysqli_num_rows($totallikesn) ;}
+		else { $likesn = '' ; }
+		$totaldislikesn = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$note_ID' and like_status = '2' ;");
+		if (mysqli_num_rows($totaldislikesn) > 0) { $dislikesn = mysqli_num_rows($totaldislikesn) ;}
+		else { $dislikesn = '' ; }
         echo "<div class='list-group deciduous'>
 		  <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
@@ -658,8 +664,10 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     .ucfirst($title)."</b></p>
                         <span style= 'color: #808080'><span class='glyphicon glyphicon-tree-deciduous'></span>
                 &nbspBy: <a href ='profile.php?username=" . $username_notes . "'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp | ".$note_creation;
-     echo "</span> | <span class='glyphicon glyphicon-hand-up' onclick='like(".$note_ID .")'>
-                    <span class='glyphicon glyphicon-hand-down' onclick='dislike(".$note_ID .")'></span>&nbsp;</span>";
+     echo "</span> | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$note_ID .")'>
+                        <input type='submit' class='btn-link' id='likes_".$note_ID ."' value='".$likesn."'/></span>
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$note_ID .")'>
+                        <input type='submit' class='btn-link' id='dislikes_".$note_ID ."' value='".$dislikesn."'/>&nbsp;</span>";
 			echo "<br></div>                    
                     <div class='list-group-item'><br>".
                        $notes."<br><br>" ;
