@@ -369,8 +369,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 	else { $dislikes = '' ; }
         
         // list grp item header for all type chall/article/idea/photo/video
-        $display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>" 
-                    .ucfirst($title_task)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
+        $display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
+            <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
         
         $dispaly_fname_likes ="<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | ".$timefunct." | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
@@ -660,8 +660,8 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         echo "</ul>
             </div>";
     }
-     echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>" 
-                    .ucfirst($title)."</b></p>
+     echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
+         <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$note_ID."' target='_blank'>".ucfirst($title)."</a></b></p>
                         <span style= 'color: #808080'><span class='glyphicon glyphicon-tree-deciduous'></span>
                 &nbspBy: <a href ='profile.php?username=" . $username_notes . "'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp | ".$note_creation;
      echo "</span> | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$note_ID .")'>

@@ -19,14 +19,16 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
                 <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
                     <li class='navbar-text' >
-                     <div class="input-group">
-                             <input type="text"  id="searchfor" placeholder="search" style="height : 26px;padding-bottom: 0px; padding-top: 0px;" class="form-control">
-                             <span class="input-group-btn">
-                                 <button type="submit" id="keyword" onclick="searchingform()" class="btn btn-default" style="height : 26px;">
-                                    <p class="glyphicon glyphicon-search">
-                                 </button>
-                             </span>
-                     </div>
+                     <script> 
+                         (function() { 
+                             var cx = '007811515162108704212:nlk9cflmqvg'; 
+                             var gcse = document.createElement('script'); 
+                             gcse.type = 'text/javascript'; gcse.async = true; 
+                             gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx; 
+                             var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s); 
+                         })(); 
+                     </script> 
+                    <gcse:searchbox></gcse:searchbox>
                     </li>
                 </ul>
                 <ul class='ccol-md-9 nav navbar-nav navbar-right' style='margin-right: 0px;'>
