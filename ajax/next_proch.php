@@ -67,8 +67,8 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 			else { $dislikes = '' ; }	
                         
                         // list grp item header for all type chall/article/idea/photo/video
-                        $get_display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>" 
-                                    .ucfirst($title_task)."</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
+                        $get_display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
+                            <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
 
                         $get_dispaly_fname_likes = "<span style= 'color: #808080'>
                                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | ".$timefunct." | 
