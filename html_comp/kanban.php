@@ -44,7 +44,8 @@ while ($kanban2row = mysqli_fetch_array($kanban2)) {
 
     $kanban3 = mysqli_query($db_handle, "select DISTINCT a.challenge_id, a.challenge_title, a.challenge_status, a.challenge_ETA, b.first_name, b.username from challenges as a join
 										user_info as b join challenge_ownership as c WHERE a.project_id = '$team_project_id' 
-										 AND a.challenge_id = c.challenge_id and a.user_id = b.user_id and c.user_id = '$user_id2' ;");
+										 AND a.challenge_id = c.challenge_id and a.user_id = b.user_id and c.user_id = '$user_id2' 
+										 and a.challenge_id NOT IN (select challenge_id from team_tasks WHERE project_id = '$team_project_id' and team_name = '$team_name') ;");
     while ($kanban3row = mysqli_fetch_array($kanban3)) {
         $name3 = $kanban3row['first_name'];
         $username3 = $kanban3row['username'];
