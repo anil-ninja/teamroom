@@ -105,21 +105,21 @@
         </div><br/>
     </div></div>
 <?php
-$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
+$open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
 											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b where a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' 
 										   and a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
+											(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
 											WHERE a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											UNION
-											(SELECT DISTINCT a.challenge_id, c.project_title, a.challenge_title, a.challenge_status, a.user_id, 
+											(SELECT DISTINCT c.project_id, a.challenge_id, c.project_title, a.challenge_title, a.challenge_status, a.user_id, 
 											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b join projects as c where a.project_id = c.project_id and c.project_type='1' and a.challenge_type !='5' and a.challenge_status != '3' and a.challenge_status != '7' 
 										   and a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
+											(SELECT DISTINCT d.project_id, a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											 ORDER BY creation_time DESC LIMIT 0, 10;");
@@ -131,6 +131,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
     //$pr_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['project_title'])));
     $ch_id = $open_chalangerow['user_id'];
+    $open_project_id = $open_chalangerow['project_id'];
     $ctype = $open_chalangerow['challenge_type'];
     $frstname = $open_chalangerow['first_name'];
     $lstname = $open_chalangerow['last_name'];
@@ -180,7 +181,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_ch_stmt_content .= "</div>                    
                                 <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/><br/>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 16px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/><br/>";
                         if(isset($_SESSION['user_id'])){
 		if(substr($chelange, 0, 1) != '<') {
 $display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".$chelange."</textarea>
@@ -281,7 +282,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";
             //}
-                echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes.$display_ch_stmt_content;
+                echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a>".$display_ch_stmt_content;
                 $display_ch_stmt_content = "";
         } 
         if ($status == 2) {
@@ -291,7 +292,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             if($ownuser == $user_id) {			
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
             }
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
+            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a>";
                                   //  <br/> Time Remaining : " . $remaintimeown ."<br>
             echo $display_ch_stmt_content;
@@ -305,7 +306,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             if($ch_id == $user_id) {			
                 echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
             }
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
+            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
                                 //. "<br/>  ETA Taken : " . $timeo ."
             echo $display_ch_stmt_content;
@@ -318,7 +319,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                                     
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                                 dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
-            echo  $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."At: ".ucfirst($timeopen)."<br><hr>Submitted: "
+            echo  $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br><hr>Submitted: "
                             .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a> | ".$timecomm;
             echo $display_ch_stmt_content;
             $display_ch_stmt_content = "";
@@ -328,7 +329,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
         echo "<div class='list-group articlesch'>
                 <div class='list-group-item'>";
                 dropDown_delete_article($db_handle, $chelangeid, $user_id);
-        echo $display_tilte_ch."<span class='glyphicon glyphicon-tree-deciduous'></span>".$display_fname_likes.$display_ch_stmt_content;
+        echo $display_tilte_ch."<span class='glyphicon glyphicon-tree-deciduous'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a>"
+                .$display_ch_stmt_content;
         $display_ch_stmt_content = "";
     }
     if ($ctype == 7) {

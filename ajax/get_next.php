@@ -8,21 +8,21 @@ if ($_POST['chal']) {
     $username = $_SESSION['username'];
     $a = (int)$limit ;
 	$b = 5;
-    $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
+    $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
 											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b where a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' 
 										   and a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
+											(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
 											WHERE a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											UNION
-											(SELECT DISTINCT a.challenge_id, c.project_title, a.challenge_title, a.challenge_status, a.user_id, 
+											(SELECT DISTINCT c.project_id, a.challenge_id, c.project_title, a.challenge_title, a.challenge_status, a.user_id, 
 											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b join projects as c where a.project_id = c.project_id and c.project_type='1' and a.challenge_type !='5' and a.challenge_status != '3' and a.challenge_status != '7' 
 										   and a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
+											(SELECT DISTINCT d.project_id, a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											 ORDER BY creation_time DESC LIMIT $a, $b;");
@@ -35,6 +35,7 @@ if ($_POST['chal']) {
     $ETA = $open_chalangerow['challenge_ETA'];
     $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
     $ch_id = $open_chalangerow['user_id'];
+    $public_project_id = $open_chalangerow['project_id'];
     $ctype = $open_chalangerow['challenge_type'];
     $frstname = $open_chalangerow['first_name'];
     $lstname = $open_chalangerow['last_name'];
@@ -238,7 +239,7 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>".$get_display_ch_stmt_content;
                 $get_display_ch_stmt_content = "" ;
         } 
         if ($status == 2) {
@@ -257,7 +258,7 @@ if ($_POST['chal']) {
                                 </ul>
                             </div>";                    
         }
-            $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
+            $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
                                         . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct;
                                     //  <br/> Time Remaining : " . $remaintimeown ."<br>
             $show = $show .$get_display_ch_stmt_content;
@@ -279,7 +280,7 @@ if ($_POST['chal']) {
                                 if($ch_id == $user_id) {			
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
                                 }
-                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
+                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
                                 //. "<br/>  ETA Taken : " . $timeo ."
                 $show = $show .$get_display_ch_stmt_content;
@@ -297,7 +298,7 @@ if ($_POST['chal']) {
                                             </ul>
                                         </div>";                    
                     }
-                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes."At: ".ucfirst($timeopen)."<br><hr>"
+                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br><hr>"
                                     .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
 
                 $show = $show .$get_display_ch_stmt_content; 
@@ -321,7 +322,7 @@ if ($_POST['chal']) {
                         }
                         $show = $show . "</ul></div>";
                         
-                        $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-tree-deciduous'></span>".$get_display_fname_likes."At: ".ucfirst($timeopen);
+                        $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-tree-deciduous'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
                         $show = $show .$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 
