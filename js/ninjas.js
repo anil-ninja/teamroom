@@ -36,7 +36,6 @@ function getnextchal (clas, int) {
 		}
 	}
 function showclass(int) {
-	alert(int) ;
 	switch(int){
 		case 2:
 			$(".articlesch").hide(100);

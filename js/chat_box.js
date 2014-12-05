@@ -71,44 +71,39 @@ function getOldChat(chatboxtitle){
 	  cache: false,
 	  dataType: "json",
 	  success: function(data) {
-		alert(data.items.length);
 		$.each(data.items, function(i,item){
-			alert(item.m);
-			if (item)	{ // fix strange ie bug
-
-			
-			/*
-			 * chatboxtitle = item.f;
-				if ($("#chatbox_"+chatboxtitle).length <= 0) {
+			if (item)	{ // fix strange ie bug	
+				//chatboxtitle = item.f;		
+			/*	if ($("#chatbox_"+chatboxtitle).length <= 0) {
 					createChatBox(chatboxtitle);
 				}
 				if ($("#chatbox_"+chatboxtitle).css('display') == 'none') {
 					$("#chatbox_"+chatboxtitle).css('display','block');
 					restructureChatBoxes();
-				} 
-				* 
-				* */
+				}  
 				if (item.s == 1) {
 					item.f = username;
-				}
-				
-
+				} */
 				if (item.s == 2) {
 					$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxinfo">'+item.m+'</span></div>');
 				} else {
 					//newMessages[chatboxtitle] = true;
-					//newMessagesWin[chatboxtitle] = true; 
-					$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxinfo">'+item.f+':&nbsp;&nbsp;'+item.m+'</span></div>');
+					//newMessagesWin[chatboxtitle] = true;
+					if(item.f != chatboxtitle) { 
+						$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+item.f+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
+						}
+						else {
+							$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+chatboxtitle+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
+							}
 				}
-
-				$("#chatbox_"+chatboxtitle+" .chatboxcontent").scrollTop($("#chatbox_"+chatboxtitle+" .chatboxcontent")[0].scrollHeight);
-				itemsfound += 1;
+				//$("#chatbox_"+chatboxtitle+" .chatboxcontent").scrollTop($("#chatbox_"+chatboxtitle+" .chatboxcontent")[0].scrollHeight);
+			//	itemsfound += 1;
 			}
 		});
 
-/*		chatHeartbeatCount++;
+		//chatHeartbeatCount++;
 
-		if (itemsfound > 0) {
+	/*	if (itemsfound > 0) {
 			chatHeartbeatTime = minChatHeartbeat;
 			chatHeartbeatCount = 1;
 		} else if (chatHeartbeatCount >= 10) {
@@ -117,8 +112,7 @@ function getOldChat(chatboxtitle){
 			if (chatHeartbeatTime > maxChatHeartbeat) {
 				chatHeartbeatTime = maxChatHeartbeat;
 			}
-		}
-	*/	
+		}	*/
 		//setTimeout('chatHeartbeat();',chatHeartbeatTime);
 	}});
 	

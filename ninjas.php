@@ -40,6 +40,7 @@ if(!isset($_SESSION['user_id'])){
 	$(window).scroll(function(event) {
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();
+         $('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
          var dataString = 'chal=10' ;
 			$.ajax({
 				type: "POST",
@@ -48,6 +49,7 @@ if(!isset($_SESSION['user_id'])){
 				cache: false,
 				success: function(result){
 					$('#panel-cont').append(result);
+					$('.loading').remove();
 				}
 			});
 		}
