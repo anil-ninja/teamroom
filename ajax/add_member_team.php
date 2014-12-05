@@ -10,7 +10,7 @@ if ($_POST['email']) {
     $pro_id = $_POST['id'] ;
     $case = $_POST['case'] ;
     if($case == 1) {
-		$respo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE email = '$email';");
+		$respo = mysqli_query($db_handle, "SELECT user_id FROM user_info WHERE email = '$email';");
 		if (mysqli_num_rows($respo) > 0) {
 			$responserow = mysqli_fetch_array($respo);
 			$uid = $responserow['user_id'];
