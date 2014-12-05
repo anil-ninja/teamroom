@@ -142,7 +142,7 @@ function created_projects ($db_handle, $user_IDF) {
             $lname = $project_table_displayRow['last_name'];
             $username_project = $project_table_displayRow['username'];
             $user_id_project = $project_table_displayRow['user_id'];
-            echo "<div class='list-group'>
+            echo "<div class='list-group' >
                     <div class='list-group-item'>";
             if ($user_id_project == $_SESSION['user_id'] && isset($_SESSION['user_id'])) {
                 echo "<div class='pull-right'>

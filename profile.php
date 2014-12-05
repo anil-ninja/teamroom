@@ -163,18 +163,47 @@ $obj = new profile($UserName);
                 <div class='alert_placeholder'></div>
           <div class="col-md-6">
             <div>
-              <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
+              <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px;">
                   <li role="presentation" class="active" id="created_project">
-                      <a href="#tabCreatedProjects" role="tab" data-toggle="tab">Created Projects <span class="badge"><?=$totalProjectCreated?></span></a></li>
+                      <a href="#tabCreatedProjects" role="tab" data-toggle="tab" style="padding: 15px 4px;">
+                        Created Projects 
+                        <span class="badge">
+                            <?=$totalProjectCreated?>
+                        </span>
+                      </a>
+                  </li>
                   <li role="presentation" id="joined_project">
-                     <a href="#tabJoinedProjects" role="tab" data-toggle="tab">Joined Projects <span class="badge"><?=$projectsJoined?></span></a></li>
+                     <a href="#tabJoinedProjects" role="tab" data-toggle="tab">
+                        Joined Projects 
+                        <span class="badge">
+                            <?=$projectsJoined?>
+                        </span>
+                     </a>
+                  </li>
                   <li role="presentation" id="user_articles">
-                    <a href="#tabArticles" role="tab" data-toggle="tab">Articles <span class="badge"><?= $totalarticleCreated?></span></a></li>
+                    <a href="#tabArticles" role="tab" data-toggle="tab">
+                        Articles 
+                        <span class="badge">
+                            <?= $totalarticleCreated?>
+                        </span>
+                    </a>
+                  </li>
                   <li role="presentation" id="user_challenges">
-                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challenges <span class="badge"><?= $totalChallengeCreated?></span></a>
+                    <a href="#tabChallanges" role="tab" data-toggle="tab">
+                        Challenges 
+                        <span class="badge">
+                            <?= $totalChallengeCreated?>
+                        </span>
+                    </a>
                     </li>
                   <li role="presentation" id="user_idea">
-                    <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas <span class="badge"><?= $totalideaCreated?></span></a></li>
+                    <a href="#tabIdeas" role="tab" data-toggle="tab">
+                        Ideas 
+                        <span class="badge">
+                            <?= $totalideaCreated?>
+                        </span>
+                    </a>
+                  </li>
               </ul>
             </div>
             <div class="tab-content" >
