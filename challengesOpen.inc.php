@@ -6,13 +6,7 @@ include_once 'models/challenge.php';
 $obj = new challenge($_GET['challenge_id']);
 $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
-if (isset($_POST['logout'])) {
-    header('Location: challengesOpen.php?challenge_id='.$challengeSearchID);
-    unset($_SESSION['user_id']);
-    unset($_SESSION['first_name']);
-    session_destroy();
-    exit;
-}
+
 if (isset($_POST['closechal'])) {
 		$chalange = $_POST['cid'] ;
 		$user_id = $_SESSION['user_id'];
@@ -72,7 +66,7 @@ if(isset($_POST['submitchlnin'])) {
 $open_chalange = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_title from challenges 
             WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id='$challengeSearchID';");
 $open_chalangeRtitle = mysqli_fetch_array($open_chalange);
-$challenge_page_title = $open_chalangeRtitle['challenge_title'];
+$challenge_page_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangeRtitle['challenge_title'])));
 function chOpen_title($title_length) {
     if (strlen($title_length) < 40) {
         echo  $title_length;
