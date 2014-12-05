@@ -1,18 +1,12 @@
 <?php
 include_once 'lib/db_connect.php';
+include_once 'ninjas.inc.php';
 session_start();
 if(!isset($_SESSION['user_id'])) 
     header ('location: index.php');
 else 
     $user_id = $_SESSION['user_id'];
 
-if (isset($_POST['logout'])) {
-    header('Location: index.php');
-    unset($_SESSION['user_id']);
-    unset($_SESSION['first_name']);
-    session_destroy();
-    exit;
-}
 $team_name = $_GET['team_name'];
 $team_project_id = $_GET['project_id'];
 
@@ -83,7 +77,8 @@ $total_members = mysqli_num_rows($teams_member_display);
                         </div>
                         <hr/>
                         <div class="panel-body">
-                            
+                            <div class="row">
+
                         
                     	<?php
                                 while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
@@ -93,24 +88,39 @@ $total_members = mysqli_num_rows($teams_member_display);
                                     $rank = $teams_member_displayRow['rank'];
                                     $user_id_member = $teams_member_displayRow['user_id'];
                                     
-                                        echo "<div class='row col-md-4' style=' background : rgb(240, 241, 242); margin:4px; padding:1px;;'>
-                                                <div class ='col-md-3' style='padding:1px;'>
-                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
-                                                </div>";
-                                        
-                                        echo "<div class = 'col-md-7' style='font-size:12px;padding: 1px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $username . "'>" 
-                                                    .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br/><span style='font-size:10px;'>"
-                                                    .$rank."</span></div>";
+                                        echo "<div class='col-sm-4 col-md-3'>";
+
                                         if ($team_owner_project == $user_id && $user_id_member != $user_id) {
-                                          echo "<div class = 'col-md-1' style='font-size:12px;padding-left: 3px; padding-right: 0px;'><input type='hidden' id ='team_name' value='" .$team_name. "'/>
-                                                    <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
-                                                    <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
-                                                    <button type='submit' class='btn-link' id='remove_member' onclick='remove_member_team(".$user_id_member.");' data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>x</button>
-                                                </div>";
+                                          echo "<input type='hidden' id ='team_name' value='" .$team_name. "'/>
+                                                <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
+                                                <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
+                                                <a type='submit' class='btn-link badge pull-right' id='remove_member' onclick='remove_member_team(".$user_id_member.");' data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
+                                                    <span class='glyphicon glyphicon-remove'>
+                                                </a>
+                                                ";
                                         }
-                                        echo "</div>";
+                                        else{
+                                            echo "<a class='btn-link badge pull-right'><span class='glyphicon glyphicon-star'></a>";
+                                        }
+
+                                        echo "<div class='thumbnail'>
+                                                <a href ='profile.php?username=" . $username . "'>
+                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:100px; width:90%' class='img-responsive '>
+                                                    <div class='caption'>
+                                                        <span class='color pull-left' id='new_added'>" 
+                                                             .ucfirst($firstname)." ".ucfirst($lastname)."</a>
+                                                        </span>
+                                                        <br/>
+                                                        <span style='font-size:10px;'>"
+                                                           .$rank."
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                               </div>
+                                            </div>";
                                 }
                         ?>
+                    </div>
                     </div>
                     </div>
     	       </div>
@@ -169,7 +179,6 @@ $total_members = mysqli_num_rows($teams_member_display);
                     var team_name = $("#team_name").val();
                     var project_id = $("#project_id").val();
                     var member_remove_id = id;
-                    alert ("user id is" +id);
                     var dataString = 'team_name=' + team_name + '&project_id='+ project_id + '&mem_remove_id=' + member_remove_id;
                     $.ajax({
                         type: "POST",
