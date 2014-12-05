@@ -105,7 +105,7 @@ $total_members = mysqli_num_rows($teams_member_display);
 
                                         echo "<div class='thumbnail'>
                                                 <a href ='profile.php?username=" . $username . "'>
-                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:100px; width:90%' class='img-responsive '>
+                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:100px;' class='img-responsive img-circle '>
                                                     <div class='caption'>
                                                         <span class='color pull-left' id='new_added'>" 
                                                              .ucfirst($firstname)." ".ucfirst($lastname)."</a>
