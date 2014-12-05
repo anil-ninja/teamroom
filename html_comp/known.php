@@ -4,8 +4,8 @@
 	<?php
 	$user_id = $_SESSION['user_id'] ;
 	$userProjects = mysqli_query($db_handle, "(SELECT a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
-												where a.user_id = '$profileViewUserID' and a.team_name = b.team_name and b.user_id != '$profileViewUserID' and b.user_id != '$user_id')
-											    as b where a.user_id = b.user_id )
+												where a.user_id = '$profileViewUserID' and a.team_name = b.team_name )
+											    as b where a.user_id = b.user_id and b.user_id != '$profileViewUserID' and b.user_id != '$user_id')
 											    UNION
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
 											    where b.requesting_user_id = '$profileViewUserID' and a.user_id = b.knowning_id and b.status != '4')
@@ -13,8 +13,8 @@
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
 											    where b.knowning_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2');");
 	if(mysqli_num_rows($userProjects) == 0) {
-		$userProjects = mysqli_query($db_handle, "SELECT first_name, last_name, username, user_id, rank FROM user_info where user_id != '$profileViewUserID'
-												and user_id != '$user_id' limit 0, 5;"); 
+		$userProjects = mysqli_query($db_handle, "SELECT * FROM user_info where user_id != '$profileViewUserID'
+													and user_id != '$user_id' limit 0, 5;"); 
 		}
 	while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
 		$friendFirstName = $userProjectsRow['first_name'];
@@ -24,8 +24,8 @@
 		$friendRank = $userProjectsRow['rank'];
 			
 		$firends = mysqli_query($db_handle, "(SELECT a.user_id FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
-                                              where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id' and b.user_id != '$profileViewUserID')
-                                              as b where a.user_id = b.user_id)
+                                              where a.user_id = '$user_id' and a.team_name = b.team_name )
+                                              as b where a.user_id = b.user_id and b.user_id != '$user_id' and b.user_id != '$profileViewUserID')
                                               UNION
 											  (select a.user_id FROM user_info as a join known_peoples as b
 											  where b.requesting_user_id = '$user_id' and a.user_id = b.knowning_id and b.status != '4')
@@ -73,27 +73,3 @@
 	?>
 </div>
 </div>
-<script>
-function knownperson(ID){
-	//alert(ID) ;
-		   bootbox.confirm("Really Know this Person !!!", function(result) {
-		if(result){
-			var dataString = 'id='+ ID + '&case=1';
-			$.ajax({
-				type: "POST",
-				url: "ajax/knownperson.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					if(result=='Request send succesfully'){
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					}
-					else {
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						}
-				}
-			 });
-			}
-		});
-	} ;
-</script>

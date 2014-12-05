@@ -14,13 +14,9 @@ $project_name_display = mysqli_query($db_handle, "SELECT project_title FROM proj
 $project_name_displayRow = mysqli_fetch_array($project_name_display);
 $project_team_title = $project_name_displayRow['project_title'];
 
-
-
 $teams_member_display = mysqli_query($db_handle, "select b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
                                                     from teams as a join user_info as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1' and a.project_id=$team_project_id ORDER BY team_creation ASC;");
 $total_members = mysqli_num_rows($teams_member_display);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,13 +57,10 @@ $total_members = mysqli_num_rows($teams_member_display);
                                     echo "<div class='dropdown'>
                                             <button class='btn-link dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'> + Add New Teammate</button>
                                             <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
-                                                <li><form method='POST'>
-                                                        <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/>
-                                                        <input type='hidden' id ='team_name' value='" .$team_name. "'/>
-                                                        <input type='hidden' id ='project_no' value='" .$team_project_id."'/>
-                                                        <input type='button' class='btn-success btn-sm submit' id='add_member' onclick='add_member_to_team()' value='Add' />
-                                                    </form>
-                                                </li>
+                                                <li><form>
+                                                    <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/><br/>
+                                                    <input type='button' class='btn-success btn-sm submit' onclick='add_member(\"".$team_project_id."\",\"".$team_name."\")' value='Add' />
+                                                </form></li>
                                             </ul>
                                         </div>";
                                 }
@@ -91,10 +84,9 @@ $total_members = mysqli_num_rows($teams_member_display);
                                         echo "<div class='col-sm-4 col-md-3'>";
 
                                         if ($team_owner_project == $user_id && $user_id_member != $user_id) {
-                                          echo "<input type='hidden' id ='team_name' value='" .$team_name. "'/>
-                                                <input type='hidden' id ='project_id' value='" .$team_project_id."'/>
-                                                <input type='hidden' id ='user_remove_id' value='" .$user_id_member."'/>
-                                                <a type='submit' class='btn-link badge pull-right' id='remove_member' onclick='remove_member_team(".$user_id_member.");' data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
+                                          echo "<a type='submit' class='btn-link badge pull-right' id='remove_member' 
+												onclick='remove_member(\"".$team_project_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
+												data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
                                                     <span class='glyphicon glyphicon-remove'>
                                                 </a>
                                                 ";
@@ -117,7 +109,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                                                     </div>
                                                 </a>
                                                </div>
-                                            </div>";
+                                          </div>";
                                 }
                         ?>
                     </div>
@@ -146,64 +138,5 @@ $total_members = mysqli_num_rows($teams_member_display);
                 </div>
         </div>
         <?php include_once 'lib/html_inc_footers.php'; ?>
-        <script language="JavaScript" type="text/javascript">
-        function add_member_to_team () {
-			var emailadd_member =document.getElementById("email_add_member").value;
-                        var teamName = document.getElementById("team_name").value;
-                        var project_id = document.getElementById("project_no").value;
-			var dataString = 'emailadd_member1='+ emailadd_member + '&teamName1='+ (teamName+='') + '&project_id1='+ project_id;
-                        
-                        if (emailadd_member == "") {
-                            alert("Email can't be empty");
-                        }
-                        else {
-                        $.ajax({
-				type: "POST",
-				url: "ajax/add_member_team.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Member Added succesfully!'){
-                                            location.reload();
-					}
-                                }
-				});
-			}
-                        return false;
-                        }
-        </script>
-                <script>
-            function remove_member_team(id){
-                if(confirm("Do u really want to Remove this member?")){
-                    var team_name = $("#team_name").val();
-                    var project_id = $("#project_id").val();
-                    var member_remove_id = id;
-                    var dataString = 'team_name=' + team_name + '&project_id='+ project_id + '&mem_remove_id=' + member_remove_id;
-                    $.ajax({
-                        type: "POST",
-                        url: "ajax/add_member_team.php",
-                        data: dataString,
-                        cache: false,
-                        success: function(result){
-                            bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-                            if(result=='Member Removed succesfully!') {
-                                location.reload();
-                            }
-                        }
-                    });
-                }
-            }
-function bootstrap_alert(elem, message, timeout,type) {
-  $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; right: 20%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
-
-  if (timeout || timeout === 0) {
-    setTimeout(function() { 
-      $(elem).show().html('');
-    }, timeout);    
-  }
-};
-        </script>
-        
             </body>
     	</html>

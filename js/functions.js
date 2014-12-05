@@ -10,6 +10,117 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+function knownperson(ID){
+		bootbox.confirm("Really Know this Person !!!", function(result) {
+		if(result){
+			var dataString = 'id='+ ID + '&case=1';
+			$.ajax({
+				type: "POST",
+				url: "ajax/knownperson.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Request send succesfully'){
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+						}
+				}
+			 });
+			}
+		});
+	} ;
+function requestaccept(ID) {
+	bootbox.confirm("Do You Know this Person !!!", function(result) {
+	if(result){
+		var dataString = 'id='+ ID + '&case=7';
+		$.ajax({
+			type: "POST",
+			url: "ajax/knownperson.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				if(result=='Request Accepted succesfully!'){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+						}
+				}
+			});
+		}
+	});
+}
+function add_member(PID, name) {
+	var email = $("#email_add_member").val() ;
+    var dataString = 'email='+ email + '&id='+ PID + '&name='+ name + '&case=1';
+    alert(dataString) ;
+    if (email == "") {
+         bootstrap_alert(".alert_placeholder", "Email can't be empty", 5000,"alert-success");
+         }
+         else {
+             $.ajax({
+				type: "POST",
+				url: "ajax/add_member_team.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Member Added succesfully!'){
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+                        location.reload();
+						}
+						else {
+							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							}
+                    }
+				});
+		}
+}
+ function remove_member(PID, name, Uid){
+	bootbox.confirm("Do u really want to Remove this member?", function(result) {
+		if(result){
+			var dataString = 'email=' + Uid + '&id='+ PID + '&name='+ name + '&case=2';
+			alert(dataString) ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/add_member_team.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Member Removed succesfully!') {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						location.reload();
+						}
+						else {
+							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							}
+					}
+				});
+		 }
+	});
+}
+function requestdelete(ID) {
+	bootbox.confirm("Delete Request !!!", function(result) {
+	if(result){
+		var dataString = 'id='+ ID + '&case=8';
+		$.ajax({
+			type: "POST",
+			url: "ajax/knownperson.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				if(result=='Request Deleted succesfully!'){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+						}
+				}
+			});
+		}
+	});
+}
 function comment(ID) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
 		//alert(ID) ;
