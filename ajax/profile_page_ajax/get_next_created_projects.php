@@ -5,7 +5,7 @@ include_once '../../functions/profile_page_function.php';
 include_once '../../functions/delete_comment.php';
 
 if ($_POST['next_CP']) {
-    $user_id = $_SESSION['profile_view_userID'];
+    $profile_user_id = $_SESSION['profile_view_userID'];
     $limit = $_SESSION['last_CP_3'];
     $username = $_SESSION['username'];
     $a = (int) $limit;
@@ -13,14 +13,14 @@ if ($_POST['next_CP']) {
     
     
     $project_created_display = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_title, a.stmt, a.creation_time, b.first_name, b.last_name, b.username FROM projects as a 
-                                                            JOIN user_info as b WHERE a.user_id = $user_id AND a.blob_id=0 AND a.project_type=1 AND a.user_id=b.user_id)
+                                                            JOIN user_info as b WHERE a.user_id = $profile_user_id AND a.blob_id=0 AND a.project_type=1 AND a.user_id=b.user_id)
                                                         UNION 
                                                         (SELECT a.user_id, a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a JOIN blobs as b JOIN user_info as c 
-                                                            WHERE a.user_id = $user_id AND a.blob_id=b.blob_id AND a.project_type=1 AND a.user_id=c.user_id) ORDER BY creation_time DESC LIMIT $a, $b;");
+                                                            WHERE a.user_id = $profile_user_id AND a.blob_id=b.blob_id AND a.project_type=1 AND a.user_id=c.user_id) ORDER BY creation_time DESC LIMIT $a, $b;");
     //$_SESSION['last_CP_3'] = 3;
     $show_CP = "";
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-            $i++;
+            $i ++;
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
@@ -80,7 +80,7 @@ $show_CP = $show_CP. "<div class='list-group-item pull-right'>
                         <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
                         <ul class='dropdown-menu' aria-labelledby='dropdown'>";
             
-                    if($comment_user_id == $user_id) {
+                    if($comment_user_id == $profile_user_id) {
                         $show_CP = $show_CP. "<li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
                     } 
                     else {

@@ -120,7 +120,3 @@ if (isset($_POST['logout'])) {
    <script src="js/date_time.js"></script>
   </body>
 </html>
-
-<?php
-mysqli_close($db_handle);
-?>

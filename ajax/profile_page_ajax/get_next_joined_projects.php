@@ -6,21 +6,20 @@ include_once '../../functions/delete_comment.php';
 
 if ($_POST['next_JnPr']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
-    $limit = $_SESSION['next_JP_3'];
+    $limit = $_SESSION['next_JP'];
     $username = $_SESSION['username'];
-    $a = (int) $limit;
-    $b = $a + 3;
+    $ajoin = (int) $limit;
+    $bjoin = $ajoin + 3;
     
     
     $project_created_display = mysqli_query($db_handle, "(SELECT a.project_id, a.project_title, a.stmt, a.creation_time, b.first_name, b.last_name, b.username FROM projects as a 
                                                             JOIN user_info as b WHERE a.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profile_user_id) AND a.user_id != $profile_user_id and a.project_type = 1 AND a.blob_id = 0 AND a.user_id = b.user_id)
                                                         UNION 
                                                         (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a 
-                                                            JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profile_user_id) AND a.user_id != $profile_user_id AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id) ORDER BY project_id DESC LIMIT $a, $b;");
-    $show_JP = "";
-    $_SESSION['next_JP_3'] = 3;
+                                                            JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profile_user_id) AND a.user_id != $profile_user_id AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id) ORDER BY creation_time DESC LIMIT $ajoin, $bjoin;");
+        $show_JP = "";
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-            $i++;
+            $i ++;
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
@@ -66,7 +65,6 @@ if ($_POST['next_JnPr']) {
         $ida = $displayrowc['response_pr_id'];
         $projectres = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt'])));
         $comment_user_id = $displayrowc['user_id'];
-       
 $show_JP = $show_JP.  "<div id='commentscontainer'>
                 <div class='comments clearfix'>
                     <div class='pull-left lh-fix'>
@@ -118,7 +116,7 @@ $show_JP = $show_JP. "</div>
     if (mysqli_error($db_handle)) {
         echo "Failed!";
     } else {
-        $_SESSION['next_JP_3'] = $a + $i;
+        $_SESSION['next_JP'] = $ajoin + $i;
         echo $show_JP;
     }
 }

@@ -11,13 +11,7 @@ if ($userInfoRows == 0) {
     include_once 'error.php';
     exit;
 }
-if (isset($_POST['logout'])) {
-    header('Location: profile.php?username='."$UserName");
-    unset($_SESSION['user_id']);
-    unset($_SESSION['first_name']);
-    session_destroy();
-    exit;
-}
+
 $user_InformationRow = mysqli_fetch_array($userInfo);
 $profileViewFirstName = $user_InformationRow['first_name'];
 $profileViewLastName = $user_InformationRow['last_name'];
@@ -29,9 +23,17 @@ $profileViewRank = $user_InformationRow['rank'];
 //profile view user id added to session for loading panel content data with ajax 
 $_SESSION['profile_view_userID'] = $profileViewUserID;
 
-$challengeCreated = mysqli_query($db_handle, "SELECT COUNT(challenge_id) FROM challenges WHERE user_id = $profileViewUserID;");
+$challengeCreated = mysqli_query($db_handle, "SELECT COUNT(challenge_id) FROM challenges WHERE user_id = $profileViewUserID AND (challenge_type = 1 OR challenge_type = 3) AND (challenge_status !=3 AND challenge_status !=7);");
 $counter = mysqli_fetch_assoc($challengeCreated);
 $totalChallengeCreated = $counter["COUNT(challenge_id)"];
+
+$articleCreated = mysqli_query($db_handle, "SELECT COUNT(challenge_id) FROM challenges WHERE user_id = $profileViewUserID AND challenge_type = 7 AND (challenge_status !=3 AND challenge_status !=7);");
+$counter1 = mysqli_fetch_assoc($articleCreated);
+$totalarticleCreated = $counter1["COUNT(challenge_id)"];
+
+$ideaCreated = mysqli_query($db_handle, "SELECT COUNT(challenge_id) FROM challenges WHERE user_id = $profileViewUserID AND challenge_type = 4 AND (challenge_status !=3 AND challenge_status !=7);");
+$counter2 = mysqli_fetch_assoc($ideaCreated);
+$totalideaCreated = $counter2["COUNT(challenge_id)"];
 
 $challengeProgress = mysqli_query($db_handle, "SELECT COUNT(status) FROM challenge_ownership WHERE status = 1 and user_id = $profileViewUserID;");
 $counter = mysqli_fetch_assoc($challengeProgress);
@@ -163,16 +165,16 @@ $obj = new profile($UserName);
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
                   <li role="presentation" class="active" id="created_project">
-                    <a href="#tabCreatedProjects" role="tab" data-toggle="tab">Created Projects (<?= $totalProjectCreated?>)</a></li>
+                      <a href="#tabCreatedProjects" role="tab" data-toggle="tab">Created Projects <span class="badge"><?=$totalProjectCreated?></span></a></li>
                   <li role="presentation" id="joined_project">
-                     <a href="#tabJoinedProjects" role="tab" data-toggle="tab">Joined Projects (<?= $projectsJoined?>)</a></li>
+                     <a href="#tabJoinedProjects" role="tab" data-toggle="tab">Joined Projects <span class="badge"><?=$projectsJoined?></span></a></li>
                   <li role="presentation" id="user_articles">
-                    <a href="#tabArticles" role="tab" data-toggle="tab">Articles</a></li>
+                    <a href="#tabArticles" role="tab" data-toggle="tab">Articles <span class="badge"><?= $totalarticleCreated?></span></a></li>
                   <li role="presentation" id="user_challenges">
-                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challenges</a>
+                    <a href="#tabChallanges" role="tab" data-toggle="tab">Challenges <span class="badge"><?= $totalChallengeCreated?></span></a>
                     </li>
                   <li role="presentation" id="user_idea">
-                    <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas</a></li>
+                    <a href="#tabIdeas" role="tab" data-toggle="tab">Ideas <span class="badge"><?= $totalideaCreated?></span></a></li>
               </ul>
             </div>
             <div class="tab-content" >
@@ -214,7 +216,7 @@ $obj = new profile($UserName);
                     $('#joined_project_content').load('ajax/profile_page_ajax/joined_projects.php');
                     
                     $(window).scroll(function(event) {
-                        if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#joined_projects')) {
+                        if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#joined_project')) {
                             event.preventDefault();
                             var dataString = 'next_JnPr=3' ;
                             $.ajax({
@@ -223,7 +225,7 @@ $obj = new profile($UserName);
                                 data: dataString,
                                 cache: false,
                                 success: function(result){
-                                    $('#next_JnPr').append(result);
+                                    $('#joined_project_content').append(result);
                                     }
                             });	
                         }
@@ -245,7 +247,7 @@ $obj = new profile($UserName);
                                 cache: false,
                                 success: function(result){
                                     //alert(result) ;
-                                    $('#next_user_article').append(result);
+                                    $('#user_articles_content').append(result);
                                     }
                             });	
                         }
