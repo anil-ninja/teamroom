@@ -1,7 +1,6 @@
 <?php
 include_once 'functions/delete_comment.php';
 $openChallenges = "";
-
 $open_chalange_of_project = mysqli_query($db_handle, "select challenge_id, challenge_title,creation_time from challenges WHERE project_id = '$team_project_id' 
 														AND (challenge_type = '1' or challenge_type = '2') and challenge_status = '1' ;");
 while ($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_project)) {
@@ -142,4 +141,15 @@ echo "
                 ".$td5."
             </tbody>
         </table>";
+   
+   $team_name = $_GET['team_name'];
+   $team_project_id = $_GET['project_id'];
+   $kanban5 = mysqli_query($db_handle, "select a.challenge_id, b.challenge_title, b.challenge_status from team_tasks as a join challenges as b
+										WHERE a.project_id = '$team_project_id' and a.team_name = '$team_name' AND a.challenge_id = b.challenge_id ;");
+    while ($kanban5row = mysqli_fetch_array($kanban5)) {
+        $challenge_id15 = $kanban5row['challenge_id'];
+        $challenge_title15 = $kanban5row['challenge_title'];
+        $status5 = $kanban5row['challenge_status'];
+        echo $challenge_id15."<br/>".$challenge_title15."<br/>".$status5."<hr/>" ;
+		}
 ?>
