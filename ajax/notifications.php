@@ -228,11 +228,8 @@ if ($_POST['notice']) {
 			$id1 = $notice18row['id'] ;
 			
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname18." Send Friend Request </p><br/>
-								<form method='POST' class='inline-form'>
-									<input type='hidden' name='request_id' value='".$id1."'/>
-									<input type='submit' class='btn-link inline-form' name='requestaccept' value='Accept'/>
-									<input type='submit' class='btn-link inline-form' name='requestdelete' value='Delete'/>
-								</form><hr/>" ;
+								<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$id1."\")' value='Accept'/>
+								<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$id1."\")' value='Delete'/><hr/>" ;
 			$y++ ;
 			}
 	$notice20 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b

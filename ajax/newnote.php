@@ -227,11 +227,8 @@ if ($_POST['time']) {
 			$id1 = $notice18row['id'] ;
 			
 			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname18." Send Friend Request </p><br/>
-								<form method='POST' class='inline-form'>
-									<input type='hidden' name='request_id' value='".$id1."'/>
-									<input type='submit' class='btn-link inline-form' name='requestaccept' value='Accept'/>
-									<input type='submit' class='btn-link inline-form' name='requestdelete' value='Delete'/>
-								</form><hr/>" ;
+								<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$id1."\")' value='Accept'/>
+								<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$id1."\")' value='Delete'/><hr/>" ;
 			$y++ ;
 			}
 	$notice20 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
@@ -253,27 +250,5 @@ if ($_POST['time']) {
 			
 echo $notice."+".$y."+".$eventid ;
 }
-else {
-	echo "invalid" ;
-	}
-if(isset($_POST['requestaccept'])){
-	$request_id = $_POST['request_id'] ;
-	$time = date("Y-m-d H:i:s") ;
-	$user_id = $_SESSION['user_id'] ;
-	echo $knownid ;
-	mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
-	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
-	else { echo "<script>alert('Request Accepted succesfully!')</script>"; }
-	//header('Location: #');
-	}
-if(isset($_POST['requestdelete'])){
-	$request_id = $_POST['request_id'] ;
-	$time = date("Y-m-d H:i:s") ;
-	$user_id = $_SESSION['user_id'] ;
-	echo $knownid ;
-	mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$request_id' and knowning_id='$user_id' ;") ; 
-	 if(mysqli_error($db_handle)) { echo "<script>alert('Sorry Try again!')</script>"; }
-	else { echo "<script>alert('Request Deleted succesfully!')</script>"; }
-	//header('Location: #');
-	}							
+else echo "invalid" ;						
 ?>

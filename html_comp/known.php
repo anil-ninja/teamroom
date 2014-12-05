@@ -13,7 +13,7 @@
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
 											    where b.knowning_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2');");
 	if(mysqli_num_rows($userProjects) == 0) {
-		$userProjects = mysqli_query($db_handle, "SELECT first_name, last_name, username, user_id, rank FROM user_info where user_id != '$profileViewUserID'
+		$userProjects = mysqli_query($db_handle, "SELECT * FROM user_info where user_id != '$profileViewUserID'
 													and user_id != '$user_id' limit 0, 5;"); 
 		}
 	while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
@@ -73,27 +73,3 @@
 	?>
 </div>
 </div>
-<script>
-function knownperson(ID){
-	//alert(ID) ;
-		   bootbox.confirm("Really Know this Person !!!", function(result) {
-		if(result){
-			var dataString = 'id='+ ID + '&case=1';
-			$.ajax({
-				type: "POST",
-				url: "ajax/knownperson.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					if(result=='Request send succesfully'){
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					}
-					else {
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						}
-				}
-			 });
-			}
-		});
-	} ;
-</script>
