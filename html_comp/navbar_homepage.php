@@ -170,7 +170,7 @@ else {
   </div>
   <script>
   function confLogout(){
-		   bootbox.confirm("Meet You Soon !", function(result) {
+		bootbox.confirm("Meet You Soon !", function(result) {
 		//Example.show("Confirm result: "+result);
 		if(result){
 			//call logout wall
@@ -296,3 +296,30 @@ else {
 				</div> 
 			</div>
 		  </div>
+<div class='modal fade' id='answerFormpr' tabindex='-1' role='dialog' aria-labelledby='myModalLabel1' aria-hidden='true'>
+	<div class='modal-dialog'> 
+		<div class='modal-content'>
+			<div class='modal-header'> 
+				<button type="button" class="close" data-dismiss="modal">
+			<span aria-hidden="true">&times;</span>
+			<span class="sr-only">Close</span>
+		</button>
+				<h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
+			</div> 
+			<div class='modal-body'><form>  
+				<div class='input-group-addon'>
+					<textarea row='5' id='answerchalpr' class='form-control' placeholder='submit your answer'></textarea>
+				</div>
+				<br/>
+				<input class='btn btn-default btn-sm' type='file' id='_fileanswerpr' style ='width: auto;'>
+				<br/>
+				<input type='hidden' id='answercidpr' value=''>
+				<input type='hidden' id='prcid' value=''>
+				<button type='submit' class='btn btn-success btn-sm' id='answerchpr' >Submit</button> 
+			</form></div> 
+			<div class='modal-footer'>
+				<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div> 
+	</div>
+ </div>

@@ -207,13 +207,6 @@ return str.replace(new RegExp(find, 'g'), replace);
 }
 	
 	});
-	$("#taskForm").toggle(1500);
-  	$("#teamForm").toggle(3000);
-  	$("#VideoFormpr").toggle(1500);
-  	$("#textForm").toggle(1500);
-  	$("#notesForm").toggle(1500);
-  	$("#manageForm").toggle(1500);
-    $("#challegeprForm").toggle(3000);
 	$(document).ready(function(){
 	 	
 		$("#challegeprForm").toggle();
