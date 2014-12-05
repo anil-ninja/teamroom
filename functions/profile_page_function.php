@@ -1,12 +1,13 @@
 <?php
 
 function user_articles ($db_handle, $user_IDF) {
-    $user_articles_display = mysqli_query($db_handle, "(SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(a.stmt, 500) as stmt, b.first_name, b.last_name, b.username FROM challenges as a 
+    $user_articles_display = mysqli_query($db_handle, "(SELECT a.challenge_id, a.challenge_title, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM challenges as a 
                                                         JOIN user_info as b WHERE a.challenge_type=7 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
                                                         UNION
-                                                        (SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(b.stmt, 500) as stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
+                                                        (SELECT a.challenge_id, a.challenge_title, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
                                                         WHERE a.challenge_type=7 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY creation_time DESC LIMIT 0, 3;");
     $_SESSION['last_article'] = 3;
+
     while($user_articles_displayRow= mysqli_fetch_array($user_articles_display)) {
         $article_id=$user_articles_displayRow['challenge_id'];
         $article_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_articles_displayRow['challenge_title'])));
@@ -41,11 +42,11 @@ function user_articles ($db_handle, $user_IDF) {
     }
 }
 function user_challenges ($db_handle, $user_IDF) {
-    $user_challenges_display = mysqli_query($db_handle, "(SELECT a.challenge_id, a.challenge_title, a.creation_time, b.user_id, LEFT(a.stmt, 200) as stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN challenge_ownership as b JOIN user_info as c 
-                                                        WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_IDF AND b.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=c.user_id)
+    $user_challenges_display = mysqli_query($db_handle, "(SELECT a.challenge_id, a.challenge_title, a.creation_time, a.user_id, a.stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN user_info as c 
+                                                        WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=c.user_id)
                                                         UNION
-                                                        (SELECT a.challenge_id, a.challenge_title, a.creation_time, c.user_id, LEFT(b.stmt, 200) as stmt, d.first_name, d.last_name, d.username FROM challenges as a JOIN blobs as b JOIN challenge_ownership as c JOIN user_info as d 
-                                                        WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_IDF AND c.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=d.user_id) ORDER BY creation_time DESC LIMIT 0, 5;");
+                                                        (SELECT a.challenge_id, a.challenge_title, a.creation_time, a.user_id, b.stmt, d.first_name, d.last_name, d.username FROM challenges as a JOIN blobs as b JOIN user_info as d 
+                                                        WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=d.user_id) ORDER BY creation_time DESC LIMIT 0, 5;");
     $_SESSION['lastfive'] = 5;
     while($user_challenges_displayRow= mysqli_fetch_array($user_challenges_display)) {
         $challenge_id=$user_challenges_displayRow['challenge_id'];
@@ -82,10 +83,10 @@ function user_challenges ($db_handle, $user_IDF) {
     }
 }
 function user_idea ($db_handle, $user_IDF) {
-    $user_idea_display = mysqli_query($db_handle, "(SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(a.stmt, 500) as stmt, b.first_name, b.last_name, b.username FROM challenges as a 
+    $user_idea_display = mysqli_query($db_handle, "(SELECT a.challenge_id, a.challenge_title, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM challenges as a 
                                                         JOIN user_info as b WHERE a.challenge_type=4 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
                                                         UNION
-                                                        (SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(b.stmt, 500) as stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
+                                                        (SELECT a.challenge_id, a.challenge_title, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
                                                         WHERE a.challenge_type=4 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id DESC LIMIT 0, 5;");
     $_SESSION['next_idea'] = 5;
     while($user_idea_displayRow= mysqli_fetch_array($user_idea_display)) {
@@ -175,7 +176,7 @@ function joined_projects ($db_handle, $user_IDF) {
                                                         UNION 
                                                         (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a 
                                                             JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $user_IDF) AND a.user_id != $user_IDF AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id) ORDER BY project_id DESC LIMIT 0, 3;");
-    $_SESSION['next_JP_3'] = 3;    
+    $_SESSION['next_JP'] = 3;    
     while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
