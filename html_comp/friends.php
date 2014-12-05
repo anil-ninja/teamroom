@@ -1,5 +1,5 @@
 <div class="bs-component">
-    <div class="panel-group" id="collapChat" role="tablist" aria-multiselectable="true">
+    <div class="panel-group list-group" id="collapChat" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;"role="tab" id="collapChatHead">
                 <a class="collapsed" data-toggle="collapse" data-parent="#collapChat" href="#collapChatBody" aria-expanded="false" aria-controls="collapseFive"> 
