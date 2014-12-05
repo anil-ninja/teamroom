@@ -134,9 +134,6 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                     </li>";
                                 } */
                         }
-                        else {
-                            $show = $show . "<li><button class='btn-link' >Report Spam</button></li>";
-                        }
                     $show = $show . "</ul>
                         </div>";
 
@@ -152,13 +149,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                     $get_display_task_stmt = "" ;
             if ($ownid == $user_id) {
                 $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
-            }
-                 
+            }      
         }
         if ($status_task == 4) {
 			$show = $show . "<div class='list-group flag'>
-                                            <div class='list-group-item'>";
-                                            
+                                            <div class='list-group-item'>";                               
             if ($id_create == $user_id) {
                 $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
             }
@@ -191,10 +186,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                         <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                                                     
                                 }
                             else {
-                            $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                            <button type='submit' name='pr_spem' value='".$id_task."' class='btn-link' >Report Spam</button>
-                                        </form>
-                                    </li>";
+                            $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$id_task."\", 4, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
                             } 
                $show = $show . "</ul>
               </div>";
@@ -224,10 +216,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                     } */                                   
                                 }
                             else {
-                            $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                            <button type='submit' name='pr_spem' value='".$id_task."' class='btn-link' >Report Spam</button>
-                                        </form>
-                                    </li>";
+                            $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$id_task."\", 4, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
                             } 
                $show = $show . "</ul>
               </div>";
@@ -335,7 +324,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                 $username_commenter = $displayrowb['username'];
 				$idc = $displayrowb['response_ch_id'] ;
 				$chalangeres = $displayrowb['stmt'] ;
-                                $comment_user_id = $displayrowb['user_id'];
+                $comment_user_id = $displayrowb['user_id'];
 		$show = $show . "
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
@@ -357,10 +346,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                                   <li><button class='btn-link' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete</button></li>";
                             } 
                             else {
-                                $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                                        <button type='submit' name='spem' value='".$idc."' class='btn-link' >Report Spam</button>
-                                                    </form>
-                                                </li>";
+                                $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$idc."\", 5, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
                             }
              $show = $show . "</ul>
                             </div>";

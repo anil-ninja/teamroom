@@ -9,10 +9,7 @@
 <!--</script>-->
 <script src="js/jquery.js"> </script>
 <script type="text/javascript" src="js/jquery.autosize.js"></script>
-<script src="js/jquery-1.js"></script>
-<script src="js/bootstrap.js"></script>
 <script src="js/date_time.js"></script>
-
 
 <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />

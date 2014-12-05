@@ -75,3 +75,37 @@ function delProject(href) {
 		}
     });
 }
+function spemch(ID, type) {
+	bootbox.confirm("Sure To Spam?", function(result) {
+	if(result){
+		var dataString = 'id='+ ID + '&type=' + type ;
+		$.ajax({
+			type: "POST",
+			url: "ajax/spem.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				location.reload();
+				}
+			});
+		}
+    });
+}
+function spemchpr(ID, type, Pid) {
+	bootbox.confirm("Sure To Spam?", function(result) {
+	if(result){
+		var dataString = 'id='+ ID + '&type=' + type + '&pid=' + Pid ;
+		$.ajax({
+			type: "POST",
+			url: "ajax/spem.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				location.reload();
+				}
+			});
+		}
+    });
+}
