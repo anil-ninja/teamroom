@@ -72,10 +72,10 @@
         <div class="col-md-3">
            <?php 
                 echo "<div class='bs-component list-group'>
-                        <div class='list-group-item'>
-                            <h4><p style='margin-bottom:5px; margin-top:5px;'> Explore more </p><h4>
-                        </div>
-                        <div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>";
+                        <div class='list-group-item' style='padding-left: 0px; padding-right: 0px;'>
+                            <div class='list-group-item'>
+                                <h4><p style='margin-bottom:5px; margin-top:5px;'> Explore more </p><h4>
+                            </div>";
                 $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 150) as stmt FROM challenges 
                                                         WHERE challenge_type != '2' AND (challenge_status !='3' AND challenge_status != '7') AND challenge_id != $challengeSearchID AND blob_id = '0')  
                                                     UNION 
@@ -86,24 +86,27 @@
                     $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
                     $challenge_user_stmt = $stmt_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
                     //echo $challenge_user_stmt;
-                    echo "
-                    <a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
-                    <div class='list-group-item'>
-                        <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;'>"
-                        .ucfirst($challenge_user_title)."</p></b>";
-                    if (substr($challenge_user_stmt, 0, 4) == "<img") {
-                        $arrayStmt = explode(">", $challenge_user_stmt);
-                        echo $arrayStmt[1]."<br>";
-                    } else {
-                        echo $challenge_user_stmt;
-                    }
-                    echo "</div></a>";
+                    echo "<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
+                            <div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
+                                <div class='panel-heading' style='padding-left: 0px;'>
+                                    <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;'>"
+                                    .ucfirst($challenge_user_title)."</p></b>
+                                </div>
+                                <div class='panel-content'>";
+                                if (substr($challenge_user_stmt, 0, 4) == "<img") {
+                                    $arrayStmt = explode(">", $challenge_user_stmt);
+                                    echo $arrayStmt[1]."<br>";
+                                } else {
+                                    echo $challenge_user_stmt;
+                                }
+                        echo "</div>
+                        </div></a>";
                 }
-                echo "</br></div>
-                    <div class='list-group-item'>
-                            <font size='4'><h3 class='panel-title'><p> Latest Projects </p></h3></font>
-                        </div>
-                    <div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>";
+                echo "</div>
+                    <div class='list-group-item' style='padding-left: 0px; padding-right: 0px;'>
+                        <div class='list-group-item'>
+                            <h4><p style='margin-bottom:5px; margin-top:5px;'> Open Projects </p><h4>
+                        </div>";
                 $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 150) as stmt FROM projects 
                                                         WHERE project_type = '1' AND blob_id = '0')  
                                                     UNION 
@@ -113,15 +116,21 @@
                     $project_id = $projectsRow['project_id'];
                     $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                     $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
-                echo "<p style='font-family: Sans-serif; height: 20px; font-size:14px;'><b>
-                    <a href='project.php?project_id=".$project_id."'>"
-                    .ucfirst($project_title_display)."</a></b></p>"
-                    .$project_title_stmt."....<br>";
+                echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
+                        <div class='panel-heading' style='padding-left: 0px;'>
+                            <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;'>
+                            <a href='project.php?project_id=".$project_id."'>"
+                    .ucfirst($project_title_display)."</p></b>
+                                </div>
+                                <div class='panel-content'>";
+                    echo $project_title_stmt."....<br>
+                        </div>
+                        </div></a>";
                 }
+                echo "</div>";
             ?>
-            
             </div>
-    </div>
+        </div>
        </div>
       <?php include_once 'html_comp/signup.php' ; ?>
         <?php include_once 'lib/html_inc_footers.php'; ?>
