@@ -53,13 +53,13 @@ function getOldChat($chatuser){
 	$query = mysql_query($sql);
 	$items = '';
 
-	$chatBoxes = array();
+	//$chatBoxes = array();
 
 	while ($chat = mysql_fetch_array($query)) {
-
+/*
 		if (!isset($_SESSION['openChatBoxes'][$chat['from']]) && isset($_SESSION['chatHistory'][$chat['from']])) {
 			$items = $_SESSION['chatHistory'][$chat['from']];
-		}
+		}*/
 
 		$chat['message'] = sanitize($chat['message']);
 
@@ -70,23 +70,23 @@ function getOldChat($chatuser){
 			"m":"{$chat['message']}"
 	   },
 EOD;
-
+/*
 	if (!isset($_SESSION['chatHistory'][$chat['from']])) {
 		$_SESSION['chatHistory'][$chat['from']] = '';
 	}
 
 	$_SESSION['chatHistory'][$chat['from']] .= <<<EOD
 						   {
-			"s": "0",
+			"s": "1",
 			"f": "{$chat['from']}",
 			"m": "{$chat['message']}"
 	   },
 EOD;
 		
 		unset($_SESSION['tsChatBoxes'][$chat['from']]);
-		$_SESSION['openChatBoxes'][$chat['from']] = $chat['sent'];
+		$_SESSION['openChatBoxes'][$chat['from']] = $chat['sent'];*/
 	}
-
+/*
 	if (!empty($_SESSION['openChatBoxes'])) {
 	foreach ($_SESSION['openChatBoxes'] as $chatbox => $time) {
 		if (!isset($_SESSION['tsChatBoxes'][$chatbox])) {
@@ -118,10 +118,9 @@ EOD;
 		}
 		}
 	}
-}
+}*/
 
-	$sql = "update chat set recd = 1 where chat.to = '".mysql_real_escape_string($_SESSION['username'])."' and recd = 0";
-	$query = mysql_query($sql);
+	
 
 	if ($items != '') {
 		$items = substr($items, 0, -1);
