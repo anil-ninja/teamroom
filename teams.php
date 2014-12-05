@@ -48,8 +48,8 @@ $total_members = mysqli_num_rows($teams_member_display);
             <div class="panel-primary" id='panel-cont'>
                 <p id='home-ch'></p>
                 <p id='home'></p>
-                <div class="panel">
-                    <div class='panel-body' style="padding-left: 35px;">
+                <div class="panel panel-default">
+                    <div class='panel-body'>
                         <div class='alert_placeholder'> </div>
                         <div class='row'>
                             <div class="col-md-8">
@@ -58,7 +58,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                                     
                                 </b></p>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                             <?php
                                 $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$team_project_id';");
                                 $team_ownerRow = mysqli_fetch_array($teams_owner_add);
@@ -80,7 +80,11 @@ $total_members = mysqli_num_rows($teams_member_display);
                             ?>
                             </div>
                         </div>
+                        </div>
                         <hr/>
+                        <div class="panel-body">
+                            
+                        
                     	<?php
                                 while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
                                     $firstname = $teams_member_displayRow['first_name'];
@@ -89,12 +93,12 @@ $total_members = mysqli_num_rows($teams_member_display);
                                     $rank = $teams_member_displayRow['rank'];
                                     $user_id_member = $teams_member_displayRow['user_id'];
                                     
-                                        echo "<div class='row col-md-3' style='margin:4px; background : rgb(240, 241, 242); margin-right:60px; margin-bottom:10px;'>
+                                        echo "<div class='row col-md-4' style=' background : rgb(240, 241, 242); margin:4px; padding:1px;;'>
                                                 <div class ='col-md-3' style='padding:1px;'>
-                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:49px' class='img-responsive'>
+                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
                                                 </div>";
                                         
-                                        echo "<div class = 'col-md-8' style='font-size:12px;padding: 7px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $username . "'>" 
+                                        echo "<div class = 'col-md-7' style='font-size:12px;padding: 1px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $username . "'>" 
                                                     .ucfirst($firstname)." ".ucfirst($lastname)."</a></span><br/><span style='font-size:10px;'>"
                                                     .$rank."</span></div>";
                                         if ($team_owner_project == $user_id && $user_id_member != $user_id) {
@@ -108,9 +112,9 @@ $total_members = mysqli_num_rows($teams_member_display);
                                 }
                         ?>
                     </div>
+                    </div>
     	       </div>
                 <?php include_once 'html_comp/kanban.php'; ?>
-            </div>
         </div>
          <div class="col-md-2" style="padding-top: 20px;">
                 <div class="panel">
