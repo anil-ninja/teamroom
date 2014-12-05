@@ -14,13 +14,9 @@ $project_name_display = mysqli_query($db_handle, "SELECT project_title FROM proj
 $project_name_displayRow = mysqli_fetch_array($project_name_display);
 $project_team_title = $project_name_displayRow['project_title'];
 
-
-
 $teams_member_display = mysqli_query($db_handle, "select b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
                                                     from teams as a join user_info as b where a.team_name = '$team_name' AND a.user_id = b.user_id and a.member_status = '1' and a.project_id=$team_project_id ORDER BY team_creation ASC;");
 $total_members = mysqli_num_rows($teams_member_display);
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">

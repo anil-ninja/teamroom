@@ -13,14 +13,14 @@
                         $idb = 0 ;
 
     $userProjects = mysqli_query($db_handle, "(SELECT a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
-                                                                                    where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id')
-                                                                                    as b where a.user_id = b.user_id )
-                                                                                    UNION
-                                                                                    (select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
-                                                                                    where b.requesting_user_id = '$user_id' and a.user_id = b.knowning_id and b.status != '4')
-                                                                                    UNION
-                                                                                    (select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
-                                                                                    where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
+											where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id')
+											as b where a.user_id = b.user_id )
+											UNION
+											(select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
+											where b.requesting_user_id = '$user_id' and a.user_id = b.knowning_id and b.status != '4')
+											UNION
+											(select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
+											where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
     while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
             $friendFirstName = $userProjectsRow['first_name'];
             $friendLastName = $userProjectsRow['last_name'];

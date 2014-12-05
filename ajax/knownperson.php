@@ -108,6 +108,20 @@ if ($_POST['id']) {
 				else {echo "Please Join Project First!"; }
 			exit ;
 			break ;
+		case 7:
+			mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ; 
+			if(mysqli_error($db_handle)) { echo "Sorry Try again!"; }
+			else { echo "Request Accepted succesfully!"; }
+			mysqli_close($db_handle);
+			exit ;
+			break ;
+		case 8:
+			mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ; 
+			if(mysqli_error($db_handle)) { echo "Sorry Try again!" ; }
+			else { echo "Request Deleted succesfully!"; }
+			mysqli_close($db_handle);
+			exit ;
+			break ;
 	}
 } 
 else echo "Invalid parameters!";
