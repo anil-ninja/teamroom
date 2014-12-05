@@ -163,9 +163,9 @@ $obj = new profile($UserName);
                 <div class='alert_placeholder'></div>
           <div class="col-md-6">
             <div>
-              <ul class="nav nav-tabs" role="tablist" style="font-size:15px">
+              <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px;">
                   <li role="presentation" class="active" id="created_project">
-                      <a href="#tabCreatedProjects" role="tab" data-toggle="tab">
+                      <a href="#tabCreatedProjects" role="tab" data-toggle="tab" style="padding: 15px 4px;">
                         Created Projects 
                         <span class="badge">
                             <?=$totalProjectCreated?>
