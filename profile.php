@@ -91,7 +91,7 @@ $obj = new profile($UserName);
             <div class="col-md-2">
         <?php
             if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 250px;'>Edit</a>";
+                echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>Edit</a>";
             }
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
@@ -214,7 +214,7 @@ $obj = new profile($UserName);
                     $('#joined_project_content').load('ajax/profile_page_ajax/joined_projects.php');
                     
                     $(window).scroll(function(event) {
-                        if ($(window).scrollTop() == ($(document).height() - $(window).height()) && $('#joined_project')) {
+                        if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#joined_projects')) {
                             event.preventDefault();
                             var dataString = 'next_JnPr=3' ;
                             $.ajax({
@@ -235,7 +235,7 @@ $obj = new profile($UserName);
                     $('#user_articles_content').load('ajax/profile_page_ajax/user_articles.php');
                     
                     $(window).scroll(function(event) {
-                        if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+                        if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#user_articles')) {
                             event.preventDefault();
                             var dataString = 'last_article=3';
                             $.ajax({

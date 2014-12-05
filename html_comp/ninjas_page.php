@@ -238,8 +238,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
             }
                echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes. "
-                        <br> <hr>Accepted: <span class='color strong'><a href ='profile.php?username=" . $ownname ."'>"
-                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
+                        <br> <hr>Accepted: <a href ='profile.php?username=" . $ownname ."'>"
+                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a>";
                         //  <br/> Time Remaining : " . $remaintimeown ."<br>
                    echo $display_ch_stmt_content;
                    $display_ch_stmt_content = "";
@@ -251,8 +251,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                     if($ch_id == $user_id) {			
                         echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
             }
-                    echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr>Submitted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> " . $timecomm ;
+                    echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
+                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
                                             //. "<br/>  ETA Taken : " . $timeo ."
                     echo $display_ch_stmt_content;
                     $display_ch_stmt_content = "";
@@ -261,8 +261,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             echo "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
                     dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes. "<br> <hr>Owned By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span><br> Submitted On : " . $timecomm ;
+            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes. "<br> <hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | Submitted: " . $timecomm ;
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                 echo $display_ch_stmt_content;
                 $display_ch_stmt_content = "";
@@ -291,8 +291,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             if($ownuser == $user_id) {			
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
             }
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr> Accepted By  <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span>" ;
+            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a>";
                                   //  <br/> Time Remaining : " . $remaintimeown ."<br>
             echo $display_ch_stmt_content;
             $display_ch_stmt_content = "";
@@ -305,8 +305,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             if($ch_id == $user_id) {			
                 echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(".$chelangeid.")'>Close</button>";
             }
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr>Submitted: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timecomm ;
+            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
+                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
                                 //. "<br/>  ETA Taken : " . $timeo ."
             echo $display_ch_stmt_content;
             $display_ch_stmt_content = "";
@@ -318,8 +318,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                                     
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                                 dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
-            echo  $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."At: ".ucfirst($timeopen)."<br><hr>"
-                            .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
+            echo  $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes."At: ".ucfirst($timeopen)."<br><hr>Submitted: "
+                            .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a> | ".$timecomm;
             echo $display_ch_stmt_content;
             $display_ch_stmt_content = "";
         }
@@ -400,8 +400,8 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
                 if ($ownedbrow['user_id'] == $user_id ) {
                     echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
                 }
-                echo "Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                    .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>| " . $timfunct;
+                echo "Owned: <a href ='profile.php?username=" . $owname . "'>"
+                    .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct;
             }                
             echo $display_ch_stmt_content;
             $display_ch_stmt_content = "";
@@ -436,15 +436,15 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
               if  ($owlstatus==1){
-                echo "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span>| ".$timfunct;
+                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a>| ".$timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
                     echo "<br><hr><input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(".$chelangeid.")' value='Submit'/>" ;
                 }
             }
             if  ($owlstatus==2){
-                echo "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span> | " . $timfunct." | Submitted: " .$owtimesubmit ;
+                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | " . $timfunct." | Submitted: " .$owtimesubmit ;
                 //." and Time Taken : ".$timetakennin."
             }
         }
@@ -479,8 +479,8 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
                 }
             }
             if  ($owlstatus==2){
-                echo "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span> | ".$timfunct."| Submitted: " .$owtimesubmit ;
+                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | ".$timfunct."| Submitted: " .$owtimesubmit ;
                 //." and Time Taken : ".$timetakennin."
             }
             }

@@ -1,19 +1,21 @@
 <div class="bs-component">
 	<div class='list-group'  style='cursor: pointer;'>
- 		<div class='list-group-item' style="background-color: rgba(240, 240, 240, 0.32);">
- 		<table>
-			
- 		<tr><td><font size="2"> PROJECTS&nbsp;&nbsp;&nbsp;</font>
-                    <?php 
-                        if (isset($_SESSION['user_id'])) {
-                            echo "<a class='pull-right'data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a> </td>
-                </tr>
- 		<tr>
-                    <td> <font size='2'> Classified</font></td>
-	 	</tr>";   
+            <div class='list-group-item intro'><font size="3"> PROJECTS&nbsp;&nbsp;&nbsp;</font><br>
+                <?php 
+                    if (isset($_SESSION['user_id'])) {
+                
+                    echo "<font size='2'> Classified</font>
+                            <a class='pull-right' data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a>
+                        </div>";
+                    
+                            
+ 		echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
+                    <table>
+
+                    <tr><td>";   
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
-                                                                                                                                    as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
-                                                                                                                                    UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '2');");
+                                                                                as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
+                                                                                UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '2');");
                             while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
                                     $p_title = $project_title_displayRow['project_title'] ;
                                     $idpro = $project_title_displayRow['project_id'] ;
@@ -41,20 +43,20 @@
 
                             }
                         
+                            echo "</td></tr></table>
+                                </div>
+                                <div class='list-group-item intro'>";
+                    }
+                    
                     ?>
- 		<tr></tr>
-                
-                <tr>
-	 		<td> <font size="2"> <br/>Public</font></td>
-		</tr>
-                <?php } ?>
-		</div>
-		<div>
-				<table>
-					   <?php 
-							$project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE project_type= '1';");
-						
-						while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
+                <font size="2">Public</font>
+            </div>
+            <div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
+                <table>
+                    <?php 
+                        $project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE project_type= '1';");
+
+                        while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
 								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
 								$idproject = $project_public_title_displayRow['project_id'] ;
 							if (strlen($public_pr_titlep) > 30) {
@@ -88,11 +90,11 @@
 					echo "</tr>" ;
 					}			
 					} 
-                                    ?>
-			</table>
-			</div>
-	</div>
-</div>
+                    ?>
+                </table>
+            </div>
+        </div>
+    </div>	
 <div class='modal fade' id='answerFormpr' tabindex='-1' role='dialog' aria-labelledby='myModalLabel1' aria-hidden='true'>
 	<div class='modal-dialog'> 
 		<div class='modal-content'>

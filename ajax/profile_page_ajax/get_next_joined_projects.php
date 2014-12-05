@@ -18,6 +18,7 @@ if ($_POST['next_JnPr']) {
                                                         (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a 
                                                             JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $profile_user_id) AND a.user_id != $profile_user_id AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id) ORDER BY project_id DESC LIMIT $a, $b;");
     $show_JP = "";
+    $_SESSION['next_JP_3'] = 3;
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $i++;
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));

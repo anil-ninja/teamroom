@@ -116,7 +116,7 @@ dfn { font-style: italic; }
 hr {
   -moz-box-sizing: content-box;
   box-sizing: content-box;
-  height: 5px;
+  height: 2px;
 }
 
 /**
