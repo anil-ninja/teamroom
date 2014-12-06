@@ -169,6 +169,9 @@
                 ?>
             </div>
             <div id='teamForm'>
+		<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+				 if(mysqli_num_rows($member_project) != 0) {
+					 ?>
                 <div class="input-group" >
                     <span class="input-group-addon">Team Name</span>
                     <input type="text" class="form-control" id="team_name_A" placeholder="Team name ..">
@@ -180,26 +183,39 @@
                 </div>
                 <br>
                 <input type="submit" class="btn btn-success" id = "create_team" value = "Create New Team" >
+         <?php } 
+				else echo "Please Join Project First"; ?>
             </div>
             <div id='VideoFormpr'>
+				<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+				 if(mysqli_num_rows($member_project) != 0) {
+					 ?>
                 <input type='text' class="form-control" id="video_titlepr" placeholder="Vedio title .."/><br>
                 <input type='text' class="form-control" id="videoprjt" placeholder="Add Youtube URL"><br>
                 <textarea rows="3" class="form-control" id="videodespr" placeholder="Description .."></textarea><br><br>
                 <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
+                <?php } 
+				else echo "Please Join Project First"; ?>
             </div>
             <div id='notesForm'>
+				<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+				 if(mysqli_num_rows($member_project) != 0) {
+					 ?>
                 <input type='text' class="form-control" id="notes_title" placeholder="Heading .."/><br>
                 <input class="btn btn-default btn-sm" type="file" id="_fileNotes" style ="width: auto;"><br/>
                 <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
                 <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
+                <?php } 
+				else echo "Please Join Project First"; ?>
             </div>
         <?php 
+				echo "<div id='manageForm'>" ;
          $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
          if(mysqli_num_rows($member_project) != 0) {
-					   echo "<div id='manageForm'>
-								<div id='elfinder'></div>
-							 </div><br/>" ;
+					   echo "<div id='elfinder'></div>" ;
 					}
+					else { echo "Please Join Project First"; }
+					echo "</div><br/>" ;
            ?>
         </div>
     </div>
