@@ -23,6 +23,7 @@
 
         <!-- for Twitter -->          
         <meta name="twitter:card" content="summary" />
+        <meta name="twitter:url" content="<?= "http://collap.com/challengesOpen.php?challenge_id=".$_GET['challenge_id'] ?>" />
         <meta name="twitter:title" content="<?= $obj->challenge_title; ?>" />
         <meta name="twitter:description" content="<?= $obj->getDiscription(); ?>" />
         <meta name="twitter:image" content="<?= $obj->url; ?>" />
