@@ -392,7 +392,7 @@ if ($_POST['chal']) {
         $get_display_ch_stmt_content = "" ;
 	}	
 		if ($status == 6) {
-        $show = $show . "<div class='list-group film'>
+        $show = $show . "<div class='list-group pict'>
                 <div class='list-group-item'>";
                 
         //dropdown for delete/edit/span challenge starts

@@ -8,8 +8,8 @@ $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
 
 if (isset($_POST['closechal'])) {
-		$chalange = $_POST['cid'] ;
-		$user_id = $_SESSION['user_id'];
+	$chalange = $_POST['cid'] ;
+	$user_id = $_SESSION['user_id'];
 	events($db_handle,$user_id,"6",$chalange);
     involve_in($db_handle,$user_id,"6",$chalange);
     mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
@@ -21,8 +21,7 @@ if(isset($_POST['accept_pub'])) {
 	events($db_handle,$user_id,"4",$id);
     involve_in($db_handle,$user_id,"4",$id);
 	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$id' ; ") ;
-		mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
-									VALUES ('$user_id', '$id', '1');") ;
+	mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA) VALUES ('$user_id', '$id', '1');") ;
 header('Location: #');
 }
 $private_check = mysqli_query($db_handle, "SELECT challenge_type FROM challenges WHERE challenge_id = $challengeSearchID");

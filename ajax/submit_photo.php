@@ -24,9 +24,7 @@ if($_POST['picturech']){
 	else { echo "Posted succesfully!"; }
 } 
 else {
-        mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
-                                VALUES (default, '$article');");
-        
+        mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$article');");        
         $id = mysqli_insert_id($db_handle);
         mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type, challenge_status) 
                                 VALUES ('$user_id', '$article_title', '$id', '1', '1', ' ', '3', '6');");

@@ -43,6 +43,7 @@ function showclass(int) {
 			$(".idea").hide(100);
 			$(".film").hide(100);
 			$(".challenge").show(100);
+			$(".pict").hide(100);
 			break;
 			
 		case 3:
@@ -51,6 +52,7 @@ function showclass(int) {
 			$(".idea").hide(100);
 			$(".film").hide(100);
 			$(".articlesch").show(100);
+			$(".pict").hide(100);
 			break;
 			
 		case 4:
@@ -59,6 +61,7 @@ function showclass(int) {
 			$(".idea").hide(100);
 			$(".film").hide(100);
 			$(".articlesch").hide(100);
+			$(".pict").hide(100);
 			break;
 			
 		case 5:
@@ -67,6 +70,7 @@ function showclass(int) {
 			$(".idea").hide(100);
 			$(".film").show(100);
 			$(".articlesch").hide(100);
+			$(".pict").hide(100);
 			break;
 			
 		case 6:
@@ -75,6 +79,16 @@ function showclass(int) {
 			$(".film").hide(100);
 			$(".articlesch").hide(100);
 			$(".idea").show(100);
+			$(".pict").hide(100);
+			break;
+			
+		case 7:
+			$(".challenge").hide(100);
+			$(".openchalhide").hide(100);
+			$(".film").hide(100);
+			$(".articlesch").hide(100);
+			$(".idea").hide(100);
+			$(".pict").show(100);
 			break;
 		}
 	}
@@ -308,7 +322,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		var res = ilink.split(".");
 		//alert (res['1']);
 			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
-				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" onError=\"this.src=\'img/default.gif\'\" />";
+				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" onError=\"this.src=\"img/default.gif\"\" />";
 			}
 				else {
 					var imgTx = ilink ;
@@ -367,12 +381,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 		});
 		
 		$("#upload_image").click(function(){
-      		//$("#upload_image").attr('disabled','disabled');
-      		var profile = "profilepic" ;
-      		var dataString = 'profile='+ profile ;
+      		var dataString = 'profile=true' ;
 			var _file = document.getElementById('_fileprofilepic');
-			//alert(_file + "bhschjsdhsbd");
-			//alert(uploadFile(_file,"articlePic"));
 			uploadFile(_file,"profilepic",String(dataString),"ajax/change_profile.php");
 		});
 		
@@ -513,6 +523,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   	$(".idea").show(100);
   	$(".film").show(100);
     $(".challenge").show(100);
+    $(".pict").show(100);
   });
 
 $("#pencil").click(function(){
@@ -522,6 +533,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(100);
   	$(".film").hide(100);
     $(".challenge").show(100);
+    $(".pict").hide(100);
     getnextchal('challenge',2) ;
   });
 
@@ -531,6 +543,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(100);
   	$(".film").hide(100);
     $(".articlesch").show(100);
+    $(".pict").hide(100);
     getnextchal('articlesch', 3) ;
   });
   
@@ -540,6 +553,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(100);
   	$(".film").hide(100);
     $(".articlesch").hide(100);
+    $(".pict").hide(100);
     getnextchal('openchalhide', 4) ;
   });
   
@@ -549,6 +563,7 @@ $("#pencil").click(function(){
   	$(".idea").hide(100);
   	$(".film").show(100);
     $(".articlesch").hide(100);
+    $(".pict").hide(100);
     getnextchal('film', 5) ;
   });
   
@@ -558,7 +573,18 @@ $("#pencil").click(function(){
   	$(".film").hide(100);
     $(".articlesch").hide(100);
     $(".idea").show(100);
+    $(".pict").hide(100);
     getnextchal('idea', 6) ;
+  });
+  
+  $("#picch").click(function(){
+  	$(".challenge").hide(100);
+  	$(".openchalhide").hide(100);
+  	$(".film").hide(100);
+    $(".articlesch").hide(100);
+    $(".idea").hide(100);
+    $(".pict").show(100);
+    getnextchal('pict', 7) ;
   });
 	
 		$("#create_idea").click(function(){

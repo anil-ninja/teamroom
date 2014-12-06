@@ -369,7 +369,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                 $display_ch_stmt_content = "";
         }	
         if ($status == 6) {
-        echo "<div class='list-group film'>
+        echo "<div class='list-group pict'>
                 <div class='list-group-item'>";
                     dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                echo $display_tilte_ch."<span class='glyphicon glyphicon-picture'></span>".$display_fname_likes.$display_ch_stmt_content;
