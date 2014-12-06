@@ -16,7 +16,7 @@ if($_POST['videos']){
 	$inforow = mysqli_fetch_array($info) ;
 	$title = $inforow['project_title'] ;
 	$type = $inforow['project_type'] ;
-	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
+	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
     if(mysqli_num_rows($member_project) != 0) {
 			if($type == 2) {
 				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
@@ -34,25 +34,21 @@ if($_POST['videos']){
 					$idp = mysqli_insert_id($db_handle);
 				involve_in($db_handle,$user_id,"10",$idp);
 				events($db_handle,$user_id,"10",$idp); 
-				if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
-				else { echo "Video Posted Successfully !!!"; }
-			}
-			else {
-				mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
-										VALUES (default, '$challange');");
-				
-				$id = mysqli_insert_id($db_handle);
-				mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type) 
+				}
+				else {
+					mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$challange');");
+					$id = mysqli_insert_id($db_handle);
+					mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type) 
 										VALUES ('$user_id', '$pro_id', '$challenge_title', '$id', '1', '1', ' ', '8');");
-			   $idp = mysqli_insert_id($db_handle);
-			  involve_in($db_handle,$user_id,"10",$idp);
-			  events($db_handle,$user_id,"10",$idp); 
-			 if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
-			else { echo "Video Posted Successfully !!!"; }
+					$idp = mysqli_insert_id($db_handle);
+					involve_in($db_handle,$user_id,"10",$idp);
+					events($db_handle,$user_id,"10",$idp); 
+					}
+			if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
+			else { echo "Video Posted Successfully !!!"; }				
 			}
-		}
-else echo "Please Join Project First!";
-mysqli_close($db_handle);
+		else echo "Please Join Project First!";
+	mysqli_close($db_handle);
 }
 else echo "Invalid parameters!";	
 ?>
