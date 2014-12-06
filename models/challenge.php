@@ -3,7 +3,7 @@ class challenge{
     public $id = 0;
     public $challenge_title = "";
     public $stmt = "";
-    public $url = "";
+    public $url = ""; //img url
     public $user_id = 0;
     public $project_id = 0;
     public $blob_id = 0;
@@ -29,7 +29,7 @@ class challenge{
 			$this->stmt = $chalangerow['stmt'];
 		else {
 			$blob_id = $chalangerow['blob_id'];
-			$this->stmt = mysqli_fetch_array(mysqli_query($db_handle, "SELECT stmt FROM blobs Where blob_id='$blob_id';"));
+			$this->stmt = mysqli_fetch_array(mysqli_query($db_handle, "SELECT stmt FROM blobs Where blob_id='$blob_id';"))['stmt'];
         }
         $this->first_name = $chalangerow['first_name'];
         $this->last_name = $chalangerow['last_name'];
@@ -53,7 +53,7 @@ class challenge{
     function getUrl($stmt){
         if (substr($stmt, 0, 4) == "<img") {
            
-			$arrayStmt = explode("\"", $stmt);
+			$arrayStmt = explode("\"", $stmt);//break the image by " [QUOTE]
             return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).$arrayStmt[1];
         } else 
         if (substr($stmt, 0, 2) == "<a") {
