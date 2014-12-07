@@ -227,7 +227,7 @@ if ($_POST['notice']) {
 			$fname18 = $notice18row['first_name'] ;
 			$id1 = $notice18row['id'] ;
 			
-			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname18." Send Friend Request </p><br/>
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname18." Send Link </p><br/>
 								<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$id1."\")' value='Accept'/>
 								<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$id1."\")' value='Delete'/><hr/>" ;
 			$y++ ;
@@ -237,7 +237,7 @@ if ($_POST['notice']) {
 		while($notice20row = mysqli_fetch_array($notice20)) {
 			$fname20 = $notice20row['first_name'] ;
 			$id2 = $notice20row['id'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname20." Accepted Your Friend Request </p><hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname20." Accepted Link </p><hr/>" ;
 			$y++ ;
 			}
 	$notice19 = mysqli_query($db_handle, " SELECT a.id, a.knowning_id, b.first_name, b.username FROM known_peoples as a join user_info as b
@@ -245,7 +245,7 @@ if ($_POST['notice']) {
 		while($notice19row = mysqli_fetch_array($notice19)) {
 			$fname19 = $notice19row['first_name'] ;
 			$id3 = $notice19row['id'] ;
-			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname19." Deleted Your Friend Request </p><hr/>" ;
+			$notice = $notice ."<span class='glyphicon glyphicon-plus'></span><p style='font-size: 10px;'> &nbsp; ".$fname19." Deleted Link </p><hr/>" ;
 			$y++ ;
 			} 
 			
