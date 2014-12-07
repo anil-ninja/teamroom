@@ -1,6 +1,8 @@
+
 <div class="bs-component">
+	<?php include_once 'friends.php';  ?>
     <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32); font-size:10px'">
-        <?php include_once 'friends.php';  ?>
+        
     <div class="panel-group" id="accordion" role="tablist" >
     <div class="panel panel-default">
         <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">

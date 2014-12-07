@@ -5,7 +5,6 @@ if(!isset($_SESSION['user_id'])){
 	header("location: index.php") ;
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -34,7 +33,7 @@ if(!isset($_SESSION['user_id'])){
 		 <div class="col-md-2">
 			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>				
 			</div>
-		</div>
+		</div>	
 	<?php include_once 'lib/html_inc_footers.php'; ?>	
 	<script>
 	$(window).scroll(function(event) {
@@ -56,10 +55,7 @@ if(!isset($_SESSION['user_id'])){
 	}); 
 getallreminders() ; 
 	</script>
-	<script>
-	$(".text").show();
-	$(".editbox").hide();
-	</script>   
+	  
 </body></html>
 <?php
 mysqli_close($db_handle);

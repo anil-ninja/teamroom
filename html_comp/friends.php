@@ -1,14 +1,7 @@
-<div class="bs-component">
-    <div class="panel-group list-group" id="collapChat" role="tablist" aria-multiselectable="true">
-        <div class="panel panel-default">
-            <div class="panel-heading" style="padding: 5px;"role="tab" id="collapChatHead">
-                <a class="collapsed" data-toggle="collapse" data-parent="#collapChat" href="#collapChatBody" aria-expanded="false" aria-controls="collapseFive"> 
-                    <p class="glyphicon glyphicon-comment">
-                        collap chat</p>
-                </a>
-            </div>
-            <div id='collapChatBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='collapChatHead'>   
-                <div class="panel-body" style="padding: 1px;">
+	
+		<div id="nav">
+    <div class="nav-btn"><p class="glyphicon glyphicon-comment"></p></div>
+                    <div class="panel-body" style="padding: 1px;">
                     <?php
                         $idb = 0 ;
 
@@ -26,6 +19,10 @@
             $friendLastName = $userProjectsRow['last_name'];
             $usernameFriends = $userProjectsRow['username'];
             $useridFriends = $userProjectsRow['user_id'];
+            $online = mysqli_query($db_handle,"select * from user_info where user_id = '$useridFriends';") ;
+            $onlineRow = mysqli_fetch_array($online) ;
+            $status =  $onlineRow['last_login'] ;
+            $time = time() - strtotime($status) ;
             $tooltip = ucfirst($friendFirstName)." ".ucfirst($friendLastName);
 
             echo "<div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
@@ -34,12 +31,40 @@
                                     <img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:30px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                             </div>
                             <div class = 'col-md-9' style='font-size:10px;padding-top: 5px;'>"
-                            .ucfirst($friendFirstName)." ".ucfirst($friendLastName)."
-                            </div>
-                    </a>
+                            .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
+                 if($time < 6000) { echo "<br/>online" ; }           
+                    else { echo "<br/>offline" ; }        
+                 echo "</div></a>
                     </div>";
     }
     ?>
     </div>
-            </div>
-        </div>
+    </div>
+   <script>
+	$(".text").show();
+	$(".editbox").hide();
+	
+	$(function() {
+	$('#nav').stop().animate({'margin-right':'-120px'},1000);
+
+function toggleDivs() {
+    var $inner = $("#nav");
+    if ($inner.css("margin-right") == "-120px") {
+        $inner.animate({'margin-right': '0'});
+		$(".nav-btn").html('><p class="glyphicon glyphicon-comment"></p>')
+    }
+    else {
+        $inner.animate({'margin-right': "-120px"}); 
+		$(".nav-btn").html('<<p class="glyphicon glyphicon-comment"></p>')
+    }
+}
+$(".nav-btn").bind("click", function(){
+    toggleDivs();
+});
+
+});
+	</script>          
+            
+  </div>
+  
+  

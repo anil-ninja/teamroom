@@ -161,6 +161,15 @@ else {
 			}
 		});
 	} ;
+	setInterval(function updatelastlogin(){ 
+		var dataString = 'update=true' + '&case=2' ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/updatetime.php",
+				data: dataString,
+				cache: false,
+			});
+		},600000)();
   </script>
  
 <!-- Modal  -->

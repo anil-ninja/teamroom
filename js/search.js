@@ -58,8 +58,7 @@ time[i] = "0" + time[i];
 return date.join("/") + " " + time.join(":") ;
 }
 function updatetime() {
-	var update = "update" ;
-	var dataString = 'update='+ update ;
+	var dataString = 'update=true' + '&case=1' ;
 	setTimeout(function(){
 			$.ajax({
 				type: "POST",

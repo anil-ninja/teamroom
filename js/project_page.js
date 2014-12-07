@@ -59,7 +59,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 		//return responceTx;
 		
 	}
-	
 	function submitCreateArticle(ilink,data,url){
 		//alert(ilink) ;
 		if (ilink != "") {

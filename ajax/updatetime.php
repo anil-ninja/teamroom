@@ -5,7 +5,12 @@ if($_POST['update']){
 	$user_id = $_SESSION['user_id'];
 	$a = date("Y-m-d H:i:s") ;
 	$_SESSION['last_login'] = $a ;
-	mysqli_query($db_handle, " UPDATE user_info SET last_login = '$a' WHERE user_id = '$user_id' ;") ;
+	$case = $_POST['case'] ;
+	if($case == 2) {
+		mysqli_query($db_handle, " UPDATE user_info SET last_login = '$a' WHERE user_id = '$user_id' ;") ;
+		}
+		else {
+			mysqli_query($db_handle, " UPDATE user_info SET last_login = '$a' WHERE user_id = '$user_id' ;") ;
 	$notice = "" ;
 	  $data = "" ;
 	  $data1 = "" ;
@@ -298,6 +303,7 @@ if($_POST['update']){
 					</ul>
 				</div>" ;
 	echo $data."+".$data1 ;
+	}
 	mysqli_close($db_handle);
 }	
 else echo "Invalid parameters!";
