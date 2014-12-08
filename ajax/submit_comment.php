@@ -28,7 +28,7 @@ if($_POST['id']){
 				}
 		}
 	else if ($case == 2) { 	
-		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$id' and user_id = '$user_id';");
+		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$id' and user_id = '$user_id' and member_status = '1';");
 		if(mysqli_num_rows($member_project) != 0) {
 			$username = $_SESSION['username'];
 			$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$id' ;") ;
@@ -61,7 +61,7 @@ if($_POST['id']){
 			else {echo "Please Join Project First!"; }
 			}
 	else {
-		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pid' and user_id = '$user_id';");
+		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pid' and user_id = '$user_id' and member_status = '1';");
 		if(mysqli_num_rows($member_project) != 0) {
 			$username = $_SESSION['username'];
 			$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pid' ;") ;

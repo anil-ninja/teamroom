@@ -17,17 +17,15 @@ if($_POST['challange']){
 	$inforow = mysqli_fetch_array($info) ;
 	$title = $inforow['project_title'] ;
 	$type = $inforow['project_type'] ;
-	if($type == 2) {
-		$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
-											a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-		while ($memrow = mysqli_fetch_array($members)){
-			$emails = $memrow['email'] ;
-			$mail = $memrow['username'] ;
-			$body2 = "http://collap.com/profile.php?username=".$mail ;
-			collapMail($emails, $username." Create Challenge IN Project ".$title, $body2);
-			} 
-		}
-	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
+	$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
+										a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+	while ($memrow = mysqli_fetch_array($members)){
+		$emails = $memrow['email'] ;
+		$mail = $memrow['username'] ;
+		$body2 = "http://collap.com/profile.php?username=".$mail ;
+		collapMail($emails, $username." Create Challenge IN Project ".$title, $body2);
+		} 
+	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and mamber_status = '1';");
     if(mysqli_num_rows($member_project) != 0) {
 	if (strlen($image) < 30 ) {
 		$challange = $challangetext ;
@@ -36,8 +34,6 @@ if($_POST['challange']){
 		$challange = $image."<br/> ".$challangetext ;
 		}
 	$type = $_POST['type'] ;
-	
-	//echo "i am not working POST";
 if (strlen($challange) < 1000) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
                                     VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '$opentime', '$challange_eta', '$type') ; ") ;

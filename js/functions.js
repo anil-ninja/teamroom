@@ -55,25 +55,40 @@ function requestaccept(ID) {
 function add_member(PID, name) {
 	var email = $("#email_add_member").val() ;
     var dataString = 'email='+ email + '&id='+ PID + '&name='+ name + '&case=1';
-    alert(dataString) ;
     if (email == "") {
          bootstrap_alert(".alert_placeholder", "Email can't be empty", 5000,"alert-success");
          }
          else {
-             $.ajax({
+			 $.ajax({
 				type: "POST",
-				url: "ajax/add_member_team.php",
-				data: dataString,
+				url: "ajax/email.php",
+				data: 'email='+ email,
 				cache: false,
 				success: function(result){
-					if(result=='Member Added succesfully!'){
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-                        location.reload();
+					alert(result);
+					if (result == 'false') {
+						$.ajax({
+							type: "POST",
+							url: "ajax/add_member_team.php",
+							data: dataString,
+							cache: false,
+							success: function(result){
+								if(result=='Member Added succesfully!'){
+									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+									location.reload();
+									}
+									else {
+										bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+										}
+								}
+							});
 						}
 						else {
-							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
+							$("#invitemember").removeAttr('disabled');
+							return false ;							
 							}
-                    }
+					}
 				});
 		}
 }
@@ -121,10 +136,11 @@ function requestdelete(ID) {
 		}
 	});
 }
-function comment(ID) {				
+function comment(ID, type) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
 		//alert(ID) ;
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project)))) + '&case=1';
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+						+ '&case=' + type ;
 		//alert(dataString) ;
 		if(project == ""){
 			return false ;
@@ -172,30 +188,6 @@ function commentprch(ID, PID) {
 					});
 				}
 } ;
-function comment_project (ID) {				
-    var project = convertSpecialChar($("#pr_resp_"+ID).val());
-    var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project)))) + '&case=2';
-    //alert(dataString) ;
-    if(project == ""){
-        return false ;
-    }
-    else {
-        $.ajax({
-                type: "POST",
-                url: "ajax/submit_comment.php",
-                data: dataString,
-                cache: false,
-                success: function(result){
-                        var notice = result.split("+") ;
-							//alert(notice['1']);
-							if(notice['1']== 'Posted succesfully!'){
-							$("#pr_resp_"+ID).val('') ;
-							$('.comments_'+ID).append(notice['0']);
-							}
-						}
-			});
-    }
-};
 function accept_pub(ID){
 	//alert(ID) ;
 		   bootbox.confirm("Really Accept Challenge !!!", function(result) {
@@ -303,7 +295,7 @@ function answersubmitpr(chelangeid, PID){
 			}
 		});
 } ;
-function like(Id) {
+function like(Id, type) {
 	var uid = $("#likes_"+Id).val() ;
 	if (uid == '') {
 		var nied = 1 ;
@@ -311,7 +303,7 @@ function like(Id) {
 		else {
 			var nied = parseInt(parseInt(uid)+1) ;
 			}
-	var dataString = 'id='+ Id + '&case=1';
+	var dataString = 'id='+ Id + '&case=' + type ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/likes.php",
@@ -328,7 +320,7 @@ function like(Id) {
 				}
 			});
 	}
-function dislike(Id) {
+function dislike(Id, type) {
 	var uid = $("#dislikes_"+Id).val() ;
 	if (uid == '') {
 		var nied = 1 ;
@@ -336,7 +328,56 @@ function dislike(Id) {
 		else {
 			var nied = parseInt(parseInt(uid)+1) ;
 			}
-	var dataString = 'id='+ Id + '&case=2' ;
+	var dataString = 'id='+ Id + '&case=' + type ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/likes.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result == 'Posted successfully') {
+						$("#dislikes_"+Id).val(nied+='') ;
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
+						}
+				}
+			});
+	}
+function likepr(Id, PID) {
+	var uid = $("#likes_"+Id).val() ;
+	if (uid == '') {
+		var nied = 1 ;
+		}
+		else {
+			var nied = parseInt(parseInt(uid)+1) ;
+			}
+	var dataString = 'id='+ Id + '&pid=' + PID + '&case=3';
+			$.ajax({
+				type: "POST",
+				url: "ajax/likes.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					if(result == 'Posted successfully') {
+						$("#likes_"+Id).val(nied+='') ;
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
+						}
+				}
+			});
+	}
+function dislikepr(Id, PID) {
+	var uid = $("#dislikes_"+Id).val() ;
+	if (uid == '') {
+		var nied = 1 ;
+		}
+		else {
+			var nied = parseInt(parseInt(uid)+1) ;
+			}
+	var dataString = 'id='+ Id + '&pid=' + PID + '&case=4' ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/likes.php",

@@ -43,16 +43,14 @@ if($_POST['answer']){
 					$inforow = mysqli_fetch_array($info) ;
 					$title = $inforow['project_title'] ;
 					$type = $inforow['project_type'] ;
-					if($type == 2) {
-						$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
-															a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-						while ($memrow = mysqli_fetch_array($members)){
-							$emails = $memrow['email'] ;
-							$mail = $memrow['username'] ;
-							$body2 = "http://collap.com/profile.php?username=".$mail ;
-							collapMail($emails, $username." Accepted Challenge IN Project ".$title, $body2);
-							} 
-						}
+					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
+														a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+					while ($memrow = mysqli_fetch_array($members)){
+						$emails = $memrow['email'] ;
+						$mail = $memrow['username'] ;
+						$body2 = "http://collap.com/profile.php?username=".$mail ;
+						collapMail($emails, $username." Accepted Challenge IN Project ".$title, $body2);
+						} 
 					involve_in($db_handle,$user_id,"5",$ch_id); 
 					events($db_handle,$user_id,"5",$ch_id);
 					mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $ch_id ; ") ;

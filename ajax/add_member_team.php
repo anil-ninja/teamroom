@@ -6,6 +6,7 @@ include_once '../functions/delete_comment.php';
 if ($_POST['email']) {
     $team_name = $_POST['name'];
     $user_id = $_SESSION['user_id'] ;
+    $username = $_SESSION['username'] ;
     $email = $_POST['email'];
     $pro_id = $_POST['id'] ;
     $case = $_POST['case'] ;
@@ -21,6 +22,14 @@ if ($_POST['email']) {
 				else { echo "Member Added succesfully!"; }
 				} 
 				else {
+					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
+											a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+					while ($memrow = mysqli_fetch_array($members)){
+						$emails = $memrow['email'] ;
+						$mail = $memrow['username'] ;
+						$body2 = "http://collap.com/profile.php?username=".$mail ;
+						collapMail($emails, $username." Add Member IN Team ".$team_name, $body2);
+						} 
 					mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id, team_owner) VALUES ('$uid', '$team_name', '$pro_id', '$user_id');");
 					events($db_handle,$user_id,"15",$pro_id);
 					involve_in($db_handle,$user_id,"15",$pro_id);
@@ -35,7 +44,7 @@ if ($_POST['email']) {
 		else {
 			$time = date("y-m-d H:i:s") ;
 			mysqli_query($db_handle, "UPDATE teams SET member_status='2', leave_team = '$time' WHERE team_name = '$team_name' AND project_id = '$pro_id' AND user_id = '$email' ;");
-			if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
+			if(mysqli_error($db_handle)) { echo "Failed to Remove Member!"; }
 			else { echo "Member Removed succesfully!"; }			
 			}
 	}
