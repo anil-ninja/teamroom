@@ -109,7 +109,3 @@
                 }
             }
         </script>
-         <script type="text/javascript" src="js/loginValidation.js"></script>
-        <script type="text/javascript" src="js/signupValidation.js"></script>
-        <script type="text/javascript" src="js/username_email_check.js"></script>
-
