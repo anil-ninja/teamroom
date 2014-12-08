@@ -32,8 +32,8 @@
                             </div>
                             <div class = 'col-md-9' style='font-size:10px;padding-top: 5px;'>"
                             .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
-                 if($time < 6000) { echo "<br/>online" ; }           
-                    else { echo "<br/>offline" ; }        
+                 if($time < 6000) { echo "<br/>online <span class='badge' style ='padding-bottom : 0px ;padding-top : 0px ;color: #4EC67F ;background-color: #4EC67F;'>.</span>" ; }           
+                    else { echo "<br/>offline <span class='badge' style ='padding-bottom : 0px ;padding-top : 0px ;color: #6F746F ;background-color: #6F746F;'>.</span>" ; }        
                  echo "</div></a>
                     </div>";
     }
