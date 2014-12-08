@@ -63,8 +63,4 @@ $(".nav-btn").bind("click", function(){
 });
 
 });
-	</script>          
-            
-  </div>
-  
-  
+	</script>            

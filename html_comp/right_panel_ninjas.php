@@ -17,6 +17,7 @@
                 <i class='glyphicon glyphicon-eye-open'></i> &nbsp;All Reminder
             </a>
         </div>
+        </div>
         <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>   
             <div id='allreminders' ></div><?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
         </div>

@@ -26,7 +26,7 @@ include_once 'functions/delete_comment.php';
                     <?php include_once 'html_comp/project_page_project.php'; ?>
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3" style='width:290px'>
                 
                 <?php include_once 'html_comp/project_page_challenge.php'; ?>
 
