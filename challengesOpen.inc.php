@@ -7,23 +7,6 @@ $obj = new challenge($_GET['challenge_id']);
 $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
 
-if (isset($_POST['closechal'])) {
-	$chalange = $_POST['cid'] ;
-	$user_id = $_SESSION['user_id'];
-	events($db_handle,$user_id,"6",$chalange);
-    involve_in($db_handle,$user_id,"6",$chalange);
-    mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = $chalange ; ") ;
-}
-
-if(isset($_POST['accept_pub'])) {
-	$id = $_POST['id'] ;
-	$user_id = $_SESSION['user_id'];
-	events($db_handle,$user_id,"4",$id);
-    involve_in($db_handle,$user_id,"4",$id);
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$id' ; ") ;
-	mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA) VALUES ('$user_id', '$id', '1');") ;
-header('Location: #');
-}
 $private_check = mysqli_query($db_handle, "SELECT challenge_type FROM challenges WHERE challenge_id = $challengeSearchID");
 $private_checkRow = mysqli_fetch_array($private_check);
 $private_ch_type = $private_checkRow['challenge_type'];
@@ -38,29 +21,6 @@ elseif (isset($_SESSION['user_id']) AND $private_ch_type == 2) {
         include_once 'error.php';
         exit;
     }
-}
-if(isset($_POST['submitchlnin'])) {
-	$id = $_POST['id'] ;
-	echo "<div style='display: block;' class='modal fade in' id='answerForm' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
-			<div class='modal-dialog'> 
-				<div class='modal-content'>
-					<div class='modal-header'> 
-						<a href = 'challengesOpen.php?challenge_id=" . $challengeSearchID . "' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
-						<h4 class='modal-title' id='myModalLabel'>Submit Answer</h4> 
-					</div> 
-					<div class='modal-body'><form>  
-						<div class='input-group-addon'>
-							<textarea row='5' id='answerchal' class='form-control' placeholder='submit your answer'></textarea>
-						</div>
-						<br/>
-						<input class='btn btn-default btn-sm' type='file' id='_fileanswer' style ='width: auto;'>
-						<br/>
-						<input type='hidden' id='answercid' value='".$id."'>
-						<button type='submit' class='btn btn-success btn-sm' id='answerch' >Submit</button> 
-					</form></div> 
-                                    </div> 
-			</div>
-		  </div>" ;
 }
 $open_chalange = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_title from challenges 
             WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id='$challengeSearchID';");
@@ -89,70 +49,6 @@ $challengeSearch_user_ID = $challengeSearch_user_IDRow['user_id'];
 $ch_username = $challengeSearch_user_IDRow['username'];
 $challengeSearch_first = $challengeSearch_user_IDRow['first_name'];
 $challengeSearch_last = $challengeSearch_user_IDRow['last_name'];
-
-if (isset($_POST['own_chl_response'])) {
-    $user_id = $_SESSION['user_id'];
-    $own_challenge_id_comment = $_POST['own_challen_id'];
-    $own_ch_response = $_POST['own_ch_response'];
-    events($db_handle,$user_id,"3",$own_challenge_id_comment);
-    involve_in($db_handle,$user_id,"3",$own_challenge_id_comment);
-    if (strlen($own_ch_response) > 1) {
-        if (strlen($own_ch_response) < 1000) {
-            mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, stmt) 
-                                    VALUES ('$user_id', '$own_challenge_id_comment', '$own_ch_response');");
-            header('Location: #');
-        } else {
-            mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
-                                    VALUES (default, '$own_ch_response');");
-            $id = mysqli_insert_id($db_handle);
-            mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) 
-                                    VALUES ('$user_id', '$own_challenge_id_comment', ' ', '$id');");
-            header('Location: #');
-        }
-    }
-}
-if (isset($_POST['accept'])) {
-    $id = $_POST['id'];
-    echo "<div style='display: block;' class='modal fade in' id='eye' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
-            <div class='modal-dialog'> 
-                <div class='modal-content'>
-                    <div class='modal-header'> 
-                        <a href ='challengesOpen.php?challenge_id=" . $challengeSearchID . "' type='button' class='close' data-dismiss='modal'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></a>
-                        <h4 class='modal-title' id='myModalLabel'>Accept Challenge</h4> 
-                    </div> 
-                    <div class='modal-body'> 
-                        <form method='POST' class='inline-form' onsubmit=\"return confirm('Really, Accept challenge !!!')\"><br/>
-                            Your ETA : 
-                            <select class='btn btn-default btn-xs' name = 'y_eta' ><option value='0' selected >Month</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option><option value='11'>11</option></select>
-                            <select class='btn btn-default btn-xs' name = 'y_etab' ><option value='0' selected >Days</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option><option value='24'>24</option><option value='25'>25</option><option value='26'>26</option><option value='27'>27</option><option value='28'>28</option><option value='29'>29</option><option value='30'>30</option></select>
-                            <select class='btn btn-default btn-xs' name = 'y_etac' ><option value='0' selected >hours</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option><option value='6'>6</option><option value='7'>7</option><option value='8'>8</option><option value='9'>9</option><option value='10'>10</option><option value='11'>11</option><option value='12'>12</option><option value='13'>13</option><option value='14'>14</option><option value='15'>15</option><option value='16'>16</option><option value='17'>17</option><option value='18'>18</option><option value='19'>19</option><option value='20'>20</option><option value='21'>21</option><option value='22'>22</option><option value='23'>23</option></select>&nbsp;
-                            <select class='btn btn-default btn-xs' name = 'y_etad' ><option value='15' selected >minute</option><option value='30' >30</option><option value='45' >45</option></select>
-                            <input type='hidden' name='cid' value='" . $id . "'><br/><br/>
-                            <input type='submit' class='btn btn-success btn-sm' name='chlange' value = 'Accept' ></small>
-                        </form>
-                    </div> 
-                    <div class='modal-footer'>
-                        <a href ='challengesOpen.php?challenge_id=" . $challengeSearchID . "' type='button' class='btn btn-default' data-dismiss='modal'>Close</a>
-                    </div>
-                </div> 
-            </div>
-	</div>";
-}
-if (isset($_POST['chlange'])) {
-    $user_id = $_SESSION['user_id'];
-    $chalange = $_POST['cid'];
-    $youreta = $_POST['y_eta'];
-    $youretab = $_POST['y_etab'];
-    $youretac = $_POST['y_etac'];
-    $youretad = $_POST['y_etad'];
-    $your_eta = 1 ;//(($youreta * 30 + $youretab) * 24 + $youretac) * 60 + $youretad;
-    events($db_handle,$user_id,"4",$chalange);
-    involve_in($db_handle,$user_id,"4",$chalange);
-    mysqli_query($db_handle, "UPDATE challenges SET challenge_status='2' WHERE challenge_id = $chalange ; ");
-    mysqli_query($db_handle, "INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)	
-    								VALUES ('$user_id', '$chalange', '$your_eta');");
-    header('Location: #');
-}
 
 function challenge_display($db_handle, $challengeSearchID) {
     
