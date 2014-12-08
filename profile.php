@@ -100,7 +100,7 @@ $obj = new profile($UserName);
                 echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>";
                    } 
             ?>
-            
+            <div class='alert_placeholder'></div>
             <div class="viewprofile">
             <?php
             
@@ -161,7 +161,7 @@ $obj = new profile($UserName);
 						  echo "<textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'>".$aboutuserRow['about_user']."</textarea>" ;
 					  }
 					  else { echo "<textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea>" ; }
-					  echo "<br/><a class='btn-success btn-sm' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
+					  echo "<br/><a class='btn-success btn-sm' style='cursor:pointer;' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
                                  "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
                     }
                     ?>

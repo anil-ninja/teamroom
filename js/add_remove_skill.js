@@ -158,8 +158,17 @@ function editProfile(fname, lname, email, phone) {
    var comp = $("#companyname").val() ;
    if (newfname == "") {
 	   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
+	   $("#newfirstname").val(fname) ;
 	   return false ;
 	   }
+	   else if ((newlname == "") && (newphone == "") && (about == "") && (townname == "") && (comp == "")) {
+		   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
+			return false ;
+		   }
+	   else if ((newfname == fname) && (newlname == lname) && (newphone == phone) && (about == "") && (townname == "") && (comp == "")) {
+		   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
+			return false ;
+		   }
 		else {
 			var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ email + '&phone='+ newphone + '&about='+ about 
 						+ '&townname='+ townname + '&comp='+ comp ;
