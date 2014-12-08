@@ -6,12 +6,11 @@
                 
                     echo "<font size='2'> Classified</font>
                             <a class='pull-right' data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a>
-                        </div>";
+											</div>";
                     
                             
  		echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
                     <table>
-
                     <tr><td>";   
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
@@ -44,17 +43,19 @@
                             }
                         
                             echo "</td></tr></table>
-                                </div>
-                                <div class='list-group-item intro'>";
+                                </div>";
                     }
-                    
                     ?>
-                <font size="2">Public</font>
+                
             </div>
+            </div>
+            <div class='list-group'  style='cursor: pointer;'>
+				<div class='list-group-item intro'><font size="2">Joined</font></div>
             <div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
-                <table>
                     <?php 
-                        $project_public_title_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE project_type= '1';");
+                        $project_public_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
+                                                                                as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
+                                                                                UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '1');");
 
                         while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
 								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
@@ -79,19 +80,51 @@
                                                         ".$prtitlep."
                                                         <p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>" ;
                                                         //$remaining_time_ownp.
-                                                        echo "</p></button></td></form>" ;
-					$join =  mysqli_query($db_handle, "select user_id from teams where project_id = '$idproject' and user_id = '$user_id';") ;
-					if (mysqli_num_rows($join) == 0 && isset($_SESSION['user_id'])) {		
-					echo	"<td>
-								<button type='submit' class='btn-link' onclick='joinproject(".$idproject.")' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='Join This Project' style='height: 20px;font-size:11px;text-align: left;'>Join</button>
-                             </td></tr>" ;
-						} else {
-					echo "</tr>" ;
-					}			
+                                                        echo "</p></button></td></form></tr>" ;
+								
 					} 
                     ?>
                 </table>
-            </div>
-        </div>
+        </div></div>
+        <div class='list-group'  style='cursor: pointer;'>
+                <table>
+                    <?php 
+                        $project_public_title_display2 = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time
+																				FROM projects WHERE user_id != '$user_id' and project_type= '1' and project_id NOT
+																				IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
+																				ORDER BY rand() LIMIT 5;");
+
+                        while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
+								$public_pr_titlep2 = $project_public_title_displayRow2['project_title'] ;
+								$idproject2 = $project_public_title_displayRow2['project_id'] ;
+							if (strlen($public_pr_titlep2) > 30) {
+								$prtitlep2 = substr(ucfirst($public_pr_titlep2),0,30)." ...";
+								} else {
+									$prtitlep2 = ucfirst($public_pr_titlep2) ;
+								}								   
+								$p_etap2 = $project_public_title_displayRow2['project_ETA'] ;
+								$p_timep2 = $project_public_title_displayRow2['creation_time'] ;
+								$timefuncp2 = date("j F, g:i a",strtotime($p_time2));
+								$titlep2 =  strtoupper($public_pr_titlep2)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp2 ;
+								// $remaining_time_ownp = remaining_time($p_timep, $p_etap);
+					if (mysqli_num_rows($project_public_title_display2) != 0) {	
+					echo "<div class='list-group-item intro'><font size='2'>Recommonded Public Projects</font></div>
+							<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
+                                                <td>
+                                                <form method='GET' action=''>
+                                                        <input type='hidden' name='project_id' value='".$idproject2."'/>
+                                                        <tr><td>
+                                                        <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+                                                        data-placement='bottom' data-original-title='".$titlep2."' style='height: 20px;font-size:11px;text-align: left;'>
+                                                        ".$prtitlep2."
+                                                        <p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>" ;
+                                                        //$remaining_time_ownp.
+                                                        echo "</p></button></td></form><td>
+								<button type='submit' class='btn-link' onclick='joinproject(".$idproject2.")' data-toggle='tooltip' 
+                                data-placement='bottom' data-original-title='Join This Project' style='height: 20px;font-size:11px;text-align: left;'>Join</button>
+                             </td></tr></div>" ;
+					}
+				}
+                    ?>
+                </table>
     </div>	
