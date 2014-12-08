@@ -9,7 +9,7 @@ if  ($_POST['case']) {
     $case = $_POST['case'];
     $new_first_name = $_POST['fname'];
     $new_last_name = $_POST['lname'];
-    $new_email = $_POST['email'];
+    $email = $_POST['email'];
     $new_phone = $_POST['phone'];
     $about = $_POST['about'];
     $town = $_POST['townname'];
@@ -39,6 +39,8 @@ if  ($_POST['case']) {
 			break ;
 			
 		case 4:
+			$aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$userID' ;") ;
+            $aboutuserRow = mysqli_fetch_array($aboutuser);
 			mysqli_query($db_handle, "UPDATE user_info SET first_name='$new_first_name', last_name='$new_last_name', email='$new_email', contact_no='$new_phone'
 								WHERE user_id='$user_id';");
 			$check = mysqli_query($db_handle, "SELECT * FROM about_users WHERE user_id='$user_id' ;") ;

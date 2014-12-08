@@ -19,10 +19,10 @@ $(document).ready(function(){
 				 return false;
 		}
 		if (skills != '0') {
-			var dataString = 'case=1' + '&skills='+ skills ;
-		} 
+			var dataString = 'case=2' + '&skills='+ skills ;
+		}
 		else {
-			var dataString = 'case=2' + '&insert='+ insert  ;
+			var dataString = 'case=1' + '&insert='+ insert  ;
 			}
 		$.ajax({
 			type: "POST",
@@ -152,33 +152,26 @@ function editProfile(fname, lname, email, phone) {
    //alert (fname + "," + lname + "," + email + "," + phone);
    var newfname = $("#newfirstname").val() ;
    var newlname = $("#newlastname").val() ;
-   var newemail = $("#newemailid").val() ;
    var newphone = $("#newphoneno").val() ;
    var about = $("#aboutuser").val() ;
    var townname = $("#livingtown").val() ;
    var comp = $("#companyname").val() ;
-   if ((newfname == fname) && (newlname == lname) && (newemail == email) && (newphone == phone) && (about == "") && (townname == "") && (comp == "")) {
-	   //location.reload();
-	   return false ;				   
+   if (newfname == "") {
+	   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
+	   return false ;
 	   }
-	   else if (newfname == "" || newlname == "" || newemail == "" || newphone == "") {
-		   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
-		   return false ;
-		   }
-			else {
-				var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ newemail + '&phone='+ newphone + '&about='+ about 
-							+ '&townname='+ townname + '&comp='+ comp ;
-				$.ajax ({ 
-					type: "POST",
-					url: "ajax/change_profile.php",
-					data: dataString,
-					cache: false,
-					success: function(result){
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						if(result=='Updated successfuly'){
-							location.reload();
-							//document.getElementById("first_name").innerHTML = edited_first;
-							//document.getElementById("last_name").innerHTML = edited_last;
+		else {
+			var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ email + '&phone='+ newphone + '&about='+ about 
+						+ '&townname='+ townname + '&comp='+ comp ;
+			$.ajax ({ 
+				type: "POST",
+				url: "ajax/change_profile.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					if(result=='Updated successfuly'){
+						location.reload();
 						}
 					}
 				});

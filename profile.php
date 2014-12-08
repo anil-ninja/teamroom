@@ -114,9 +114,9 @@ $obj = new profile($UserName);
                   <br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:";
 			  }
 			  else {
-				  echo "<br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:" ; 
+				  echo "<br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;Skills &nbsp;:" ; 
 				  }
-            $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
+            $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
             if (mysqli_num_rows($skill_display) == 0) {
                     echo " <span class='tags'>No Skill added</span>";
             } 
@@ -147,14 +147,22 @@ $obj = new profile($UserName);
                             <i class='glyphicon glyphicon-plus'></i> Skill
                             </a><br/>";
                     echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
-                                            <input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
-                                            <input type='text' id='newemailid' class='form-control' value='".$profileViewEmail."'/>
-                                            <input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>
-                                            <input type='text' id='companyname' class='form-control' placeholder='Organisation Name'/>
-                                            <input type='text' id='livingtown' class='form-control' placeholder='Current Living Town'/>
-                                            <textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea><br/>
-                                            <a class='btn-success btn-sm' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
-                                            "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
+							<input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
+							<input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>" ;
+                   if($aboutuserRow['organisation_name'] != "") {
+                              echo "<input type='text' id='companyname' class='form-control' value='".$aboutuserRow['organisation_name']."'/>" ;
+						  }
+						  else { echo "<input type='text' id='companyname' class='form-control' placeholder='Organisation Name'/>" ; }
+					if($aboutuserRow['living_town'] != "") {
+                             echo "<input type='text' id='livingtown' class='form-control' value = '".$aboutuserRow['living_town']."'/>" ;
+						 }
+						 else { echo "<input type='text' id='livingtown' class='form-control' placeholder='Current Living Town'/>" ; }
+					if($aboutuserRow['about_user'] != "") {
+						  echo "<textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'>".$aboutuserRow['about_user']."</textarea>" ;
+					  }
+					  else { echo "<textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea>" ; }
+					  echo "<br/><a class='btn-success btn-sm' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
+                                 "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
                     }
                     ?>
         </div>
