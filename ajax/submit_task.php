@@ -32,9 +32,7 @@ if ($users != 0) {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
                                     VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
         $ida = mysqli_insert_id($db_handle);
-       mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
-       involve_in($db_handle,$user_id,"12",$ida); 
-       events($db_handle,$user_id,"12",$ida); 
+       mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ;  
                           
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
@@ -49,8 +47,6 @@ else {
                                 VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
         $idc = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idc', '$challange_eta', '1');") ;
-	 involve_in($db_handle,$user_id,"12",$idc); 
-       events($db_handle,$user_id,"12",$idc);
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
 }
@@ -71,9 +67,7 @@ else if ($email != "") {
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
                                     VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
         $ida = mysqli_insert_id($db_handle);
-       mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
-       involve_in($db_handle,$user_id,"12",$ida); 
-       events($db_handle,$user_id,"12",$ida);                   
+       mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ;                   
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
 
@@ -87,8 +81,6 @@ else {
                                 VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
         $idc = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idc', '$challange_eta', '1');") ;
-	   involve_in($db_handle,$user_id,"12",$idc); 
-       events($db_handle,$user_id,"12",$idc);
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
 }
@@ -109,8 +101,6 @@ else {
 		$body2 = "http://collap.com/profile.php?username=".$mail ;
         collapMail($mailto, $username." assign Task to you", $body2);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
-		involve_in($db_handle,$user_id,"12",$ida); 
-       events($db_handle,$user_id,"12",$ida);
 	}                  
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully!"; }
@@ -134,9 +124,7 @@ else {
 		$mail = $inforow['username'];
 		$body2 = "http://collap.com/profile.php?username=".$mail ;
         collapMail($mailto, $username." assign Task to you", $body2);
-       mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ; 
-		involve_in($db_handle,$user_id,"12",$idc); 
-       events($db_handle,$user_id,"12",$idc);
+       mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ;
 	}
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
 	else { echo "Posted succesfully"; }

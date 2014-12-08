@@ -381,7 +381,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		});
 		
 		$("#upload_image").click(function(){
-      		var dataString = 'profile=true' ;
+      		var dataString = 'case=5' ;
 			var _file = document.getElementById('_fileprofilepic');
 			uploadFile(_file,"profilepic",String(dataString),"ajax/change_profile.php");
 		});

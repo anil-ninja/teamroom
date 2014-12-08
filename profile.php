@@ -97,8 +97,7 @@ $obj = new profile($UserName);
             }
             echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>
-                    <div class='alert_placeholder'> </div>";
+                echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>";
                    } 
             ?>
             
@@ -119,11 +118,11 @@ $obj = new profile($UserName);
 				  }
             $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = $profileViewUserID AND a.skill_id = b.skill_id ;");
             if (mysqli_num_rows($skill_display) == 0) {
-                    echo " <span class='tags'>No Skill added</span> ";
+                    echo " <span class='tags'>No Skill added</span>";
             } 
             else {
                 while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-                    echo " <span class='tags'>".$skill_displayRow['skill_name']."</span> ";
+                    echo " <span class='tags'>".$skill_displayRow['skill_name']."</span>&nbsp;";
                 }
             }
             echo "<br/></span>";
@@ -160,7 +159,6 @@ $obj = new profile($UserName);
                     ?>
         </div>
                 </div>
-                <div class='alert_placeholder'></div>
           <div class="col-md-6">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px;">
@@ -237,106 +235,8 @@ $obj = new profile($UserName);
                     <?php include_once 'html_comp/known.php' ?>
                 </div>
                 </div>
-                <?php include_once 'html_comp/signup.php' ; ?>
-        <script type="text/javascript" src="js/jquery-latest.min.js"></script>
-        <script language="javascript">
-            $(document).ready(function(){
-                $('#joined_project').click(function(){
-                    $('#joined_project_content').load('ajax/profile_page_ajax/joined_projects.php');
-                    
-                    $(window).scroll(function(event) {
-                        if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#joined_project')) {
-                            event.preventDefault();
-                            var dataString = 'next_JnPr=3' ;
-                            $.ajax({
-                                type: "POST",
-                                url: "ajax/profile_page_ajax/get_next_joined_projects.php",
-                                data: dataString,
-                                cache: false,
-                                success: function(result){
-                                    $('#joined_project_content').append(result);
-                                    }
-                            });	
-                        }
-                    });
-                });
-            })
-            $(document).ready(function(){
-                $('#user_articles').click(function(){
-                    $('#user_articles_content').load('ajax/profile_page_ajax/user_articles.php');
-                    
-                    $(window).scroll(function(event) {
-                        if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#user_articles')) {
-                            event.preventDefault();
-                            var dataString = 'last_article=3';
-                            $.ajax({
-                                type: "POST",
-                                url: "ajax/profile_page_ajax/get_next_user_articles.php",
-                                data: dataString,
-                                cache: false,
-                                success: function(result){
-                                    //alert(result) ;
-                                    $('#user_articles_content').append(result);
-                                    }
-                            });	
-                        }
-                    });
-                });
-            })
-            $(document).ready(function(){
-                $('#user_challenges').click(function(){
-                    $('#user_challenges_content').load('ajax/profile_page_ajax/user_challenges.php');
-                    $(window).scroll(function(event) {
-                        if ($(window).scrollTop() == ($(document).height() - $(window).height()) && $('#user_challenges')) {
-                            event.preventDefault();
-                            var dataString = 'next=5' ;
-                            $.ajax({
-                                type: "POST",
-                                url: "ajax/profile_page_ajax/get_next_user_challenges.php",
-                                data: dataString,
-                                cache: false,
-                                success: function(result){
-                                    //alert(result) ;
-                                    $('#next_user_chall').append(result);
-                                    }
-                            });	
-                        }
-                    });
-                });
-            })
-            $(document).ready(function(){
-                $('#user_idea').click(function(){
-                    $('#user_idea_content').load('ajax/profile_page_ajax/user_idea.php');
-                    
-                    $(window).scroll(function(event) {
-                        if ($(window).scrollTop() == ($(document).height() - $(window).height())  && $('#user_idea')) {
-                            event.preventDefault();
-                            var dataString = 'user_next_idea=5' ;
-                            $.ajax({
-                                type: "POST",
-                                url: "ajax/profile_page_ajax/get_next_user_ideas.php",
-                                data: dataString,
-                                cache: false,
-                                success: function(result){
-                                    $('#user_next_idea').append(result);
-                                    }
-                            });	
-                        }
-                    });
-                });
-            })
-        </script>
-           
-<script>
-$(".editprofile").hide();
-$(".viewprofile").show();
-$("#editprofile").click(function(){
-	$(".viewprofile").toggle();
-	$(".editprofile").toggle();
-});
-</script>
+                <?php include_once 'html_comp/signup.php' ; ?>        
 <div id="InfoBox"></div>
-        <script src="js/add_remove_skill.js"> </script>
             <!---Modal --->
             <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
@@ -398,46 +298,14 @@ $("#editprofile").click(function(){
         </div>
         <?php include_once 'lib/html_inc_footers.php'; ?>
         <script>
-		   function editProfile(fname, lname, email, phone) {
-			   //alert (fname + "," + lname + "," + email + "," + phone);
-			   var newfname = $("#newfirstname").val() ;
-			   var newlname = $("#newlastname").val() ;
-			   var newemail = $("#newemailid").val() ;
-			   var newphone = $("#newphoneno").val() ;
-			   var about = $("#aboutuser").val() ;
-			   var townname = $("#livingtown").val() ;
-			   var comp = $("#companyname").val() ;
-			   if ((newfname == fname) && (newlname == lname) && (newemail == email) && (newphone == phone) && (about == "") && (townname == "") && (comp == "")) {
-				   //location.reload();
-				   return false ;				   
-				   }
-				   else if (newfname == "" || newlname == "" || newemail == "" || newphone == "") {
-					   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
-					   return false ;
-					   }
-						else {
-							var dataString = 'fname='+ newfname + '&lname='+ newlname + '&email='+ newemail + '&phone='+ newphone + '&about='+ about 
-										+ '&townname='+ townname + '&comp='+ comp ;
-							$.ajax ({ 
-								type: "POST",
-								url: "ajax/editNameProfile.php",
-								data: dataString,
-								cache: false,
-								success: function(result){
-									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-									if(result=='Updated successfuly'){
-										location.reload();
-										//document.getElementById("first_name").innerHTML = edited_first;
-										//document.getElementById("last_name").innerHTML = edited_last;
-									}
-								}
-							});
-						}
-			};
-        </script>
+$(".editprofile").hide();
+$(".viewprofile").show();
+$("#editprofile").click(function(){
+	$(".viewprofile").toggle();
+	$(".editprofile").toggle();
+});
+</script>
         	<script>
-	    
-        
         $(window).scroll(function(event) {
             if ($(window).scrollTop() == ($(document).height() - $(window).height()) && $('#created_project')) {
                 event.preventDefault();
@@ -453,21 +321,7 @@ $("#editprofile").click(function(){
                 });	
             }
         });
-        
-        
-	</script>
-
-        <script>
-            function bootstrap_alert(elem, message, timeout,type) {
-                $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; right: 20%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
-
-                if (timeout || timeout === 0) {
-                    setTimeout(function() { 
-                    $(elem).show().html('');
-                    }, timeout);    
-                }
-            };
-        </script> 
+	</script> 
         <?php include_once 'html_comp/login_signup_modal.php'; ?>
     </body>
 </html>

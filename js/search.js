@@ -82,27 +82,27 @@ setInterval(function(){
 function getnewnote(time, lid) {	
 	//alert (unix) ;
 	var dataString = 'time='+ time + '&lid=' + lid ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/newnote.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					var notice = result.split("+") ;
-					$('.newnotices').append(notice['0']);
-					var num = $("#countnotice").val() ;
-					var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
-					var neid = parseInt(notice['2']) ;
-					//alert(neid+='' + "," + newnum ) ;
-					if (neid+='' != 0) {
-						$("#countnotice").val(newnum+='') ;
-						}
-					if (newnum+='' != 0) {
-						$("#lasteventid").val(neid+='') ;
-						}
+	$.ajax({
+		type: "POST",
+		url: "ajax/newnote.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			//alert(result) ;
+			var notice = result.split("+") ;
+			$('.newnotices').append(notice['0']);
+			var num = $("#countnotice").val() ;
+			var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
+			var neid = parseInt(notice['2']) ;
+			//alert(neid+='' + "," + newnum ) ;
+			if (neid+='' != 0) {
+				$("#countnotice").val(newnum+='') ;
 				}
-			});
+			if (newnum+='' != 0) {
+				$("#lasteventid").val(neid+='') ;
+				}
+		}
+	});
 }
 function getallnotices() {
 	var all = 'all' ;

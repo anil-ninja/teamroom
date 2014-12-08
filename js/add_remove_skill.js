@@ -8,70 +8,179 @@ function bootstrap_alert(elem, message, timeout,type) {
   }
 };
 $(document).ready(function(){
-            $("#addskills").click(function(){
-      		$("#addskills").attr('disabled','disabled');
-			var insert = $("#insert").val() ;
-			var skills = $("#skills").val() ;
-			var dataString = "";
-			if ((skills == '0' && insert =='')||(skills != '0' && insert !='')) {
-                     bootstrap_alert(".alert_placeholder", "Please ,Enter one Value!!!!", 5000,"alert-warning");
-                    $("#addskills").removeAttr('disabled');
-                     return false;
+		$("#addskills").click(function(){
+		$("#addskills").attr('disabled','disabled');
+		var insert = $("#insert").val() ;
+		var skills = $("#skills").val() ;
+		var dataString = "";
+		if ((skills == '0' && insert =='')||(skills != '0' && insert !='')) {
+				 bootstrap_alert(".alert_placeholder", "Please ,Enter one Value!!!!", 5000,"alert-warning");
+				$("#addskills").removeAttr('disabled');
+				 return false;
+		}
+		if (skills != '0') {
+			var dataString = 'case=1' + '&skills='+ skills ;
+		} 
+		else {
+			var dataString = 'case=2' + '&insert='+ insert  ;
 			}
-            if (skills != '0') {
-				var dataString = 'skills='+ skills ;
-			} 
-			else {
-				var dataString = 'insert='+ insert  ;
-				}
-			//alert(dataString);
-			// AJAX Code To Submit Form.
-   			$.ajax({
-				type: "POST",
-				url: "ajax/add_remove_skill.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					alert(result);
-					//bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Skill added succesfully!'){
-							$("#skills").val("");
-							$("#insert").val("");
-							location.reload();
-                      }      
-				}
-			});
-	     $("#addskills").removeAttr('disabled');
-             return false;
-		});
-		
-        $("#remove_skill").click(function(){
-      		$("#remove_skill").attr('disabled','disabled');
-			var skill_id = $("#remove").val() ;
-                      // Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'skill_id='+skill_id;
-			//alert(dataString);
-			// AJAX Code To Submit Form.
-                        if (skill_id == '0') {
-                             bootstrap_alert(".alert_placeholder", "Please Select a skill", 5000,"alert-warning");
-                        }
-                        else {
-			$.ajax({
-				type: "POST",
-				url: "ajax/add_remove_skill.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-                                    //alert(result);
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result=='Skill Removed succesfully!'){
-						$("#remove").val("");
+		$.ajax({
+			type: "POST",
+			url: "ajax/change_profile.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				if(result=='Skill added succesfully!'){
+						$("#skills").val("");
+						$("#insert").val("");
 						location.reload();
-                     }
-				}
-			});
-                        }
-      $("#remove_skill").removeAttr('disabled');
-			return false;
-		});    
-        });
+				  }      
+			}
+		});
+	 $("#addskills").removeAttr('disabled');
+		 return false;
+	});
+		
+	$("#remove_skill").click(function(){
+		$("#remove_skill").attr('disabled','disabled');
+		var skill_id = $("#remove").val() ;
+				  // Returns successful data submission message when the entered information is stored in database.
+		var dataString = 'case=3' + '&skill_id='+skill_id;
+		if (skill_id == '0') {
+			 bootstrap_alert(".alert_placeholder", "Please Select a skill", 5000,"alert-warning");
+		}
+		else {
+		$.ajax({
+			type: "POST",
+			url: "ajax/change_profile.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				if(result=='Skill Removed succesfully!'){
+					$("#remove").val("");
+					location.reload();
+				 }
+			}
+		});
+					}
+  $("#remove_skill").removeAttr('disabled');
+		return false;
+	});    
+});
+$(document).ready(function(){
+	$('#joined_project').click(function(){
+		$('#joined_project_content').load('ajax/profile_page_ajax/joined_projects.php');		
+		$(window).scroll(function(event) {
+			if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#joined_project')) {
+				event.preventDefault();
+				var dataString = 'next_JnPr=3' ;
+				$.ajax({
+					type: "POST",
+					url: "ajax/profile_page_ajax/get_next_joined_projects.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						$('#joined_project_content').append(result);
+						}
+				});	
+			}
+		});
+	});
+	$('#user_articles').click(function(){
+		$('#user_articles_content').load('ajax/profile_page_ajax/user_articles.php');
+		
+		$(window).scroll(function(event) {
+			if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#user_articles')) {
+				event.preventDefault();
+				var dataString = 'last_article=3';
+				$.ajax({
+					type: "POST",
+					url: "ajax/profile_page_ajax/get_next_user_articles.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						//alert(result) ;
+						$('#user_articles_content').append(result);
+						}
+				});	
+			}
+		});
+	});
+	$('#user_challenges').click(function(){
+		$('#user_challenges_content').load('ajax/profile_page_ajax/user_challenges.php');
+		$(window).scroll(function(event) {
+			if ($(window).scrollTop() == ($(document).height() - $(window).height()) && $('#user_challenges')) {
+				event.preventDefault();
+				var dataString = 'next=5' ;
+				$.ajax({
+					type: "POST",
+					url: "ajax/profile_page_ajax/get_next_user_challenges.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						//alert(result) ;
+						$('#next_user_chall').append(result);
+						}
+				});	
+			}
+		});
+	});
+
+	$('#user_idea').click(function(){
+		$('#user_idea_content').load('ajax/profile_page_ajax/user_idea.php');
+		
+		$(window).scroll(function(event) {
+			if ($(window).scrollTop() == ($(document).height() - $(window).height())  && $('#user_idea')) {
+				event.preventDefault();
+				var dataString = 'user_next_idea=5' ;
+				$.ajax({
+					type: "POST",
+					url: "ajax/profile_page_ajax/get_next_user_ideas.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						$('#user_next_idea').append(result);
+						}
+				});	
+			}
+		});
+	});
+}) ;
+function editProfile(fname, lname, email, phone) {
+   //alert (fname + "," + lname + "," + email + "," + phone);
+   var newfname = $("#newfirstname").val() ;
+   var newlname = $("#newlastname").val() ;
+   var newemail = $("#newemailid").val() ;
+   var newphone = $("#newphoneno").val() ;
+   var about = $("#aboutuser").val() ;
+   var townname = $("#livingtown").val() ;
+   var comp = $("#companyname").val() ;
+   if ((newfname == fname) && (newlname == lname) && (newemail == email) && (newphone == phone) && (about == "") && (townname == "") && (comp == "")) {
+	   //location.reload();
+	   return false ;				   
+	   }
+	   else if (newfname == "" || newlname == "" || newemail == "" || newphone == "") {
+		   bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
+		   return false ;
+		   }
+			else {
+				var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ newemail + '&phone='+ newphone + '&about='+ about 
+							+ '&townname='+ townname + '&comp='+ comp ;
+				$.ajax ({ 
+					type: "POST",
+					url: "ajax/change_profile.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						if(result=='Updated successfuly'){
+							location.reload();
+							//document.getElementById("first_name").innerHTML = edited_first;
+							//document.getElementById("last_name").innerHTML = edited_last;
+						}
+					}
+				});
+			}
+};

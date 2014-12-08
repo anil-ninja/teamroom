@@ -109,12 +109,6 @@ function editreminder(id, uid) {
 	$("#datepickervalue").val(id) ;
 	$("#valueuserid").val(uid) ;	
 	$("#changeremindervalues").modal("show");
-	$("#challegeForm").hide();
-	$("#PictureForm").hide();
-	$("#selecttext").hide();
-	$("#VideoForm").hide();
-	$("#ArticleForm").hide();
-	$("#IdeaForm").hide();
 }
 function getallreminders() {	
 	var dataString = 'reminder=true'  ;
