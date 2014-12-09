@@ -15,7 +15,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
               <a class="brand" style='font-size:15pt; color: #fff; font-weight: bold;' href="index.php">
               <img src ='img/collap.gif' style="width:50px;">collap</a>
         </div>
-        <script src="js/search.js" type="text/javascript"></script>
+        
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
                 <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
                     <li class='navbar-text' >
@@ -69,7 +69,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                         </li>
                         <li><b><p class="navbar-text" style='cursor: pointer;color: #fff;' id="demo"></p></b></li>
                         <li><div id='notifications'></div><div id='notificationlastid'></div></li>
-               </li>
                 <li><div class="dropdown">
                         <a data-toggle='dropdown'><p class='navbar-text' style ="cursor: pointer; color: #fff;">
                                 <?php
@@ -150,7 +149,6 @@ else {
 }
 ?>
 </div>
-  </div>
   <script>
   function confLogout(){
 		bootbox.confirm("Meet You Soon !", function(result) {
@@ -161,15 +159,6 @@ else {
 			}
 		});
 	} ;
-	setInterval(function updatelastlogin(){ 
-		var dataString = 'update=true' + '&case=2' ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/updatetime.php",
-				data: dataString,
-				cache: false,
-			});
-		},600000)();
   </script>
  
 <!-- Modal  -->
