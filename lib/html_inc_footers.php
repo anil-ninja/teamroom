@@ -16,4 +16,4 @@
 <script src="jquery.simple-dtpicker.js"></script>
 <script src="js/chat.js"></script>
 <script type="text/javascript" src="js/chat_box.js"></script>
-<script src="js/add_remove_skill.js"> </script>
+<script src="js/add_remove_skill.js"></script>
