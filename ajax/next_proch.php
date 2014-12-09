@@ -11,12 +11,12 @@ if($_POST['proch']){
 	$get_display_task_stmt = "" ;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
                                     a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
-                                        WHERE a.project_id = '$p_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
+                                        WHERE a.project_id = '$p_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
                                     AND a.blob_id = '0' and a.user_id = b.user_id)
                                 UNION
                                     (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
                                     a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
-                                    WHERE a.project_id = '$p_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
+                                    WHERE a.project_id = '$p_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
                                     AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time DESC LIMIT $a, $b ;");
 	$show = "";
         $iR=0;
@@ -192,6 +192,26 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
               </div>";
         }
         $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-film'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $get_display_task_stmt = "" ;
+    }
+    if ($type_task == 6) {
+        $show = $show . "<div class='list-group deciduous'>
+                    <div class='list-group-item'>";
+        if (isset($_SESSION['user_id'])) {
+            $show = $show . "<div class='list-group-item pull-right'>
+                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+                            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
+                                if($id_create == $user_id) {
+                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
+                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                                                     
+                                }
+                            else {
+                            $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$id_task."\", 4, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
+                            } 
+               $show = $show . "</ul>
+              </div>";
+        }
+        $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-tree-deciduous'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
     }
     if ($type_task == 1 || $type_task == 2) {

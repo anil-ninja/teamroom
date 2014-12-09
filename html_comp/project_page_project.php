@@ -300,7 +300,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
                     <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
                     <small>" . $projectres . "</small>";
     if (isset($_SESSION['user_id'])) {
-        dropDown_delete_comment_project($db_handle, $ida, $user_id);
+       // dropDown_delete_comment_project($db_handle, $ida, $user_id);
     }
     echo "</div>
             </div> 
@@ -332,12 +332,12 @@ $_SESSION['project_id'] = $pro_id;
 $display_task_stmt_content = "" ;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
 									a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
-									 WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
+									 WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
 									AND a.blob_id = '0' and a.user_id = b.user_id)
 									UNION
 								 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
 								  a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
-								  WHERE a.project_id = '$pro_id' AND a.challenge_type !='6' AND a.challenge_status !='3' AND a.challenge_status !='7'
+								  WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
 								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time DESC LIMIT 0, 10 ;");
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
@@ -507,9 +507,20 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         echo "<div class='list-group videofilm'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
-            dropDown_delete_article($db_handle, $id_task, $user_id);
+           // dropDown_delete_article($db_handle, $id_task, $user_id);
         }
          echo $display_tilte_task."<span class='glyphicon glyphicon-film'></span>".$dispaly_fname_likes;
+         echo $display_task_stmt_content;
+         $display_task_stmt_content = "" ;
+        
+    }
+    if ($type_task == 6) {
+        echo "<div class='list-group deciduous'>
+                    <div class='list-group-item'>";
+        if (isset($_SESSION['user_id'])) {
+           // dropDown_delete_article($db_handle, $id_task, $user_id);
+        }
+         echo $display_tilte_task."<span class='glyphicon glyphicon-tree-deciduous'></span>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         
@@ -519,7 +530,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group sign'>
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
-                dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
+               // dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pubpr(\"".$id_task."\",\"".$pro_id."\")' value='Accept'/>";
             }
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
@@ -534,7 +545,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 if ($ownid == $user_id) {
                     echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
                 } else {
-                    dropDown_delete_after_accept($db_handle, $id_task, $user_id);
+                  //  dropDown_delete_after_accept($db_handle, $id_task, $user_id);
                 }
             }
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
@@ -549,7 +560,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
                 echo "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
-                dropDown_delete_after_accept($db_handle, $id_task, $user_id);
+               // dropDown_delete_after_accept($db_handle, $id_task, $user_id);
             }           
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes."
             <br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
@@ -563,7 +574,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     <div class='list-group-item'>";
             echo "<span class='color strong pull-right' style= 'color :#3B5998;'>Closed</span>";
             if (isset($_SESSION['user_id'])) {
-                dropDown_delete_after_accept($db_handle, $id_task, $user_id);
+              //  dropDown_delete_after_accept($db_handle, $id_task, $user_id);
             }        
             //. "<br/>ETA Given: " . $etaown."
             echo $display_tilte_task."<span class='glyphicon glyphicon-flag'></span>".$dispaly_fname_likes."
@@ -612,7 +623,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
 						&nbsp<a href ='profile.php?username=" . $username_commenter . "'>" . ucfirst($fstname) . "&nbsp" . $lstname . "</a>&nbsp" .
         "</span><small>" . $chalangeres . "</small>";
         if (isset($_SESSION['user_id'])) {
-            dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+           // dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
         }
         echo "</div>
 			</div> 
@@ -634,103 +645,4 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
     echo "</div></div></div>";
 }
 ?>
-</div>             
-    <?php
-    $display_notes = mysqli_query($db_handle, "(select DISTINCT a.challenge_title,a.challenge_id, a.creation_time, a.user_id, a.stmt, b.first_name, b.last_name, b.username from challenges as a 
-                                                join user_info as b where a.project_id = '$pro_id' and a.challenge_type = '6' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = '0' and a.user_id = b.user_id 
-                                                )
-                                                UNION
-                                                (select DISTINCT a.challenge_title,a.challenge_id,a.creation_time, a.user_id, c.stmt, b.first_name, b.last_name, b.username from challenges as a 
-                                                join user_info as b join blobs as c where a.project_id = '$pro_id' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type = '6' and a.blob_id = c.blob_id and a.user_id = b.user_id 
-                                                ) ORDER BY creation_time DESC;");
-
-    while ($displayrow = mysqli_fetch_array($display_notes)) {
-        $notes = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrow['stmt'])));
-        $title = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrow['challenge_title'])));
-        $fname = $displayrow['first_name'];
-        $lname = $displayrow['last_name'];
-        $username_notes = $displayrow['username'];
-        $note_posted_user_id = $displayrow['user_id'];
-        $note_ID = $displayrow['challenge_id'];
-        $note_created_on = $displayrow['creation_time'];
-        $note_creation = date("j F, g:i a", strtotime($note_created_on));
-        $totallikesn = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$note_ID' and like_status = '1' ;");
-		if (mysqli_num_rows($totallikesn) > 0) { $likesn = mysqli_num_rows($totallikesn) ;}
-		else { $likesn = '' ; }
-		$totaldislikesn = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$note_ID' and like_status = '2' ;");
-		if (mysqli_num_rows($totaldislikesn) > 0) { $dislikesn = mysqli_num_rows($totaldislikesn) ;}
-		else { $dislikesn = '' ; }
-        echo "<div class='list-group deciduous'>
-		  <div class='list-group-item'>";
-        if (isset($_SESSION['user_id'])) {
-		     echo "<div class='list-group-item pull-right'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-             if ($note_posted_user_id == $user_id) {
-                 echo "<li><a class='btn-link' href='#'>Edit Note</a></li>
-                        <li><a class='btn-link' cID='" . $note_ID . "' onclick='delChallenge(" . $note_ID . ");'>Delete Note</a></li>";
-            } else {
-                echo "<li><a class='btn-link' >Report Spam</a></li>";
-            }
-        
-        echo "</ul>
-            </div>";
-    }
-     echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
-         <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$note_ID."' target='_blank'>".ucfirst($title)."</a></b></p>
-                        <span style= 'color: #808080'><span class='glyphicon glyphicon-tree-deciduous'></span>
-                &nbspBy: <a href ='profile.php?username=" . $username_notes . "'>".ucfirst($fname)." ".ucfirst($lname)."</a>&nbsp | ".$note_creation;
-     echo "</span> | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$note_ID .")'>
-                        <input type='submit' class='btn-link' id='likes_".$note_ID ."' value='".$likesn."'/></span>
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$note_ID .")'>
-                        <input type='submit' class='btn-link' id='dislikes_".$note_ID ."' value='".$dislikesn."'/>&nbsp;</span>";
-			echo "<br></div>                    
-                    <div class='list-group-item'><br>".
-                       $notes."<br><br>" ;
-        $display_comment_notes = mysqli_query($db_handle, "(select DISTINCT a.user_id, a.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
-										FROM response_challenge as a join user_info as b where a.challenge_id = " . $note_ID . " 
-										and a.user_id = b.user_id and a.blob_id = '0')
-										UNION
-										(select DISTINCT a.user_id, c.stmt, a.response_ch_id, a.response_ch_creation, b.first_name, b.last_name, b.username
-										 FROM response_challenge as a join user_info as b join blobs as c where a.challenge_id = " . $note_ID . "
-										  and a.user_id = b.user_id and a.blob_id = c.blob_id);");
-        while ($displayrowb = mysqli_fetch_array($display_comment_notes)) {
-            $fstname = $displayrowb['first_name'];
-            $lstname = $displayrowb['last_name'];
-            $username_notes_comment = $displayrowb['username'];
-            $idc = $displayrowb['response_ch_id'];
-            $chalangeres = $displayrowb['stmt'];
-
-            echo "<div id='commentscontainer'>
-				<div class='comments clearfix'>
-					<div class='pull-left lh-fix'>
-						<img src='uploads/profilePictures/$username_notes_comment.jpg'  onError=this.src='img/default.gif'>
-					</div>
-					<div class='comment-text'>
-						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_notes_comment . "'>" . ucfirst($fstname) . " " . ucfirst($lstname) . "</a>&nbsp</span> 
-						" . $chalangeres . "";
-            if (isset($_SESSION['user_id'])) { 
-                dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
-            }
-            echo "</div>
-                </div> 
-            </div>";
-        }
-        echo "<div class='comments_".$note_ID."'></div><div class='comments clearfix'>
-			<div class='pull-left lh-fix'>
-                            <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
-                        </div>";
-        if (isset($_SESSION['user_id'])) {
-            echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$note_ID."' placeholder='Want to know your comment....'/>
-              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='commentprch(\"".$note_ID."\",\"".$pro_id."\")' ></button>";
-        } else {
-            echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
-                <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
-                </a>";
-        }
-        echo "</div>
-        </div>
-    </div>";
-    }
-    ?>
+</div>
