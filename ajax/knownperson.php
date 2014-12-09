@@ -5,7 +5,7 @@ include_once '../functions/delete_comment.php';
 if ($_POST['id']) {
 	$user_id = $_SESSION['user_id'] ;
 	$knownid = $_POST['id'];
-	$pid = $_POST['pid'];
+	$pro_id = $_SESSION['project_id'] ;
 	$case = $_POST['case'];
 	$time = date("Y-m-d H:i:s") ;
 	switch($case) {
@@ -55,23 +55,21 @@ if ($_POST['id']) {
 			exit ;
 			break ;
 		case 5:
-			$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pid' and user_id = '$user_id';");
+			$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
 			if(mysqli_num_rows($member_project) != 0) {
 				$username = $_SESSION['username'];
-				$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pid' ;") ;
+				$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 				$inforow = mysqli_fetch_array($info) ;
 				$title = $inforow['project_title'] ;
 				$type = $inforow['project_type'] ;
-				if($type == 2) {
-					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pid' and
-														a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-					while ($memrow = mysqli_fetch_array($members)){
-						$emails = $memrow['email'] ;
-						$mail = $memrow['username'] ;
-						$body2 = "http://collap.com/profile.php?username=".$mail ;
-						collapMail($emails, $username." Accepted Challenge IN Project ".$title, $body2);
-						} 
-					}
+				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where
+													a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+				while ($memrow = mysqli_fetch_array($members)){
+					$emails = $memrow['email'] ;
+					$mail = $memrow['username'] ;
+					$body2 = "http://collap.com/profile.php?username=".$mail ;
+					collapMail($emails, $username." Accepted Challenge IN Project ".$title, $body2);
+					} 
 				events($db_handle,$user_id,"4",$knownid);
 				involve_in($db_handle,$user_id,"4",$knownid);
 				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$knownid' ; ") ;
@@ -83,23 +81,20 @@ if ($_POST['id']) {
 			exit ;
 			break ;
 		case 6:
-			$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pid' and user_id = '$user_id';");
+			$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
 			if(mysqli_num_rows($member_project) != 0) {
 				$username = $_SESSION['username'];
-				$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pid' ;") ;
+				$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 				$inforow = mysqli_fetch_array($info) ;
 				$title = $inforow['project_title'] ;
-				$type = $inforow['project_type'] ;
-				if($type == 2) {
-					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pid' and
-														a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-					while ($memrow = mysqli_fetch_array($members)){
-						$emails = $memrow['email'] ;
-						$mail = $memrow['username'] ;
-						$body2 = "http://collap.com/profile.php?username=".$mail ;
-						collapMail($emails, $username." Closed Challenge IN Project ".$title, $body2);
-						} 
-					}
+				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where
+													a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+				while ($memrow = mysqli_fetch_array($members)){
+					$emails = $memrow['email'] ;
+					$mail = $memrow['username'] ;
+					$body2 = "http://collap.com/profile.php?username=".$mail ;
+					collapMail($emails, $username." Closed Challenge IN Project ".$title, $body2);
+					} 
 				events($db_handle,$user_id,"6",$knownid);
 				involve_in($db_handle,$user_id,"6",$knownid);
 				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = '$knownid' ; ") ;
