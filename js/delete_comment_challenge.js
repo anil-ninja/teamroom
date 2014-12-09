@@ -7,30 +7,14 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-function del_project_comment(href){
-    bootbox.confirm("Do u really want to delete this comment?", function(result) {
-	if(result){
-        var dataString = 'pID='+ href;
-        $.ajax({
-            type: "POST",
-            url: "ajax/ajax.php",
-            data: dataString,
-            cache: false,
-            success: function(result){
-                bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-                location.reload();
-				}
-			});
-		}
-	});
-}
-function delcomment(href) {
+
+function delcomment(ID, type) {
 	bootbox.confirm("Do u really want to delete this comment?", function(result) {
 	if(result){
-		var dataString = 'cID='+ href;
+		var dataString = 'id='+ ID + '&type=' + type;
 		$.ajax({
 			type: "POST",
-			url: "ajax/ajax.php",
+			url: "ajax/delete_chalange.php",
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -41,10 +25,10 @@ function delcomment(href) {
        }
    });
  }
-function delChallenge(href) {
+function delChallenge(ID, type) {
     bootbox.confirm("Do u really want to delete?", function(result) {
 	if(result){ 
-		var dataString = 'cID='+ href;
+		var dataString = 'id='+ ID + '&type=' + type ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/delete_chalange.php",
@@ -58,47 +42,14 @@ function delChallenge(href) {
 		}
     });
 }
-function delProject(href) {
-	bootbox.confirm("Do u really want to delete this Project?", function(result) {
-	if(result){
-		var dataString = 'pID='+ href;
-		$.ajax({
-			type: "POST",
-			url: "ajax/delete_chalange.php",
-			data: dataString,
-			cache: false,
-			success: function(result){
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				location.reload();
-				}
-			});
-		}
-    });
-}
-function spemch(ID, type) {
+
+function spem(ID, type) {
 	bootbox.confirm("Sure To Spam?", function(result) {
 	if(result){
 		var dataString = 'id='+ ID + '&type=' + type ;
 		$.ajax({
 			type: "POST",
-			url: "ajax/spem.php",
-			data: dataString,
-			cache: false,
-			success: function(result){
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				location.reload();
-				}
-			});
-		}
-    });
-}
-function spemchpr(ID, type, Pid) {
-	bootbox.confirm("Sure To Spam?", function(result) {
-	if(result){
-		var dataString = 'id='+ ID + '&type=' + type + '&pid=' + Pid ;
-		$.ajax({
-			type: "POST",
-			url: "ajax/spem.php",
+			url: "ajax/delete_chalange.php",
 			data: dataString,
 			cache: false,
 			success: function(result){

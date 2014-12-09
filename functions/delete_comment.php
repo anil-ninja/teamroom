@@ -1,55 +1,25 @@
 <?php 
-function dropDown_delete_comment_challenge($db_handle, $deleteid, $user_ID) {
+function dropDown_delete_comment($deleteid, $user_ID, $owner_id, $type) {
     echo  "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-            
-            $challenge_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_challenge WHERE response_ch_id = '$deleteid' AND user_id='$user_ID';"));
-                    $challenge_dropdown_commentRow = mysqli_fetch_array($challenge_dropdown_comment);
-                    $challenge_dropdown_comment_userID = $challenge_dropdown_commentRow['user_id'];
-                    if($challenge_dropdown_comment_userID == $user_ID) {
-                        echo "<li><button class='btn-link' cID='".$deleteid."' onclick='delcomment(".$deleteid.");'>Delete</button></li>";
-                    } 
-                    else {
-                       echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                    <button type='submit' name='spem' value='".$deleteid."' class='btn-link' >Report Spam</button>
-                                </form>
-                            </li>";
-                    }
-                echo "</ul>
-        </div>";
-}
-function dropDown_delete_comment_project($db_handle, $deleteid, $user_ID) {
-    echo  "<div class='list-group-item pull-right'>
-            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-            
-            $project_dropdown_comment = mysqli_query($db_handle, ("SELECT user_id FROM response_project WHERE response_pr_id = '$deleteid' AND user_id='$user_ID';"));
-                    $project_dropdown_commentRow = mysqli_fetch_array($project_dropdown_comment);
-                    $project_dropdown_comment_userID = $project_dropdown_commentRow['user_id'];
-                    if($project_dropdown_comment_userID == $user_ID) {
-                        echo "<li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
-                    } 
-                    else {
-                       echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                    <button type='submit' name='spem_prresp' value='".$deleteid."' class='btn-link' >Report Spam</button>
-                                </form>
-                            </li>";
-                    }
+			if($owner_id == $user_ID) {
+				echo "<li><button class='btn-link' onclick='delcomment(\"".$deleteid."\",\"".$type."\");'>Delete</button></li>";
+			} 
+			else {
+			   echo "<li><button class='btn-link' onclick='spem(\"".$deleteid."\",\"".$type."\");'>Report Spam</button></li>";
+			}
                 echo "</ul>
         </div>";
 }
 
-function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time_ETA_over) {
+function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id, $type) {
         echo "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$challenge_ID' AND user_id='$user_ID';"));
-                    $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                    $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                    if($challenge_dropdown_userID == $user_ID) {
-                        echo "<li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
-                              <li><button class='btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete</button></li>";                    
+                    if($owner_id == $user_ID) {
+                        echo "<li><button class='btn-link' onclick='edit_content(\"".$challenge_ID."\",\"".$type."\")'>Edit</button></li>
+                              <li><button class='btn-link' onclick='delChallenge(\"".$challenge_ID."\",\"".$type."\");'>Delete</button></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
                                     <form method='POST' class='inline-form'>
@@ -60,66 +30,21 @@ function dropDown_challenge($db_handle, $challenge_ID, $user_ID, $remaining_time
                         } */                                   
                      }
                     else {
-                       echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                    <button type='submit' name='pr_spem' value='".$challenge_ID."' class='btn-link' >Report Spam</button>
-                                </form>
-                            </li>";
+                       echo "<li><button class='btn-link' onclick='spem(\"".$challenge_ID."\",\"".$type."\");'>Report Spam</button></li>";
                     } 
                echo "</ul>
               </div>";
 }
-function dropDown_delete_after_accept($db_handle, $challenge_ID, $user_ID) {
-    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$challenge_ID' AND user_id='$user_ID';"));
-    $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-    $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-    if($challenge_dropdown_userID == $user_ID) {
+function dropDown_delete_after_accept($challenge_ID, $user_ID, $owner_id, $type) {
+    if($owner_id == $user_ID) {
         echo "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                    <li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
-                    <li><button class='btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete</button></li>
+                    <li><button class='btn-link' onclick='edit_content(\"".$challenge_ID."\",\"".$type."\")'>Edit</button></li>
+                    <li><button class='btn-link' onclick='delChallenge(\"".$challenge_ID."\",\"".$type."\");'>Delete</button></li>
                 </ul>
             </div>";                    
     }
-}
-function dropDown_delete_article($db_handle, $challenge_ID, $user_ID) {
-        echo "<div class='list-group-item pull-right'>
-                <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                    <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$challenge_ID' AND user_id='$user_ID';"));
-                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                        if($challenge_dropdown_userID == $user_ID) {
-                            echo "<li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
-                                  <li><button class='btn-link' cID='".$challenge_ID."' onclick='delArticle(".$challenge_ID.");'>Delete</button></li>";
-                        }
-                        else {
-                            echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                        <button type='submit' name='pr_spem' value='".$challenge_ID."' class='btn-link' >Report Spam</button>
-                                    </form>
-                                </li>";
-                        }
-            echo "</ul>
-              </div>";
-}
-function dropDown_delete_idea($db_handle, $challenge_ID, $user_ID) {
-        echo "<div class='pull-right list-group-item'>
-                <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-                    <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    $challenge_dropdown_display = mysqli_query($db_handle, ("SELECT user_id FROM challenges WHERE challenge_id = '$challenge_ID' AND user_id='$user_ID';"));
-                        $challenge_dropdown_displayRow = mysqli_fetch_array($challenge_dropdown_display);
-                        $challenge_dropdown_userID = $challenge_dropdown_displayRow['user_id'];
-                        if($challenge_dropdown_userID == $user_ID) {
-                            echo "<li><button class='btn-link' onclick='edit_content(".$challenge_ID.")'>Edit</button></li>
-                                <li><button class='btn-link' cID='".$challenge_ID."' onclick='delChallenge(".$challenge_ID.");'>Delete</button></li>";
-                        }
-                        else {
-                            echo "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                        <button type='submit' name='pr_spem' value='".$challenge_ID."' class='btn-link' >Report Spam</button>
-                                    </form></li>";
-                        }
-            echo "</ul>
-             </div>";
 }
 function eta($eta){
 	$day = floor($eta/(24*60)) ;

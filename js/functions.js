@@ -162,37 +162,11 @@ function comment(ID, type) {
 					});
 				}
 } ;
-function commentprch(ID, PID) {				
-		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
-		//alert(ID) ;
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-							+ '&pid='+ PID + '&case=3';
-		//alert(dataString) ;
-		if(project == ""){
-			return false ;
-			}
-				else {
-					$.ajax({
-						type: "POST",
-						url: "ajax/submit_comment.php",
-						data: dataString,
-						cache: false,
-						success: function(result){
-							var notice = result.split("+") ;
-							//alert(notice['1']);
-							if(notice['1']== 'Posted succesfully!'){
-							$("#own_ch_response_"+ID).val('') ;
-							$('.comments_'+ID).append(notice['0']);
-							}
-						}
-					});
-				}
-} ;
-function accept_pub(ID){
+function accept_pub(ID, type){
 	//alert(ID) ;
 		   bootbox.confirm("Really Accept Challenge !!!", function(result) {
 		if(result){
-			var dataString = 'id='+ ID + '&case=2';
+			var dataString = 'id='+ ID + '&case=' + type ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/knownperson.php",
@@ -206,47 +180,11 @@ function accept_pub(ID){
 			}
 		});
 	} ;
-function accept_pubpr(ID, PID){
-	//alert(ID) ;
-		   bootbox.confirm("Really Accept Challenge !!!", function(result) {
-		if(result){
-			var dataString = 'id='+ ID + '&pid='+ PID + '&case=5';
-			$.ajax({
-				type: "POST",
-				url: "ajax/knownperson.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					location.reload() ;
-				}
-			 });
-			}
-		});
-	} ;
-function closechal(ID){
+function closechal(ID, type){
 	//alert(ID) ;
 		   bootbox.confirm("Really Close Challenge !!!", function(result) {
 		if(result){
-			var dataString = 'id='+ ID + '&case=3';
-			$.ajax({
-				type: "POST",
-				url: "ajax/knownperson.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					location.reload() ;
-				}
-			 });
-			}
-		});
-	} ;
-function closechalpr(ID, PID){
-	//alert(ID) ;
-		   bootbox.confirm("Really Close Challenge !!!", function(result) {
-		if(result){
-			var dataString = 'id='+ ID + '&pid='+ PID + '&case=6';
+			var dataString = 'id='+ ID + '&case=' + type ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/knownperson.php",
@@ -278,20 +216,12 @@ function joinproject(ID){
 			}
 		});
 	} ;
-function answersubmit(chelangeid){
+function answersubmit(chelangeid, type){
 	bootbox.confirm("Completed Challenge !!!", function(result) {
 		if(result){
 			$("#answercid").val(chelangeid) ;
+			$("#prcid").val(type) ;
 			$("#answerForm").modal("show");
-			}
-		});
-} ;
-function answersubmitpr(chelangeid, PID){
-	bootbox.confirm("Completed Challenge !!!", function(result) {
-		if(result){
-			$("#answercidpr").val(chelangeid) ;
-			$("#prcid").val(PID) ;
-			$("#answerFormpr").modal("show");
 			}
 		});
 } ;
@@ -329,55 +259,6 @@ function dislike(Id, type) {
 			var nied = parseInt(parseInt(uid)+1) ;
 			}
 	var dataString = 'id='+ Id + '&case=' + type ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/likes.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					if(result == 'Posted successfully') {
-						$("#dislikes_"+Id).val(nied+='') ;
-					}
-					else {
-						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
-						}
-				}
-			});
-	}
-function likepr(Id, PID) {
-	var uid = $("#likes_"+Id).val() ;
-	if (uid == '') {
-		var nied = 1 ;
-		}
-		else {
-			var nied = parseInt(parseInt(uid)+1) ;
-			}
-	var dataString = 'id='+ Id + '&pid=' + PID + '&case=3';
-			$.ajax({
-				type: "POST",
-				url: "ajax/likes.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					if(result == 'Posted successfully') {
-						$("#likes_"+Id).val(nied+='') ;
-					}
-					else {
-						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
-						}
-				}
-			});
-	}
-function dislikepr(Id, PID) {
-	var uid = $("#dislikes_"+Id).val() ;
-	if (uid == '') {
-		var nied = 1 ;
-		}
-		else {
-			var nied = parseInt(parseInt(uid)+1) ;
-			}
-	var dataString = 'id='+ Id + '&pid=' + PID + '&case=4' ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/likes.php",
