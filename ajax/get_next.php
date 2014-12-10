@@ -72,8 +72,6 @@ if ($_POST['chal']) {
 	$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$chelangeid' and like_status = '2' ;");
 	if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
 	else { $dislikes = '' ; }
-    $dropdown1 = dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-    $dropdown2 = dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
         // list grp item header for all type chall/article/idea/photo/video
             $get_display_tilte = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$chelangeid."' class='text'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";
@@ -126,7 +124,7 @@ if ($_POST['chal']) {
             $show .= "<div class='list-group challenge'>
                         <div class='list-group-item'>";    
         //dropdown for delete/edit/span challenge starts
-        $show = $show . $dropdown1;
+        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
         //dropdown for delete/edit/span challenge ends here
 
         //    if ($remaintime != "Closed") {
@@ -146,7 +144,7 @@ if ($_POST['chal']) {
             $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
         }
             if($owner_id == $user_id) {
-                $show = $show . $dropdown2 ;                    
+                $show = $show . dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
             }
             $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Accepted: <a href ='profile.php?username=" . $ownname ."'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct;
@@ -159,7 +157,7 @@ if ($_POST['chal']) {
                     <div class='list-group-item'>";
                     
                                 if($owner_id == $user_id) {
-                                    $show = $show . $dropdown2 ;                    
+                                    $show = $show . dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;                    
                                 }
                                 if($owner_id == $user_id) {			
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
@@ -175,7 +173,7 @@ if ($_POST['chal']) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
                                 if($owner_id == $user_id) {
-                                    $show = $show . $dropdown2 ;                    
+                                    $show = $show . dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;                    
                                 }
             $show = $show .  $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes. "<br> <hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a><br> Submitted On : " . $timecomm ;
@@ -190,7 +188,7 @@ if ($_POST['chal']) {
                         <div class='list-group-item'>";
                         
 //dropdown for delete/edit/span challenge starts
-        $show = $show . $dropdown1 ;
+        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
         //dropdown for delete/edit/span challenge ends here
 
             
@@ -211,7 +209,7 @@ if ($_POST['chal']) {
             $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
         }
         if($owner_id == $user_id) {
-            $show = $show . $dropdown2 ;                    
+            $show = $show . dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;                    
         }
             $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
                                         . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct;
@@ -224,7 +222,7 @@ if ($_POST['chal']) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
                                 if($owner_id == $user_id) {
-                                    $show = $show . $dropdown2 ;                    
+                                    $show = $show .  dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;                 
                                 }
                                 if($owner_id == $user_id) {			
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
@@ -239,7 +237,7 @@ if ($_POST['chal']) {
             $show = $show . "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
                     if($owner_id == $user_id) {
-                        $show = $show . $dropdown2 ;                    
+                        $show = $show . dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;                   
                     }
                 $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br><hr>"
                                     .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
@@ -252,7 +250,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item'> " ;
             
-                        $show = $show . $dropdown1 ;
+                        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                         
                         $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-tree-deciduous'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
                         $show = $show .$get_display_ch_stmt_content;
@@ -262,7 +260,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item'> " ;
                                     
-                        $show = $show . $dropdown1 ;
+                        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                     $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-book'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                     $get_display_ch_stmt_content = "" ;
     }
@@ -270,7 +268,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group film'>
 				<div class='list-group-item'> ";
                                    
-                        $show = $show . $dropdown1 ;
+                        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                         $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-film'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 
@@ -279,7 +277,7 @@ if ($_POST['chal']) {
                         <div class='list-group-item'>";
                         
     //dropdown for delete/edit/span idea starts here
-        $show = $show . $dropdown1 ;
+        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
     //dropdown for delete/edit/span idea ends here
        $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-flash'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
        $get_display_ch_stmt_content = "" ;
@@ -289,7 +287,7 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group challenge'>
                 <div class='list-group-item'>";
             //dropdown for delete/edit/span challenge starts
-        $show = $show . $dropdown1 ;
+        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                     //dropdown for delete/edit/span challenge ends here
 
         if ($owner_id != $user_id) {
@@ -306,7 +304,7 @@ if ($_POST['chal']) {
                 <div class='list-group-item'>";
                 
         //dropdown for delete/edit/span challenge starts
-        $show = $show . $dropdown1 ;
+        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
         //dropdown for delete/edit/span challenge ends here
 
         $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-picture'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
@@ -317,7 +315,7 @@ if ($_POST['chal']) {
                                             <div class='list-group-item'>";
 							
                             //dropdown for delete/edit/span challenge starts
-        $show = $show . $dropdown1 ;
+        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                     //dropdown for delete/edit/span challenge ends here
 
                         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
@@ -355,7 +353,7 @@ if ($_POST['chal']) {
             <div class='list-group-item'>";
     
     //dropdown for delete/edit/span challenge starts
-        $show = $show .$dropdown1  ;
+        $show = $show .dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
     //dropdown for delete/edit/span challenge ends here
 
                 $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
@@ -403,7 +401,7 @@ if ($_POST['chal']) {
             $show = $show . "<div class='list-group openchalhide'>
                                 <div class='list-group-item'>";
                 //dropdown for delete/edit/span challenge starts
-        $show = $show . $dropdown1 ;
+        $show = $show . dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                     //dropdown for delete/edit/span challenge ends here
 
               $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes;
@@ -464,7 +462,6 @@ if ($_POST['chal']) {
         $challenge_ID = $commenterRow['challenge_id'];
         $username_comment_ninjas = $commenterRow['username'];
         $comment_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt'])));
-        $dropdown3 = dropDown_delete_comment_ch($comment_id, $user_id, $creater_ID) ;
         $show = $show . "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
@@ -474,7 +471,7 @@ if ($_POST['chal']) {
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
 						&nbsp&nbsp&nbsp" .$comment_stmt ;
         //delete comment dropdown chall function is not called due to function call witihin concatination string and then further concatenated to $show
-        $show = $show . $dropdown3 ;
+        $show = $show . dropDown_delete_comment_ch($comment_id, $user_id, $creater_ID) ;
              //delete comment dropdown ends
         $show = $show . "</div></div></div>";
     }
