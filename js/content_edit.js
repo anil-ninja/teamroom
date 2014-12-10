@@ -1,4 +1,4 @@
-function edit_content(ID) {
+function edit_content(ID, type) {
 	if ( ID != null){
 		$("#challenge_"+ID).hide();
 		$("#challenge_ti_"+ID).hide();
