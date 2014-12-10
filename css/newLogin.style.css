@@ -1,0 +1,194 @@
+*{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;-ms-box-sizing:border-box;box-sizing:border-box}
+html,body,.c-login-art{height:100%}
+body{padding:0;margin:0; font:90%/1.25em 'myriad-pro',sans-serif normal; background: #fff;}
+section{padding:0;}
+.c-login-art {
+  padding-top: 0;
+  display: table;
+  color: #6b6b6b;
+  width:100%;
+}
+.c-login-art .c-login-cont {
+  height: 100%;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+.c-login-art .c-logo-head{
+  font-size:140%;
+  font-weight: 300;
+  padding-top:0.2em;
+  line-height: 1.4em;
+  display:block;
+  color: #b7b7b7;
+}
+.c-login-art .c-logo,
+.c-login-art .c-login-contIn,
+.c-login-art input[type="text"],
+.c-login-art input[type="password"] {
+  display: inline-block;
+}
+.c-login-art .c-logo {
+  margin-bottom: 10px;
+}
+.c-login-art .c-login-contIn {
+  width: 27%;
+  text-align: left;
+}
+.c-login-art .c-login-sep,
+.c-login-art .c-login-label {
+  display: block;
+  padding: 0.2em 0;
+}
+.c-login-art .c-login-label {
+  font-weight: bold;
+}
+.c-login-art .c-submit-sep {
+  margin-top: 0.5em;
+}
+.c-login-art input[type="text"],
+.c-login-art input[type="password"] {
+  padding: 0.5em;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  width: 100%;
+  height: auto;
+  border: 1px solid #b7b7b7;
+  margin: 0;
+}
+.c-login-art input[type="text"]:focus,
+.c-login-art input[type="password"]:focus {
+  border: 1px solid #df9467;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+.c-login-art input[type="submit"] {
+  border: none;
+  margin-right: 1em;
+  cursor: pointer;
+  padding: 2% 10%;
+  background-color: #86b91e;
+  border: 1px solid #86b91e;
+  color:#fff;
+   -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  min-width: 150px;
+}
+.c-login-art input[type="submit"]:hover {
+  background: #78a619;
+  border: 1px solid #65900d;
+  box-shadow: 0 0 10px solid #000 inset;
+  -webkit-box-shadow: 0 0 10px solid #000 inset;
+  -moz-box-shadow: 0 0 10px solid #000000 inset;
+  min-width: 150px;
+}
+.c-login-art button:active {
+  border: 1px solid #665599 0;
+}
+.c-login-art .c-login-a {
+  color: #86b91e;
+}
+.c-login-art .c-login-a:hover {
+  text-decoration: underline;
+}
+.c-login-art .c-login-rArea {
+  display: block;
+  text-align: center;
+  padding: 0.3em 0;
+  margin-top: 0.5em;
+  font-size: 100%;
+}
+.c-login-art .c-error {
+  color: #ff0000;
+}
+.c-login-art .c-logout-splash {
+  background-color: #E1E1E1;
+  color: #6B6B6B;
+  left: 0;
+  padding: 1% 0;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  width: 100%;
+  min-width: 780px;
+}
+.c-login-art .c-lerror-icon {
+  background: url(../../images/newLogin/c-sprite.png) no-repeat center center;
+  background-position: 0px -429px;
+  width: 25px;
+  height: 15px;
+  display: inline-block;
+}
+.c-login-foot {
+  background: none;
+  padding: 0.5em;
+  text-align: right;
+  color: #b7b7b7;
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%
+}
+.c-disp-none{
+  display:none;
+}
+.c-login-art .c-disp-none{
+  display:none;
+}
+
+
+/*jQuery styling*/
+.formError .formErrorContent:before{
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: -4px;
+	top: 8px;
+	width: 8px;
+	height: 8px;
+	background-color: #eee;
+	
+	border-width: 1px;
+	border-style: none none solid solid;
+	border-color: rgba(64,64,64,0.5);
+	
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+}  
+	
+.formError {
+	position:absolute;
+	top:300px; left:300px;
+	margin-left: 15px;
+	display:block;
+	z-index:5000;
+	cursor:pointer;
+}
+
+.formError .formErrorContent {
+	width:100%; 
+	background:#eee;
+	color:#222;
+	width:150px;
+	font-size:11px;
+	border: 1px solid rgba(64,64,64,0.5);
+	padding:4px 10px 4px 10px;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	
+	box-shadow: none;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+}
+
