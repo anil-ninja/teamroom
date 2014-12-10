@@ -63,7 +63,7 @@ if ($_POST['id']) {
 			if(mysqli_num_rows($member_project) != 0) {
 				mysqli_query($db_handle, "UPDATE projects SET project_type = '4' WHERE project_id = '$pro_id';") ;
 				if(mysqli_error($db_handle)) { echo "Failed to Spam!"; } 
-				else { echo "Spam succesfully!"; }
+				else { echo "Spammed succesfully!"; }
 				}
 				else {echo "Please Join Project First!"; }
 			exit ;
@@ -73,7 +73,7 @@ if ($_POST['id']) {
 			if(mysqli_num_rows($member_project) != 0) {	
 				mysqli_query($db_handle, "UPDATE response_project SET status = '4' WHERE response_pr_id = '$knownid' ;") ;
 				if(mysqli_error($db_handle)) { echo "Failed to Spam!"; }
-				else { echo "Spam succesfully!"; }
+				else { echo "Spammed succesfully!"; }
 				}
 				else {echo "Please Join Project First!"; }		
 			exit ;

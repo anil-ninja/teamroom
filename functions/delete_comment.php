@@ -1,25 +1,25 @@
 <?php 
-function dropDown_delete_comment($deleteid, $user_ID, $owner_id, $type) {
+function dropDown_delete_comment_ch($deleteid, $user_ID, $owner_id) {
     echo  "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
 			if($owner_id == $user_ID) {
-				echo "<li><button class='btn-link' onclick='delcomment(\"".$deleteid."\",\"".$type."\");'>Delete</button></li>";
+				echo "<li><button class='btn-link' onclick='delcomment(\"".$deleteid."\", 1);'>Delete</button></li>";
 			} 
 			else {
-			   echo "<li><button class='btn-link' onclick='spem(\"".$deleteid."\",\"".$type."\");'>Report Spam</button></li>";
+			   echo "<li><button class='btn-link' onclick='spem(\"".$deleteid."\", 6);'>Report Spam</button></li>";
 			}
                 echo "</ul>
         </div>";
 }
 
-function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id, $type) {
+function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
         echo "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                     if($owner_id == $user_ID) {
-                        echo "<li><button class='btn-link' onclick='edit_content(\"".$challenge_ID."\",\"".$type."\")'>Edit</button></li>
-                              <li><button class='btn-link' onclick='delChallenge(\"".$challenge_ID."\",\"".$type."\");'>Delete</button></li>";                    
+                        echo "<li><button class='btn-link' onclick='edit_content(\"".$challenge_ID."\", 1)'>Edit</button></li>
+                              <li><button class='btn-link' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</button></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
                                     <form method='POST' class='inline-form'>
@@ -30,18 +30,18 @@ function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $
                         } */                                   
                      }
                     else {
-                       echo "<li><button class='btn-link' onclick='spem(\"".$challenge_ID."\",\"".$type."\");'>Report Spam</button></li>";
+                       echo "<li><button class='btn-link' onclick='spem(\"".$challenge_ID."\", 5);'>Report Spam</button></li>";
                     } 
                echo "</ul>
               </div>";
 }
-function dropDown_delete_after_accept($challenge_ID, $user_ID, $owner_id, $type) {
+function dropDown_delete_after_accept($challenge_ID, $user_ID, $owner_id) {
     if($owner_id == $user_ID) {
         echo "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                    <li><button class='btn-link' onclick='edit_content(\"".$challenge_ID."\",\"".$type."\")'>Edit</button></li>
-                    <li><button class='btn-link' onclick='delChallenge(\"".$challenge_ID."\",\"".$type."\");'>Delete</button></li>
+                    <li><button class='btn-link' onclick='edit_content(\"".$challenge_ID."\", 1)'>Edit</button></li>
+                    <li><button class='btn-link' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</button></li>
                 </ul>
             </div>";                    
     }

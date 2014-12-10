@@ -40,7 +40,7 @@ if(isset($_POST['id'])){
 							collapMail($emails, $username." Likes IN Project ".$title, $body2);
 							} 
 						}
-				if($case == 3)
+				if($case == 3) {
 					mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '1');") ;
 					events($db_handle,$user_id,"16",$id);
 					involve_in($db_handle,$user_id,"16",$id);
@@ -53,8 +53,8 @@ if(isset($_POST['id'])){
 						involve_in($db_handle,$user_id,"17",$id);
 						if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
 						else { echo "Posted successfully"; }
-						}	
-					}
+						}
+					}	
 					else {echo "Please Join Project First!"; }
 				}
 	mysqli_close($db_handle);

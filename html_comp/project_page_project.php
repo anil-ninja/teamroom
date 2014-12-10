@@ -389,9 +389,10 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
         
         $dispaly_fname_likes ="<span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | ".$timefunct." | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
+                &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> |
+                 ".$timefunct." | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$id_task .")'>
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_task_stmt_content .= "<br></div>                    
