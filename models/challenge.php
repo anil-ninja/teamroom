@@ -28,8 +28,11 @@ class challenge{
         if($chalangerow['blob_id']== 0)
 			$this->stmt = $chalangerow['stmt'];
 		else {
+
 			$blob_id = $chalangerow['blob_id'];
-			$this->stmt = mysqli_fetch_array(mysqli_query($db_handle, "SELECT stmt FROM blobs Where blob_id='$blob_id';"))['stmt'];
+			$temp = mysqli_fetch_array(mysqli_query($db_handle, "SELECT stmt FROM blobs Where blob_id='$blob_id';"));
+            $this->stmt = $temp['stmt'];
+            
         }
         $this->first_name = $chalangerow['first_name'];
         $this->last_name = $chalangerow['last_name'];
