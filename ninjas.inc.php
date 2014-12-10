@@ -35,38 +35,6 @@ if(isset($_POST['accept'])) {
 		</div>
 	</div>" ;
 }
-if (isset($_POST['joinproject'])) {
-	$user_id = $_SESSION['user_id'];
-	$idpt = $_POST['project_id'] ;
-	events($db_handle,$user_id,"13",$idpt);
-    involve_in($db_handle,$user_id,"13",$idpt);
-	mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$idpt', 'defaultteam') ;") ;
-	echo "<script>alert('Joined Successfully')</script>" ;
-	header('Location: #');
-}   
-if(isset($_POST['spem'])) {
-	$id = $_POST['spem'] ;
-	$user_id = $_SESSION['user_id'];
-	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '2');") ;
-	mysqli_query($db_handle,"UPDATE response_challenge SET status='4' WHERE response_ch_id = '$id'; ") ;
-	header('Location: #');
-	}
-if(isset($_POST['spem_prresp'])) {
-	$id = $_POST['spem_prresp'] ;
-	$user_id = $_SESSION['user_id'];
-	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$id', '3');") ;
-	mysqli_query($db_handle,"UPDATE response_project SET status='4' WHERE response_pr_id = '$id'; ") ;
-	header('Location: #');
-	}
-if(isset($_POST['pr_spem'])) {
-	$idch = $_POST['pr_spem'] ;
-	$user_id = $_SESSION['user_id'];
-	events($db_handle,$user_id,"7",$idch);
-    involve_in($db_handle,$user_id,"7",$idch);
-	mysqli_query($db_handle,"insert into spems (user_id, spem_id, type) VALUES ('$user_id', '$idch', '1');") ;
-	mysqli_query($db_handle,"UPDATE challenges SET challenge_status='7' WHERE challenge_id = '$idch'; ") ;
-	header('Location: #');
-	}
 /* if(isset($_POST['eta'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>

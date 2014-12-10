@@ -109,7 +109,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 if ($status == 1) {
                     echo "<div class='list-group challenge'>
                                 <div class='list-group-item'>";
-                    dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
+                   // dropDown_challenge($db_handle, $chelangeid, $user_id, $remaintime);
                     //if ($remaintime != "Closed") {
                         echo "<form method='POST' class='inline-form pull-right'>
                                             <input type='hidden' name='id' value='" . $chelangeid . "'/>
@@ -124,7 +124,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 if ($status == 2) {
                     echo "<div class='list-group challenge'>
                             <div class='list-group-item'>";
-                    dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+                  //  dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
                     if($ownuser == $user_id) {			
                         echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Completed Challenge !!!')\">
                                 <input type='hidden' name='id' value='".$chelangeid."'/>
@@ -149,7 +149,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                                 <button type='submit' class='btn-primary' name='closechal'>Close</button>
                             </form>";
                     }
-                    dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+                   // dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
                     echo $display_title."
                             <span class='glyphicon glyphicon-question-sign'></span>
                             <span style= 'color: #808080'>
@@ -164,7 +164,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 if ($status == 5) {
                     echo "<div class='list-group openchalhide'>
                             <div class='list-group-item' >";
-                                dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
+                             //   dropDown_delete_after_accept($db_handle, $chelangeid, $user_id);
                     echo $display_title."<span class='glyphicon glyphicon-flag'></span>
                             <span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a></span> | ".$timefunction."
@@ -179,7 +179,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 if ($status == 1) {
                     echo "<div class='list-group challenge'>
                             <div class='list-group-item'>";
-                        dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
+                      //  dropDown_challenge($db_handle, $chelangeid, $user_id, $remaining_time_own);
                         if ($ch_id != $user_id) {
                             echo "<form method='POST' class='inline-form pull-right' onsubmit=\"return confirm('Really, Accept challenge !!!')\">
                                     <input type='hidden' name='id' value='" . $chelangeid . "'/>
@@ -197,7 +197,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 if ($status == 6) {
                 echo "<div class='list-group film'>
                         <div class='list-group-item'>";
-                        dropDown_challenge($db_handle, $chelangeid, $user_id, "");
+                      //  dropDown_challenge($db_handle, $chelangeid, $user_id, "");
                         echo $display_title."<span class='glyphicon glyphicon-question-picture'></span>".$display_name_stmt;
                 }
                 if ($status == 2) {
@@ -348,32 +348,32 @@ function challenge_display($db_handle, $challengeSearchID) {
             else if ($ctype == 4) {
                 echo "<div class='list-group idea'>
                                 <div class='list-group-item'>";
-                dropDown_delete_idea($db_handle, $chelangeid, $user_id);
+              //  dropDown_delete_idea($db_handle, $chelangeid, $user_id);
                 echo $display_title."<span class='glyphicon glyphicon-flash'></span>".$display_name_stmt;
             }
             else if ($ctype == 5) {
                 echo "<div class='list-group tree'>
                                 <div class='list-group-item'>";
-                dropDown_delete_idea($db_handle, $chelangeid, $user_id);
+               // dropDown_delete_idea($db_handle, $chelangeid, $user_id);
                             echo $display_title."<span class='glyphicon glyphicon-pushpin'></span>".$display_name_stmt;
             }
             else if ($ctype == 6) {
                 echo "<div class='list-group deciduous'>
                                 <div class='list-group-item'>";
-                dropDown_delete_idea($db_handle, $chelangeid, $user_id);
+              //  dropDown_delete_idea($db_handle, $chelangeid, $user_id);
                            echo $display_title."<span class='glyphicon glyphicon-tree-deciduous'></span>".$display_name_stmt;
             }
             else if ($ctype == 7) {
                 echo "<div class='list-group articlesch'>
                                         <div class='list-group-item'>";
-                dropDown_delete_article($db_handle, $chelangeid, $user_id);
+             //   dropDown_delete_article($db_handle, $chelangeid, $user_id);
                 
                echo $display_title."<span class='glyphicon glyphicon-book'></span>".$display_name_stmt;
             }
             else if ($ctype == 8) {
                 echo "<div class='list-group film'>
                                         <div class='list-group-item'>";
-                dropDown_delete_article($db_handle, $chelangeid, $user_id);
+             //   dropDown_delete_article($db_handle, $chelangeid, $user_id);
                   echo $display_title."<span class='glyphicon glyphicon-film'></span>".$display_name_stmt;
             } 
             
@@ -441,7 +441,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                         &nbsp&nbsp&nbsp".$comment_stmt;
                 if (isset($_SESSION['user_id'])) {
                     $userID = $_SESSION['user_id'];
-                    dropDown_delete_comment_challenge($db_handle, $comment_id, $userID);
+                 //   dropDown_delete_comment_challenge($db_handle, $comment_id, $userID);
                 }
                 echo "</div>
                 </div>
