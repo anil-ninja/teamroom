@@ -150,6 +150,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                     <div class='list-group-item'>";
                                     
              $show = $show . $dropdown1 ;
+             $dropdown1 = ""; 
             $show = $show .$get_display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | 
                             Assigned To:<a href ='profile.php?username=" . $ownname ."'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> |
@@ -163,7 +164,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
             if ($ownid == $user_id) {
                 $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task ."\", 2)' value='Submit'/>";
             }
-            $dropdown1 = "";      
+                 
         }
         if ($status_task == 4) {
 			$show = $show . "<div class='list-group flag'>
@@ -193,20 +194,22 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
             $show = $show . $dropdown1 ;
+            $dropdown1 = "";
         }
         $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-film'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
-        $dropdown1 = "";
+        
     }
     if ($type_task == 6) {
         $show = $show . "<div class='list-group deciduous'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
             $show = $show . $dropdown1 ;
+            $dropdown1 = "";
         }
         $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-tree-deciduous'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
-        $dropdown1 = "";
+        
     }
     if ($type_task == 1 || $type_task == 2) {
         if ($status_task == 1) {
@@ -215,12 +218,13 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                              
     //dropdown for delete/edit/span challenge starts
         $show = $show .$dropdown1 ;
+        $dropdown1 = ""; 
         //dropdown for delete/edit/span challenge ends here
 
         $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$id_task ."\", 5)' value='Accept'/>";
         $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-question-sign'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
-        $dropdown1 = "";           
+                  
         }
         if ($status_task == 2) {
                     $show = $show . "<div class='list-group sign'>
