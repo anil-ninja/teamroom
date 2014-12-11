@@ -86,8 +86,8 @@ function add_member(PID, name) {
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
-					alert(result);
-					if (result == 'false') {
+					alert(result) ;
+					if (result == "true") {
 						$.ajax({
 							type: "POST",
 							url: "ajax/add_member_team.php",
@@ -117,7 +117,6 @@ function remove_member(PID, name, Uid){
 	bootbox.confirm("Do u really want to Remove this member?", function(result) {
 		if(result){
 			var dataString = 'email=' + Uid + '&id='+ PID + '&name='+ name + '&case=2';
-			alert(dataString) ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/add_member_team.php",
@@ -138,10 +137,8 @@ function remove_member(PID, name, Uid){
 }
 function comment(ID, type) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
-		//alert(ID) ;
 		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
 						+ '&case=' + type ;
-		//alert(dataString) ;
 		if(project == ""){
 			return false ;
 			}
@@ -162,7 +159,6 @@ function comment(ID, type) {
 				}
 } ;
 function accept_pub(ID, type){
-	//alert(ID) ;
 		   bootbox.confirm("Really Accept Challenge !!!", function(result) {
 		if(result){
 			var dataString = 'id='+ ID + '&case=' + type ;
@@ -180,7 +176,6 @@ function accept_pub(ID, type){
 		});
 	} ;
 function closechal(ID, type){
-	//alert(ID) ;
 		   bootbox.confirm("Really Close Challenge !!!", function(result) {
 		if(result){
 			var dataString = 'id='+ ID + '&case=' + type ;
@@ -198,7 +193,6 @@ function closechal(ID, type){
 		});
 	} ;
 function joinproject(ID){
-	//alert(ID) ;
 		   bootbox.confirm("Really Join This Project !!!", function(result) {
 		if(result){
 			var dataString = 'id='+ ID + '&case=4';

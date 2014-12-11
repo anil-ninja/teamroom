@@ -2,7 +2,7 @@
 session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
-
+include_once '../functions/collapMail.php';
 if ($_POST['email']) {
     $team_name = $_POST['name'];
     $user_id = $_SESSION['user_id'] ;
@@ -30,7 +30,7 @@ if ($_POST['email']) {
 						$body2 = "http://collap.com/profile.php?username=".$mail ;
 						collapMail($emails, $username." Add Member IN Team ".$team_name, $body2);
 						} 
-					mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id, team_owner) VALUES ('$uid', '$team_name', '$pro_id', '$user_id');");
+					mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
 					events($db_handle,$user_id,"15",$pro_id);
 					involve_in($db_handle,$user_id,"15",$pro_id);
 					if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
@@ -43,7 +43,7 @@ if ($_POST['email']) {
 		}
 		else {
 			$time = date("y-m-d H:i:s") ;
-			mysqli_query($db_handle, "UPDATE teams SET member_status='2', leave_team = '$time' WHERE team_name = '$team_name' AND project_id = '$pro_id' AND user_id = '$email' ;");
+			mysqli_query($db_handle, "UPDATE teams SET member_status = '2', leave_team = '$time' WHERE team_name = '$team_name' AND project_id = '$pro_id' AND user_id = '$email' ;");
 			if(mysqli_error($db_handle)) { echo "Failed to Remove Member!"; }
 			else { echo "Member Removed succesfully!"; }			
 			}
