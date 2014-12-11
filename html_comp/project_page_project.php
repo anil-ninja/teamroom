@@ -85,10 +85,8 @@
                 </div> 
                 <br>
                 <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
-
             </div><div id='invitation'></div>
             <div id='taskForm'>
-
                 <?php
                 $owner_project = mysqli_query($db_handle, "select user_id from projects where project_id = '$pro_id';");
                 $owner_projectrow = mysqli_fetch_array($owner_project);
@@ -98,15 +96,15 @@
                     if (mysqli_num_rows($teams) > 0) {
                         $task = "";
                         $task .= "<div class='inline-form'>Assign To : &nbsp;&nbsp;
-                <select class='btn-default btn-xs' id = 'teamtask' >
-                <option value='0' selected > Select Team </option>";
+									<select class='btn-default btn-xs' id = 'teamtask' >
+										<option value='0' selected > Select Team </option>";
                         while ($teamsrow = mysqli_fetch_array($teams)) {
                             $teamsname = $teamsrow['team_name'];
                             $task = $task . "<option value='" . $teamsname . "' >" . $teamsname . "</option>";
                         }
                         $task = $task . "</select>&nbsp;&nbsp;&nbsp;&nbsp;
-					<select class='btn btn-default btn-xs' id= 'userstask' >	
-                    <option value='0' selected >Select Member </option>";
+									<select class='btn btn-default btn-xs' id= 'userstask' >	
+										<option value='0' selected >Select Member </option>";
                         $users = mysqli_query($db_handle, "select DISTINCT a.user_id, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and 
 												a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
 												and a.member_status = '1' and a.user_id = b.user_id;");
@@ -116,15 +114,15 @@
                             $task = $task . "<option value='" . $u_id . "' >" . $users_username_task . "</option>";
                         }
                         $task = $task . "</select>&nbsp;&nbsp;&nbsp; <input type='email' id='emailtask' placeholder='Enter email-id'/></div><br/>
-            <div class='input-group' >
-                <span class='input-group-addon'>Title : </span>						
-                <input type='text' class='form-control' id='title' placeholder='Tilte ..'/>
-            </div><br>
-            <input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/><br/>
-            <div class='input-group' >
-                <span class='input-group-addon'>Task : </span>						
-                <textarea rows='3' class='form-control' id='taskdetails' placeholder='Description .. '></textarea>
-            </div><br> ";
+						<div class='input-group' >
+						<span class='input-group-addon'>Title : </span>						
+						<input type='text' class='form-control' id='title' placeholder='Tilte ..'/>
+						</div><br>
+						<input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/><br/>
+						<div class='input-group' >
+							<span class='input-group-addon'>Task : </span>						
+							<textarea rows='3' class='form-control' id='taskdetails' placeholder='Description .. '></textarea>
+						</div><br> ";
                         /* <div class='inline-form'>
                           ETA :
                           <select class='btn btn-default btn-xs' id = 'c_eta' >
@@ -209,13 +207,13 @@
 				else echo "Please Join Project First"; ?>
             </div>
         <?php 
-				echo "<div id='manageForm'>" ;
+		echo "<div id='manageForm'>" ;
          $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
          if(mysqli_num_rows($member_project) != 0) {
 					   echo "<div id='elfinder'></div>" ;
 					}
 					else { echo "Please Join Project First"; }
-					echo "</div><br/>" ;
+		echo "</div><br/>" ;
            ?>
         </div>
     </div>
@@ -238,58 +236,54 @@ $username_project = $project_row['username'];
 $projecteta = $project_row['project_ETA'];
 $timepr = eta($projecteta);
 $prtime = remaining_time($projectcreation, $projecteta);
+$timef = date("j F, g:i a", strtotime($projectcreation));
 echo "<div class='list-group'>
         <div class='list-group-item'>
             <div class='pull-left lh-fix'>     
                 <span class='glyphicon glyphicon-question-sign'></span>
                 <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-            </div>
-            <div style='line-height: 16.50px;'>";
+            </div>";
 if ($p_uid == $user_id) {
-    echo "<div class='pull-right'>
-                    <div class='list-group-item'>
-                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                        <ul class='dropdown-menu' aria-labelledby='dropdown'>
+	
+    echo "<div class='list-group-item pull-right'>
+            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+              <ul class='dropdown-menu' aria-labelledby='dropdown'>
                 <li><button class='btn-link' href='#'>Edit Project</button></li>
-                  <li><button class='btn-link' pID='".$pro_id."' onclick='delProject(".$pro_id.");'>Delete Project</button></li>
-                  <li>";
+                <li><button class='btn-link' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</button></li>";
     /* if ($prtime == 'Closed') {
       echo "<form method='POST' class='inline-form'>
       <input type='hidden' name='id' value='" . $pro_id . "'/>
       <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>
       </form>";
       } */
-    echo "</li>
-        </ul>
-        </div>
-    </div>";
+    echo "</ul></div>";
 }
 
 echo "<div class='row'>
-                    <div class='col-md-4'>
-                        <span class='color strong' style= 'color :lightblue;'>
-                            <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
-                        </span>  <br>" . $timef . "
-                    </div>";
+        <div class='col-md-4'>
+          <span class='color strong' style= 'color :lightblue;'>
+             <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
+          </span>  <br/>" . $timef . "
+        <br/></div>";
 /*      <div class='col-md-5'>
   ETA in &nbsp".$timepr."<br>Time Left:".$prtime."
   </div> */
 echo "</div>
-            </div>
-    </div>
-            <div class='list-group-item'>
+     </div>
+      <div class='list-group-item'>
             " . $projectst . "<br/><br/>";
 
-$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
+$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
                                         UNION
-                                        (SELECT DISTINCT c.stmt, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b join blobs as c 
+                                        (SELECT DISTINCT c.stmt, a.user_id, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b join blobs as c 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_pr_creation ASC;");
 while ($displayrowc = mysqli_fetch_array($displayb)) {
     $frstnam = $displayrowc['first_name'];
     $lnam = $displayrowc['last_name'];
     $username_pr_comment = $displayrowc['username'];
     $ida = $displayrowc['response_pr_id'];
+    $idb = $displayrowc['user_id'];
     $projectres = $displayrowc['stmt'];
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
@@ -297,13 +291,14 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
                     <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
                 </div>
                 <div class='comment-text'>
-                    <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
+                    <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " 
+                    " . ucfirst($lnam) . "</a>&nbsp</span> 
                     <small>" . $projectres . "</small>";
     if (isset($_SESSION['user_id'])) {
-       // dropDown_delete_comment_project($db_handle, $ida, $user_id);
+       dropDown_delete_comment_pr($ida, $user_id, $idb) ;
     }
     echo "</div>
-            </div> 
+         </div> 
         </div>";
 }
 echo "<div class='comments_".$pro_id."'></div><div class='comments clearfix'>
@@ -311,8 +306,8 @@ echo "<div class='comments_".$pro_id."'></div><div class='comments clearfix'>
 				<img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>";
 if (isset($_SESSION['user_id'])) {
-    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$pro_id."' placeholder='Want to know your comment....' />
-            <button type='submit' onclick='comment_project(".$pro_id.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='own_ch_response_".$pro_id."' placeholder='Want to know your comment....' />
+            <button type='submit' onclick='comment(\"".$pro_id."\", 2)' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
 } else {
     echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
 			<a data-toggle='modal' data-target='#SignIn'>
@@ -439,35 +434,19 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     <div class='list-group-item'>
                     ";
             if (isset($_SESSION['user_id'])) {
-                echo "<div class='list-group-item pull-right'>
-                        <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                        <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                if ($id_create == $user_id) {
-                    echo "<li><button class='btn-link' href='#'>Edit</button></li>
-                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";
-                    /* if ($remaintimeown == 'Closed') {
-                      echo "<li><form method='POST' class='inline-form'>
-                      <input type='hidden' name='id' value='" . $id_task . "'/>
-                      <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
-                      </form></li>";
-                      } */
-                } else {
-                    echo "<li><button class='btn-link' >Report Spam</button></li>";
-                }
-                echo "</ul>
-                </div>";
+                dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
             }
             if (($ownid == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
+                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task."\", 2)' value='Submit'/>";
             }
             
             echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span>
                      | Assigned To:&nbsp <a href ='profile.php?username=".$username_task."'>"
                 .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | ".$timefunct." | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$id_task .")'>
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
              
             echo $display_task_stmt_content;
@@ -478,11 +457,10 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group pushpin'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
+                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
             }
             //	. "<br/> ETA Given:" .$etaown."
             echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span>".$dispaly_fname_likes.
-            
             "<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span>
                 | Submitted On: ".$timecom;
             // . " ETA Taken : " . $timetaken . "
@@ -508,7 +486,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         echo "<div class='list-group videofilm'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
-           // dropDown_delete_article($db_handle, $id_task, $user_id);
+           dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
          echo $display_tilte_task."<span class='glyphicon glyphicon-film'></span>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
@@ -519,7 +497,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         echo "<div class='list-group deciduous'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
-           // dropDown_delete_article($db_handle, $id_task, $user_id);
+           dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
          echo $display_tilte_task."<span class='glyphicon glyphicon-tree-deciduous'></span>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
@@ -531,8 +509,8 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group sign'>
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
-               // dropDown_challenge($db_handle, $id_task, $user_id, $remaintimeown);
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pubpr(\"".$id_task."\",\"".$pro_id."\")' value='Accept'/>";
+               dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
+                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$id_task."\", 5)' value='Accept'/>";
             }
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
             echo $display_task_stmt_content;
@@ -544,9 +522,9 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
                 if ($ownid == $user_id) {
-                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
+                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task."\", 2)' value='Submit'/>";
                 } else {
-                  //  dropDown_delete_after_accept($db_handle, $id_task, $user_id);
+                  dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
                 }
             }
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
@@ -560,9 +538,9 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
-               // dropDown_delete_after_accept($db_handle, $id_task, $user_id);
-            }           
+                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
+               dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
+            }          
             echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes."
             <br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | Submitted: ".$timefunct;
@@ -575,7 +553,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                     <div class='list-group-item'>";
             echo "<span class='color strong pull-right' style= 'color :#3B5998;'>Closed</span>";
             if (isset($_SESSION['user_id'])) {
-              //  dropDown_delete_after_accept($db_handle, $id_task, $user_id);
+              dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
             }        
             //. "<br/>ETA Given: " . $etaown."
             echo $display_tilte_task."<span class='glyphicon glyphicon-flag'></span>".$dispaly_fname_likes."
@@ -603,15 +581,16 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
     }
 
     $displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
-												JOIN user_info as b WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
-												   UNION
-												   (SELECT DISTINCT a.challenge_id, a.response_ch_id, a.response_ch_creation, a.user_id, b.first_name, b.last_name, b.username, c.stmt FROM response_challenge as a
-													JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
+										JOIN user_info as b WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
+										 UNION
+										  (SELECT DISTINCT c.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
+										JOIN user_info as b JOIN blobs as c WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_ch_creation ASC;");
     while ($displayrowb = mysqli_fetch_array($displaya)) {
         $fstname = $displayrowb['first_name'];
         $lstname = $displayrowb['last_name'];
         $username_commenter = $displayrowb['username'];
         $idc = $displayrowb['response_ch_id'];
+        $idd = $displayrowb['user_id'];
         $chalangeres = $displayrowb['stmt'];
         echo "
 		<div id='commentscontainer'>
@@ -624,7 +603,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
 						&nbsp<a href ='profile.php?username=" . $username_commenter . "'>" . ucfirst($fstname) . "&nbsp" . $lstname . "</a>&nbsp" .
         "</span><small>" . $chalangeres . "</small>";
         if (isset($_SESSION['user_id'])) {
-           // dropDown_delete_comment_challenge($db_handle, $idc, $user_id);
+           dropDown_delete_comment_pr_ch($idc, $user_id, $idd) ;
         }
         echo "</div>
 			</div> 
@@ -636,7 +615,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                         </div>";
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='commentprch(\"".$id_task."\",\"".$pro_id."\")' ></button>";
+              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(\"".$id_task."\", 3)' ></button>";
     } else {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
