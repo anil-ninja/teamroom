@@ -22,7 +22,6 @@ if($_POST['notes']){
 		$body2 = "http://collap.com/profile.php?username=".$mail ;
 		collapMail($emails, $username." Create Note IN Project ".$title, $body2);
 		} 
-	}
 	if (strlen($image) < 30 ) {
 		$notes = $notestext ;
 	}
@@ -51,8 +50,8 @@ if($_POST['notes']){
 	   events($db_handle,$user_id,"10",$idp);
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Notes!"; }
 	else { echo "Posted succesfully!"; }
-}
 	mysqli_close($db_handle);
-} 
+	}
+}
 else echo "Invalid parameters!";
 ?>
