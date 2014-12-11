@@ -118,7 +118,7 @@
 						<span class='input-group-addon'>Title : </span>						
 						<input type='text' class='form-control' id='title' placeholder='Tilte ..'/>
 						</div><br>
-						<input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/><br/>
+						<input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/>
 						<div class='input-group' >
 							<span class='input-group-addon'>Task : </span>						
 							<textarea rows='3' class='form-control' id='taskdetails' placeholder='Description .. '></textarea>
