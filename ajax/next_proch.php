@@ -20,6 +20,8 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                     AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time DESC LIMIT $a, $b ;");
 	$show = "";
         $iR=0;
+        $dropdown1 = "";
+        $dropdown2 = "";
 		while ($tasksrow = mysqli_fetch_array($tasks)) {
 			$iR++;
 			$username_task = $tasksrow['username'];
@@ -65,16 +67,43 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 			$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$id_task' and like_status = '2' ;");
 			if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
 			else { $dislikes = '' ; }	
-                        
+               $dropdown1 .= "<div class='list-group-item pull-right'>
+								<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+									<ul class='dropdown-menu' aria-labelledby='dropdown'>" ;
+			if($id_create == $user_id) {
+             $dropdown1 = $dropdown1 ."<li><button class='btn-link' onclick='edit_content(\"".$id_task."\", 2)'>Edit</button></li>
+                              <li><button class='btn-link' onclick='delChallenge(\"".$id_task."\", 3);'>Delete</button></li>";                    
+                      /*  if($remaining_time_ETA_over == 'Time over') {        
+                            echo "<li>
+                                    <form method='POST' class='inline-form'>
+                                        <input type='hidden' name='id' value='".$challenge_ID."'/>
+                                        <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
+                                    </form>
+                                </li>";
+                        } */                                   
+                     }
+                    else {
+              $dropdown1 = $dropdown1 . "<li><button class='btn-link' onclick='spem(\"".$id_task."\", 9);'>Report Spam</button></li>";
+                    } 
+              $dropdown1 = $dropdown1 . "</ul></div>";
+              if($id_create == $user_id) {
+				$dropdown2 .="<div class='list-group-item pull-right'>
+								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+								<ul class='dropdown-menu' aria-labelledby='dropdown'>
+									<li><button class='btn-link' onclick='edit_content(\"".$id_task."\", 2)'>Edit</button></li>
+									<li><button class='btn-link' onclick='delChallenge(\"".$id_task."\", 3);'>Delete</button></li>
+								</ul>
+							</div>";                    
+				}
                         // list grp item header for all type chall/article/idea/photo/video
                         $get_display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
                             <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
 
                         $get_dispaly_fname_likes = "<span style= 'color: #808080'>
                                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | ".$timefunct." | 
-                                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
+                                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$id_task .")'>
+                                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
                         // list grp item stmt content for all type chall/article/idea/photo/video
                         $get_display_task_stmt .= "<br></div>                    
@@ -120,42 +149,27 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 			 $show .= "<div class='list-group pushpin'>
                                     <div class='list-group-item'>";
                                     
-                        $show = $show ."<div class='list-group-item pull-right'>
-                                            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-                                            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                        if ($id_create == $user_id) {
-                            $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
-                                            <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";
-                             /*   if ($remaintimeown == 'Closed') {
-                    $show = $show . "<li><form method='POST' class='inline-form'>
-                                            <input type='hidden' name='id' value='" . $id_task . "'/>
-                                            <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
-                                        </form>
-                                    </li>";
-                                } */
-                        }
-                    $show = $show . "</ul>
-                        </div>";
-
+             $show = $show . $dropdown1 ;
             $show = $show .$get_display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | 
                             Assigned To:<a href ='profile.php?username=" . $ownname ."'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> |
-                                <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$id_task .")'>
+                                <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$id_task .")'>
+                                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
                         //<br>ETA Given: " . $etaown . " <br/>" . $remaintimeown . "
                     $show = $show . $get_display_task_stmt;
                     $get_display_task_stmt = "" ;
             if ($ownid == $user_id) {
-                $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
-            }      
+                $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task ."\", 2)' value='Submit'/>";
+            }
+            $dropdown1 = "";      
         }
         if ($status_task == 4) {
 			$show = $show . "<div class='list-group flag'>
                                             <div class='list-group-item'>";                               
             if ($id_create == $user_id) {
-                $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
+                $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task ."\", 6)'>Close</button>";
             }
             $show = $show .$get_display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span>".$get_dispaly_fname_likes."
 				<br><hr>Assigned To: <a href ='profile.php?username=" . $ownname ."'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: " . $timecom ;
@@ -178,41 +192,21 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
         $show = $show . "<div class='list-group videofilm'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
-            $show = $show . "<div class='list-group-item pull-right'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                                if($id_create == $user_id) {
-                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
-                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                                                     
-                                }
-                            else {
-                            $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$id_task."\", 4, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
-                            } 
-               $show = $show . "</ul>
-              </div>";
+            $show = $show . $dropdown1 ;
         }
         $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-film'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
+        $dropdown1 = "";
     }
     if ($type_task == 6) {
         $show = $show . "<div class='list-group deciduous'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
-            $show = $show . "<div class='list-group-item pull-right'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                                if($id_create == $user_id) {
-                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
-                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                                                     
-                                }
-                            else {
-                            $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$id_task."\", 4, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
-                            } 
-               $show = $show . "</ul>
-              </div>";
+            $show = $show . $dropdown1 ;
         }
         $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-tree-deciduous'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
+        $dropdown1 = "";
     }
     if ($type_task == 1 || $type_task == 2) {
         if ($status_task == 1) {
@@ -220,48 +214,25 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                 <div class='list-group-item'>";
                              
     //dropdown for delete/edit/span challenge starts
-        $show = $show . "<div class='list-group-item pull-right'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                                if($id_create == $user_id) {
-                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
-                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>";                    
-                                  /*  if($remaining_time_ETA_over == 'Time over') {        
-                                        $show = $show . "<li>
-                                                <form method='POST' class='inline-form'>
-                                                    <input type='hidden' name='id' value='".$id_task."'/>
-                                                    <input class='btn-link' type='submit' name='eta' value='Change ETA'/>
-                                                </form>
-                                            </li>";
-                                    } */                                   
-                                }
-                            else {
-                            $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$id_task."\", 4, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
-                            } 
-               $show = $show . "</ul>
-              </div>";
+        $show = $show .$dropdown1 ;
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pubpr(\"".$id_task."\",\"".$pro_id."\")' value='Accept'/>";
+        $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$id_task ."\", 5)' value='Accept'/>";
         $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-question-sign'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
-        $get_display_task_stmt = "" ;           
+        $get_display_task_stmt = "" ;
+        $dropdown1 = "";           
         }
         if ($status_task == 2) {
                     $show = $show . "<div class='list-group sign'>
                                         <div class='list-group-item'>";
 				if ($ownid == $user_id) {
-					$show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmitpr(\"".$id_task."\",\"".$pro_id."\")' value='Submit'/>";
+					$show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task ."\", 2)' value='Submit'/>";
 				}
 
                 //dropdown for delete/edit/span challenge starts
             if($id_create == $user_id) {
-                $show = $show . "<div class='list-group-item pull-right'>
-                                    <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                                    <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                        <li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
-                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
-                                    </ul>
-                                </div>";                    
+                $show = $show . $dropdown2 ;
+                $dropdown2 = "";                    
             }
         //dropdown for delete/edit/span challenge ends here
             $show = $show . $get_display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$get_dispaly_fname_likes.
@@ -277,17 +248,12 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                     
     //dropdown for delete/edit/span challenge starts
             if($id_create == $user_id) {
-                $show = $show . "<div class='list-group-item pull-right'>
-                                    <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                                    <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                        <li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
-                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
-                                    </ul>
-                                </div>";                    
+                $show = $show . $dropdown2 ;
+                $dropdown2 = "";                    
             }
         //dropdown for delete/edit/span challenge ends here
             if ($id_create == $user_id) {
-                $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechalpr(\"".$id_task."\",\"".$pro_id."\")'>Close</button>";
+                $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task ."\", 6)'>Close</button>";
             }
             $show = $show .$get_display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$get_dispaly_fname_likes."
             <br><hr>Owned By: <a href ='profile.php?username=" . $ownname . "'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: ".$timefunct
@@ -302,13 +268,8 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                     
             //dropdown for delete/edit/span challenge starts
             if($id_create == $user_id) {
-                $show = $show . "<div class='list-group-item pull-right'>
-                                    <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                                    <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                        <li><button class='btn-link' onclick='edit_content(".$id_task.")'>Edit</button></li>
-                                        <li><button class='btn-link' cID='".$id_task."' onclick='delChallenge(".$id_task.");'>Delete</button></li>
-                                    </ul>
-                                </div>";                    
+                $show = $show . $dropdown2 ;
+                $dropdown2 = "";                    
             }
 //dropdown for delete/edit/span challenge ends here
             $show = $show . "</span><span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>";
@@ -381,7 +342,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                         </div>";
                 if (isset($_SESSION['user_id'])) {
                     $show = $show . "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-                                    <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='commentprch(\"".$id_task."\",\"".$pro_id."\")' ></button>";
+                                    <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(\"".$id_task ."\", 3)' ></button>";
                 }
                 else {
                    $show = $show . " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
