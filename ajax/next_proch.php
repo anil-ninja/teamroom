@@ -67,7 +67,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 			$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$id_task' and like_status = '2' ;");
 			if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
 			else { $dislikes = '' ; }	
-               $dropdown1 .= "<div class='list-group-item pull-right'>
+               $dropdown1 = "<div class='list-group-item pull-right'>
 								<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
 									<ul class='dropdown-menu' aria-labelledby='dropdown'>" ;
 			if($id_create == $user_id) {
@@ -87,7 +87,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                     } 
               $dropdown1 = $dropdown1 . "</ul></div>";
               if($id_create == $user_id) {
-				$dropdown2 .="<div class='list-group-item pull-right'>
+				$dropdown2 ="<div class='list-group-item pull-right'>
 								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
 								<ul class='dropdown-menu' aria-labelledby='dropdown'>
 									<li><button class='btn-link' onclick='edit_content(\"".$id_task."\", 2)'>Edit</button></li>
