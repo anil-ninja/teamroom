@@ -126,8 +126,8 @@ if ($_POST['chal']) {
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                     if($owner_id == $user_id) {
-        $dropDown_challenge_get = $dropDown_challenge_get. "<li><button class='btn-link' onclick='edit_content(\"".$challenge_id."\", 1)'>Edit</button></li>
-                              <li><button class='btn-link' onclick='delChallenge(\"".$challenge_id."\", 3);'>Delete</button></li>";                    
+        $dropDown_challenge_get = $dropDown_challenge_get. "<li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
+                              <li><button class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</button></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
                                     <form method='POST' class='inline-form'>
@@ -138,7 +138,7 @@ if ($_POST['chal']) {
                         } */                                   
                      }
                     else {
-        $dropDown_challenge_get = $dropDown_challenge_get. "<li><button class='btn-link' onclick='spem(\"".$challenge_id."\", 5);'>Report Spam</button></li>";
+        $dropDown_challenge_get = $dropDown_challenge_get. "<li><button class='btn-link' onclick='spem(\"".$chelangeid."\", 5);'>Report Spam</button></li>";
                     } 
         $dropDown_challenge_get = $dropDown_challenge_get. "</ul>
               </div>";
@@ -148,8 +148,8 @@ if ($_POST['chal']) {
         $dropDown_ch_after_accept= $dropDown_ch_after_accept. "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                    <li><button class='btn-link' onclick='edit_content(\"".$challenge_id."\", 1)'>Edit</button></li>
-                    <li><button class='btn-link' onclick='delChallenge(\"".$challenge_id."\", 3);'>Delete</button></li>
+                    <li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
+                    <li><button class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</button></li>
                 </ul>
             </div>";                    
     }
@@ -537,10 +537,26 @@ if ($_POST['chal']) {
              //delete comment dropdown ends
         $show = $show . "</div></div></div>";
     }
-
-    $show = $show . "<div class='comments_".$chelangeid."'></div><div class='comments clearfix'>
+	$show = $show . "<div class='comments_".$chelangeid."'></div><div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='imho "Invalid parameters!";
+                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
+                        </div>
+                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
+                             placeholder='Want to know your comment....'/>
+                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(\"".$chelangeid."\", 1)' ></button>
+                    </div>";
+    $show = $show . "</div> </div> ";
+    }
+    if (mysqli_error($db_handle)) {
+        echo "Failed!";
+    } else {
+        $_SESSION['lastpanel'] = $a + $iR;
+        
+        echo $show ;
+        $iR = 0;
+    }
+}
+       else echo "Invalid parameters!";
 mysqli_close($db_handle);
 ?>
 <script>

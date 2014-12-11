@@ -57,7 +57,6 @@ if($_POST['id']){
 						$comment_id = mysqli_insert_id($db_handle);
 						}
 					}
-				}
 				else {
 					events($db_handle,$user_id,"3",$id);
 					involve_in($db_handle,$user_id,"3",$id);
@@ -72,6 +71,7 @@ if($_POST['id']){
 							$comment_id = mysqli_insert_id($db_handle);
 							}
 					}
+				}
 			else { echo "Please Join Project First!"; }
 			}
 	$test .= "<div id='commentscontainer'>
