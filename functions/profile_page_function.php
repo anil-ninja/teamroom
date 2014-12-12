@@ -258,7 +258,7 @@ function project_comments($db_handle, $project_id) {
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$project_id."'
 			 placeholder='Want to know your comment....'/>
-			<button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$project_id."\", 1)' >
+			<button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$project_id."\", 2)' >
 			<span class='glyphicon glyphicon-chevron-right'></span></button>";
     } 
     else {

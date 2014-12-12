@@ -29,6 +29,12 @@ if ($_POST['user_next_idea']) {
         $idea_firstname = $user_idea_displayRow['first_name'];
         $idea_lastname = $user_idea_displayRow['last_name'];
         $idea_username = $user_idea_displayRow['username'];
+        $totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idea_id' and like_status = '1' ;");
+		if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
+		else { $likes = '' ; }
+		$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idea_id' and like_status = '2' ;");
+		if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
+		else { $dislikes = '' ; }
         $show_idea = $show_idea. "<div class='list-group idea'>
                         <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
@@ -36,14 +42,11 @@ if ($_POST['user_next_idea']) {
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                     <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                         if($idea_user_id == $user_id) {
-                            $show_idea = $show_idea. "<li><button class='btn-link' onclick='edit_content(".$idea_id.")'>Edit</button></li>
-                                  <li><button class='btn-link' cID='".$idea_id."' onclick='delArticle(".$idea_id.");'>Delete</button></li>";
+                            $show_idea = $show_idea. "<li><button class='btn-link' onclick='edit_content(\"".$idea_id."\", 1)'>Edit</button></li>
+                                  <li><button class='btn-link' onclick='delChallenge(\"".$idea_id."\", 3);'>Delete</button></li>";
                         }
                         else {
-                            $show_idea = $show_idea. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                        <button type='submit' name='pr_spem' value='".$idea_id."' class='btn-link' >Report Spam</button>
-                                    </form>
-                                </li>";
+                            $show_idea = $show_idea. "<li><button class='btn-link' onclick='spem(\"".$idea_id."\", 5);'>Report Spam</button></li>";
                         }
             $show_idea = $show_idea. "</ul>
               </div>";
@@ -55,9 +58,9 @@ if ($_POST['user_next_idea']) {
                 
                 <span class='glyphicon glyphicon-flash'></span><span style= 'color: #808080'>
                 By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$idea_id .")'>
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$idea_id .")'>
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
@@ -87,17 +90,13 @@ if ($_POST['user_next_idea']) {
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                 if($comment_user_id == $user_id) {
-                    $show_idea = $show_idea. "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
+                    $show_idea = $show_idea. "<li><button class='btn-link' onclick='delcomment(\"".$comment_id."\", 2);'>Delete</button></li>";
                 } 
                 else {
-                    $show_idea = $show_idea. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                                            <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
-                                                        </form>
-                                                    </li>";
+                    $show_idea = $show_idea. "<li><<button class='btn-link' onclick='spem(\"".$comment_id."\", 8);'>Report Spam</button></li>";
                 }
              $show_idea = $show_idea. "</ul>
         </div>";
-
         }
         $show_idea = $show_idea."</div></div></div>";
     }
@@ -108,7 +107,7 @@ if ($_POST['user_next_idea']) {
                 </div>
                     <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$idea_id."'
                         placeholder='Want to know your comment....'/>
-                    <button type='submit' class='btn-primary btn-sm' onclick='comment(".$idea_id.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
+                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$idea_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                 </div>
             </div>";
          $show_idea = $show_idea."</div></div>";

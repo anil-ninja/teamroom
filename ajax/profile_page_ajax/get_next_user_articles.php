@@ -29,7 +29,12 @@ if ($_POST['last_article']) {
         $article_created1 = $user_articles_displayRow['creation_time'];
         $article_created = date("j F, g:i a", strtotime($article_created1));
         $art_user_id = $user_articles_displayRow['user_id'];
-        
+        $totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$article_id' and like_status = '1' ;");
+		if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
+		else { $likes = '' ; }
+		$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$article_id' and like_status = '2' ;");
+		if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
+		else { $dislikes = '' ; }
         $show_article = $show_article. "
             <div class='list-group articlesch'>
                 <div class='list-group-item'>";
@@ -38,14 +43,11 @@ if ($_POST['last_article']) {
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                     <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                         if($art_user_id == $user_id) {
-                            $show_article = $show_article. "<li><button class='btn-link' onclick='edit_content(".$article_id.")'>Edit</button></li>
-                                  <li><button class='btn-link' cID='".$article_id."' onclick='delArticle(".$article_id.");'>Delete</button></li>";
+                            $show_article = $show_article. "<li><button class='btn-link' onclick='edit_content(\"".$article_id."\", 1)'>Edit</button></li>
+                                  <li><button class='btn-link' onclick='delChallenge(\"".$article_id."\", 3);'>Delete</button></li>";
                         }
                         else {
-                            $show_article = $show_article. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                        <button type='submit' name='pr_spem' value='".$article_id."' class='btn-link' >Report Spam</button>
-                                    </form>
-                                </li>";
+                            $show_article = $show_article. "<li><button class='btn-link' onclick='spem(\"".$article_id."\", 5);'>Report Spam</button></li>";
                         }
             $show_article = $show_article. "</ul>
               </div>";
@@ -56,9 +58,9 @@ if ($_POST['last_article']) {
                     .ucfirst($article_title)."</a></b></p>
                 
                 <span class='glyphicon glyphicon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$article_id .")'>
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$article_id .")'>
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
@@ -90,13 +92,10 @@ if ($_POST['last_article']) {
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                 if($comment_user_id == $user_id) {
-                    $show_article = $show_article. "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
+                    $show_article = $show_article. "<li><button class='btn-link' onclick='delcomment(\"".$comment_id."\", 2);'>Delete</button></li>";
                 } 
                 else {
-                    $show_article = $show_article. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                                            <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
-                                                        </form>
-                                                    </li>";
+                    $show_article = $show_article. "<li><button class='btn-link' onclick='spem(\"".$comment_id."\", 8);'>Report Spam</button></li>";
                 }
              $show_article = $show_article. "</ul>
         </div>";
@@ -111,7 +110,7 @@ if ($_POST['last_article']) {
                 </div>
                     <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$article_id."'
                         placeholder='Want to know your comment....'/>
-                    <button type='submit' class='btn-primary btn-sm' onclick='comment(".$article_id.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
+                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$article_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                 </div>
             </div>";
          $show_article = $show_article."</div></div>";
