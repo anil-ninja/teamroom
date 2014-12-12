@@ -451,7 +451,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     <span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
                         &nbsp&nbsp&nbsp".$comment_stmt;
                 if (isset($_SESSION['user_id'])) {
-                    $userID = $_SESSION['user_id'];
+                    $user_id = $_SESSION['user_id'];
                  dropDown_delete_comment_ch($comment_id, $user_id, $creater_ID);
                 }
                 echo "</div>
