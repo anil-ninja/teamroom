@@ -170,7 +170,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                             <div class='list-group-item'>";
                   dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
                     if($ownuser == $user_id) {			
-                        echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                        echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                     }
                     echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>
                                         <span style= 'color: #808080'>
@@ -219,7 +219,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                             <div class='list-group-item'>";
                       dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                         if ($owner_id != $user_id) {
-                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                            echo "<input class='btn btn-primary btn-default-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                         }
                     else {
                         echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
@@ -258,10 +258,10 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                         $owfname = $ownedbrow['first_name'];
                         $owlname = $ownedbrow['last_name'];
                         $owname = $ownedbrow['username'];
-                        echo "<hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                        . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | ".$timfunct;
+                        echo "<hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                        . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | ".$timfunct;
                         if ($ownedbrow['user_id'] == $user_id ) {
-                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                         }
                     }
                     echo "</div><div class='list-group-item'>
@@ -302,14 +302,14 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                         $timetakennin = eta($time_taken);
                     if  ($owlstatus==1) {
                         echo "<hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
-                        . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | ".$timfunct;
+                        . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | ".$timfunct;
                         if ($ownedbrow['user_id'] == $user_id ) {
-                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                         }
                     }
                     if  ($owlstatus==2){
                         echo "<hr>Submitted: <a href ='profile.php?username=" . $owname . "'>"
-                        . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a></span><br/>" . $timfunct."<br/> | " .$owtimesubmit ;
+                        . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | ".$owtimesubmit ;
                         //." and Time Taken : ".$timetakennin."
                     }
                 }
@@ -343,7 +343,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                         echo "<hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
                         .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | " . $timfunct;
                         if ($ownedbrow['user_id'] == $user_id ) {
-                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                         }
                     }
                     if  ($owlstatus==2){
@@ -392,9 +392,10 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                                                     UNION
                                                     (select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
                 while ($answerrow = mysqli_fetch_array($answer)) {
+                    $answer_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt'])));
                     echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
                             <p align='center'>Answer</p></span>"
-                        . $answerrow['stmt'] . "<br/>";
+                        . $answer_stmt. "<br/>";
                 }
             }
             }
