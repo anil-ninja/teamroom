@@ -78,15 +78,16 @@
                                 <h4><p style='margin-bottom:5px; margin-top:5px;'> Explore more </p><h4>
                             </div>";
                 $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 150) as stmt FROM challenges 
-                                                        WHERE challenge_type != '2' AND (challenge_status !='3' AND challenge_status != '7') AND challenge_id != $challengeSearchID AND blob_id = '0')  
-                                                    UNION 
-                                                    (SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 150) as stmt FROM challenges as a JOIN blobs as b 
-                                                        WHERE a.blob_id = b.blob_id AND challenge_type != '2' AND (challenge_status !='3' AND challenge_status != '7') AND challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
+                                                        WHERE challenge_type != '2' AND challenge_status !='3' AND challenge_status != '7' AND 
+                                                        challenge_id != $challengeSearchID AND blob_id = '0')  
+														UNION 
+														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 150) as stmt FROM challenges as a JOIN blobs as b 
+														WHERE a.blob_id = b.blob_id AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
+														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                 while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                     $challenge_user_chID = $challenge_userRow['challenge_id'];
                     $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
-                    $challenge_user_stmt = $stmt_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
-                    //echo $challenge_user_stmt;
+                    $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
                     echo "<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                             <div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
                                 <div class='panel-heading' style='padding-left: 0px;'>
