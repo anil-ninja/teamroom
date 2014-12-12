@@ -90,6 +90,38 @@
             </div>
             <!--end modle-->
 
+            <!--project Order Sort content Modal -->
+        <div class="modal fade" id="project_order" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:350px; height:auto">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Sort Content</h4>
+                        
+                        <div class='alert_placeholder'></div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-group">
+                            <form method="POST" action="">
+                                <select class="btn btn-default btn-xs" name="select_order" >    
+                                    <option value='ASC'>Ascending</option>
+                                    <option value='DESC'>Default</option>
+                                </select>
+                                <button type="submit" class="btn btn-success" name="request_order">Sort</button>                     
+                            </form>   
+                        </div>
+                        <br/>
+                                                
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--end modle-->
+
         <script type="text/javascript">
             function checkForm() {
                 if (document.getElementById('password_1').value == document.getElementById('password_2').value) {

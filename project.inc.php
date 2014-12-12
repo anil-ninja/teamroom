@@ -4,6 +4,15 @@ include_once 'functions/delete_comment.php';
 
 $pro_id = $_GET['project_id'] ;
 
+if (isset($_POST['request_order']) && ($_POST['select_order'] == 'ASC')) {
+  //$sort_by = 'ASC';
+  mysqli_query($db_handle, "INSERT INTO project_order (project_id) VALUES ('$pro_id');");
+}
+elseif (isset($_POST['request_order']) && ($_POST['select_order'] == 'DESC')) {
+  //$sort_by = 'DESC'; 
+  mysqli_query($db_handle, "DELETE FROM project_order WHERE project_id ='$pro_id';");
+}
+
 if(!checkProject($pro_id,$user_id,$db_handle))
 	{	 
 	header("location: ninjas.php") ;
@@ -26,4 +35,14 @@ $contact = mysqli_query($db_handle, "SELECT * FROM user_info WHERE user_id = '$u
 $contactrow = mysqli_fetch_array($contact) ;
 $con_no = $contactrow['contact_no'] ;
 $email = $contactrow['email'] ;
+
+$order_content = mysqli_query($db_handle, "SELECT project_id FROM project_order WHERE project_id='$pro_id';");
+$order_contentRow = mysqli_fetch_array($order_content);
+$order_check_pro_id = $order_contentRow['project_id'];
+if ($pro_id == $order_check_pro_id) {
+	$sort_by = 'ASC';
+}
+else {
+	$sort_by = 'DESC';
+}
 ?>

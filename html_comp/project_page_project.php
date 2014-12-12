@@ -118,7 +118,7 @@
 						<span class='input-group-addon'>Title : </span>						
 						<input type='text' class='form-control' id='title' placeholder='Tilte ..'/>
 						</div><br>
-						<input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/><br/>
+						<input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/>
 						<div class='input-group' >
 							<span class='input-group-addon'>Task : </span>						
 							<textarea rows='3' class='form-control' id='taskdetails' placeholder='Description .. '></textarea>
@@ -249,7 +249,10 @@ if ($p_uid == $user_id) {
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
               <ul class='dropdown-menu' aria-labelledby='dropdown'>
                 <li><button class='btn-link' href='#'>Edit Project</button></li>
-                <li><button class='btn-link' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</button></li>";
+                <li><button class='btn-link' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</button></li>
+                <li>
+                  <a data-toggle='modal' class='btn-link' data-target='#project_order'>Sort Order</a>
+                </li>";
     /* if ($prtime == 'Closed') {
       echo "<form method='POST' class='inline-form'>
       <input type='hidden' name='id' value='" . $pro_id . "'/>
@@ -333,7 +336,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 								 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
 								  a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
 								  WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
-								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time DESC LIMIT 0, 10 ;");
+								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time ".$sort_by." LIMIT 0, 10 ;");
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];

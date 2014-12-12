@@ -84,7 +84,7 @@ if  ($_POST['case']) {
 																			VALUES ('$user_id', '$comp', '$town', '$about');") ;
 					}
 			if (mysqli_error($db_handle)) { echo "Please try again"; }
-			else { echo $user_id; }
+			else { echo "Updated successfuly"; }
 			exit ;
 			break ;
 			
