@@ -51,11 +51,11 @@ function toggleDivs() {
     var $inner = $("#nav");
     if ($inner.css("margin-right") == "-120px") {
         $inner.animate({'margin-right': '0'});
-		$(".nav-btn").html('><p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btn").html('<p class="glyphicon glyphicon-chevron-right"></p><p class="glyphicon glyphicon-comment"></p>')
     }
     else {
         $inner.animate({'margin-right': "-120px"}); 
-		$(".nav-btn").html('<<p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btn").html('<p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p>')
     }
 }
 $(".nav-btn").bind("click", function(){
