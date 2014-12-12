@@ -390,7 +390,7 @@ if ($_POST['chal']) {
                 $show = $show . "<hr>";
                            
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
+                    $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
                 }
                 $show = $show . "Owned: <a href ='profile.php?username=" . $owname . "'>"
                     .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct;
@@ -437,7 +437,7 @@ if ($_POST['chal']) {
                     $show = $show . "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | ".$timfunct;
                     if ($ownedbrow['user_id'] == $user_id ) {
-                        $show = $show . "<br><hr><input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                        $show = $show . "<br><hr><input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                     }
                 }
                 if  ($owlstatus==2){
@@ -477,7 +477,7 @@ if ($_POST['chal']) {
                 $show = $show . "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                    $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                 }
             }
             if  ($owlstatus==2){
