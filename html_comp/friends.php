@@ -1,6 +1,6 @@
 	
 		<div id="nav">
-    <div class="nav-btn"><p class="glyphicon glyphicon-comment"></p></div>
+    <div class="nav-btn"><p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p></div>
                     <div class="panel-body" style="padding: 1px;">
                     <?php
                         $idb = 0 ;
