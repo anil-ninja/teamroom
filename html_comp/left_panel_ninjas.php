@@ -11,7 +11,7 @@
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
                                                                                 UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '2');");
                             while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
-                                    $p_title = $project_title_displayRow['project_title'] ;
+                                    $p_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_title_displayRow['project_title']))) ;
                                     $idpro = $project_title_displayRow['project_id'] ;
                                     if (strlen($p_title) > 30) {
                                     $prtitle = substr(ucfirst($p_title),0,30)." ...";
@@ -46,7 +46,7 @@
                                                                                 UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '1');");
 
                         while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
-								$public_pr_titlep = $project_public_title_displayRow['project_title'] ;
+								$public_pr_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow['project_title']))) ;
 								$idproject = $project_public_title_displayRow['project_id'] ;
 							if (strlen($public_pr_titlep) > 30) {
 								$prtitlep = substr(ucfirst($public_pr_titlep),0,30)." ...";
@@ -79,7 +79,7 @@
 							<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
 							<table>";
                         while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
-								$public_pr_titlep2 = $project_public_title_displayRow2['project_title'] ;
+								$public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
 								$idproject2 = $project_public_title_displayRow2['project_id'] ;
 							if (strlen($public_pr_titlep2) > 30) {
 								$prtitlep2 = substr(ucfirst($public_pr_titlep2),0,30)." ...";
