@@ -69,7 +69,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
             </div>
             <div class="col-md-5"></div>
             <div class="col-md-2 navbar-header">
-                <a data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;">Sign In</a>
+                <a data-toggle="modal" class="btn btn-primary" data-target="#signIn" style="float: right; cursor:pointer;">Sign In</a>
             </div>
             <div class="span3 pull-right">
                 <ul class="list-inline" style='padding-top: 10px;'>
@@ -79,52 +79,53 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
             </div>
         </div>
     </div>
-        <div class="row" style="background-image: url(img/collaboration.jpg); margin-top:0px; margin-left:0px; height: 600px; width: 100%;">
-            <div class = "col-xs-7 col-ls-8"></div>	
-            <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
-                <div class="bs-component">
-                    <div class="modal" style="width: 380px;">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                   
-                                    <p align="center"><font size="5" >Let's Collaborate!!</font></p>
-                                    <div class="alert-placeholder"> </div>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="inline-form">
-                                        <div class="row">
-                                            <div class="col-md-6">                  
-                                                <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>  
-                                            </div>
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>                    
-                                            </div>
-                                        </div>
-                                    </div><br/> 
-                                         <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
-                                          <span id="status_email"></span>
-                                            <br/>                   
-                                    <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
-                                   <br/>
-                                   <div class="inline-form">
-                                       <div class="row">
-                                            <div class="col-md-6">
-                                        <input type="password" class="form-control" style="width: 100%" id="passwordR" placeholder="password"/>
-                                        </div><div class="col-md-6">
-                                        <input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
-                                    </div></div></div>
-                                    <input type="submit" class="btn btn-primary btn-lg" id = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
-                                </div>
-                                        
+    <div class="row" style="background-image: url(img/collaboration.jpg); margin-top:0px; margin-left:0px; height: 600px; width: 100%;">
+        <div class = "col-xs-7 col-ls-8"></div>	
+        <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
+            <div class="bs-component">
+                <div class="modal" style="width: 380px;">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                               
+                                <p align="center"><font size="5" >Let's Collaborate!!</font></p>
+                                <div class="alert-placeholder"> </div>
                             </div>
+                            <div class="modal-body">
+                                <div class="inline-form">
+                                    <div class="row">
+                                        <div class="col-md-6">                  
+                                            <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>  
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>                    
+                                        </div>
+                                    </div>
+                                </div><br/> 
+                                     <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
+                                      <span id="status_email"></span>
+                                        <br/>                   
+                                <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
+                               <br/>
+                               <div class="inline-form">
+                                   <div class="row">
+                                        <div class="col-md-6">
+                                    <input type="password" class="form-control" style="width: 100%" id="passwordR" placeholder="password"/>
+                                    </div><div class="col-md-6">
+                                    <input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
+                                </div></div></div>
+                                <input type="submit" class="btn btn-primary btn-lg" id = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
+                            </div>
+                                    
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+
             <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="signIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content" style="width:370px; height:auto">
                         <div class="modal-header">
@@ -181,14 +182,16 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                 </div>
             </div>
             <!--end modle-->
+            
 <script type="text/javascript" src="js/username_email_check.js"></script>
 <script type="text/javascript" src="js/signupValidation.js"></script>
 <script type="text/javascript" src="js/loginValidation.js"></script>
-            <script type="text/javascript">
-window.onload = function(){
-  var text_input = document.getElementById ('username');
-  text_input.focus ();
-  text_input.select ();
+<script type="text/javascript" src='js/bootstrap.js'></script>
+<script type="text/javascript">
+    window.onload = function(){
+      var text_input = document.getElementById ('username');
+      text_input.focus ();
+      text_input.select ();
 }
 </script>
             <script type="text/javascript">
