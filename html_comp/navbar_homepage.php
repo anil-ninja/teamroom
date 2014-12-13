@@ -231,19 +231,19 @@ else {
 				<h4 class="modal-title" id="myModalLabel"><font size="5" >Let's Join</font></h4>
 			</div>
 			<div class="modal-body">
+				<p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>
+				Collap is exodus to make collaboration strong. Lets work together to do more... </p><br/><br/>
 				<div class='row'>
 					<div class='col-md-7'>
-						<input type='text' class='form-control' style='width: 100%;' id='subscriptionid' placeholder='Enter Email-ID'/>
+						<input type='text' class='form-control' style='width: 115%;' id='subscriptionid' placeholder='Enter Email-ID'/>
 					</div>
 					<div class='col-md-3'>
 						<input type='submit' class='btn btn-success btn-xs' id='Subscribe' value='Subscribe'/><br/>
 					</div>
-				</div><br/>
-				<button  class="btn btn-primary" >Sign up</button><br/><br/>
-				<input type='text' class='form-control' id='' placeholder=''/><br/>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button id="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+				<button  class="btn btn-primary" onclick='test2()'>Sign up</button>
 			</div>
 		</div>
 	</div>

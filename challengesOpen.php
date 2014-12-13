@@ -122,5 +122,12 @@
       <?php include_once 'html_comp/signup.php' ; ?>
         <?php include_once 'lib/html_inc_footers.php'; ?>
         <?php include_once 'html_comp/login_signup_modal.php'; ?>
+        <script>
+$(".text").show();
+$(".editbox").hide();
+$(".editbox").mouseup(function(){
+return false
+});
+</script>
     </body>
 </html>

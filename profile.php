@@ -241,6 +241,11 @@ $obj = new profile($UserName);
         </div> 
                 <div class ="col-md-2">
                     <?php include_once 'html_comp/known.php' ?>
+                    <?php 
+						if(isset($_SESSION['user_id'])) {
+							include_once 'html_comp/friends.php';
+							}
+					  ?>
                 </div>
                 </div>
                 <?php include_once 'html_comp/signup.php' ; ?>        

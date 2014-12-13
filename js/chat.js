@@ -104,6 +104,10 @@ $("#changeremindervalue").click(function(){
 function test() {
   $("#signupwithoutlogin").modal("show");
 };
+function test2() {
+  $("#signupwithoutlogin").modal("hide");
+  $("#SignUp").modal("show");
+};
 function editreminder(id, uid) {
 	$("#datepickervalue").val(id) ;
 	$("#valueuserid").val(uid) ;	
