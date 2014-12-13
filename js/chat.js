@@ -102,7 +102,6 @@ $("#changeremindervalue").click(function(){
 			});	
 		});
 function test() {
-	//alert("dcjdsf") ;
   $("#signupwithoutlogin").modal("show");
 };
 function editreminder(id, uid) {

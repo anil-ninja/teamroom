@@ -220,9 +220,9 @@ else {
         </div>
     </div>
     </div>
-<div class="modal fade" id="signupwithoutlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<div class="modal fade" id="signupwithoutlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" >
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" style=' margin-left: 40%; width:50%;'>
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
@@ -232,13 +232,14 @@ else {
 			</div>
 			<div class="modal-body">
 				<div class='row'>
-					<div class='col-md-6'>
+					<div class='col-md-7'>
 						<input type='text' class='form-control' style='width: 100%;' id='subscriptionid' placeholder='Enter Email-ID'/>
 					</div>
-					<div class='col-md-2'>
-						<input type='submit' class='btn-success btn-xs' id='Subscribe' value='Subscribe'/><br/>
+					<div class='col-md-3'>
+						<input type='submit' class='btn btn-success btn-xs' id='Subscribe' value='Subscribe'/><br/>
 					</div>
-				</div>
+				</div><br/>
+				<button  class="btn btn-primary" >Sign up</button><br/><br/>
 				<input type='text' class='form-control' id='' placeholder=''/><br/>
 			</div>
 			<div class="modal-footer">
