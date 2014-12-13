@@ -67,6 +67,10 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                  <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">
                  <img src ='img/collap.gif' style="width:70px;">collap</a>
             </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-2 navbar-header">
+                <a data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;">Sign In</a>
+            </div>
             <div class="span3 pull-right">
                 <ul class="list-inline" style='padding-top: 10px;'>
                     <li><p style='font-size:9pt; color:#fff;'>Powered By : </p></li>
@@ -85,25 +89,34 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                 <div class="modal-header">
                                    
                                     <p align="center"><font size="5" >Let's Collaborate!!</font></p>
+                                    <div class="alert-placeholder"> </div>
                                 </div>
                                 <div class="modal-body">
-                                     <div class="alert_placeholder"> </div>
-                                    <br/>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Username</span>
-                                        <input type="text" class="form-control" id="username" placeholder="Email or Username">
-                                    </div>
-                                    <br/>
-                                    <div class="input-group">
-                                        <span class="input-group-addon">Password&nbsp;</span>
-                                        <input type="password" class="form-control" id="passwordlogin" placeholder="Password">
-                                    </div><br/>
-                                    <button type="submit" class="btn btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
-                                    <a data-toggle="modal" data-target="#forgetPassword" style="float: right; font-size:11pt; padding-top: 5px ; cursor:pointer;">Forgot Password</a>
+                                    <div class="inline-form">
+                                        <div class="row">
+                                            <div class="col-md-6">                  
+                                                <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>  
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>                    
+                                            </div>
+                                        </div>
+                                    </div><br/> 
+                                         <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
+                                          <span id="status_email"></span>
+                                            <br/>                   
+                                    <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
+                                   <br/>
+                                   <div class="inline-form">
+                                       <div class="row">
+                                            <div class="col-md-6">
+                                        <input type="password" class="form-control" style="width: 100%" id="passwordR" placeholder="password"/>
+                                        </div><div class="col-md-6">
+                                        <input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
+                                    </div></div></div>
+                                    <input type="submit" class="btn btn-primary btn-lg" id = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
                                 </div>
-                                <div class="modal-footer">
-                                    <button data-toggle="modal" class="btn btn-primary" data-target="#myModal" style="float: right; cursor:pointer;"><font size="3" >Sign up</font></button>
-                                </div>
+                                        
                             </div>
                         </div>
                     </div>
@@ -119,33 +132,23 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                 <span aria-hidden="true">&times;</span>
                                 <span class="sr-only">Close</span>
                             </button>
-                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Sign up for Collap</font></h4>
+                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Sign In for collap</font></h4>
                             <div class="alert-placeholder"> </div>
                         </div>
                         <div class="modal-body">
-                            <div class="inline-form">
-                                <div class="row">
-                                    <div class="col-md-6">					
-                                        <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
-                                    </div>
-                                </div>
-                            </div><br/>	
-                                 <input type="text" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
-                                  <span id="status_email"></span>
-                                    <br/>					
-                            <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
-                           <br/>
-                           <div class="inline-form">
-							   <div class="row">
-									<div class="col-md-6">
-                             	<input type="password" class="form-control" style="width: 100%" id="passwordR" placeholder="password"/>
-								</div><div class="col-md-6">
-								<input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
-							</div></div></div>
-                            <input type="submit" class="btn btn-primary btn-lg" id = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
+                                     
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">Username</span>
+                                <input type="text" class="form-control" id="username" placeholder="Email or Username">
+                            </div>
+                            <br/>
+                            <div class="input-group">
+                                <span class="input-group-addon">Password&nbsp;</span>
+                                <input type="password" class="form-control" id="passwordlogin" placeholder="Password">
+                            </div><br/>
+                            <button type="submit" class="btn btn-success" id="request" value='login' onclick="validateLoginFormOnSubmit()"><font size="3" >Log in</font></button>
+                            <a data-toggle="modal" data-target="#forgetPassword" style="float: right; font-size:11pt; padding-top: 5px ; cursor:pointer;">Forgot Password</a>
                         </div>
                     </div>
                 </div>
