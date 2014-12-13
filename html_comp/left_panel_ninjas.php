@@ -1,5 +1,5 @@
 <div class="bs-component list-group">
-	<div class='list-group-item'>
+	<div class='list-group-item'style="padding-left: 3px; padding-right: 3px;">
         <div class='panel-heading'><font size="3"> PROJECTS&nbsp;&nbsp;&nbsp;</font>
 	        <?php 
 		        if (isset($_SESSION['user_id'])) {
