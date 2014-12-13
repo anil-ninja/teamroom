@@ -1,11 +1,24 @@
-<div class="bs-component">
-	<div class='list-group'  style='cursor: pointer;'>
-            <div class='list-group-item intro'><font size="3"> PROJECTS&nbsp;&nbsp;&nbsp;</font><br><font size='2'> Classified</font>
-                            <a class='pull-right' data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a></div>
-                <?php 
-                    if (isset($_SESSION['user_id'])) {              
- 		echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
-                    <table>
+<div class="bs-component list-group">
+	<div class='list-group-item'>
+        <div class='panel-heading'><font size="3"> PROJECTS&nbsp;&nbsp;&nbsp;</font>
+	        <?php 
+		        if (isset($_SESSION['user_id'])) {
+		        	echo "<a class='pull-right' data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a>";
+				}
+				else {
+					echo "<a class='pull-right' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a>";
+				}
+			?>
+		</div>
+		
+        <?php 
+            if (isset($_SESSION['user_id'])) {              
+ 		echo "<div class='panel-group'>
+ 				<div class='panel panel-default'>
+ 					<div class='panel-heading'>
+ 						<font size='2'> Classified</font></div>
+ 						<div class='panel-content'>
+			    	<table>
                     <tr><td>";   
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
@@ -34,12 +47,16 @@
                             }  
                             echo "</td></tr></table>
                                 </div>";
+            echo "</div></div>";
                     }
                     ?>
-				<div class='list-group-item intro'><font size="2">Joined</font></div>
+				<div class='panel-group'>
+ 				<div class='panel panel-default'>
+ 					<div class='panel-heading'>
+ 						<font size='2'>Joined</font></div>
+ 						<div class='panel-content'>
                     <?php 
-                    echo "<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
-							<table>
+                    echo "<table>
 								<tr><td>";
                         $project_public_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
@@ -69,14 +86,17 @@
 			
 					} 
 					echo "</td></tr></table>
-                                </div>";
+                                </div></div></div>";
                         $project_public_title_display2 = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time
 																				FROM projects WHERE user_id != '$user_id' and project_type= '1' and project_id NOT
 																				IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
 																				ORDER BY rand() LIMIT 5;");
 						if (mysqli_num_rows($project_public_title_display2) != 0) {	
-							echo "<div class='list-group-item intro'><font size='2'>Recommonded Public Projects</font></div>
-							<div class='list-group-item' style='background-color: rgba(240, 240, 240, 0.32);'>
+							echo "<div class='panel-group'>
+ 				<div class='panel panel-default'>
+ 					<div class='panel-heading'>
+ 						<font size='2'> Recommended Project</font></div>
+ 						<div class='panel-content'>
 							<table>";
                         while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
 								$public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
@@ -97,14 +117,22 @@
 									<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 									data-placement='bottom' data-original-title='".$titlep2."' style='height: 20px;font-size:11px;text-align: left;'>
 									".$prtitlep2."
-									<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>" ;
+									<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'></p>
+								</button></form></td><td>";
 									//$remaining_time_ownp.
-					echo "</p></button></form></td><td>
-								<button type='submit' class='btn-link' onclick='joinproject(".$idproject2.")' data-toggle='tooltip' 
+					if (isset($_SESSION['user_id'])) {
+						echo "<button type='submit' class='btn-link' onclick='joinproject(".$idproject2.")' data-toggle='tooltip' 
                                 data-placement='bottom' data-original-title='Join This Project' style='height: 20px;font-size:11px;text-align: left;'
-                                >Join</button></td></tr>" ;
+                                >Join</button>";
 					}
-					echo "</table></div>";
+					else {
+						echo "<a class='pull-right' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'>Join</a>";
+					}
+					echo "</td></tr>" ;
+					}
+					echo "</table></div>
+					</div>
+					</div>";
 				}
                     ?>
     </div>	
