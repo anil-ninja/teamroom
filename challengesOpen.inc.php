@@ -111,7 +111,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span></div>                    
                        <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/><br/>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 16px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/><br/>";
         //    $display_title =  "<p style='font-famiy: Calibri,sans-serif; font-size: 32px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>" 
           //                              .ucfirst($ch_title)."</b></p>";
            // $display_name_stmt = "<span style= 'color: #808080'>
