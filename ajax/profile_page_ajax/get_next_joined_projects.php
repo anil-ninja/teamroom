@@ -8,6 +8,7 @@ if ($_POST['next_JnPr']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
     $limit = $_SESSION['next_JP'];
     $username = $_SESSION['username'];
+    $user_id = $_SESSION['user_id'];
     $ajoin = (int) $limit;
     $bjoin = $ajoin + 3;
     
@@ -33,17 +34,6 @@ if ($_POST['next_JnPr']) {
             
             $show_JP = $show_JP. "<div class='list-group'>
                                     <div class='list-group-item'>";
-            if ($user_id_project == $_SESSION['user_id'] && isset($_SESSION['user_id'])) {
-                $show_JP = $show_JP.  "<div class='pull-right'>
-                        <div class='list-group-item'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                <li><button class='btn-link' href='#'>Edit Project</button></li>
-                                <li><button class='btn-link' pID='" . $project_id_table . "' onclick='delProject(" . $project_id_table . ");'>Delete Project</button></li>
-                            </ul>
-                        </div>
-                    </div>";
-            }
             $show_JP = $show_JP. "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                                     .ucfirst($project_title_table)."</a></b></p>
@@ -79,13 +69,10 @@ $show_JP = $show_JP. "<div class='list-group-item pull-right'>
                         <ul class='dropdown-menu' aria-labelledby='dropdown'>";
             
                     if($comment_user_id == $_SESSION['user_id']) {
-                        $show_JP = $show_JP. "<li><button class='btn-link' pID='".$ida."' onclick='del_project_comment(".$ida.");'>Delete</button></li>";
+                        $show_JP = $show_JP. "<li><button class='btn-link' onclick='delcomment(\"".$ida."\", 1);'>Delete</button></li>";
                     } 
                     else {
-                       $show_JP = $show_JP. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                    <button type='submit' name='spem_prresp' value='".$ida."' class='btn-link' >Report Spam</button>
-                                </form>
-                            </li>";
+                       $show_JP = $show_JP. "<li><button class='btn-link' onclick='spem(\"".$ida."\", 10);'>Report Spam</button></li>";
                     }
                 $show_JP = $show_JP. "</ul>
         </div>";
@@ -100,8 +87,10 @@ $show_JP = $show_JP. "<div class='list-group-item pull-right'>
                 <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
-    $show_JP = $show_JP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$project_id_table."' placeholder='Want to know your comment....' />
-                            <button type='submit' onclick='comment_project(".$project_id_table.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
+    $show_JP = $show_JP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$project_id_table."'
+						 placeholder='Want to know your comment....'/>
+						<button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$project_id_table."\", 2)' >
+						<span class='glyphicon glyphicon-chevron-right'></span></button>";
     } 
     else {
         $show_JP = $show_JP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>

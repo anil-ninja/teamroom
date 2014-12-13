@@ -79,7 +79,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
             <div class = "col-xs-7 col-ls-8"></div>	
             <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px;">
                 <div class="bs-component">
-                    <div class="modal">
+                    <div class="modal" style="width: 380px;">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -171,7 +171,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <span id="status_email_forget_password"></span>
                                 </div>
                                 <br>
-                                <button type="submit" class="btn-primary" name="request_password"><font size="3" >Submit</font></button>
+                                <button type="submit" class="btn btn-primary" name="request_password"><font size="3" >Submit</font></button>
                             </form>
                         </div>
                     </div>

@@ -1,4 +1,5 @@
 <?php 
+require_once('ConnectionProperties.class.php');
 class challenge{
     public $id = 0;
     public $challenge_title = "";
@@ -15,7 +16,7 @@ class challenge{
     }
     function setValues(){
         //include_once '../lib/db_connect.php';
-        $db_handle = mysqli_connect("localhost","root","redhat111111","ninjasTeamRoom");
+        $db_handle = mysqli_connect(ConnectionProperty::getHost(), ConnectionProperty::getUser(), ConnectionProperty::getPassword(),ConnectionProperty::getDatabase());
         if (mysqli_connect_errno()) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }

@@ -1,4 +1,5 @@
 <?php 
+require_once('ConnectionProperties.class.php');
 class profile{
     public $id = 0;
     public $first_name = "";
@@ -10,7 +11,7 @@ class profile{
         //$this->setValues($id);
     }
     function setValues($username){
-       $db_handle = mysqli_connect("localhost","root","redhat111111","ninjasTeamRoom");
+       $db_handle = mysqli_connect(ConnectionProperty::getHost(), ConnectionProperty::getUser(), ConnectionProperty::getPassword(),ConnectionProperty::getDatabase());
         if (mysqli_connect_errno()) {
             echo "Failed to connect to MySQL: " . mysqli_connect_error();
         }

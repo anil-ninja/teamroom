@@ -35,10 +35,8 @@
         <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-7">
-                <?php
-                
+                <?php                
                     challenge_display($db_handle, $challengeSearchID);
-                
                 ?>
                 <div class="panel">
                 <?php 
@@ -74,59 +72,47 @@
            <?php 
                 echo "<div class='bs-component list-group'>
                         <div class='list-group-item' style='padding-left: 0px; padding-right: 0px;'>
-                            <div class='list-group-item'>
-                                <h4><p style='margin-bottom:5px; margin-top:5px;'> Explore more </p><h4>
-                            </div>";
-                $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 150) as stmt FROM challenges 
-                                                        WHERE challenge_type != '2' AND (challenge_status !='3' AND challenge_status != '7') AND challenge_id != $challengeSearchID AND blob_id = '0')  
-                                                    UNION 
-                                                    (SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 150) as stmt FROM challenges as a JOIN blobs as b 
-                                                        WHERE a.blob_id = b.blob_id AND challenge_type != '2' AND (challenge_status !='3' AND challenge_status != '7') AND challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
+                         <div class='list-group-item'><h4><p style='margin-bottom:5px; margin-top:5px;'> Explore more </p><h4></div>";
+                $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
+                                                        WHERE challenge_type != '2' AND challenge_status !='3' AND challenge_status != '7' AND 
+                                                        challenge_id != $challengeSearchID AND blob_id = '0')  
+														UNION 
+														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 250) as stmt FROM challenges as a JOIN blobs as b 
+														WHERE a.blob_id = b.blob_id AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
+														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                 while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                     $challenge_user_chID = $challenge_userRow['challenge_id'];
                     $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
-                    $challenge_user_stmt = $stmt_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
-                    //echo $challenge_user_stmt;
-                    echo "<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
-                            <div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
-                                <div class='panel-heading' style='padding-left: 0px;'>
-                                    <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;'>"
-                                    .ucfirst($challenge_user_title)."</p></b>
-                                </div>
-                                <div class='panel-content'>";
-                                if (substr($challenge_user_stmt, 0, 4) == "<img") {
-                                    $arrayStmt = explode(">", $challenge_user_stmt);
-                                    echo $arrayStmt[1]."<br>";
-                                } else {
-                                    echo $challenge_user_stmt;
-                                }
-                        echo "</div>
-                        </div></a>";
-                }
+                    $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
+                    echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242); max-width : 100%;'>
+							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
+                            <div class='panel-heading' style='padding-left: 0px;'>
+                               <b><p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;'>"
+                                .ucfirst($challenge_user_title)."</p></b>
+                            </div>
+                            <div class='panel-content'><p style='word-wrap: break-word;'>". $challenge_user_stmt."</p></div></a>
+						</div>";
+					}
                 echo "</div>
                     <div class='list-group-item' style='padding-left: 0px; padding-right: 0px;'>
-                        <div class='list-group-item'>
-                            <h4><p style='margin-bottom:5px; margin-top:5px;'> Open Projects </p><h4>
-                        </div>";
-                $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 150) as stmt FROM projects 
+                       <div class='list-group-item'><h4><p style='margin-bottom:5px; margin-top:5px;'> Open Projects </p><h4></div>";
+                $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 250) as stmt FROM projects 
                                                         WHERE project_type = '1' AND blob_id = '0')  
                                                     UNION 
-                                                    (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 150) as stmt FROM projects as a JOIN blobs as b 
+                                                    (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 250) as stmt FROM projects as a JOIN blobs as b 
                                                         WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 3 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
                     $project_id = $projectsRow['project_id'];
                     $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                     $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
                 echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
+						<a href='project.php?project_id=".$project_id."'>
                         <div class='panel-heading' style='padding-left: 0px;'>
-                            <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;'>
-                            <a href='project.php?project_id=".$project_id."'>"
-                    .ucfirst($project_title_display)."</p></b>
-                                </div>
-                                <div class='panel-content'>";
-                    echo $project_title_stmt."....<br>
+                           <b><p style='font-family: Sans-serif; font-size:14px;word-wrap: break-word;'>"
+							.ucfirst($project_title_display)."</p></b>
                         </div>
-                        </div></a>";
+                        <div class='panel-content'><p style='word-wrap: break-word;'>".$project_title_stmt."....</p><br></div></a>
+					</div>";
                 }
                 echo "</div>";
             ?>

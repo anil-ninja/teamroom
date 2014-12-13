@@ -30,7 +30,12 @@ if ($_POST['next']) {
         $chall_creation1 = $user_challenges_displayRow['creation_time'];
         $chall_creation = date("j F, g:i a", strtotime($chall_creation1));
         $chall_user_id = $user_challenges_displayRow['user_id'];
-        
+        $totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$challenge_id' and like_status = '1' ;");
+		if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
+		else { $likes = '' ; }
+		$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$challenge_id' and like_status = '2' ;");
+		if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
+		else { $dislikes = '' ; }
         $show = $show. "<div class='list-group challenge'>
                             <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
@@ -38,14 +43,11 @@ if ($_POST['next']) {
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
                                 if($chall_user_id == $_SESSION['user_id']) {
-                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(".$challenge_id.")'>Edit</button></li>
-                                        <li><button class='btn-link' cID='".$challenge_id."' onclick='delChallenge(".$challenge_id.");'>Delete</button></li>";                    
+                                    $show = $show . "<li><button class='btn-link' onclick='edit_content(\"".$challenge_id."\", 1)'>Edit</button></li>
+                                        <li><button class='btn-link' onclick='delChallenge(\"".$challenge_id."\", 3);'>Delete</button></li>";                    
                                 }
                                 else {
-                                $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                                <button type='submit' name='pr_spem' value='".$challenge_id."' class='btn-link' >Report Spam</button>
-                                            </form>
-                                        </li>";
+                                $show = $show . "<li><button class='btn-link' onclick='spem(\"".$challenge_id."\", 5);'>Report Spam</button></li>";
                                 } 
                         $show = $show . "</ul>
                         </div>";
@@ -56,9 +58,9 @@ if ($_POST['next']) {
                 
                 <span class='glyphicon glyphicon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(".$challenge_id .")'>
+                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(".$challenge_id .")'>
+                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
@@ -83,24 +85,18 @@ if ($_POST['next']) {
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
 						&nbsp&nbsp&nbsp" .$comment_all_ch ;
         if (isset($_SESSION['user_id'])) {
-            //$user_session_id = ($_SESSION['user_id']);
-            //dropDown_delete_comment_challenge($db_handle, $comment_id, $user_session_id);
-                    $show = $show . "<div class='list-group-item pull-right'>
+              $show = $show . "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
             
                  if($comment_user_id == $_SESSION['user_id']) {
-                        $show = $show . "<li><button class='btn-link' cID='".$comment_id."' onclick='delcomment(".$comment_id.");'>Delete</button></li>";
+                        $show = $show . "<li><button class='btn-link' onclick='delcomment(\"".$comment_id."\", 2);'>Delete</button></li>";
                     } 
                     else {
-                      $show = $show . "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                    <button type='submit' name='spem' value='".$comment_id."' class='btn-link' >Report Spam</button>
-                                </form>
-                            </li>";
+                      $show = $show . "<li><button class='btn-link' onclick='spem(\"".$comment_id."\", 8);'>Report Spam</button></li>";
                     }
              $show = $show . "</ul>
         </div>";
-
         }
         $show = $show."</div></div></div>";
     }
@@ -110,7 +106,7 @@ if ($_POST['next']) {
                         </div>
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
                              placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn-primary btn-sm' onclick='comment(".$challenge_id.")' ><span class='glyphicon glyphicon-chevron-right'></span></button>
+                            <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$challenge_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>
                     </div></div>";
          $show = $show."</div>";
     }

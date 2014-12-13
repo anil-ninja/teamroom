@@ -5,7 +5,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="row">
-    <div class="col-md-2 navbar-header">
+    <div class="col-md-3 navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -17,8 +17,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         </div>
         
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
-                <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
-                    <li class='navbar-text' >
+                <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive" style= "margin-left:15px;">
                      <script> 
                          (function() { 
                              var cx = '007811515162108704212:nlk9cflmqvg'; 
@@ -29,7 +28,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                          })(); 
                      </script> 
                     <gcse:searchbox></gcse:searchbox>
-                    </li>
                 </ul>
                 <ul class='ccol-md-9 nav navbar-nav navbar-right' style='margin-right: 0px;'>
                     <?php
@@ -166,7 +164,6 @@ else {
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-				<div class='alert_placeholder'></div>
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
                 <h4 class="modal-title" id="myModalLabel">Create New Project</h4>
             </div>
@@ -233,7 +230,6 @@ else {
 				</button>
 				<h4 class="modal-title" id="myModalLabel"><font size="5" >Let's Join</font></h4>
 			</div>
-			<div class='alert_placeholder'></div>
 			<div class="modal-body">
 				<div class='row'>
 					<div class='col-md-6'>

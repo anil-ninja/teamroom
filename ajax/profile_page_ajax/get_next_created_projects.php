@@ -8,6 +8,7 @@ if ($_POST['next_CP']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
     $limit = $_SESSION['last_CP_3'];
     $username = $_SESSION['username'];
+    $user_id = $_SESSION['user_id'];
     $a = (int) $limit;
     $b = $a + 3;
     
@@ -40,7 +41,7 @@ if ($_POST['next_CP']) {
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>
                                 <li><button class='btn-link' href='#'>Edit Project</button></li>
-                                <li><button class='btn-link' pID='" . $project_id_table . "' onclick='delProject(" . $project_id_table . ");'>Delete Project</button></li>
+                                <li><button class='btn-link' onclick='delChallenge(\"".$project_id_table."\", 4);'>Delete Project</button></li>
                             </ul>
                         </div>
                     </div>";
@@ -75,23 +76,18 @@ $show_CP = $show_CP.  "<div id='commentscontainer'>
                         <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
                         <small>" . $projectres . "</small>";
                 if (isset($_SESSION['user_id'])) {
-            //dropDown_delete_comment_project($db_handle, $ida, $user_session_id);
-$show_CP = $show_CP. "<div class='list-group-item pull-right'>
+	$show_CP = $show_CP. "<div class='list-group-item pull-right'>
                         <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
                         <ul class='dropdown-menu' aria-labelledby='dropdown'>";
             
-                    if($comment_user_id == $profile_user_id) {
-                        $show_CP = $show_CP. "<li><button class='btn-link' pID='".$deleteid."' onclick='del_project_comment(".$deleteid.");'>Delete</button></li>";
+                    if($comment_user_id == $_SESSION['user_id']) {
+                        $show_CP = $show_CP. "<li><button class='btn-link' onclick='delcomment(\"".$ida."\", 1);'>Delete</button></li>";
                     } 
                     else {
-                       $show_CP = $show_CP. "<li><form method='POST' onsubmit=\"return confirm('Sure to Report Spem !!!')\">
-                                    <button type='submit' name='spem_prresp' value='".$deleteid."' class='btn-link' >Report Spam</button>
-                                </form>
-                            </li>";
+                       $show_CP = $show_CP. "<li><button class='btn-link' onclick='spem(\"".$ida."\", 10);'>Report Spam</button></li>";
                     }
                 $show_CP = $show_CP. "</ul>
-        </div>";
-                    
+        </div>";                    
                 }
             $show_CP = $show_CP. "</div>
                 </div> 
@@ -102,8 +98,10 @@ $show_CP = $show_CP. "<div class='list-group-item pull-right'>
                 <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
-    $show_CP = $show_CP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='pr_resp_".$project_id_table."' placeholder='Want to know your comment....' />
-                            <button type='submit' onclick='comment_project(".$project_id_table.")' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
+    $show_CP = $show_CP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$project_id_table."'
+						 placeholder='Want to know your comment....'/>
+						<button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$project_id_table."\", 2)' >
+						<span class='glyphicon glyphicon-chevron-right'></span></button>";
     } 
     else {
         $show_CP = $show_CP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
