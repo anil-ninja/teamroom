@@ -298,12 +298,22 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
         echo "</div></div></div>";
     }
     echo "<div class='comments_".$challenge_id."'></div><div class='comments clearfix'>
-                        <div class='pull-left lh-fix'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
-                        </div>
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
-                             placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$challenge_id."\", 1)' >
-                            <span class='glyphicon glyphicon-chevron-right'></span></button></div></div>";
+            <div class='pull-left lh-fix'>
+                <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+            </div>";
+            if (isset($_SESSION['user_id'])) {
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
+                 placeholder='Want to know your comment....'/>
+                <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$challenge_id."\", 1)' >
+                <span class='glyphicon glyphicon-chevron-right'></span></button>";
+            }
+            else {
+                echo " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+                        <a data-toggle='modal' data-target='#SignIn'>
+                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                        </a>";
+            }
+            echo "</div>
+                </div>";
 }
 ?>
