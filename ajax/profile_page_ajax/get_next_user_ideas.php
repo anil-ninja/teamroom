@@ -104,13 +104,18 @@ if ($_POST['user_next_idea']) {
             <div class='comments_".$idea_id."'></div><div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
-                </div>
-                    <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$idea_id."'
+                </div>";
+                if (isset($_SESSION['user_id'])) {
+    $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$idea_id."'
                         placeholder='Want to know your comment....'/>
-                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$idea_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>
-                </div>
-            </div>";
-         $show_idea = $show_idea."</div></div>";
+                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$idea_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>";
+                else {
+            $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+                                    <a data-toggle='modal' data-target='#SignIn'>
+                                        <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                    </a>";
+                        }
+         $show_idea = $show_idea."</div></div></div>";
     }
     if (mysqli_error($db_handle)) {
         echo "Failed!";
