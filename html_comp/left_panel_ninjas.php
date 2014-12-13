@@ -1,6 +1,6 @@
 <div class="bs-component list-group">
-	<div class='list-group-item'>
-        <div class='panel-heading'><font size="3"> PROJECTS&nbsp;&nbsp;&nbsp;</font>
+	<div class='list-group-item'style="padding-left: 3px; padding-right: 3px;">
+        <div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'><font size="3"> PROJECTS&nbsp;&nbsp;&nbsp;</font>
 	        <?php 
 		        if (isset($_SESSION['user_id'])) {
 		        	echo "<a class='pull-right' data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a>";
@@ -13,9 +13,9 @@
 		
         <?php 
             if (isset($_SESSION['user_id'])) {              
- 		echo "<div class='panel-group'>
+ 		echo "<div class='panel-group' style='margin-bottom: 5px;'>
  				<div class='panel panel-default'>
- 					<div class='panel-heading'>
+ 					<div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'>
  						<font size='2'> Classified</font></div>
  						<div class='panel-content'>
 			    	<table>
@@ -50,10 +50,10 @@
             echo "</div></div>";
                     }
                     ?>
-				<div class='panel-group'>
+				<div class='panel-group' style='margin-bottom: 5px;'>
  				<div class='panel panel-default'>
- 					<div class='panel-heading'>
- 						<font size='2'>Joined</font></div>
+ 					<div class='panel-heading'style ='padding-top: 4px; padding-bottom: 4px;'>
+ 						<font size='2'>Public</font></div>
  						<div class='panel-content'>
                     <?php 
                     echo "<table>
@@ -92,10 +92,10 @@
 																				IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
 																				ORDER BY rand() LIMIT 5;");
 						if (mysqli_num_rows($project_public_title_display2) != 0) {	
-							echo "<div class='panel-group'>
+							echo "<div class='panel-group'style='margin-bottom: 5px;'>
  				<div class='panel panel-default'>
- 					<div class='panel-heading'>
- 						<font size='2'> Recommended Project</font></div>
+ 					<div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'>
+ 						<font size='2'> Recommended</font></div>
  						<div class='panel-content'>
 							<table>";
                         while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
