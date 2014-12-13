@@ -73,11 +73,11 @@
                 echo "<div class='bs-component list-group'>
                         <div class='list-group-item' style='padding-left: 0px; padding-right: 0px;'>
                          <div class='list-group-item'><h4><p style='margin-bottom:5px; margin-top:5px;'> Explore more </p><h4></div>";
-                $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 150) as stmt FROM challenges 
+                $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
                                                         WHERE challenge_type != '2' AND challenge_status !='3' AND challenge_status != '7' AND 
                                                         challenge_id != $challengeSearchID AND blob_id = '0')  
 														UNION 
-														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 150) as stmt FROM challenges as a JOIN blobs as b 
+														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 250) as stmt FROM challenges as a JOIN blobs as b 
 														WHERE a.blob_id = b.blob_id AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
 														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                 while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
@@ -96,10 +96,10 @@
                 echo "</div>
                     <div class='list-group-item' style='padding-left: 0px; padding-right: 0px;'>
                        <div class='list-group-item'><h4><p style='margin-bottom:5px; margin-top:5px;'> Open Projects </p><h4></div>";
-                $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 150) as stmt FROM projects 
+                $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 250) as stmt FROM projects 
                                                         WHERE project_type = '1' AND blob_id = '0')  
                                                     UNION 
-                                                    (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 150) as stmt FROM projects as a JOIN blobs as b 
+                                                    (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 250) as stmt FROM projects as a JOIN blobs as b 
                                                         WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 3 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
                     $project_id = $projectsRow['project_id'];
