@@ -48,9 +48,7 @@
         <!--Signup Modal -->
             <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                
                 <div class="modal-content" style="width:370px; height:auto">
-                   
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span>

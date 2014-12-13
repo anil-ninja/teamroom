@@ -13,6 +13,7 @@ if($_POST['taskdetails']){
 	$users = $_POST['users'] ;
 	$title = $_POST['title'] ;
 	$image = $_POST['img'] ;
+	$time = date("Y-m-d H:i:s") ;
 	if (strlen($image) < 30 ) {
 		$details = $detailstext ;
 	}
@@ -29,8 +30,8 @@ if ($users != 0) {
 		$body2 = "http://collap.com/profile.php?username=".$mail ;
         collapMail($mailto, $username." assign Task to you", $body2);		
  if (strlen($details) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
-                                    VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
+                                    VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2', '$time') ; ") ;
         $ida = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ;  
                           
@@ -43,8 +44,8 @@ else {
                                 VALUES (default, '$details');");
         
         $idb = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
-                                VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
+        mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
+                                VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2', '$time');");
         $idc = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idc', '$challange_eta', '1');") ;
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
@@ -64,8 +65,8 @@ else if ($email != "") {
 			  mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$owner', '$id', 'defaultteam') ;" ) ; 
 			   }	
  if (strlen($details) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
-                                    VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
+                                    VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2', '$time') ; ") ;
         $ida = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$ida', '$challange_eta', '1');") ;                   
     if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
@@ -77,8 +78,8 @@ else {
                                 VALUES (default, '$details');");
         
         $idb = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
-                                VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
+        mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
+                                VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2', '$time');");
         $idc = mysqli_insert_id($db_handle);
        mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idc', '$challange_eta', '1');") ;
 	 if(mysqli_error($db_handle)) { echo "Failed to Post Challange!"; }
@@ -87,8 +88,8 @@ else {
 }
 else {		
  if (strlen($details) < 1000) {
-        mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
-                                    VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2') ; ") ;
+        mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
+                                    VALUES ('$user_id', '$id', '$title', '$details', '1', '$challange_eta', '5', '2', '$time') ; ") ;
         $ida = mysqli_insert_id($db_handle);
         mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$id', '$team', '$ida');") ;
         $owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$id' and team_name = '$team' and user_id != '$user_id' ;") ;
@@ -111,8 +112,8 @@ else {
                                 VALUES (default, '$details');");
         
         $idb = mysqli_insert_id($db_handle);
-        mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, challenge_type, challenge_status) 
-                                VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2');");
+        mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
+                                VALUES ('$user_id', '$id', '$title', '$idb', '1', '$challange_eta', '5', '2', '$time');");
         $idc = mysqli_insert_id($db_handle);
         mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$id', '$team', '$idc');") ;
            $owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$id' and team_name = '$team' and user_id != '$user_id' ;") ;

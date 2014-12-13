@@ -12,10 +12,12 @@ if($_POST['id']){
 	$id = $_POST['id'];
 	$stmt=$_POST['projectsmt'];
 	$case = $_POST['case'];
+	$time = date("Y-m-d H:i:s") ;
 	$test = "" ;
 	if ($case == 1) {
 		events($db_handle,$user_id,"3",$id);
 		involve_in($db_handle,$user_id,"3",$id);
+		mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 		if (strlen($stmt)<1000) {	
 			mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
 			$comment_id = mysqli_insert_id($db_handle);
@@ -60,6 +62,7 @@ if($_POST['id']){
 				else {
 					events($db_handle,$user_id,"3",$id);
 					involve_in($db_handle,$user_id,"3",$id);
+					mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 					if (strlen($stmt)<1000) {	
 						mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
 						$comment_id = mysqli_insert_id($db_handle);

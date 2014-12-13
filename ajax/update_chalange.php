@@ -16,14 +16,16 @@ if($_POST['id']){
 	else {
 		$challange = $image." ".strstr($stmt, '<br/>') ;
 		}
+	$time = date("Y-m-d H:i:s") ;
 	if(strlen($challange) < 1000) {
-			mysqli_query($db_handle,"update challenges set stmt='$challange' where challenge_id='$id';") ;
+			mysqli_query($db_handle,"update challenges set stmt='$challange', last_update='$time' where challenge_id='$id';") ;
 			}
 			else {
 				$myquery1 = mysqli_query($db_handle,"select blob_id from challenges where challenge_id='$id';") ;
 				$myquery1Row = mysqli_fetch_array($myquery1) ;
 				$blob = $myquery1Row['blob_id'] ;
 				mysqli_query($db_handle,"update blobs set stmt='$challange' where blob_id='$blob';") ;
+				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 				}
 	echo $challange ;
 	mysqli_close($db_handle);

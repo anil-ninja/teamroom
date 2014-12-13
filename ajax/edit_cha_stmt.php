@@ -5,6 +5,7 @@ if($_POST['id']){
 	$projectsmt = $_POST['projectsmt'];
 	$project = $_POST['title'];
 	$video = $_POST['video'];
+	$time = date("Y-m-d H:i:s") ;
 	$myquery = mysqli_query($db_handle,"(select stmt from challenges where challenge_id='$id' and blob_id = '0')
 										UNION 
 										(select b.stmt from challenges as a join blobs as b where a.challenge_id='$id' and a.blob_id = b.blob_id);") ;
@@ -18,10 +19,10 @@ if($_POST['id']){
 				$newstmt = $projectsmt ;
 				}
 		if(strlen($newstmt) < 1000) {
-			mysqli_query($db_handle,"update challenges set stmt='$newstmt', challenge_title='$project' where challenge_id='$id';") ;
+			mysqli_query($db_handle,"update challenges set stmt='$newstmt', challenge_title='$project', last_update = '$time' where challenge_id='$id';") ;
 			}
 			else {
-				mysqli_query($db_handle,"update challenges set challenge_title='$project' where challenge_id='$id';") ;
+				mysqli_query($db_handle,"update challenges set challenge_title='$project', last_update = '$time' where challenge_id='$id';") ;
 				$myquery1 = mysqli_query($db_handle,"select blob_id from challenges where challenge_id='$id';") ;
 				$myquery1Row = mysqli_fetch_array($myquery1) ;
 				$blob = $myquery1Row['blob_id'] ;
@@ -32,10 +33,10 @@ if($_POST['id']){
 		else {
 			$chaaa = $video."<br/> ".$projectsmt ;
 			if(strlen($chaaa) < 1000) {
-				mysqli_query($db_handle,"update challenges set stmt='$chaaa', challenge_title='$project' where challenge_id='$id';") ;
+				mysqli_query($db_handle,"update challenges set stmt='$chaaa', challenge_title='$project', last_update = '$time' where challenge_id='$id';") ;
 			}
 			else {
-				mysqli_query($db_handle,"update challenges set challenge_title='$project' where challenge_id='$id';") ;
+				mysqli_query($db_handle,"update challenges set challenge_title='$project', last_update = '$time' where challenge_id='$id';") ;
 				$myquery1 = mysqli_query($db_handle,"select blob_id from challenges where challenge_id='$id';") ;
 				$myquery1Row = mysqli_fetch_array($myquery1) ;
 				$blob = $myquery1Row['blob_id'] ;

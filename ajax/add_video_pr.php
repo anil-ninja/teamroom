@@ -16,6 +16,7 @@ if($_POST['videos']){
 	$inforow = mysqli_fetch_array($info) ;
 	$title = $inforow['project_title'] ;
 	$type = $inforow['project_type'] ;
+	$time = date("Y-m-d H:i:s") ;
 	if($type == 2) {
 		$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
 											a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
@@ -27,8 +28,8 @@ if($_POST['videos']){
 			} 
 		}									
 	if (strlen($challange) < 1000) {
-		mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
-									VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '1', '999999', '8') ; ") ;
+		mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 
+									VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '1', '999999', '8', '$time') ; ") ;
 			$idp = mysqli_insert_id($db_handle);
 		involve_in($db_handle,$user_id,"10",$idp);
 		events($db_handle,$user_id,"10",$idp); 
@@ -36,8 +37,8 @@ if($_POST['videos']){
 		else {
 			mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$challange');");
 			$id = mysqli_insert_id($db_handle);
-			mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type) 
-								VALUES ('$user_id', '$pro_id', '$challenge_title', '$id', '1', '999999', ' ', '8');");
+			mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type, last_update) 
+								VALUES ('$user_id', '$pro_id', '$challenge_title', '$id', '1', '999999', ' ', '8', '$time');");
 			$idp = mysqli_insert_id($db_handle);
 			involve_in($db_handle,$user_id,"10",$idp);
 			events($db_handle,$user_id,"10",$idp); 
