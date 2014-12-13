@@ -1,3 +1,16 @@
+<!--start of analitics-->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-57631683-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<meta name="alexaVerifyID" content="ps_2q6N3IdsL_WR1W3E1rocnmys"/>
+<!--end of analitics-->
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/bootswatch.css">
 <link href="css/bootstrap-responsive.css" rel="stylesheet">

@@ -26,6 +26,9 @@ define ('DBNAME','ninjasTeamRoom');
 
 session_start();
 
+if(!isset($_SESSION['username'])) {
+	exit ;	
+	}
 global $dbh;
 $dbh = mysql_connect(DBPATH,DBUSER,DBPASS);
 mysql_selectdb(DBNAME,$dbh);
