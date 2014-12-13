@@ -5,7 +5,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="row">
-    <div class="col-md-2 navbar-header">
+    <div class="col-md-3 navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -17,7 +17,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         </div>
         
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
-                <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
+                <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive" style= "margin-left:15px;">
                      <script> 
                          (function() { 
                              var cx = '007811515162108704212:nlk9cflmqvg'; 
