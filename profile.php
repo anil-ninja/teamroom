@@ -122,7 +122,7 @@ $obj = new profile($UserName);
             } 
             else {
                 while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-                    echo " <span class='tags'>".$skill_displayRow['skill_name']."</span>&nbsp;";
+                    echo " <span class='tags' style='line-height: 2.1;'>".$skill_displayRow['skill_name']."</span>&nbsp;";
                 }
             }
             echo "<br/></span>";
@@ -260,7 +260,6 @@ $obj = new profile($UserName);
                             <span class="sr-only">Close</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
-                        <div class='alert_placeholder'></div>
                     </div>
                     <div class="modal-body">
                         <div class="input-group">
@@ -282,7 +281,6 @@ $obj = new profile($UserName);
                             <span class="sr-only">Close</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Add Skills</h4>
-                        <div class='alert_placeholder'></div>
                     </div>
                     <div class="modal-body">
 						Select Skill : &nbsp;&nbsp;&nbsp;&nbsp;
