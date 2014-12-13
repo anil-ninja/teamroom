@@ -8,10 +8,10 @@
 											    as b where a.user_id = b.user_id and b.user_id != '$profileViewUserID' and b.user_id != '$user_id')
 											    UNION
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
-											    where b.requesting_user_id = '$profileViewUserID' and a.user_id = b.knowning_id and b.status != '4')
+											    where b.requesting_user_id = '$profileViewUserID' and b.knowning_id != '$user_id' and a.user_id = b.knowning_id and b.status != '4' and b.status != '3')
 											    UNION
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
-											    where b.knowning_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2');");
+											    where b.knowning_id = '$profileViewUserID' and b.requesting_user_id != '$user_id' and a.user_id = b.requesting_user_id and b.status = '2');");
 
 	while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
 		$friendFirstName = $userProjectsRow['first_name'];
@@ -25,10 +25,10 @@
                                               as b where a.user_id = b.user_id and b.user_id != '$user_id' and b.user_id != '$profileViewUserID')
                                               UNION
 											  (select a.user_id FROM user_info as a join known_peoples as b
-											  where b.requesting_user_id = '$user_id' and a.user_id = b.knowning_id and b.status != '4')
+											  where b.requesting_user_id = '$user_id' and b.knowning_id != '$profileViewUserID' and a.user_id = b.knowning_id and b.status != '4' and b.status != '3')
 											  UNION
 											  (select a.user_id FROM user_info as a join known_peoples as b
-											  where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
+											  where b.knowning_id = '$user_id' and b.requesting_user_id != '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2') ;");
 		while($firendsRow = mysqli_fetch_array($firends)) {
                     $firendsuserid = $firendsRow['user_id'];
                     if ($firendsuserid == $useridFriends) {	
@@ -78,7 +78,7 @@
 <p> <b><u> Recommended </u></b></p>
  <div>
 	<?php
-		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN () limit 0, 5 ;");
+		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN () ORDER by rand() limit 0, 5 ;");
 		while ($RecommendedRow = mysqli_fetch_array($Recommended)) {
 			$friendFirstNamer = $RecommendedRow['first_name'];
 			$friendLastNamer = $RecommendedRow['last_name'];

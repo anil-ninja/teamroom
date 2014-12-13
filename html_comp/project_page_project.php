@@ -222,10 +222,10 @@
 }
 
 $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM
-                                            projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
-                                        UNION
-                                            (SELECT a.user_id, a.project_ETA, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
-                                            join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
+                                      projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
+                                      UNION
+                                      (SELECT a.user_id, a.project_ETA, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
+                                      join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
 $projectst = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
@@ -244,11 +244,10 @@ echo "<div class='list-group'>
                 <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
             </div>";
 if ($p_uid == $user_id) {
-	
     echo "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
               <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                <li><button class='btn-link' href='#'>Edit Project</button></li>
+                <li><button class='btn-link' onclick='editproject(".$pro_id.")'>Edit Project</button></li>
                 <li><button class='btn-link' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</button></li>
                 <li>
                   <a data-toggle='modal' class='btn-link' data-target='#project_order'>Sort Order</a>
@@ -445,7 +444,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             
             echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span>
-                     | Assigned To:&nbsp <a href ='profile.php?username=".$username_task."'>"
+                     | Assigned To:&nbsp <a href ='profile.php?username=".$ownname."'>"
                 .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | ".$timefunct." | 
                     <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
