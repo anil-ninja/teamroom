@@ -18,7 +18,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
                 <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
-                    <li class='navbar-text' >
                      <script> 
                          (function() { 
                              var cx = '007811515162108704212:nlk9cflmqvg'; 
@@ -29,7 +28,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                          })(); 
                      </script> 
                     <gcse:searchbox></gcse:searchbox>
-                    </li>
                 </ul>
                 <ul class='ccol-md-9 nav navbar-nav navbar-right' style='margin-right: 0px;'>
                     <?php
