@@ -84,10 +84,10 @@
                     $challenge_user_chID = $challenge_userRow['challenge_id'];
                     $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
                     $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
-                    echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242); max-width : 100%; word-wrap: break-word;'>
+                    echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242); max-width : 100%;'>
 							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                             <div class='panel-heading' style='padding-left: 0px;'>
-                               <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;'>"
+                               <b><p style='font-family: Sans-serif; height: 20px; font-size:14px; word-wrap: break-word;'>"
                                 .ucfirst($challenge_user_title)."</p></b>
                             </div>
                             <div class='panel-content'>". $challenge_user_stmt."</div></a>
@@ -108,7 +108,7 @@
                 echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
 						<a href='project.php?project_id=".$project_id."'>
                         <div class='panel-heading' style='padding-left: 0px;'>
-                           <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;'>"
+                           <b><p style='font-family: Sans-serif; height: 20px; font-size:14px;word-wrap: break-word;'>"
 							.ucfirst($project_title_display)."</p></b>
                         </div>
                         <div class='panel-content'>".$project_title_stmt."....<br></div></a>
