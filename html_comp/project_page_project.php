@@ -336,7 +336,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
 								 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
 								  a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
 								  WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
-								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time ".$sort_by." LIMIT 0, 10 ;");
+								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update ".$sort_by." LIMIT 0, 10 ;");
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];

@@ -17,7 +17,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a
                                     (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
                                     a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
                                     WHERE a.project_id = '$p_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
-                                    AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY creation_time DESC LIMIT $a, $b ;");
+                                    AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update DESC LIMIT $a, $b ;");
 	$show = "";
         $iR=0;
         $dropdown1 = "";

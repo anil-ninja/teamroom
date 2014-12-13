@@ -15,7 +15,7 @@ if ($_POST['user_next_idea']) {
                                                         JOIN user_info as b WHERE a.challenge_type=4 AND a.user_id=$profile_user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
                                                         UNION
                                                         (SELECT a.challenge_id, a.challenge_title, a.creation_time, LEFT(b.stmt, 500) as stmt, c.first_name, c.last_name, c.username FROM challenges as a JOIN blobs as b JOIN user_info as c 
-                                                        WHERE a.challenge_type=4 AND a.user_id=$profile_user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY challenge_id DESC LIMIT $a, $b;");
+                                                        WHERE a.challenge_type=4 AND a.user_id=$profile_user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=c.user_id) ORDER BY last_update DESC LIMIT $a, $b;");
     $show_idea = "";
     //$_SESSION['next_idea'] = 5;
     while($user_idea_displayRow= mysqli_fetch_array($user_idea_display)) {

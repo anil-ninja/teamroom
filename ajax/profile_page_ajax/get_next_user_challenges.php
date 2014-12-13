@@ -15,7 +15,7 @@ if ($_POST['next']) {
                                                         WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$profile_user_id AND b.user_id=$profile_user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=c.user_id)
                                                         UNION
                                                         (SELECT a.challenge_id, a.challenge_title, a.creation_time, c.user_id, b.stmt, d.first_name, d.last_name, d.username FROM challenges as a JOIN blobs as b JOIN challenge_ownership as c JOIN user_info as d 
-                                                        WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$profile_user_id AND c.user_id=$profile_user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=d.user_id) ORDER BY creation_time DESC LIMIT $a, $b;");
+                                                        WHERE (a.challenge_type=1 OR a.challenge_type=3) AND a.user_id=$profile_user_id AND c.user_id=$profile_user_id AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=b.blob_id AND a.user_id=d.user_id) ORDER BY last_update DESC LIMIT $a, $b;");
     $show = "";
     while($user_challenges_displayRow= mysqli_fetch_array($user_challenges_display)) {
     $i++;

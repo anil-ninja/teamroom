@@ -25,7 +25,7 @@ if ($_POST['chal']) {
 											(SELECT DISTINCT d.project_id, a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
-											 ORDER BY creation_time DESC LIMIT $a, $b;");
+											 ORDER BY last_update DESC LIMIT $a, $b;");
     $show = "";
     $get_display_ch_stmt_content = "" ;
     $dropDown_challenge_get = "";
