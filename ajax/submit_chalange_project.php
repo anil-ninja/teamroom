@@ -10,7 +10,7 @@ if($_POST['challange']){
 	$challangetext = $_POST['challange'];
 	$opentime = 1;//$_POST['opentime'] ;
 	$challenge_title = $_POST['challenge_title'] ;
-	$challange_eta = 1 ;//$_POST['challange_eta'] ; 
+	$challange_eta = 999999 ;//$_POST['challange_eta'] ; 
 	$image = $_POST['img'] ;
 	if (strlen($image) < 30 ) {
 			$challange = $challangetext ;

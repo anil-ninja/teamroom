@@ -19,7 +19,7 @@ if($_POST['taskdetails']){
 	else {
 		$details = $image."<br/> ".$detailstext ;
 		}
-	$challange_eta = 1 ;//$_POST['challange_eta'] ;
+	$challange_eta = 999999 ;//$_POST['challange_eta'] ;
 if ($users != 0) {
 		$owner = $users ;
 		$info = mysqli_query($db_handle,"select * from user_info where user_id = '$users';") ;
