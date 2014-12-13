@@ -181,7 +181,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                 </div>
             </div>
             <!--end modle-->
-            <?php include_once 'lib/html_inc_footers.php'; ?>
+<script type="text/javascript" src="js/username_email_check.js"></script>
+<script type="text/javascript" src="js/signupValidation.js"></script>
+<script type="text/javascript" src="js/loginValidation.js"></script>
             <script type="text/javascript">
 window.onload = function(){
   var text_input = document.getElementById ('username');

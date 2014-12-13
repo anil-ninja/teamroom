@@ -5,7 +5,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
   <div class="row">
-    <div class="col-md-2 navbar-header">
+    <div class="col-md-3 navbar-header">
               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-responsive-collapse">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -17,8 +17,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
         </div>
         
          <div class="collapse navbar-collapse" id="navbar-responsive-collapse" style='background : #4EC67F;'>
-                <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive">
-                    <li class='navbar-text' >
+                <ul class="col-md-3 nav navbar-nav navbar-left navbar-responsive" style= "margin-left:15px;">
                      <script> 
                          (function() { 
                              var cx = '007811515162108704212:nlk9cflmqvg'; 
@@ -29,7 +28,6 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                          })(); 
                      </script> 
                     <gcse:searchbox></gcse:searchbox>
-                    </li>
                 </ul>
                 <ul class='ccol-md-9 nav navbar-nav navbar-right' style='margin-right: 0px;'>
                     <?php
@@ -222,9 +220,9 @@ else {
         </div>
     </div>
     </div>
-<div class="modal fade" id="signupwithoutlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+<div class="modal fade" id="signupwithoutlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" >
 	<div class="modal-dialog">
-		<div class="modal-content">
+		<div class="modal-content" style=' margin-left: 40%; width:50%;'>
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
@@ -234,13 +232,14 @@ else {
 			</div>
 			<div class="modal-body">
 				<div class='row'>
-					<div class='col-md-6'>
+					<div class='col-md-7'>
 						<input type='text' class='form-control' style='width: 100%;' id='subscriptionid' placeholder='Enter Email-ID'/>
 					</div>
-					<div class='col-md-2'>
-						<input type='submit' class='btn-success btn-xs' id='Subscribe' value='Subscribe'/><br/>
+					<div class='col-md-3'>
+						<input type='submit' class='btn btn-success btn-xs' id='Subscribe' value='Subscribe'/><br/>
 					</div>
-				</div>
+				</div><br/>
+				<button  class="btn btn-primary" >Sign up</button><br/><br/>
 				<input type='text' class='form-control' id='' placeholder=''/><br/>
 			</div>
 			<div class="modal-footer">

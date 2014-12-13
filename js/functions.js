@@ -86,7 +86,6 @@ function add_member(PID, name) {
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
-					alert(result) ;
 					if (result == "true") {
 						$.ajax({
 							type: "POST",
