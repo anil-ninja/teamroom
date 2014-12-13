@@ -107,20 +107,20 @@
 <?php
 $user_id = $_SESSION['user_id'];
 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
-											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
+											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, a.last_update, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b where a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' 
 										   and a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
+											(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time, a.last_update,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c 
 											WHERE a.project_id='0' and a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											UNION
 											(SELECT DISTINCT c.project_id, a.challenge_id, c.project_title, a.challenge_title, a.challenge_status, a.user_id, 
-											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
+											a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, a.last_update, b.first_name, b.last_name, b.username from challenges
 										   as a join user_info as b join projects as c where a.project_id = c.project_id and c.project_type='1' and a.challenge_type !='5' and a.challenge_status != '3' and a.challenge_status != '7' 
 										   and a.blob_id = '0' and a.user_id = b.user_id)
 											UNION
-											(SELECT DISTINCT d.project_id, a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time,
+											(SELECT DISTINCT d.project_id, a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time, a.last_update,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.blob_id = c.blob_id and a.user_id = b.user_id )
 											 ORDER BY last_update DESC LIMIT 0, 10;");

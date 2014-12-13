@@ -328,12 +328,12 @@ echo "</div>
 $_SESSION['lastpr'] = '10';
 $_SESSION['project_id'] = $pro_id;
 $display_task_stmt_content = "" ;
-$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
+$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
 									a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
 									 WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
 									AND a.blob_id = '0' and a.user_id = b.user_id)
 									UNION
-								 (SELECT DISTINCT a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
+								 (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
 								  a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
 								  WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
 								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update ".$sort_by." LIMIT 0, 10 ;");
