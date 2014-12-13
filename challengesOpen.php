@@ -87,7 +87,7 @@
                     echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242); max-width : 100%;'>
 							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                             <div class='panel-heading' style='padding-left: 0px;'>
-                               <b><p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;'>"
+                               <b><p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
                                 .ucfirst($challenge_user_title)."</p></b>
                             </div>
                             <div class='panel-content'><p style='word-wrap: break-word;'>". $challenge_user_stmt."</p></div></a>
@@ -108,7 +108,7 @@
                 echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
 						<a href='project.php?project_id=".$project_id."'>
                         <div class='panel-heading' style='padding-left: 0px;'>
-                           <b><p style='font-family: Sans-serif; font-size:14px;word-wrap: break-word;'>"
+                           <b><p style='font-family: Sans-serif; font-size:14px;word-wrap: break-word;color:#3B5998;'>"
 							.ucfirst($project_title_display)."</p></b>
                         </div>
                         <div class='panel-content'><p style='word-wrap: break-word;'>".$project_title_stmt."....</p><br></div></a>
@@ -122,6 +122,12 @@
       <?php include_once 'html_comp/signup.php' ; ?>
         <?php include_once 'lib/html_inc_footers.php'; ?>
         <?php include_once 'html_comp/login_signup_modal.php'; ?>
-       
+        <script>
+$(".text").show();
+$(".editbox").hide();
+$(".editbox").mouseup(function(){
+return false
+});
+</script>
     </body>
 </html>
