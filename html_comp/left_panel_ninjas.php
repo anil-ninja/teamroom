@@ -72,7 +72,7 @@
 								}								   
 								$p_etap = $project_public_title_displayRow['project_ETA'] ;
 								$p_timep = $project_public_title_displayRow['creation_time'] ;
-								$timefuncp = date("j F, g:i a",strtotime($p_time));
+								$timefuncp = date("j F, g:i a",strtotime($p_timep));
 								$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
 								// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
 					echo "<form method='GET' action=''>
@@ -87,53 +87,10 @@
 					} 
 					echo "</td></tr></table>
                                 </div></div></div>";
-                        $project_public_title_display2 = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time
-																				FROM projects WHERE user_id != '$user_id' and project_type= '1' and project_id NOT
-																				IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
-																				ORDER BY rand() LIMIT 5;");
-						if (mysqli_num_rows($project_public_title_display2) != 0) {	
-							echo "<div class='panel-group'style='margin-bottom: 5px;'>
- 				<div class='panel panel-default'>
- 					<div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'>
- 						<font size='2'> Recommended</font></div>
- 						<div class='panel-content'>
-							<table>";
-                        while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
-								$public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
-								$idproject2 = $project_public_title_displayRow2['project_id'] ;
-							if (strlen($public_pr_titlep2) > 30) {
-								$prtitlep2 = substr(ucfirst($public_pr_titlep2),0,30)." ...";
-								} else {
-									$prtitlep2 = ucfirst($public_pr_titlep2) ;
-								}								   
-								$p_etap2 = $project_public_title_displayRow2['project_ETA'] ;
-								$p_timep2 = $project_public_title_displayRow2['creation_time'] ;
-								$timefuncp2 = date("j F, g:i a",strtotime($p_time2));
-								$titlep2 =  strtoupper($public_pr_titlep2)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp2 ;
-								// $remaining_time_ownp = remaining_time($p_timep, $p_etap);
-					
-					echo "<tr><td><form method='GET' action=''>
-									<input type='hidden' name='project_id' value='".$idproject2."'/>
-									<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-									data-placement='bottom' data-original-title='".$titlep2."' style='height: 20px;font-size:11px;text-align: left;'>
-									".$prtitlep2."
-									<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'></p>
-								</button></form></td><td>";
-									//$remaining_time_ownp.
-					if (isset($_SESSION['user_id'])) {
-						echo "<button type='submit' class='btn-link' onclick='joinproject(".$idproject2.")' data-toggle='tooltip' 
-                                data-placement='bottom' data-original-title='Join This Project' style='height: 20px;font-size:11px;text-align: left;'
-                                >Join</button>";
-					}
-					else {
-						echo "<a class='pull-right' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'>Join</a>";
-					}
-					echo "</td></tr>" ;
-					}
-					echo "</table></div>
-					</div>
-					</div>";
-				}
-                    ?>
+
+                    // recommended project function defined in functions/delete_comment for use in profile page joined project tab
+                        recommended_project ($db_handle);
+                    // function call here ends
+	         ?>
     </div>	
 </div>

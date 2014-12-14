@@ -149,6 +149,22 @@ function created_projects ($db_handle, $user_IDF) {
                                                         (SELECT a.user_id, a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a JOIN blobs as b JOIN user_info as c 
                                                             WHERE a.user_id = $user_IDF AND a.blob_id=b.blob_id AND a.project_type=1 AND a.user_id=c.user_id) ORDER BY creation_time DESC LIMIT 0, 3;");
     $_SESSION['last_CP_3'] = 3;
+$no_created_projects = mysqli_num_rows($project_created_display);
+    if ($no_created_projects == 0) {
+        if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
+            echo "<div class='jumbotron'>
+                    <p align='center'> You have not Created any Project <br> Create your project and Contribute<br><br>
+                        <a data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>+Create Project</a>
+                    </p>
+                </div>";
+        }
+        else {
+            echo "<div class='jumbotron'>
+                    <p align='center'>Oops No any project created</p>
+                </div>";
+        }
+    }
+    else {
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
@@ -187,6 +203,7 @@ function created_projects ($db_handle, $user_IDF) {
 
         }   
     }
+}
     
 function joined_projects ($db_handle, $user_IDF) {
     $project_created_display = mysqli_query($db_handle, "(SELECT a.project_id, a.project_title, a.stmt, a.creation_time, b.first_name, b.last_name, b.username FROM projects as a 
@@ -194,8 +211,25 @@ function joined_projects ($db_handle, $user_IDF) {
                                                         UNION 
                                                         (SELECT a.project_id, a.project_title, b.stmt, a.creation_time, c.first_name, c.last_name, c.username FROM projects as a 
                                                             JOIN user_info as c JOIN blobs as b WHERE a.project_id IN( SELECT teams.project_id from teams where teams.user_id = $user_IDF) AND a.user_id != $user_IDF AND a.project_type = 1 AND a.blob_id = b.blob_id AND a.user_id = c.user_id) ORDER BY project_id DESC LIMIT 0, 3;");
-    $_SESSION['next_JP'] = 3;    
-    while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
+    $_SESSION['next_JP'] = 3;
+
+    $no_joined = mysqli_num_rows($project_created_display);
+    if ($no_joined == 0) {
+        if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
+            echo "<div class='jumbotron'>
+                    <p align='center'> You have not Joined any Project <br> Join projects and Contribute<br><br>
+                    </p>";
+                    recommended_project ($db_handle);
+                echo "</div>";
+        }
+        else {
+            echo "<div class='jumbotron'>
+                    <p align='center'>Oops No any project created</p>
+                </div>";
+        }
+    }
+    else {
+        while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
@@ -220,6 +254,7 @@ function joined_projects ($db_handle, $user_IDF) {
                echo "</div>";
         }   
     }
+}
 
 function project_comments($db_handle, $project_id) {
     $username = $_SESSION['username'];
