@@ -99,6 +99,22 @@ $obj = new profile($UserName);
             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                 echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>";
                    } 
+            if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
+				$user_id = $_SESSION['user_id'] ;
+				$check = mysqli_query($db_handle, "SELECT user_id FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
+												(SELECT DISTINCT b.user_id FROM teams as a join teams as b where a.user_id = '$user_id' and b.user_id = '$profileViewUserID' and
+												a.team_name = b.team_name ) as b where a.user_id = b.user_id) and user_id NOT IN (select a.user_id 
+												FROM user_info as a join known_peoples as b where b.requesting_user_id = '$user_id' and b.knowning_id = '$profileViewUserID' and
+												a.user_id = b.knowning_id and b.status != '4' and b.status != '3')
+												and user_id NOT IN (select a.user_id FROM user_info as a join known_peoples as b
+												where b.knowning_id = '$user_id' and b.requesting_user_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2') ;") ;
+				while ($checkRow = mysqli_fetch_array($check)) {
+					$checkid = $checkRow['user_id'] ;
+				if($profileViewUserID == $checkid) {
+					echo "<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$profileViewUserID.")' value = 'link'/>";
+				}
+				}
+              } 
             ?>
             <div class='alert_placeholder'></div>
             <div class="viewprofile">
