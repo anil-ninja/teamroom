@@ -133,11 +133,26 @@ $obj = new profile($UserName);
 					}
              $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
              $aboutuserRow = mysqli_fetch_array($aboutuser);
-             echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;"
-                        .$aboutuserRow['organisation_name']."<br/>
-                        <span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;"
-                        .$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;"
-                        .$aboutuserRow['about_user'];
+             if (mysqli_num_rows($aboutuser) != 0) {
+				 echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;"
+							.$aboutuserRow['organisation_name']."<br/>
+							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;"
+							.$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;"
+							.$aboutuserRow['about_user'];
+			}
+			else {
+				if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
+					echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer;'>Edit</a><br/>
+							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer;'>Edit</a><br/>
+							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer;'>Edit</a>";
+					}
+					else {
+						echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
+							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
+							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
+						
+						}
+				}
              ?>
              </div>
              <div class="editprofile">
@@ -171,7 +186,7 @@ $obj = new profile($UserName);
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px;">
                   <li role="presentation" class="active" id="created_project">
-                      <a href="#tabCreatedProjects" role="tab" data-toggle="tab" style="padding: 15px 4px;">
+                      <a href="#tabCreatedProjects" role="tab" data-toggle="tab">
                         Created Projects 
                         <span class="badge">
                             <?=$totalProjectCreated?>
