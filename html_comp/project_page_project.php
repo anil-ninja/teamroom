@@ -1,8 +1,12 @@
-<?="<div class='list-group'>
-        <div class='list-group-item'>
-            <span class='color strong' style= 'font-size: 14pt;'>" .ucfirst($projttitle) . "</span>
-        </div>
-    </div>"?>
+<?php 
+	$_SESSION['project_id'] = $pro_id;
+	echo "<div class='list-group'>
+			<div class='list-group-item'>
+				<span class='color strong' style= 'font-size: 14pt;'><p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "</p></span>
+				<input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
+			</div>
+		  </div>";
+?>
 <?php if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
@@ -15,9 +19,6 @@
         </div>
         <div class='list-group-item'>
             <div id='textForm'><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
-            <?php
-            $_SESSION['project_id'] = $pro_id;
-            ?>
             <div id='challegeprForm'>
 
                 <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte .."/><br>
@@ -272,9 +273,41 @@ echo "<div class='row'>
   </div> */
 echo "</div>
      </div>
-      <div class='list-group-item'>
-            " . $projectst . "<br/><br/>";
-
+      <div class='list-group-item'><span id='project_".$pro_id."' class='text'>".$projectst."</span><br/><br/>";
+    if(isset($_SESSION['user_id'])){
+		if(substr($projectst, 0, 1) != '<') {
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
+			}
+		else {
+			if (substr($projectst, 0, 4) == ' <br') {
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
+				}
+			if (substr($projectst, 0, 3) == '<s>') {
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
+				}
+			$projectstmt1 = substr(strstr($projectst, '<br/>'), 5) ;
+			$projectst1 = strstr($projectst, '<br/>' , true) ;
+			if(substr($projectst, 0, 4) == '<img') {
+			echo "<div class='editbox' style='width : 90%;' id='project_pic_".$pro_id."' >".$projectst1."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/><br/>" ;
+					}
+			if(substr($projectst, 0, 2) == '<a') {
+			echo "<div class='editbox' style='width : 90%;' id='project_file_".$pro_id."' >".$projectst1."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/><br/>" ;
+					}
+			if(substr($projectst, 0, 3) == '<if') {
+			echo "<div class='editbox' style='width : 90%;' id='project_video_".$pro_id."' >".$projectst1."</div>
+					<input type='text' class='editbox' id='project_url_video_".$pro_id."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+			echo "<input id='project_fileChallenge_".$pro_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$pro_id.")' id='pic_file_project_".$pro_id."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_p_".$pro_id."' >".$projectstmt1."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedpro(".$pro_id.")' id='doneediting_project_".$pro_id."'/>";		
+			}
+		}
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
                                         UNION
@@ -394,8 +427,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_task_stmt_content .= "<br></div>                    
                     <div class='list-group-item'><br>
-                        <span id='challenge_".$id_task."' class='text'>".$stmt_task."</span>
-                        <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/><br/>";
+                        <span id='challenge_".$id_task."' class='text'>".$stmt_task."</span><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($stmt_task, 0, 1) != '<') {
 $display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
