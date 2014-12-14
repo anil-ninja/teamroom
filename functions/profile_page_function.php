@@ -214,7 +214,7 @@ $no_created_projects = mysqli_num_rows($project_created_display);
         }
         else {
             echo "<div class='jumbotron'>
-                    <p align='center'>Oops No projest has been created yet</p>
+                    <p align='center'>Oops No project has been created yet</p>
                 </div>";
         }
     }
@@ -278,7 +278,7 @@ function joined_projects ($db_handle, $user_IDF) {
         }
         else {
             echo "<div class='jumbotron'>
-                    <p align='center'>Oops No projest has been joined yet</p>
+                    <p align='center'>Oops No project has been joined yet</p>
                 </div>";
         }
     }
