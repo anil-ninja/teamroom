@@ -270,7 +270,7 @@ function save_pic_file(ID) {
 			}
 	
 }
-function save_pic_file(ID) {
+function save_pic_file_project(ID) {
 	var _filech = document.getElementById("project_fileChallenge_"+ID);
 	var dataString = 'id='+ID ;
 	if(_filech.files.length === 0){
