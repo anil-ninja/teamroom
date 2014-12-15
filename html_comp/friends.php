@@ -15,6 +15,7 @@
 											UNION
 											(select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
 											where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
+	if (mysqli_num_rows($userProjects) != 0 ) {
     while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
             $friendFirstName = $userProjectsRow['first_name'];
             $friendLastName = $userProjectsRow['last_name'];
@@ -37,7 +38,9 @@
                     else { echo "<br/>offline <span class='badge' style ='padding-bottom : 0px ;padding-top : 0px ;color: #6F746F ;background-color: #6F746F;'>.</span>" ; }        
                  echo "</div></a>
                     </div>";
-    }
+		}
+	}
+	else {  include_once 'recommended.php'; }
     ?>
     </div>
     </div>
