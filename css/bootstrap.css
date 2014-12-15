@@ -4914,6 +4914,7 @@ a.thumbnail.active {
   background-color: #fafafa;
 }
 .list-group-item {
+  position: relative;
   display: block;
   padding: 2px 9px;
   margin-bottom: 1px;
