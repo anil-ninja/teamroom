@@ -108,6 +108,36 @@ function test2() {
   $("#signupwithoutlogin").modal("hide");
   $("#SignUp").modal("show");
 };
+$(document).ready(function() {
+    $('#subscriptionid').keydown(function(event) {
+        if (event.keyCode == 13) {
+            Subscribe();
+            return false;
+         }
+    });
+});
+function Subscribe(){
+	var reminder = $("#subscriptionid").val() ;
+	var dataString = 'id=' + reminder ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/subscribe.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			bootstrap_alert(".alert_placeholder", "Subscribed  Successfully", 5000,"alert-success");
+		}
+	});
+}
+function bootstrap_alert(elem, message, timeout,type) {
+  $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
+
+  if (timeout || timeout === 0) {
+    setTimeout(function() { 
+      $(elem).show().html('');
+    }, timeout);    
+  }
+};
 function editreminder(id, uid) {
 	$("#datepickervalue").val(id) ;
 	$("#valueuserid").val(uid) ;	

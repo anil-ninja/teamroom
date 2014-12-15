@@ -235,10 +235,10 @@ else {
 				Collap is exodus to make collaboration strong. Lets work together to do more... </p><br/><br/>
 				<div class='row'>
 					<div class='col-md-7'>
-						<input type='text' class='form-control' style='width: 115%;' id='subscriptionid' placeholder='Enter Email-ID'/>
+						<input type='email' class='form-control' style='width: 115%;' id='subscriptionid' placeholder='Enter Email-ID'/>
 					</div>
 					<div class='col-md-3'>
-						<input type='submit' class='btn btn-success btn-xs' id='Subscribe' value='Subscribe'/><br/>
+						<input type='submit' class='btn btn-success btn-xs' onclick='Subscribe()' value='Subscribe'/><br/>
 					</div>
 				</div>
 			</div>

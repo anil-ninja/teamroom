@@ -20,7 +20,7 @@ if($_POST['answer']){
 		if($case == 1) {
 			involve_in($db_handle,$user_id,"5",$ch_id); 
 			events($db_handle,$user_id,"5",$ch_id);
-			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $ch_id ; ") ;
+			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4', last_update='$a' WHERE challenge_id = $ch_id ; ") ;
 			mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $ch_id and user_id = '$user_id'; ") ;
 			if (strlen($notes) < 1000) {
 				mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$ch_id', '$notes', '2'); ") ;
@@ -53,7 +53,7 @@ if($_POST['answer']){
 						} 
 					involve_in($db_handle,$user_id,"5",$ch_id); 
 					events($db_handle,$user_id,"5",$ch_id);
-					mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4' WHERE challenge_id = $ch_id ; ") ;
+					mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4', last_update='$a' WHERE challenge_id = $ch_id ; ") ;
 					mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $ch_id and user_id = '$user_id'; ") ;
 					if (strlen($notes) < 1000) {
 						mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$ch_id', '$notes', '2'); ") ;

@@ -30,12 +30,15 @@ $(document).ready(function(){
 			data: dataString,
 			cache: false,
 			success: function(result){
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				if(result=='Skill added succesfully!'){
+					if(result=='Skill added succesfully!') {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 						$("#skills").val("");
 						$("#insert").val("");
 						location.reload();
 				  }      
+				  else {
+				  	bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+				  }
 			}
 		});
 	 $("#addskills").removeAttr('disabled');

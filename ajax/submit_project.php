@@ -50,3 +50,4 @@ if (strlen($project_st) < 1000) {
 }
 	mysqli_close($db_handle);
 }
+?>

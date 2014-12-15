@@ -7,7 +7,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        <i class='glyphicon glyphicon-bell'></i> &nbsp;Add Reminder
+                      <i class='glyphicon glyphicon-bell'></i> &nbsp;Add Reminder
                     </a>
                 </div>
             </div>

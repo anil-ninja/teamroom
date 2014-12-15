@@ -10,8 +10,9 @@ if($_POST['challange']){
 	$challangetext = $_POST['challange'];
 	$opentime = 1;//$_POST['opentime'] ;
 	$challenge_title = $_POST['challenge_title'] ;
-	$challange_eta = 1 ;//$_POST['challange_eta'] ; 
+	$challange_eta = 999999 ;//$_POST['challange_eta'] ; 
 	$image = $_POST['img'] ;
+	$time = date("Y-m-d H:i:s") ;
 	if (strlen($image) < 30 ) {
 			$challange = $challangetext ;
 		}
@@ -35,8 +36,8 @@ if($_POST['challange']){
 			collapMail($emails, $username." Create Challenge IN Project ".$title, $body2);
 			} 
 		if (strlen($challange) < 1000) {
-			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type) 
-											VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '$opentime', '$challange_eta', '$type') ; ") ;
+			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 
+											VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '$opentime', '$challange_eta', '$type', '$time') ; ") ;
 			$idp = mysqli_insert_id($db_handle);
 			involve_in($db_handle,$user_id,"10",$idp); 
 			events($db_handle,$user_id,"10",$idp);
@@ -46,8 +47,8 @@ if($_POST['challange']){
 			 else {
 				mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$challange');");
 				$id = mysqli_insert_id($db_handle);
-				mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, stmt, blob_id, challenge_open_time, challenge_ETA, challenge_type) 
-									VALUES ('$user_id', '$pro_id', '$challenge_title', ' ', '$id', '$opentime', '$challange_eta', '$type');");
+				mysqli_query($db_handle, "INSERT INTO challenges (user_id, project_id, challenge_title, stmt, blob_id, challenge_open_time, challenge_ETA, challenge_type, last_update) 
+									VALUES ('$user_id', '$pro_id', '$challenge_title', ' ', '$id', '$opentime', '$challange_eta', '$type', '$time');");
 				$idp = mysqli_insert_id($db_handle);
 				involve_in($db_handle,$user_id,"10",$idp); 
 				events($db_handle,$user_id,"10",$idp);

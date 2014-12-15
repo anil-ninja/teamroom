@@ -3,13 +3,17 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 include_once '../functions/collapMail.php';
+if(!isset($_SESSION['user_id'])) { echo "Please Log In First" ; }
+else {
 if(isset($_POST['id'])){
 	$user_id = $_SESSION['user_id'];
 	$id = $_POST['id'];
 	$pro_id = $_SESSION['project_id'];
 	$case = $_POST['case'];	
+	$time = date("Y-m-d H:i:s") ;
     if($case == 1){
 		mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '1');") ;
+		mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 		events($db_handle,$user_id,"16",$id);
 		involve_in($db_handle,$user_id,"16",$id);
 		if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
@@ -17,6 +21,7 @@ if(isset($_POST['id'])){
 		}
 		else if($case == 2){
 			mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '2');") ;
+			mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 			events($db_handle,$user_id,"17",$id);
 			involve_in($db_handle,$user_id,"17",$id);
 			if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
@@ -42,6 +47,7 @@ if(isset($_POST['id'])){
 						}
 				if($case == 3) {
 					mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '1');") ;
+					mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 					events($db_handle,$user_id,"16",$id);
 					involve_in($db_handle,$user_id,"16",$id);
 					if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
@@ -49,6 +55,7 @@ if(isset($_POST['id'])){
 					}
 					else {
 						mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '2');") ;
+						mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 						events($db_handle,$user_id,"17",$id);
 						involve_in($db_handle,$user_id,"17",$id);
 						if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
@@ -60,4 +67,5 @@ if(isset($_POST['id'])){
 	mysqli_close($db_handle);
 } 
 else echo "Invalid parameters!";
+}
 ?>

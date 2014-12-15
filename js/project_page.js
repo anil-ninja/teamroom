@@ -61,6 +61,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 	}
 	function submitCreateArticle(ilink,data,url){
 		//alert(ilink) ;
+		//ilink is like of image or the file
 		if (ilink != "") {
 		var res = ilink.split(".");
 		//alert (res['1']);
@@ -73,26 +74,33 @@ function bootstrap_alert(elem, message, timeout,type) {
 		var dataString = data + '&img='+ imgTx ;
 		//alert(dataString) ;
 		}
-			else {
+		else {
 				var	dataString =  data ;
 				//alert(dataString) ;			
+		}
+
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: dataString,
+			async: false ,
+			cache: false,
+			success: function(result){
+				if(result=='Posted succesfully!'){
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				//alert("succesfully");
+				location.reload();
 				}
-			$.ajax({
-				type: "POST",
-				url: url,
-				data: dataString,
-				cache: false,
-				success: function(result){
-					if(result=='Posted succesfully!'){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				else {
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					//alert("failed");
 					location.reload();
-					}
-					else {
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						location.reload();
-						}
 				}
-			}); 
+			}
+		});
+
+		//alert("failed");
+
 		}		
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");

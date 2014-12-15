@@ -106,12 +106,12 @@ function challenge_display($db_handle, $challengeSearchID) {
 						</p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";
         $display_name_stmt .= "<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$chelangeid ."\", 1)'>
+                    <span class='badge glyphicon glyphicon-hand-up' style='cursor: pointer; float: none; color: #ffff;' onclick='like(\"".$chelangeid ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'>
+                    <span class='badge glyphicon glyphicon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span></div>                    
                        <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/><br/>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 16px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span>";
         //    $display_title =  "<p style='font-famiy: Calibri,sans-serif; font-size: 32px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>" 
           //                              .ucfirst($ch_title)."</b></p>";
            // $display_name_stmt = "<span style= 'color: #808080'>
@@ -360,19 +360,19 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                 echo "<div class='list-group idea'>
                                 <div class='list-group-item'>";
               dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                echo $display_title."<span class='glyphicon glyphicon-flash'></span>".$display_name_stmt;
+                echo $display_title."<span class='glyphicon glyphicon-flash'></span>".$display_name_stmt."<br><br>";
             }
             else if ($ctype == 5) {
                 echo "<div class='list-group tree'>
                                 <div class='list-group-item'>";
                dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                            echo $display_title."<span class='glyphicon glyphicon-pushpin'></span>".$display_name_stmt;
+                            echo $display_title."<span class='glyphicon glyphicon-pushpin'></span>".$display_name_stmt."<br><br>";
             }
             else if ($ctype == 6) {
                 echo "<div class='list-group deciduous'>
                                 <div class='list-group-item'>";
               dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                           echo $display_title."<span class='glyphicon glyphicon-tree-deciduous'></span>".$display_name_stmt;
+                           echo $display_title."<span class='glyphicon glyphicon-tree-deciduous'></span>".$display_name_stmt."<br><br>";
             }
             else if ($ctype == 7) {
                 echo "<div class='list-group articlesch'>
@@ -395,7 +395,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     $answer_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt'])));
                     echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
                             <p align='center'>Answer</p></span>"
-                        . $answer_stmt. "<br/>";
+                        . $answer_stmt. "<br/><br>";
                 }
             }
             }

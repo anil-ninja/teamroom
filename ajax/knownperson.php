@@ -3,6 +3,8 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 include_once '../functions/collapMail.php';
+if(!isset($_SESSION['user_id'])) { echo "Please Log In First" ; }
+else {
 if ($_POST['id']) {
 	$user_id = $_SESSION['user_id'] ;
 	$knownid = $_POST['id'];
@@ -20,7 +22,7 @@ if ($_POST['id']) {
 		case 2:
 			events($db_handle,$user_id,"4",$knownid);
 			involve_in($db_handle,$user_id,"4",$knownid);
-			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$knownid' ; ") ;
+			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;
 			mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$knownid', '1');") ;
 			echo "Challenge Accepted succesfully";
@@ -73,7 +75,7 @@ if ($_POST['id']) {
 					} 
 				events($db_handle,$user_id,"4",$knownid);
 				involve_in($db_handle,$user_id,"4",$knownid);
-				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2' WHERE challenge_id = '$knownid' ; ") ;
+				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;
 				mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 										VALUES ('$user_id', '$knownid', '1');") ;
 				echo "Challenge Accepted succesfully";
@@ -121,4 +123,5 @@ if ($_POST['id']) {
 	}
 } 
 else echo "Invalid parameters!";
+}
 ?>

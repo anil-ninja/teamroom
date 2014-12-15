@@ -15,6 +15,23 @@ function edit_content(ID, type) {
 		}
 		else { return false; }
 } ;
+function editproject(ID) {
+	if ( ID != null){
+		$("#project_"+ID).hide();
+		$("#project_ti_"+ID).hide();
+		$("#project_title_"+ID).show();
+		$("#project_stmt_"+ID).show();
+		$("#project_doneedit_"+ID).show();
+		$("#project_pic_file_"+ID).show();
+		$("#project_pic_"+ID).show();
+		$("#project_file_"+ID).show();
+		$("#project_video_"+ID).show();
+		$("#project_url_video_"+ID).show();
+		$("#project_stmt_p_"+ID).show();
+		$("#doneediting_project_"+ID).show();
+		}
+		else { return false; }
+} ;
 function upload_pic_file(ID) {
 	if ( ID != null){
 		$("#challenge_"+ID).hide();
@@ -31,6 +48,25 @@ function upload_pic_file(ID) {
 		$("#url_video_"+ID).hide();
 		$("#challenge_stmt_p_"+ID).hide();
 		$("#doneediting_"+ID).hide();
+		}
+		else { return false; }
+} ;
+function upload_pic_file_project(ID) {
+	if ( ID != null){
+		$("#project_"+ID).hide();
+		$("#project_ti_"+ID).show();
+		$("#project_fileChallenge_"+ID).show();
+		$("#pic_file_project_"+ID).show();
+		$("#project_title_"+ID).hide();
+		$("#project_stmt_"+ID).hide();
+		$("#project_doneedit_"+ID).hide();
+		$("#project_pic_file_"+ID).hide();
+		$("#project_pic_"+ID).hide();
+		$("#project_file_"+ID).hide();
+		$("#project_video_"+ID).hide();
+		$("#project_url_video_"+ID).hide();
+		$("#project_stmt_p_"+ID).hide();
+		$("#doneediting_project_"+ID).hide();
 		}
 		else { return false; }
 } ;		
@@ -82,6 +118,34 @@ function saveedited(ID)  {
 						success: function(html){
 							$("#challenge_"+ID).html(project);
 							$("#challenge_ti_"+ID).html(title);
+							}
+					});
+				}
+	$(".editbox").hide();
+	$(".text").show(); 
+} ;
+function saveeditedproject(ID)  {				
+		var title = convertSpecialChar($("#project_title_"+ID).val());
+		var project = convertSpecialChar($("#project_stmt_"+ID).val());
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+		if(project == ""){
+			bootstrap_alert(".alert_placeholder", "Statement can not be empty", 5000,"alert-warning");
+			return false ;
+			}
+			else if (title == ""){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				return false ;
+				}
+				else {
+					$.ajax({
+						type: "POST",
+						url: "ajax/edit_pro_stmt.php",
+						data: dataString,
+						cache: false,
+						success: function(html){
+							$("#project_"+ID).html(project);
+							$("#project_ti_"+ID).html(title);
 							}
 					});
 				}
@@ -141,6 +205,59 @@ function saveeditedchallenge(ID)  {
 	$(".editbox").hide();
 	$(".text").show(); 
 } ;
+function saveeditedpro(ID)  {				
+		var title = convertSpecialChar($("#project_title_"+ID).val());
+		var project = convertSpecialChar($("#project_stmt_p_"+ID).val());
+		var challenge = $("#project_url_video_"+ID).val();
+		if (challenge != "") {
+			var domain = url_domain(challenge);
+			//alert(domain);
+			if (domain == "www.youtube.com"){
+				var linkId = refineVedioId(getVedioId(challenge));
+				//alert(linkId);
+				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
+				challenge = challenge.concat(linkId);
+				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&video='+ challenge ;
+				}
+				else {
+					var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+						+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+					//bootstrap_alert(".alert_placeholder", "Add You-tube Url Only", 5000,"alert-warning");
+					//return false ;
+					}
+			}
+			else {
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+						+'&title='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+				}
+		$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
+		if(project == ""){
+			bootstrap_alert(".alert_placeholder", "Statement can not be empty", 5000,"alert-warning");
+			return false ;
+			}
+			else if (title == ""){
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				return false ;
+				}
+				else {
+					$.ajax({
+						type: "POST",
+						url: "ajax/edit_pro_stmt.php",
+						data: dataString,
+						cache: false,
+						success: function(result){
+							//alert (result) ;
+							$("#project_"+ID).html(replaceAll('<s>','  ',result));
+							$("#project_ti_"+ID).html(title);
+							$("#project_url_video_"+ID).val('');
+							}
+					});
+				}
+	$(".editbox").hide();
+	$(".text").show(); 
+} ;
 function save_pic_file(ID) {
 	var _filech = document.getElementById("_fileChallenge_"+ID);
 	var dataString = 'id='+ID ;
@@ -150,6 +267,18 @@ function save_pic_file(ID) {
 		}
 		else {
 			uploadFile(_filech,"challengePic",String(dataString),"ajax/update_chalange.php",ID);
+			}
+	
+}
+function save_pic_file_project(ID) {
+	var _filech = document.getElementById("project_fileChallenge_"+ID);
+	var dataString = 'id='+ID ;
+	if(_filech.files.length === 0){
+		bootstrap_alert(".alert_placeholder", "Please upload Something", 5000,"alert-warning");
+		return false ;
+		}
+		else {
+			uploadFile(_filech,"projectPic",String(dataString),"ajax/update_project.php",ID);
 			}
 	
 }
