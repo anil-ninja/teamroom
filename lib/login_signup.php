@@ -36,23 +36,16 @@ function signup(){
                 $id_access_id =  mysqli_insert_id($db_handle);
                 $hash_keyR = $hash_keyR.".".$id_access_id;
                 //echo $hash_keyR ;
-                $body = "Hi".$username.",\n 
-						Welcome to Collap. \n
-						We are building an engaged community of problem solvers \n
-						in different domains of Science, Technology, Marketing, Economics, \n
-						Electronics, Electrical, Mechanical, Computer Science, etc. We provide tools, \n
-						technology and platform to manage projects, host and solve challenges, \n
-						hosting articles, ideas, etc \n
-						We are excited to have you on-board and there’s just one step to \n
-						verify if it’s actually your e-mail address: \n \n
-						http://collap.com/verifyEmail.php?hash_key=".$hash_keyR." \n \n \n
-						Hugs or bugs, please let us know by replying to this e-mail. \n \n
-						Welcome again! \n \n
-						Thanks, \n
-						Collap Team";
+                $body = "Hi <b>".$username."</b>,\n Welcome to Collap. \n \n We are building an engaged community of problem solvers in different domains of Science, Technology, Marketing, Economics, Electronics, Electrical, Mechanical, Computer Science, etc. We provide tools, technology and platform to manage projects, host and solve challenges, hosting articles, ideas, etc \n \n
+We are excited to have you on-board and there’s just one step to verify if it’s actually your e-mail address: \n \n
+http://collap.com/verifyEmail.php?hash_key=".$hash_keyR." \n \n \n
+Hugs or bugs, please let us know by replying to this e-mail. \n \n
+Welcome again! \n \n 
+Thanks, \n
+Collap Team";
                 
                 collapMail($email, "Email Verification From Collap", $body);
-                $body2 = "Thanks for joining Collap,".$username."! \n \n \n
+                $body2 = "Thanks for joining Collap,  ".$username."! \n \n \n
 						  We’re thrilled to have you on board. \n
 						  Be sure to save your important account details for future reference: \n \n
 						  Your username is: ".$username." \n \n
