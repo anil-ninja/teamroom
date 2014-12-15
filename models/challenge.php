@@ -8,6 +8,7 @@ class challenge{
     public $user_id = 0;
     public $project_id = 0;
     public $blob_id = 0;
+    public $video = 0;
       
     function __construct($idR) {
         $this->id = $idR;
@@ -52,6 +53,11 @@ class challenge{
             
             return substr($this->stmt,strlen($arrayStmt[0])+4,255);
         }
+        if (substr($this->stmt, 0, 4) == "<ifr") {
+            $arrayStmt = explode("</iframe>", $this->stmt);
+            $this->video = 1;
+            return substr($this->stmt,strlen($arrayStmt[0])+9,255);
+        }
         return substr($this->stmt, 0, 200);
     }
     function getUrl($stmt){
@@ -65,8 +71,12 @@ class challenge{
             $src = $xpath->evaluate("string(//img/@src)");
             //$arrayStmt = explode("\"", $stmt);
             return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']).$src;
+        } else
+        if (substr($this->stmt, 0, 4) == "<ifr") {
+			$arrayStmt = explode("\"", $stmt);//break the image by " [QUOTE]
+            
+            return $arrayStmt[3];
         }
-        
         else {
             return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."uploads/profilePictures/$this->username.jpg";
         }
