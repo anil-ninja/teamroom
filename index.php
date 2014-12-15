@@ -87,9 +87,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
     <div class="row" style="background-image: url(img/collaboration.jpg); margin-top:0px; margin-left:0px; height: 600px; width: 100%;">
         <div class = "col-xs-7 col-ls-8"></div>	
-        <div class = "col-xs-2 col-ls-4" style="width:350px; height:500px; margin-top:50px; background-color: #B8B8B8 ;">
+        <div class = "col-xs-2 col-ls-4" style="width:350px; margin-top:85px; background-color: #F8F8F8 ;">
 <!-- signin signup nav tabs starts ---->            
-            <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px; margin-top: 50px;">
+            <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px; margin-top: 12px;">
                 <li role="presentation" class="active" id="signup_modal">
                     <a href="#tabSignup" role="tab" data-toggle="tab">
                         SignUp 
@@ -102,7 +102,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                 </li>
             </ul>
 
-            <div class="tab-content" >
+            <div class="tab-content" style="margin-bottom: 12px">
                 <div role="tabpanel" class="row tab-pane active" id="tabSignup" style="line-height: 2;">  
                     <p align="center"><font size="5" >Let's Collaborate!!</font></p><br>
                     <div class="alert-placeholder"> </div>
@@ -129,7 +129,6 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                             <input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
                         </div>
                     </div>
-                    
                     <input type="submit" class="btn btn-primary btn-lg" id = "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
                 </div>     
                 
