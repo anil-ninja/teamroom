@@ -365,7 +365,11 @@ function convertSpecialChar(str){
 			});
 
 			// Outside click action
-			$(document).mouseup(function(){
-			$(".editbox").hide();
-			$(".text").show();
-			});
+			//$(document).mouseup(function(){
+			//$(".editbox").hide();
+			//$(".text").show();
+			//});
+function toggle() {
+	$("#project_chat_form").toggle();
+	$("#project_chat_data").toggle();
+	}
