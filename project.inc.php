@@ -1,5 +1,6 @@
 <?php 
 include_once 'ninjas.inc.php';
+include_once 'html_comp/start_time.php';
 include_once 'functions/delete_comment.php';
 
 $pro_id = $_GET['project_id'] ;

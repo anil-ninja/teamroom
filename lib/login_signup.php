@@ -36,10 +36,29 @@ function signup(){
                 $id_access_id =  mysqli_insert_id($db_handle);
                 $hash_keyR = $hash_keyR.".".$id_access_id;
                 //echo $hash_keyR ;
-                $body = "http://collap.com/verifyEmail.php?hash_key=".$hash_keyR;
+                $body = "Hi ".$username.",\n Welcome to Collap. \n \n We are building an engaged community of problem solvers in different domains of Science, Technology, Marketing, Economics, Electronics, Electrical, Mechanical, Computer Science, etc. We provide tools, technology and platform to manage projects, host and solve challenges, hosting articles, ideas, etc \n
+We are excited to have you on-board and there’s just one step to verify if it’s actually your e-mail address: \n 
+http://collap.com/verifyEmail.php?hash_key=".$hash_keyR." \n \n 
+Hugs or bugs, please let us know by replying to this e-mail. \n 
+Welcome again! \n 
+Thanks, \n
+Collap Team";
                 
                 collapMail($email, "Email Verification From Collap", $body);
-                $body2 = "http://collap.com/profile.php?username=".$username ;
+                $body2 = "Thanks for joining Collap,  ".$username."! \n \n We’re thrilled to have you on board. Be sure to save your important account details for future reference: \n \n
+Your username is: ".$username." \n \n 
+You’ve joined a talented community of professionals dedicated to doing great work. And the first step for building your career here is to update profile \n \n
+http://collap.com/profile.php?username=".$username.". \n \n
+A successful collapian profile is: \n \n
+		Complete: \n
+		With all information filled out, including your full name and picture \n \n
+		Accurate: \n
+		Featuring information that is true and verifiable \n \n
+		Contact: \n
+		Contact information will help you and other collapian to collaborate and do better. Give you Phone no and Email id \n \n
+Thanks again for joining Collap. We’re so happy you’re here! \n
+Thanks, \n 
+Collap Team" ; 
                 collapMail($email, "complete your profile", $body2);
                 
 		if(mysqli_error($db_handle)){

@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once 'html_comp/start_time.php';
 include_once 'functions/delete_comment.php';
 include_once 'lib/db_connect.php';
 include_once 'models/challenge.php';

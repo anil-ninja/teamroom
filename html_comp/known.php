@@ -1,5 +1,5 @@
 <div class="panel">
-<p> <b><u> Collaborating With </u></b></p>
+<p> <b> Collaborating With </b></p>
  <div>
 	<?php
 	$user_id = $_SESSION['user_id'] ;

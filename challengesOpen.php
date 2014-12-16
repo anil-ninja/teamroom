@@ -17,7 +17,12 @@
         <!-- for Facebook -->          
         <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
         <meta property="og:type" content="article"/>
-        <meta property="og:image" content="<?= $obj->url; ?>" />
+        <?php
+			if($obj->video == 0)
+				echo "<meta property=\"og:image\" content=\"$obj->url\" />";
+			else
+				echo "<meta property=\"og:video\" content=\"$obj->url\" />\n";
+        ?>
         <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
         <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
 
@@ -133,6 +138,7 @@ $(".editbox").hide();
 $(".editbox").mouseup(function(){
 return false
 });
+<?php include_once 'html_comp/insert_time.php'; ?>
 </script>
     </body>
 </html>
