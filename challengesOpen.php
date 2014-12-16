@@ -138,6 +138,7 @@ $(".editbox").hide();
 $(".editbox").mouseup(function(){
 return false
 });
+<?php include_once 'html_comp/insert_time.php'; ?>
 </script>
     </body>
 </html>

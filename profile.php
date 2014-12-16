@@ -1,5 +1,6 @@
 <?php
 include_once 'lib/db_connect.php';
+include_once 'html_comp/start_time.php';
 include_once 'functions/profile_page_function.php';
 include_once 'functions/delete_comment.php';
 $UserName = $_GET['username'];
@@ -364,6 +365,7 @@ $("#editprofile").click(function(){
             }
         });
 	</script> 
-        <?php include_once 'html_comp/login_signup_modal.php'; ?>
+        <?php include_once 'html_comp/login_signup_modal.php';
+        include_once 'html_comp/insert_time.php'; ?>
     </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 include_once 'lib/db_connect.php';
+include_once 'html_comp/start_time.php';
 include_once 'ninjas.inc.php';
 session_start();
 if(!isset($_SESSION['user_id'])) 
@@ -137,6 +138,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                 <?php include_once 'html_comp/friends.php' ; ?>
                 </div>
         </div>
-        <?php include_once 'lib/html_inc_footers.php'; ?>
+        <?php include_once 'lib/html_inc_footers.php';
+        include_once 'html_comp/insert_time.php'; ?>
             </body>
     	</html>
