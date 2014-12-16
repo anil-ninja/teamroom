@@ -6642,12 +6642,49 @@ label {
   color: #555555;
 }
 /*Right collapse chat box*/
-div#nav {position: fixed; top: 80px; right: 0px; margin: 0px; padding: 0px 0px 0px; background:#fff; list-style: none;z-index: 1; width: 150px; border-radius:10px 0px 0px 10px}
-div#nav .nav-btn{background:#fff; border-radius:10px 0px 0px 10px; position:absolute; top:0px; left:-15px; width:20px; height:40px; display:block; cursor:pointer;}
-div#nav .nav-btn img{margin:20px 0px 0px 13px}
-div#nav li {height: 50px; margin-bottom:20px; text-align:center; text-decoration:none; color:#FFF;}
-div#nav li a{color:#FFF; text-decoration: none;}
+div#nav {
+	position: fixed; 
+	top: 80px; 
+	right: 0px; 
+	margin: 0px; 
+	padding: 0px 0px 0px; 
+	background:#fff; 
+	list-style: none;
+	z-index: 1;
+	max-height:290px;
+	overflow-y: scroll; 
+	width: 200px; 
+	border-radius:10px 0px 0px 10px
+}
 
+div#nav .nav-btn{
+	background:#fff; 
+	border-radius:10px 0px 0px 10px; 
+	position:fixed; 
+	top:60px; 
+	right:1px; 
+	width:30px; 
+	height:20px; 
+	display:block; 
+	cursor:pointer;
+	}
+	
+div#nav .nav-btn img{
+	margin:20px 0px 0px 13px
+}
+
+div#nav li {
+	height: 50px; 
+	margin-bottom:20px; 
+	text-align:center; 
+	text-decoration:none; 
+	color:#FFF;
+}
+
+div#nav li a{
+	color:#FFF; 
+	text-decoration: none;
+}
 
 .cse input.gsc-input, input.gsc-input {
 background-image:url(“img/collap.gif”) !important;
