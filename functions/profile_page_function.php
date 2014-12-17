@@ -241,10 +241,9 @@ function user_idea ($db_handle, $user_IDF) {
                 $user_id = ($_SESSION['user_id']);
                 dropDown_delete_after_accept($idea_id, $user_id, $user_IDF) ;
             }
-            echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+            echo "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
-                        .ucfirst($idea_title)."</a></b></p>
-                    
+                        .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$idea_title."'/>                    
                     <span class='glyphicon glyphicon-flash'></span><span style= 'color: #808080'>
                     By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
                         <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
@@ -253,8 +252,41 @@ function user_idea ($db_handle, $user_IDF) {
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
-                <br/>".$idea_stmt."</span><br/><br/>";
-    	
+                <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/><br/>";
+if(isset($_SESSION['user_id'])){
+		if(substr($idea_stmt, 0, 1) != '<') {
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
+			}
+		else {
+			if (substr($idea_stmt, 0, 4) == ' <br') {
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
+				}
+			if (substr($idea_stmt, 0, 3) == '<s>') {
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
+				}
+			$chaaa = substr(strstr($idea_stmt, '<br/>'), 5) ;
+			$cha = strstr($idea_stmt, '<br/>' , true) ;
+			if(substr($idea_stmt, 0, 4) == '<img') {
+echo "<div class='editbox' style='width : 90%;' id='challenge_pic_".$idea_id."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/><br/>" ;
+					}
+			if(substr($idea_stmt, 0, 2) == '<a') {
+echo "<div class='editbox' style='width : 90%;' id='challenge_file_".$idea_id."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/><br/>" ;
+					}
+			if(substr($idea_stmt, 0, 3) == '<if') {
+echo "<div class='editbox' style='width : 90%;' id='challenge_video_".$idea_id."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$idea_id."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+echo "<input id='_fileChallenge_".$idea_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$idea_id.")' id='pic_file_save_".$idea_id."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$idea_id."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$idea_id.")' id='doneediting_".$idea_id."'/>";		
+			}
+		}    	
              comments_all_type_challenges ($db_handle, $idea_id);
              echo "</div>";
         }
@@ -506,3 +538,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
                 </div>";
 }
 ?>
+<script>
+$(".editbox").hide();
+$(".text").show();
+</script>
