@@ -1,8 +1,7 @@
 <?php 
 session_start();
 include_once '../../lib/db_connect.php';
-include_once '../../functions/profile_page_function.php';+
-
+include_once '../../functions/profile_page_function.php';
 if ($_POST['last_article']) {
     $user_id = $_SESSION['profile_view_userID'];
     $limit = $_SESSION['last_article'];

@@ -340,25 +340,29 @@ $obj = new profile($UserName);
             </div>
         </div>
         <?php include_once 'lib/html_inc_footers.php'; ?>
-        <script>
-$(".editprofile").hide();
-$(".viewprofile").show();
-$("#editprofile").click(function(){
-	$(".viewprofile").toggle();
-	$(".editprofile").toggle();
-});
-$("#editprofile2").click(function(){
-	$(".viewprofile").toggle();
-	$(".editprofile").toggle();
-});
-$("#editprofile3").click(function(){
-	$(".viewprofile").toggle();
-	$(".editprofile").toggle();
-});
-$("#editprofile4").click(function(){
-	$(".viewprofile").toggle();
-	$(".editprofile").toggle();
-});
+<script>
+	$(document).ready(function(){
+		$(".editbox").hide();
+		$(".text").show();			
+		$(".editprofile").hide();
+		$(".viewprofile").show();
+		$("#editprofile").click(function(){
+			$(".viewprofile").toggle();
+			$(".editprofile").toggle();
+		});
+		$("#editprofile2").click(function(){
+			$(".viewprofile").toggle();
+			$(".editprofile").toggle();
+		});
+		$("#editprofile3").click(function(){
+			$(".viewprofile").toggle();
+			$(".editprofile").toggle();
+		});
+		$("#editprofile4").click(function(){
+			$(".viewprofile").toggle();
+			$(".editprofile").toggle();
+		});
+	}) ;
 </script>
         	<script>
         $(window).scroll(function(event) {
