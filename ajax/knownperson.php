@@ -9,13 +9,28 @@ if ($_POST['id']) {
 	$user_id = $_SESSION['user_id'] ;
 	$knownid = $_POST['id'];
 	$pro_id = $_SESSION['project_id'] ;
+	$sql = mysqli_query($db_handle,"SELECT * FROM user_info where user_id='$knownid' ;") ;
+	$data = mysqli_fetch_array($sql) ;
+	$emails = $data['email'] ;
+	$mail = $data['username'] ;
 	$case = $_POST['case'];
 	$time = date("Y-m-d H:i:s") ;
+	$username = $_SESSION['username'];
+	$linkid = mysqli_query($db_handle, "select requesting_user_id from known_peoples where id='$knownid' and knowning_id='$user_id' ;") ;
+	$linkidrow = mysqli_fetch_array($linkid) ;
+	$uid = $linkidrow['requesting_user_id'] ;
 	switch($case) {
 		case 1:
 			mysqli_query($db_handle, "INSERT INTO known_peoples (requesting_user_id, knowning_id, last_action_time) VALUES ('$user_id', '$knownid', '$time') ;") ;
 			if(mysqli_error($db_handle)) { echo "Request Already Send"; }
 			else { echo "Request send succesfully"; }
+			if(!mysqli_error($db_handle)) {
+				$body2 = "Hi, ".$mail." \n \n ".$username." Send Link to you. View at \n
+http://collap.com/profile.php?user_id=".$knownid ;
+				collapMail($emails, " Link Received ", $body2);
+				}
+			events($db_handle,$user_id,"28",$knownid);
+			involve_in($db_handle,$user_id,"28",$knownid);
 			mysqli_close($db_handle);
 			exit ;
 			break ;
@@ -36,21 +51,6 @@ if ($_POST['id']) {
 			exit ;
 			break ;
 		case 4:
-			$username = $_SESSION['username'];
-			$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$knownid' ;") ;
-			$inforow = mysqli_fetch_array($info) ;
-			$title = $inforow['project_title'] ;
-			$type = $inforow['project_type'] ;
-			if($type == 2) {
-				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$knownid' and
-													a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-				while ($memrow = mysqli_fetch_array($members)){
-					$emails = $memrow['email'] ;
-					$mail = $memrow['username'] ;
-					$body2 = "http://collap.com/profile.php?username=".$mail ;
-					collapMail($emails, $username." Joined IN Project ".$title, $body2);
-					} 
-				}
 			events($db_handle,$user_id,"13",$knownid);
 			involve_in($db_handle,$user_id,"13",$knownid);
 			mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$knownid', 'defaultteam') ;") ;
@@ -70,8 +70,9 @@ if ($_POST['id']) {
 				while ($memrow = mysqli_fetch_array($members)){
 					$emails = $memrow['email'] ;
 					$mail = $memrow['username'] ;
-					$body2 = "http://collap.com/profile.php?username=".$mail ;
-					collapMail($emails, $username." Accepted Challenge IN Project ".$title, $body2);
+					$body2 = "Hi, ".$mail." \n \n ".$username." Accepted Challenge IN Project (".$title."). View at \n
+http://collap.com/project.php?project_id=".$pro_id ;
+					collapMail($emails, "Challenge Accepted ", $body2);
 					} 
 				events($db_handle,$user_id,"4",$knownid);
 				involve_in($db_handle,$user_id,"4",$knownid);
@@ -95,8 +96,9 @@ if ($_POST['id']) {
 				while ($memrow = mysqli_fetch_array($members)){
 					$emails = $memrow['email'] ;
 					$mail = $memrow['username'] ;
-					$body2 = "http://collap.com/profile.php?username=".$mail ;
-					collapMail($emails, $username." Closed Challenge IN Project ".$title, $body2);
+					$body2 = "Hi, ".$mail." \n \n ".$username." Closed Challenge IN Project (".$title."). View at \n
+http://collap.com/project.php?project_id=".$pro_id ;
+					collapMail($emails, "Challenge Closed ", $body2);
 					} 
 				events($db_handle,$user_id,"6",$knownid);
 				involve_in($db_handle,$user_id,"6",$knownid);
@@ -107,14 +109,16 @@ if ($_POST['id']) {
 			exit ;
 			break ;
 		case 7:
-			mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ; 
+			mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ;
+			events($db_handle,$user_id,"29",$uid);
 			if(mysqli_error($db_handle)) { echo "Sorry Try again!"; }
 			else { echo "Request Accepted succesfully!"; }
 			mysqli_close($db_handle);
 			exit ;
 			break ;
 		case 8:
-			mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ; 
+			mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ;
+			events($db_handle,$user_id,"30",$uid); 
 			if(mysqli_error($db_handle)) { echo "Sorry Try again!" ; }
 			else { echo "Request Deleted succesfully!"; }
 			mysqli_close($db_handle);

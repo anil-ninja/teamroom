@@ -1,16 +1,27 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
+include_once '../functions/delete_comment.php';
+include_once '../functions/collapMail.php';
+
 if($_POST['value']){
 	$user_id = $_SESSION['user_id'];
 	$reminder = $_POST['reminder'] ;
 	$self = $_POST['value'] ;
 	$eventtime = $_POST['date'] ;
+	$username = $_SESSION['username'];
 	$user = $_POST['user'] ;
 	$event = $_POST['case'] ;
 	$a = date("Y-m-d H:i") ;
-	//echo $event ;
 	$time = $eventtime.":00" ;
+	events($db_handle,$user_id,"37",$user);
+	if($user_id != $user) {
+		if($reminder != "") {
+			$body2 = "Hi, \n \n ".$username." Add Reminder for you (".$reminder."). View at \n
+	 http://collap.com/profile.php?user_id=".$user ;
+			collapMail($emails, "Reminder Added", $body2);
+			}
+		}
 switch($event){ 
 	case 1:
 	if ($eventtime == $a || $eventtime < $a) {
