@@ -69,9 +69,12 @@ Collap Team" ;
 		$_SESSION['first_name'] = $firstname ;
 		$_SESSION['username'] = $username ;
 		$_SESSION['email'] = $email;
-		$obj = new rank(mysqli_insert_id($db_handle));
+		$newid = mysqli_insert_id($db_handle) ;
+		$obj = new rank($newid);
     	//echo $obj->user_rank;
 		$_SESSION['rank'] = $obj->user_rank;
+		$logintime = date("y-m-d H:i:s") ;
+		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime' where user_id = '$newid' ;" ) ;
 		//header('Location: ../profile.php') ;
 		exit;
 		}

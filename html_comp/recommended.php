@@ -27,7 +27,7 @@
 						<span style='font-size:10px;'>".$friendRankr."</span>
 					</div>";
 			if (isset($_SESSION['user_id'])) {
-				echo "<div class = 'col-md-2' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+				echo "<div class = 'col-md-3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
 							<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'link'/>
 					</div>";
 				}

@@ -2,17 +2,17 @@
 <div class="chatboxhead">
 	<div class="chatboxtitle"><?= $projttitle ?></div>
 	<div class="chatboxoptions">
-		<a href="javascript:void(0)" onclick="javascript:toggleChatBoxGrowth('<?= $projttitle ?>')">-</a> 
+		<a onclick="toggle()" style ='cursor: pointer;'>-</a> 
 	</div>
 	<br clear="all"/>
 </div>
-<div class="chatboxcontent">
+<div class="chatboxcontent" id="project_chat_data">
 <?php 
      echo "<div id='newtalks'></div>			   
 			<input type='hidden' id='lastprchatid' value='".$idb."'/>" ;
 ?>
 </div>
-<div class="chatboxinput">
+<div class="chatboxinput" id="project_chat_form">
 	<?php 
      echo "<div id='showtalkingform'></div>" ;
 ?>
