@@ -24,8 +24,7 @@
 });
 (function() {showUp();})();
 function showUp() {
-	var update = "update" ;
-	var dataString = 'notice='+ update ;
+	var dataString = 'notice=true' ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/notifications.php",
@@ -59,20 +58,18 @@ return date.join("/") + " " + time.join(":") ;
 }
 function updatetime() {
 	var dataString = 'update=true' + '&case=1' ;
-	setTimeout(function(){
-			$.ajax({
-				type: "POST",
-				url: "ajax/updatetime.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					var notice = result.split("+") ;
-					document.getElementById("notifications").innerHTML = notice['0'];
-					document.getElementById("notificationlastid").innerHTML = notice['1'];
-				}
-			}); 
-			} , 10000) ;
-		} ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/updatetime.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			var notice = result.split("+") ;
+			document.getElementById("notifications").innerHTML = notice['0'];
+			document.getElementById("notificationlastid").innerHTML = notice['1'];
+		}
+	}); 
+} ;
 setInterval(function(){
 	var eid = parseInt($("#lasteventid").val()) ;
 	var time = timeStamp() ;
