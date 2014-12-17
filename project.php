@@ -29,11 +29,8 @@ include_once 'functions/delete_comment.php';
             <div class="col-md-3" style='width:290px'>
                 
                 <?php include_once 'html_comp/project_page_challenge.php'; ?>
-
-            <!--  <?php //include_once 'html_comp/project_members.php'; ?> -->
             </div>	
         </div>
-           <?php //include_once 'html_comp/signup.php'; ?>
 		<?php 
                     if (isset($_SESSION['user_id'])) {
                         include_once 'html_comp/project_talk.php'; 

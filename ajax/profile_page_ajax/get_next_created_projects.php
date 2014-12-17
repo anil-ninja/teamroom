@@ -11,8 +11,6 @@ if ($_POST['next_CP']) {
     $user_id = $_SESSION['user_id'];
     $a = (int) $limit;
     $b = $a + 3;
-    
-    
     $project_created_display = mysqli_query($db_handle, "(SELECT a.user_id, a.project_id, a.project_title, a.stmt, a.creation_time, b.first_name, b.last_name, b.username FROM projects as a 
                                                             JOIN user_info as b WHERE a.user_id = $profile_user_id AND a.blob_id=0 AND a.project_type=1 AND a.user_id=b.user_id)
                                                         UNION 
@@ -40,21 +38,55 @@ if ($_POST['next_CP']) {
                         <div class='list-group-item'>
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                <li><button class='btn-link' href='#'>Edit Project</button></li>
+                                <li><button class='btn-link' onclick='editproject(".$project_id_table.")'>Edit Project</button></li>
                                 <li><button class='btn-link' onclick='delChallenge(\"".$project_id_table."\", 4);'>Delete Project</button></li>
                             </ul>
                         </div>
                     </div>";
             }
-            $show_CP = $show_CP. "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+            $show_CP = $show_CP. "<p id='project_ti_".$project_id_table."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                                     .ucfirst($project_title_table)."</a></b></p>
+                                    <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$project_title_table."'/>
                                 <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 </div>
                             <div class='list-group-item'>
-                        <br/>".$project_stmt_table."</span><br/><br/>";
-                                       
+                        <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/><br/>";
+     if(isset($_SESSION['user_id'])){
+		if(substr($project_stmt_table, 0, 1) != '<') {
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
+			}
+		else {
+			if (substr($project_stmt_table, 0, 4) == ' <br') {
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
+				}
+			if (substr($project_stmt_table, 0, 3) == '<s>') {
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
+				}
+			$projectstmt1 = substr(strstr($project_stmt_table, '<br/>'), 5) ;
+			$projectst1 = strstr($project_stmt_table, '<br/>' , true) ;
+			if(substr($project_stmt_table, 0, 4) == '<img') {
+			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_pic_".$project_id_table."' >".$projectst1."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
+					}
+			if(substr($project_stmt_table, 0, 2) == '<a') {
+			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_file_".$project_id_table."' >".$projectst1."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
+					}
+			if(substr($project_stmt_table, 0, 3) == '<if') {
+			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_video_".$project_id_table."' >".$projectst1."</div>
+					<input type='text' class='editbox' id='project_url_video_".$project_id_table."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+			$show_CP = $show_CP. "<input id='project_fileChallenge_".$project_id_table."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$project_id_table.")' id='pic_file_project_".$project_id_table."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_p_".$project_id_table."' >".$projectstmt1."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedpro(".$project_id_table.")' id='doneediting_project_".$project_id_table."'/>";		
+			}
+		}                                      
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION
