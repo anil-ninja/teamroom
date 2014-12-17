@@ -32,19 +32,6 @@ if($_POST['id']){
 	else { 	
 		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 		if(mysqli_num_rows($member_project) != 0) {
-			$username = $_SESSION['username'];
-			$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
-			$inforowt = mysqli_fetch_array($infoet) ;
-			$title = $inforowt['project_title'] ;
-			$type = $inforowt['project_type'] ;
-			$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where 
-												a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-			while ($memrow = mysqli_fetch_array($members)){
-				$emails = $memrow['email'] ;
-				$mail = $memrow['username'] ;
-				$body2 = "http://collap.com/profile.php?username=".$mail ;
-				collapMail($emails, $username." Commented IN Project ".$title, $body2);
-				}
 			if($case == 2) { 
 				events($db_handle,$user_id,"14",$id);
 				involve_in($db_handle,$user_id,"14",$id);
@@ -62,6 +49,19 @@ if($_POST['id']){
 				else {
 					events($db_handle,$user_id,"3",$id);
 					involve_in($db_handle,$user_id,"3",$id);
+					$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
+					$inforowt = mysqli_fetch_array($infoet) ;
+					$title = $inforowt['project_title'] ;
+					$type = $inforowt['project_type'] ;
+					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where 
+														a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+					while ($memrow = mysqli_fetch_array($members)){
+						$emails = $memrow['email'] ;
+						$mail = $memrow['username'] ;
+						$body2 = "Hi, ".$mail." \n \n ".$username." Commented on http://collap.com/challengesOpen.php?challenge_id=".$id."  \n \n IN Project (".$title."). View at \n
+http://collap.com/project.php?project_id=".$pro_id ;
+						collapMail($emails, "Commented In Project ", $body2);
+						}
 					mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 					if (strlen($stmt)<1000) {	
 						mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;

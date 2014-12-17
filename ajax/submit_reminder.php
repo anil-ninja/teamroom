@@ -6,7 +6,6 @@ if($_POST['reminder']){
 	$reminder = $_POST['reminder'] ;
 	$self = $_POST['self'] ;
 	$eventtime = $_POST['eventtime'] ;
-	//echo $time ;
 	$time = $eventtime.":00" ;
 	$a = date("Y-m-d H:i") ;
 	if ($eventtime == $a || $eventtime < $a) {
@@ -14,10 +13,15 @@ if($_POST['reminder']){
 		}
 		else {
 			if (strlen($reminder) < 250) {
-					mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time) 
-												VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;
-					if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-					else { echo "Reminder Set succesfully!"; }
+				if($user_id != $self) {
+					$body2 = "Hi, \n \n ".$username." Add Reminder for you (".$reminder."). View at \n
+http://collap.com/profile.php?username=".$username ;
+					collapMail($emails, "Reminder Added", $body2);
+					}
+				events($db_handle,$user_id,"37",$self);
+				mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time)	VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;
+				if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+				else { echo "Reminder Set succesfully!"; }
 				} 
 				else {
 					 echo "Max length 250 characters!"; 

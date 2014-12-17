@@ -10,6 +10,8 @@ if($_POST['id']){
 										(select b.stmt from projects as a join blobs as b where a.project_id='$id' and a.blob_id = b.blob_id);") ;
 	$myqueryRow = mysqli_fetch_array($myquery) ;
 	$stmt = $myqueryRow['stmt'] ;
+	events($db_handle,$user_id,"33",$pro_id) ;
+	involve_in($db_handle,$user_id,"33",$pro_id) ;
 	if (strlen($image) < 30 ) {
 		$challange = $stmt ;
 	}

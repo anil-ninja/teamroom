@@ -97,19 +97,40 @@ function login(){
 	$response = mysqli_query($db_handle,"select * from user_info where (username = '$username' OR email = '$username') AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
 	if ( $num_rows){
-		//echo "hi";
-		//header('Location: ninjas.php');
 		$responseRow = mysqli_fetch_array($response);
 		$id = $responseRow['user_id'];
+		$rank = $responseRow['rank'];
 		$lastlogintime = $responseRow['last_login'];
+		$obj = new rank($id);
+		$new_rank = $obj->user_rank ;
+		if($new_rank != $rank) {
+			$userProjects = mysqli_query($db_handle, "(SELECT a.email, a.username, a.user_id FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
+												where a.user_id = '$id' and a.team_name = b.team_name and b.user_id != '$id')
+												as b where a.user_id = b.user_id )
+												UNION
+												(select a.email, a.username, a.user_id FROM user_info as a join known_peoples as b
+												where b.requesting_user_id = '$id' and a.user_id = b.knowning_id and b.status != '4')
+												UNION
+												(select a.email, a.username, a.user_id FROM user_info as a join known_peoples as b
+												where b.knowning_id = '$id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
+			if (mysqli_num_rows($userProjects) != 0 ) {
+				while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
+					$friendFirstName = $userProjectsRow['email'];
+					$usernameFriends = $userProjectsRow['username'];
+					$useridFriends = $userProjectsRow['user_id'];
+					events($db_handle,$id,"18",$useridFriends) ;
+					$body2 = "Hi, ".$usernameFriends." \n \n ".$username." Updated his rank to ".$new_rank." View at \n
+http://collap.com/profile.php?username=".$username ;
+					collapMail($friendFirstName, "Rank Updated ", $body2);
+				}
+			}
+		}
 		$_SESSION['last_login'] = $lastlogintime ;
 		$_SESSION['user_id'] = $id ;
 		$_SESSION['first_name'] = $responseRow['first_name'] ;
 		$_SESSION['username'] = $responseRow['username'] ;
 		$_SESSION['email'] = $responseRow['email'];
 		$logintime = date("y-m-d H:i:s") ;
-		$obj = new rank($id);
-		$new_rank = $obj->user_rank ;
 		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime', rank = '$new_rank' where user_id = '$id' ;" ) ;
 		//$obj = new rank($id);
 		$_SESSION['rank'] = $obj->user_rank;

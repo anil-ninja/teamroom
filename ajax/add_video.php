@@ -3,7 +3,6 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 
-//echo "i am not working before post";
 if($_POST['video']){
 	$user_id = $_SESSION['user_id'];	
 	$challangetext = $_POST['video'] ;

@@ -5,8 +5,13 @@ include_once '../functions/delete_comment.php';
 include_once '../functions/collapMail.php';
 if($_POST['answer']){
 		$user_id = $_SESSION['user_id'] ;
+		$username = $_SESSION['username'];
 		$pro_id = $_SESSION['project_id'] ;
 		$ch_id = $_POST['cid'] ;
+		$ownerinfo = mysqli_query($db_handle,"select b.username, b.email from challenges as a join user_info as b where a.challenge_id = '$ch_id' and a.user_id = b.user_id ;") ;
+		$ownerinforow = mysqli_fetch_array($ownerinfo) ;
+		$owneremail = $ownerinforow['email'] ;
+		$ownername = $ownerinforow['username'] ;
 		$case = $_POST['case'] ;
 		$notestext = $_POST['answer'] ;
 		$image = $_POST['img'] ;
@@ -20,6 +25,8 @@ if($_POST['answer']){
 		if($case == 1) {
 			involve_in($db_handle,$user_id,"5",$ch_id); 
 			events($db_handle,$user_id,"5",$ch_id);
+			$body2 = "Hi, ".$ownername." \n \n ".$username." Submitted Answer to your Challenge. View at \n \n http://collap.com/challengesOpen.php?challenge_id=".$ch_id ;
+			collapMail($owneremail, " Answer Submitted", $body2);
 			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4', last_update='$a' WHERE challenge_id = $ch_id ; ") ;
 			mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $ch_id and user_id = '$user_id'; ") ;
 			if (strlen($notes) < 1000) {
@@ -48,8 +55,9 @@ if($_POST['answer']){
 					while ($memrow = mysqli_fetch_array($members)){
 						$emails = $memrow['email'] ;
 						$mail = $memrow['username'] ;
-						$body2 = "http://collap.com/profile.php?username=".$mail ;
-						collapMail($emails, $username." Submitted Answer IN Project ".$title, $body2);
+						$body2 = "Hi, ".$mail." \n \n ".$username." Submitted Answer http://collap.com/challengesOpen.php?challenge_id=".$ch_id."  \n \n IN Project (".$title."). View at \n
+http://collap.com/project.php?project_id=".$pro_id ;
+						collapMail($emails, " Answer Submitted", $body2);
 						} 
 					involve_in($db_handle,$user_id,"5",$ch_id); 
 					events($db_handle,$user_id,"5",$ch_id);

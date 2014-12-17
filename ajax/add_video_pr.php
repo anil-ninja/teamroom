@@ -17,16 +17,15 @@ if($_POST['videos']){
 	$title = $inforow['project_title'] ;
 	$type = $inforow['project_type'] ;
 	$time = date("Y-m-d H:i:s") ;
-	if($type == 2) {
-		$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
-											a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-		while ($memrow = mysqli_fetch_array($members)){
-			$emails = $memrow['email'] ;
-			$mail = $memrow['username'] ;
-			$body2 = "http://collap.com/profile.php?username=".$mail ;
-			collapMail($emails, $username." Add Video IN Project ".$title, $body2);
-			} 
-		}									
+	$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
+										a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+	while ($memrow = mysqli_fetch_array($members)){
+		$emails = $memrow['email'] ;
+		$mail = $memrow['username'] ;
+		$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
+ http://collap.com/project.php?project_id=".$pro_id ;
+		collapMail($emails, "Video Added IN Project ", $body2);
+		} 								
 	if (strlen($challange) < 1000) {
 		mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 
 									VALUES ('$user_id', '$pro_id', '$challenge_title', '$challange', '1', '999999', '8', '$time') ; ") ;

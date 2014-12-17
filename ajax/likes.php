@@ -41,8 +41,9 @@ if(isset($_POST['id'])){
 						while ($memrow = mysqli_fetch_array($members)){
 							$emails = $memrow['email'] ;
 							$mail = $memrow['username'] ;
-							$body2 = "http://collap.com/profile.php?username=".$mail ;
-							collapMail($emails, $username." Likes IN Project ".$title, $body2);
+							$body2 = "Hi, ".$mail." \n \n ".$username." Likes http://collap.com/challengesOpen.php?challenge_id=".$id."  \n \n IN Project (".$title."). View at \n
+http://collap.com/project.php?project_id=".$pro_id ;
+							collapMail($emails, "Like In Project ", $body2);
 							} 
 						}
 				if($case == 3) {
@@ -55,7 +56,7 @@ if(isset($_POST['id'])){
 					}
 					else {
 						mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '2');") ;
-						mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
+						mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$challenge_id' ; ") ;
 						events($db_handle,$user_id,"17",$id);
 						involve_in($db_handle,$user_id,"17",$id);
 						if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
