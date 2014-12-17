@@ -18,7 +18,7 @@ if($_POST['value']){
 	if($user_id != $user) {
 		if($reminder != "") {
 			$body2 = "Hi, \n \n ".$username." Add Reminder for you (".$reminder."). View at \n
-	 http://collap.com/profile.php?user_id=".$user ;
+	 http://collap.com/profile.php?username=".$username ;
 			collapMail($emails, "Reminder Added", $body2);
 			}
 		}
