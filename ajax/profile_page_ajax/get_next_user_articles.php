@@ -52,20 +52,51 @@ if ($_POST['last_article']) {
               </div>";
             }
 
-        $show_article = $show_article. "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
-                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
-                    .ucfirst($article_title)."</a></b></p>
-                
-                <span class='glyphicon glyphicon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
-                        <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
-                </div>
-                <div class='list-group-item'>
-            <br/>".$article_stmt."</span><br/><br/>";
-        //comments_all_type_challenges ($db_handle, $article_id);
-        
+        $show_article = $show_article. "<p id='challenge_ti_".$article_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                    <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
+                        .ucfirst($article_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$article_title."'/>
+                    <span class='glyphicon glyphicon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
+                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
+                            <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
+                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
+                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
+                    </div>
+                    <div class='list-group-item'>
+                <br/><span id='challenge_".$article_id."' class='text'>".$article_stmt."</span><br/><br/>";
+if(isset($_SESSION['user_id'])){
+		if(substr($article_stmt, 0, 1) != '<') {
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
+			}
+		else {
+			if (substr($article_stmt, 0, 4) == ' <br') {
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
+				}
+			if (substr($article_stmt, 0, 3) == '<s>') {
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
+				}
+			$chaaa = substr(strstr($article_stmt, '<br/>'), 5) ;
+			$cha = strstr($article_stmt, '<br/>' , true) ;
+			if(substr($article_stmt, 0, 4) == '<img') {
+$show_article = $show_article. "<div class='editbox' style='width : 90%;' id='challenge_pic_".$article_id."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$article_id.")' id='pic_file_".$article_id."'/><br/><br/>" ;
+					}
+			if(substr($article_stmt, 0, 2) == '<a') {
+$show_article = $show_article. "<div class='editbox' style='width : 90%;' id='challenge_file_".$article_id."' >".$cha."</div>
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$article_id.")' id='pic_file_".$article_id."'/><br/><br/>" ;
+					}
+			if(substr($article_stmt, 0, 3) == '<if') {
+$show_article = $show_article. "<div class='editbox' style='width : 90%;' id='challenge_video_".$article_id."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$article_id."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+$show_article = $show_article. "<input id='_fileChallenge_".$article_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$article_id.")' id='pic_file_save_".$article_id."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$article_id."' >".$chaaa."</textarea>
+						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$article_id.")' id='doneediting_".$article_id."'/>";		
+			}
+		}        
     
     $commenter = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $article_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')

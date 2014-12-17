@@ -159,9 +159,9 @@ $obj = new profile($UserName);
 			}
 			else {
 				if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-					echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer;'>Edit</a><br/>
-							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer;'>Edit</a><br/>
-							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer;'>Edit</a>";
+					echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>Edit</a><br/>
+							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>Edit</a><br/>
+							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>Edit</a>";
 					}
 					else {
 						echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
@@ -344,6 +344,18 @@ $obj = new profile($UserName);
 $(".editprofile").hide();
 $(".viewprofile").show();
 $("#editprofile").click(function(){
+	$(".viewprofile").toggle();
+	$(".editprofile").toggle();
+});
+$("#editprofile2").click(function(){
+	$(".viewprofile").toggle();
+	$(".editprofile").toggle();
+});
+$("#editprofile3").click(function(){
+	$(".viewprofile").toggle();
+	$(".editprofile").toggle();
+});
+$("#editprofile4").click(function(){
 	$(".viewprofile").toggle();
 	$(".editprofile").toggle();
 });
