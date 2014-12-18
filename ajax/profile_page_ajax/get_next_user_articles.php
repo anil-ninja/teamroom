@@ -20,7 +20,7 @@ if ($_POST['last_article']) {
         $article_id=$user_articles_displayRow['challenge_id'];
         $article_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_articles_displayRow['challenge_title'])));
         $article_stmt1 = $user_articles_displayRow['stmt'];
-        $article_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1)));
+        $article_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1))));
         $article_firstname = $user_articles_displayRow['first_name'];
         $article_lastname = $user_articles_displayRow['last_name'];
         $article_username = $user_articles_displayRow['username'];

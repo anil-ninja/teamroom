@@ -220,4 +220,19 @@ function recommended_project ($db_handle) {
         </div>";
     }
 }
+function showLinks($stmt){
+	$stmtArray = explode(" ", $stmt);
+	$returnStmt = "";
+	foreach($stmtArray as $element){
+		
+		if(substr($element, 0, 4) == "http"){
+			
+			$element = "<a href=".html_entity_decode($element)." target='_blank'>".$element."</a>";
+			
+		}
+		
+		$returnStmt .= $element . " ";
+	}
+	return $returnStmt;
+}
 ?>

@@ -35,7 +35,7 @@ if (isset($_POST['logout'])) {
                    while ($top_challengesRow = mysqli_fetch_array($top_challenges)) {
                        $challenge_type_id = $top_challengesRow['challenge_id'];
                        $challenge_type_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['challenge_title'])));
-                       $challenge_type_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['stmt']))) ;
+                       $challenge_type_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['stmt'])))) ;
                        $challenge_type_first = $top_challengesRow['first_name'];
                        $challenge_type_last = $top_challengesRow['last_name'];
                        $challenge_type_username = $top_challengesRow['username'];

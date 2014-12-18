@@ -23,7 +23,7 @@ if ($_POST['user_next_idea']) {
         $idea_id= $user_idea_displayRow['challenge_id'];
         $idea_title =str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_idea_displayRow['challenge_title'])));
         $idea_stmt1 = $user_idea_displayRow['stmt'];
-        $idea_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1)));
+        $idea_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1))));
         $idea_creation1 = $user_idea_displayRow['creation_time'];
         $idea_creation = date("j F, g:i a", strtotime($idea_creation1));
         $idea_firstname = $user_idea_displayRow['first_name'];
