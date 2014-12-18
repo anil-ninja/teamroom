@@ -489,13 +489,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
             $display_ch_stmt_content = "";
         }
     }
-    /* if ($ctype != 7 && $ctype != 8 && $ctype != 6 && $ctype != 4) {
-    echo "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$chelangeid."' class='text' ><b>" . ucfirst($ch_title) . "</b></p>
-			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
-			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>" ;
-    }
-     * 
-     */
+    
     if ($status == 4 || $status == 5) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION

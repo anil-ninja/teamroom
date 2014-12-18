@@ -35,14 +35,14 @@ $("#changeremindervalue").click(function(){
 							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
 						}
 						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
 							}
 							else if(reminder == "" && date == "") {
 								location.reload() ;
 								return false ;
 								}
 								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
 									}
 				}
 				else {
@@ -50,13 +50,13 @@ $("#changeremindervalue").click(function(){
 							var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
 						}
 						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
 							}
 							else if(reminder == "" && date == "") {
 								var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
 								}
 								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
 									}
 					
 					
