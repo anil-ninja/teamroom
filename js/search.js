@@ -65,7 +65,9 @@ function updatetime() {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					if(result == "updated") {}
+					if(result == "updated") {
+						$("#countnotice").val(0) ;
+						}
 					else {
 					var notice = result.split("+") ;
 					document.getElementById("notifications").innerHTML = notice['0'];
@@ -90,7 +92,9 @@ function getnewnote(time, lid) {
 		data: dataString,
 		cache: false,
 		success: function(result){
-			if(result == "no new notification") {}
+			if(result == "no new notification") { 
+				$("#countnotice").val(0) ;
+				}
 			else {
 				var notice = result.split("+") ;
 				$('.newnotices').append(notice['0']);

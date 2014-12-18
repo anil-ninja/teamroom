@@ -10,7 +10,7 @@ function insert($id, $user_ID,  $db_handle) {
 if ($_POST['time']) {
     $user_id = $_SESSION['user_id'];
     $lid = $_POST['lid'] ;
-    $time = date('Y-m-d H:i:s', strtotime($_POST['time'])-70) ;
+    $time = date('Y-m-d H:i:s', strtotime($_POST['time'])-120) ;
     $notice = "" ;
 	  $y = 0 ;
 	$notice27 = mysqli_query($db_handle, "select Distinct b.first_name, b.username, a.project_id, a.project_title from projects as a join user_info as b
@@ -368,7 +368,7 @@ if ($_POST['time']) {
 					$rank = $notice16row['rank'] ;
 					$notice = $notice ."<span class='glyphicon glyphicon-star' onclick=".update($user_id,$db_handle)."></span>
 										<p style='font-size: 10px;'> &nbsp;<a href ='profile.php?username=".$uname."'>
-										".$fname."</a>&nbsp; Updated His Rank to ".$rank ." </p><br/> on  ".$eventtime."<hr/>" ;
+										".$fname."`s</a>&nbsp; Rank Updated to ".$rank ." </p><br/> on  ".$eventtime."<hr/>" ;
 					$y++ ;
 					insert($eventid, $user_id,  $db_handle) ;
 				}

@@ -370,7 +370,7 @@ if($_POST['update']){
 					$rank = $notice16row['rank'] ;
 					$notice = $notice ."<span class='glyphicon glyphicon-star' onclick=".update($user_id,$db_handle)."></span>
 										<p style='font-size: 10px;'> &nbsp;<a href ='profile.php?username=".$uname."'>
-										".$fname."</a>&nbsp; Updated His Rank to ".$rank ." </p><br/> on  ".$eventtime."<hr/>" ;
+										".$fname."`s</a>&nbsp; Rank Updated to ".$rank ." </p><br/> on  ".$eventtime."<hr/>" ;
 					$y++ ;
 					insert($eventid, $user_id,  $db_handle) ;
 				}
