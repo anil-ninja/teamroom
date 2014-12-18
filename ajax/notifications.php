@@ -253,7 +253,7 @@ if ($_POST['notice']) {
 				break;		
 					
 			case 13:
-				$notice11 = mysqli_query($db_handle, " select project_id, project_title from projects where project_id = '$search_id';") ;
+				$notice11 = mysqli_query($db_handle, "select project_id, project_title from projects where project_id = '$search_id';") ;
 				while ($notice11row = mysqli_fetch_array($notice11)) {
 					$pro_id9 = $notice11row['project_id'] ;
 					$project_title9 = $notice11row['project_title'] ;	
@@ -490,7 +490,7 @@ if ($_POST['notice']) {
 				break;
 				
 			case 31:
-				$notice23 = mysqli_query($db_handle, " select project_id, project_title from projects where project_id = '$search_id';") ;
+				$notice23 = mysqli_query($db_handle, "select project_id, project_title from projects where project_id = '$search_id';") ;
 				while ($notice23row = mysqli_fetch_array($notice23)) {
 					$pro_id21 = $notice23row['project_id'] ;
 					$project_title21 = $notice23row['project_title'] ;	

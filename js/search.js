@@ -84,7 +84,6 @@ setInterval(function(){
 	getnewnote(time, eid+='') ;
 },120000)();
 function getnewnote(time, lid) {	
-	//alert (unix) ;
 	var dataString = 'time='+ time + '&lid=' + lid ;
 	$.ajax({
 		type: "POST",
@@ -101,7 +100,6 @@ function getnewnote(time, lid) {
 				var num = $("#countnotice").val() ;
 				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
 				var neid = parseInt(notice['2']) ;
-				//alert(neid+='' + "," + newnum ) ;
 				if (neid+='' != 0) {
 					$("#countnotice").val(newnum+='') ;
 				}
