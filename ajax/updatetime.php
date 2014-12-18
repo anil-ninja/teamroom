@@ -253,33 +253,6 @@ if($_POST['update']){
 			$y++ ;
 			} 
 			
-	/*$notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
-											join challenges as b where b.challenge_id = a.challenge_id and a.status = '1' 
-											and a.user_id = '$user_id';") ;
-		while($notice16row = mysqli_fetch_array($notice16)) {
-			$comp_ch_ETA = strtotime($notice16row['comp_ch_ETA']*60) ;
-			$ownership_creation = strtotime($notice16row['ownership_creation']) ;
-			$challenge_id16 = $notice16row['challenge_id'] ;
-			$title16 = $notice16row['challenge_title'] ;
-			if (time() > ($comp_ch_ETA + $ownership_creation)) { 
-					//$dead_time = "Closed" ;
-					$y++ ;
-					$notice = $notice ."<span class='glyphicon glyphicon-time'></span><p style='font-size: 10px;'> Remaining Time Over</p><br/>
-										<a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "' >".$title16."</a><hr/>" ;
-				}
-			else {	
-					$remainingtime = (($comp_ch_ETA + $ownership_creation)-time()) ;
-				if ($remainingtime < ((24*60*60)-1)) {	
-						$hour = floor($remainingtime/(60*60)) ;
-						$hoursec = $remainingtime%(60*60) ;
-						$minute = floor($hoursec/60) ;
-						$notice = $notice ."<span class='glyphicon glyphicon-time'></span><p style='font-size: 10px;'> &nbsp; Deadline Reached (Remaining Time)
-											: ".$hour." Hours : ".$minute." Mins</p><br/><a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "'>
-											".$title16."</a><hr/>" ;
-						$y++ ;
-					} 
-				}
-			} */
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$newid."'/>";		
 			$data .= "<div class='dropdown'>
 					<a data-toggle='dropdown' onclick='updatetime()'>" ;

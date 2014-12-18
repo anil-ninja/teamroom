@@ -229,7 +229,7 @@ $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.creatio
                                       join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
-$projectst = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
+$projectst = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt']))));
 $fname = $project_row['first_name'];
 $projectcreation = $project_row['creation_time'];
 $lname = $project_row['last_name'];
@@ -379,7 +379,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $eta_task = $tasksrow['challenge_ETA'];
     $creation_task = $tasksrow['creation_time'];
     $timetask = date("j F, g:i a", strtotime($creation_task));
-    $stmt_task = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt'])));
+    $stmt_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt']))));
     $fname_task = $tasksrow['first_name'];
     $lname_task = $tasksrow['last_name'];
     $tasketa = eta($eta_task);

@@ -88,7 +88,7 @@
                 while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                     $challenge_user_chID = $challenge_userRow['challenge_id'];
                     $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
-                    $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
+                    $challenge_user_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt']))));
                     echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242); max-width : 100%;'>
 							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                             <div class='panel-heading' style='padding-left: 0px;'>
@@ -109,7 +109,7 @@
                 while($projectsRow = mysqli_fetch_array($projects)) {
                     $project_id = $projectsRow['project_id'];
                     $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                    $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                    $project_title_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])))); 
                 echo "<div class='list-group-item' style='margin:4px; background : rgb(240, 241, 242);'>
 						<a href='project.php?project_id=".$project_id."'>
                         <div class='panel-heading' style='padding-left: 0px;'>

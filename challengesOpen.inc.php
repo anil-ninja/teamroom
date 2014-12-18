@@ -62,7 +62,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                                                 WHERE a.challenge_id = '$challengeSearchID' AND a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id );");
 
         while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
-            $chelange = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
+            $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
             $ETA = $open_chalangerow['challenge_ETA'];
             $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
             $owner_id = $open_chalangerow['user_id'];

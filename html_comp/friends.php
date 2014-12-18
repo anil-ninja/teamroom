@@ -1,5 +1,5 @@
 <?php if(isset($_SESSION['user_id'])) { 
-    $user_id = $_SESSION['user_id']?> 	
+    $user_id = $_SESSION['user_id'] ?> 	
 		<div id="nav">
     <div class="nav-btn"><p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p></div>
                     <div class="panel-body" style="padding: 1px;">

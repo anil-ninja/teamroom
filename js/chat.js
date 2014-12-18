@@ -19,29 +19,6 @@ function getnewtalk() {
 				}
 			});
 }
-
-function getnewreminder() {	
-	var uid = parseInt($("#lastreminderid").val()) ;
-	//alert(uid) ;
-	var dataString = 'reminders='+ uid  ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/newreminders.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					var notice = result.split("+") ;
-					var neid = parseInt(notice['1']) ;
-					//alert(neid) ;
-					$('.newreminders').append(notice['0']);
-					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid+='' != "0") {
-							$("#lastreminderid").val(neid+='') ;
-						}
-				}
-			});
-}
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}
@@ -160,7 +137,7 @@ function getallreminders() {
 					$("#lastreminderid").val(neid+='') ;
 				}
 			});
-	setInterval(function(){ getnewreminder() },400000)();
+	//setInterval(function(){ getnewreminder() },400000)();
 }
 
 function submittalk(event,chatboxtextarea) {

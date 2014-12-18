@@ -104,3 +104,26 @@ function getnewmessages(userid , username) {
 				}
 			}); 
 		}
+
+function getnewreminder() {	
+	var uid = parseInt($("#lastreminderid").val()) ;
+	//alert(uid) ;
+	var dataString = 'reminders='+ uid  ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/newreminders.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					var notice = result.split("+") ;
+					var neid = parseInt(notice['1']) ;
+					//alert(neid) ;
+					$('.newreminders').append(notice['0']);
+					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+					if (neid+='' != "0") {
+							$("#lastreminderid").val(neid+='') ;
+						}
+				}
+			});
+}

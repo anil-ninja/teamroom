@@ -1,9 +1,12 @@
 <?php
 include_once "../lib/db_connect.php";
+include_once '../functions/delete_comment.php';
+
 if($_POST['id']){
 	$id=mysql_escape_String($_POST['id']);
 	$projectsmt = $_POST['projectsmt'];
 	$project = $_POST['title'];
+	$user_id = $_SESSION['user_id'] ;
 	$video = $_POST['video'];
 	$time = date("Y-m-d H:i:s") ;
 	$myquery = mysqli_query($db_handle,"(select stmt from projects where project_id='$id' and blob_id = '0')
@@ -11,6 +14,8 @@ if($_POST['id']){
 										(select b.stmt from projects as a join blobs as b where a.project_id='$id' and a.blob_id = b.blob_id);") ;
 	$myqueryRow = mysqli_fetch_array($myquery) ;
 	$stmt = $myqueryRow['stmt'] ;
+	events($db_handle,$user_id,"33",$pro_id) ;
+	involve_in($db_handle,$user_id,"33",$pro_id) ;
 	if($video == '') {
 		if(substr($stmt, 0, 1) == '<') {
 			$newstmt = strstr($stmt, '<br/>' , true)."<br/>".$projectsmt ;

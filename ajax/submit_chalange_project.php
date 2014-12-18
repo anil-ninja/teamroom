@@ -8,6 +8,7 @@ if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
 	$pro_id = $_SESSION['project_id'] ;	
 	$challangetext = $_POST['challange'];
+	$username = $_SESSION['username'];
 	$opentime = 1;//$_POST['opentime'] ;
 	$challenge_title = $_POST['challenge_title'] ;
 	$challange_eta = 999999 ;//$_POST['challange_eta'] ; 
@@ -32,8 +33,9 @@ if($_POST['challange']){
 		while ($memrow = mysqli_fetch_array($members)){
 			$emails = $memrow['email'] ;
 			$mail = $memrow['username'] ;
-			$body2 = "http://collap.com/profile.php?username=".$mail ;
-			collapMail($emails, $username." Create Challenge IN Project ".$title, $body2);
+			$body2 = "Hi, ".$mail." \n \n ".$username." Create Challenge IN Project (".$title."). View at \n
+http://collap.com/project.php?project_id=".$pro_id ;
+			collapMail($emails, " Challenge Created", $body2);
 			} 
 		if (strlen($challange) < 1000) {
 			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 
