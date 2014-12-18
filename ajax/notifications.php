@@ -603,7 +603,7 @@ if ($_POST['notice']) {
 			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
 			$data .= "<div class='dropdown'>
-					<a data-toggle='dropdown' >" ;
+					<a data-toggle='dropdown' onclick='updatetime()'>" ;
 			if ($y == 0) {
 				$data = $data . "<p class='navbar-text' style ='cursor: pointer;'>
 								<i class='glyphicon glyphicon-bell'></i>" ;
