@@ -133,8 +133,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false ;
 			}
 			else {
-				var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
+				var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
+				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/add_video.php",
@@ -192,8 +192,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false ;
 			}
 			else {
-				var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
+				var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
+				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/add_video_pr.php",
@@ -257,8 +257,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 			//var etad = parseInt($("#c_etad").val());
 			//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ; 
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title)))) ;// + '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') + '&challtype='+ challtype;
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title)))) ;// + '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') + '&challtype='+ challtype;
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
@@ -368,8 +368,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false;
 			} else {
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',article)))) + 
-			'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',article_title))))  ;
+			var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',article)))) + 
+			'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',article_title))))  ;
 			//alert(dataString);
 			
 			//file upload
@@ -402,7 +402,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false;
 				}
 			 else {
-			var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
+			var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/submit_reminder.php",
@@ -439,7 +439,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			//var etad = parseInt($("#etad").val());
 			//var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
+			var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
 			'&type='+ type ;//+ '&project_eta='+ (project_eta+='')  ;
 			//alert(dataString);
 			if(project_title==''){
@@ -592,8 +592,8 @@ $("#pencil").click(function(){
 			var idea = convertSpecialChar($("#ideaA").val()) ;
 			var idea_title = convertSpecialChar($("#idea_titleA").val()) ;		
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',idea)))) + '&idea_title='+ 
-			replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',idea_title))))  ;
+			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',idea)))) + '&idea_title='+ 
+			replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',idea_title))))  ;
 			//alert(dataString);
 			if(idea == ''){
 				bootstrap_alert(".alert_placeholder", "Idea can not be empty", 5000,"alert-warning");
@@ -615,8 +615,8 @@ $("#pencil").click(function(){
 			var picturech = convertSpecialChar($("#picturech").val()) ;
 			var picture_title = convertSpecialChar($("#picture_title").val()) ;			
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',picturech)))) 
-			+ '&picture_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',picture_title))))  ;
+			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',picturech)))) 
+			+ '&picture_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',picture_title))))  ;
 			//alert(dataString);
 			if(picturech == ''){
 				bootstrap_alert(".alert_placeholder", "Details can not be empty", 5000,"alert-warning");
@@ -667,8 +667,8 @@ $("#pencil").click(function(){
 							//var etad = parseInt($("#c_etad").val());
 							//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 							// Returns successful data submission message when the entered information is stored in database.
-							var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-							 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
+							var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
+							 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
 							//alert(dataString);
 							if(title==''){
 								bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
@@ -710,8 +710,8 @@ $("#pencil").click(function(){
 				//var etad = parseInt($("#c_etad").val());
 				//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 				// Returns successful data submission message when the entered information is stored in database.
-				var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-				 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
+				var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
+				 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
 				//alert(dataString);
 				if(title==''){
 					bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
