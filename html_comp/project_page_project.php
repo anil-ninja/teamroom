@@ -276,20 +276,20 @@ echo "</div>
       <div class='list-group-item'><span id='project_".$pro_id."' class='text'>".$projectst."</span><br/><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($projectst, 0, 1) != '<') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$projectst)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
 			}
 		else {
 			if (substr($projectst, 0, 4) == ' <br') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$projectst)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
 				}
 			if (substr($projectst, 0, 3) == '<s>') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$projectst)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
 				}
-			$projectstmt1 = substr(strstr($projectst, '<br/>'), 5) ;
-			$projectst1 = strstr($projectst, '<br/>' , true) ;
+			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($projectst, '<br/>'), 5)) ;
+			$projectst1 = str_replace("<br/>", "\n",strstr($projectst, '<br/>' , true)) ;
 			if(substr($projectst, 0, 4) == '<img') {
 			echo "<div class='editbox' style='width : 90%;' id='project_pic_".$pro_id."' >".$projectst1."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/><br/>" ;
@@ -430,20 +430,20 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                         <span id='challenge_".$id_task."' class='text'>".$stmt_task."</span><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($stmt_task, 0, 1) != '<') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
 			if (substr($stmt_task, 0, 4) == ' <br') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
 			if (substr($stmt_task, 0, 3) == '<s>') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			$chaaa = substr(strstr($stmt_task, '<br/>'), 5) ;
-			$cha = strstr($stmt_task, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt_task, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
 			if(substr($stmt_task, 0, 4) == '<img') {
 $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;

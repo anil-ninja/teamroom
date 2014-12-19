@@ -27,7 +27,8 @@ if(!isset($_SESSION['user_id'])){
 			<div class="panel-primary" id='panel-cont'>
 			  	<p id='home-ch'></p>
 			 	<p id='home'></p>
-	    		<?php include_once 'html_comp/ninjas_page.php' ; ?>
+	    		<?php include_once 'html_comp/ninjas_page.php' ;
+	    		echo "<input type='hidden' id='viewchid' value='1'/>" ?>
 			</div>
 		</div>
 		 <div class="col-md-2">
@@ -41,6 +42,7 @@ if(!isset($_SESSION['user_id'])){
          event.preventDefault();
          $('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
          var dataString = 'chal=10' ;
+         var value = $("#viewchid").val() ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/get_next.php",
@@ -49,6 +51,7 @@ if(!isset($_SESSION['user_id'])){
 				success: function(result){
 					$('#panel-cont').append(result);
 					$('.loading').remove();
+					showclass(value) ;
 				}
 			});
 		}

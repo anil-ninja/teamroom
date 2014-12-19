@@ -112,20 +112,20 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                                 <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($stmt_task, 0, 1) != '<') {
-		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
 			if (substr($stmt_task, 0, 4) == ' <br') {
-			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
 			if (substr($stmt_task, 0, 3) == '<s>') {
-		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			$chaaa = substr(strstr($stmt_task, '<br/>'), 5) ;
-			$cha = strstr($stmt_task, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt_task, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
 			if(substr($stmt_task, 0, 4) == '<img') {
 			$get_display_task_stmt = $get_display_task_stmt.  "<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;

@@ -55,20 +55,20 @@ if ($_POST['next_CP']) {
                         <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/><br/>";
      if(isset($_SESSION['user_id'])){
 		if(substr($project_stmt_table, 0, 1) != '<') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 			}
 		else {
 			if (substr($project_stmt_table, 0, 4) == ' <br') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
 			if (substr($project_stmt_table, 0, 3) == '<s>') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
-			$projectstmt1 = substr(strstr($project_stmt_table, '<br/>'), 5) ;
-			$projectst1 = strstr($project_stmt_table, '<br/>' , true) ;
+			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($project_stmt_table, '<br/>'), 5)) ;
+			$projectst1 = str_replace("<br/>", "\n",strstr($project_stmt_table, '<br/>' , true)) ;
 			if(substr($project_stmt_table, 0, 4) == '<img') {
 			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_pic_".$project_id_table."' >".$projectst1."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;

@@ -66,20 +66,20 @@ if ($_POST['user_next_idea']) {
                 <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($idea_stmt, 0, 1) != '<') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 			}
 		else {
 			if (substr($idea_stmt, 0, 4) == ' <br') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
 			if (substr($idea_stmt, 0, 3) == '<s>') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
-			$chaaa = substr(strstr($idea_stmt, '<br/>'), 5) ;
-			$cha = strstr($idea_stmt, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($idea_stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($idea_stmt, '<br/>' , true)) ;
 			if(substr($idea_stmt, 0, 4) == '<img') {
 $show_idea = $show_idea. "<div class='editbox' style='width : 90%;' id='challenge_pic_".$idea_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/><br/>" ;

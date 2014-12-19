@@ -37,6 +37,15 @@ function getnextchal (clas, int) {
 	}
 function showclass(int) {
 	switch(int){
+		case 1:
+			$(".articlesch").show(100);
+			$(".openchalhide").show(100);
+			$(".idea").show(100);
+			$(".film").show(100);
+			$(".challenge").show(100);
+			$(".pict").show(100);
+			break;
+			
 		case 2:
 			$(".articlesch").hide(100);
 			$(".openchalhide").hide(100);
@@ -534,6 +543,7 @@ $("#pencil").click(function(){
   	$(".film").hide(100);
     $(".challenge").show(100);
     $(".pict").hide(100);
+    $("#viewchid").val(2);
     getnextchal('challenge',2) ;
   });
 
@@ -544,6 +554,7 @@ $("#pencil").click(function(){
   	$(".film").hide(100);
     $(".articlesch").show(100);
     $(".pict").hide(100);
+    $("#viewchid").val(3);
     getnextchal('articlesch', 3) ;
   });
   
@@ -554,6 +565,7 @@ $("#pencil").click(function(){
   	$(".film").hide(100);
     $(".articlesch").hide(100);
     $(".pict").hide(100);
+    $("#viewchid").val(4);
     getnextchal('openchalhide', 4) ;
   });
   
@@ -564,6 +576,7 @@ $("#pencil").click(function(){
   	$(".film").show(100);
     $(".articlesch").hide(100);
     $(".pict").hide(100);
+    $("#viewchid").val(5) ;
     getnextchal('film', 5) ;
   });
   
@@ -574,6 +587,7 @@ $("#pencil").click(function(){
     $(".articlesch").hide(100);
     $(".idea").show(100);
     $(".pict").hide(100);
+    $("#viewchid").val(6) ;
     getnextchal('idea', 6) ;
   });
   
@@ -584,6 +598,7 @@ $("#pencil").click(function(){
     $(".articlesch").hide(100);
     $(".idea").hide(100);
     $(".pict").show(100);
+    $("#viewchid").val(7);
     getnextchal('pict', 7) ;
   });
 	
