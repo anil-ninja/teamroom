@@ -111,8 +111,26 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     <span class="icon-bar"></span>
                 </a>
                 <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: 'Open Sans', sans-serif;" href="index.php">
-                 <img src ='img/collap.gif' style="width:35px;">collap</a>
+                 <img src ='img/collap.gif' style="width:35px;">collap
+
+                 </a>
                 <div class="nav-collapse collapse navbar-responsive-collapse">
+                    <ul class="nav">
+                    <li class="dropdown">
+                            <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">Layout<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-header">Align</li>
+                                <li><a href="index.html#demo-1">Top Align</a></li>
+                                <li><a href="index.html#demo-2">Left Align</a></li>
+                                <li><a href="index.html#demo-3">Right Align</a></li>
+                                <li><a href="index.html#demo-4">Bottom Align</a></li>
+                                <li><a href="index.html#demo-5">With Dropdown And Custom Content</a></li>
+                                <li><a href="index.html#demo-6">Papper Stack</a></li>
+                                <li><a href="index.html#demo-7">Tabs With Modal Popup</a></li>
+                                <li><a href="index.html#demo-8">Features</a></li>
+                            </ul>
+                        </li>
+                        </ul>
                     <?php
                     /*<ul class="nav">
 

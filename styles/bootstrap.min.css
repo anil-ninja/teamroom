@@ -3873,10 +3873,10 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 {
   background-color: #fafafa;
   background-image: linear-gradient(to bottom,#4EC67F,#536B4D);
-  background-image: -moz-linear-gradient(top,#fff,#f2f2f2);
-  background-image: -o-linear-gradient(top,#fff,#f2f2f2);
-  background-image: -webkit-gradient(linear,0 0,0 100%,from(#fff),to(#f2f2f2));
-  background-image: -webkit-linear-gradient(top,#fff,#f2f2f2);
+  background-image: -moz-linear-gradient(top,#4EC67F,#536B4D);
+  background-image: -o-linear-gradient(top,#4EC67F,#536B4D);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#4EC67F),to(#536B4D));
+  background-image: -webkit-linear-gradient(top,#4EC67F,#536B4D);
   background-repeat: repeat-x;
   border: 1px solid #d4d4d4;
   border-radius: 4px;
