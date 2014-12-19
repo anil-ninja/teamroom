@@ -1,6 +1,7 @@
 <?php
 include_once "../models/rank.php";
 include_once '../functions/collapMail.php';
+include_once '../functions/delete_comment.php';
 function signup(){
 	include_once "db_connect.php";
 	$firstname = mysqli_real_escape_string($db_handle, $_POST['firstname']);

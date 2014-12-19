@@ -24,7 +24,8 @@ if ($_POST['email']) {
 				} 
 				else {
 					events($db_handle,$user_id,"15",$pro_id);
-					involve_in($db_handle,$user_id,"15",$pro_id);
+					involve_in($db_handle,$user_id,"15",$pro_id); 
+					mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
 					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
 											a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 					while ($memrow = mysqli_fetch_array($members)){
@@ -33,8 +34,7 @@ if ($_POST['email']) {
 						$body2 = "Hi, ".$mail." \n \n ".$username." add new member in team (".$team_name."). View new member profile at \n
  http://collap.com/profile.php?username=".$uname ;
 						collapMail($emails, "Member Added IN Team", $body2);
-						} 
-					mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
+						}
 					if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
 					else { echo "Member Added succesfully!"; }
 					}

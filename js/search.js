@@ -58,18 +58,25 @@ return date.join("/") + " " + time.join(":") ;
 }
 function updatetime() {
 	var dataString = 'update=true' + '&case=1' ;
-	$.ajax({
-		type: "POST",
-		url: "ajax/updatetime.php",
-		data: dataString,
-		cache: false,
-		success: function(result){
-			var notice = result.split("+") ;
-			document.getElementById("notifications").innerHTML = notice['0'];
-			document.getElementById("notificationlastid").innerHTML = notice['1'];
-		}
-	}); 
-} ;
+	//setTimeout(function(){
+			$.ajax({
+				type: "POST",
+				url: "ajax/updatetime.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result == "updated") {
+						$("#countnotice").val(0) ;
+						}
+					else {
+					var notice = result.split("+") ;
+					document.getElementById("notifications").innerHTML = notice['0'];
+					document.getElementById("notificationlastid").innerHTML = notice['1'];
+					}
+				}
+			}); 
+			//} , 60000) ;
+		} ;
 setInterval(function(){
 	var eid = parseInt($("#lasteventid").val()) ;
 	var time = timeStamp() ;
@@ -77,7 +84,6 @@ setInterval(function(){
 	getnewnote(time, eid+='') ;
 },120000)();
 function getnewnote(time, lid) {	
-	//alert (unix) ;
 	var dataString = 'time='+ time + '&lid=' + lid ;
 	$.ajax({
 		type: "POST",
@@ -85,19 +91,22 @@ function getnewnote(time, lid) {
 		data: dataString,
 		cache: false,
 		success: function(result){
-			//alert(result) ;
-			var notice = result.split("+") ;
-			$('.newnotices').append(notice['0']);
-			var num = $("#countnotice").val() ;
-			var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
-			var neid = parseInt(notice['2']) ;
-			//alert(neid+='' + "," + newnum ) ;
-			if (neid+='' != 0) {
-				$("#countnotice").val(newnum+='') ;
+			if(result == "no new notification") { 
+				$("#countnotice").val(0) ;
 				}
-			if (newnum+='' != 0) {
-				$("#lasteventid").val(neid+='') ;
+			else {
+				var notice = result.split("+") ;
+				$('.newnotices').append(notice['0']);
+				var num = $("#countnotice").val() ;
+				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
+				var neid = parseInt(notice['2']) ;
+				if (neid+='' != 0) {
+					$("#countnotice").val(newnum+='') ;
 				}
+				if (newnum+='' != 0) {
+					$("#lasteventid").val(neid+='') ;
+				}
+			}
 		}
 	});
 }

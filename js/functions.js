@@ -136,7 +136,7 @@ function remove_member(PID, name, Uid){
 }
 function comment(ID, type) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
 						+ '&case=' + type ;
 		if(project == ""){
 			return false ;

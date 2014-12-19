@@ -222,29 +222,24 @@ else {
     </div>
 <div class="modal fade" id="signupwithoutlogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true" >
 	<div class="modal-dialog">
-		<div class="modal-content" style=' margin-left: 40%; width:50%;'>
-			<div class="modal-header">
+		<div class="modal-content" style='border: 10px solid #DDD ;margin-top: 100px; position:fixed; margin-left: 200px; width:400px; height:300px;'>
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel"><font size="5" >Let's Join</font></h4>
-			</div>
-			<div class="modal-body">
-				<p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>
+				<a href='collap.com'><p style='font-family: Sans-serif; font-size:26px;text-align:center;'><img src ='img/collap.gif' style="width:50px; height:40px;">Collap</p></a>
+				<h4 class="modal-title" id="myModalLabel"><p style='font-family: Sans-serif; font-size:20px;margin-top:10px;text-align:center; word-wrap: break-word;'>Let's Collaborate</p></h4>
+				<p style='font-family: Sans-serif; font-size:14px;margin-top:20px;text-align:center; word-wrap: break-word;color:#3B5998;'>
 				Collap is exodus to make collaboration strong. Lets work together to do more... </p><br/><br/>
 				<div class='row'>
-					<div class='col-md-7'>
-						<input type='email' class='form-control' style='width: 115%;' id='subscriptionid' placeholder='Enter Email-ID'/>
+					<div class='col-md-8'>
+						<input type='email' class='form-control' style='width: 105%;' id='subscriptionid' placeholder='Enter Email-ID'/>
 					</div>
 					<div class='col-md-3'>
-						<input type='submit' class='btn btn-success btn-xs' onclick='Subscribe()' value='Subscribe'/><br/>
+						<input type='submit' class='btn btn-success' onclick='Subscribe()' value='Subscribe'/><br/>
 					</div>
-				</div>
-			</div>
-			<div class="modal-footer">
-				<button  class="btn btn-primary" onclick='test2()'>Sign up</button>
-			</div>
+				</div><br/>
+				<button class="btn btn-primary pull-right" style='margin-right:10px;' onclick='test2()'>Sign up</button>
 		</div>
 	</div>
 </div>
