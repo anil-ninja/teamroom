@@ -602,28 +602,22 @@ if ($_POST['notice']) {
 				} */
 			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
-			$data .= "<div class='dropdown'>
-					<a data-toggle='dropdown' onclick='updatetime()'>" ;
-			if ($y == 0) {
-				$data = $data . "<p class='navbar-text' style ='cursor: pointer;'>
-								<i class='glyphicon glyphicon-bell'></i>" ;
-			}
-			else {
-				$data = $data . "<p class='navbar-text' style ='cursor: pointer; color: red;'>
-								<i class='glyphicon glyphicon-bell'></i>
-								<span class='badge'>
-									<input type='submit' class='btn-link btn-xs' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; 
-									color: white;' id='countnotice' value='".$y."'/>
-								</span>" ;
+			$data .= "<li class='dropdown'>
+					<a data-toggle='dropdown' onclick='updatetime()'>
+					<i class='glyphicon glyphicon-bell'></i>" ;
+			if ($y != 0) {
+				$data = $data . "<span class='badge' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; 
+									color: white;' id='countnotice'>".$y."</span>" ;
 				}
-	$data = $data . "</p>
-				   </a>
-					<ul class='dropdown-menu multi-level' style=' max-height: 300px; width: 200px; overflow: auto;'role='menu' aria-labelledby='dropdownMenu'>
+	$data = $data . "</a>
+					<ul class='dropdown-menu'>
+						<li class='color-swatch'>
 						<li>".$notice."</li>
 						<div class='newnotices' ></div>
 						<li><a href='notifications.php'>See All</a></li>
+						</li>
 					</ul>
-				</div>" ;
+				</li>" ;
 	echo $data."+".$data1 ;
 mysqli_close($db_handle);
 }
