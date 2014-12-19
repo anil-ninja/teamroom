@@ -329,7 +329,7 @@ function uploadFile(_file,typeOfPic,data1,url1,ID){
 		var res = ilink.split(".");
 		//alert (res['1']);
 			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
-				var imgTx = "<img onError=\"this.src=\"img/default.gif\"\" src=\""+ilink+"\" style=\"max-width: 100%;\" />";
+				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" onError=\"this.src=\"img/default.gif\"\" />";
 			}
 				else {
 					var imgTx = ilink ;
