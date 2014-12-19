@@ -794,7 +794,14 @@ $("#pencil").click(function(){
 							return false ;
 						}
 						else {
-							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' id='invitemember'  value='Invite Him/Her' /><br/>";
+							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4>" +
+										"<div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span>" +
+										"<input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div><br/>" +
+										"<div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span>" +
+										"<input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div><br/>" + 
+										"<div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span>" +
+										"<input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br>" +
+										"<input type='submit' class\='btn btn-success' onclick ='invitememberpr()' value='Invite Him/Her' /><br/>";
 							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
 							$("#invitation").show().html(modal);
 							$("#create_team").removeAttr('disabled');
@@ -804,27 +811,21 @@ $("#pencil").click(function(){
 				  });
 				}	
 		});
-	});
-
-	$(document).ready(function(){		
-		$("#invitemember").click(function(){
-			$("#invitemember").attr('disabled','disabled');
+	});		
+	function invitememberpr(){
 			var fname = $("#fnameteam").val() ;
 			var sname = $("#snameteam").val() ;
 			var email = $("#teamemail").val() ;
 			if(fname =="") {
 				bootstrap_alert(".alert_placeholder", "Please Enter First Name", 5000,"alert-warning");
-				$("#invitemember").removeAttr('disabled');
 				return false ;
 			}
 			else if (sname == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Second Name", 5000,"alert-warning");
-				$("#invitemember").removeAttr('disabled');
 				return false ;
 			}
 			else if (email == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Email-ID", 5000,"alert-warning");
-				$("#invitemember").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -834,7 +835,6 @@ $("#pencil").click(function(){
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
-					alert(result);
 					if (result == 'false') {
 							var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email ;
 							$.ajax({
@@ -852,15 +852,12 @@ $("#pencil").click(function(){
 									}
 								}				
 							});
-							$("#invitemember").removeAttr('disabled');
 						}
 						else {
 							bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
-							$("#invitemember").removeAttr('disabled');
 							return false ;							
 							}
 					}
 				});
 			}
-		});	
-});
+		}
