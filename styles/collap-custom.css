@@ -1784,3 +1784,46 @@ div#nav li a{
   color:#FFF; 
   text-decoration: none;
 }
+div#navtab {
+	position: fixed; 
+	top: 80px; 
+	left: 0px; 
+	margin: 0px; 
+	padding: 0px 0px 0px; 
+	background:#fff; 
+	list-style: none;
+	z-index: 5;
+	max-height:290px;
+	overflow-y: scroll; 
+	width: 200px; 
+	border-radius:10px 0px 0px 10px
+}
+
+div#navtab .nav-btntab{
+	background:#fff; 
+	border-radius:0px 10px 10px 0px; 
+	position:fixed; 
+	top:60px; 
+	left:1px; 
+	width:30px; 
+	height:20px; 
+	display:block; 
+	cursor:pointer;
+	}
+	
+div#navtab .nav-btntab img{
+	margin:20px 0px 0px 13px
+}
+
+div#navtab li {
+	height: 50px; 
+	margin-bottom:20px; 
+	text-align:center; 
+	text-decoration:none; 
+	color:#FFF;
+}
+
+div#navtab li a{
+	color:#FFF; 
+	text-decoration: none;
+}

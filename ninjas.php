@@ -40,7 +40,6 @@ $view = 1 ;
 	<?php include_once 'lib/html_inc_footers.php'; ?>	
 <script>
 var width = window.screen.availWidth;
-alert(width) ;
 if(width < 800) {
 	$('#tab1').remove();
 	$('#tab4').hide();
