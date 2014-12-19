@@ -19,12 +19,12 @@ $view = 1 ;
   <body>
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
-   <div class=" media-body " style="padding-top: 50px;">
-  	<div class="col-md-1"></div>
-       <div class="col-md-2">
+   <div class="media-body" style="padding-top: 50px;">
+  	<div id='tab1' class="col-md-1"></div>
+       <div id='tab2' class="col-md-2">
    				<?php include_once 'html_comp/left_panel_ninjas.php'   ?>
    		</div>       
-         <div class="col-md-6">
+         <div id='tab3' class="col-md-6">
 			<div class="panel-primary" id='panel-cont'>
 			  	<p id='home-ch'></p>
 			 	<p id='home'></p>
@@ -32,11 +32,44 @@ $view = 1 ;
 	    		echo "<input type='hidden' id='viewchid' value='".$view."'/>" ?>
 			</div>
 		</div>
-		 <div class="col-md-2">
+		 <div id='tab4' class="col-md-2">
 			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>				
 			</div>
+			<?php include_once 'html_comp/friends.php';  ?>
 		</div>	
 	<?php include_once 'lib/html_inc_footers.php'; ?>	
+<script>
+var width = window.screen.availWidth;
+alert(width) ;
+if(width < 800) {
+	$('#tab1').remove();
+	$('#tab4').hide();
+	$('#tab2').hide();
+	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='glyphicon glyphicon-chevron-right'></p></div><div id='new'></div></div>");
+	$("#new").html($("#tab2").html() + $("#tab4").html());
+} ;
+</script>
+<script>
+$(function() {
+	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
+
+function toggleDivs() {
+    var $inner = $("#navtab");
+    if ($inner.css("margin-left") == "-170px") {
+        $inner.animate({'margin-left': '0'});
+		$(".nav-btntab").html('<p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p>')
+    }
+    else {
+        $inner.animate({'margin-left': "-170px"}); 
+		$(".nav-btntab").html('<p class="glyphicon glyphicon-chevron-right"></p><p class="glyphicon glyphicon-comment"></p>')
+    }
+}
+$(".nav-btntab").bind("click", function(){
+    toggleDivs();
+});
+
+});
+</script>
 	<script>
 	$(window).scroll(function(event) {
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
