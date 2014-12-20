@@ -56,7 +56,7 @@
                                 $team_project_id = $teams_name_displayRow['project_id'];
 
                                 echo "  <li>
-                                            <a class='btn-link pull-left' style='color: #fff; font-size:12px;' href='teams.php?project_id=$team_project_id&team_name=$team_name'><strong>" . ucfirst($team_name) . "</strong></a>
+                                            <a class='btn-link' href='teams.php?project_id=$team_project_id&team_name=$team_name'><strong>" . ucfirst($team_name) . "</strong></a>
                                         </li>";
                                 }
                             echo "  </ul>
