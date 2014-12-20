@@ -32,7 +32,7 @@
  					<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
  						<font size='2'>Classified</font>
                     </div>
- 					<div class='panel-content'>
+ 					<div class='bs-component'>
 			    	    <table>
                             ";   
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
@@ -69,7 +69,7 @@
  				<div class='panel panel-default'>
  					<div class='panel-heading'style ='padding-top: 0px; padding-bottom: 0px;'>
  						<font size='2'>Public</font></div>
- 						<div class='panel-content'>
+ 						<div class='bs-component'>
                     <?php 
                     echo "<table>
 								";
