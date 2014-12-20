@@ -86,7 +86,7 @@
                         <h4><i class="icon-user"></i>&nbsp;&nbsp;Submit Answer</h4>
 
                         <label>Your Answer</label>
-                        <textarea class="input-block-level" id='answerchal' placeholder="Submit your answer"></textarea>
+                        <textarea class="input-block-level" id='answerchal' placeholder="Submit your answer"></textarea><br>
                         <label>Upload File</label>
                         <input type='file' id='_fileanswer'/>
                         <input type='hidden' id='answercid' value=''>

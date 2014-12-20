@@ -1,6 +1,4 @@
-<?php
-    include_once 'html_comp/modal_all.php';
-?>
+
 <gcse:searchresults></gcse:searchresults>
 <script src="date.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"></script>
@@ -23,6 +21,11 @@
 <script type="text/javascript" src="js/chat_box.js"></script>
 <script src="js/add_remove_skill.js"></script>
 <script src="js/date_time.js"></script>
+
+    
+<?php
+    include_once 'html_comp/modal_all.php';
+?>
 
     
     <script src="scripts/tabs-addon.js"></script>
@@ -95,5 +98,3 @@
         });
 
     </script>
-    
-
