@@ -8,10 +8,13 @@ if($_POST['answer']){
 		$username = $_SESSION['username'];
 		$pro_id = $_SESSION['project_id'] ;
 		$ch_id = $_POST['cid'] ;
-		$ownerinfo = mysqli_query($db_handle,"select b.username, b.email from challenges as a join user_info as b where a.challenge_id = '$ch_id' and a.user_id = b.user_id ;") ;
+		$ownerinfo = mysqli_query($db_handle,"select b.username, b.email, a.challenge_title, b.firat_name, b.last_name from challenges as a join user_info as b where a.challenge_id = '$ch_id' and a.user_id = b.user_id ;") ;
 		$ownerinforow = mysqli_fetch_array($ownerinfo) ;
 		$owneremail = $ownerinforow['email'] ;
 		$ownername = $ownerinforow['username'] ;
+		$userFirst = $ownerinforow['first_name'] ;
+		$userLast = $ownerinforow['last_name'] ;
+		$challangeTtitle = $ownerinforow['challenge_title'] ;
 		$case = $_POST['case'] ;
 		$notestext = $_POST['answer'] ;
 		$image = $_POST['img'] ;
@@ -25,8 +28,10 @@ if($_POST['answer']){
 		if($case == 1) {
 			involve_in($db_handle,$user_id,"5",$ch_id); 
 			events($db_handle,$user_id,"5",$ch_id);
-			$body2 = "Hi, ".$ownername." \n \n ".$username." Submitted Answer to your Challenge. View at \n \n http://collap.com/challengesOpen.php?challenge_id=".$ch_id ;
-			collapMail($owneremail, " Answer Submitted", $body2);
+			$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." answer Submitted \n
+Hi ".$userFirst." ".$userLast." \n \n ".$username." has answered your challenge ".$challengeTitle.". Click here to view the answer. \n
+http://collap.com/challengesOpen.php?challenge_id=".$ch_id." \n \n Let's Collaborate \n Team Collap" ;
+			collapMail($owneremail, " Submit answer", $body2);
 			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4', last_update='$a' WHERE challenge_id = $ch_id ; ") ;
 			mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $ch_id and user_id = '$user_id'; ") ;
 			if (strlen($notes) < 1000) {
@@ -50,13 +55,16 @@ if($_POST['answer']){
 					$inforow = mysqli_fetch_array($info) ;
 					$title = $inforow['project_title'] ;
 					$type = $inforow['project_type'] ;
-					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where 
+					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.firat_name, b.last_name from teams as a join user_info as b where 
 														a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 					while ($memrow = mysqli_fetch_array($members)){
 						$emails = $memrow['email'] ;
 						$mail = $memrow['username'] ;
-						$body2 = "Hi, ".$mail." \n \n ".$username." Submitted Answer http://collap.com/challengesOpen.php?challenge_id=".$ch_id."  \n \n IN Project (".$title."). View at \n
-http://collap.com/project.php?project_id=".$pro_id ;
+						$userFirstName = $memrow['first_name'] ;
+						$userLastName = $memrow['last_name'] ;
+						$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." answer Submitted \n
+Hi ".$userFirstName." ".$userLastName." \n \n ".$username." has answered your challenge ".$challengeTitle.". Click here to view the answer. \n
+http://collap.com/challengesOpen.php?challenge_id=".$ch_id." \n \n Let's Collaborate \n Team Collap" ;
 						collapMail($emails, " Answer Submitted", $body2);
 						} 
 					involve_in($db_handle,$user_id,"5",$ch_id); 
