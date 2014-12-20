@@ -175,9 +175,9 @@ function recommended_project ($db_handle) {
                                                             IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
                                                             ORDER BY rand() LIMIT 5;");
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
-        echo "<div class='panel-group'style='margin-bottom: 5px;'>
+        echo "
                 <div class='panel panel-default'>
-                    <div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'>
+                    <div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
                         <font size='2'> Recommended</font>
                     </div>
                     <div class='panel-content'>

@@ -29,11 +29,12 @@
             if (isset($_SESSION['user_id'])) {              
  		echo "<div class='nav nav-tabs'>
  				<div class='panel panel-default'>
- 					<div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'>
- 						<font size='2'> Classified</font></div>
- 						<div class='panel-content'>
-			    	<table>
-                    <tr><td>";   
+ 					<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
+ 						<font size='2'>Classified</font>
+                    </div>
+ 					<div class='panel-content'>
+			    	    <table>
+                            <tr><td>";   
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
                                                                                 UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '2');");
@@ -61,10 +62,10 @@
                             }  
                             echo "</td></tr></table>
                                 </div>";
-            echo "</div></div>";
+            echo "</div>";
                     }
                     ?>
-				<div class='nav-tabs panel-group' style='margin-bottom: 0px;'>
+				
  				<div class='panel panel-default'>
  					<div class='panel-heading'style ='padding-top: 0px; padding-bottom: 0px;'>
  						<font size='2'>Public</font></div>
@@ -100,7 +101,7 @@
 			
 					} 
 					echo "</td></tr></table>
-                                </div></div></div>";
+                                </div></div>";
 
                     // recommended project function defined in functions/delete_comment for use in profile page joined project tab
                         recommended_project ($db_handle);
