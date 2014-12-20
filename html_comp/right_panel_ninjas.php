@@ -1,4 +1,3 @@
-
 <div class="bs-component">
     <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32); font-size:10px'">
         
@@ -31,6 +30,7 @@
                 </div>
             </div>
         </div>
+
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingTwo">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
@@ -44,6 +44,7 @@
             <?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
         </div>
     </div>
+
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
@@ -131,7 +132,8 @@
     </div>
 </div>
 </div></div></div>
-
+<?php 
+/*
 <!-- Modal -->
             <div class="modal fade" id="changeremindervalues" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -165,6 +167,8 @@
                 </div>
             </div>
             <!--end modle-->
+*/
+            ?>
 <script type="text/javascript">
 	$(function(){
 		$('#datepick').appendDtpicker();

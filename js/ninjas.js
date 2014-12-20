@@ -525,8 +525,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   		});
 
 		//allPanels
-		$("#allPanels").click(function(){
-	 // alert("I am pencil!!! :)");
+$("#allPanels").click(function(){
   	$(".articlesch").show(100);
   	$(".openchalhide").show(100);
   	$(".idea").show(100);
@@ -536,7 +535,6 @@ function bootstrap_alert(elem, message, timeout,type) {
   });
 
 $("#pencil").click(function(){
-	 // alert("I am pencil!!! :)");
   	$(".articlesch").hide(100);
   	$(".openchalhide").hide(100);
   	$(".idea").hide(100);
