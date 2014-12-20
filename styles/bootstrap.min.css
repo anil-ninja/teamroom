@@ -4210,7 +4210,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 }
 .navbar .nav li.dropdown.open>.dropdown-toggle,.navbar .nav li.dropdown.active>.dropdown-toggle,.navbar .nav li.dropdown.open.active>.dropdown-toggle
 {
-  background-color: #e5e5e5;
+  background-color: #509C60;
   color: #555;
 }
 .navbar .nav li.dropdown>.dropdown-toggle .caret
