@@ -10,6 +10,8 @@
         </script>
                     
   <!--Signin Modal -->
+    <div class="alert_placeholder"></div>  <!-- alert for login -->
+    <div class="alert-placeholder"></div>  <!-- alert for signup -->
         <div id="SignIn" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="row-fluid" id="demo-1">
                 <div class="span10 offset1">
