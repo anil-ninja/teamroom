@@ -1684,24 +1684,25 @@ font-size: 13px !important;
 }
 
 .gsc-input-box-focus{
-  padding: 1px !important;
-  height: 30px !important;
+  padding: 0px !important;
+  height: 19px !important;
   margin-top: 0px !important;;
 }
 .gsc-input-box-hover{
   padding: 1px !important;
-  height: 30px !important;
+  height: 20px !important;
   margin-top: 0px !important;;
 }
 .gsc-input-box{
   padding: 1px !important;
-  height: 30px !important;
-  margin-top: 0px !important;;
+  height: 25px !important;
+  margin-top: 0px !important;
+
 }
 
 .cse input.gsc-search-button, input.gsc-search-button-v2 {
   display: inline-block;
-  margin-top: 5px !important;
+  margin-top: 3px !important;
   margin-left: 0px !important;
   font-weight: normal;
   text-align: center;
@@ -1713,6 +1714,7 @@ font-size: 13px !important;
   padding: 2px 12px !important;
   font-size: 14px;
   line-height: 1.22857143;
+  width: 25px !important;
   border-radius: 0px !important;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1725,22 +1727,25 @@ font-size: 13px !important;
    /* background: url('https://cdn3.iconfinder.com/data/icons/woothemesiconset/32/search_button.png') no-repeat !important;
     */text-indent: -9999em;
     border: none !important;
-    height: 30px !important;
+    height: 20px !important;
 }
 
-table.gsc-search-box td.gsc-input {
+table.gsc-search-box .gsc-search-box-tools td.gsc-input {
     padding: 0px !important;
-    height: 15px !important;
+    height: 20px !important;
     border: 1px !important;
     border-color: #EEE !important;
 }
 
 input.gsc-input {
     line-height: 15px !important;
+    height: 20px !important;
+    padding-right: 0px !important;
+
 }
 td.gsib_a  {
-  padding: 1px !important;
-  height: 30px !important;
+  padding: 0px !important;
+  height: 17px !important;
 
 }
 

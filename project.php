@@ -15,18 +15,18 @@ include_once 'functions/delete_comment.php';
    </head>
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
-        <div class=" media-body" style="padding-top: 50px;">
-            <div class="col-md-1"> </div>
-            <div class="col-md-2">
+         <div class="container">
+        <div class="row-fluid">         
+            <div id='tab2' class="span2">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>  
-            <div class="col-md-6">
+            <div class="span6">
                 <div class='alert_placeholder'></div>
                 <div class="panel-primary" id='panel-cont'>
                     <?php include_once 'html_comp/project_page_project.php'; ?>
                 </div>
             </div>
-            <div class="col-md-3" style='width:290px'>
+            <div class="span2" style='width:290px'>
                 
                 <?php include_once 'html_comp/project_page_challenge.php'; ?>
             </div>	
