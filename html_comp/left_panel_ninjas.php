@@ -1,7 +1,6 @@
-<div class="bs-component list-group">
-	
-    <div class='list-group-item'style="padding-left: 3px; padding-right: 3px;">
-        <ul class="nav nav-tabs">
+<br/>
+<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+<ul class="nav nav-tabs">
             <li class="active" >
                
                     
@@ -20,7 +19,10 @@
                 
 
             </li>
-        </ul>
+</ul>
+
+	
+    <div class='list-group-item'style="padding-left: 3px; padding-right: 3px;">
         
 		
         <?php 
