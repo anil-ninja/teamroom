@@ -1,7 +1,7 @@
 <?php if(isset($_SESSION['user_id'])) { 
     $user_id = $_SESSION['user_id'] ?> 	
 		<div id="nav">
-    <div class="nav-btn"><p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p></div>
+    <div class="nav-btn"><p class="icon-chevron-left"></p><p class="icon-comment"></p></div>
                     <div class="panel-body" style="padding: 1px;">
                     <?php
                         $idb = 0 ;
@@ -56,11 +56,11 @@ function toggleDivs() {
     var $inner = $("#nav");
     if ($inner.css("margin-right") == "-170px") {
         $inner.animate({'margin-right': '0'});
-		$(".nav-btn").html('<p class="glyphicon glyphicon-chevron-right"></p><p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btn").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
     }
     else {
         $inner.animate({'margin-right': "-170px"}); 
-		$(".nav-btn").html('<p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btn").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
     }
 }
 $(".nav-btn").bind("click", function(){
