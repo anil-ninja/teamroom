@@ -959,7 +959,7 @@ a.list-group-item-danger.active:focus {
 
 
 .panel {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   background-color: #ffffff;
   border: 1px solid transparent;
   border-radius: 4px;

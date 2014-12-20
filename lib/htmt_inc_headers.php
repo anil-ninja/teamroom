@@ -9,18 +9,20 @@
   ga('send', 'pageview');
 
 </script>
+
 <meta name="alexaVerifyID" content="ps_2q6N3IdsL_WR1W3E1rocnmys"/>
 <!--end of analitics-->
 <!--<link rel="stylesheet" href="css/bootstrap.css">-->
 <!-- new css -->
- <link href="styles/bootstrap.min.css" rel="stylesheet" />
-    <link href="styles/bootstrap-responsive.min.css" rel="stylesheet" />
-    <link href="styles/collap-custom.css" rel="stylesheet" />
-    <link href="css/preview.min.css" rel="stylesheet" />
-    <link href='../../fonts.googleapis.com/css%3Ffamily=PT+Sans:400,700.css' rel='stylesheet' type='text/css'>
-    <link href="styles/font-awesome.min.css" rel="stylesheet" />
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
+<link href="styles/bootstrap.min.css" rel="stylesheet" />
+<link href="styles/bootstrap-responsive.min.css" rel="stylesheet" />
+<link href="styles/collap-custom.css" rel="stylesheet" />
+<link href="css/preview.min.css" rel="stylesheet" />
+<link href='../../fonts.googleapis.com/css%3Ffamily=PT+Sans:400,700.css' rel='stylesheet' type='text/css'>
+<link href="styles/font-awesome.min.css" rel="stylesheet" />
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
 <!--end of new css -->
+
 <link rel="stylesheet" href="css/bootswatch.css">
 <!--<link href="css/bootstrap-responsive.css" rel="stylesheet">-->
 <link href="css/custom.css" rel="stylesheet">
