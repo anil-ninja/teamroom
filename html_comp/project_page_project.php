@@ -100,7 +100,10 @@
                   <option value=" 2" selected >Private</option>
                 </select>
                 <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
-            </div><div id='invitation'></div>
+            </div>
+
+            <div id='invitation'></div>
+            
             <div id='taskForm'>
                 <?php
                 $owner_project = mysqli_query($db_handle, "select user_id from projects where project_id = '$pro_id';");
@@ -181,6 +184,7 @@
                 }
                 ?>
             </div>
+            
             <div id='teamForm'>
 		<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 				 if(mysqli_num_rows($member_project) != 0) {
@@ -276,8 +280,8 @@ if ($p_uid == $user_id) {
     echo "</ul></div>";
 }
 
-echo "<div class='row'>
-        <div class='col-md-4'>
+echo "<div class='row-fluid'>
+        <div class='span4'>
           <span class='color strong' style= 'color :lightblue;'>
              <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
           </span>  <br/>" . $timef . "
