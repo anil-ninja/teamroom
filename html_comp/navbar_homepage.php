@@ -164,7 +164,7 @@ if ($requestedPage == "project.php") {
             <div class='container' >
                 <div class='span8 offset2'>
                 <ul class='inline' >
-                    <li><button class='btn btn-link' style='color:#fff;' id='allPanels123' ><span class='icon-eye-open'></span> All</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='tree' ><span class='icon-flash'></span> Ideas</button></li>
