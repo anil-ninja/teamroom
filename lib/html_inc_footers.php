@@ -1,3 +1,6 @@
+<?php
+    include_once 'html_comp/modal_all.php';
+?>
 <gcse:searchresults></gcse:searchresults>
 <script src="date.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"></script>
