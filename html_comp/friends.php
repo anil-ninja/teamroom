@@ -29,13 +29,13 @@
 
             echo "<div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
                             <a href=\"javascript:void(0)\" onclick=\"javascript:chatWith('".$usernameFriends."')\">
-                            <div class ='col-md-2 ' style='padding:1px;'>
-                                    <img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:30px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+                            <div class ='col-md-2'>
+                                    <img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                             </div>
-                            <div class = 'col-md-9' style='font-size:10px;padding-top: 5px;'>"
+                            <div class = 'col-md-7' style='font-size:10px;'>"
                             .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
-                 if($time < 6000) { echo "<br/>online <span class='badge' style ='padding-bottom : 0px ;padding-top : 0px ;color: #4EC67F ;background-color: #4EC67F;'>.</span>" ; }           
-                    else { echo "<br/>offline <span class='badge' style ='padding-bottom : 0px ;padding-top : 0px ;color: #6F746F ;background-color: #6F746F;'>.</span>" ; }        
+                 if($time < 6000) { echo "<br/>online <span class='badge' style ='color: #4EC67F ;background-color: #4EC67F;'>.</span>" ; }           
+                    else { echo "<br/>offline <span class='badge' style ='color: #6F746F ;background-color: #6F746F;'>.</span>" ; }        
                  echo "</div></a>
                     </div>";
 		}
