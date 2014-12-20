@@ -79,9 +79,9 @@ if ($_POST['chal']) {
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";
             $get_display_fname_likes ="<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$chelangeid ."\", 1)'>
+                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$chelangeid ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
         $get_display_ch_stmt_content = "</div>                    
@@ -169,7 +169,7 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+                $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                 $get_display_ch_stmt_content = "" ;                    
         } 
         if ($status == 2) {
@@ -183,7 +183,7 @@ if ($_POST['chal']) {
                 $show = $show . $dropDown_ch_after_accept;
                 $dropDown_ch_after_accept = "";
             }
-            $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Accepted: <a href ='profile.php?username=" . $ownname ."'>"
+            $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Accepted: <a href ='profile.php?username=" . $ownname ."'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct;
                                   //  <br/> Time Remaining : " . $remaintimeown ."<br>
                   $show = $show . $get_display_ch_stmt_content;
@@ -201,7 +201,7 @@ if ($_POST['chal']) {
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                                 }
                                 
-                                $show = $show.$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
+                                $show = $show.$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | " . $timecomm ;
                                                 //. "<br/>  ETA Taken : " . $timeo ."
                                 $show = $show. $get_display_ch_stmt_content;
@@ -214,7 +214,7 @@ if ($_POST['chal']) {
                                     $show = $show . $dropDown_ch_after_accept; 
                                     $dropDown_ch_after_accept = "";                   
                                 }
-            $show = $show .  $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes. "<br> <hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
+            $show = $show .  $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes. "<br> <hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
                                     . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a><br> Submitted On : " . $timecomm ;
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                 $show = $show . $get_display_ch_stmt_content;
@@ -238,7 +238,7 @@ if ($_POST['chal']) {
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
           //  }
-                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>".$get_display_ch_stmt_content;
+                $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>".$get_display_ch_stmt_content;
                 $get_display_ch_stmt_content = "" ;
         } 
         if ($status == 2) {
@@ -252,7 +252,7 @@ if ($_POST['chal']) {
             $show = $show . $dropDown_ch_after_accept;  
             $dropDown_ch_after_accept = "";                 
         }
-            $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes. "| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
+            $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
                                         . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct;
                                     //  <br/> Time Remaining : " . $remaintimeown ."<br>
             $show = $show .$get_display_ch_stmt_content;
@@ -269,7 +269,7 @@ if ($_POST['chal']) {
                                 if($owner_id == $user_id) {			
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                                 }
-                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
+                $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
                                 . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
                                 //. "<br/>  ETA Taken : " . $timeo ."
                 $show = $show .$get_display_ch_stmt_content;
@@ -282,7 +282,7 @@ if ($_POST['chal']) {
                         $show = $show . $dropDown_ch_after_accept;   
                         $dropDown_ch_after_accept = "";               
                     }
-                $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br><hr>"
+                $show = $show . $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br><hr>"
                                     .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
 
                 $show = $show .$get_display_ch_stmt_content; 
@@ -296,7 +296,7 @@ if ($_POST['chal']) {
                         $show = $show . $dropDown_challenge_get;
                         $dropDown_challenge_get = "";
                         
-                        $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-tree-deciduous'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
+                        $show = $show .$get_display_tilte."<span class='icon-tree-deciduous'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
                         $show = $show .$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 
@@ -306,7 +306,7 @@ if ($_POST['chal']) {
                                     
                         $show = $show . $dropDown_challenge_get;
                         $dropDown_challenge_get = "";
-                    $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-book'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+                    $show = $show . $get_display_tilte."<span class='icon-book'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                     $get_display_ch_stmt_content = "" ;
     }
     if ($ctype == 8) {
@@ -315,7 +315,7 @@ if ($_POST['chal']) {
                                    
                         $show = $show . $dropDown_challenge_get;
                         $dropDown_challenge_get = "";
-                        $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-film'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+                        $show = $show . $get_display_tilte."<span class='icon-film'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 
      if ($ctype == 4) {
@@ -326,7 +326,7 @@ if ($_POST['chal']) {
         $show = $show . $dropDown_challenge_get;
         $dropDown_challenge_get = "";
     //dropdown for delete/edit/span idea ends here
-       $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-flash'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+       $show = $show .$get_display_tilte."<span class='icon-flash'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
        $get_display_ch_stmt_content = "" ;
     } 
     if ($ctype == 3) {  
@@ -344,7 +344,7 @@ if ($_POST['chal']) {
         else {
             $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
         }
-        $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+        $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
         $get_display_ch_stmt_content = "" ;
 	}	
 		if ($status == 6) {
@@ -356,7 +356,7 @@ if ($_POST['chal']) {
         $dropDown_challenge_get = "";
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-picture'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+        $show = $show . $get_display_tilte."<span class='icon-picture'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
         $get_display_ch_stmt_content = "" ;
 	}
         if ($status == 2) {
@@ -377,7 +377,7 @@ if ($_POST['chal']) {
                         else {
                             $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                         }
-               $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes;
+               $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes;
                
                $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -416,7 +416,7 @@ if ($_POST['chal']) {
                 else {
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                 }
-                $show = $show .$get_display_tilte."<span class='glyphicon glyphicon-question-sign'></span>".$get_display_fname_likes;
+                $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes;
                         
                 $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -456,7 +456,7 @@ if ($_POST['chal']) {
         $dropDown_challenge_get = "";
                     //dropdown for delete/edit/span challenge ends here
 
-              $show = $show . $get_display_tilte."<span class='glyphicon glyphicon-flag'></span>".$get_display_fname_likes;
+              $show = $show . $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes;
             
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -543,7 +543,7 @@ if ($_POST['chal']) {
                         </div>
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
                              placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(\"".$chelangeid."\", 1)' ></button>
+                            <button type='submit' class='btn-sm btn-primary icon-chevron-right' onclick='comment(\"".$chelangeid."\", 1)' ></button>
                     </div>";
     $show = $show . "</div> </div> ";
     }

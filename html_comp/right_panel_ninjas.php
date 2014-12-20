@@ -5,7 +5,7 @@
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                      <i class='glyphicon glyphicon-bell'></i> &nbsp;Add Reminder
+                      <i class='icon-bell'></i> &nbsp;Add Reminder
                     </a>
                 </div>
             </div>
@@ -34,7 +34,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingTwo">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <i class='glyphicon glyphicon-eye-open'></i> &nbsp;All Reminder
+                    <i class='icon-eye-open'></i> &nbsp;All Reminder
                 </a>
             </div>
         </div>
@@ -48,7 +48,7 @@
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class='btn-link glyphicon glyphicon-bullhorn'></i>&nbsp;
+                    <i class='btn-link icon-bullhorn'></i>&nbsp;
                     To Do
                 </a>
             </div>
@@ -92,7 +92,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px;"role="tab" id="headingThree">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                      <i class='btn-link glyphicon glyphicon-tasks'></i>&nbsp;
+                      <i class='btn-link icon-tasks'></i>&nbsp;
                            Get Done
                     </a>
                 </div>

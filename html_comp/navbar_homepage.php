@@ -101,11 +101,11 @@
                             </li>
                             
                             <li>
-                                <a href="settings.php" class="btn-link" ><span class="glyphicon glyphicon-cog"></span> Settings </a>
+                                <a href="settings.php" class="btn-link" ><span class="icon-cog"></span> Settings </a>
                             </li>
                             
                             <li>
-                                <a><button type='submit' class="btn-link" onclick='confLogout()' name="logout" ><span class="glyphicon glyphicon-off"></span> Log out </button></a> 
+                                <a><button type='submit' class="btn-link" onclick='confLogout()' name="logout" ><span class="icon-off"></span> Log out </button></a> 
                             </li>
                             
                         </ul>

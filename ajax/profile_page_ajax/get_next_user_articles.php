@@ -54,10 +54,10 @@ if ($_POST['last_article']) {
         $show_article = $show_article. "<p id='challenge_ti_".$article_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
                         .ucfirst($article_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$article_title."'/>
-                    <span class='glyphicon glyphicon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
+                    <span class='icon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
@@ -141,13 +141,13 @@ $show_article = $show_article. "<input id='_fileChallenge_".$article_id."' class
     $show_article = $show_article. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$article_id."'
                         placeholder='Want to know your comment....'/>
                     <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$article_id."\", 1)' >
-                        <span class='glyphicon glyphicon-chevron-right'></span>
+                        <span class='icon-chevron-right'></span>
                     </button>";
                 }
                 else {
     $show_article = $show_article. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                             <a data-toggle='modal' data-target='#SignIn'>
-                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
                             </a>";
                 }
         $show_article = $show_article."</div></div></div>";

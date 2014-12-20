@@ -13,7 +13,7 @@ while ($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_proje
     $openChallenges .= "<div class='col-xs-6 col-md-4' style='height:135px;'>
                 <div class='panel panel-default'>
                   <div class = 'panel-heading' style = 'font-size:10px;'>
-                    <span class='glyphicon glyphicon-question-sign'></span>".
+                    <span class='icon-question-sign'></span>".
                     $challenge_created1."
                   </div>
                   <div class='panel-body' style='padding: 5px;height:90px'>
@@ -47,7 +47,7 @@ $completedChallenges = "";
 				$acceptedChallenges .= "<div class='col-xs-6 col-md-4' style='height:135px;'>
                 <div class='panel panel-default'>
                   <div class = 'panel-heading' style = 'font-size:10px;'>
-                    <span class='glyphicon glyphicon-question-sign'></span>
+                    <span class='icon-question-sign'></span>
                   </div>
                   <div class='panel-body' style='padding: 5px;height:90px'>
                     <a href='challengesOpen.php?challenge_id=$challenge_id12'>" 
@@ -61,7 +61,7 @@ $completedChallenges = "";
 				$submittedChallenges .= "<div class='col-xs-6 col-md-4' style='height:135px;'>
                 <div class='panel panel-default'>
                   <div class = 'panel-heading' style = 'font-size:10px;'>
-                    <span class='glyphicon glyphicon-question-sign'></span>
+                    <span class='icon-question-sign'></span>
                   </div>
                   <div class='panel-body' style='padding: 5px;height:90px'>
                     <a href='challengesOpen.php?challenge_id=$challenge_id12'>" 
@@ -75,7 +75,7 @@ $completedChallenges = "";
             $completedChallenges .= "<div class='col-xs-6 col-md-4' style='height:135px;'>
                 <div class='panel panel-default'>
                   <div class = 'panel-heading' style = 'font-size:10px;'>
-                    <span class='glyphicon glyphicon-question-sign'></span>
+                    <span class='icon-question-sign'></span>
                   </div>
                   <div class='panel-body' style='padding: 5px;height:90px'>
                     <a href='challengesOpen.php?challenge_id=$challenge_id12'>" 
@@ -130,7 +130,7 @@ $completedChallenges = "";
         $teamTasks .= "<div class='col-xs-6 col-md-4' style='height:135px;'>
                 <div class='panel panel-default'>
                   <div class = 'panel-heading' style = 'font-size:10px;'>
-                    <span class=' glyphicon glyphicon-pushpin'></span>
+                    <span class=' icon-pushpin'></span>
                   </div>
                   <div class='panel-body' style='padding: 5px;height:90px'>
                     <a href='challengesOpen.php?challenge_id=".$challenge_id15."'>" 
