@@ -1827,3 +1827,27 @@ div#navtab li a{
 	color:#FFF; 
 	text-decoration: none;
 }
+
+.navbar-inner-subnav
+{
+  background-color: #fafafa;
+  background-image: linear-gradient(to bottom,#4EC66e,#536B4D);
+  background-image: -moz-linear-gradient(top,#4EC66e,#536B4D);
+  background-image: -o-linear-gradient(top,#4EC66e,#536B4D);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#4EC67F),to(#536B4D));
+  background-image: -webkit-linear-gradient(top,#4EC67F,#536B4D);
+  background-repeat: repeat-x;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
+  max-height: 20px;
+  moz-border-radius: 4px;
+  moz-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  padding-left: 20px;
+  padding-right: 20px;
+
+  webkit-border-radius: 4px;
+  webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
+  zoom: 1;
+}

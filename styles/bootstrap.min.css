@@ -3872,9 +3872,9 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 .navbar-inner
 {
   background-color: #fafafa;
-  background-image: linear-gradient(to bottom,#4EC67F,#536B4D);
-  background-image: -moz-linear-gradient(top,#4EC67F,#536B4D);
-  background-image: -o-linear-gradient(top,#4EC67F,#536B4D);
+  background-image: linear-gradient(to bottom,#4EC67F,#536B3c);
+  background-image: -moz-linear-gradient(top,#4EC67F,#536B3c);
+  background-image: -o-linear-gradient(top,#4EC67F,#536B3c);
   background-image: -webkit-gradient(linear,0 0,0 100%,from(#4EC67F),to(#536B4D));
   background-image: -webkit-linear-gradient(top,#4EC67F,#536B4D);
   background-repeat: repeat-x;
