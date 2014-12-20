@@ -19,6 +19,13 @@ if ($_POST['id']) {
 	$linkid = mysqli_query($db_handle, "select requesting_user_id from known_peoples where id='$knownid' and knowning_id='$user_id' ;") ;
 	$linkidrow = mysqli_fetch_array($linkid) ;
 	$uid = $linkidrow['requesting_user_id'] ;
+	$ownerinfo = mysqli_query($db_handle,"select b.username, b.email, a.challenge_title, b.firat_name, b.last_name from challenges as a join user_info as b where a.challenge_id = '$knownid' and a.user_id = b.user_id ;") ;
+	$ownerinforow = mysqli_fetch_array($ownerinfo) ;
+	$owneremail = $ownerinforow['email'] ;
+	$ownername = $ownerinforow['username'] ;
+	$userFirst = $ownerinforow['first_name'] ;
+	$userLast = $ownerinforow['last_name'] ;
+	$challangeTtitle = $ownerinforow['challenge_title'] ;
 	switch($case) {
 		case 1:
 			mysqli_query($db_handle, "INSERT INTO known_peoples (requesting_user_id, knowning_id, last_action_time) VALUES ('$user_id', '$knownid', '$time') ;") ;
@@ -37,6 +44,10 @@ http://collap.com/profile.php?user_id=".$knownid ;
 		case 2:
 			events($db_handle,$user_id,"4",$knownid);
 			involve_in($db_handle,$user_id,"4",$knownid);
+			$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." accepted \n
+Hi ".$userFirst." ".$userLast." \n \n ".$username." has accepted your challenge ".$challengeTtitle.". Click here to login to collap \n
+http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
+			collapMail($owneremail, "Challenge Accepted ", $body2);
 			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;
 			mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 									VALUES ('$user_id', '$knownid', '1');") ;
@@ -46,6 +57,17 @@ http://collap.com/profile.php?user_id=".$knownid ;
 		case 3:
 			events($db_handle,$user_id,"6",$knownid);
 			involve_in($db_handle,$user_id,"6",$knownid);
+			$mailid = mysqli_query($db_handle,"select b.email, b.firat_name, b.last_name from challenge_ownership as a join user_info as 
+												b where a.challenge_id = '$knownid' and a.user_id = b.user_id ;") ;
+			while ($mailidrow = mysqli_fetch_array($mailid)) {
+				$ownerMail = $mailidrow['email'] ;
+				$userFirstN = $mailidrow['first_name'] ;
+				$userLastN = $mailidrow['last_name'] ;
+				$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." is now closed \n
+Hi ".$userFirstN." ".$userLastN." \n \n ".$username." \n \n ".$challengeTtitle." is now closed. Click here to view the challenge and all answers submitted \n
+http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
+				collapMail($ownerMail, "Close challenge ", $body2);
+			}
 			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = '$knownid' ; ") ;
 			echo "Challenge Closed succesfully";
 			exit ;
@@ -65,13 +87,16 @@ http://collap.com/profile.php?user_id=".$knownid ;
 				$inforow = mysqli_fetch_array($info) ;
 				$title = $inforow['project_title'] ;
 				$type = $inforow['project_type'] ;
-				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where
+				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where
 													a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 				while ($memrow = mysqli_fetch_array($members)){
 					$emails = $memrow['email'] ;
 					$mail = $memrow['username'] ;
-					$body2 = "Hi, ".$mail." \n \n ".$username." Accepted Challenge IN Project (".$title."). View at \n
-http://collap.com/project.php?project_id=".$pro_id ;
+					$userFirstName = $memrow['first_name'] ;
+					$userLastName = $memrow['last_name'] ;
+					$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." accepted \n
+Hi ".$userFirstName." ".$userLastName." \n \n ".$username." has accepted your challenge ".$challengeTtitle.". Click here to login to collap \n
+http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
 					collapMail($emails, "Challenge Accepted ", $body2);
 					} 
 				events($db_handle,$user_id,"4",$knownid);
@@ -91,13 +116,16 @@ http://collap.com/project.php?project_id=".$pro_id ;
 				$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 				$inforow = mysqli_fetch_array($info) ;
 				$title = $inforow['project_title'] ;
-				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where
+				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where
 													a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 				while ($memrow = mysqli_fetch_array($members)){
 					$emails = $memrow['email'] ;
 					$mail = $memrow['username'] ;
-					$body2 = "Hi, ".$mail." \n \n ".$username." Closed Challenge IN Project (".$title."). View at \n
-http://collap.com/project.php?project_id=".$pro_id ;
+					$userFirstName = $memrow['first_name'] ;
+					$userLastName = $memrow['last_name'] ;
+					$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." is now closed \n
+Hi ".$userFirstName." ".$userLastName." \n \n ".$username." \n \n ".$challengeTtitle." is now closed. Click here to view the challenge and all answers submitted \n
+http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
 					collapMail($emails, "Challenge Closed ", $body2);
 					} 
 				events($db_handle,$user_id,"6",$knownid);
