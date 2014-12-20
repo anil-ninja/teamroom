@@ -135,11 +135,7 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
                                     <table class='table table-striped scroll '>
                                         <thead> <center><b>Not Accepted</b></center>
                                         </thead>
-                                        <tbody>
-					<tr>
-                                            <td style='width:180px'>Name</td>
-                                            <td>Remaining Time</td>
-					</tr>" ;
+                                        <tbody>" ;
 		
             $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, creation_time FROM challenges WHERE project_id = '$pro_id' AND challenge_type = '2' AND challenge_status = '1' ;");
             while($ocrow = mysqli_fetch_array($oc)) {
@@ -150,7 +146,6 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				$rtoc = remaining_time($occtime, $oceta) ;
 		echo "<tr>
 				<td style='width:180px'><a href ='challengesOpen.php?challenge_id=".$ocid."'>".$octitle."</a></td>
-				<td>".$rtoc."</td>
 			  </tr>" ;
 	}
             echo "</tbody>
@@ -163,10 +158,9 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				 </thead>
 				 <tbody>
 				<tr>
-					<td style='width:70px'>Type</td>
-					<td style='width:70px'>Title</td>
-					<td style='width:70px'>Owned</td>
-					<td style='width:70px'>R Time</td>
+					<td>Type</td>
+					<td>Title</td>
+					<td>Owned</td>
 				</tr>" ;
 		
 	 $ip = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
@@ -183,16 +177,15 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				$ipeta = $iprow['comp_ch_ETA'] ;
 				$rtip = remaining_time($ipctime, $ipeta) ;
 			echo "<tr>
-					<td style='width:70px'>" ;
+					<td>" ;
 		if ($iptype == 2 || $iptype == 1) {
 			echo "Challenge" ;
 			}
 		else {
 				echo "Task" ;
 			}		
-			echo "</td><td style='width:70px'><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
-					<td style='width:70px'><a href ='profile.php?username=".$ipname."'>".$ipfname."</a></td>
-					<td style='width:70px'>".$rtip."</td>
+			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
+					<td><a href ='profile.php?username=".$ipname."'>".$ipfname."</a></td>
 				</tr>" ;
 	}
 	echo "</tbody>
