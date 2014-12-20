@@ -20,14 +20,14 @@ $view = 1 ;
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
    
-   <div class="container" style="margin-top:60px;">
-		<div class="row-fluid">  		
+   <div class="" >
+		<div class="row-fluid" style="margin-top:60px;">  		
        		<div id='tab2' class="span2 offset1">
    				<?php 
    					include_once 'html_comp/left_panel_ninjas.php';   
 				?>
    			</div>       
-         	<div id='tab3' class="span7">
+         	<div id='tab3' class="span6">
 				<div class="panel-primary" id='panel-cont'>
 			  		<p id='home-ch'></p>
 			 		<p id='home'></p>
@@ -55,7 +55,7 @@ if(width < 800) {
 	$('#tab1').remove();
 	$('#tab4').hide();
 	$('#tab2').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
+	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='glyphicon glyphicon-chevron-right'></p></div><div id='new'></div></div>");
 	$("#new").html($("#tab2").html() + $("#tab4").html());
 } ;
 </script>
@@ -67,11 +67,11 @@ function toggleDivs() {
     var $inner = $("#navtab");
     if ($inner.css("margin-left") == "-170px") {
         $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
+		$(".nav-btntab").html('<p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p>')
     }
     else {
         $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
+		$(".nav-btntab").html('<p class="glyphicon glyphicon-chevron-right"></p><p class="glyphicon glyphicon-comment"></p>')
     }
 }
 $(".nav-btntab").bind("click", function(){
