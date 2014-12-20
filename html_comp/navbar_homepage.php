@@ -14,7 +14,7 @@
             <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: 'Open Sans', sans-serif;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"><i>collap</i>
             </a>
-            <div class="nav-collapse collapse navbar-responsive-collapse pull-left">
+            <div class="nav-collapse collapse navbar-responsive-collapse span3 pull-left">
                <script> 
                              (function() { 
                                  var cx = '007811515162108704212:nlk9cflmqvg'; 
