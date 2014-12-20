@@ -8,11 +8,11 @@
                 if (isset($_SESSION['user_id'])) {
                     echo "<a class='pull-right active' data-toggle='modal' data-target='#createProject' style='cursor:pointer; padding-top: 4px; padding-bottom: 4px;'> 
                            
-                            <span>PROJECTS</span><font size='1'>+Add</font></a>";
+                            <span><b>PROJECTS</b></span><font size='1'> +Add</font></a>";
                 }
                 else {
                     echo "<a class='pull-right active' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'> 
-                            <span>PROJECTS</span> <font size='1'>+Add</font></a>";
+                            <span><b>PROJECTS</b></span> <font size='1'> +Add</font></a>";
                 }
             ?>
                     
@@ -22,7 +22,7 @@
 </ul>
 
 	
-    <div class='list-group-item'style="padding-left: 3px; padding-right: 3px;">
+    <div class='list-group-item' style="padding-left: 0px; padding-right: 0px;">
         
 		
         <?php 
@@ -55,18 +55,18 @@
                                             <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                                             data-placement='bottom' data-original-title=' ".$title."' style='height: 20px;font-size:11px;text-align: left;'>
                                             </b>".$prtitle."</b>
-                                            <p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>" ;
-                            //echo $remaining_time_own ;
-                            echo "</p></button></form>" ;
+                                            " ;
+                            
+                            echo "</button></form>" ;
                             }  
                             echo "</td></tr></table>
                                 </div>";
             echo "</div></div>";
                     }
                     ?>
-				<div class='nav-tabs panel-group' style='margin-bottom: 5px;'>
+				<div class='nav-tabs panel-group' style='margin-bottom: 0px;'>
  				<div class='panel panel-default'>
- 					<div class='panel-heading'style ='padding-top: 4px; padding-bottom: 4px;'>
+ 					<div class='panel-heading'style ='padding-top: 0px; padding-bottom: 0px;'>
  						<font size='2'>Public</font></div>
  						<div class='panel-content'>
                     <?php 
