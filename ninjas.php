@@ -55,7 +55,7 @@ if(width < 800) {
 	$('#tab1').remove();
 	$('#tab4').hide();
 	$('#tab2').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='glyphicon glyphicon-chevron-right'></p></div><div id='new'></div></div>");
+	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
 	$("#new").html($("#tab2").html() + $("#tab4").html());
 } ;
 </script>
@@ -67,11 +67,11 @@ function toggleDivs() {
     var $inner = $("#navtab");
     if ($inner.css("margin-left") == "-170px") {
         $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
     }
     else {
         $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="glyphicon glyphicon-chevron-right"></p><p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
     }
 }
 $(".nav-btntab").bind("click", function(){

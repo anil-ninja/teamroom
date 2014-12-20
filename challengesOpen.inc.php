@@ -107,9 +107,9 @@ function challenge_display($db_handle, $challengeSearchID) {
 						</p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";
         $display_name_stmt .= "<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
-                    <span class='badge glyphicon glyphicon-hand-up' style='cursor: pointer; float: none; color: #ffff;' onclick='like(\"".$chelangeid ."\", 1)'>
+                    <span class='badge icon-hand-up' style='cursor: pointer; float: none; color: #ffff;' onclick='like(\"".$chelangeid ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span class='badge glyphicon glyphicon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'>
+                    <span class='badge icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span></div>                    
                        <div class='list-group-item'>
                         <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 16px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span>";
@@ -164,7 +164,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     //} else {
                     // echo " <br> " . $timefunction."<br>Closed";
                     //}
-                          echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>".$display_name_stmt;
+                          echo $display_title."<span class='icon-question-sign'></span>".$display_name_stmt;
                 } 
                 if ($status == 2) {
                     echo "<div class='list-group challenge'>
@@ -173,7 +173,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     if($ownuser == $user_id) {			
                         echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                     }
-                    echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>
+                    echo $display_title."<span class='icon-question-sign'></span>
                                         <span style= 'color: #808080'>
                                         &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>
                                             <br><hr>Accepted: <a href ='profile.php?username=" . $ownname . "'>"
@@ -190,7 +190,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     }
                   dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
                     echo $display_title."
-                            <span class='glyphicon glyphicon-question-sign'></span>
+                            <span class='icon-question-sign'></span>
                             <span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."
                                 <br><hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
@@ -204,7 +204,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     echo "<div class='list-group openchalhide'>
                             <div class='list-group-item' >";
                           dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-                    echo $display_title."<span class='glyphicon glyphicon-flag'></span>
+                    echo $display_title."<span class='icon-flag'></span>
                             <span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a></span> | ".$timefunction."
                                 <br><hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
@@ -225,13 +225,13 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     else {
                         echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                     }
-                    echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>".$display_name_stmt;
+                    echo $display_title."<span class='icon-question-sign'></span>".$display_name_stmt;
                 }	
                 if ($status == 6) {
                 echo "<div class='list-group film'>
                         <div class='list-group-item'>";
                       dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                        echo $display_title."<span class='glyphicon glyphicon-question-picture'></span>".$display_name_stmt;
+                        echo $display_title."<span class='icon-question-picture'></span>".$display_name_stmt;
                 }
                 if ($status == 2) {
                     echo "<div class='list-group challenge'>
@@ -246,7 +246,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     else {
                         echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                     }
-                    echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>
+                    echo $display_title."<span class='icon-question-sign'></span>
                             <span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a></span> | ".$timefunction."
                             <br>";
@@ -281,7 +281,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                     else {
                         echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                     }
-                echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>
+                echo $display_title."<span class='icon-question-sign'></span>
                             <span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a></span> | ".$timefunction."
                         <br>";
@@ -321,7 +321,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                 if ($status == 5) {
                     echo "<div class='list-group openchalhide'>
                         <div class='list-group-item' >";
-                      echo $display_title."<span class='glyphicon glyphicon-flag'></span>
+                      echo $display_title."<span class='icon-flag'></span>
                             <span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a></span> | ".$timefunction."
                         <br>";      
@@ -361,31 +361,31 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                 echo "<div class='list-group idea'>
                                 <div class='list-group-item'>";
               dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                echo $display_title."<span class='glyphicon glyphicon-flash'></span>".$display_name_stmt."<br><br>";
+                echo $display_title."<span class='icon-flash'></span>".$display_name_stmt."<br><br>";
             }
             else if ($ctype == 5) {
                 echo "<div class='list-group tree'>
                                 <div class='list-group-item'>";
                dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                            echo $display_title."<span class='glyphicon glyphicon-pushpin'></span>".$display_name_stmt."<br><br>";
+                            echo $display_title."<span class='icon-pushpin'></span>".$display_name_stmt."<br><br>";
             }
             else if ($ctype == 6) {
                 echo "<div class='list-group deciduous'>
                                 <div class='list-group-item'>";
               dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                           echo $display_title."<span class='glyphicon glyphicon-tree-deciduous'></span>".$display_name_stmt."<br><br>";
+                           echo $display_title."<span class='icon-tree-deciduous'></span>".$display_name_stmt."<br><br>";
             }
             else if ($ctype == 7) {
                 echo "<div class='list-group articlesch'>
                                         <div class='list-group-item'>";
              dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;                
-               echo $display_title."<span class='glyphicon glyphicon-book'></span>".$display_name_stmt;
+               echo $display_title."<span class='icon-book'></span>".$display_name_stmt;
             }
             else if ($ctype == 8) {
                 echo "<div class='list-group film'>
                                         <div class='list-group-item'>";
              dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                  echo $display_title."<span class='glyphicon glyphicon-film'></span>".$display_name_stmt;
+                  echo $display_title."<span class='icon-film'></span>".$display_name_stmt;
             } 
             
             if ($status == 4 || $status == 5) {
@@ -408,28 +408,28 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                                 <a data-toggle='modal' data-target='#SignIn'>
                                     <button class='btn btn-primary btn-sm pull-right' >Accept</button>
                                 </a>";
-                                    echo $display_title."<span class='glyphicon glyphicon-question-sign'></span>".$display_name_stmt;
+                                    echo $display_title."<span class='icon-question-sign'></span>".$display_name_stmt;
                           
                 }
                 else if ($ctype == 4) {
                     echo "<div class='list-group idea'>
                                 <div class='list-group-item'>";
-                                   echo $display_title."<span class='glyphicon glyphicon-flash'></span>".$display_name_stmt;
+                                   echo $display_title."<span class='icon-flash'></span>".$display_name_stmt;
                 }
                 else if ($ctype == 6) {
                     echo "<div class='list-group deciduous'>
                                 <div class='list-group-item'>";
-                                    echo $display_title."<span class='glyphicon glyphicon-tree-deciduous'></span>".$display_name_stmt;
+                                    echo $display_title."<span class='icon-tree-deciduous'></span>".$display_name_stmt;
                 }
                 else if ($ctype == 7) {
                     echo "<div class='list-group articlesch'>
                             <div class='list-group-item'>";
-                        echo $display_title."<span class='glyphicon glyphicon-book'></span>".$display_name_stmt;
+                        echo $display_title."<span class='icon-book'></span>".$display_name_stmt;
                 }
                 else if ($ctype == 8) {
                     echo "<div class='list-group film'>
                             <div class='list-group-item'>";
-                            echo $display_title."<span class='glyphicon glyphicon-film'></span>".$display_name_stmt;
+                            echo $display_title."<span class='icon-film'></span>".$display_name_stmt;
                 }
             }
             $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -469,12 +469,12 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                 $userID = $_SESSION['user_id'];
                 echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
                              placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$chelangeid."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>";
+                            <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$chelangeid."\", 1)' ><span class='icon-chevron-right'></span></button>";
             } else {
                 echo "<form action='' method='POST' class='inline-form'>
                         <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                             <a data-toggle='modal' data-target='#SignIn'>
-                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
                             </a>
                         </form>";
             }
