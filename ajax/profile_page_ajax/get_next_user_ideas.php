@@ -55,11 +55,11 @@ if ($_POST['user_next_idea']) {
         $show_idea = $show_idea. "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
                         .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$idea_title."'/>                    
-                    <span class='glyphicon glyphicon-flash'></span><span style= 'color: #808080'>
+                    <span class='icon-flash'></span><span style= 'color: #808080'>
                     By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
@@ -140,11 +140,11 @@ $show_idea = $show_idea. "<input id='_fileChallenge_".$idea_id."' class='btn btn
                 if (isset($_SESSION['user_id'])) {
     $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$idea_id."'
                         placeholder='Want to know your comment....'/>
-                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$idea_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>";
+                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$idea_id."\", 1)' ><span class='icon-chevron-right'></span></button>";
                 else {
             $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
                                     </a>";
                         }
          $show_idea = $show_idea."</div></div></div>";

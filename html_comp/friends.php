@@ -1,7 +1,7 @@
 <?php if(isset($_SESSION['user_id'])) { 
     $user_id = $_SESSION['user_id'] ?> 	
 		<div id="nav">
-    <div class="nav-btn"><p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p></div>
+    <div class="nav-btn"><p class="icon-chevron-left"></p><p class="icon-comment"></p></div>
                     <div class="panel-body" style="padding: 1px;">
                     <?php
                         $idb = 0 ;
@@ -30,7 +30,7 @@
             echo "<div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
                             <a href=\"javascript:void(0)\" onclick=\"javascript:chatWith('".$usernameFriends."')\">
                             <div class ='col-md-2'>
-                                    <img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+                                    <img src='uploads/profilePictures/$usernameFriends.jpg'  style='margin-left:-10px;width:30px; height:35px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                             </div>
                             <div class = 'col-md-7' style='font-size:10px;'>"
                             .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
@@ -56,11 +56,11 @@ function toggleDivs() {
     var $inner = $("#nav");
     if ($inner.css("margin-right") == "-170px") {
         $inner.animate({'margin-right': '0'});
-		$(".nav-btn").html('<p class="glyphicon glyphicon-chevron-right"></p><p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btn").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
     }
     else {
         $inner.animate({'margin-right': "-170px"}); 
-		$(".nav-btn").html('<p class="glyphicon glyphicon-chevron-left"></p><p class="glyphicon glyphicon-comment"></p>')
+		$(".nav-btn").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
     }
 }
 $(".nav-btn").bind("click", function(){

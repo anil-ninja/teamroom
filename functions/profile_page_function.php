@@ -50,10 +50,10 @@ function user_articles ($db_handle, $user_IDF) {
                 echo "<p id='challenge_ti_".$article_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
                         .ucfirst($article_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$article_title."'/>
-                    <span class='glyphicon glyphicon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
+                    <span class='icon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
@@ -147,11 +147,11 @@ function user_challenges ($db_handle, $user_IDF) {
         echo "<p id='challenge_ti_".$challenge_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
                     .ucfirst($challenge_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challenge_title."'/>                
-                <span class='glyphicon glyphicon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
+                <span class='icon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
+                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
@@ -244,11 +244,11 @@ function user_idea ($db_handle, $user_IDF) {
             echo "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
                         .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$idea_title."'/>                    
-                    <span class='glyphicon glyphicon-flash'></span><span style= 'color: #808080'>
+                    <span class='icon-flash'></span><span style= 'color: #808080'>
                     By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
@@ -480,12 +480,12 @@ function project_comments($db_handle, $project_id) {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$project_id."'
 			 placeholder='Want to know your comment....'/>
 			<button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$project_id."\", 2)' >
-			<span class='glyphicon glyphicon-chevron-right'></span></button>";
+			<span class='icon-chevron-right'></span></button>";
     } 
     else {
         echo " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                    <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
                 </a>";
     }
 echo "</div>
@@ -526,12 +526,12 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
                  placeholder='Want to know your comment....'/>
                 <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$challenge_id."\", 1)' >
-                <span class='glyphicon glyphicon-chevron-right'></span></button>";
+                <span class='icon-chevron-right'></span></button>";
             }
             else {
                 echo " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                         <a data-toggle='modal' data-target='#SignIn'>
-                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                            <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
                         </a>";
             }
             echo "</div>

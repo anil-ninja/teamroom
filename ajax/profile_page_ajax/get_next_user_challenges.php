@@ -55,11 +55,11 @@ if ($_POST['next']) {
         $show = $show. "<p id='challenge_ti_".$challenge_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
                     .ucfirst($challenge_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challenge_title."'/>                
-                <span class='glyphicon glyphicon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
+                <span class='icon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
+                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
@@ -139,12 +139,12 @@ $show = $show. "<input id='_fileChallenge_".$challenge_id."' class='btn btn-defa
                         if (isset($_SESSION['user_id'])) {
             $show = $show. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
                              placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$challenge_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>";
+                            <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$challenge_id."\", 1)' ><span class='icon-chevron-right'></span></button>";
                         }
                         else {
             $show = $show. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
                                     </a>";
                         }
 
