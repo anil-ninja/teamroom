@@ -1,8 +1,9 @@
 <div class='tab-content'>
     <div class='list-group-item' >
-        <span class="glyphicon glyphicon-question-sign" id='challenge' style="cursor: pointer;color: #000;"><i class="icon-lock"></i>&nbsp; Challenge</span>
+        <span id='challenge' style="cursor: pointer;color: #000;">
+        <i class="icon-question-sign"></i>&nbsp; Challenge</span>
         &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="glyphicon glyphicon-book" id='artical' style="cursor: pointer;color: #000;"> Article</span>
+        <span id='artical' style="cursor: pointer;color: #000;"> <i class="icon-book"></i>  Article</span>
         &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
         <span class="glyphicon glyphicon-picture" id='picture' style="cursor: pointer;color: #000;"> Photos</span>
         &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
@@ -133,7 +134,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $ETA = $open_chalangerow['challenge_ETA'];
     $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
     //$pr_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['project_title'])));
-    echo $ch_title."<br/>";
+    //echo $ch_title."<br/>";
     $owner_id = $open_chalangerow['user_id'];
     $open_project_id = $open_chalangerow['project_id'];
     $ctype = $open_chalangerow['challenge_type'];

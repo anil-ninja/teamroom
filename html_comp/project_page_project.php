@@ -1,6 +1,6 @@
 <?php 
 	$_SESSION['project_id'] = $pro_id;
-	echo "<div class='list-group'>
+	echo "<div class='tab-content'>
 			<div class='list-group-item'>
 				<span class='color strong' style= 'font-size: 14pt;'><p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "</p></span>
 				<input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
@@ -9,13 +9,13 @@
 ?>
 <?php if (isset($_SESSION['user_id'])) {
     ?>
-    <div class='list-group'>
-        <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span>
-            | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span>
-            | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span>
-            | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span>
-            | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span>
-            | <span class="glyphicon glyphicon-film" id='videopr' style="cursor: pointer"> Videos</span>
+    <div class='tab-content'>
+        <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer; color:#000;"> Challenge</span>
+            | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer; color:#000;"> Assign Task</span>
+            | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer; color:#000;"> Create Team</span>
+            | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer; color:#000;"> Notes</span>
+            | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer; color:#000;"> Manage Files</span>
+            | <span class="glyphicon glyphicon-film" id='videopr' style="cursor: pointer; color:#000;"> Videos</span>
         </div>
         <div class='list-group-item'>
             <div id='textForm'><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>

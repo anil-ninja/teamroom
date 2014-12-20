@@ -19,24 +19,33 @@ $view = 1 ;
   <body>
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
-   <div class="media-body">
-  	<div id='tab1' class="span1"></div>
-       <div id='tab2' class="span2">
+   
+   <div class="container">
+		<div class="row-fluid">  		
+       		<div id='tab2' class="span2 offset1">
    				<?php include_once 'html_comp/left_panel_ninjas.php'   ?>
-   		</div>       
-         <div id='tab3' class="span7">
-			<div class="panel-primary" id='panel-cont'>
-			  	<p id='home-ch'></p>
-			 	<p id='home'></p>
-	    		<?php include_once 'html_comp/ninjas_page.php' ;
-	    		echo "<input type='hidden' id='viewchid' value='".$view."'/>" ?>
+   			</div>       
+         	<div id='tab3' class="span7">
+				<div class="panel-primary" id='panel-cont'>
+			  		<p id='home-ch'></p>
+			 		<p id='home'></p>
+	    			<?php 
+	    				include_once 'html_comp/ninjas_page.php' ;
+	    				echo "<input type='hidden' id='viewchid' value='".$view."'/>"; 
+	    			?>
+				</div>
 			</div>
+		 	<div id='tab4' class="span2">
+				<?php 
+					include_once 'html_comp/right_panel_ninjas.php'  ; 
+				?>				
+			</div>
+			
+			<?php 
+				include_once 'html_comp/friends.php';  
+			?>
 		</div>
-		 <div id='tab4' class="span2">
-			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>				
-			</div>
-			<?php include_once 'html_comp/friends.php';  ?>
-		</div>	
+	</div>	
 	<?php include_once 'lib/html_inc_footers.php'; ?>	
 <script>
 var width = window.screen.availWidth;
