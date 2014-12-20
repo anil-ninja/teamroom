@@ -602,7 +602,7 @@ if ($_POST['notice']) {
 				} */
 			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
-			$data .= "<li class='dropdown'>
+			$data .= "<li class='dropdown navbar-text' style='cursor:pointer;'>
 					<a data-toggle='dropdown' onclick='updatetime()'>
 					<i class='icon-bell'></i>" ;
 			if ($y != 0) {
@@ -611,10 +611,10 @@ if ($_POST['notice']) {
 				}
 	$data = $data . "</a>
 					<ul class='dropdown-menu'>
-						<li class='color-swatch'>
-						<li>".$notice."</li>
-						<div class='newnotices' ></div>
-						<li><a href='notifications.php'>See All</a></li>
+						<li>
+							<li>".$notice."</li>
+							<div class='newnotices' ></div>
+							<li><a href='notifications.php'>See All</a></li>
 						</li>
 					</ul>
 				</li>" ;
