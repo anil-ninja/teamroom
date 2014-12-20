@@ -470,6 +470,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$('.tree-toggle').click(function () {
 		$(this).parent().children('ul.tree').toggle(200);
 		});	
+	}) ;
 	
 		//to hide all the form
 		$("#challegeForm").toggle();
@@ -525,8 +526,8 @@ function bootstrap_alert(elem, message, timeout,type) {
   		});
 
 		//allPanels
-		$("#allPanels").click(function(){
-	 // alert("I am pencil!!! :)");
+		$("#allPanels123").click(function(){
+	 alert("I am pencil!!! :)");
   	$(".articlesch").show(100);
   	$(".openchalhide").show(100);
   	$(".idea").show(100);
@@ -536,7 +537,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   });
 
 $("#pencil").click(function(){
-	 // alert("I am pencil!!! :)");
+	  alert("I am pencil!!! :)");
   	$(".articlesch").hide(100);
   	$(".openchalhide").hide(100);
   	$(".idea").hide(100);
@@ -601,7 +602,7 @@ $("#pencil").click(function(){
     $("#viewchid").val(7);
     getnextchal('pict', 7) ;
   });
-	
+	$(document).ready(function(){
 		$("#create_idea").click(function(){
       		$("#create_idea").attr('disabled','disabled');
 			var idea = convertSpecialChar($("#ideaA").val()) ;
