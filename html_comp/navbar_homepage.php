@@ -139,10 +139,12 @@
 if (isset($_SESSION['user_id'])) {
 if ($requestedPage == "project.php") {
     
- echo "  <div class='navbar-inner-subnav'>
+ echo " 
+        <div class='navbar-subnav'> 
+        <div class='navbar-inner-subnav'>
             <div class='container' >
                 <div class='span7 offset3'>
-                <ul class='nav' >
+                <ul class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
@@ -152,15 +154,16 @@ if ($requestedPage == "project.php") {
                 </div>
             </div>
          
+        </div>
         </div>" ;
 }
     else if ($requestedPage == "ninjas.php"){
         echo "     
-        <div class='navbar'>
+        <div class='navbar-subnav'>
         <div class='navbar-inner-subnav' >
             <div class='container' >
                 <div class='span7 offset3'>
-                <ul class='nav' >
+                <ul class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>
