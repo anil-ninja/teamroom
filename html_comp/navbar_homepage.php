@@ -143,7 +143,7 @@ if ($requestedPage == "project.php") {
         <div class='navbar-subnav'> 
         <div class='navbar-inner-subnav'>
             <div class='container' >
-                <div class='span7 offset3'>
+                <div class='span8 offset2'>
                 <ul class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
@@ -162,7 +162,7 @@ if ($requestedPage == "project.php") {
         <div class='navbar-subnav'>
         <div class='navbar-inner-subnav' >
             <div class='container' >
-                <div class='span7 offset3'>
+                <div class='span8 offset2'>
                 <ul class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
