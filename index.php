@@ -54,7 +54,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title>Tabbed Forms And Tab Controls Live Preview</title>
+    <title>Welcome to collap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="styles/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/bootstrap-responsive.min.css" rel="stylesheet" />
@@ -101,7 +101,8 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     </div>
 <!----navigation ends -->
 */?>
-
+    <div class="alert_placeholder"></div>  <!-- alert for login -->
+    <div class="alert-placeholder"></div>  <!-- alert for signup -->
     <div class="navbar navbar-default navbar-fixed-top" >
         <div class="navbar-inner" >
             <div class="container" >
@@ -211,8 +212,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
 
         <div class="row-fluid" id="demo-1">
+
             <div class="span10 offset1">
-                <h4>Collaborate Grow and help Society</h4>
+                <h4>Collaborate, Grow and help Society</h4>
                 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="index.html#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
@@ -221,11 +223,13 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     <!--    <li><a href="index.html#panel4" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li> -->
                     </ul>
                     <div class="tab-content ">
+
                         <div class="tab-pane active" id="panel1">
                             <div class="row-fluid">
                                 <div class="span5">
-                                    <h4><i class="icon-user"></i>&nbsp;&nbsp; Login Here</h4>
 
+                                    <h4><i class="icon-user"></i>&nbsp;&nbsp; Login Here</h4>
+                                    
                                     <label>Username</label>
                                     <input type="text" class="input-block-level" id="username" placeholder="Email or Username"/>
                                     <label>Password<a href="index11.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> </label>
@@ -271,7 +275,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                         </div>
                         <div class="tab-pane" id="panel2">
                             <div class="row-fluid">
+
                                 <div class="span5">
+
                                     <h4><i class="icon-user"></i>&nbsp;&nbsp; Register Here</h4>
 
                                     <div>
@@ -286,7 +292,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </div>
 
 									<label>Email</label>
-									<input type="text" class="input-block-level" id="email" onkeyup="nospaces(this)"/>
+									<input type="email" class="input-block-level" id="email" onkeyup="nospaces(this)"/>
 									<span id="status_email"></span>
 
                                     <label>Username</label>
