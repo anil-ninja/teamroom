@@ -20,7 +20,7 @@ $view = 1 ;
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
    
-   <div class="container">
+   <div class="container" style="margin-top:60px;">
 		<div class="row-fluid">  		
        		<div id='tab2' class="span2 offset1">
    				<?php 
