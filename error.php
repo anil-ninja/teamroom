@@ -48,7 +48,7 @@ if (isset($_POST['logout'])) {
                                 .ucfirst($challenge_type_title)."</b></p>";
         $display_fname_likes = "<span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $challenge_type_username . "'>".ucfirst($challenge_type_first)." ".ucfirst($challenge_type_last)."</a> | ".$time_display."</span> | 
-                                <span class='glyphicon glyphicon-hand-up'>".$likes."</span> &nbsp <span class='glyphicon glyphicon-hand-down'>".$dislikes."</span>
+                                <span class='icon-hand-up'>".$likes."</span> &nbsp <span class='icon-hand-down'>".$dislikes."</span>
                             </div>                    
                             <div class='list-group-item'>
                                 <br/>".$challenge_type_stmt."<br/><br/></div>";
@@ -56,20 +56,20 @@ if (isset($_POST['logout'])) {
         if ($challenge_type_type == 1) {
             if ($challenge_type_status == 1 || $challenge_type_status == 2 || $challenge_type_status == 4 || $challenge_type_status == 5) {
                 echo "<div class='list-group-item'>";     
-                echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes;
+                echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes;
             } 
         }
         else if ($challenge_type_type == 7) {
             echo "<div class='list-group-item'>";
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-book'></span>".$display_fname_likes;
+            echo $display_tilte_ch."<span class='icon-book'></span>".$display_fname_likes;
         }
         else if ($challenge_type_type == 4) {
             echo "<div class='list-group-item'>";
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-flash'></span>".$display_fname_likes;
+            echo $display_tilte_ch."<span class='icon-flash'></span>".$display_fname_likes;
         } 
         else if ($challenge_type_type == 3) {
             echo "<div class='list-group-item'>";
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes;
+            echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes;
         }
         echo "</div>";
     }

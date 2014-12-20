@@ -175,9 +175,9 @@ function recommended_project ($db_handle) {
                                                             IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
                                                             ORDER BY rand() LIMIT 5;");
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
-        echo "<div class='panel-group'style='margin-bottom: 5px;'>
+        echo "
                 <div class='panel panel-default'>
-                    <div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'>
+                    <div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
                         <font size='2'> Recommended</font>
                     </div>
                     <div class='panel-content'>
@@ -197,13 +197,14 @@ function recommended_project ($db_handle) {
         $titlep2 =  strtoupper($public_pr_titlep2)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp2 ;
         // $remaining_time_ownp = remaining_time($p_timep, $p_etap);
 
-    echo "<tr><td><form method='GET' action=''>
-                <input type='hidden' name='project_id' value='".$idproject2."'/>
+    echo "<tr><td>
+                <a href = 'project.php?project_id=".$idproject2."'>
+        
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                data-placement='bottom' data-original-title='".$titlep2."' style='height: 20px;font-size:11px;text-align: left;'>
+                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:11px;text-align: left;'>
                 ".$prtitlep2."
-                <p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'></p>
-            </button></form></td><td>";
+                
+            </button></a></td><td>";
                 //$remaining_time_ownp.
         if (isset($_SESSION['user_id'])) {
             echo "<button type='submit' class='btn-link' onclick='joinproject(".$idproject2.")' data-toggle='tooltip' 

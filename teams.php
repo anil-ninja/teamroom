@@ -88,12 +88,12 @@ $total_members = mysqli_num_rows($teams_member_display);
                                           echo "<a type='submit' class='btn-link badge pull-right' id='remove_member' 
 												onclick='remove_member(\"".$team_project_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
 												data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
-                                                    <span class='glyphicon glyphicon-remove'>
+                                                    <span class='icon-remove'>
                                                 </a>
                                                 ";
                                         }
                                         else{
-                                            echo "<a class='btn-link badge pull-right'><span class='glyphicon glyphicon-star'></a>";
+                                            echo "<a class='btn-link badge pull-right'><span class='icon-star'></a>";
                                         }
 
                                         echo "<div class='thumbnail'>
