@@ -21,8 +21,6 @@
 <script src="js/add_remove_skill.js"></script>
 <script src="js/date_time.js"></script>
 
-
-    <script src="scripts/jquery-1.9.1.min.js"></script>
     
     <script src="scripts/tabs-addon.js"></script>
 

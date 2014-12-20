@@ -19,12 +19,12 @@ $view = 1 ;
   <body>
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
-   <div class="media-body" style="padding-top: 50px;">
-  	<div id='tab1' class="col-md-1"></div>
-       <div id='tab2' class="col-md-2">
+   <div class="media-body">
+  	<div id='tab1' class="span1"></div>
+       <div id='tab2' class="span2">
    				<?php include_once 'html_comp/left_panel_ninjas.php'   ?>
    		</div>       
-         <div id='tab3' class="col-md-6">
+         <div id='tab3' class="span7">
 			<div class="panel-primary" id='panel-cont'>
 			  	<p id='home-ch'></p>
 			 	<p id='home'></p>
@@ -32,7 +32,7 @@ $view = 1 ;
 	    		echo "<input type='hidden' id='viewchid' value='".$view."'/>" ?>
 			</div>
 		</div>
-		 <div id='tab4' class="col-md-2">
+		 <div id='tab4' class="span2">
 			<?php include_once 'html_comp/right_panel_ninjas.php'  ; ?>				
 			</div>
 			<?php include_once 'html_comp/friends.php';  ?>

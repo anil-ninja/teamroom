@@ -1,19 +1,31 @@
 <div class="bs-component list-group">
-	<div class='list-group-item'style="padding-left: 3px; padding-right: 3px;">
-        <div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'><font size="3"> PROJECTS&nbsp;&nbsp;&nbsp;</font>
-	        <?php 
-		        if (isset($_SESSION['user_id'])) {
-		        	echo "<a class='pull-right' data-toggle='modal' data-target='#createProject' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a>";
-				}
-				else {
-					echo "<a class='pull-right' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'> <font size='1'>+Add</font></a>";
-				}
-			?>
-		</div>
+	
+    <div class='list-group-item'style="padding-left: 3px; padding-right: 3px;">
+        <ul class="nav nav-tabs">
+            <li class="active" >
+               
+                    
+                        <?php 
+                if (isset($_SESSION['user_id'])) {
+                    echo "<a class='pull-right active' data-toggle='modal' data-target='#createProject' style='cursor:pointer; padding-top: 4px; padding-bottom: 4px;'> 
+                           
+                            <span>PROJECTS</span><font size='1'>+Add</font></a>";
+                }
+                else {
+                    echo "<a class='pull-right active' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'> 
+                            <span>PROJECTS</span> <font size='1'>+Add</font></a>";
+                }
+            ?>
+                    
+                
+
+            </li>
+        </ul>
+        
 		
         <?php 
             if (isset($_SESSION['user_id'])) {              
- 		echo "<div class='panel-group' style='margin-bottom: 5px;'>
+ 		echo "<div class='nav nav-tabs'>
  				<div class='panel panel-default'>
  					<div class='panel-heading' style ='padding-top: 4px; padding-bottom: 4px;'>
  						<font size='2'> Classified</font></div>
@@ -50,7 +62,7 @@
             echo "</div></div>";
                     }
                     ?>
-				<div class='panel-group' style='margin-bottom: 5px;'>
+				<div class='nav-tabs panel-group' style='margin-bottom: 5px;'>
  				<div class='panel panel-default'>
  					<div class='panel-heading'style ='padding-top: 4px; padding-bottom: 4px;'>
  						<font size='2'>Public</font></div>

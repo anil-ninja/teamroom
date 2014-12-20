@@ -94,16 +94,16 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
                         <ul class='dropdown-menu'>
                             <li>
                                 <form method='GET' action='profile.php'>
-                                    <b><button type='submit' name='username' class='btn-link' style="color: #fff;" value='<?php echo $username; ?>'>View Profile</button></b>
+                                    <b><button type='submit' name='username' class='btn-link' value='<?php echo $username; ?>'>View Profile</button></b>
                                 </form>
                             </li>
                             
                             <li>
-                                <b><a href="settings.php" class="btn-link" style="color: #fff;"><span class="glyphicon glyphicon-cog"></span> Settings </a></b>
+                                <b><a href="settings.php" class="btn-link" ><span class="glyphicon glyphicon-cog"></span> Settings </a></b>
                             </li>
                             
                             <li>
-                                <b><button type='submit' class="btn-link" onclick='confLogout()' name="logout" style="color: #fff;"><span class="glyphicon glyphicon-off"></span> Log out </button></b>  
+                                <b><button type='submit' class="btn-link" onclick='confLogout()' name="logout" ><span class="glyphicon glyphicon-off"></span> Log out </button></b>  
                             </li>
                             
                         </ul>
@@ -122,7 +122,7 @@ $requestedPage = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING'
 if (isset($_SESSION['user_id'])) {
 if ($requestedPage == "project.php") {
     
- echo "  <div class='navbar-inner' >
+ echo "  <div class='navbar-inner'>
         <div class='container' >
                 
                 <ul class='nav' >
