@@ -23,7 +23,9 @@ $view = 1 ;
    <div class="container">
 		<div class="row-fluid">  		
        		<div id='tab2' class="span2 offset1">
-   				<?php include_once 'html_comp/left_panel_ninjas.php'   ?>
+   				<?php 
+   					include_once 'html_comp/left_panel_ninjas.php';   
+				?>
    			</div>       
          	<div id='tab3' class="span7">
 				<div class="panel-primary" id='panel-cont'>
@@ -101,7 +103,8 @@ $(".nav-btntab").bind("click", function(){
 getallreminders() ; 
 	</script>
 <?php include_once 'html_comp/insert_time.php'   ?>	  
-</body></html>
+</body>
+</html>
 <?php
 mysqli_close($db_handle);
 ?>
