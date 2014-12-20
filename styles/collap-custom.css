@@ -1865,8 +1865,8 @@ div#navtab li a{
 .navbar-subnav
 {
   margin-bottom: 20px;
-  margin-top: 44px;
+  margin-top: -20px;
   overflow: visible;
-  position: relative;
+  position: fixed;
   z-index: 2;
 }
