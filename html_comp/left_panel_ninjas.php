@@ -34,7 +34,7 @@
                     </div>
  					<div class='panel-content'>
 			    	    <table>
-                            <tr><td>";   
+                            ";   
                             $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '2')  
                                                                                 UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '2');");
@@ -51,16 +51,16 @@
                                     $timefunc = date("j F, g:i a",strtotime($p_time));
                                     $title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
                                     // $remaining_time_own = remaining_time($p_time, $p_eta);
-                            echo "<form method='GET' action=''>
-                                            <input type='hidden' name='project_id' value='".$idpro."'/>
+                            echo "<tr><td>
+                                        <a href = 'project.php?project_id=".$idpro."'>
                                             <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                                            data-placement='bottom' data-original-title=' ".$title."' style='height: 20px;font-size:11px;text-align: left;'>
+                                            data-placement='bottom' data-original-title=' ".$title."' style='color:#000;font-size:11px;text-align: left;'>
                                             </b>".$prtitle."</b>
                                             " ;
                             
-                            echo "</button></form>" ;
+                            echo "</button></td></tr>" ;
                             }  
-                            echo "</td></tr></table>
+                            echo "</table>
                                 </div>";
             echo "</div>";
                     }
@@ -72,7 +72,7 @@
  						<div class='panel-content'>
                     <?php 
                     echo "<table>
-								<tr><td>";
+								";
                         $project_public_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
                                                                                 as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
                                                                                 UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '1');");
@@ -90,17 +90,17 @@
 								$timefuncp = date("j F, g:i a",strtotime($p_timep));
 								$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
 								// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
-					echo "<form method='GET' action=''>
-								<input type='hidden' name='project_id' value='".$idproject."'/>
+					echo "<tr><td>
+                            <a href = 'project.php?project_id=".$idproject."' >
 								<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-								data-placement='bottom' data-original-title='".$titlep."' style='height: 20px;font-size:11px;text-align: left;'>
+								data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:11px;text-align: left;'>
 								".$prtitlep."
-								<p style='font-size:6pt; color:rgba(161, 148, 148, 1);text-align: left;'>" ;
-								//$remaining_time_ownp.
-					echo "</p></button></form>" ;
+								" ;
+								
+					echo "</button></a></td></tr>" ;
 			
 					} 
-					echo "</td></tr></table>
+					echo "</table>
                                 </div></div>";
 
                     // recommended project function defined in functions/delete_comment for use in profile page joined project tab
