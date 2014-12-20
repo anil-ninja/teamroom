@@ -14,7 +14,7 @@
             <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: 'Open Sans', sans-serif;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"><i>collap</i>
             </a>
-            <div class="nav-collapse collapse navbar-responsive-collapse span3 pull-left">
+            <div class="nav-collapse collapse navbar-responsive-collapse navbar-search span3">
                <script> 
                              (function() { 
                                  var cx = '007811515162108704212:nlk9cflmqvg'; 
@@ -143,7 +143,7 @@ if ($requestedPage == "project.php") {
         <div class='navbar-subnav'> 
         <div class='navbar-inner-subnav'>
             <div class='container' >
-                <div class='span7 offset3'>
+                <div class='span8 offset2'>
                 <ul class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
@@ -162,7 +162,7 @@ if ($requestedPage == "project.php") {
         <div class='navbar-subnav'>
         <div class='navbar-inner-subnav' >
             <div class='container' >
-                <div class='span7 offset3'>
+                <div class='span8 offset2'>
                 <ul class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
