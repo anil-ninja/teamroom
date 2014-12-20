@@ -95,7 +95,7 @@ include_once 'functions/delete_comment.php';
 		$(".editbox").hide();
         </script>     
 <?php
-include_once 'html_comp/login_signup_modal.php';
+//include_once 'html_comp/login_signup_modal.php';
  include_once 'html_comp/insert_time.php';
 mysqli_close($db_handle);
 ?>
