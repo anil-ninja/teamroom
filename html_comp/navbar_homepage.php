@@ -126,9 +126,9 @@
 if (isset($_SESSION['user_id'])) {
 if ($requestedPage == "project.php") {
     
- echo "  <div class='navbar-inner'>
+ echo "  <div class='navbar-inner-subnav'>
             <div class='container' >
-                
+                <div class='span7 offset3'>
                 <ul class='nav' >
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='eye_open' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='sign' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
@@ -137,15 +137,17 @@ if ($requestedPage == "project.php") {
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='flag' ><span class='glyphicon glyphicon-flag'></span> Closed challenges</button></p></li>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='filmprj' ><span class='glyphicon glyphicon-film'></span> Videos</button></p></li>
                 </ul>
+                </div>
             </div>
          
         </div>" ;
 }
     else if ($requestedPage == "ninjas.php"){
         echo "     
-        <div class='navbar-inner' >
+        <div class='navbar'>
+        <div class='navbar-inner-subnav' >
             <div class='container' >
-                
+                <div class='span7 offset3'>
                 <ul class='nav' >
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
@@ -155,8 +157,9 @@ if ($requestedPage == "project.php") {
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='filmnin' ><span class='glyphicon glyphicon-film'></span> Videos</button></p></li>
                     <li><p><button type='submit' class='btn-link' style='color:#fff;' id='picch' ><span class='glyphicon glyphicon-picture'></span> Pics</button></p></li>
                  </ul>
+                 </div>
             </div>
-         
+         </div>
         </div>" ;
 }
 else {
@@ -184,7 +187,50 @@ else {
   </script>
  
 <!-- Modal  -->
-<div class="modal fade" id="createProject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+<div id="createProject" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span8 offset2">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="index.html#panel6-1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Add Project</span></a></li>
+                    <li><a href="index.html#close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active" id="panel6-1">
+                        <div class="row-fluid">
+                            
+                                <h4><i class="icon-user"></i>&nbsp;&nbsp;Create New Project </h4>
+
+                                <label>Project Title</label>
+                                <input type="text" class="input-block-level" id="project_title" placeholder="Enter Project Title"/>
+                                <label>Upload File</label>
+                                <input type="file" id="_fileProject"/>
+                                
+                                <label>Details about Project</label>
+                                <textarea class="input-block-level" id="project_stmt" placeholder="Details about Project"></textarea>
+                                
+                                <br />
+                                <label>Project Type</label> 
+                                <select id= "type" >    
+                                    <option value='2' selected >Classified</option>
+                                    <option value='1' >Public</option>
+                                </select>
+                                <br/><br/>
+                                <a href="index.html#" class=" btn " id = "create_project">Create Project&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+
+<div class="modal fade" id="createProject_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -196,7 +242,7 @@ else {
                     <input type="text" class="form-control" id="project_title" placeholder="Enter Project Title"><br>
                     <input class="btn btn-default btn-sm" type="file" id="_fileProject" style ="width: auto;"><br/>
                     <textarea rows="3" class="form-control" id="project_stmt" placeholder="Details about Project"></textarea><br/>
-                 <!---   Estimated Time (ETA)
+                 <!--   Estimated Time (ETA)
                     <select id = "eta" >    
                         <option value='0' selected >Month</option>
                         <?php /*
@@ -229,7 +275,7 @@ else {
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
                     </select>
-                    <br/><br/> --->Project Type 
+                    <br/><br/> -->Project Type 
                     <select id= "type" >    
                         <option value='2' selected >Classified</option>
                         <option value='1' >Public</option>

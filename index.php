@@ -669,8 +669,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
         </div>
         
 
-        <?php 
-            /*
+   
                     <div id="panel4" class="tab-pane">
                         <div class="row-fluid">
                             <div class="span5">
@@ -1952,8 +1951,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
                 </div>
 
-            */
-        ?>
+         
 
     <script src="scripts/jquery-1.9.1.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
