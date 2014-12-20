@@ -1,29 +1,44 @@
 <?php 
 	$_SESSION['project_id'] = $pro_id;
 	echo "<div class='tab-content'>
-			<div class='list-group-item'>
-				<span class='color strong' style= 'font-size: 14pt;'><p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "</p></span>
-				<input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
-			</div>
+			     <div class='list-group-item'>
+				      <span class='color strong' style= 'font-size: 14pt;'>
+                <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
+                </p>
+              </span>
+				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
+			     </div>
 		  </div>";
 ?>
 <?php if (isset($_SESSION['user_id'])) {
     ?>
     <div class='tab-content'>
-        <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer; color:#000;"> Challenge</span>
-            | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer; color:#000;"> Assign Task</span>
-            | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer; color:#000;"> Create Team</span>
-            | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer; color:#000;"> Notes</span>
-            | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer; color:#000;"> Manage Files</span>
-            | <span class="glyphicon glyphicon-film" id='videopr' style="cursor: pointer; color:#000;"> Videos</span>
-        </div>
         <div class='list-group-item'>
-            <div id='textForm'><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
+          <span class="icon-pencil" id='challengepr' style="cursor: pointer; color:#000;"> Challenge</span>
+            | 
+          <span class="icon-pushpin" id='task' style="cursor: pointer; color:#000;"> Assign Task</span>
+            | 
+          <span class="icon-phone-alt" id='team' style="cursor: pointer; color:#000;"> Create Team</span>
+            | 
+          <span class="icon-tree-deciduous" id='notes' style="cursor: pointer; color:#000;"> Notes</span>
+            | 
+          <span class="icon-hdd" id='files' style="cursor: pointer; color:#000;"> Manage Files</span>
+            | 
+          <span class="icon-film" id='videopr' style="cursor: pointer; color:#000;"> Videos</span>
+        </div>
+        
+        <div class='list-group-item'>
+            <div id='textForm'>
+              <p style="color: grey;">
+                <i>Please Select Post Type From Above ......</i>
+              </p>
+            </div>
+            
             <div id='challegeprForm'>
 
-                <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte .."/><br>
+                <input type="text" class="input-block-level" id="challange_title" placeholder="Challange Tilte .."/><br>
                 <input class="btn btn-default btn-sm" type="file" id="_fileChallengepr" style ="width: auto;"><br/>
-                <textarea rows="3" class="form-control" id="challangepr" placeholder="Description .. "></textarea><br>
+                <textarea rows="3" class="input-block-level" id="challangepr" placeholder="Description .. "></textarea><br>
                 <!---<div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                         <option value='0' selected >hour</option>
@@ -77,14 +92,13 @@
                         <option value='30' >30</option>
                         <option value='45'  >45</option>
                     </select>
-                </div><br/><br/> --->
-                <div class="input-group">Challenge Type : 
-                    <select class='btn-default btn-xs' id="type" >
-                        <option value=" 1" >Public</option>
-                        <option value=" 2" selected >Private</option>
-                    </select>
-                </div> 
-                <br>
+                </div><br/><br/> -->
+
+                <label>Challenge Type : </label> 
+                <select class='btn-default btn-xs' id="type" >
+                  <option value=" 1" >Public</option>
+                  <option value=" 2" selected >Private</option>
+                </select>
                 <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
             </div><div id='invitation'></div>
             <div id='taskForm'>
