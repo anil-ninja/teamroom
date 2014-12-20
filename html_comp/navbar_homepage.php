@@ -14,7 +14,7 @@
             <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: 'Open Sans', sans-serif;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"><i>collap</i>
             </a>
-            <div class="nav-collapse collapse navbar-responsive-collapse pull-left">
+            <div class="nav-collapse collapse navbar-responsive-collapse span3 pull-left">
                <script> 
                              (function() { 
                                  var cx = '007811515162108704212:nlk9cflmqvg'; 
@@ -112,14 +112,28 @@
                     </li>
     <?php
     } else {
-        echo "<li><p class='navbar-text' style='cursor: pointer'><b> <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In</a> </b></p></li>";
-        echo "<li><p class='navbar-text' style='cursor: pointer'><a data-toggle='modal' data-target='#SignUp' style='color: #fff;'><b>Sign Up</b></a></p></li>";
+        echo "<li>
+                <p class='navbar-text' style='cursor: pointer'>
+                    <b> 
+                        <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In</a> 
+                    </b>
+                </p>
+            </li>";
+        
+        echo "<li>
+                <p class='navbar-text' style='cursor: pointer'>
+                    <a data-toggle='modal' data-target='#SignUp' style='color: #fff;'>
+                        <b>Sign Up</b>
+                    </a>
+                </p>
+            </li>";
     }
     ?>
                 </ul>
             </div>
         </div>
     </div>
+</div>
 <!-- sub nav bar-->
 <?php
 if (isset($_SESSION['user_id'])) {
@@ -129,12 +143,11 @@ if ($requestedPage == "project.php") {
             <div class='container' >
                 <div class='span7 offset3'>
                 <ul class='nav' >
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='eye_open' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='sign' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='deciduous' ><span class='glyphicon glyphicon-tree-deciduous'></span> Notes </button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='pushpin' ><span class='glyphicon glyphicon-pushpin'></span> Tasks</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='flag' ><span class='glyphicon glyphicon-flag'></span> Closed challenges</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='filmprj' ><span class='glyphicon glyphicon-film'></span> Videos</button></p></li>
+                    <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='flag' ><span class='icon-flag'></span> Closed challenges</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='filmprj' ><span class='icon-film'></span> Videos</button></p></li>
                 </ul>
                 </div>
             </div>
@@ -148,13 +161,13 @@ if ($requestedPage == "project.php") {
             <div class='container' >
                 <div class='span7 offset3'>
                 <ul class='nav' >
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='allPanels' ><span class='glyphicon glyphicon-eye-open'></span> All</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='pencil' ><span class='glyphicon glyphicon-question-sign'></span> Open challenges</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='globe' ><span class='glyphicon glyphicon-book'></span> Articles</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='tree' ><span class='glyphicon glyphicon-flash'></span> Ideas</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='okch' ><span class='glyphicon glyphicon-flag'></span> Closed challenges</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='filmnin' ><span class='glyphicon glyphicon-film'></span> Videos</button></p></li>
-                    <li><p><button type='submit' class='btn-link' style='color:#fff;' id='picch' ><span class='glyphicon glyphicon-picture'></span> Pics</button></p></li>
+                    <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='tree' ><span class='icon-flash'></span> Ideas</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='okch' ><span class='icon-flag'></span> Closed challenges</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='filmnin' ><span class='icon-film'></span> Videos</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='picch' ><span class='icon-picture'></span> Pics</button></li>
                  </ul>
                  </div>
             </div>
