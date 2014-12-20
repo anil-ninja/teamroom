@@ -105,7 +105,8 @@
                             </li>
                             
                             <li>
-                                <a><button type='submit' class="btn-link" onclick='confLogout()' name="logout" ><span class="icon-off"></span> Log out </button></a> 
+                                <a type='submit' class="btn-link" onclick='confLogout()' name="logout" >
+                                <span class="icon-off"></span> Log out </a> 
                             </li>
                             
                         </ul>
