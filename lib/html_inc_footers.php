@@ -1,7 +1,7 @@
 <?php
     include_once 'html_comp/modal_all.php';
 ?>
- 
+ <br/><br/><br/><br/><br/><br/>
 <gcse:searchresults></gcse:searchresults>
 
 <script type="text/javascript">
@@ -96,7 +96,6 @@
 
     
     <script src="scripts/tabs-addon.js"></script>
-
     
     
 

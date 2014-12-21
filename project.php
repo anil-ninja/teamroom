@@ -64,7 +64,7 @@ include_once 'functions/delete_comment.php';
                 
             <div class="span2" style='width:290px'>
                 <br>
-                <?php include_once 'html_comp/project_page_challenge.php'; ?>
+                <?php include_once 'html_comp/right_panel_project.php'; ?>
             </div>	
         </div>
 		<?php 
