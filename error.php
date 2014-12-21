@@ -23,9 +23,9 @@ if (isset($_POST['logout'])) {
 <?php 
     include_once 'html_comp/navbar_homepage.php'; 
 ?>
-        <div class="row" style="padding-top: 50px;">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-8">
+        <div class="row-fluid" style="padding-top: 50px;">
+            <div class="span1"></div>
+            <div class="span8">
                 <?php
                     $top_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.blob_id, a.challenge_title, a.creation_time, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                                         WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND blob_id = '0' AND challenge_status ='1' and a.user_id=b.user_id)
@@ -75,7 +75,7 @@ if (isset($_POST['logout'])) {
     }
     ?>
             </div>
-            <div class="col-md-2">
+            <div class="span2">
            <?php 
                 echo "<div class='bs-component'>
                         <div class = 'list-group'>
