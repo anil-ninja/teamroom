@@ -1,17 +1,19 @@
+<br/>
 <div class="bs-component">
-    <div class='list-group'  style="background-color: rgba(240, 240, 240, 0.32); font-size:10px'">
+    
         
-        <div class="panel-group" id="accordion" role="tablist" >
             <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                      <i class='icon-bell'></i> &nbsp;Add Reminder
+                      <i class='icon-bell'></i> &nbsp;Add Reminder<i class='icon-chevron-down pull-right'></i>
                     </a>
                 </div>
             </div>
             <div id='collapseOne' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>   
                 <div class="panel-body" style="padding: 1px;">
-                    <div class='alert_placeholder'></div>
+                    <div class='alert_placeholder'>
+                        
+                    </div>
                     
                         To : <select class="btn-default btn-xs"  id= "self" >
                                 <option value="<?= $user_id ; ?>" selected >Self</option>
@@ -29,12 +31,12 @@
                             <input type="submit" class="btn btn-primary btn-sm pull-right" id = "remind" value = "Set"><br/>  
                 </div>
             </div>
-        </div>
-
+        
+<br/>
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingTwo">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <i class='icon-eye-open'></i> &nbsp;All Reminder
+                    <i class='icon-eye-open'></i> &nbsp;All Reminder<i class='icon-chevron-down pull-right'></i>
                 </a>
             </div>
         </div>
@@ -43,13 +45,14 @@
             <div id='allreminders' ></div>
             <?php echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>" ; ?>
         </div>
-    </div>
-
+    
+<br/>
         <div class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class='btn-link icon-bullhorn'></i>&nbsp;
+                    <i class='icon-bullhorn'></i>&nbsp;
                     To Do
+                    <i class='icon-chevron-down pull-right'></i>
                 </a>
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
@@ -89,11 +92,13 @@
               </div>
                 </div>
               </div>
+     <br/>
               <div class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px;"role="tab" id="headingThree">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                      <i class='btn-link icon-tasks'></i>&nbsp;
+                      <i class='icon-tasks'></i>&nbsp;
                            Get Done
+                        <i class='icon-chevron-down pull-right'></i>
                     </a>
                 </div>
                 <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
