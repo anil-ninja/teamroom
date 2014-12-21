@@ -97,7 +97,7 @@
 
                         <ul class='dropdown-menu'>
                             <li>
-                                <a class='btn-link' href="profile.php?username=<?=$username ?>">View Profile</a>
+                                <a class='btn-link' href="profile.php?username=<?=$username ?>"><i class='icon-user'></i> View Profile</a>
                             </li>
                             
                             <li>
