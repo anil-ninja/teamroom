@@ -81,15 +81,12 @@ include_once 'functions/delete_comment.php';
                 ?>   
         <?php include_once 'lib/html_inc_footers.php'; ?>  
                  <script>
-
-$(document).ready(function(){
     $('#dashboard_project').click(function(){
-        $('#dashboard_project_content').load('html_comp/project_page_challenge.php');        
+        $('#dashboard_project_content').load('html_comp/project_page_challenge.php');       
     });
     $('#teams_project').click(function(){
         $('#teams_project_content').load('html_comp/teams_panel_project.php');        
     });
-});
 
 $("#project_chat_form").hide();
 $("#project_chat_data").hide();
@@ -112,6 +109,9 @@ $("#project_chat_data").hide();
 	});	
 	chatBoxes.push('<?= $projttitle ?>');
         </script>
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="js/graph.js"></script>
         <!-- jQuery and jQuery UI (REQUIRED) -->
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
        

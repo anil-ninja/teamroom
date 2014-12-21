@@ -28,7 +28,7 @@
 		$cha = strstr($stmt, '<br/>' , true) ;
 	}
 	else {
-		$cha = "<img src='fonts/project.gif'  onError=this.src='img/default.gif'>" ;
+		$cha = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
 	}
 	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' ;") ;
 	$collaboratorNo = mysqli_num_rows($collaborators) ;

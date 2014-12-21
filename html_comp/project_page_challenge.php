@@ -4,7 +4,6 @@ include_once '../lib/db_connect.php';
 
 session_start();
 $pro_id = $_SESSION['project_id'];
-echo $pro_id;
 $totaltask = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status != '3' AND challenge_status != '7';") ;
 $totaltaskopen = mysqli_query($db_handle, "select challenge_id, creation_time, challenge_ETA from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '2';") ;
 $z = 0 ;
@@ -44,89 +43,90 @@ $totalchallengessubmitted = mysqli_query($db_handle, "select challenge_id from c
 $totalchallengesclosed = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND (challenge_type = '1' OR challenge_type = '2') AND challenge_status = '5';") ;
 
 $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '6' AND challenge_status = '1';") ;
- /*<tr>
-	<td>Delayed</td>
-	<td class='warning'>".$az."</td>
-</tr>
-<tr>
-	<td>Delayed</td>
-	<td  class='warning'>".$ax."</td>
-</tr> */
-            echo "<div class='panel-group' id= 'Dashboard' role='tablist' aria-multiselectable='true'>
+
+   echo "<div class='panel-group' id= 'Dashboard' role='tablist' aria-multiselectable='true'>
                     <div class='panel panel-default'>
                         <div class='panel-heading' style='padding: 5px;' role='tab' id='DashboardHead'>
                             <a class='collapsed' data-toggle='collapse' data-parent='#Dashboard' href='#DashboardBody' aria-expanded='false' aria-controls='collapseFive'>
                                 <b>PROJECT DASHBOARD</b>
                             </a>
-  			</div>
-                        <div id='DashboardBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='DashboardHead'>   
-                            <div class='panel-body' style='padding: 1px;'>
-                                <div class='list-group-item' style='font-size:10px;'>
-                                    <table class='table table-striped'>
-					<thead> <center>TASKS (".mysqli_num_rows($totaltaskclosed)."/"
-                                                .mysqli_num_rows($totaltask).") </center> </thead>
-					<tbody>
-					
-					<tr class='active'>
-						<td>On Track</td>
-						<td>".$bz."</td>
-					</tr>
-					<tr class='active'>	
-						<td>Submitted</td>
-						<td>".mysqli_num_rows($totaltasksubmitted)."</td>
-					</tr>
-					<tr >
-						<td>Completed</td>
-						<td>".mysqli_num_rows($totaltaskclosed)."</td>
-					</tr>
-					</tbody>
-                                    </table>
-                                </div>
-
-                                <div class='list-group-item' style='font-size:10px;'>
-                                    <table class='table table-striped table-hover '>
-                                        <thead> <center>CHALLENGES (".mysqli_num_rows($totalchallengesclosed)."/"
-					.mysqli_num_rows($totalchallenges).") </center></thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>Open</td>
-                                                    <td>".$by."</td>
-                                                </tr>
-                                            <tr>
-						<td>Closed</td>
-						<td  class='warning'>".$ay."</td>
-                                            </tr>
-                                            <tr>
-						<td>Accepted</td>
-						<td>".$bx."</td>
-                                            </tr>
-                                            <tr>
-						<td>Submitted</td>
-						<td>".mysqli_num_rows($totalchallengessubmitted)."</td>
-                                            </tr>
-                                            <tr>
-						<td>Completed</td>
-						<td>".mysqli_num_rows($totalchallengesclosed)."</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                    </div>" ;
-
-			// <div class='list-group-item'>
-			// 	<table class='table table-striped table-hover '>
-			// 		<tbody>
-			// 			<tr class='info'>
-			// 				<td>Notes</td>
-			// 				<td>".mysqli_num_rows($totalnotes)."</td>
-			// 			</tr>
-			// 		</tbody>
-			// 	</table>
-			// </div>
-		
-	  
+						</div>
+						<div class='row-fluid' >
+							<div class='span5' >
+								<div id='DashboardBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='DashboardHead'>   
+									<div class='panel-body' style='padding: 1px;'>
+										<div class='list-group-item' style='font-size:10px;'>
+											<table class='table table-striped'>
+												<thead> 
+													<center>
+														TASKS (".mysqli_num_rows($totaltaskclosed)."/".mysqli_num_rows($totaltask).") 
+													</center>
+												</thead>
+												<tbody>												
+													<tr class='active'>
+														<td>On Track</td>
+														<td id='graph_val_1'>".$bz."</td>
+													</tr>
+													<tr class='active'>	
+														<td>Submitted</td>
+														<td id='graph_val_2'>".mysqli_num_rows($totaltasksubmitted)."</td>
+													</tr>
+													<tr >
+														<td>Completed</td>
+														<td id='graph_val_3'>".mysqli_num_rows($totaltaskclosed)."</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+								   </div>
+								</div>
+							</div>
+							<div class='span7' >
+								<div id='chart_div'></div>
+							</div>
+						</div>
+						<div class='row-fluid' >
+							<div class='span5' >
+								<div id='DashboardBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='DashboardHead'>   
+									<div class='panel-body' style='padding: 1px;'>
+										<div class='list-group-item' style='font-size:10px;'>
+											<table class='table table-striped table-hover '>
+												<thead> 
+													<center>
+														CHALLENGES (".mysqli_num_rows($totalchallengesclosed)."/".mysqli_num_rows($totalchallenges).")
+													</center>
+												</thead>
+												<tbody>
+													<tr>
+														<td>Open</td>
+														<td id='graph2_val_1'>".$by."</td>
+													</tr>
+													<tr>
+														<td>Closed</td>
+														<td id='graph2_val_2'>".$ay."</td>
+													</tr>
+													<tr>
+														<td>Accepted</td>
+														<td id='graph2_val_3'>".$bx."</td>
+													</tr>
+													<tr>
+														<td>Submitted</td>
+														<td id='graph2_val_4'>".mysqli_num_rows($totalchallengessubmitted)."</td>
+													</tr>
+													<tr>
+														<td>Completed</td>
+														<td id='graph2_val_5'>".mysqli_num_rows($totalchallengesclosed)."</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class='span7' >
+								<div id='chart_div2'></div>
+							</div>
+						</div>" ;	  
  
                 echo "<div class='panel-group' id= 'SUMMARY' role='tablist' aria-multiselectable='true'>
                         <div class='panel panel-default'>
@@ -279,6 +279,9 @@ echo  "<div class='list-group-item'style='font-size:10px;'>
 				</tr>" ;
 	}
 	echo "</tbody>
-            </table></div></div>" ; 
-            //include_once 'friends.php';          
-				?>
+            </table></div></div>" ;           
+?>
+<script>
+        drawChart() ;       
+		drawChart2() ;      
+</script>
