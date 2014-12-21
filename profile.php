@@ -121,17 +121,17 @@ $obj = new profile($UserName);
                 <div class="viewprofile">
                 <?php
                     
-                    echo "<br/><hr/><span class='glyphicon glyphicon-user'></span><strong> <span id='first_name'>&nbsp" 
+                    echo "<br/><hr/><span class='icon-user'></span><strong> <span id='first_name'>&nbsp" 
                                 .ucfirst($profileViewFirstName)."</span> <span id='last_name'>".ucfirst($profileViewLastName)."</span></strong>";
                             
                     echo "&nbsp;(".$profileViewRank.")</span>
-                          <br/><span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>" ;
+                          <br/><span class='icon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>" ;
                      if($profileViewPhone != 1) {    
-                        echo "<br/><span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
-                          <br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:";
+                        echo "<br/><span class='icon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
+                          <br/><span><br/><span class='icon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:";
         			  }
         			  else {
-        				  echo "<br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;Skills &nbsp;:" ; 
+        				  echo "<br/><span><br/><span class='icon-screenshot'></span>&nbsp;&nbsp;Skills &nbsp;:" ; 
         				  }
                     $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     if (mysqli_num_rows($skill_display) == 0) {
@@ -151,22 +151,22 @@ $obj = new profile($UserName);
                      $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
                      $aboutuserRow = mysqli_fetch_array($aboutuser);
                      if (mysqli_num_rows($aboutuser) != 0) {
-        				 echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;"
+        				 echo "<br/><span class='icon-charts'></span>&nbsp;&nbsp;&nbsp;"
         							.$aboutuserRow['organisation_name']."<br/>
-        							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;"
-        							.$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;"
+        							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;"
+        							.$aboutuserRow['living_town']."<br/><span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;"
         							.$aboutuserRow['about_user'];
         			}
         			else {
         				if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-        					echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>Edit</a><br/>
-        							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>Edit</a><br/>
-        							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>Edit</a>";
+        					echo "<br/><span class='icon-charts'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>Edit</a><br/>
+        							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>Edit</a><br/>
+        							<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>Edit</a>";
         					}
         					else {
-        						echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
-        							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
-        							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
+        						echo "<br/><span class='icon-charts'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
+        							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
+        							<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
         						
         						}
         				}
@@ -176,7 +176,7 @@ $obj = new profile($UserName);
                     <?php    
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
                         echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
-                                <i class='glyphicon glyphicon-plus'></i> Skill
+                                <i class='icon-plus'></i> Skill
                                 </a><br/>";
                         echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
     							<input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
@@ -236,7 +236,7 @@ $obj = new profile($UserName);
                         </li>
                         <li>
                             <a href="#tabIdeas" data-toggle="tab" id="user_idea" style="padding: 10px 5px;">
-                                <i class='icon-magnet'> </i>Idea 
+                                <i class='icon-electricity'> </i>Idea 
                                 <span class="badge">
                                     <?= $totalideaCreated ?>
                                 </span>

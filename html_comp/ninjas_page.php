@@ -9,7 +9,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
         <span class="icon-film" id='video' style="cursor: pointer;color: #000;"> Videos</span>
         &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="icon-flash" id='idea' style="cursor: pointer;color: #000;"> Ideas</span></div>
+        <span class="icon-electricity" id='idea' style="cursor: pointer;color: #000;"> Ideas</span></div>
     <div class='list-group-item'>
 		<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
 		<div id='remindervalue'></div>
