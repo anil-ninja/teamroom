@@ -11,7 +11,7 @@
                             <span><b>PROJECTS</b></span><font size='1'> +Add</font></a>";
                 }
                 else {
-                    echo "<a class='pull-right active' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'> 
+                    echo "<a class='pull-right active' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; padding-top: 4px; padding-bottom: 4px;'> 
                             <span><b>PROJECTS</b></span> <font size='1'> +Add</font></a>";
                 }
             ?>
