@@ -369,7 +369,3 @@ function convertSpecialChar(str){
 			//$(".editbox").hide();
 			//$(".text").show();
 			//});
-function toggle() {
-	$("#project_chat_form").toggle();
-	$("#project_chat_data").toggle();
-	}

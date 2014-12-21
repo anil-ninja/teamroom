@@ -91,7 +91,8 @@ $(document).ready(function(){
     });
 });
 
-
+$("#project_chat_form").hide();
+$("#project_chat_data").hide();
 
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
