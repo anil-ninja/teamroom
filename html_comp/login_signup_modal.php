@@ -252,8 +252,8 @@
             </div>
             <!--end modle-->
 
-            <!--project Order Sort content Modal -->
-        <div class="modal fade" id="project_order" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    <!--project Order Sort content Modal -->
+        <div class="modal fade" id="project_order_old" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="width:350px; height:auto">
                     <div class="modal-header">
@@ -284,7 +284,38 @@
 
         <!--end modle-->
 */
-?>
+?>      
+<!---- Projecct content order modal -->
+        <div id="project_order" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="row-fluid" id="demo-1">
+                <div class="span4 offset3">
+                    <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-wrench"></i>&nbsp;<span>Manage Content</span></a></li>
+                            <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                        </ul>
+                        <div class="tab-content ">
+                            <div class="tab-pane active" id="panel1">
+                                <div class="row-fluid">
+                                    <div class='alert_placeholder'></div>
+                                    <h4><i class="icon-random"></i>&nbsp;&nbsp; Choose how to display.</h4>
+
+                                    <form method="POST" action="">
+                                        <select class="btn btn-default" name="select_order" >    
+                                            <option value='ASC'>Ascending</option>
+                                            <option value='DESC'>Default</option>
+                                        </select>
+                                        <button type="submit" class="btn btn-success" name="request_order">Sort</button>                     
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!---- modal ends here -->
         <script type="text/javascript">
             function checkForm() {
                 if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
