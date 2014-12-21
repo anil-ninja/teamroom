@@ -37,15 +37,15 @@
     <body>
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
        <div class=" media-body" style="padding-top: 50px;">
-        <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-7">
+        <div class="row-fluid">
+            <div class="span1"></div>
+            <div class="span7">
                 <?php                
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
                 <div class="panel">
                 <?php 
-                    echo "<div class='col-lg-4'>
+                    echo "<div class='span4'>
                             <img src='uploads/profilePictures/$ch_username.jpg'  style='width:75%' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                         </div>";
                     $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
@@ -73,7 +73,7 @@
                 ?>  
                     </div>
                 </div>
-        <div class="col-md-3">
+        <div class="span3">
            <?php 
                 echo "<div class='bs-component list-group'>
                         <div class='list-group-item' style='padding-left: 0px; padding-right: 0px;'>
