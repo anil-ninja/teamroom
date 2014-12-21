@@ -207,7 +207,8 @@
             </div>
         </div>    
         <!--end modle-->
-         
+<?php
+/*         
         <!--Signup Modal -->
             <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -282,7 +283,8 @@
         </div>
 
         <!--end modle-->
-
+*/
+?>
         <script type="text/javascript">
             function checkForm() {
                 if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
