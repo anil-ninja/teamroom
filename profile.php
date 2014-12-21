@@ -151,7 +151,7 @@ $obj = new profile($UserName);
                      $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
                      $aboutuserRow = mysqli_fetch_array($aboutuser);
                      if (mysqli_num_rows($aboutuser) != 0) {
-        				 echo "<br/><span class='icon-charts'></span>&nbsp;&nbsp;&nbsp;"
+        				 echo "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;"
         							.$aboutuserRow['organisation_name']."<br/>
         							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;"
         							.$aboutuserRow['living_town']."<br/><span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;"
@@ -159,12 +159,12 @@ $obj = new profile($UserName);
         			}
         			else {
         				if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-        					echo "<br/><span class='icon-charts'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>Edit</a><br/>
+        					echo "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>Edit</a><br/>
         							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>Edit</a><br/>
         							<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>Edit</a>";
         					}
         					else {
-        						echo "<br/><span class='icon-charts'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
+        						echo "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
         							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
         							<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
         						
@@ -236,7 +236,7 @@ $obj = new profile($UserName);
                         </li>
                         <li>
                             <a href="#tabIdeas" data-toggle="tab" id="user_idea" style="padding: 10px 5px;">
-                                <i class='icon-electricity'> </i>Idea 
+                                <i class='icon-magnet'> </i>Idea 
                                 <span class="badge">
                                     <?= $totalideaCreated ?>
                                 </span>
