@@ -52,7 +52,7 @@ function drawChart2() {
 	  // Set chart options
 	  var options = {'title':'Challenges',
 					 'width':350,
-					 'height':250};
+					 'height':220};
 
 	  // Instantiate and draw our chart, passing in some options.
 	  var chart = new google.visualization.PieChart(document.getElementById('chart_div2'));
