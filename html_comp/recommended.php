@@ -1,6 +1,20 @@
+<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+    <ul class="nav nav-tabs">
+        <li class="active" >
+               
+                    
+              <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Recommended Collaboraters</b></span></a>
+
+        </li>
+	</ul>
+
+	<div class="tab-content" >
+	    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
+
+
 <?php 
 	if (isset($_SESSION['user_id'])) {
-		echo "<div class='panel'><p> <b> Recommended </b></p><div>" ;
+		
 	
 		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
 												(SELECT DISTINCT b.user_id FROM teams as a join teams as b where a.user_id = '$user_id' and 
@@ -21,17 +35,23 @@
 						<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
 					</div>
 					<div class = 'col-md-7' style='font-size:12px;padding: 1px;'>
-						<span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriendsr. "'>" 
-							.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."</a>
-						</span><br/>
+						<span class='color pull-left' id='new_added'>
+							<a href ='profile.php?username=" . $usernameFriendsr. "'>" 
+								.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."
+							</a>
+						</span>
+						<br/>
 						<span style='font-size:10px;'>".$friendRankr."</span>
 					</div>";
 			if (isset($_SESSION['user_id'])) {
-				echo "<div class = 'col-md-3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+				echo "	<div class = 'col-md-3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
 							<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'link'/>
-					</div>";
+						</div>";
 				}
 			echo "</div>";
 			}
 	} 
 ?>
+</div>
+</div>
+</div>

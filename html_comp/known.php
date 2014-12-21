@@ -5,11 +5,11 @@
                     
               <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Collaborating With </b></span></a>
 
-            </li>
-</ul>
+        </li>
+    </ul>
 
-<div class="tab-content" >
-                    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
+    <div class="tab-content" >
+        <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
 
  <div>
 	<?php
@@ -74,7 +74,7 @@
                                     <input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriends.")' value = 'link'/>
                             </div>";
                     }
-                echo "</div>";
+                    echo "</div>";
                 }
                 $flag = 0;
         }  
@@ -82,6 +82,6 @@
 </div>
 </div>
 </div>
-</div>
+
 <br/>
 <?php include_once 'recommended.php'; ?>
