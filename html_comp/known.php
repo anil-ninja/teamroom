@@ -1,5 +1,16 @@
-<div class="panel">
-<p> <b> Collaborating With </b></p>
+<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+    <ul class="nav nav-tabs">
+        <li class="active" >
+               
+                    
+              <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Collaborating With </b></span></a>
+
+            </li>
+</ul>
+
+<div class="tab-content" >
+                    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
+
  <div>
 	<?php
 	$user_id = $_SESSION['user_id'] ;
@@ -37,7 +48,7 @@
                     }		   
 		}
 		if ($flag) {			
-                    echo "<div class ='row' style='margin:4px;background : rgb(240, 241, 242);'>
+                    echo "<div class ='row' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
                             <div class ='col-md-3 ' style='padding:1px;'>
                                 <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:40px; width: 40px;' class='img-responsive'>
                             </div>
@@ -48,7 +59,7 @@
                         </div>";
                 }		   
                 else {
-                    echo "<div class ='row' style='border-width: 1px; border-style: solid;margin:4px;background : rgb(240, 241, 242);'>
+                    echo "<div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242);'>
                             <div class ='col-md-2' style='padding:1px;'>
                                 <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
                             </div>
@@ -70,4 +81,7 @@
 	?>
 </div>
 </div>
+</div>
+</div>
+<br/>
 <?php include_once 'recommended.php'; ?>
