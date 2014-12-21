@@ -3,7 +3,7 @@
         <li class="active" >
                
                     
-              <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Recommended Collaboraters</b></span></a>
+              <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Recommended</b></span></a>
 
         </li>
 	</ul>
@@ -30,11 +30,11 @@
 			$usernameFriendsr = $RecommendedRow['username'];
 			$useridFriendsr = $RecommendedRow['user_id'];
 			$friendRankr = $RecommendedRow['rank'];	     
-			echo "<div class ='row' style='border-width: 1px; border-style: solid;margin:4px;background : rgb(240, 241, 242);'>
-					<div class ='col-md-2' style='padding:1px;'>
+			echo "<div class ='row' style='border-width: 1px; margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+					<div class ='span2' style='padding:1px;'>
 						<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
 					</div>
-					<div class = 'col-md-7' style='font-size:12px;padding: 1px;'>
+					<div class = 'span6' style='font-size:12px;padding: 1px;'>
 						<span class='color pull-left' id='new_added'>
 							<a href ='profile.php?username=" . $usernameFriendsr. "'>" 
 								.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."
@@ -44,8 +44,8 @@
 						<span style='font-size:10px;'>".$friendRankr."</span>
 					</div>";
 			if (isset($_SESSION['user_id'])) {
-				echo "	<div class = 'col-md-3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
-							<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'link'/>
+				echo "	<div class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+							<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
 						</div>";
 				}
 			echo "</div>";
