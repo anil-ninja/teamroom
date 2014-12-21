@@ -37,7 +37,8 @@
             <div id='challegeprForm'>
 
                 <input type="text" class="input-block-level" id="challange_title" placeholder="Challange Tilte .."/><br>
-                <input class="btn btn-default btn-sm" type="file" id="_fileChallengepr" style ="width: auto;"><br/>
+                <input type="file" id="_fileChallengepr" style ="width: auto;"><br/>
+                <label></label>
                 <textarea rows="3" class="input-block-level" id="challangepr" placeholder="Description .. "></textarea><br>
                 <!---<div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
@@ -95,7 +96,7 @@
                 </div><br/><br/> -->
 
                 <label>Challenge Type : </label> 
-                <select class='btn-default btn-xs' id="type" >
+                <select class='btn btn-default' id="type" >
                   <option value=" 1" >Public</option>
                   <option value=" 2" selected >Private</option>
                 </select>
@@ -114,34 +115,39 @@
                     if (mysqli_num_rows($teams) > 0) {
                         $task = "";
                         $task .= "<div class='inline-form'>Assign To : &nbsp;&nbsp;
-									<select class='btn-default btn-xs' id = 'teamtask' >
-										<option value='0' selected > Select Team </option>";
+								                  <select class='btn btn-default' id = 'teamtask' >
+									                  <option value='0' selected > Select Team </option>";
                         while ($teamsrow = mysqli_fetch_array($teams)) {
                             $teamsname = $teamsrow['team_name'];
-                            $task = $task . "<option value='" . $teamsname . "' >" . $teamsname . "</option>";
+                            $task = $task . "
+                                    <option value='" . $teamsname . "' >" . $teamsname . "</option>";
                         }
-                        $task = $task . "</select>&nbsp;&nbsp;&nbsp;&nbsp;
-									<select class='btn btn-default btn-xs' id= 'userstask' >	
-										<option value='0' selected >Select Member </option>";
+                        $task = $task . "
+                                </select>
+                                <label></label> Or 
+              									<select class='btn btn-default' id= 'userstask' >	
+              										<option value='0' selected >Select Member </option>";
                         $users = mysqli_query($db_handle, "select DISTINCT a.user_id, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and 
 												a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
 												and a.member_status = '1' and a.user_id = b.user_id;");
                         while ($userssrow = mysqli_fetch_array($users)) {
                             $users_username_task = $userssrow['username'];
                             $u_id = $userssrow['user_id'];
-                            $task = $task . "<option value='" . $u_id . "' >" . $users_username_task . "</option>";
+                            $task = $task . "
+                                  <option value='" . $u_id . "' >" . $users_username_task . "</option>";
                         }
-                        $task = $task . "</select>&nbsp;&nbsp;&nbsp; <input type='email' id='emailtask' placeholder='Enter email-id'/></div><br/>
-						<div class='input-group' >
-						<span class='input-group-addon'>Title : </span>						
-						<input type='text' class='form-control' id='title' placeholder='Tilte ..'/>
-						</div><br>
-						<input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/>
-						<div class='input-group' >
-							<span class='input-group-addon'>Task : </span>						
-							<textarea rows='3' class='form-control' id='taskdetails' placeholder='Description .. '></textarea>
-						</div><br> ";
-                        /* <div class='inline-form'>
+                        $task = $task . "
+                                </select>
+                                <label></label> Or 
+                    <input type='email' id='emailtask' placeholder='Enter email-id'/></div><br/>
+										
+						<input type='text' class='input-block-level' id='title' placeholder='Tilte ..'/><br/>
+						
+						<input type='file' id='_fileTask' style ='width: auto;'>
+            <label></label>
+											
+							<textarea rows='3' class='input-block-level' id='taskdetails' placeholder='Description .. '></textarea>";
+						            /* <div class='inline-form'>
                           ETA :
                           <select class='btn btn-default btn-xs' id = 'c_eta' >
                           <option value='0' selected >Month</option>" ;
@@ -189,17 +195,12 @@
 		<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 				 if(mysqli_num_rows($member_project) != 0) {
 					 ?>
-                <div class="input-group" >
-                    <span class="input-group-addon">Team Name</span>
-                    <input type="text" class="form-control" id="team_name_A" placeholder="Team name ..">
-                </div>
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon">Create Team with (Email)</span>
-                    <input type="email" class="form-control" id = "email_team" placeholder="Enter First team member Email">
-                </div>
-                <br>
-                <input type="submit" class="btn btn-success" id = "create_team" value = "Create New Team" >
+                
+                  <input type="text" class="input-block-level" id="team_name_A" placeholder="Team name ..">
+                  
+                  <input type="email" class="input-block-level" id = "email_team" placeholder="Enter First team member Email">
+              
+                  <input type="submit" class="btn btn-success" id = "create_team" value = "Create New Team" >
          <?php } 
 				else echo "Please Join Project First"; ?>
             </div>
@@ -207,9 +208,9 @@
 				<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 				 if(mysqli_num_rows($member_project) != 0) {
 					 ?>
-                <input type='text' class="form-control" id="video_titlepr" placeholder="Vedio title .."/><br>
-                <input type='text' class="form-control" id="videoprjt" placeholder="Add Youtube URL"><br>
-                <textarea rows="3" class="form-control" id="videodespr" placeholder="Description .."></textarea><br><br>
+                <input type='text' class="input-block-level" id="video_titlepr" placeholder="Vedio title .."/><br>
+                <input type='text' class="input-block-level" id="videoprjt" placeholder="Add Youtube URL"><br>
+                <textarea rows="3" class="input-block-level" id="videodespr" placeholder="Description .."></textarea><br><br>
                 <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
                 <?php } 
 				else echo "Please Join Project First"; ?>
@@ -218,9 +219,10 @@
 				<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 				 if(mysqli_num_rows($member_project) != 0) {
 					 ?>
-                <input type='text' class="form-control" id="notes_title" placeholder="Heading .."/><br>
-                <input class="btn btn-default btn-sm" type="file" id="_fileNotes" style ="width: auto;"><br/>
-                <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
+                <input type='text' class="input-block-level" id="notes_title" placeholder="Heading .."/><br>
+                <input type="file" id="_fileNotes" ><br/>
+                <label></label>
+                <textarea rows="3" class="input-block-level" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
                 <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
                 <?php } 
 				else echo "Please Join Project First"; ?>
