@@ -88,17 +88,22 @@ $obj = new profile($UserName);
     </head>
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
-         
-        <div style="padding-top: 60px;">
-            <div class="col-md-1"> </div>
-            <div class="col-md-2">
+    <div class="">     
+        <div class='row-fluid' style="padding-top: 60px;">
+
+            <div class="span2 offset1">
                 <?php
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>Edit</a>";
+                        echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
+                                Edit
+                              </a>";
                     }
-                    echo "<br/><img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+                    echo "<br/>
+                          <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                        echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>Change Pic</a>";
+                        echo "<a data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>
+                                Change Pic
+                              </a>";
                            } 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
@@ -121,52 +126,128 @@ $obj = new profile($UserName);
                 <div class="viewprofile">
                 <?php
                     
-                    echo "<br/><hr/><span class='glyphicon glyphicon-user'></span><strong> <span id='first_name'>&nbsp" 
-                                .ucfirst($profileViewFirstName)."</span> <span id='last_name'>".ucfirst($profileViewLastName)."</span></strong>";
+                    echo "  <br/>
+                            <hr/>
+                            <span class='icon-user'>
+                            </span>
+                            <strong> 
+                                <span id='first_name'>&nbsp" 
+                                    .ucfirst($profileViewFirstName)."
+                                </span> 
+                                <span id='last_name'>".ucfirst($profileViewLastName)."
+                                </span>
+                            </strong>";
                             
-                    echo "&nbsp;(".$profileViewRank.")</span>
-                          <br/><span class='glyphicon glyphicon-envelope' id='email' style='cursor: pointer'>&nbsp;" . $profileViewEmail . "</span>" ;
+                    echo "&nbsp;(".$profileViewRank.")
+                          <br/>
+                          <span class='icon-envelope' id='email' style='cursor: pointer'>&nbsp;" 
+                            . $profileViewEmail . "
+                          </span>" ;
                      if($profileViewPhone != 1) {    
-                        echo "<br/><span class='glyphicon glyphicon-earphone' id='phone' style='cursor: pointer'>&nbsp;" . $profileViewPhone . "<br/></span>
-                          <br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;&nbsp;Skills:";
+                        echo "  <br/>
+                                <span class='icon-earphone' id='phone' style='cursor: pointer'>&nbsp;" 
+                                    . $profileViewPhone . "
+                                    <br/>
+                                </span>
+                                <br/>
+                                
+                                    <br/>
+                                    <span class='icon-screenshot'>
+                                    </span>
+                                    &nbsp;&nbsp;&nbsp;Skills:";
         			  }
         			  else {
-        				  echo "<br/><span><br/><span class='glyphicon glyphicon-screenshot'></span>&nbsp;&nbsp;Skills &nbsp;:" ; 
+        				  echo "    <br/>
+                                    <span>
+                                        <br/>
+                                        <span class='icon-screenshot'>
+                                        </span>&nbsp;&nbsp;Skills &nbsp;:" ; 
         				  }
+
                     $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
+                    
                     if (mysqli_num_rows($skill_display) == 0) {
-                            echo " <span class='tags'>No Skill added</span>";
+                            echo "      <span class='tags'>
+                                            No Skill added
+                                        </span>";
                     } 
                     else {
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-                            echo " <span class='tags' style='line-height: 2.1;'>".$skill_displayRow['skill_name']."</span>&nbsp;";
+                            echo "      <span class='tags' style='line-height: 2.1;'>"
+                                            .$skill_displayRow['skill_name']."
+                                        </span>&nbsp;";
                         }
                     }
-                    echo "<br/></span>";
+                    echo "              <br/>
+                                    </span>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                        echo "<br/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
-                                   <i class='icon-plus'></i> Skill
-                                </a><br/>";
+                        echo "      <br/>
+                                    <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
+                                        <i class='icon-plus'></i> Skill
+                                    </a>
+                                    <br/>";
         					}
                      $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
                      $aboutuserRow = mysqli_fetch_array($aboutuser);
                      if (mysqli_num_rows($aboutuser) != 0) {
-        				 echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;"
+<<<<<<< HEAD
+        				 echo "     <br/>
+                                    <span class='icon-charts'>
+                                    </span>&nbsp;&nbsp;&nbsp;"
+=======
+        				 echo "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;"
+>>>>>>> 9c190429a48efc36fa1ac2c8a627e3b332afdbcc
         							.$aboutuserRow['organisation_name']."<br/>
-        							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;"
-        							.$aboutuserRow['living_town']."<br/><span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;"
+        							<span class='icon-home'>
+                                    </span>&nbsp;&nbsp;&nbsp;"
+        							.$aboutuserRow['living_town']."
+                                    <br/>
+                                    <span class='icon-comment'>
+                                    </span>&nbsp;&nbsp;&nbsp;"
         							.$aboutuserRow['about_user'];
         			}
         			else {
         				if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-        					echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>Edit</a><br/>
-        							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>Edit</a><br/>
-        							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>Edit</a>";
+<<<<<<< HEAD
+        					echo "   <br/>
+                                    <span class='icon-charts'>
+                                    </span>&nbsp;&nbsp;&nbsp;
+                                    <a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>
+                                        Edit
+                                    </a>
+                                    <br/>
+        							<span class='icon-home'>
+                                    </span>&nbsp;&nbsp;&nbsp;
+                                    <a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>
+                                        Edit
+                                    </a>
+                                    <br/>
+        							<span class='icon-comment'>
+                                    </span>&nbsp;&nbsp;&nbsp;
+                                    <a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>
+                                        Edit
+                                    </a>";
         					}
         					else {
-        						echo "<br/><span class='glyphicon glyphicon-stats'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
-        							<span class='glyphicon glyphicon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
-        							<span class='glyphicon glyphicon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
+        						echo "<br/>
+                                    <span class='icon-charts'>
+                                    </span>&nbsp;&nbsp;&nbsp;No Information Available
+                                    <br/>
+        							<span class='icon-home'>
+                                    </span>&nbsp;&nbsp;&nbsp;No Information Available
+                                    <br/>
+        							<span class='icon-comment'>
+                                    </span>&nbsp;&nbsp;&nbsp;No Information Available";
+=======
+        					echo "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>Edit</a><br/>
+        							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>Edit</a><br/>
+        							<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;<a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>Edit</a>";
+        					}
+        					else {
+        						echo "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
+        							<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
+        							<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
+>>>>>>> 9c190429a48efc36fa1ac2c8a627e3b332afdbcc
         						
         						}
         				}
@@ -176,7 +257,7 @@ $obj = new profile($UserName);
                     <?php    
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
                         echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
-                                <i class='glyphicon glyphicon-plus'></i> Skill
+                                <i class='icon-plus'></i> Skill
                                 </a><br/>";
                         echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
     							<input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
@@ -199,7 +280,8 @@ $obj = new profile($UserName);
                     ?>
                 </div>
             </div>
-            <div class="col-md-6">
+
+            <div class="span6">
                 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                     <ul class="nav nav-tabs" style="padding: 0;">
                         <li class="active">
@@ -298,19 +380,25 @@ $obj = new profile($UserName);
                         </div>
                     </div>
                     <div role="tabpanel" class="row tab-pane" id="tabJoinedProjects" >
-                        <div id="joined_project_content"></div>
+                        <div id="joined_project_content">
+                            
+                        </div>
                         <div id='next_JnPr'>
                         </div>
                     </div>
                     <div role="tabpanel" class="row tab-pane" id="tabArticles">
-                        <div id="user_articles_content"></div>
+                        <div id="user_articles_content">
+                            
+                        </div>
                         <div id='next_user_article'>
                         </div>
                     </div>
                     <div role="tabpanel" class="row tab-pane" id="tabChallanges">
-                        <div id="user_challenges_content"></div>
-                            <div id='next_user_chall'>
-                            </div>
+                        <div id="user_challenges_content">
+                            
+                        </div>
+                        <div id='next_user_chall'>
+                        </div>
                     </div>
                     <div role="tabpanel" class="row tab-pane" id="tabIdeas">
                         <div id="user_idea_content"></div>
@@ -318,18 +406,21 @@ $obj = new profile($UserName);
                     </div>
                 </div>
             </div>
-        </div> 
-        <div class ="col-md-2">
-            <?php include_once 'html_comp/known.php' ?>
-            <?php 
-				if(isset($_SESSION['user_id'])) {
-					include_once 'html_comp/friends.php';
-					}
-			  ?>
+        </div>
+
+        <div class ="span2">
+                <?php 
+                    include_once 'html_comp/known.php'; 
+    				if(isset($_SESSION['user_id'])) {
+    					include_once 'html_comp/friends.php';
+    				}
+    			  ?>
         </div>
     </div>
+</div>        
         <?php include_once 'html_comp/signup.php' ; ?>        
-        <div id="InfoBox"></div>
+        
+        <!--<div id="InfoBox"></div>-->
 
 
 <!--Upload image Modal starts here -->
@@ -360,7 +451,8 @@ $obj = new profile($UserName);
         </div>
     </div>
 </div>   
-
+<?php 
+/*
 <!--Upload image Modal ends here -->
     <div class="modal fade" id="uploadPicture_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
         <div class="modal-dialog">
@@ -384,6 +476,46 @@ $obj = new profile($UserName);
 
     <!--End OF Modal -->
 
+<div class="modal fade" id="addskill_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:300px; height:auto;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Add Skills</h4>
+                </div>
+                <div class="modal-body">
+                        Select Skill : &nbsp;&nbsp;&nbsp;&nbsp;
+                        <select class="inline-form" id = "skills" > 
+                            <option value='0' selected >Default (none)</option>
+                            <?php
+                            $m = mysqli_query($db_handle, "select * from skill_names where 1 = 1 ;") ;
+                            while ($n = mysqli_fetch_array($m)) {
+                                $id = $n['skill_id'] ;
+                                $sn = $n['skill_name'] ;
+                                echo "<option value='" . $id . "' >" . $sn . "</option>";
+                            }
+                            ?>
+                        </select>
+                        <br/><br/>OR<br/><br/>
+                         Enter your Skill  &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type='text' class="inline-form" id="insert" placeholder="Enter your Skill"/><br/><br/>
+                        <input type="button" value="Add" class="btn btn-success" id="addskills"/>
+                           
+                </div>
+                <div class="modal-footer">
+                    <button name="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+*/
+
+
+?>
     <!--add skilll Modal -->
 
     <div id="addskill" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -423,42 +555,7 @@ $obj = new profile($UserName);
     </div>
 </div>   
 
-            <div class="modal fade" id="addskill_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width:300px; height:auto;">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Add Skills</h4>
-                    </div>
-                    <div class="modal-body">
-						Select Skill : &nbsp;&nbsp;&nbsp;&nbsp;
-                        <select class="inline-form" id = "skills" >	
-                            <option value='0' selected >Default (none)</option>
-                            <?php
-                            $m = mysqli_query($db_handle, "select * from skill_names where 1 = 1 ;") ;
-                            while ($n = mysqli_fetch_array($m)) {
-								$id = $n['skill_id'] ;
-								$sn = $n['skill_name'] ;
-                                echo "<option value='" . $id . "' >" . $sn . "</option>";
-                            }
-                            ?>
-                        </select>
-                        <br/><br/>OR<br/><br/>
-                         Enter your Skill  &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type='text' class="inline-form" id="insert" placeholder="Enter your Skill"/><br/><br/>
-                        <input type="button" value="Add" class="btn btn-success" id="addskills"/>
-                       
-                        </div>
-                     <div class="modal-footer">
-                <button name="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-            </div>
-                </div>
-            </div>
-        </div>
-        <?php include_once 'lib/html_inc_footers.php'; ?>
+    <?php include_once 'lib/html_inc_footers.php'; ?>
 <script>
 	$(document).ready(function(){
 		$(".editbox").hide();

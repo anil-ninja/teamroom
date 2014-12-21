@@ -1,7 +1,9 @@
 <?php
     include_once 'html_comp/modal_all.php';
 ?>
+ 
 <gcse:searchresults></gcse:searchresults>
+
 <script type="text/javascript">
         $(function ()
         {

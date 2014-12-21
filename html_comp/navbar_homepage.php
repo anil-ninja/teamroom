@@ -168,7 +168,7 @@ if ($requestedPage == "project.php") {
                     <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='tree' ><span class='icon-flash'></span> Ideas</button></li>
+                    <li><button class='btn-link' style='color:#fff;' id='tree' ><span class='icon-magnet'></span> Ideas</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='okch' ><span class='icon-flag'></span> Closed challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='filmnin' ><span class='icon-film'></span> Videos</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='picch' ><span class='icon-picture'></span> Pics</button></li>
