@@ -33,10 +33,10 @@
 	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' ;") ;
 	$collaboratorNo = mysqli_num_rows($collaborators) ;
 	echo $cha."<br/><br/>
-		<div class ='row-fluid' style='margin: 4px -15px 4px -15px;font-size: 20px; color: blue;'>
+		<div class ='row-fluid' style='margin: 4px;font-size: 20px; color: blue;'>
 			".ucfirst($title)."
 		</div><br/>
-		<div class ='row-fluid' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+		<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
 			<div class='span4'>
 				<b>Owner</b>
 			</div>
@@ -46,7 +46,7 @@
 				</a>
 			</div>
 		</div> 
-		<div class ='row-fluid' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+		<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
 			<div class='span4'>
 				<b>Created On</b>
 			</div>
@@ -54,7 +54,7 @@
 				: ".$timfunct."
 			</div>
 		</div> 
-		<div class ='row-fluid' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+		<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
 			<div class='span4'>
 				<b>Type</b> 
 			</div>
@@ -62,7 +62,7 @@
 				: ".$type."
 			</div>
 		</div>
-		<div class ='row-fluid' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+		<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
 			<div class='span4'>
 				<b>Collaborators</b>
 			</div>
@@ -70,7 +70,7 @@
 				: ".$collaboratorNo."
 			</div>
 		</div> 
-		<div class ='row-fluid' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+		<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
 			<div class='span4'>
 				<b>Funded</b> 
 			</div>
@@ -84,15 +84,15 @@
 		if($user_existNo == 0) {
 			echo "<button class='btn-link' onclick='joinproject(".$idproject2.")'>Join</button>" ;
 			if(isset($_SESSION['user_id'])) {
-				echo "<button class='btn-primary' onclick='toggle()'> Message</button>" ;
+				echo "<button class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 			}
 		}
 		else {
-			echo "<button class='btn-primary' onclick='toggle()'> Message</button>" ;
+			echo "<button class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 		}
 	}
 	else {
-		echo "<button class='btn-primary' onclick='toggle()'> Message</button>" ;
+		echo "<button class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 	}
 	?>
 </div>
