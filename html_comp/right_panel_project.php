@@ -83,6 +83,9 @@
 		$user_existNo = mysqli_num_rows($user_exist) ;
 		if($user_existNo == 0) {
 			echo "<button class='btn-link' onclick='joinproject(".$idproject2.")'>Join</button>" ;
+			if(isset($_SESSION['user_id'])) {
+				echo "<button class='btn-primary' onclick='toggle()'> Message</button>" ;
+			}
 		}
 		else {
 			echo "<button class='btn-primary' onclick='toggle()'> Message</button>" ;
