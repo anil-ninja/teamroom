@@ -145,7 +145,7 @@ $obj = new profile($UserName);
                     echo "<br/></span>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
                         echo "<br/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
-                                   <i class='glyphicon glyphicon-plus'></i> Skill
+                                   <i class='icon-plus'></i> Skill
                                 </a><br/>";
         					}
                      $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
@@ -330,29 +330,100 @@ $obj = new profile($UserName);
     </div>
         <?php include_once 'html_comp/signup.php' ; ?>        
         <div id="InfoBox"></div>
-            <!--Modal -->
-            <div class="modal fade" id="uploadPicture" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width:300px; height:auto">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <input class="btn btn-default btn-sm" type="file" id="_fileprofilepic" style ="width: auto;"><br>
+
+
+<!--Upload image Modal starts here -->
+
+<div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span4 offset2">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-picture"></i>&nbsp;<span>Add Picture</span></a></li>
+                    <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active">
+                        <div class="row-fluid">
+                            <h4><i class="icon-"></i>&nbsp;&nbsp;Upload new picture</h4>
+                            
+                            <label>Upload File</label>
+                            <input type="file" id="_fileprofilepic"/>
+                            
+                            <br/><br/>
+                            <a href="#" class=" btn btn-primary" id="upload_image"  value="Change">Upload&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                         </div>
-                        <input class="btn btn-primary btn-sm" type="submit" id="upload_image"  value="Change"><br>
                     </div>
                 </div>
             </div>
         </div>
-            <!--End OF Modal -->
-            <!--Modal -->
-            <div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+    </div>
+</div>   
+
+<!--Upload image Modal ends here -->
+    <div class="modal fade" id="uploadPicture_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="width:300px; height:auto">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <input class="btn btn-default btn-sm" type="file" id="_fileprofilepic" style ="width: auto;"><br>
+                    </div>
+                    <input class="btn btn-primary btn-sm" type="submit" id="upload_image"  value="Change"><br>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--End OF Modal -->
+
+    <!--add skilll Modal -->
+
+    <div id="addskill" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span4 offset2">
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-plus"></i>&nbsp;<span>Add Skills</span></a></li>
+                    <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active">
+                        <div class="row-fluid">
+                            <h4>Select skill or add new skill</h4>
+
+                            <label>Select Skill</label> 
+                            <select class="inline-form" id = "skills" >
+                                <option value='0' selected>Default (none)</option>
+                                <?php
+                                    $m = mysqli_query($db_handle, "select * from skill_names where 1 = 1 ;") ;
+                                    while ($n = mysqli_fetch_array($m)) {
+                                        $id = $n['skill_id'] ;
+                                        $sn = $n['skill_name'] ;
+                                        echo "<option value='" . $id . "' >" . $sn . "</option>";
+                                    }
+                                ?>
+                            </select>
+                            
+                            <label>Enter your Skill</label>
+                            <input type="text" class="input-block-level" id="insert" placeholder="Enter your Skill"/>
+                            <a href="#" class=" btn btn-primary" id = "addskills">Add&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>   
+
+            <div class="modal fade" id="addskill_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="width:300px; height:auto;">
                     <div class="modal-header">
