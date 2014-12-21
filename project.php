@@ -25,11 +25,43 @@ include_once 'functions/delete_comment.php';
             
             <div class="span6">
                 <br>
-                
-                    <?php include_once 'html_comp/project_page_project.php'; ?>
-                <div class="panel-primary" id='panel-cont'>
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+                    <ul class="nav nav-tabs" style="padding: 0;">
+                        <li class="active">
+                            <a href="#tabProject" data-toggle="tab" class="active " id="home_project" style="padding: 10px 5px;">
+                                <i class='icon-star'> </i>Project Detail 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabDashboard" data-toggle="tab" id="dashboard_project" style="padding: 10px 5px;">
+                                <i class='icon-th-list'> </i>Project Dashboard 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabteams" data-toggle="tab" id="teams_project" style="padding: 10px 5px;">
+                                <i class='icon-user'><i class='icon-user'></i> </i>Teams 
+                           </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" >
+                        <div role="tabpanel" class="row tab-pane active" id="tabProject">       
+                            <?php include_once 'html_comp/project_page_project.php'; ?>
+                            <div class="panel-primary" id='panel-cont'>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="row tab-pane" id="tabDashboard" >
+                            <div id="dashboard_project_content"></div>
+                        </div>
+                        <div role="tabpanel" class="row tab-pane" id="tabteams">
+                            <div id="teams_project_content"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+                
+                
             <div class="span2" style='width:290px'>
                 <br>
                 <?php include_once 'html_comp/project_page_challenge.php'; ?>
@@ -49,6 +81,18 @@ include_once 'functions/delete_comment.php';
                 ?>   
         <?php include_once 'lib/html_inc_footers.php'; ?>  
                  <script>
+
+$(document).ready(function(){
+    $('#dashboard_project').click(function(){
+        $('#dashboard_project_content').load('html_comp/project_page_challenge.php');        
+    });
+    $('#teams_project').click(function(){
+        $('#teams_project_content').load('html_comp/teams_panel_project.php');        
+    });
+});
+
+
+
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
