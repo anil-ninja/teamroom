@@ -129,9 +129,10 @@
 			?>
         </div>
        </div>
-      <?php include_once 'html_comp/signup.php' ; ?>
-        <?php include_once 'lib/html_inc_footers.php'; ?>
-        <?php include_once 'html_comp/login_signup_modal.php'; ?>
+      <?php include_once 'html_comp/signup.php' ; 
+         include_once 'lib/html_inc_footers.php'; 
+         include_once 'html_comp/check.php';
+         include_once 'html_comp/login_signup_modal.php'; ?>
         <script>
 $(".text").show();
 $(".editbox").hide();

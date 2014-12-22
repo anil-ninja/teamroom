@@ -354,7 +354,8 @@ $obj = new profile($UserName);
     </div>
 </div>      
               <?php include_once 'html_comp/signup.php' ;
-			include_once 'lib/html_inc_footers.php'; ?> 
+			include_once 'lib/html_inc_footers.php'; 
+			include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
 
 <div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

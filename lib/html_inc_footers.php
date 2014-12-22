@@ -95,6 +95,3 @@
 <script src="js/date_time.js"></script>    
     <script src="scripts/tabs-addon.js"></script>
    <script type="text/javascript" src="js/jquery.popconfirm.js"></script>
-   
-    
-

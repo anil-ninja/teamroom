@@ -79,7 +79,8 @@ include_once 'functions/delete_comment.php';
                     <?php 
                         }
                 ?>   
-        <?php include_once 'lib/html_inc_footers.php'; ?>  
+        <?php include_once 'lib/html_inc_footers.php';
+        include_once 'html_comp/check.php'; ?>  
                  <script>
     $('#dashboard_project').click(function(){
         $('#dashboard_project_content').load('html_comp/project_page_challenge.php');       
