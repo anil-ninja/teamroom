@@ -94,11 +94,9 @@ $obj = new profile($UserName);
             <div class="span2 offset1">
                 <?php
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a id='popover' data-placement='bottom' rel='popover' data-content='You Logged In' data-original-title='Success!'>
-								<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
-									Edit
-								</a>
-							  </a>";
+                        echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
+								Edit
+							</a>";
                     }
                     echo "<br/>
                           <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
@@ -347,8 +345,6 @@ $obj = new profile($UserName);
         </div>
         <div class ="span2">
                 <?php 
-                
-                echo "<a id='12345'>link</a>";
                     include_once 'html_comp/known.php'; 
     				if(isset($_SESSION['user_id'])) {
     					include_once 'html_comp/friends.php';
@@ -356,22 +352,9 @@ $obj = new profile($UserName);
     			  ?>
         </div>
     </div>
-</div> 
-<script>
-	$(document).ready(function() {
-				// Basic confirmation
-				$("#link").popConfirm();
-				
-				// Custom Title, Content and Placement
-				$("#12345").popConfirm({
-					title: "Really ?",
-					content: "I have warned you !",
-					placement: "bottom"
-				});
-			});
-</script>       
-        <?php include_once 'html_comp/signup.php' ; ?>
-       <?php include_once 'lib/html_inc_footers.php'; ?> 
+</div>      
+        <?php include_once 'html_comp/signup.php' ;
+			include_once 'lib/html_inc_footers.php'; ?> 
 <!--Upload image Modal starts here -->
 
 <div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
