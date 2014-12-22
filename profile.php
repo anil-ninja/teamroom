@@ -353,7 +353,7 @@ $obj = new profile($UserName);
         </div>
     </div>
 </div>      
-        <?php include_once 'html_comp/signup.php' ;
+              <?php include_once 'html_comp/signup.php' ;
 			include_once 'lib/html_inc_footers.php'; ?> 
 <!--Upload image Modal starts here -->
 

@@ -81,7 +81,7 @@
 <script src="js/ninjas.js" type="text/javascript"></script>
 <script src="js/project_page.js"></script>
 <script src="js/content_edit.js"></script>
-
+<script type="text/javascript" src="js/introduction.js"></script>
 <!--<script src="js/bootstrap.js"></script>-->
 <script src="scripts/bootstrap.min.js"></script>
 

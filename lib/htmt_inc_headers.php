@@ -36,3 +36,9 @@
 
 <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
+<script>
+	  $(document).ready(function() {
+		  var url = document.URL;
+			check_page_url(url) ;
+		});
+        </script>
