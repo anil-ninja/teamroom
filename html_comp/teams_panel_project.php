@@ -44,42 +44,43 @@ $total_members = mysqli_num_rows($teams_member_display);
                     
                 
                   	<?php
-                                while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
-                                    $firstname = $teams_member_displayRow['first_name'];
-                                    $username = $teams_member_displayRow['username'];
-                                    $lastname = $teams_member_displayRow['last_name'];
-                                    $rank = $teams_member_displayRow['rank'];
-                                    $user_id_member = $teams_member_displayRow['user_id'];
-                                    
-                                        echo "<div class='col-sm-4 col-md-3'>";
+                        while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
+                            $firstname = $teams_member_displayRow['first_name'];
+                            $username = $teams_member_displayRow['username'];
+                            $lastname = $teams_member_displayRow['last_name'];
+                            $rank = $teams_member_displayRow['rank'];
+                            $user_id_member = $teams_member_displayRow['user_id'];
+                            
+                                echo "<div class='col-sm-4 col-md-3'>";
 
-                                        if ($team_owner_project == $user_id && $user_id_member != $user_id) {
-                                          echo "<a type='submit' class='btn-link badge pull-right' id='remove_member' 
-												onclick='remove_member(\"".$team_project_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
-												data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
-                                                    <span class='icon-remove'>
-                                                </a>
-                                                ";
-                                        }
-                                        else{
-                                            echo "<a class='btn-link badge pull-right'><span class='icon-star'></a>";
-                                        }
+                                if ($team_owner_project == $user_id && $user_id_member != $user_id) {
+                                    echo "  <a type='submit' class='btn-link badge pull-right' id='remove_member' 
+    									onclick='remove_member(\"".$team_project_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
+    									data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
+                                                <span class='icon-remove'>
+                                            </a>";
+                                }
+                                else{
+                                    echo "  <a class='btn-link badge pull-right'>
+                                                <span class='icon-star'>
+                                            </a>";
+                                }
 
-                                        echo "<div class='thumbnail'>
-                                                <a href ='profile.php?username=" . $username . "'>
-                                                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:100px;' class='img-responsive img-circle '>
-                                                    <div class='caption'>
-                                                        <span class='color pull-left' id='new_added'>" 
-                                                             .ucfirst($firstname)." ".ucfirst($lastname)."</a>
-                                                        </span>
-                                                        <br/>
-                                                        <span style='font-size:10px;'>"
-                                                           .$rank."
-                                                        </span>
-                                                    </div>
-                                                </a>
-                                               </div>
-                                          </div>";
+                                echo "  <div class='thumbnail'>
+                                            <a href ='profile.php?username=" . $username . "'>
+                                                <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif' style='height:100px;' class='img-responsive img-circle '>
+                                                <div class='caption'>
+                                                <span class='color pull-left' id='new_added'>" 
+                                                     .ucfirst($firstname)." ".ucfirst($lastname)."</a>
+                                                </span>
+                                                <br/>
+                                                <span style='font-size:10px;'>"
+                                                   .$rank."
+                                                </span>
+                                            </div>
+                                        </a>
+                                       </div>
+                                  </div>";
                                 }
                             ?>
                         
