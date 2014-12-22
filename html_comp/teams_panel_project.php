@@ -31,23 +31,23 @@ $total_members = mysqli_num_rows($teams_member_display);
                             $team_owner_project = $team_ownerRow['team_owner'];
                             if ($team_owner_project == $user_id) {
                                 echo "<div class='dropdown pull-right'>
-                                        <button class='btn-link dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'> + Add New Teammate</button>
-                                        <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1'>
+
+                                    <a href='#' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'>
+                                        + Add New Teammate
+                                        <b class='caret'></b>
+                                    </a>
+                                      <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1' style='padding: 5px 5px;'>
                                             <li><form>
-                                                <input type='email' class='form-control' id ='email_add_member' placeholder='Enter member Email'/><br/>
-                                                <input type='button' class='btn-success btn-sm submit' onclick='add_member(\"".$pro_id."\",\"".$team_name."\")' value='Add' />
+                                                <input type='email' class='input-block-level' id ='email_add_member' placeholder='Enter member Email'/><br/>
+                                                <input type='button' class='btn btn-success submit' onclick='add_member(\"".$pro_id."\",\"".$team_name."\")' value='Add' />
                                             </form></li>
                                         </ul>
                                     </div>";
                             }
                         ?>
                     </div>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="tab-content">
                     <div class='list-group-item'>
-        <?php
+            <?php
                 echo "<p style='color :#3B5998;' class='color strong'> Teams</p>
                         <div class ='row-fluid'>";
                 $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams 
@@ -64,10 +64,6 @@ $total_members = mysqli_num_rows($teams_member_display);
                 echo "</div>";
         ?>
                     </div>
-                </div>
-            </div>
-            <div class="row-fluid">
-                <div class="tab-content">
                     <div class='list-group-item'>
 
 <?php
