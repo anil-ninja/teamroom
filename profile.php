@@ -93,9 +93,8 @@ $obj = new profile($UserName);
 
             <div class="span2 offset1">
                 <?php
-                $popoverdata = "<a class=\"btn-primary\" >Ok</a> <a class=\"btn-primary pull-right\" >Cencel</a>" ;
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a id='popover' data-placement='bottom' rel='popover' data-content='".$popoverdata."' data-original-title='Success!'>
+                        echo "<a id='popover' data-placement='bottom' rel='popover' data-content='You Logged In' data-original-title='Success!'>
 								<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
 									Edit
 								</a>
@@ -312,54 +311,6 @@ $obj = new profile($UserName);
                             </a>
                         </li>
                     </ul>
-<?php /*
-            <!-- old data --!>
-                    <ul class="nav nav-tabs" role="tablist" style="font-size:14px; margin-bottom: 0px;">
-                      <li role="presentation" class="active" id="created_project">
-                          <a href="#tabCreatedProjects" role="tab" data-toggle="tab">
-                            Created Projects 
-                            <span class="badge">
-                                <?=$totalProjectCreated?>
-                            </span>
-                          </a>
-                      </li>
-                      <li role="presentation" id="joined_project">
-                         <a href="#tabJoinedProjects" role="tab" data-toggle="tab">
-                            Joined Projects 
-                            <span class="badge">
-                                <?=$projectsJoined?>
-                            </span>
-                         </a>
-                      </li>
-                      <li role="presentation" id="user_articles">
-                        <a href="#tabArticles" role="tab" data-toggle="tab">
-                            Articles 
-                            <span class="badge">
-                                <?= $totalarticleCreated?>
-                            </span>
-                        </a>
-                      </li>
-                      <li role="presentation" id="user_challenges">
-                        <a href="#tabChallanges" role="tab" data-toggle="tab">
-                            Challenges 
-                            <span class="badge">
-                                <?= $totalChallengeCreated?>
-                            </span>
-                        </a>
-                        </li>
-                        <li role="presentation" id="user_idea">
-                            <a href="#tabIdeas" role="tab" data-toggle="tab">
-                                Ideas 
-                                <span class="badge">
-                                    <?= $totalideaCreated?>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                    <!---- ---->
-        */
-    ?>
-                
                 <div class="tab-content" >
                     <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">       
                         <?php created_projects($db_handle,$profileViewUserID); ?>
@@ -396,6 +347,8 @@ $obj = new profile($UserName);
         </div>
         <div class ="span2">
                 <?php 
+                
+                echo "<a id='12345'>link</a>";
                     include_once 'html_comp/known.php'; 
     				if(isset($_SESSION['user_id'])) {
     					include_once 'html_comp/friends.php';
@@ -403,16 +356,22 @@ $obj = new profile($UserName);
     			  ?>
         </div>
     </div>
-</div>        
-        <?php include_once 'html_comp/signup.php' ; ?>        
-        
-        <!--<div id="InfoBox"></div>-->
+</div> 
 <script>
-$(window).load(function(){
-     $("#popover").popover('show');
- });
-</script>
-
+	$(document).ready(function() {
+				// Basic confirmation
+				$("#link").popConfirm();
+				
+				// Custom Title, Content and Placement
+				$("#12345").popConfirm({
+					title: "Really ?",
+					content: "I have warned you !",
+					placement: "bottom"
+				});
+			});
+</script>       
+        <?php include_once 'html_comp/signup.php' ; ?>
+       <?php include_once 'lib/html_inc_footers.php'; ?> 
 <!--Upload image Modal starts here -->
 
 <div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -441,73 +400,6 @@ $(window).load(function(){
         </div>
     </div>
 </div>   
-<?php 
-/*
-<!--Upload image Modal ends here -->
-    <div class="modal fade" id="uploadPicture_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" style="width:300px; height:auto">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group">
-                        <input class="btn btn-default btn-sm" type="file" id="_fileprofilepic" style ="width: auto;"><br>
-                    </div>
-                    <input class="btn btn-primary btn-sm" type="submit" id="upload_image"  value="Change"><br>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--End OF Modal -->
-
-<div class="modal fade" id="addskill_old" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" style="width:300px; height:auto;">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">&times;</span>
-                        <span class="sr-only">Close</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Add Skills</h4>
-                </div>
-                <div class="modal-body">
-                        Select Skill : &nbsp;&nbsp;&nbsp;&nbsp;
-                        <select class="inline-form" id = "skills" > 
-                            <option value='0' selected >Default (none)</option>
-                            <?php
-                            $m = mysqli_query($db_handle, "select * from skill_names where 1 = 1 ;") ;
-                            while ($n = mysqli_fetch_array($m)) {
-                                $id = $n['skill_id'] ;
-                                $sn = $n['skill_name'] ;
-                                echo "<option value='" . $id . "' >" . $sn . "</option>";
-                            }
-                            ?>
-                        </select>
-                        <br/><br/>OR<br/><br/>
-                         Enter your Skill  &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type='text' class="inline-form" id="insert" placeholder="Enter your Skill"/><br/><br/>
-                        <input type="button" value="Add" class="btn btn-success" id="addskills"/>
-                           
-                </div>
-                <div class="modal-footer">
-                    <button name="newuser" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-        
-*/
-
-
-?>
-    <!--add skilll Modal -->
-
     <div id="addskill" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span4 offset2">
@@ -544,8 +436,8 @@ $(window).load(function(){
         </div>
     </div>
 </div>   
-
-    <?php include_once 'lib/html_inc_footers.php'; ?>
+        
+        <!--<div id="InfoBox"></div>-->
 <script>
 	$(document).ready(function(){
 		$(".editbox").hide();
