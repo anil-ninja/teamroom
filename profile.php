@@ -85,6 +85,12 @@ $obj = new profile($UserName);
         <meta name="twitter:image" content="<?= $obj->getImage(); ?>" />
         <link rel="stylesheet" href="css/profile_page_style.css">
         <?php include_once 'lib/htmt_inc_headers.php'; ?>
+        <script>
+	  $(document).ready(function() {
+		  var url = document.URL;
+			check_page_url(url) ;
+		});
+        </script>
     </head>
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
@@ -353,7 +359,7 @@ $obj = new profile($UserName);
         </div>
     </div>
 </div>      
-        <?php include_once 'html_comp/signup.php' ;
+              <?php include_once 'html_comp/signup.php' ;
 			include_once 'lib/html_inc_footers.php'; ?> 
 <!--Upload image Modal starts here -->
 
