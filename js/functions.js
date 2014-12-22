@@ -10,20 +10,6 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-function loadteampanel(team) {
-	alert("sfsffdffsd");
-	var dataString = 'team=' +team ;
-	$.ajax({
-			type: "POST",
-			url: "ajax/team_panel_load.php",
-			data: dataString,
-			async: false ,
-			cache: false,
-			success: function(result){
-				document.getElementById("teams_project_content").innerHTML = result;
-			}
-		});
-} ;
 function knownperson(ID){
 		bootbox.confirm("Really Know this Person !!!", function(result) {
 		if(result){
@@ -126,6 +112,19 @@ function add_member(PID, name) {
 				});
 		}
 }
+function loadteampanel(team) {
+	var dataString = 'team=' + team ;
+	$.ajax({
+			type: "POST",
+			url: "ajax/team_panel_load.php",
+			data: dataString,
+			async: false ,
+			cache: false,
+			success: function(result){
+				document.getElementById("teams_project_content").innerHTML = result;
+			}
+		});
+} 
 function remove_member(PID, name, Uid){
 	bootbox.confirm("Do u really want to Remove this member?", function(result) {
 		if(result){

@@ -105,7 +105,6 @@ $total_members = mysqli_num_rows($teams_member_display);
             </div>
         </div>
     </div>";
-
     echo $data_display;
     }
 

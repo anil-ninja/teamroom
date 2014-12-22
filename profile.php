@@ -93,10 +93,13 @@ $obj = new profile($UserName);
 
             <div class="span2 offset1">
                 <?php
+                $popoverdata = "<a class=\"btn-primary\" >Ok</a> <a class=\"btn-primary pull-right\" >Cencel</a>" ;
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
-                                Edit
-                              </a>";
+                        echo "<a id='popover' data-placement='bottom' rel='popover' data-content='".$popoverdata."' data-original-title='Success!'>
+								<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
+									Edit
+								</a>
+							  </a>";
                     }
                     echo "<br/>
                           <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
@@ -391,7 +394,6 @@ $obj = new profile($UserName);
                 </div>
             </div>
         </div>
-
         <div class ="span2">
                 <?php 
                     include_once 'html_comp/known.php'; 
@@ -405,7 +407,11 @@ $obj = new profile($UserName);
         <?php include_once 'html_comp/signup.php' ; ?>        
         
         <!--<div id="InfoBox"></div>-->
-
+<script>
+$(window).load(function(){
+     $("#popover").popover('show');
+ });
+</script>
 
 <!--Upload image Modal starts here -->
 

@@ -94,7 +94,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                             while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                                 $list_of_teams = $teams_name_displayRow['team_name'];
                                 echo "
-                                    <a class='btn-link' onclick='loadteampanel(".$list_of_teams.")'>" 
+                                    <a class='btn-link' onclick='loadteampanel(\"".$list_of_teams."\"  	)'>" 
                                         .ucfirst($list_of_teams)."
                                     </a><br>";
                             }
