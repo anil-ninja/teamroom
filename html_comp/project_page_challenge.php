@@ -81,9 +81,12 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 								   </div>
 								</div>
 							</div>
-							<div class='span7' >
-								<div id='chart_div'></div>
-							</div>
+							<div class='span7' >" ;
+				if(mysqli_num_rows($totaltask) != 0) {			
+						echo "<div id='chart_div'></div>" ;
+				}
+				else {  echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;}	
+					echo  "</div>
 						</div>
 						<div class='row-fluid' >
 							<div class='span5' >
@@ -123,9 +126,12 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 									</div>
 								</div>
 							</div>
-							<div class='span7' >
-								<div id='chart_div2'></div>
-							</div>
+							<div class='span7' >" ;
+				if(mysqli_num_rows($totalchallenges) != 0) {			
+						echo "<div id='chart_div2'></div>" ;
+				}
+				else {  echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;}	
+					echo "</div>
 						</div>" ;	  
  
                 echo "<div class='panel-group' id= 'SUMMARY' role='tablist' aria-multiselectable='true'>
