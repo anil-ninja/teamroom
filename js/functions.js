@@ -10,6 +10,20 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+function loadteampanel(team) {
+	alert("sfsffdffsd");
+	var dataString = 'team=' +team ;
+	$.ajax({
+			type: "POST",
+			url: "ajax/team_panel_load.php",
+			data: dataString,
+			async: false ,
+			cache: false,
+			success: function(result){
+				document.getElementById("teams_project_content").innerHTML = result;
+			}
+		});
+} ;
 function knownperson(ID){
 		bootbox.confirm("Really Know this Person !!!", function(result) {
 		if(result){

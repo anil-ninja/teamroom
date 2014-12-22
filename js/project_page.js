@@ -6,6 +6,7 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+
 	$(document).ready(function(){	
 	var $table = $('table.scroll'),
     $bodyCells = $table.find('tbody tr:first').children(),

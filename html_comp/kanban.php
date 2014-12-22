@@ -1,6 +1,7 @@
 <?php
-   $team_name = $_GET['team_name'];
-   $team_project_id = $_GET['project_id'];
+    $user_id = $_SESSION['user_id'];
+    $pro_id = $_SESSION['project_id'];
+    $team_name = 'Defaultteam';
 	$openChallenges = "";
 $open_chalange_of_project = mysqli_query($db_handle, "select challenge_id, challenge_title, creation_time from challenges WHERE project_id = '$team_project_id' 
 														AND (challenge_type = '1' or challenge_type = '2') and challenge_status = '1' ;");
