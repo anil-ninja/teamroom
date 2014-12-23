@@ -87,33 +87,33 @@ function profile_intro() {
           intro.setOptions({
             steps: [
 			  {
-                element: '#demo1',
-                intro: 'Welcome To Collap <br/> You can post Challenges, Notes and Assign Task and Create Team and Manege files by clicking here.',
+                element: '#demo3',
+                intro: 'Welcome To Collap <br/> You can edit your profile by clicking here.',
                 position: 'bottom'
               },
               {
-                element: '#dashboard_project',
-                intro: "Welcome To Collap <br/> You can view ongoing progress of project by clicking here.",
+                element: '#demo4',
+                intro: "Welcome To Collap <br/> You can change your profile pic by clicking here.",
                 position: 'bottom'
               },
               {
-                element: '#teams_project',
-                intro: "Welcome To Collap <br/> You can manage team members and Add/Delete member and view their progress by clicking here",
+                element: '#demo5',
+                intro: "Welcome To Collap <br/> You can add skills to your profile by clicking here",
                 position: 'bottom'
               },
               {
-                element: '#demo2',
-                intro: 'Welcome To Collap <br/> You can talk to project members by clicking here.',
+                element: '#demo6',
+                intro: 'Welcome To Collap <br/> You can view your creted <br/> project/challenge/idea/article and joined project by clicking here.',
                 position: 'left'
               },
               {
-                element: '#step6',
-                intro: "Welcome To Collap <br/> You can create Public/Private Projects by clicking here",
+                element: '#demo7',
+                intro: "Welcome To Collap <br/> You can view your friend list here",
                 position: 'bottom'
               },
               {
-                element: '#step7',
-                intro: "Welcome To Collap <br/> You can join public project by clicking here",
+                element: '#demo8',
+                intro: "Welcome To Collap <br/> You can send link to your known people by clicking here",
                 position: 'bottom'
               },
               {
@@ -137,13 +137,8 @@ function profile_intro() {
                 position: 'bottom'
               },
               {
-                element: '#step12',
-                intro: "Welcome To Collap <br/> You can select particuler classes by clicking here",
-                position: 'bottom'
-              },
-              {
-                element: '#step14',
-                intro: "Welcome To Collap <br/> You can go to project page by clicking here",
+                element: '#demo9',
+                intro: "Welcome To Collap <br/> You view other users profiles by clicking here",
                 position: 'bottom'
               },
               {

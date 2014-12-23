@@ -34,7 +34,7 @@
 					<div class ='span2' style='padding:1px;'>
 						<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
 					</div>
-					<div class = 'span6' style='font-size:12px;padding: 1px;'>
+					<div id='demo9' class = 'span6' style='font-size:12px;padding: 1px;'>
 						<span class='color pull-left' id='new_added'>
 							<a href ='profile.php?username=" . $usernameFriendsr. "'>" 
 								.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."
@@ -44,7 +44,7 @@
 						<span style='font-size:10px;'>".$friendRankr."</span>
 					</div>";
 			if (isset($_SESSION['user_id'])) {
-				echo "	<div class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+				echo "	<div id='demo8' class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
 							<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
 						</div>";
 				}
