@@ -26,6 +26,46 @@ function ninjas_intro(){
                 element: '#step5',
                 intro: "Welcome To Collap <br/> You can see ongoing progress of your challenges/tasks assigned by you by clicking here",
                 position: 'bottom'
+              },
+              {
+                element: '#step6',
+                intro: "Welcome To Collap <br/> You can create Public/Private Projects by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step7',
+                intro: "Welcome To Collap <br/> You can join public project by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step8',
+                intro: "Welcome To Collap <br/> You can search challenges by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step9',
+                intro: "Welcome To Collap <br/> You can view your rank here",
+                position: 'bottom'
+              },
+              {
+                element: '#step10',
+                intro: "Welcome To Collap <br/> You can see notifictions by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step11',
+                intro: "Welcome To Collap <br/> You can view your profile by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step13',
+                intro: "Welcome To Collap <br/> You can select particuler classes by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step14',
+                intro: "Welcome To Collap <br/> You can go to project page by clicking here",
+                position: 'bottom'
               }
             ]
           });

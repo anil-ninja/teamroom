@@ -14,7 +14,7 @@
             <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: 'Open Sans', sans-serif;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"><i>collap</i>
             </a>
-            <div class="nav-collapse collapse navbar-responsive-collapse navbar-search span3">
+            <div id='step8' class="nav-collapse collapse navbar-responsive-collapse navbar-search span3">
                <script> 
                              (function() { 
                                  var cx = '007811515162108704212:nlk9cflmqvg'; 
@@ -67,7 +67,7 @@
                        
       
                     <li>
-                        <p class="navbar-text" style='cursor: pointer;color: #fff;'>
+                        <p id='step9' class="navbar-text" style='cursor: pointer;color: #fff;'>
                             <b> Rank :  
                                 <?php 
                                     $rank = $_SESSION['rank'];
@@ -80,12 +80,12 @@
                         <a style="cursor: pointer;color: #fff;" id="demo"></a>
                     </li>
                     
-                    <li>
+                    <li id='step10'>
                         <div id='notifications'></div>
                         <div id='notificationlastid'></div>
                     </li>
 
-                    <li class="dropdown">
+                    <li id='step11' class="dropdown">
                        <a href='#' class="dropdown-toggle" data-toggle="dropdown" style='color: #fff;'>
                            <?php
                                 $username = $_SESSION['username'];
@@ -145,7 +145,7 @@ if ($requestedPage == "project.php") {
         <div class='navbar-inner-subnav'>
             <div class='container' >
                 <div class='span8 offset2'>
-                <ul class='inline' >
+                <ul id='step12' class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
@@ -164,7 +164,7 @@ if ($requestedPage == "project.php") {
         <div class='navbar-inner-subnav' >
             <div class='container' >
                 <div class='span8 offset2'>
-                <ul class='inline' >
+                <ul id='step13' class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
                     <li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>

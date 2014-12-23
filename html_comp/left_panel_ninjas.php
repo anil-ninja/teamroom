@@ -1,7 +1,7 @@
 <br/>
 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
     <ul class="nav nav-tabs">
-        <li class="active" >
+        <li id='step6' class="active" >
 <?php 
     if (isset($_SESSION['user_id'])) {
         echo "
