@@ -35,3 +35,4 @@
 <script type="text/javascript" src="js/jquery.autosize.js"></script>
 <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
+<link type="text/css" rel="stylesheet" media="all" href="css/introjs.css" />

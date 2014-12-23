@@ -1,8 +1,6 @@
 <br/>
 <div class="bs-component">
-    
-        
-            <div class="panel panel-default">
+            <div id='step2' class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                       <i class='icon-bell'></i> &nbsp;Add Reminder<i class='icon-chevron-down pull-right'></i>
@@ -33,7 +31,7 @@
             </div>
         
 <br/>
-        <div class="panel panel-default">
+        <div id='step3' class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingTwo">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                     <i class='icon-eye-open'></i> &nbsp;All Reminder<i class='icon-chevron-down pull-right'></i>
@@ -47,7 +45,7 @@
         </div>
     
 <br/>
-        <div class="panel panel-default">
+        <div id='step4' class="panel panel-default">
             <div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
                 <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                     <i class='icon-bullhorn'></i>&nbsp;
@@ -93,7 +91,7 @@
                 </div>
               </div>
      <br/>
-              <div class="panel panel-default">
+              <div id='step5' class="panel panel-default">
                 <div class="panel-heading" style="padding: 5px;"role="tab" id="headingThree">
                     <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
                       <i class='icon-tasks'></i>&nbsp;

@@ -94,4 +94,4 @@
 <script src="js/add_remove_skill.js"></script>
 <script src="js/date_time.js"></script>    
     <script src="scripts/tabs-addon.js"></script>
-   <script type="text/javascript" src="js/jquery.popconfirm.js"></script>
+   <script type="text/javascript" src="js/intro.js"></script>

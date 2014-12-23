@@ -1,5 +1,5 @@
 <div class='list-group'>
-    <div class='list-group-item' >
+    <div id='step1' class='list-group-item' >
         <span id='challenge' style="cursor: pointer;color: #000;">
         <i class="icon-question-sign"></i>&nbsp; Challenge</span>
         &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;
