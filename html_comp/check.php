@@ -1,10 +1,11 @@
 <?php
 session_start() ;
 $user_id = $_SESSION['user_id'] ;
-$username = $_SESSION['username'] ;
-$url = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
-$actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-$check = mysqli_query($db_handle, "SELECT id FROM user_access_records WHERE user_id = '$user_id' and page_url like '%$url%' ;" ) ;
+if(isset($_SESSION['user_id'])) {
+	$username = $_SESSION['username'] ;
+	$url = basename($_SERVER['REQUEST_URI'], '?' . $_SERVER['QUERY_STRING']);
+	$actual_link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	$check = mysqli_query($db_handle, "SELECT id FROM user_access_records WHERE user_id = '$user_id' and page_url like '%$url%' ;" ) ;
 	if($url == "profile.php") {
 		$newusername = $_GET['username'];
 		if($username == $newusername) {
@@ -40,4 +41,5 @@ $check = mysqli_query($db_handle, "SELECT id FROM user_access_records WHERE user
 	else {
 		exit ;
 	}
+}
 ?>

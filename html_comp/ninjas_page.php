@@ -530,7 +530,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
 				dropDown_delete_comment_ch($comment_id, $user_id, $creater_ID);
         echo "</div></div></div>";
     }
-    echo "<div class='comments_".$chelangeid."'></div><div class='comments clearfix'>
+    echo "<div class='comments_".$chelangeid."'></div><div id='step15' class='comments clearfix'>
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>

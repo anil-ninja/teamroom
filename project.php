@@ -70,6 +70,7 @@ include_once 'functions/delete_comment.php';
 		<?php 
                     if (isset($_SESSION['user_id'])) {
                         include_once 'html_comp/project_talk.php'; 
+                        include_once 'html_comp/friends.php'; 
                  ?>
                         <script>
                             $(document).ready(function(){

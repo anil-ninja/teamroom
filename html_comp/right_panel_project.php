@@ -84,15 +84,15 @@
 		if($user_existNo == 0) {
 			echo "<button class='btn-link' onclick='joinproject(".$idproject2.")'>Join</button>" ;
 			if(isset($_SESSION['user_id'])) {
-				echo "<button class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
+				echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 			}
 		}
 		else {
-			echo "<button class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
+			echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 		}
 	}
 	else {
-		echo "<button class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
+		echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 	}
 	?>
 </div>

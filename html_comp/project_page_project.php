@@ -13,7 +13,7 @@
 <?php if (isset($_SESSION['user_id'])) {
     ?>
     <div class='tab-content'>
-        <div class='list-group-item'>
+        <div id='demo1' class='list-group-item'>
           <span class="icon-pencil" id='challengepr' style="cursor: pointer; color:#000;"> Challenge</span>
             | 
           <span class="icon-pushpin" id='task' style="cursor: pointer; color:#000;"> Assign Task</span>
