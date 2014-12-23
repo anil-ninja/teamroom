@@ -1,4 +1,6 @@
 <?php
+    include_once '../lib/db_connect.php';
+    session_start();
     $user_id = $_SESSION['user_id'];
     $pro_id = $_SESSION['project_id'];
     $team_name = 'Defaultteam';

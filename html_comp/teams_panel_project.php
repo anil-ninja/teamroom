@@ -25,26 +25,28 @@ $total_members = mysqli_num_rows($teams_member_display);
                             <b><?= ucfirst($team_name)." <a class='badge'>".$total_members."</a>";?></b>
                         </a>
                    
-                        <?php
-                            $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$pro_id';");
-                            $team_ownerRow = mysqli_fetch_array($teams_owner_add);
-                            $team_owner_project = $team_ownerRow['team_owner'];
-                            if ($team_owner_project == $user_id) {
-                                echo "<div class='dropdown pull-right'>
-
-                                    <a href='#' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'>
-                                        + Add New Teammate
-                                        <b class='caret'></b>
-                                    </a>
-                                      <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1' style='padding: 5px 5px;'>
-                                            <li><form>
-                                                <input type='email' class='input-block-level' id ='email_add_member' placeholder='Enter member Email'/><br/>
-                                                <input type='button' class='btn btn-success submit' onclick='add_member(\"".$pro_id."\",\"".$team_name."\")' value='Add' />
-                                            </form></li>
-                                        </ul>
-                                    </div>";
-                            }
-                        ?>
+        <?php
+            $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$pro_id';");
+            $team_ownerRow = mysqli_fetch_array($teams_owner_add);
+            $team_owner_project = $team_ownerRow['team_owner'];
+            if ($team_owner_project == $user_id) {
+                echo "
+                        <div class='dropdown pull-right'>
+                            <a href='#' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'>
+                                + Add New Teammate
+                                <b class='caret'></b>
+                            </a>
+                            <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1' style='padding: 5px 5px;'>
+                                <li>
+                                    <form>
+                                        <input type='email' class='input-block-level' id ='email_add_member' placeholder='Enter member Email'/><br/>
+                                        <input type='button' class='btn btn-success submit' onclick='add_member(\"".$pro_id."\",\"".$team_name."\")' value='Add' />
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>";
+            }
+        ?>
                     </div>
                     <div class='list-group-item'>
             <?php
@@ -53,15 +55,15 @@ $total_members = mysqli_num_rows($teams_member_display);
                 $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams 
                                                                     WHERE project_id='$pro_id';"
                                                     );
-                    while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
-                        $list_of_teams = $teams_name_displayRow['team_name'];
-                        echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
-                                    <a class='btn-link' onclick='loadteampanel(\"".$list_of_teams."\"   )'>"
-                                        .ucfirst($list_of_teams)."
-                                    </a>
-                                </div>";
-                    }
-                echo "</div>";
+                while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
+                    $list_of_teams = $teams_name_displayRow['team_name'];
+                    echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
+                                <a class='btn-link' onclick='loadteampanel(\"".$list_of_teams."\"   )'>"
+                                    .ucfirst($list_of_teams)."
+                                </a>
+                            </div>";
+                }
+                echo "  </div>";
         ?>
                     </div>
                     <div class='list-group-item'>
@@ -107,7 +109,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                                </div>
                            </div>";
             }
-            echo "</div>";
+                echo "</div>";
         ?>
         </div>
    </div> 
