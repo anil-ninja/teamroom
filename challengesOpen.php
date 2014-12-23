@@ -47,12 +47,12 @@
                         <div class="list-group-item">
                 <?php 
                     echo "  <div class='row-fluid'>
-                                <div class='span3' >
+                                <div class='span3' style='margin: 4px 4px 4px 4px;background : rgb(240, 241, 242);'>
                                     <img src='uploads/profilePictures/$ch_username.jpg'  style='width: 150px; height: 150px' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                                 </div>";
                     $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
                     $no_data = mysqli_num_rows($about_author);
-                        echo "  <div class='span9'>";
+                        echo "  <div class='span9' style='margin: 4px 4px 4px 4px;background : rgb(240, 241, 242);'>";
                     if ($no_data == 0){
                         echo "
                                     <span class='color strong' style= 'color :lightblue;'>
@@ -60,7 +60,7 @@
                                             .ucfirst($challengeSearch_first) . '&nbsp' . ucfirst($challengeSearch_last) . " 
                                         </a>
                                     </span><br>
-                                    No information is available about this user";
+                                    <p> No information is available about this user </p>";
                     } 
                     else {
                         $about_authorRow = mysqli_fetch_array($about_author);
@@ -69,8 +69,8 @@
                                         <a href ='profile.php?username=" . $ch_username . "'>"
                                             .ucfirst($challengeSearch_first) . '&nbsp' . ucfirst($challengeSearch_last) . " 
                                         </a>
-                                    </span><br>";
-                        echo $about_authorRow['about_user'];
+                                    </span><br><p>";
+                        echo $about_authorRow['about_user']."</p>";
                     }
                     echo "      </div>
                             </div>"
@@ -86,7 +86,7 @@
                         </li>
                     </ul>
                     <div class="tab-content" >
-                        <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
+                        <div role="tabpanel" class="row tab-pane active">
                 <?php 
                     $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
                                                             WHERE challenge_type != '2' AND challenge_status !='3' AND challenge_status != '7' AND 
@@ -125,7 +125,7 @@
                         </li>
                     </ul>
                     <div class='tab-content' >
-                        <div role='tabpanel' class='row tab-pane active' id='tabCreatedProjects'>
+                        <div role='tabpanel' class='row tab-pane active'>
                             <div>";
                     $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 250) as stmt FROM projects 
                                                             WHERE project_type = '1' AND blob_id = '0')  
