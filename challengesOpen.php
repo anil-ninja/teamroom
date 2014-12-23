@@ -46,7 +46,7 @@
                     <div class="list-group" style="margin: 20px -15px;">
                         <div class="list-group-item">
                 <?php 
-                    echo "  <div class='row-fluid'>
+                    echo "  <div id='demo10' class='row-fluid'>
                                 <div class='span3' style='margin: 4px 4px 4px 4px;background : rgb(240, 241, 242);'>
                                     <img src='uploads/profilePictures/$ch_username.jpg'  style='width: 150px; height: 150px' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                                 </div>";
@@ -85,7 +85,7 @@
                             <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Explore More </b></span></a>
                         </li>
                     </ul>
-                    <div class="tab-content" >
+                    <div id='demo12' class="tab-content" >
                         <div role="tabpanel" class="row tab-pane active">
                 <?php 
                     $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 

@@ -226,5 +226,61 @@ function project_intro() {
           intro.start();
 }
 function challengesOpen_intro() {
-	alert('hiii') ;
+	var intro = introJs();
+          intro.setOptions({
+            steps: [
+			  {
+                element: '#demo10',
+                intro: 'Welcome To Collap <br/> You can read about author here.',
+                position: 'bottom'
+              },
+              {
+                element: '#demo11',
+                intro: "Welcome To Collap <br/> You can like this by clicking here.",
+                position: 'bottom'
+              },
+              {
+                element: '#demo13',
+                intro: "Welcome To Collap <br/> You can dislike this by clicking here.",
+                position: 'bottom'
+              },
+              {
+                element: '#demo14',
+                intro: "Welcome To Collap <br/> You can comment here.",
+                position: 'bottom'
+              },
+              {
+                element: '#demo12',
+                intro: "Welcome To Collap <br/> You can read more by clicking here",
+                position: 'left'
+              },
+              {
+                element: '#step8',
+                intro: "Welcome To Collap <br/> You can search challenges by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step9',
+                intro: "Welcome To Collap <br/> You can view your rank here",
+                position: 'bottom'
+              },
+              {
+                element: '#step10',
+                intro: "Welcome To Collap <br/> You can see notifictions by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step11',
+                intro: "Welcome To Collap <br/> You can view your profile by clicking here",
+                position: 'bottom'
+              },
+              {
+                element: '#step16',
+                intro: "Welcome To Collap <br/> You can send links to known peoples or talk to friends by clicking here",
+                position: 'left'
+              }
+            ]
+          });
+
+          intro.start();
 }
