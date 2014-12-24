@@ -91,7 +91,7 @@ $obj = new profile($UserName);
     <div class="">     
         <div class='row-fluid' style="padding-top: 60px;">
 
-            <div class="span2 offset1">
+            <div id='tab7' class="span2 offset1">
                 <?php
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
                         echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
@@ -343,15 +343,15 @@ $obj = new profile($UserName);
                 </div>
             </div>
         </div>
-        <div class ="span2">
-                <?php 
-                    include_once 'html_comp/known.php'; 
-    				if(isset($_SESSION['user_id'])) {
-    					include_once 'html_comp/friends.php';
-    				}
-    			  ?>
+        <div id='tab9' class ="span2">
+           <?php include_once 'html_comp/known.php'; ?>
         </div>
     </div>
+    <?php 
+		if(isset($_SESSION['user_id'])) {
+    		include_once 'html_comp/friends.php';
+    	}
+    ?>
 </div>      
               <?php include_once 'html_comp/signup.php' ;
 			include_once 'lib/html_inc_footers.php'; 
@@ -419,8 +419,37 @@ $obj = new profile($UserName);
             </div>
         </div>
     </div>
-</div>   
-        
+</div>
+<script>
+var width = window.screen.availWidth;
+if(width < 800) {
+	$('#tab7').hide();
+	$('#tab9').hide();
+	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
+	$("#new").html($("#tab7").html() + $("#tab9").html());
+} ;
+</script>
+<script>
+$(function() {
+	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
+
+function toggleDivs() {
+    var $inner = $("#navtab");
+    if ($inner.css("margin-left") == "-170px") {
+        $inner.animate({'margin-left': '0'});
+		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
+    }
+    else {
+        $inner.animate({'margin-left': "-170px"}); 
+		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
+    }
+}
+$(".nav-btntab").bind("click", function(){
+    toggleDivs();
+});
+
+});
+</script>       
         <!--<div id="InfoBox"></div>-->
 <script>
 	$(document).ready(function(){
@@ -462,7 +491,7 @@ $obj = new profile($UserName);
             });	
         }
     });
-</script> 
+</script>    
         <?php 
             include_once 'html_comp/login_signup_modal.php';
             include_once 'html_comp/insert_time.php'; 
