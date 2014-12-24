@@ -19,11 +19,11 @@ include_once 'functions/delete_comment.php';
     <div class='alert_placeholder'></div>
     <div class="">
         <div class="row-fluid" style="margin-top:60px;">         
-            <div id='tab2' class="span2 offset1">
+            <div id='tab4' class="span2 offset1">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>  
             
-            <div class="span6">
+            <div id='tab5' class="span6">
                 <br>
                 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                     <ul class="nav nav-tabs" style="padding: 0;">
@@ -58,11 +58,8 @@ include_once 'functions/delete_comment.php';
                         </div>
                     </div>
                 </div>
-            </div>
-
-                
-                
-            <div class="span2" style='width:290px'>
+            </div>      
+            <div id='tab6' class="span2" style='width:290px'>
                 <br>
                 <?php include_once 'html_comp/right_panel_project.php'; ?>
             </div>	
@@ -111,6 +108,36 @@ $("#project_chat_data").hide();
 	});	
 	chatBoxes.push('<?= $projttitle ?>');
         </script>
+<script>
+var width = window.screen.availWidth;
+if(width < 800) {
+	$('#tab4').hide();
+	$('#tab6').hide();
+	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
+	$("#new").html($("#tab4").html() + $("#tab6").html());
+} ;
+</script>
+<script>
+$(function() {
+	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
+
+function toggleDivs() {
+    var $inner = $("#navtab");
+    if ($inner.css("margin-left") == "-170px") {
+        $inner.animate({'margin-left': '0'});
+		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
+    }
+    else {
+        $inner.animate({'margin-left': "-170px"}); 
+		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
+    }
+}
+$(".nav-btntab").bind("click", function(){
+    toggleDivs();
+});
+
+});
+</script>
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="js/graph.js"></script>

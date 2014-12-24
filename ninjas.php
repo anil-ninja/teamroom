@@ -22,12 +22,12 @@ $view = 1 ;
    
    <div class="" >
 		<div class="row-fluid" style="margin-top:60px;">  		
-       		<div id='tab2' class="span2 offset1">
+       		<div id='tab1' class="span2 offset1">
    				<?php 
    					include_once 'html_comp/left_panel_ninjas.php';   
 				?>
    			</div>       
-         	<div id='tab3' class="span6">
+         	<div id='tab2' class="span6">
 				<div class="panel-primary" id='panel-cont'>
 			  		<p id='home-ch'></p>
 			 		<p id='home'></p>
@@ -37,7 +37,7 @@ $view = 1 ;
 	    			?>
 				</div>
 			</div>
-		 	<div id='tab4' class="span2">
+		 	<div id='tab3' class="span2">
 				<?php 
 					include_once 'html_comp/right_panel_ninjas.php'  ; 
 				?>				
@@ -53,11 +53,10 @@ $view = 1 ;
 <script>
 var width = window.screen.availWidth;
 if(width < 800) {
-	$('#tab1').remove();
-	$('#tab4').hide();
-	$('#tab2').hide();
+	$('#tab1').hide();
+	$('#tab3').hide();
 	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
-	$("#new").html($("#tab2").html() + $("#tab4").html());
+	$("#new").html($("#tab1").html() + $("#tab3").html());
 } ;
 </script>
 <script>
