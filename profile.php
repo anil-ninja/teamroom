@@ -270,7 +270,7 @@ $obj = new profile($UserName);
                     <ul class="nav nav-tabs" style="padding: 0;">
                         <li class="active">
                             <a href="#tabCreatedProjects" data-toggle="tab" class="active " id="created_project" style="padding: 10px 5px;">
-                                <i class='icon-star'> </i>Created Projects 
+                                <i class='icon-star'> </i> <span>Created Projects</span> 
                                 <span class="badge">
                                     <?= $totalProjectCreated ?>
                                 </span>
@@ -278,7 +278,7 @@ $obj = new profile($UserName);
                         </li>
                         <li>
                             <a href="#tabJoinedProjects" data-toggle="tab" id="joined_project" style="padding: 10px 5px;">
-                                <i class='icon-star-empty'> </i>Joined Projects 
+                                <i class='icon-star-empty'> </i> <span>Joined Projects</span> 
                                 <span class="badge">
                                     <?= $projectsJoined ?>
                                 </span>
@@ -286,7 +286,7 @@ $obj = new profile($UserName);
                         </li>
                         <li>
                             <a href="#tabArticles" data-toggle="tab" id="user_articles" style="padding: 10px 5px;">
-                                <i class='icon-book'> </i>Articles 
+                                <i class='icon-book'> </i><span>Articles</span> 
                                 <span class="badge">
                                     <?= $totalarticleCreated ?>
                                 </span>
@@ -294,7 +294,7 @@ $obj = new profile($UserName);
                         </li>
                         <li>
                             <a href="#tabChallanges" data-toggle="tab" id="user_challenges" style="padding: 10px 5px;">
-                                <i class='icon-question-sign'> </i>Challenges 
+                                <i class='icon-question-sign'> </i><span>Challenges</span> 
                                 <span class="badge">
                                     <?= $totalChallengeCreated ?>
                                 </span>
@@ -302,7 +302,7 @@ $obj = new profile($UserName);
                         </li>
                         <li>
                             <a href="#tabIdeas" data-toggle="tab" id="user_idea" style="padding: 10px 5px;">
-                                <i class='icon-magnet'> </i>Idea 
+                                <i class='icon-magnet'> </i><span>Idea</span> 
                                 <span class="badge">
                                     <?= $totalideaCreated ?>
                                 </span>
