@@ -44,9 +44,9 @@
 						<span style='font-size:10px;'>".$friendRankr."</span>
 					</div>";
 			if (isset($_SESSION['user_id'])) {
-				echo "	<div id='demo8' class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
-							<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
-						</div>";
+			  echo "<div id='demo8' class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+						<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
+					</div>";
 				}
 			echo "</div>";
 			}

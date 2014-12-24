@@ -6,8 +6,8 @@
     if (isset($_SESSION['user_id'])) {
         echo "
             <a class='pull-right active' data-toggle='modal' data-target='#createProject' style='cursor:pointer; padding-top: 4px; padding-bottom: 4px;'> 
-                <span><b>&nbsp; PROJECTS</b></span>
-                <font size='1'>&nbsp;&nbsp;&nbsp; 
+                <span><b> PROJECTS</b></span>
+                <font size='1'> 
                     <i class='icon-plus'>&nbsp; Add</i>
                 </font>
             </a>";
