@@ -94,7 +94,7 @@ $obj = new profile($UserName);
             <div class="span2 offset1">
                 <?php
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a id='demo3' class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
+                        echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
 								Edit
 							</a>";
                     }
