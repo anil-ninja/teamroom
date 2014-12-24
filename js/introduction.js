@@ -87,7 +87,7 @@ function profile_intro() {
           intro.setOptions({
             steps: [
 			  {
-                element: '#demo3',
+                element: '#editprofile',
                 intro: '<b> Welcome To Collap </b><br/> You can edit your profile by clicking here.',
                 position: 'bottom'
               },
