@@ -274,7 +274,7 @@ function dislike(Id, type) {
 						$("#dislikes_"+Id).val(nied+='') ;
 					}
 					else {
-						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
+						bootstrap_alert(".alert_placeholder", "Already Disliked", 3000,"alert-warning");
 						}
 				}
 			});
