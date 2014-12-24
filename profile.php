@@ -116,11 +116,11 @@ $obj = new profile($UserName);
         												where b.knowning_id = '$user_id' and b.requesting_user_id = '$profileViewUserID' and a.user_id = b.requesting_user_id and b.status = '2') ;") ;
         				while ($checkRow = mysqli_fetch_array($check)) {
         					$checkid = $checkRow['user_id'] ;
-        				if($profileViewUserID == $checkid) {
-        					echo "<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$profileViewUserID.")' value = 'link'/>";
+							if($profileViewUserID == $checkid) {
+								echo "<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$profileViewUserID.")' value = 'Link'/>";
+							}
         				}
-        				}
-                      } 
+                    } 
                 ?>
                 <div class='alert_placeholder'></div>
                 <div class="viewprofile">
