@@ -77,13 +77,13 @@ $total_members = mysqli_num_rows($teams_member_display);
         $rank = $teams_member_displayRow['rank'];
         $user_id_member = $teams_member_displayRow['user_id'];
         
-        echo "              <div class='span4'>";
+        echo "              <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>";
 
             if ($team_owner_project == $user_id && $user_id_member != $user_id) {
                         echo "  <a type='submit' class='btn-link badge pull-right' id='remove_member' 
         					onclick='remove_member(\"".$team_project_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
         					data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
-                                    <span class='icon-remove'>
+                                    <span class='icon-remove'></span>
                                 </a>";
             }
             else{
@@ -92,24 +92,22 @@ $total_members = mysqli_num_rows($teams_member_display);
                                 </a>";
             }
 
-                        echo "  <div class='row-fluid' style=' margin:4px; background : rgb(240, 241, 242);'>
-                                    <a href ='profile.php?username=" . $username . "'>
-                                        <div class ='span2'>
-                                            <img src='uploads/profilePictures/$username.jpg'  style='margin-left:-10px;width:30px; height:35px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
-                                        </div>
-                                        <div class = 'span7' style='font-size:10px;'>
-                                            <span class='color pull-left' id='new_added'>" 
-                                                 .ucfirst($firstname)." ".ucfirst($lastname)."
-                                            </span><br>
-                                            <span style='font-size:10px;'>"
-                                               .$rank."
-                                            </span>
-                                        </div>
-                                    </a>
-                               </div>
-                           </div>";
+                        echo "<a href ='profile.php?username=" . $username . "'>
+                                <div class ='span2'>
+                                    <img src='uploads/profilePictures/$username.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif'>
+                                </div>
+                                <div class = 'span7' style='font-size:10px;'>
+                                    <span class='color pull-left' id='new_added'>" 
+                                         .ucfirst($firstname)." ".ucfirst($lastname)."
+                                    </span><br>
+                                    <span style='font-size:10px;'>"
+                                       .$rank."
+                                    </span>
+                                </div>
+                            </a>
+                       </div>";
             }
-                echo "</div>";
+            echo "  </div>";
         ?>
         </div>
    </div> 
