@@ -160,9 +160,9 @@ if ($requestedPage == "project.php") {
 }
     else if ($requestedPage == "ninjas.php"){
         echo "     
-        <div class='navbar-subnav'>
+        <div class='navbar-subnav subnavbar-fixed-top'>
         <div class='navbar-inner-subnav' >
-            <div class='container' >
+            <div class='container'>
                 <div class='span8 offset2'>
                 <ul id='step13' class='inline' >
                     <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
