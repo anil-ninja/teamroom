@@ -141,7 +141,7 @@ if (isset($_SESSION['user_id'])) {
 if ($requestedPage == "project.php") {
     
  echo " 
-        <div class='navbar-subnav'> 
+        <div class='navbar-subnav subnavbar-fixed-top'> 
         <div class='navbar-inner-subnav'>
             <div class='container' >
                 <div class='span8 offset2'>
