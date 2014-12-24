@@ -13,12 +13,8 @@ if ($_POST['team']) {
     $data_display = "";
     $team_name = $_POST['team'];
     $teams_member_display = mysqli_query($db_handle, "SELECT b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
-                                                        FROM teams as a join user_info as b 
-                                                            WHERE a.team_name = '$team_name' 
-                                                                AND a.user_id = b.user_id 
-                                                                AND a.member_status = '1' 
-                                                                AND a.project_id='$pro_id' 
-                                                            ORDER BY team_creation ASC;"
+                                                        FROM teams as a join user_info as b WHERE a.team_name = '$team_name' AND a.user_id = b.user_id 
+                                                        AND a.member_status = '1' AND a.project_id='$pro_id' ORDER BY team_creation ASC;"
                                         );
     $total_members = mysqli_num_rows($teams_member_display);
     $data_display .= "
@@ -76,7 +72,7 @@ if ($_POST['team']) {
                         </div>
                     </div>
                     <div class='list-group-item'>
-                        <div class='row-fluid'>";
+                        <div class='row-fluid team-member'>";
 
     while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
         $firstname = $teams_member_displayRow['first_name'];
