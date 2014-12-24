@@ -60,18 +60,18 @@
                 }		   
                 else {
                     echo "<div class ='row' style='margin: 4px -15px 4px -15px;background : rgb(240, 241, 242);'>
-                            <div class ='col-md-2' style='padding:1px;'>
+                            <div class ='span2' style='padding:1px;'>
                                 <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:40px' class='img-responsive'>
                             </div>
-                            <div class = 'col-md-7' style='font-size:12px;padding: 1px;'>
+                            <div class = 'span6' style='font-size:12px;padding: 1px;'>
                                 <span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriends. "'>" 
                                     .ucfirst($friendFirstName)." ".ucfirst($friendLastName)."</a>
                                 </span><br/>
                                 <span style='font-size:10px;'>".$friendRank."</span>
                             </div>";
                     if (isset($_SESSION['user_id'])) {
-                        echo "<div class = 'col-md-2' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
-                                    <input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriends.")' value = 'link'/>
+                        echo "<div class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+                                    <input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriends.")' value = 'Link'/>
                             </div>";
                     }
                     echo "</div>";
