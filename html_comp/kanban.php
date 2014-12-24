@@ -17,7 +17,7 @@ while ($open_chalange_of_projectrow = mysqli_fetch_array($open_chalange_of_proje
     $challenge_title11 = $open_chalange_of_projectrow['challenge_title'];
     $challenge_created1 = $open_chalange_of_projectrow['creation_time'];
     $openChallenges .= "
-      <div class='span6' style='height:135px;'>
+      <div class='span6' style='height:135px;margin: 10px 5px 3px 0px;'>
         <div class='panel panel-default'>
           <div class = 'panel-heading' style = 'font-size:10px;'>
             <span class='icon-question-sign'></span>".
