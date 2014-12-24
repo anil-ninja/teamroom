@@ -55,7 +55,7 @@ if ($_POST['team']) {
                         <p style='color :#3B5998;' class='color strong'> Teams</p>
                             <div class ='row-fluid'>";
 
-    $teams_name_display = mysqli_query($db_handle, ("select DISTINCT team_name, project_id from teams where user_id= '$user_id' AND project_id='$pro_id';"));
+    $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name, project_id FROM teams WHERE project_id='$pro_id';");
 
     while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
         $list_of_teams = $teams_name_displayRow['team_name'];
@@ -134,7 +134,7 @@ if ($_POST['team']) {
         $challenge_title11 = $open_chalange_of_projectrow['challenge_title'];
         $challenge_created1 = $open_chalange_of_projectrow['creation_time'];
         $openChallenges .= "
-                    <div class='span6'>
+                    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
                         <div class='panel panel-default'>
                             <div class = 'panel-heading' style = 'font-size:10px;'>
                                 <span class='icon-question-sign'></span>".
@@ -177,8 +177,7 @@ if ($_POST['team']) {
         switch($status3) {
             case 2:
                 $acceptedChallenges .= "
-                <div class='row-fluid'>
-                    <div class='span6' style='height:135px;'>
+                    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
                         <div class='panel panel-default'>
                             <div class = 'panel-heading' style = 'font-size:10px;'>
                                 <span class='icon-question-sign'></span>
@@ -194,7 +193,7 @@ if ($_POST['team']) {
             
             case 4:
                 $submittedChallenges .= "
-                    <div class='span6' style='height:135px;'>
+                    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
                         <div class='panel panel-default'>
                             <div class = 'panel-heading' style = 'font-size:10px;'>
                                 <span class='icon-question-sign'></span>
@@ -210,7 +209,7 @@ if ($_POST['team']) {
                 
             case 5:
                 $completedChallenges .= "
-                    <div class='span6' style='height:135px;'>
+                    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
                         <div class='panel panel-default'>
                             <div class = 'panel-heading' style = 'font-size:10px;'>
                                 <span class='icon-question-sign'></span>
@@ -238,7 +237,7 @@ if ($_POST['team']) {
         $challenge_title15 = $kanban5row['challenge_title'];
         $status5 = $kanban5row['challenge_status'];
         $teamTasks .= "
-                    <div class='span6' style='height:135px;'>
+                    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
                         <div class='panel panel-default'>
                             <div class = 'panel-heading' style = 'font-size:10px;'>
                                 <span class=' icon-pushpin'></span>

@@ -62,7 +62,7 @@ while ($kanban3row = mysqli_fetch_array($kanban3)) {
     switch($status3) {
 	    case 2:
         $acceptedChallenges .= "
-      <div class='span6' style='height:135px;'>
+      <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
         <div class='panel panel-default'>
           <div class = 'panel-heading' style = 'font-size:10px;'>
             <span class='icon-question-sign'></span>
@@ -78,7 +78,7 @@ while ($kanban3row = mysqli_fetch_array($kanban3)) {
 	
       case 4:
         $submittedChallenges .= "
-    <div class='span6' style='height:135px;'>
+    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
       <div class='panel panel-default'>
         <div class = 'panel-heading' style = 'font-size:10px;'>
           <span class='icon-question-sign'></span>
@@ -94,7 +94,7 @@ while ($kanban3row = mysqli_fetch_array($kanban3)) {
 
       case 5:
         $completedChallenges .= "
-    <div class='span6' style='height:135px;'>
+    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
       <div class='panel panel-default'>
         <div class = 'panel-heading' style = 'font-size:10px;'>
           <span class='icon-question-sign'></span>
@@ -151,7 +151,7 @@ while ($kanban3row = mysqli_fetch_array($kanban3)) {
     $challenge_title15 = $kanban5row['challenge_title'];
     $status5 = $kanban5row['challenge_status'];
     $teamTasks .= "
-    <div class='span6' style='height:135px;'>
+    <div class='span6' style='height:135px; margin: 10px 5px 3px 0px;'>
       <div class='panel panel-default'>
         <div class = 'panel-heading' style = 'font-size:10px;'>
           <span class=' icon-pushpin'></span>
