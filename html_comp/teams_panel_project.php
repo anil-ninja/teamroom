@@ -20,7 +20,6 @@ $total_members = mysqli_num_rows($teams_member_display);
             
                 <div class="tab-content">
                     <div class='list-group-item'>
-                        <div class='alert_placeholder'> </div>
                         <a  style='font-size: 12pt; color :#3B5998;'>
                             <b><?= ucfirst($team_name)." <a class='badge'>".$total_members."</a>";?></b>
                         </a>
@@ -69,7 +68,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                     <div class='list-group-item'>
 
 <?php
-    echo "              <div class='row-fluid'>";
+    echo "              <div class='row-fluid team-member'>";
     while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
         $firstname = $teams_member_displayRow['first_name'];
         $username = $teams_member_displayRow['username'];
@@ -81,7 +80,7 @@ $total_members = mysqli_num_rows($teams_member_display);
 
             if ($team_owner_project == $user_id && $user_id_member != $user_id) {
                         echo "  <a type='submit' class='btn-link badge pull-right' id='remove_member' 
-        					onclick='remove_member(\"".$team_project_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
+        					onclick='remove_member(\"".$pro_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
         					data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
                                     <span class='icon-remove'></span>
                                 </a>";

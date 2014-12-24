@@ -93,12 +93,14 @@ function add_member(PID, name) {
 							data: dataString,
 							cache: false,
 							success: function(result){
-								if(result=='Member Added succesfully!'){
-									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-									location.reload();
+								var notice = result.split("+") ;
+								if(notice['0'] == 'Member Added succesfully!'){
+									bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+									$('.team-member').append(notice['1']);
+									$("#email_add_member").val("") ;
 									}
 									else {
-										bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+										bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-warning");
 										}
 								}
 							});

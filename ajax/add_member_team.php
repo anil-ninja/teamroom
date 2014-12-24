@@ -11,16 +11,17 @@ if ($_POST['email']) {
     $pro_id = $_POST['id'] ;
     $case = $_POST['case'] ;
     if($case == 1) {
-		$respo = mysqli_query($db_handle, "SELECT user_id, username FROM user_info WHERE email = '$email';");
+		$respo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE email = '$email';");
 		if (mysqli_num_rows($respo) > 0) {
 			$responserow = mysqli_fetch_array($respo);
 			$uid = $responserow['user_id'];
 			$uname = $responserow['username'];
+			$rank = $responserow['rank'];
+			$firstname = $responserow['first_name'];
+			$lastname = $responserow['last_name'];
 			$already_member = mysqli_query($db_handle, "SELECT user_id FROM teams WHERE user_id = '$uid' AND project_id = '$pro_id' AND team_name = '$team_name' ;");
 			if (mysqli_num_rows($already_member) > 0) {
 				mysqli_query($db_handle, "UPDATE teams SET member_status = '1' where user_id = '$uid' AND project_id = '$pro_id' AND team_name = '$team_name' ;") ;
-				if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
-				else { echo "Member Added succesfully!"; }
 				} 
 				else {
 					events($db_handle,$user_id,"15",$pro_id);
@@ -35,9 +36,23 @@ if ($_POST['email']) {
  http://collap.com/profile.php?username=".$uname ;
 						collapMail($emails, "Member Added IN Team", $body2);
 						}
-					if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
-					else { echo "Member Added succesfully!"; }
 					}
+			$data = "<div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
+						<a type='submit' class='btn-link badge pull-right' id='remove_member' onclick='remove_member(\"".$pro_id."\", \"".$team_name."\", \"".$uid."\");' 
+							data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'><span class='icon-remove'></span>
+						</a>
+						<a href ='profile.php?username=".$uname."'>
+                           <div class ='span2'>
+                              <img src='uploads/profilePictures/$uname.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif'>
+                          </div>
+                          <div class = 'span7' style='font-size:10px;'>
+                              <span class='color pull-left' id='new_added'>".ucfirst($firstname)." ".ucfirst($lastname)."</span><br/>
+                              <span style='font-size:10px;'>".$rank."</span>
+                          </div>
+                       </a>
+                    </div>" ;
+			if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
+			else { echo "Member Added succesfully!"."+".$data ; }		
 			} 
 			else { 
 				echo "Member Not Registered Yet" ;
