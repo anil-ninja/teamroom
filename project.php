@@ -29,17 +29,17 @@ include_once 'functions/delete_comment.php';
                     <ul class="nav nav-tabs" style="padding: 0;">
                         <li class="active">
                             <a href="#tabProject" data-toggle="tab" class="active " id="home_project" style="padding: 10px 5px;">
-                                <i class='icon-star'> </i>Project Detail 
+                                <i class='icon-star'> </i><span>Project Detail</span> 
                             </a>
                         </li>
                         <li>
                             <a href="#tabDashboard" data-toggle="tab" id="dashboard_project" style="padding: 10px 5px;">
-                                <i class='icon-th-list'> </i>Project Dashboard 
+                                <i class='icon-th-list'> </i><span>Project Dashboard</span> 
                             </a>
                         </li>
                         <li>
                             <a href="#tabteams" data-toggle="tab" id="teams_project" style="padding: 10px 5px;">
-                                <i class='icon-user'><i class='icon-user'></i> </i>Teams 
+                                <i class='icon-user'><i class='icon-user'></i> </i><span>Teams</span> 
                            </a>
                         </li>
                     </ul>
