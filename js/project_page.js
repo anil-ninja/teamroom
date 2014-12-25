@@ -196,70 +196,33 @@ return str.replace(new RegExp(find, 'g'), replace);
 }
 	
 	});
+function show_form(type){
+	var dataString = 'form_type=' + type ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/forms.php",
+		data: dataString,
+		async: false ,
+		cache: false,
+		success: function(result){
+			document.getElementById("invitation").innerHTML = result ;
+		}
+	});
+}
+function show_form_h(type){
+	var dataString = 'form_type=' + type ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/forms.php",
+		data: dataString,
+		async: false ,
+		cache: false,
+		success: function(result){
+			document.getElementById("invitation").innerHTML = result ;
+		}
+	});
+}
 	$(document).ready(function(){
-	 	
-		$("#challegeprForm").toggle();
-  $("#challengepr").click(function(){
-  	$("#taskForm").hide(1500);
-  	$("#teamForm").hide(3000);
-  	$("#VideoFormpr").hide(1500);
-  	$("#textForm").hide(1500);
-  	$("#notesForm").hide(1500);
-  	$("#manageForm").hide(1500);
-    $("#challegeprForm").toggle(3000);
-  });
-
-  $("#taskForm").toggle();
-  $("#task").click(function(){
-  	$("#challegeprForm").hide(1500);
-  	$("#taskForm").toggle(1500);
-  	$("#teamForm").hide(3000);
-  	$("#VideoFormpr").hide(1500);
-  	$("#textForm").hide(1500);
-  	$("#notesForm").hide(1500);
-  	$("#manageForm").hide(1500);
-  });
-  $("#teamForm").toggle();
-  $("#team").click(function(){
-  	$("#challegeprForm").hide(1500);
-  	$("#taskForm").hide(1500);
-  	$("#notesForm").hide(1500);
-  	$("#VideoFormpr").hide(1500);
-  	$("#textForm").hide(1500);
-  	$("#manageForm").hide(3000);
-  	$("#teamForm").toggle(1500);
-  });
-  $("#notesForm").toggle();
-  $("#notes").click(function(){
-  	$("#challegeprForm").hide(1500);
-  	$("#taskForm").hide(1500);
-  	$("#teamForm").hide(1500);
-  	$("#VideoFormpr").hide(1500);
-  	$("#textForm").hide(1500);
-  	$("#manageForm").hide(1500);
-    $("#notesForm").toggle(3000);
-  });
-  $("#manageForm").toggle();
-  $("#files").click(function(){
-  	$("#challegeprForm").hide(1500);
-  	$("#taskForm").hide(1500);
-  	$("#teamForm").hide(1500);
-  	$("#textForm").hide(1500);
-  	$("#notesForm").hide(1500);
-    $("#VideoFormpr").hide(1500);
-    $("#manageForm").toggle(3000);
-  });
-  $("#VideoFormpr").toggle(1500);
-  $("#videopr").click(function(){
-  	$("#challegeprForm").hide(1500);
-  	$("#taskForm").hide(1500);
-  	$("#teamForm").hide(1500);
-  	$("#textForm").hide(1500);
-  	$("#notesForm").hide(1500);
-  	$("#manageForm").hide(3000);
-    $("#VideoFormpr").toggle(1500);
-  });
-
 //allPanels
 		$("#eye_open").click(function(){
 	 // alert("I am pencil!!! :)");
