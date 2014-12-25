@@ -22,7 +22,7 @@
             | 
           <span class="icon-tree-deciduous" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Notes</span>
             | 
-          <span class="icon-hdd" onclick='show_form(6)' style="cursor: pointer; color:#000;"> Manage Files</span>
+          <span class="icon-hdd" onclick='show_form_pro(6, "<?=ucfirst($projttitle) ?>", "<?=$pro_id ?>")' style="cursor: pointer; color:#000;"> Manage Files</span>
             | 
           <span class="icon-film" onclick='show_form(4)' style="cursor: pointer; color:#000;"> Videos</span>
         </div>

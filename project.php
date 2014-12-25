@@ -158,13 +158,6 @@ $(".nav-btntab").bind("click", function(){
 
         <!-- elFinder initialization (REQUIRED) -->
         <script type="text/javascript" charset="utf-8">
-            $().ready(function() {
-                var temp = "<?php echo $title."_".$pro_id; ?>";
-                var elf = $('#elfinder').elfinder({
-                    url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
-                    // lang: 'ru',             // language (OPTIONAL)
-                }).elfinder('instance');
-            });
       	$(".text").show();
 		$(".editbox").hide();
         </script>     

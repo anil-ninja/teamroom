@@ -210,6 +210,28 @@ function show_form(type){
 		}
 	});
 }
+function show_form_pro(type, title, ID) {
+	var dataString = 'form_type=' + type ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/forms.php",
+		data: dataString,
+		async: false ,
+		cache: false,
+		success: function(result){
+			$("#selecttext").hide();
+			document.getElementById("invitation").innerHTML = result ;
+			elf(title, ID) ;
+		}
+	});
+}
+function elf(title, ID){
+	var temp = title + "_" + ID ;
+    var elf = $('#elfinder').elfinder({
+		url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
+       // lang: 'ru',             // language (OPTIONAL)
+    }).elfinder('instance');
+}
 function show_form_h(type){
 	var dataString = 'form_type=' + type ;
 	$.ajax({
