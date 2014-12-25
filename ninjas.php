@@ -48,8 +48,10 @@ $view = 1 ;
 			?>
 		</div>
 	</div>	
-	<?php include_once 'lib/html_inc_footers.php';
-	include_once 'html_comp/check.php'; ?>	
+	<?php 
+	include_once 'lib/html_inc_footers.php';
+	include_once 'html_comp/check.php';  
+	?>	
 <script>
 var width = window.screen.availWidth;
 if(width < 800) {

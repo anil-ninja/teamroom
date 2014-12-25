@@ -50,11 +50,12 @@
 	else {  
         include_once 'recommended.php'; 
     }
-    
     ?>
     </div>
     </div>
-    <?php } ?>
+    <?php } 
+    include_once 'footer.php';
+    ?>
    <script>
 	$(".text").show();
 	$(".editbox").hide();
