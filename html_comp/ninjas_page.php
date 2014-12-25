@@ -11,7 +11,7 @@
         <span class="icon-magnet" onclick='show_form_h(11)' style="cursor: pointer;color: #000;"> Ideas</span>
     </div>
     <div class='list-group-item'>
-		<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
+		<div id='textForm' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
 		<div id='remindervalue'></div>
     </div>
 </div>

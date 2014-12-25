@@ -219,15 +219,14 @@ function show_form_h(type){
 		async: false ,
 		cache: false,
 		success: function(result){
-			$("#selecttext").hide();
-			document.getElementById("invitation").innerHTML = result ;
+			$("#textForm").hide();
+			document.getElementById("remindervalue").innerHTML = result ;
 		}
 	});
 }
 	$(document).ready(function(){
 //allPanels
-		$("#eye_open").click(function(){
-	 // alert("I am pencil!!! :)");
+$("#eye_open").click(function(){
   	$(".sign").show(1000);
   	$(".deciduous").show(1000);
   	$(".pushpin").show(1000);
@@ -235,7 +234,6 @@ function show_form_h(type){
   	$(".flag").show(1000);
   });
 $("#sign").click(function(){
-	 // alert("I am pencil!!! :)");
   	$(".pushpin").hide(1000);
   	$(".deciduous").hide(1000);
   	$(".videofilm").hide(1000);
@@ -243,7 +241,6 @@ $("#sign").click(function(){
     $(".sign").show(1000);
   });
   $("#deciduous").click(function(){
-	 // alert("I am pencil!!! :)");
   	$(".sign").hide(1000);
   	$(".pushpin").hide(1000);
   	$(".videofilm").hide(1000);
