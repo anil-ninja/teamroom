@@ -411,7 +411,8 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
             </div>
         </div>
         
-        
+    <?php 
+    /*
 
    
                     <div id="panel4" class="tab-pane">
@@ -1687,14 +1688,14 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                 </div>
                             </div>
 
-
                         </div>
                     </div>
                     <div class="divider x-large"></div>
                     <div class="divider large"></div>
 
                 </div>
-
+*/
+?>
          
 
     <script src="scripts/jquery-1.9.1.min.js"></script>
