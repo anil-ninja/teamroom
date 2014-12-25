@@ -1,115 +1,20 @@
 <div class='list-group'>
     <div id='step1' class='list-group-item' >
-        <span id='challenge' style="cursor: pointer;color: #000;">
-        <i class="icon-question-sign"></i>&nbsp; Challenge</span>
-        &nbsp;&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp;&nbsp;
-        <span id='artical' style="cursor: pointer;color: #000;"> <i class="icon-book"></i>  Article</span>
-        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="icon-picture" id='picture' style="cursor: pointer;color: #000;"> Photos</span>
-        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="icon-film" id='video' style="cursor: pointer;color: #000;"> Videos</span>
-        &nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;
-        <span class="icon-magnet" id='idea' style="cursor: pointer;color: #000;"> Ideas</span></div>
+        <span onclick='show_form_h(7)' class="icon-question-sign" style="cursor: pointer;color: #000;"> Challenge</span>
+        |
+        <span onclick='show_form_h(8)' class="icon-book" style="cursor: pointer;color: #000;"> Article</span>
+        |
+        <span class="icon-picture" onclick='show_form_h(9)' style="cursor: pointer;color: #000;"> Photos</span>
+        |
+        <span class="icon-film" onclick='show_form_h(10)' style="cursor: pointer;color: #000;"> Videos</span>
+        | 
+        <span class="icon-magnet" onclick='show_form_h(11)' style="cursor: pointer;color: #000;"> Ideas</span>
+    </div>
     <div class='list-group-item'>
 		<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
 		<div id='remindervalue'></div>
-        <div id='challegeForm'>
-            <form>
-
-                <input type="text" class="input-block-level" id="challange_title" placeholder="Challenge Tilte .."/><br/>
-                <input id="_fileChallenge" type="file" title="Upload Photo" label="Add photos to your post"/>
-                <label></label>
-                <textarea class="input-block-level" placeholder="Description .. " id='challange'></textarea>
-                <br>
-			<?php /*	 <div class="inline-form">
-                    Challenge Open For 
-                    <select class="btn-info btn-xs"  id= "open_time" >	
-                        <option value='0' selected >hour</option>
-                        <?php  /*
-                        $o = 1;
-                        while ($o <= 24) {
-                            echo "<option value='" . $o . "' >" . $o . "</option>";
-                            $o++;
-                        }
-                        ?>
-                    </select>&nbsp;
-                    <select class="btn-info btn-xs" id= "open" >	
-                        <option value='10' selected >minute</option>
-                        <option value='20'  >20</option>
-                        <option value='30' >30</option>
-                        <option value='40'  >40</option>
-                        <option value='50' >50</option>
-                    </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ETA
-                    <select class="btn-info btn-xs" id= "c_eta" >	
-                        <option value='0' selected >Month</option>
-                        <?php
-                        $m = 1;
-                        while ($m <= 11) {
-                            echo "<option value='" . $m . "' >" . $m . "</option>";
-                            $m++;
-                        }
-                        ?>
-                    </select>&nbsp;
-                    <select class="btn-info btn-xs" id= "c_etab" >	
-                        <option value='0' selected >Days</option>
-                        <?php
-                        $d = 1;
-                        while ($d <= 30) {
-                            echo "<option value='" . $d . "' >" . $d . "</option>";
-                            $d++;
-                        }
-                        ?>
-                    </select>&nbsp;
-                    <select class="btn-info btn-xs" id= "c_etac" >	
-                        <option value='0' selected >hours</option>
-                        <?php
-                        $h = 1;
-                        while ($h <= 23) {
-                            echo "<option value='" . $h . "' >" . $h . "</option>";
-                            $h++;
-                        } 
-                        ?>
-                    </select>&nbsp;
-                    <select class="btn-info btn-xs" id= "c_etad" >	
-                        <option value='15' selected >minute</option>
-                        <option value='30' >30</option>
-                        <option value='45'  >45</option>
-                    </select><br/><br/></div><br/> 
-                    */ ?>
-
-                    <input type="hidden" id="Chall_type" value='on' /><br/>
-                    
-                    <input id="submit_ch" class="btn btn-primary" type="button" value="Create Challange"/>
-               </form>
-        </div>
-        <div id='ArticleForm'>
-            <input type='text' class="input-block-level" id="article_title" placeholder="Heading .."/><br>
-            <input type="file" id="_fileArticle">
-            <label></label>
-            <textarea class="input-block-level" id="articlech" placeholder="Article text.."></textarea><br><br>
-            <input type="submit" value="Post" class="btn btn-primary" id="create_article"/>
-        </div>
-        <div id='PictureForm'>
-            <input type='text' class="input-block-level" id="picture_title" placeholder="Picture caption .."/><br>
-            <input type="file" id="_filePhotos">
-            <label></label>
-            <textarea class="input-block-level" id="picturech" placeholder="Description .."></textarea><br><br>
-            <input type="button" value="Post" class="btn btn-primary" id="create_picture"/>
-        </div>
-        <div id='VideoForm'>
-            <input type='text' class="input-block-level" id="video_title" placeholder="Vedio title .."/><br>
-            <input type='text' class="input-block-level" id="videosub" placeholder="Add Youtube URL" /><br>
-            <textarea class="input-block-level" id="videodes" placeholder="Description.."></textarea><br><br>
-            <input type="button" value="Post" class="btn btn-primary" id="create_video"/>
-        </div>
-        <div id='IdeaForm'>
-            <input type='text' class="input-block-level" id="idea_titleA" placeholder="Idea heading .."/><br>
-            <input type="file" id="_fileIdea">
-            <label></label>
-            <textarea class="input-block-level" id="ideaA" placeholder="Description .."></textarea><br><br>
-            <input type="submit" value="Post" class="btn btn-primary" id="create_idea"/>
-        </div><br/>
-    </div></div>
+    </div>
+</div>
 <?php
 $user_id = $_SESSION['user_id'];
 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 

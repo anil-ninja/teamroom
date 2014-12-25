@@ -205,6 +205,7 @@ function show_form(type){
 		async: false ,
 		cache: false,
 		success: function(result){
+			$("#selecttext").hide();
 			document.getElementById("invitation").innerHTML = result ;
 		}
 	});
@@ -218,6 +219,7 @@ function show_form_h(type){
 		async: false ,
 		cache: false,
 		success: function(result){
+			$("#selecttext").hide();
 			document.getElementById("invitation").innerHTML = result ;
 		}
 	});

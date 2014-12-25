@@ -25,8 +25,11 @@
           <span class="icon-hdd" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Manage Files</span>
             | 
           <span class="icon-film" onclick='show_form(6)' style="cursor: pointer; color:#000;"> Videos</span>
-        </div> 
-        <div id='invitation'></div>           
+        </div>
+        <div class='list-group-item'>
+			<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div> 
+			<div id='invitation'></div>
+		</div>           
     </div>
     <?php
 	}

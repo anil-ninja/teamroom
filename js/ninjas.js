@@ -470,60 +470,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$('.tree-toggle').click(function () {
 		$(this).parent().children('ul.tree').toggle(200);
 		});	
-	
-		//to hide all the form
-		$("#challegeForm").toggle();
-  		$("#ArticleForm").toggle();
-  		$("#PictureForm").toggle();
-  		$("#VideoForm").toggle();
-  		$("#IdeaForm").toggle();
-
-  		//selecting perticular one
-  		$("#challenge").click(function(){
-  			$("#ArticleForm").hide(1500);
-  			$("#PictureForm").hide(1500);
-  			$("#selecttext").hide(1500);
-  			$("#IdeaForm").hide(3000);
-  			$("#VideoForm").hide(1500);
-    		$("#challegeForm").show(3000);
-  		});
- 		
-  		$("#artical").click(function(){
-  			$("#challegeForm").hide(1500);
-  			$("#PictureForm").hide(1500);
-  			$("#selecttext").hide(1500);
-  			$("#IdeaForm").hide(3000);
-  			$("#VideoForm").hide(1500);
-    		$("#ArticleForm").show(3000);
-  		});
-  
-		$("#picture").click(function(){
-  			$("#challegeForm").hide(1500);
-  			$("#PictureForm").show(1500);
-  			$("#IdeaForm").hide(3000);
-  			$("#selecttext").hide(1500);
-  			$("#VideoForm").hide(1500);
-    		$("#ArticleForm").hide(3000);
-  		});
-  
-  		$("#video").click(function(){
-  			$("#challegeForm").hide(1500);
-  			$("#PictureForm").hide(1500);
-  			$("#selecttext").hide(1500);
-  			$("#IdeaForm").hide(3000);
-  			$("#VideoForm").show(1500);
-    		$("#ArticleForm").hide(3000);
-  		});
-  
-  		$("#idea").click(function(){
-		  	$("#challegeForm").hide(1500);
-		  	$("#PictureForm").hide(1500);
-		  	$("#selecttext").hide(1500);
-		  	$("#VideoForm").hide(1500);
-		    $("#ArticleForm").hide(3000);
-		    $("#IdeaForm").show(3000);
-  		});
-
 		//allPanels
 $("#allPanels").click(function(){
   	$(".articlesch").show(100);
