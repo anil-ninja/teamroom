@@ -8,12 +8,9 @@
                 </div>
             </div>
             <div id='collapseOne' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>   
-                <div class="panel-body" style="padding: 1px;">
-                    <div class='alert_placeholder'>
-                        
-                    </div>
+                <div class="panel-body" style="padding: 1px; background : rgb(240, 241, 242);">
                     
-                        To : <select class="btn-default btn-xs"  id= "self" >
+                        To : <select class="btn-default btn-xs" style='width: 70%; margin-top: 5px;' id= "self" >
                                 <option value="<?= $user_id ; ?>" selected >Self</option>
                                     <?php
                                       $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
@@ -22,10 +19,10 @@
                                                 echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
                                             }
                                     ?>
-                            </select><br><br>
+                            </select><br/><br/>
                         Time :
-                            <input type="text" id ="datepick"  style='width: 150px;' placeholder='Reminder Time & Date'><br><br>
-                            <textarea row='3' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/>
+                            <input type="text" id ="datepick" style='width: 72%;' placeholder='Reminder Time & Date'><br/><br/>
+                            <textarea style='width: 92%;' class="form-control" id="reminder" placeholder="Type your message here"></textarea><br/><br/>
                             <input type="submit" class="btn btn-primary btn-sm pull-right" id = "remind" value = "Set"><br/>  
                 </div>
             </div>
