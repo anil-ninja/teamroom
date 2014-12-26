@@ -162,8 +162,8 @@ $(".nav-btntab").bind("click", function(){
 		$(".editbox").hide();
         </script>     
 <?php
-//include_once 'html_comp/login_signup_modal.php';
- include_once 'html_comp/insert_time.php';
+    include_once 'html_comp/login_signup_modal.php';
+    include_once 'html_comp/insert_time.php';
 mysqli_close($db_handle);
 ?>
         </body>
