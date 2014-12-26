@@ -110,11 +110,8 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-
-	$(document).ready(function(){
-		
-		$("#create_video").click(function(){
-      		$("#create_video").attr('disabled','disabled');
+	
+	function create_video(){
 			var challenge = $("#videosub").val() ;
 			var video_title = convertSpecialChar($("#video_title").val()) ;
 			var videodes = convertSpecialChar($("#videodes").val()) ;
@@ -128,17 +125,14 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			if (challenge == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
-				$("#create_video").removeAttr('disabled');
 				return false ;
 			}
 			else if (video_title == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
-				$("#create_video").removeAttr('disabled');
 				return false ;
 			}
 			else if (videodes == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
-				$("#create_video").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -158,22 +152,18 @@ function bootstrap_alert(elem, message, timeout,type) {
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-							$("#create_video").removeAttr('disabled');
 							}
 					}
 				  });
 				}
-				$("#create_video").removeAttr('disabled');	
 			}
 			else {
 				bootstrap_alert(".alert_placeholder", "Add You-Tube URL Only", 5000,"alert-warning");
-				$("#create_video").removeAttr('disabled');
 				return false ;
 				}
-		});
+		}
 
-		$("#create_videopr").click(function(){
-      		$("#create_videopr").attr('disabled','disabled');
+		function create_videopr(){
 			var challenge = $("#videoprjt").val() ;
 			var video_title = convertSpecialChar($("#video_titlepr").val()) ;
 			var videodes = convertSpecialChar($("#videodespr").val()) ;
@@ -187,17 +177,14 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			if (challenge == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
-				$("#create_videopr").removeAttr('disabled');
 				return false ;
 			}
 			else if (video_title == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
-				$("#create_videopr").removeAttr('disabled');
 				return false ;
 			}
 			else if (videodes == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
-				$("#create_videopr").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -217,24 +204,20 @@ function bootstrap_alert(elem, message, timeout,type) {
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-							$("#create_videopr").removeAttr('disabled');
 							}
 					}
 				  });
 				}
-				$("#create_videopr").removeAttr('disabled');
 			}
 			else {
 				bootstrap_alert(".alert_placeholder", "Add You-Tube URL Only", 5000,"alert-warning");
-				$("#create_videopr").removeAttr('disabled');
 				return false ;
 				}		
-		});
+		}
 	function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}
-		$("#submit_ch").click(function(){
-      		$("#submit_ch").attr('disabled','disabled');
+		function submit_ch(){
 			var challenge = convertSpecialChar($("#challange").val()) ;
 			var domain = url_domain(challenge);
 			//alert(domain);
@@ -271,18 +254,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
-				$("#submit_ch").removeAttr('disabled');
 			}
 			else if(challenge_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-				$("#submit_ch").removeAttr('disabled');
 			}
 			else {
 					//file upload
 				var _filech = document.getElementById('_fileChallenge');
 				uploadFile(_filech,"challengePic",String(dataString),"ajax/submit_chalange.php");
 			}
-		});
+		}
     
     function uploadFile(_file,typeOfPic,data1,url1){
 		var _progress = document.getElementById('_progress');
@@ -290,13 +271,13 @@ function bootstrap_alert(elem, message, timeout,type) {
 		if(_file.files.length === 0){
 			if(typeOfPic == "profilepic") {
 				bootstrap_alert(".alert_placeholder", "Please upload a pic", 5000,"alert-warning");
-				}
-				  else{
-						submitCreateArticle("",data1,url1);
-					}
-				return false ;
-		} else {
-
+			}
+			 else{
+				submitCreateArticle("",data1,url1);
+			}
+			return false ;
+		} 
+		else {
 		var data = new FormData();
 		data.append('file', _file.files[0]);
 
@@ -326,7 +307,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 	}
 	function submitCreateArticle(ilink,data,url){
-		//alert(ilink) ;
 		if (ilink != "") {
 		var res = ilink.split(".");
 		//alert (res['1']);
@@ -362,18 +342,15 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 			}); 
 	} ;
-		$("#create_article").click(function(){
-      		$("#create_article").attr('disabled','disabled');
+		function create_article(){
 			var article = convertSpecialChar($("#articlech").val()) ;
 			var article_title = convertSpecialChar($("#article_title").val()) ;
 			if(article==''){
 				bootstrap_alert(".alert_placeholder", "Article can not be empty", 5000,"alert-warning");
-				$("#create_article").removeAttr('disabled');
 				return false;
 			}
 			else if(article_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-				$("#create_article").removeAttr('disabled');
 				return false;
 			} else {
 			// Returns successful data submission message when the entered information is stored in database.
@@ -387,7 +364,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			uploadFile(_file,"articlePic",String(dataString),"ajax/submit_article.php");
 		
 			}
-		});
+		}
 		
 		$("#upload_image").click(function(){
       		var dataString = 'case=5' ;
@@ -504,8 +481,7 @@ $("#pencil").click(function(){
     getnextchal('pict', 7) ;
   });
 	
-		$("#create_idea").click(function(){
-      		$("#create_idea").attr('disabled','disabled');
+		function create_idea(){
 			var idea = convertSpecialChar($("#ideaA").val()) ;
 			var idea_title = convertSpecialChar($("#idea_titleA").val()) ;		
 			// Returns successful data submission message when the entered information is stored in database.
@@ -514,21 +490,18 @@ $("#pencil").click(function(){
 			//alert(dataString);
 			if(idea == ''){
 				bootstrap_alert(".alert_placeholder", "Idea can not be empty", 5000,"alert-warning");
-				$("#create_idea").removeAttr('disabled');
 			}
 			else if(idea_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-				$("#create_idea").removeAttr('disabled');
 			}
 			else { 
 				//file upload
 			var _file = document.getElementById('_fileIdea');
 			uploadFile(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
 			}
-		});
+		};
 	
-		$("#create_picture").click(function(){
-      		$("#create_picture").attr('disabled','disabled');
+		function create_picture(){
 			var picturech = convertSpecialChar($("#picturech").val()) ;
 			var picture_title = convertSpecialChar($("#picture_title").val()) ;			
 			// Returns successful data submission message when the entered information is stored in database.
@@ -537,34 +510,29 @@ $("#pencil").click(function(){
 			//alert(dataString);
 			if(picturech == ''){
 				bootstrap_alert(".alert_placeholder", "Details can not be empty", 5000,"alert-warning");
-				$("#create_picture").removeAttr('disabled');
 			}
 			else if(picture_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-				$("#create_picture").removeAttr('disabled');
 			}
 			else {
 				//file upload
 				var _file = document.getElementById('_filePhotos');
 				if(_file.files.length === 0){
 					bootstrap_alert(".alert_placeholder", "Please upload a Photo", 5000,"alert-warning");
-					$("#create_picture").removeAttr('disabled');
 					}
 					else {
 						uploadFile(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
 						}
 			}
-		});
+		};
     
-		$("#create_task").click(function(){
-			$("#create_task").attr('disabled','disabled');
+		function create_task(){
 			var team = $("#teamtask").val() ;
 			var users = $("#userstask").val() ;
 			var email = $("#emailtask").val() ;
 			if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team != '0' && users !='0' && email =="")
 			||(team != '0' && users =='0' && email !="")||(team == '0' && users !='0' && email !="")) {
 				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
-				$("#create_task").removeAttr('disabled');
 				return false ;
 			}
 			if (email != "") {
@@ -589,12 +557,10 @@ $("#pencil").click(function(){
 							//alert(dataString);
 							if(title==''){
 								bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-								$("#create_task").removeAttr('disabled');
 								return false ;
 							}
 							else if(taskdetails==''){
 								bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
-								$("#create_task").removeAttr('disabled');
 								return false ;
 							}
 							else {
@@ -605,14 +571,12 @@ $("#pencil").click(function(){
 					}
 					else if (result == 'same') {
 							bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
-							$("#create_task").removeAttr('disabled');
 								return false ;
 						}
 						else {
 							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div><br/><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' id='invite'  value='Invite Him/Her' /><br/>";
 							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
 							$("#invitation").show().html(modal);
-							$("#create_task").removeAttr('disabled');
 							return false ;
 							}
 						}
@@ -632,12 +596,10 @@ $("#pencil").click(function(){
 				//alert(dataString);
 				if(title==''){
 					bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-					$("#create_task").removeAttr('disabled');
 								return false ;
 				}
 				else if(taskdetails==''){
 					bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
-					$("#create_task").removeAttr('disabled');
 								return false ;
 				}
 				else {
@@ -646,20 +608,17 @@ $("#pencil").click(function(){
 					uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
 				}
 			}			
-		});
+		}
 		
-		$("#create_team").click(function(){
-			$("#create_team").attr('disabled','disabled');
+		function create_team(){
 			var team = $("#team_name_A").val() ;
 			var email = $("#email_team").val() ;
 			if(team =="") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Team Name", 5000,"alert-warning");
-				$("#create_team").removeAttr('disabled');
 								return false ;
 			}
 			else if (email == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Email_id", 5000,"alert-warning");
-				$("#create_team").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -692,7 +651,6 @@ $("#pencil").click(function(){
 						}
 						else if (result == 'same') {
 							bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
-							$("#create_team").removeAttr('disabled');
 							return false ;
 						}
 						else {
@@ -706,14 +664,12 @@ $("#pencil").click(function(){
 										"<input type='submit' class\='btn btn-success' onclick ='invitememberpr()' value='Invite Him/Her' /><br/>";
 							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
 							$("#invitation").show().html(modal);
-							$("#create_team").removeAttr('disabled');
 							return false ;
 							}
 						}
 				  });
 				}	
-		});
-	});		
+		}	
 	function invitememberpr(){
 			var fname = $("#fnameteam").val() ;
 			var sname = $("#snameteam").val() ;
