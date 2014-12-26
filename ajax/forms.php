@@ -10,7 +10,7 @@ if($_POST['form_type']){
 		case 1:
 			 echo "<input type='text' class='input-block-level' id='challange_title' placeholder='Challange Tilte ..'/><br>
 					<input type='file' id='_fileChallengepr' style ='width: auto;'><br/>
-					<textarea rows='3' class='input-block-level' id='challangepr' placeholder='Description .. '></textarea><br>
+					<textarea class='input-block-level' id='challangepr' placeholder='Description .. '></textarea><br>
 					<label>Challenge Type : </label> 
 						<select class='btn btn-default' id='type' >
 						  <option value='1' >Public</option>

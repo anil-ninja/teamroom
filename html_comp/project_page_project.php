@@ -258,11 +258,11 @@ $display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class
 			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
 			if(substr($stmt_task, 0, 4) == '<img') {
 $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
 					}
 			if(substr($stmt_task, 0, 2) == '<a') {
 $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_file_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
 					}
 			if(substr($stmt_task, 0, 3) == '<if') {
 $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_video_".$id_task."' >".$cha."</div>

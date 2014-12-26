@@ -37,11 +37,11 @@
                             .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
                  if($time < 6000) { echo "<br/>
                             online 
-                            <span class='badge' style ='color: #4EC67F ;background-color: #4EC67F;'>.</span>" ; }           
+                            <span class='badge' style ='color: #4EC67F ;background-color: #4EC67F;padding: 0px 0px 0px 10px;'>.</span>" ; }           
                     else { 
                         echo "<br/>
                                 offline 
-                                <span class='badge' style ='color: #6F746F ;background-color: #6F746F;'>.</span>" ; }        
+                                <span class='badge' style ='color: #6F746F ;background-color: #6F746F;padding: 0px 0px 0px 10px;'>.</span>" ; }        
                  echo "     </div>
                         </a>
                     </div>";
