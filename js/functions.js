@@ -298,7 +298,6 @@ function set_remind() {
 		}
 	 else {
 	var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
-	alert(dataString) ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/submit_reminder.php",
