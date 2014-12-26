@@ -8,7 +8,7 @@ if(!isset($_SESSION['user_id'])) {
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
+    <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
         <title>All notifications</title>
@@ -19,33 +19,35 @@ if(!isset($_SESSION['user_id'])) {
     </head>
     <body>
     	<?php include_once 'html_comp/navbar_homepage.php'; ?>
-    <div class='alert_placeholder'></div>
-    <div class=" media-body " style="padding-top: 50px;">
-		<div class="col-md-1"></div>
-        <div class="col-md-2">
+        <div class="divider large visible-desktop"></div>
+        <div class="divider hidden-desktop"></div>
+        <div class='alert_placeholder'></div>
+        <div class="row-fluid">
+            <div class="span2 offset1">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
-        </div>       
-         <div class="col-md-6">
-            <div class="panel-primary" id='panel-cont'>
-                <p id='home-ch'></p>
-                <p id='home'></p>
-                <div class="list-group-item pull-center" style="margin-top: 20px;"><h5> <strong> All Notices For You</strong></h5>
-               <div id="allnotices" class= "list-group"></div></div>
+            </div>       
+            <div class="span6">
+                <div class="panel-primary" id='panel-cont'>
+                    <p id='home-ch'></p>
+                    <p id='home'></p>
+                    <div class="list-group-item pull-center" style="margin-top: 20px;"><h5> <strong> All Notices For You</strong></h5>
+                        <div id="allnotices" class= "list-group" style="margin-left: 0px; margin-right: 0px;">
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        <div class="col-md-2">
-            <?php include_once 'html_comp/right_panel_ninjas.php'  ;
-                 include_once 'html_comp/friends.php' ; ?>
+            <div class="span2">
+                <?php include_once 'html_comp/right_panel_ninjas.php'  ;
+                     include_once 'html_comp/friends.php' ; ?>
             </div>
         </div>
-    </div>
-    <?php include_once 'lib/html_inc_footers.php'; ?>
-    <script>
-		getallnotices();	
-    </script>
+        
+        <?php include_once 'lib/html_inc_footers.php'; ?>
         <script>
-        getallreminders() ;
-    </script>
-    
+    		getallnotices();	
+        </script>
+        <script>
+            getallreminders() ;
+        </script>     
     </body>
 </html>
