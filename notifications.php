@@ -19,8 +19,7 @@ if(!isset($_SESSION['user_id'])) {
     </head>
     <body>
     	<?php include_once 'html_comp/navbar_homepage.php'; ?>
-        <div class="divider large visible-desktop"></div>
-        <div class="divider hidden-desktop"></div>
+        
         <div class='alert_placeholder'></div>
         <div class="row-fluid">
             <div class="span2 offset1">

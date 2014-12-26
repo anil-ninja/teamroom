@@ -136,56 +136,59 @@
     </div>
 </div>
 <!-- sub nav bar-->
+
+<div class="divider large visible-desktop"></div>
+    <div class="divider  hidden-desktop"></div>
 <?php
-if (isset($_SESSION['user_id'])) {
-if ($requestedPage == "project.php") {
-    
- echo " 
-        <div class='navbar-subnav subnavbar-fixed-top'> 
-        <div class='navbar-inner-subnav'>
-            <div class='container' >
-                <div class='span8 offset2'>
-                <ul id='step12' class='inline' >
-                    <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
-					<li><button class='btn-link' style='color:#fff;' id='filmprj' ><span class='icon-film'></span> Videos</button></p></li>
-                </ul>
+    if (isset($_SESSION['user_id'])) {
+        if ($requestedPage == "project.php") {   
+            echo " 
+                    <div class='navbar-subnav subnavbar-fixed-top'> 
+                        <div class='navbar-inner-subnav'>
+                            <div class='container' >
+                                <div class='span8 offset2'>
+                                <ul id='step12' class='inline' >
+                                    <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
+                                    <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
+                                    <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
+                					<li><button class='btn-link' style='color:#fff;' id='filmprj' ><span class='icon-film'></span> Videos</button></p></li>
+                                </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>" ;
+        }
+        else if ($requestedPage == "ninjas.php"){
+            echo "     
+            <div class='navbar-subnav subnavbar-fixed-top'>
+                <div class='navbar-inner-subnav' >
+                    <div class='container'>
+                        <div class='span8 offset2'>
+                            <ul id='step13' class='inline' >
+                                <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
+                                <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
+                                <li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>
+                                <li><button class='btn-link' style='color:#fff;' id='tree' ><span class='icon-magnet'></span> Ideas</button></li>
+                                <li><button class='btn-link' style='color:#fff;' id='filmnin' ><span class='icon-film'></span> Videos</button></li>
+                                <li><button class='btn-link' style='color:#fff;' id='picch' ><span class='icon-picture'></span> Pics</button></li>
+                             </ul>
+                        </div>
+                    </div>
                 </div>
-            </div>
-         
-        </div>
-        </div>" ;
-}
-    else if ($requestedPage == "ninjas.php"){
-        echo "     
-        <div class='navbar-subnav subnavbar-fixed-top'>
-        <div class='navbar-inner-subnav' >
-            <div class='container'>
-                <div class='span8 offset2'>
-                <ul id='step13' class='inline' >
-                    <li><button class='btn-link' style='color:#fff;' id='allPanels' ><span class='icon-eye-open'></span> All</button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='pencil' ><span class='icon-question-sign'></span> Open challenges</button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='tree' ><span class='icon-magnet'></span> Ideas</button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='filmnin' ><span class='icon-film'></span> Videos</button></li>
-                    <li><button class='btn-link' style='color:#fff;' id='picch' ><span class='icon-picture'></span> Pics</button></li>
-                 </ul>
-                 </div>
-            </div>
-         </div>
-        </div>" ;
-}
-else {
-    echo "     
-        <div class='nav navbar-inverse ' >
-            <div class='col-md-offset-3 col-md-9 col-lg-9'>
-                <div class='list-inline' style='background:#3BD78C;'>
-                </div>
-            </div>
-        </div> " ;
+            </div>";
+        }      
+        else {
+            /*
+            echo "     
+                <div class='nav navbar-inverse ' >
+                    <div class='col-md-offset-3 col-md-9 col-lg-9'>
+                        <div class='list-inline' style='background:#3BD78C;'>
+                        </div>
+                    </div>
+                </div> " ;
+            */
+        }
     }
-}
 ?>
 </div>
   <script>

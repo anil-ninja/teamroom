@@ -18,7 +18,7 @@ include_once 'functions/delete_comment.php';
 
     <div class='alert_placeholder'></div>
     <div class="">
-        <div class="row-fluid" style="margin-top:60px;">         
+        <div class="row-fluid">         
             <div id='tab4' class="span2 offset1">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>  

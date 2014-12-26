@@ -36,10 +36,10 @@
     </head>
     <body>
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
-        <div>
-            <div class="row-fluid" style="padding-top: 35px;">
-                <div class="span1"></div>
-                <div class="span7">
+        
+        <div class="row-fluid">
+            <div class="span1"></div>
+            <div class="span7">
                 <?php                
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
@@ -75,17 +75,17 @@
                     echo "      </div>
                             </div>"
                 ?>  
-                        </div>
                     </div>
                 </div>
-                <div class="span3">
+            </div>
+            <div class="span3">
                 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll" style="margin: 20px -15px;">
                     <ul class="nav nav-tabs">
                         <li class="active" >
                             <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Explore More </b></span></a>
                         </li>
                     </ul>
-                    <div id='demo12' class="tab-content" >
+                    <div class="tab-content" >
                         <div role="tabpanel" class="row tab-pane active">
                 <?php 
                     $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                 </div>
-               
+           
                 <div class='tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll' style='margin: 20px -15px;'>
                     <ul class='nav nav-tabs'>
                         <li class='active' >
@@ -152,32 +152,31 @@
                                         </p><br>
                                     </div>
                                 </a>
-    					   </div>";
+    					    </div>";
                     }
                     echo "
                         </div>";
                 ?>
                     </div>
                 </div>
-
-            <?php 
-				if(isset($_SESSION['user_id'])) {
-					include_once 'html_comp/friends.php';
-					}
-			?>
-        </div>
-    
+            </div>
+        <?php 
+			if(isset($_SESSION['user_id'])) {
+				include_once 'html_comp/friends.php';
+				}
+		?>
+        
       <?php include_once 'html_comp/signup.php' ; 
          include_once 'lib/html_inc_footers.php'; 
          include_once 'html_comp/check.php';
          include_once 'html_comp/login_signup_modal.php'; ?>
         <script>
-$(".text").show();
-$(".editbox").hide();
-$(".editbox").mouseup(function(){
-return false
-});
-<?php include_once 'html_comp/insert_time.php'; ?>
-</script>
+            $(".text").show();
+            $(".editbox").hide();
+            $(".editbox").mouseup(function(){
+            return false
+            });
+            <?php include_once 'html_comp/insert_time.php'; ?>
+        </script>
     </body>
 </html>
