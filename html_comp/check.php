@@ -9,7 +9,7 @@ if(isset($_SESSION['user_id'])) {
 	if($url == "profile.php") {
 		$newusername = $_GET['username'];
 		if($username == $newusername) {
-			$check2 = mysqli_query($db_handle, "SELECT id FROM user_access_records WHERE user_id = '$user_id' and page_url like '%$actual_link%' ;" ) ;
+			$check2 = mysqli_query($db_handle, "SELECT id FROM user_access_records WHERE user_id = '$user_id' and page_url = '$actual_link' ;" ) ;
 			if (mysqli_num_rows($check2) == 0) {
 				?>
 				<script type="text/javascript">profile_intro();</script>
