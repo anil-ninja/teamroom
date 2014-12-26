@@ -132,43 +132,55 @@
     </div>
 </div>
 </div></div></div>
-<?php 
-/*
-<!-- Modal -->
-            <div class="modal fade" id="changeremindervalues" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span>
-                                <span class="sr-only">Close</span>
-                            </button>
-                            <h4 class="modal-title" id="myModalLabel"><font size="5" >Change Reminder</font></h4>
-                        </div><div class='alert_placeholder'></div>
-                        <div class="modal-body">
-							To : <select class="btn-default btn-xs"  id= "selfremind" >
-							<option value="<?= $user_id ; ?>" selected >Self</option>
-				<?php
-                  $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
-														a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id') as b where a.user_id=b.user_id;");
-                         while ($friendsrow = mysqli_fetch_array($friends)) {
-                            echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
-                        }
-                        ?> 
-                        </select> &nbsp;&nbsp;&nbsp;&nbsp; Time : 
-                                <input type="text" id ="datepicker" placeholder='Reminder Time & Date'>
-                                 <input type="submit" class="btn btn-primary btn-sm pull-right" id = "changeremindervalue" value = "Set"><br/><br/>
-                        		<textarea row='3' class="form-control" id="newremindervalue" placeholder="Type your message here"></textarea><br/>
-                              	<input type="hidden" id ="datepickervalue" value="0">
-                              	<input type="hidden" id ="valueuserid" value="0">
-                           
+
+<!--Change reminder Modal starts here -->
+
+<div id="changeremindervalues" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span6 offset2">
+
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-pencil"></i>&nbsp;<span>Change Reminder</span></a></li>
+                    <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active">
+                        <div class="row-fluid">
+                            <h4><i class="icon-user"></i>&nbsp;&nbsp;Change Reminder </h4>
+                            <br>
+                            To: 
+                            <select id= "selfremind" >    
+                                <option value="<?= $user_id ; ?>" selected >Self</option>
+                            <?php
+                                $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
+                                                        a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id') as b where a.user_id=b.user_id;");
+                                while ($friendsrow = mysqli_fetch_array($friends)) {
+                                    echo "<option value='" . $friendsrow['user_id'] . "' >" . $friendsrow['first_name'] . "</option>";
+                                }
+                            ?> 
+                            </select>
+                            &nbsp; &nbsp;
+
+                            Set Time: 
+                            <input type="text" id ="datepicker" placeholder='Reminder Time & Date' />
+                            <input type="hidden" id ="datepickervalue" value="0" />
+                            <input type="hidden" id ="valueuserid" value="0" />
+                            <label>Enter your message</label>
+                            <textarea row='3' class="input-block-level" id="newremindervalue" placeholder="Type your message here"></textarea>
+                                
+                            <br/><br/>
+                            <a href="#" class=" btn btn-primary" id = "changeremindervalue">Update&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--end modle-->
-*/
-            ?>
+        </div>
+    </div>
+</div>   
+<!--Change reminder Modal ends here -->
+
+
 <script type="text/javascript">
 	$(function(){
 		$('#datepick').appendDtpicker();
