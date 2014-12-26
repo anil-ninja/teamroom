@@ -7,7 +7,6 @@ function bootstrap_alert(elem, message, timeout,type) {
   }
 };
 
-	$(document).ready(function(){	
 	var $table = $('table.scroll'),
     $bodyCells = $table.find('tbody tr:first').children(),
     colWidth;
@@ -106,8 +105,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}		
-		$("#create_challange_pb_pr").click(function(){
-			$("#create_challange_pb_pr").attr('disabled','disabled');
+		function create_challange_pb_pr(){
 			//alert("i am geting fucked");
 			var challenge = convertSpecialChar($("#challangepr").val()) ;
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
@@ -126,12 +124,10 @@ function convertSpecialChar(str){
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
-				$("#create_challange_pb_pr").removeAttr('disabled');
 				return false ;
 			}
 			else if(challenge_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-				$("#create_challange_pb_pr").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -140,10 +136,9 @@ function convertSpecialChar(str){
 			//alert(uploadFile(_file,"articlePic"));
 			uploadFile(_file,"projectchalPic",String(dataString),"ajax/submit_chalange_project.php");
 			}
-		});
+		}
 	
-		$("#create_notes").click(function(){
-			$("#create_notes").attr('disabled','disabled');
+		function create_notes(){
 			var notes = convertSpecialChar($("#notestmt").val()) ;
 			var notes_title = convertSpecialChar($("#notes_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
@@ -151,7 +146,6 @@ function convertSpecialChar(str){
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
-				$("#create_notes").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -160,7 +154,7 @@ function convertSpecialChar(str){
 			//alert(uploadFile(_file,"articlePic"));
 			uploadFile(_file,"projectnotesPic",String(dataString),"ajax/submit_notes.php");
 			}
-		});
+		}
 		
 		$("#answerch").click(function(){
 			$("#answerch").attr('disabled','disabled');
@@ -182,7 +176,6 @@ function convertSpecialChar(str){
 				uploadFile(_file,"answerPic",String(dataString),"ajax/submit_answer.php");
 			}
 		});
-	});
 	$(document).ready(function(){
 		     $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);

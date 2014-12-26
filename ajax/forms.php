@@ -16,7 +16,7 @@ if($_POST['form_type']){
 						  <option value='1' >Public</option>
 						  <option value='2' selected >Private</option>
 						</select><br/><br/>
-					<input type='button' value='Create Challenge' class='btn btn-success' id='create_challange_pb_pr'/>" ;
+					<input type='button' value='Create Challenge' class='btn btn-success' onclick='create_challange_pb_pr()'/>" ;
 			/* <div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                         <option value='0' selected >hour</option>
@@ -109,7 +109,7 @@ if($_POST['form_type']){
 							  <input type='text' class='input-block-level' id='title' placeholder='Tilte ..'/><br/>
 						      <input type='file' id='_fileTask' style ='width: auto;'><label></label>
 							  <textarea rows='3' class='input-block-level' id='taskdetails' placeholder='Description .. '></textarea>
-							  <br/><input type='button' value='Assign' class='btn btn-success' id='create_task'/>" ;
+							  <br/><input type='button' value='Assign' class='btn btn-success' onclick='create_task()'/>" ;
 					 /* <div class='inline-form'>
                           ETA :
                           <select class='btn btn-default btn-xs' id = 'c_eta' >
@@ -154,7 +154,7 @@ if($_POST['form_type']){
 			if(mysqli_num_rows($member_project) != 0) {
 				echo "<input type='text' class='input-block-level' id='team_name_A' placeholder='Team name ..'><br/>                  
 					  <input type='email' class='input-block-level' id='email_team' placeholder='Enter First team member Email'><br/>
-                      <input type='submit' class='btn btn-success' id='create_team' value='Create New Team'>" ;
+                      <input type='submit' class='btn btn-success' onclick='create_team()' value='Create New Team'>" ;
 			} 
 			else echo "Please Join Project First";
 			exit ;
@@ -165,7 +165,7 @@ if($_POST['form_type']){
 				echo "<input type='text' class='input-block-level' id='video_titlepr' placeholder='Vedio title ..'/><br>
 					  <input type='text' class='input-block-level' id='videoprjt' placeholder='Add Youtube URL'><br>
 					  <textarea rows='3' class='input-block-level' id='videodespr' placeholder='Description ..'></textarea><br>
-					  <input type='button' value='Post' class='btn btn-success' id='create_videopr'/>" ;
+					  <input type='button' value='Post' class='btn btn-success' onclick='create_videopr()'/>" ;
 			} 
 			else echo "Please Join Project First";
 			exit ;
@@ -176,7 +176,7 @@ if($_POST['form_type']){
 				echo "<input type='text' class='input-block-level' id='notes_title' placeholder='Heading ..'/><br>
 					  <input type='file' id='_fileNotes' ><br/><label></label>
 					  <textarea rows='3' class='input-block-level' id='notestmt' placeholder='Notes about Project or Importent Things about Project'></textarea><br>
-					  <input type='button' value='Post' class='btn btn-success' id='create_notes'/>" ;
+					  <input type='button' value='Post' class='btn btn-success' onclick='create_notes()'/>" ;
 			} 
 			else echo "Please Join Project First";
 			exit ;
@@ -195,7 +195,7 @@ if($_POST['form_type']){
                   <input id='_fileChallenge' type='file' title='Upload Photo' label='Add photos to your post'/><label></label>
                   <textarea class='input-block-level' placeholder='Description .. ' id='challange'></textarea><br>
                   <input type='hidden' id='Chall_type' value='on' /><br/>                    
-                  <input id='submit_ch' class='btn btn-primary' type='button' value='Create Challange'/>" ;
+                  <input onclick='submit_ch()' class='btn btn-primary' type='button' value='Create Challange'/>" ;
             /*	 <div class="inline-form">
                     Challenge Open For 
                     <select class="btn-info btn-xs"  id= "open_time" >	
@@ -258,7 +258,7 @@ if($_POST['form_type']){
 			echo "<input type='text' class='input-block-level' id='article_title' placeholder='Heading ..'/><br>
 				  <input type='file' id='_fileArticle'><label></label>
 				  <textarea class='input-block-level' id='articlech' placeholder='Article text..'></textarea><br>
-				  <input type='submit' value='Post' class='btn btn-primary' id='create_article'/>" ;
+				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_article()'/>" ;
 			exit ;
 			break ;
 			
@@ -266,7 +266,7 @@ if($_POST['form_type']){
 			echo "<input type='text' class='input-block-level' id='picture_title' placeholder='Picture caption ..'/><br>
 				  <input type='file' id='_filePhotos'><label></label>
 				  <textarea class='input-block-level' id='picturech' placeholder='Description ..'></textarea><br>
-				  <input type='button' value='Post' class='btn btn-primary' id='create_picture'/>" ;
+				  <input type='button' value='Post' class='btn btn-primary' onclick='create_picture()'/>" ;
 			exit ;
 			break ;
 			
@@ -274,7 +274,7 @@ if($_POST['form_type']){
 			echo "<input type='text' class='input-block-level' id='video_title' placeholder='Vedio title ..'/><br>
 				  <input type='text' class='input-block-level' id='videosub' placeholder='Add Youtube URL' /><br>
 				  <textarea class='input-block-level' id='videodes' placeholder='Description..'></textarea><br>
-				  <input type='button' value='Post' class='btn btn-primary' id='create_video'/>" ;
+				  <input type='button' value='Post' class='btn btn-primary' onclick='create_video()'/>" ;
 			exit ;
 			break ;
 			
@@ -282,7 +282,7 @@ if($_POST['form_type']){
 			echo "<input type='text' class='input-block-level' id='idea_titleA' placeholder='Idea heading ..'/><br>
 				  <input type='file' id='_fileIdea'><label></label>
 				  <textarea class='input-block-level' id='ideaA' placeholder='Description ..'></textarea><br>
-				  <input type='submit' value='Post' class='btn btn-primary' id='create_idea'/>" ;
+				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_idea()'/>" ;
 			exit ;
 			break ;
 	}

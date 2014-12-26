@@ -1,4 +1,5 @@
 <div class='list-group'>
+	<div class='alert_placeholder'></div>
     <div id='step1' class='list-group-item' >
         <span onclick='show_form_h(7)' class="icon-question-sign" style="cursor: pointer;color: #000;"> Challenge</span>
         |
