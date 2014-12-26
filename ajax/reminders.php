@@ -21,7 +21,7 @@ if ($_POST['reminder']) {
 							}
 						$notice .= "<p style = 'font-size:11px'><strong>To : ".$rname."</strong>
 									<a onclick='editreminder(\"".$reminderid."\",\"".$ruser_id."\")' style = 'cursor:pointer;'>
-									<i class = 'glyphicon glyphicon-pencil pull-right '></i></a></p>
+									<i class = 'icon-pencil pull-right '></i></a></p>
 									<p style = 'font-size:11px'>
 									".$reminders. "
 									</p><br/>";
