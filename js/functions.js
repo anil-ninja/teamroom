@@ -284,3 +284,39 @@ function dislike(Id, type) {
 function replaceAll(find, replace, str) {
 	return str.replace(new RegExp(find, 'g'), replace);
 }
+function set_remind() {
+	var reminder = convertSpecialChar($("#reminder_message").val()) ;
+	var self = $("#self_remind").val() ;
+	var eventtime = $("#datepick").val() ;
+	if(reminder==''){
+		bootstrap_alert(".alert_placeholder", "Reminder can not be empty", 5000,"alert-warning");
+		return false;
+	}
+	else if (eventtime == "") {
+		bootstrap_alert(".alert_placeholder", "Please Select Date and Time ", 5000,"alert-warning");
+		return false;
+		}
+	 else {
+	var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
+	alert(dataString) ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/submit_reminder.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			if(result=='Reminder Set succesfully!'){
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				$("#reminder_message").val("") ;
+				$("#self_remind").val("") ;
+				$("#datepick").val("") ;
+			location.reload();
+			}
+			else {
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+				return false;
+				}
+		}
+	 });
+	}	
+}

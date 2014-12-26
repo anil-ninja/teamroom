@@ -394,48 +394,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var _file = document.getElementById('_fileprofilepic');
 			uploadFile(_file,"profilepic",String(dataString),"ajax/change_profile.php");
 		});
-		
-		$("#remind").click(function(){
-			$("#remind").attr('disabled','disabled');
-			var reminder = convertSpecialChar($("#reminder").val()) ;
-			var self = $("#self").val() ;
-			var eventtime = $("#datepick").val() ;
-			if(reminder==''){
-				bootstrap_alert(".alert_placeholder", "Reminder can not be empty", 5000,"alert-warning");
-				$("#remind").removeAttr('disabled');
-				return false;
-			}
-			else if (eventtime == "") {
-				bootstrap_alert(".alert_placeholder", "Please Select Date and Time ", 5000,"alert-warning");
-				$("#remind").removeAttr('disabled');
-				return false;
-				}
-			 else {
-			var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/submit_reminder.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					if(result=='Reminder Set succesfully!'){
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						$("#reminder").val("") ;
-						$("#self").val("") ;
-						$("#datepick").val("") ;
-					location.reload();
-					}
-					else {
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						$("#remind").removeAttr('disabled');
-						return false;
-						}
-				}
-			 });
-			}	
-			$("#remind").removeAttr('disabled');
-				return false;
-		});
 			
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
