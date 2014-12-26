@@ -110,8 +110,8 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-	
-	function create_video(){
+		
+		function create_video(){
 			var challenge = $("#videosub").val() ;
 			var video_title = convertSpecialChar($("#video_title").val()) ;
 			var videodes = convertSpecialChar($("#videodes").val()) ;
@@ -158,7 +158,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 			}
 			else {
-				bootstrap_alert(".alert_placeholder", "Add You-Tube URL Only", 5000,"alert-warning");
+				bootstrap_alert(".alert_placeholder", "Add You-Tube URL Only", 5000,"alert-warning") ;
 				return false ;
 				}
 		}
@@ -271,13 +271,13 @@ function bootstrap_alert(elem, message, timeout,type) {
 		if(_file.files.length === 0){
 			if(typeOfPic == "profilepic") {
 				bootstrap_alert(".alert_placeholder", "Please upload a pic", 5000,"alert-warning");
-			}
-			 else{
-				submitCreateArticle("",data1,url1);
-			}
-			return false ;
-		} 
-		else {
+				}
+				  else{
+						submitCreateArticle("",data1,url1);
+					}
+				return false ;
+		} else {
+
 		var data = new FormData();
 		data.append('file', _file.files[0]);
 
@@ -307,6 +307,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 	}
 	function submitCreateArticle(ilink,data,url){
+		//alert(ilink) ;
 		if (ilink != "") {
 		var res = ilink.split(".");
 		//alert (res['1']);
@@ -330,7 +331,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result);
+					alert(result);
 					if(result=='Posted succesfully!'){
 					bootstrap_alert(".alert_placeholder", result, 55000,"alert-success");
 					location.reload();
@@ -371,6 +372,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var _file = document.getElementById('_fileprofilepic');
 			uploadFile(_file,"profilepic",String(dataString),"ajax/change_profile.php");
 		});
+		
+		
 			
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
@@ -499,7 +502,7 @@ $("#pencil").click(function(){
 			var _file = document.getElementById('_fileIdea');
 			uploadFile(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
 			}
-		};
+		}
 	
 		function create_picture(){
 			var picturech = convertSpecialChar($("#picturech").val()) ;
@@ -524,7 +527,7 @@ $("#pencil").click(function(){
 						uploadFile(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
 						}
 			}
-		};
+		}
     
 		function create_task(){
 			var team = $("#teamtask").val() ;
