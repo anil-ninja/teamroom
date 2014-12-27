@@ -77,7 +77,7 @@
 					</div>";
 			if (isset($_SESSION['user_id'])) {
 			  echo "<div id='demo8' class = 'col-md-2'>
-						<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
+						<input type = 'submit' class = 'btn btn-success btn-xs' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
 					</div>";
 				}
 			echo "</div>";
