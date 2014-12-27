@@ -319,9 +319,7 @@ function uploadFile(_file,typeOfPic,data1,url1,ID){
 		request.send(data);
 		//alert(request.response);
 		//alert(responceTx);
-		//return responceTx;
-		
-		
+		//return responceTx;	
 	}
 	function submitCreateArticle(ilink,data,url,ID){
 		//alert(ilink) ;

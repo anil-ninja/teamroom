@@ -24,85 +24,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 		});    
 	}).resize();
 
-	function uploadFile(_file,typeOfPic,data1,url1){
-		var _progress = document.getElementById('_progress');
-		
-		if(_file.files.length === 0){
-				submitCreateArticle("",data1,url1);
-				return false ;
-		} else {
-
-		var data = new FormData();
-		data.append('file', _file.files[0]);
-
-		var request = new XMLHttpRequest();
-		var responceTx = "";
-		request.onreadystatechange = function(){
-			if(request.readyState == 4){
-				responceTx = request.response;
-				submitCreateArticle(responceTx,data1,url1);
-				//alert(responceTx);
-				//alert(request.response);
-				//return request.response;
-				}
-			};
-		}
-
-		request.upload.addEventListener('progress', function(e){
-        _progress.style.width = Math.ceil(e.loaded/e.total) * 100 + '%';
-		}, false);
-		
-		request.open('POST', 'ajax/upload_file.php?typeOfPic='+typeOfPic);
-		request.send(data);
-		//alert(request.response);
-		//alert(responceTx);
-		//return responceTx;
-		
-	}
-	function submitCreateArticle(ilink,data,url){
-		//alert(ilink) ;
-		//ilink is like of image or the file
-		if (ilink != "") {
-		var res = ilink.split(".");
-		//alert (res['1']);
-			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
-				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" onError=\"this.src=\"img/default.gif\"\" />";
-			}
-				else {
-					var imgTx = ilink+"" ;
-					}
-			if (imgTx.length < 30) { bootstrap_alert(".alert_placeholder", imgTx, 5000,"alert-warning"); }
-		var dataString = data + '&img='+ imgTx ;
-		//alert(dataString) ;
-		}
-		else {
-				var	dataString =  data ;
-				//alert(dataString) ;			
-		}
-
-		$.ajax({
-			type: "POST",
-			url: url,
-			data: dataString,
-			async: false ,
-			cache: false,
-			success: function(result){
-				if(result=='Posted succesfully!'){
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				//alert("succesfully");
-				location.reload();
-				}
-				else {
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-					//alert("failed");
-					location.reload();
-				}
-			}
-		});
-
-		//alert("failed");
-
-		}		
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}		
@@ -135,7 +56,7 @@ function convertSpecialChar(str){
 				//file upload
 			var _file = document.getElementById('_fileChallengepr');
 			//alert(uploadFile(_file,"articlePic"));
-			uploadFile(_file,"projectchalPic",String(dataString),"ajax/submit_chalange_project.php");
+			uploadFile1(_file,"projectchalPic",String(dataString),"ajax/submit_chalange_project.php");
 			}
 		}
 	
@@ -153,7 +74,7 @@ function convertSpecialChar(str){
 				//file upload
 			var _file = document.getElementById('_fileNotes');
 			//alert(uploadFile(_file,"articlePic"));
-			uploadFile(_file,"projectnotesPic",String(dataString),"ajax/submit_notes.php");
+			uploadFile1(_file,"projectnotesPic",String(dataString),"ajax/submit_notes.php");
 			}
 		}
 		
@@ -174,7 +95,7 @@ function convertSpecialChar(str){
 				//alert(dataString);
 				var _file = document.getElementById('_fileanswer');
 				//alert(uploadFile(_file,"articlePic"));
-				uploadFile(_file,"answerPic",String(dataString),"ajax/submit_answer.php");
+				uploadFile1(_file,"answerPic",String(dataString),"ajax/submit_answer.php");
 			}
 		});
 	$(document).ready(function(){

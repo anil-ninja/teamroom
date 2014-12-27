@@ -218,9 +218,9 @@ function bootstrap_alert(elem, message, timeout,type) {
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}
 		function submit_ch(){
+			
 			var challenge = convertSpecialChar($("#challange").val()) ;
 			var domain = url_domain(challenge);
-			//alert(domain);
 			if (domain == "www.youtube.com"){
 				var linkId = refineVedioId(getVedioId(challenge));
 				//alert(linkId);
@@ -228,30 +228,9 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
-			//alert(challenge);
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;			
-			//var type = document.getElementById("Chall_type").checked;
-			//alert(type) ;
-			//if (type) {
-			//if(!confirm("Challenge will be open always and there will be no ETA"))
-				//return false;
-			//var challtype = '2' ;
-			//}
-			// else {
-				// var challtype = '1' ;
-				//}
-			//var open_time = parseInt($("#open_time").val());
-			//var open = parseInt($("#open").val());
-			//var opentime = parseInt(open_time*60+open) ;
-			//var eta = parseInt($("#c_eta").val());
-			//var etab = parseInt($("#c_etab").val());
-			//var etac = parseInt($("#c_etac").val());
-			//var etad = parseInt($("#c_etad").val());
-			//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ; 
-			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title)))) ;// + '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') + '&challtype='+ challtype;
-			//alert(dataString);
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title)))) ;
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 			}
@@ -261,20 +240,20 @@ function bootstrap_alert(elem, message, timeout,type) {
 			else {
 					//file upload
 				var _filech = document.getElementById('_fileChallenge');
-				uploadFile(_filech,"challengePic",String(dataString),"ajax/submit_chalange.php");
+				uploadFile1(_filech,"challengePic",String(dataString),"ajax/submit_chalange.php");
 			}
 		}
     
-    function uploadFile(_file,typeOfPic,data1,url1){
+    function uploadFile1(_file,typeOfPic,data1,url1){
 		var _progress = document.getElementById('_progress');
 		
 		if(_file.files.length === 0){
 			if(typeOfPic == "profilepic") {
 				bootstrap_alert(".alert_placeholder", "Please upload a pic", 5000,"alert-warning");
-				}
-				  else{
-						submitCreateArticle("",data1,url1);
-					}
+			}
+			else{
+				submitCreateArticle1("",data1,url1);
+			}
 				return false ;
 		} else {
 
@@ -286,7 +265,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		request.onreadystatechange = function(){
 			if(request.readyState == 4){
 				responceTx = request.response;
-				submitCreateArticle(responceTx,data1,url1);
+				submitCreateArticle1(responceTx,data1,url1);
 				//alert(responceTx);
 				//alert(request.response);
 				//return request.response;
@@ -306,7 +285,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 		
 	}
-	function submitCreateArticle(ilink,data,url){
+	function submitCreateArticle1(ilink,data,url){
 		if (ilink != "") {
 			var res = ilink.split(".");
 			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
@@ -324,6 +303,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$.ajax({
 			type: "POST",
 			url: url,
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -336,7 +316,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 					location.reload();
 				}
 			}
-		}); 
+		});
+		return false; 
 	}
 		function create_article(){
 			var article = convertSpecialChar($("#articlech").val()) ;
@@ -357,7 +338,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			//file upload
 			var _file = document.getElementById('_fileArticle');
 			//alert(uploadFile(_file,"articlePic"));
-			uploadFile(_file,"articlePic",String(dataString),"ajax/submit_article.php");
+			uploadFile1(_file,"articlePic",String(dataString),"ajax/submit_article.php");
 		
 			}
 		}
@@ -365,7 +346,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$("#upload_image").click(function(){
       		var dataString = 'case=5' ;
 			var _file = document.getElementById('_fileprofilepic');
-			uploadFile(_file,"profilepic",String(dataString),"ajax/change_profile.php");
+			uploadFile1(_file,"profilepic",String(dataString),"ajax/change_profile.php");
 		});
 		
 		
@@ -396,7 +377,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				//file upload
 			var _file = document.getElementById('_fileProject');
 			//alert(uploadFile(_file,"articlePic"));
-			uploadFile(_file,"projectPic",String(dataString),"ajax/submit_project.php");
+			uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
 			}
 		});
 		
@@ -495,7 +476,7 @@ $("#pencil").click(function(){
 			else { 
 				//file upload
 			var _file = document.getElementById('_fileIdea');
-			uploadFile(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
+			uploadFile1(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
 			}
 		}
 	
@@ -519,7 +500,7 @@ $("#pencil").click(function(){
 					bootstrap_alert(".alert_placeholder", "Please upload a Photo", 5000,"alert-warning");
 					}
 					else {
-						uploadFile(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
+						uploadFile1(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
 						}
 			}
 		}
@@ -564,7 +545,7 @@ $("#pencil").click(function(){
 							else {
 								//file upload
 								var _file = document.getElementById('_fileTask');
-								uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
+								uploadFile1(_file,"taskPic",String(dataString),"ajax/submit_task.php");
 							}				
 					}
 					else if (result == 'same') {
@@ -603,7 +584,7 @@ $("#pencil").click(function(){
 				else {
 					//file upload
 					var _file = document.getElementById('_fileTask');
-					uploadFile(_file,"taskPic",String(dataString),"ajax/submit_task.php");
+					uploadFile1(_file,"taskPic",String(dataString),"ajax/submit_task.php");
 				}
 			}			
 		}

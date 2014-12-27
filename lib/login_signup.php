@@ -29,7 +29,8 @@ function signup(){
             }
             else {
 				$pas = md5($pas);
-		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password) VALUES ('$firstname', '$lastname', '$email', '$username', '$pas') ; ") ;		
+				$logintime = date("y-m-d H:i:s") ;
+		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password, last_login) VALUES ('$firstname', '$lastname', '$email', '$username', '$pas', '$logintime') ; ") ;		
                 $user_create_id = mysqli_insert_id($db_handle);
                // echo $user_create_id ;
                 $hash_keyR = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
@@ -70,12 +71,11 @@ Collap Team" ;
 		$_SESSION['first_name'] = $firstname ;
 		$_SESSION['username'] = $username ;
 		$_SESSION['email'] = $email;
+		$_SESSION['last_login'] = $logintime ;
 		$newid = mysqli_insert_id($db_handle) ;
 		$obj = new rank($newid);
     	//echo $obj->user_rank;
 		$_SESSION['rank'] = $obj->user_rank;
-		$logintime = date("y-m-d H:i:s") ;
-		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime' where user_id = '$newid' ;" ) ;
 		//header('Location: ../profile.php') ;
 		exit;
 		}

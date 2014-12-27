@@ -16,65 +16,88 @@ $(document).ready(function() {
     });
 });
 function validateSignupFormOnSubmit() {
-        var reason = "";
-		var firstname = $("#firstname").val() ;
-		var lastname = $("#lastname").val() ;
-		var email = $("#email").val() ;
-		var phone = $("#phone").val() ;
-		var username = $("#usernameR").val() ;
-		//alert("user");
-		var password = $("#passwordR").val() ;
-		var password2 = $("#password2R").val() ;
-       /* reason += validateFirstname(theForm.firstname);
-        reason += validateEmail(theForm.email);
-        reason += validateUsername(theForm.username);
-        reason += validatePhone(theForm.phone);
-        reason += validatePassword(theForm.password);
-        reason += validatePassword2(theForm.password,theForm.password2);
-        if (reason != "") {
-            alert("Some fields need correction:\n" + reason);
-            return false;
-        }
-        return true;*/
-        var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email + '&phone='+ phone + '&username='+ username +
-         '&password='+ password + '&password2='+ password2 + '&request=Signup' ;
-         if(password==password2){
-         if(firstname==''){
-				bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
-		} else if(email==''){
-			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
-		} else if(phone==''){
-			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
-		} else if(username==''){
-			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
-		} else if(password==''){
-			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
-		} else if(password.length <'6'){
-			bootstrap_alert(".alert-placeholder", "password length should be atleast 6", 5000,"alert-warning");
-                }else if(password2==''){
-                        bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
-		} else {
-          $.ajax({
-					type: "POST",
-					url: "controllers/login_controller.php",
-					data: dataString,
-					cache: false,
-					success: function(result){
-							if(result){
-                                bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
-                                } 
-                           else {
-							  location.reload();
-							}		
-						} 
-					});
+	var reason = "";
+	var firstname = $("#firstname").val() ;
+	var lastname = $("#lastname").val() ;
+	var email = $("#email").val() ;
+	var phone = $("#phone").val() ;
+	var username = $("#usernameR").val() ;
+	//alert("user");
+	var password = $("#passwordR").val() ;
+	var password2 = $("#password2R").val() ;
+	/* reason += validateFirstname(theForm.firstname);
+	reason += validateEmail(theForm.email);
+	reason += validateUsername(theForm.username);
+	reason += validatePhone(theForm.phone);
+	reason += validatePassword(theForm.password);
+	reason += validatePassword2(theForm.password,theForm.password2);
+	if (reason != "") {
+	alert("Some fields need correction:\n" + reason);
+	return false;
+	}
+	return true;*/
+	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email + '&phone='+ phone + '&username='+ username +
+	'&password='+ password + '&password2='+ password2 + '&request=Signup' ;
+	if(password==password2){
+		if(firstname==''){
+			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
 		}
-		}		
-        else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
-    }
+		else if(email==''){
+			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
+		} 
+		else if(phone==''){
+			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
+		} 
+		else if(username==''){
+			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
+		} 
+		else if(password==''){
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
+		} 
+		else if(password.length <'6'){
+			bootstrap_alert(".alert-placeholder", "password length should be atleast 6", 5000,"alert-warning");
+		}
+		else if(password2==''){
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
+		}
+		else if(validatePath(firstname) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		}
+		else if(validatePath(username) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		}
+		else if(validatePath(lastname) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		} 
+		else {
+			$.ajax({
+				type: "POST",
+				url: "controllers/login_controller.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result){
+						bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
+					} 
+					else {
+						location.reload();
+					}		
+				} 
+			});
+		}
+	}		
+	else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
+}
+function validatePath(path) {
+        if (path.match("^[a-zA-Z0-9.]*$")) {
+			return "true" ;
+			}
+		else {
+			return false;
+			}
+    } 
     function validateEmpty(fld) {
         var error = "";
-
         if (fld.value.length == 0) {
             fld.style.background = 'Yellow'; 
             error = "The required field has not been filled in.\n"
