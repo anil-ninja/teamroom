@@ -65,6 +65,9 @@ function validateSignupFormOnSubmit() {
 		}
 		else if(validatePath(username) !== 'true'){
 			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		}
+		else if(validatePath(lastname) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
 		} 
 		else {
 			$.ajax({
