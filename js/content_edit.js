@@ -116,8 +116,8 @@ function saveedited(ID)  {
 						data: dataString,
 						cache: false,
 						success: function(html){
-							$("#challenge_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',project)))));
-							$("#challenge_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
+							$("#challenge_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',project)))));
+							$("#challenge_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
 							}
 					});
 				}
@@ -144,8 +144,8 @@ function saveeditedproject(ID)  {
 						data: dataString,
 						cache: false,
 						success: function(html){
-							$("#project_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',project)))));
-							$("#project_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
+							$("#project_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',project)))));
+							$("#project_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
 							}
 					});
 				}
@@ -196,8 +196,8 @@ function saveeditedchallenge(ID)  {
 						cache: false,
 						success: function(result){
 							//alert (result) ;
-							$("#challenge_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',result)))));
-							$("#challenge_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
+							$("#challenge_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',result)))));
+							$("#challenge_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
 							$("#url_video_"+ID).val('');
 							}
 					});
@@ -249,8 +249,8 @@ function saveeditedpro(ID)  {
 						cache: false,
 						success: function(result){
 							//alert (result) ;
-							$("#project_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',result)))));
-							$("#project_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('<br/>','\n',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
+							$("#project_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',result)))));
+							$("#project_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('\n','<br/>',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
 							$("#project_url_video_"+ID).val('');
 							}
 					});
