@@ -307,42 +307,37 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 	}
 	function submitCreateArticle(ilink,data,url){
-		//alert(ilink) ;
 		if (ilink != "") {
-		var res = ilink.split(".");
-		//alert (res['1']);
+			var res = ilink.split(".");
 			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
 				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" onError=\"this.src=\"img/default.gif\"\" />";
 			}
-				else {
-					var imgTx = ilink ;
-					}
-			if (imgTx.length < 30) { alert(imgTx); }
-		var dataString = data + '&img='+ imgTx ;
-		//alert(dataString) ;
-		}
 			else {
-				var	dataString =  data ;
-				//alert(dataString) ;			
-				}
-			$.ajax({
-				type: "POST",
-				url: url,
-				data: dataString,
-				cache: false,
-				success: function(result){
-					alert(result);
-					if(result=='Posted succesfully!'){
+				var imgTx = ilink ;
+			}
+			if (imgTx.length < 30) { bootstrap_alert(".alert_placeholder", imgTx, 5000,"alert-warning"); }
+			var dataString = data + '&img='+ imgTx ;
+		}
+		else {
+			var	dataString =  data ;
+		}
+		$.ajax({
+			type: "POST",
+			url: url,
+			data: dataString,
+			cache: false,
+			success: function(result){
+				if(result=='Posted succesfully!'){
 					bootstrap_alert(".alert_placeholder", result, 55000,"alert-success");
 					location.reload();
-					}
-					else {
-						bootstrap_alert(".alert_placeholder", result, 55000,"alert-warning");
-						location.reload();
-						}
 				}
-			}); 
-	} ;
+				else {
+					bootstrap_alert(".alert_placeholder", result, 55000,"alert-warning");
+					location.reload();
+				}
+			}
+		}); 
+	}
 		function create_article(){
 			var article = convertSpecialChar($("#articlech").val()) ;
 			var article_title = convertSpecialChar($("#article_title").val()) ;

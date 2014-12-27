@@ -85,16 +85,22 @@ function validateSignupFormOnSubmit() {
     }
     function validateFirstname(fld) {
         var error = "";
-
-        if (fld.value == "") {
-            fld.style.border = "2px solid OrangeRed";
+        //cleanText = strInputCode.replace(/<\/?[^>]+(>|$)/g, "");
+        //OriginalString.replace(/(<([^>]+)>)/ig,"");
+        //html.replace(/<\/?(span|div|img|p...)\b[^<>]*>/g, "")
+        //\W/;
+		var illegalChars = /\W/; // allow letters, numbers, and underscores
+		if (fld.value == "") {
+            fld.style.border = "2px solid OrangeRed"; 
             error = "You didn't enter your first name.\n";
-        }
-        else {
+        }  else if (illegalChars.test(fld.value)) {
+            fld.style.borderColor = 'Yellow'; 
+            error = "Letters, numbers, and underscores allowed in first name.\n";
+        } else {
             fld.style.background = 'White';
         }
         return error;
-    }
+     }
     function validateEmail(fld) {
         var error="";
         var tfld = trim(fld.value);                        // value of field with whitespace trimmed off
