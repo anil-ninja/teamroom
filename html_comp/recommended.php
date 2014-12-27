@@ -1,21 +1,13 @@
 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
     <ul class="nav nav-tabs">
-        <li class="active" >
-               
-                    
+        <li class="active" >       
               <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Recommended</b></span></a>
-
         </li>
 	</ul>
-
 	<div class="tab-content" >
 	    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
-
-
 <?php 
 	if (isset($_SESSION['user_id'])) {
-		
-	
 		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
 												(SELECT DISTINCT b.user_id FROM teams as a join teams as b where a.user_id = '$user_id' and 
 												a.team_name = b.team_name ) as b where a.user_id = b.user_id) and user_id NOT IN (select a.user_id 
