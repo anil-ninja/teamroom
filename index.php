@@ -194,7 +194,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     ?>
                     <!--<a class='btn btn-default' style="font-size: 14px;" href="#tabSignIn" role="tab" data-toggle="tab">Sign In</a>-->
                 
-                <a href="index.html#panel1" data-toggle="tab" class=" btn pull-right active">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                <a href="index.php#panel1" data-toggle="tab" class=" btn pull-right active">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                                 
                 </div>
                 <!-- /.nav-collapse -->
@@ -217,9 +217,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                 <h4>Collaborate, Grow and help Society</h4>
                 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                     <ul class="nav nav-tabs">
-                        <li class="active"><a href="index.html#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
-                        <li><a href="index.html#panel2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
-                        <li><a href="index.html#panel3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
+                        <li class="active"><a href="index.php#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
+                        <li><a href="index.php#panel2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
+                        <li><a href="index.php#panel3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
                     <!--    <li><a href="index.html#panel4" data-toggle="tab"><i class="icon-envelope-alt"></i>&nbsp;<span>Contact Us</span></a></li> -->
                     </ul>
                     <div class="tab-content ">
@@ -232,7 +232,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     
                                     <label>Username</label>
                                     <input type="text" class="input-block-level" id="username" placeholder="Email or Username"/>
-                                    <label>Password<a href="index11.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> </label>
+                                    <label>Password<a href="index.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> </label>
                                     <input type="password" class="input-block-level" id="passwordlogin" placeholder="Password"/>
                                     <label>
                                         <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
@@ -268,7 +268,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </div>
                                     <div class="box">
                                         Don't Have An Account.<br />
-                                        Click Here For <a href="index.html#panel2" data-toggle="tab">Free Register</a>
+                                        Click Here For <a href="index.php#panel2" data-toggle="tab">Free Register</a>
                                     </div>
                                 </div>
                             </div>
@@ -311,7 +311,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <label>
                                         <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                         &nbsp;&nbsp;&nbsp;I Aggree With 
-                                        <a href="index.html#TabsModalTnC" data-toggle="modal">Terms &amp; Conditions</a>
+                                        <a href="index.php#TabsModalTnC" data-toggle="modal">Terms &amp; Conditions</a>
                                     </label>
                                     <br />
 
@@ -341,7 +341,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </div>
                                     <div class="box">
                                         Already Have An Account.<br />
-                                        Click Here For <a href="index.html#panel1" data-toggle="tab">Login</a>
+                                        Click Here For <a href="index.php#panel1" data-toggle="tab">Login</a>
                                     </div>
                                 </div>
                             </div>
@@ -381,7 +381,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                 <div class="span7">
                                     <h4><i class="icon-question"></i>&nbsp;&nbsp;Help</h4>
                                     <div class="box">
-                                        <p>Getting Error With Password Recovery Click Here For <a href="index.html#">Support</a></p>
+                                        <p>Getting Error With Password Recovery Click Here For <a href="index.php#">Support</a></p>
                                         <ul>
 
 

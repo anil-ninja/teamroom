@@ -468,12 +468,12 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
             if (isset($_SESSION['user_id'])) {
                 $userID = $_SESSION['user_id'];
                 echo "
-                    <input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."' placeholder='Want to know your comment....'/>
+                    <input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$chelangeid."' placeholder='Want to know your comment....'/>
                     <a type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' >
                         <span class='icon-chevron-right'></span>
                     </a>";
             } else {
-                echo "<input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+                echo "<input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 83%;' placeholder='Want to know your comment....'/>
                     <a data-toggle='modal' data-target='#SignIn'>
                         <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                     </a>";

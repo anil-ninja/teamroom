@@ -34,6 +34,8 @@
                 <ul class="nav">
                     <?php
                     if (isset($_SESSION['user_id'])) {
+
+                        /*
                             if ($requestedPage == "project.php") {
                             echo "<li class='dropdown'>
                                     <a href='#' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'>
@@ -63,6 +65,7 @@
                                     
                                 </li>";
                             }
+                        */
                     ?>
                        
       
@@ -116,16 +119,8 @@
         echo "<li>
                 <p class='navbar-text' style='cursor: pointer'>
                     <b> 
-                        <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In</a> 
+                        <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In/ Sign Up</a> 
                     </b>
-                </p>
-            </li>";
-        
-        echo "<li>
-                <p class='navbar-text' style='cursor: pointer'>
-                    <a data-toggle='modal' data-target='#SignUp' style='color: #fff;'>
-                        <b>Sign Up</b>
-                    </a>
                 </p>
             </li>";
     }

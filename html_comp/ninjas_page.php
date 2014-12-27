@@ -440,7 +440,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
+                            <input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$chelangeid."'
                              placeholder='Want to know your comment....'/>
                             <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' ><span class='icon-chevron-right'></span></button>
                     </div>";
