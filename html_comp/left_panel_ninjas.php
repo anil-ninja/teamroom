@@ -79,7 +79,8 @@
     else {
         echo "<div class='nav nav-tabs'>";
     }
-?>
+        if (isset($_SESSION['user_id'])) {
+    ?>
 			<div class='panel panel-default'>
 				<div class='panel-heading'style ='padding-top: 0px; padding-bottom: 0px;'>
 					<font size='2'>Public</font>
@@ -120,6 +121,7 @@
                 </div>
             </div>
         <?php
+    }
             // recommended project function defined in functions/delete_comment for use in profile page joined project tab
                 recommended_project ($db_handle);
             // function call here ends

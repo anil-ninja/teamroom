@@ -34,6 +34,8 @@
                 <ul class="nav">
                     <?php
                     if (isset($_SESSION['user_id'])) {
+
+                        /*
                             if ($requestedPage == "project.php") {
                             echo "<li class='dropdown'>
                                     <a href='#' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'>
@@ -63,6 +65,7 @@
                                     
                                 </li>";
                             }
+                        */
                     ?>
                        
       
