@@ -1,80 +1,85 @@
 function ninjas_intro(){
         var intro = introJs();
           intro.setOptions({
-            steps: [
-			  {
+              steps: [
+			        {
+                element: '#step0',
+                intro: '<b> Welcome To Collap </b> <br/> We will take you through a tour of this page. Press ESC to exit any time. ',
+                position: 'bottom'
+              },
+              {
                 element: '#step1',
-                intro: '<b> Welcome To Collap </b> <br/> You can post your Challenges, Articles and share your Ideas and Photos by clicking here.',
+                intro: '<b> Welcome To Collap </b> <br/> Post your Challenges, Articles and share your Ideas and Photos here.',
                 position: 'bottom'
               },
               {
                 element: '#step2',
-                intro: "<b> Welcome To Collap </b><br/> You can Add reminder to yourself or to friends by clicking here.",
+                intro: "<b>Set Reminders </b><br/> Set reminder for yourself or other collaborators here.",
                 position: 'bottom'
               },
               {
                 element: '#step3',
-                intro: "<b> Welcome To Collap </b><br/> You can Edit reminders by clicking here",
+                intro: "<b>Edit Reminders </b><br/> Edit reminders here",
                 position: 'bottom'
               },
               {
                 element: '#step4',
-                intro: '<b> Welcome To Collap </b><br/> You can see your task to do by clicking here.',
+                intro: '<b> Tasks To Do </b><br/> Track your task to do here.',
                 position: 'bottom'
               },
               {
                 element: '#step5',
-                intro: "<b> Welcome To Collap </b><br/> You can see ongoing progress of your challenges/tasks assigned by you by clicking here",
+                intro: "<b> Tasks to Get Done</b><br/> Trak progress of your challenges/tasks assigned by you here",
                 position: 'bottom'
               },
               {
                 element: '#step6',
-                intro: "<b> Welcome To Collap </b><br/> You can create Public/Private Projects by clicking here",
+                intro: "<b> Create Projects</b><br/> Create Public or Classified Projects",
                 position: 'bottom'
               },
               {
                 element: '#step7',
-                intro: "<b> Welcome To Collap </b><br/> You can join public project by clicking here",
+                intro: "<b> Join Public Projects </b><br/> Join public project from the List here",
                 position: 'bottom'
               },
               {
                 element: '#step8',
-                intro: "<b> Welcome To Collap </b><br/> You can search challenges by clicking here",
+                intro: "<b> Collap Search</b><br/> Search everything in Collap",
                 position: 'bottom'
               },
               {
                 element: '#step9',
-                intro: "<b> Welcome To Collap </b><br/> You can view your rank here",
+                intro: "<b> Your Rank</b><br/> This is your rank based on your Activites",
                 position: 'bottom'
               },
               {
                 element: '#step10',
-                intro: "<b> Welcome To Collap </b><br/> You can see notifictions by clicking here",
+                intro: "<b>Notifications</b><br/> Your notifictions will be here",
                 position: 'bottom'
               },
               {
                 element: '#step11',
-                intro: "<b> Welcome To Collap </b><br/> You can view your profile by clicking here",
+                intro: "<b> Profile Link </b><br/> View or Edit your profile by clicking here",
                 position: 'bottom'
               },
               {
                 element: '#step13',
-                intro: "<b> Welcome To Collap </b><br/> You can select particuler classes by clicking here",
+                intro: "<b> Post Filter </b><br/> Filter the Posts by Selecting there type",
                 position: 'bottom'
               },
               {
                 element: '#step14',
-                intro: "<b> Welcome To Collap </b><br/> You can go to project page by clicking here",
+                intro: "<b> Links to your Projects </b><br/> Navigate through your projects by selecting one here",
                 position: 'bottom'
               },
               {
                 element: '#step15',
-                intro: "<b> Welcome To Collap </b><br/> You can comment here",
+                intro: "<b> Comments </b><br/> Put your comments here and click the button next to it",
                 position: 'bottom'
               },
               {
                 element: '#step16',
-                intro: "<b> Welcome To Collap </b><br/> You can send links to known peoples or talk to friends by clicking here",
+                intro: "<b> Collap Chat and link suggestions </b><br/> Create your network by Linking people or talk to friends by clicking here",
                 position: 'left'
               }
             ]
@@ -86,64 +91,69 @@ function profile_intro() {
 	var intro = introJs();
           intro.setOptions({
             steps: [
-			  {
+			       {
+                element: '#step0',
+                intro: '<b> Welcome To Collap </b> <br/> This is your first visit to this page, We will take you through a tour of this page. Press ESC to exit any time. ',
+                position: 'bottom'
+              },
+             {
                 element: '#editprofile',
-                intro: '<b> Welcome To Collap </b><br/> You can edit your profile by clicking here.',
+                intro: '<b> Edit Profile </b><br/> Edit your profile by clicking here.',
                 position: 'bottom'
               },
               {
                 element: '#demo4',
-                intro: "<b> Welcome To Collap </b><br/> You can change your profile pic by clicking here.",
+                intro: "<b> Change Display Picture </b><br/> Change your profile picture by clicking here.",
                 position: 'bottom'
               },
               {
                 element: '#demo5',
-                intro: "<b> Welcome To Collap </b><br/> You can add skills to your profile by clicking here",
+                intro: "<b> Add Skills </b><br/> Add skills to your profile",
                 position: 'bottom'
               },
               {
                 element: '#demo6',
-                intro: '<b> Welcome To Collap </b><br/> You can view your creted </b><br/> project/challenge/idea/article and joined project by clicking here.',
+                intro: '<b> Your Stuff </b><br/> View everything related to you </b><br/> project/challenge/idea/article and joined projects.',
                 position: 'left'
               },
               {
                 element: '#demo7',
-                intro: "<b> Welcome To Collap </b><br/> You can view your friend list here",
+                intro: "<b> Your Network </b><br/> You can view your Network link list here",
                 position: 'bottom'
               },
               {
                 element: '#demo8',
-                intro: "<b> Welcome To Collap </b><br/> You can send link to your known people by clicking here",
+                intro: "<b> Add Links to your Network </b><br/> Send link to people",
                 position: 'bottom'
               },
               {
                 element: '#step8',
-                intro: "<b> Welcome To Collap </b><br/> You can search challenges by clicking here",
+                intro: "<b> Collap Search</b><br/> Search everything in Collap",
                 position: 'bottom'
               },
               {
                 element: '#step9',
-                intro: "<b> Welcome To Collap </b><br/> You can view your rank here",
+                intro: "<b> Your Rank</b><br/> This is your rank based on your Activites",
                 position: 'bottom'
               },
               {
                 element: '#step10',
-                intro: "<b> Welcome To Collap </b><br/> You can see notifictions by clicking here",
+                intro: "<b>Notifications</b><br/> Your notifictions will be here",
                 position: 'bottom'
               },
               {
                 element: '#step11',
-                intro: "<b> Welcome To Collap </b><br/> You can view your profile by clicking here",
+                intro: "<b> Profile </b><br/> View or Edit your profile by clicking here",
                 position: 'bottom'
               },
               {
                 element: '#demo9',
-                intro: "<b> Welcome To Collap </b><br/> You view other users profiles by clicking here",
+                intro: "<b>View Proifle</b><br/> Navigate to other users profiles by clicking here",
                 position: 'bottom'
               },
               {
                 element: '#step16',
-                intro: "<b> Welcome To Collap </b><br/> You can send links to known peoples or talk to friends by clicking here",
+                intro: "<b>Create a Network </b><br/> Links people or talk to friends by clicking here",
                 position: 'left'
               }
             ]
