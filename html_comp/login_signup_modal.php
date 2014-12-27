@@ -18,9 +18,9 @@
                     <h4>Collaborate Grow and help Society</h4>
                     <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="index.html#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
-                            <li><a href="index.html#panel2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
-                            <li><a href="index.html#panel3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
+                            <li class="active"><a href="index.php#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
+                            <li><a href="index.php#panel2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
+                            <li><a href="index.php#panel3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
                             <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                         </ul>
                         <div class="tab-content ">
@@ -67,7 +67,7 @@
                                         </div>
                                         <div class="box">
                                             Don't Have An Account.<br />
-                                            Click Here For <a href="index.html#panel2" data-toggle="tab">Free Register</a>
+                                            Click Here For <a href="index.php#panel2" data-toggle="tab">Free Register</a>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +108,7 @@
                                         <label>
                                             <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                             &nbsp;&nbsp;&nbsp;I Aggree With 
-                                            <a href="index.html#TabsModalTnC" data-toggle="modal">Terms &amp; Conditions</a>
+                                            <a href="index.php#TabsModalTnC" data-toggle="modal">Terms &amp; Conditions</a>
                                         </label>
                                         <br />
 
@@ -138,7 +138,7 @@
                                         </div>
                                         <div class="box">
                                             Already Have An Account.<br />
-                                            Click Here For <a href="index.html#panel1" data-toggle="tab">Login</a>
+                                            Click Here For <a href="index.php#panel1" data-toggle="tab">Login</a>
                                         </div>
                                     </div>
                                 </div>
@@ -178,7 +178,7 @@
                                     <div class="span7">
                                         <h4><i class="icon-question"></i>&nbsp;&nbsp;Help</h4>
                                         <div class="box">
-                                            <p>Getting Error With Password Recovery Click Here For <a href="index.html#">Support</a></p>
+                                            <p>Getting Error With Password Recovery Click Here For <a href="index.php#">Support</a></p>
                                             <ul>
 
 

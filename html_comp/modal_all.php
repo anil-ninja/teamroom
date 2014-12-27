@@ -6,7 +6,7 @@
 
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="index.html#panel6-1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Add Project</span></a></li>
+                    <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Add Project</span></a></li>
                     <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                 </ul>
                 <div class="tab-content ">
