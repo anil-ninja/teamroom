@@ -543,7 +543,7 @@ if ($_POST['chal']) {
                         </div>
                             <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
                              placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn-sm btn-primary icon-chevron-right' onclick='comment(\"".$chelangeid."\", 1)' ></button>
+                            <button type='submit' class='btn btn-primary icon-chevron-right' onclick='comment(\"".$chelangeid."\", 1)' ></button>
                     </div>";
     $show = $show . "</div> </div> ";
     }

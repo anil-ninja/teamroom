@@ -153,12 +153,12 @@ echo "<div class='comments_".$pro_id."'></div><div class='comments clearfix'>
 				<img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>";
 if (isset($_SESSION['user_id'])) {
-    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='own_ch_response_".$pro_id."' placeholder='Want to know your comment....' />
-            <button type='submit' onclick='comment(\"".$pro_id."\", 2)' class='btn-primary btn-sm icon-play'></button>";
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83%;' id='own_ch_response_".$pro_id."' placeholder='Want to know your comment....' />
+            <button type='submit' onclick='comment(\"".$pro_id."\", 2)' class='btn btn-primary icon-play'></button>";
 } else {
-    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83%;' placeholder='Want to know your comment....'/>
 			<a data-toggle='modal' data-target='#SignIn'>
-				<button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
+				<button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
 			</a>";
 }
 echo "</div>
@@ -460,12 +460,12 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
     if (isset($_SESSION['user_id'])) {
-        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-              <button type='submit' class='btn-sm btn-primary icon-chevron-right' onclick='comment(\"".$id_task."\", 3)' ></button>";
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
+              <button type='submit' class='btn btn-primary icon-chevron-right' onclick='comment(\"".$id_task."\", 3)' ></button>";
     } else {
-        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
+                    <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                 </a>";
     }
     echo "</div></div></div>";
