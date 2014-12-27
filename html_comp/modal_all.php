@@ -20,7 +20,7 @@
                             <input type="file" id="_fileProject"/>
                             
                             <label>Details about Project</label>
-                            <textarea class="input-block-level" id="project_stmt" placeholder="Details about Project"></textarea>
+                            <textarea class='input-block-level autoExpand' data-min-rows='3' id="project_stmt" placeholder="Details about Project"></textarea>
                             
                             <br />
                             <label>Project Type</label> 

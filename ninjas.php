@@ -59,6 +59,11 @@ if(width < 800) {
 	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
 	$("#new").html($("#tab1").html() + $("#tab3").html());
 } ;
+
+$('#challange').on('keyup', function(){
+    $(this).css('height', '50px');
+    alert ("dddddddd");
+});
 </script>
 <script>
 $(function() {
@@ -102,6 +107,7 @@ $(".nav-btntab").bind("click", function(){
 		}
 	}); 
 getallreminders() ; 
+
 	</script>
 <?php include_once 'html_comp/insert_time.php'   ?>	  
 </body>
