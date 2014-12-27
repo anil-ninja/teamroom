@@ -119,16 +119,8 @@
         echo "<li>
                 <p class='navbar-text' style='cursor: pointer'>
                     <b> 
-                        <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In</a> 
+                        <a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In/ Sign Up</a> 
                     </b>
-                </p>
-            </li>";
-        
-        echo "<li>
-                <p class='navbar-text' style='cursor: pointer'>
-                    <a data-toggle='modal' data-target='#SignUp' style='color: #fff;'>
-                        <b>Sign Up</b>
-                    </a>
                 </p>
             </li>";
     }
