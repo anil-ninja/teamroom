@@ -96,22 +96,30 @@ $obj = new profile($UserName);
                 <?php
                  echo " 	<center>
                              <b>
-                                <span id='first_name' style='font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>&nbsp" 
+                                <span id='first_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>&nbsp" 
                                     .ucfirst($profileViewFirstName)."
                                 </span> 
-                                <span id='last_name' style='font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>".ucfirst($profileViewLastName)."
+                                <span id='last_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>".ucfirst($profileViewLastName)."
                                 </span>
                             
                             </b>
 								</center>                           
-                           ";                    
-                    echo "<br/>
+                           ";
+                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
+                        echo "<a class = 'btn-link' style='cursor: pointer;margin-left:72%;color: #333;' id='editprofile'>
+                                <span class = 'icon-pencil'></span> Edit 
+                            </a>";
+                    }                    
+                    echo "<div>
                           <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                        echo "<center><a id='demo4' data-toggle='modal' class = 'btn-primary' style='cursor: pointer; padding:4px 15px 4px 15px;' data-target='#uploadPicture'>
-                                <span class = 'icon-pencil'></span> Change Pic
-                              </a></center>";
+                        echo "<center>
+                                <a id='demo4' data-toggle='modal' class = 'btn-link' style='position: relative; top: -5px; padding: 4px; color: #333; font-weight: 600;cursor: pointer; padding:4px 15px 4px 15px;' data-target='#uploadPicture'>
+                                    <span class = 'icon-pencil'></span>Change Pic
+                                </a>
+                             </center>";
                            } 
+                    echo "</div>";
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
         				$check = mysqli_query($db_handle, "SELECT user_id FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
@@ -132,11 +140,7 @@ $obj = new profile($UserName);
                 <div class='alert_placeholder'></div>
                 <div class="viewprofile">
                 <?php
-                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<br/><a class = 'btn-primary' style='cursor: pointer;width:100%; margin-left:60%; padding:4px 15px 4px 15px;' id='editprofile'>
-								<span class = 'icon-pencil'></span> Edit 
-							</a><br/>";
-                    }
+                    
                     echo " <span class='icon-user'>
                             </span>
                             <strong> 
@@ -147,31 +151,21 @@ $obj = new profile($UserName);
                                 </span>
                             </strong>";
                             
-                    echo "&nbsp;<i>(".$profileViewRank.")</i>
+                    echo "&nbsp;<i>(&nbsp;".$profileViewRank."&nbsp;)</i>
                           <br/>
-                          <span class='icon-envelope' id='email' style='cursor: pointer'>&nbsp;" 
+                          <span class='icon-envelope' id='email' style='cursor: pointer'>&nbsp;&nbsp;" 
                             . $profileViewEmail . "
                           </span>" ;
                      if($profileViewPhone != 1) {    
                         echo "  <br/>
-                                <span class='icon-earphone' id='phone' style='cursor: pointer'>&nbsp;" 
-                                    . $profileViewPhone . "
-                                    <br/>
-                                </span>
-                                <br/>
-                                
-                                    <br/>
-                                    <span class='icon-screenshot'>
-                                    </span>
-                                    &nbsp;&nbsp;&nbsp;Skills:";
+                                <span class='icon-phone' id='phone' style='cursor: pointer'>&nbsp;&nbsp;&nbsp;" 
+                                    . $profileViewPhone . "  
+                                </span>";
         			  }
-        			  else {
-        				  echo "    <br/>
-                                    <span>
-                                        <br/>
+        				  echo " <br/>
+                                    <span>   
                                         <span class='icon-screenshot'>
-                                        </span>&nbsp;&nbsp;Skills &nbsp;:" ; 
-        				  }
+                                        </span>Skills &nbsp;:" ; 
 
                     $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     
@@ -187,10 +181,10 @@ $obj = new profile($UserName);
                                         </span>&nbsp;";
                         }
                     }
-                    echo "              <br/>
+                    echo "             
                                     </span>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                        echo "      <br/>
+                        echo "      
                                     <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:4px 15px 4px 15px;'>
                                         <i class='icon-plus'></i> Skill
                                     </a>
