@@ -103,21 +103,14 @@ $obj = new profile($UserName);
                                 </span>
                             
                             </b>
-								</center>
-                            
-                           "
-                            
-                            ;
-                            
-                   
-                
-                    
+								</center>                           
+                           ";                    
                     echo "<br/>
                           <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                        echo "<center><a id='demo4' data-toggle='modal' class = 'btn btn-link btn-xs'style='cursor: pointer' data-target='#uploadPicture'>
+                        echo "<center><span class='tags' style='cursor: pointer; padding:4px 15px 4px 15px; background-color:#04C;'><a id='demo4' data-toggle='modal' class = 'btn-primary' data-target='#uploadPicture'>
                                 Change Pic
-                              </a></center>";
+                              </a></span></center>";
                            } 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
@@ -140,12 +133,11 @@ $obj = new profile($UserName);
                 <div class="viewprofile">
                 <?php
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a class = 'btn btn-link btm-lg' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
-								<span class = 'icon-pencil'></span>
-							</a>";
+                        echo "<br/><span class='tags' style='cursor: pointer;width:100%; margin-left:60%; padding:4px 15px 4px 15px; background-color:#04C;'><a class = 'btn-primary' id='editprofile'>
+								Edit <span class = 'icon-pencil'></span>
+							</a></span><br/>";
                     }
-                    echo "  
-                            <span class='icon-user'>
+                    echo " <span class='icon-user'>
                             </span>
                             <strong> 
                                 <span id='first_name'>&nbsp" 
