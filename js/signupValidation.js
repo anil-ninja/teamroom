@@ -25,6 +25,9 @@ function validateSignupFormOnSubmit() {
 	//alert("user");
 	var password = $("#passwordR").val() ;
 	var password2 = $("#password2R").val() ;
+    var term_n_cond = document.getElementById("agree_tc").checked;
+
+    //alert (term_n_cond);
 	/* reason += validateFirstname(theForm.firstname);
 	reason += validateEmail(theForm.email);
 	reason += validateUsername(theForm.username);
@@ -37,7 +40,7 @@ function validateSignupFormOnSubmit() {
 	}
 	return true;*/
 	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email + '&phone='+ phone + '&username='+ username +
-	'&password='+ password + '&password2='+ password2 + '&request=Signup' ;
+	'&password='+ password + '&password2='+ password2 + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
 	if(password==password2){
 		if(firstname==''){
 			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
@@ -50,7 +53,10 @@ function validateSignupFormOnSubmit() {
 		} 
 		else if(username==''){
 			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
-		} 
+		}
+        else if(username.length <'6'){
+            bootstrap_alert(".alert-placeholder", "username length be atleast 6", 5000,"alert-warning");
+        } 
 		else if(password==''){
 			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		} 
@@ -69,6 +75,9 @@ function validateSignupFormOnSubmit() {
 		else if(validatePath(lastname) !== 'true'){
 			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
 		} 
+        else if(term_n_cond==false){
+            bootstrap_alert(".alert-placeholder", "You have not accepted term and conditions", 5000,"alert-warning");
+        } 
 		else {
 			$.ajax({
 				type: "POST",
