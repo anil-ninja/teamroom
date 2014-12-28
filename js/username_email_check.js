@@ -23,7 +23,8 @@ document.getElementById("usernameR").onblur = function() {
             //check for username already exists or not ends
             
             //check for email already exists or not starts
-            
+        /*
+        function email_availability_check() { 
             document.getElementById("email").onblur = function() {
 
                 var xmlhttp;
@@ -45,6 +46,8 @@ document.getElementById("usernameR").onblur = function() {
                     xmlhttp.send();
                 }
             };
+        }
+        */
             //check for email already exists or not ends
             
             //check for email exist or not for forget password request starts

@@ -15,6 +15,31 @@ $(document).ready(function() {
          }
     });
 });
+
+function email_availability_check() {            
+    document.getElementById("email").onblur = function() {
+
+        var xmlhttp;
+
+        var email=document.getElementById("email");
+        if (email.value != ""){
+            if (window.XMLHttpRequest){
+                xmlhttp=new XMLHttpRequest();
+
+            } else {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function(){
+                if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                    document.getElementById("status_email").innerHTML=xmlhttp.responseText;
+                }
+            };
+            xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
+            xmlhttp.send();
+        }
+    };
+}
+
 function validateSignupFormOnSubmit() {
 	var reason = "";
 	var firstname = $("#firstname").val() ;
@@ -22,13 +47,11 @@ function validateSignupFormOnSubmit() {
 	var email = $("#email").val() ;
 	var phone = $("#phone").val() ;
 	var username = $("#usernameR").val() ;
-	//alert("user");
 	var password = $("#passwordR").val() ;
 	var password2 = $("#password2R").val() ;
     var term_n_cond = document.getElementById("agree_tc").checked;
 
-    //alert (term_n_cond);
-	/* reason += validateFirstname(theForm.firstname);
+    /* reason += validateFirstname(theForm.firstname);
 	reason += validateEmail(theForm.email);
 	reason += validateUsername(theForm.username);
 	reason += validatePhone(theForm.phone);
@@ -47,7 +70,13 @@ function validateSignupFormOnSubmit() {
 		}
 		else if(email==''){
 			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
-		} 
+		}
+        else if (validateEmail(email)==false) {
+            
+                bootstrap_alert(".alert-placeholder", "Enter a valid email id", 5000,"alert-warning");       
+            
+            //email_availability_check();
+        } 
 		else if(phone==''){
 			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
 		} 
@@ -135,19 +164,17 @@ function validatePath(path) {
      }
     function validateEmail(fld) {
         var error="";
-        var tfld = trim(fld.value);                        // value of field with whitespace trimmed off
+        var tfld = trim(fld);                        // value of field with whitespace trimmed off
         var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;
 
-        if (fld.value == "") {
-            fld.style.border = "2px solid OrangeRed";
-            error = "You didn't enter an email address.\n";
-        } else if (!emailFilter.test(tfld)) {              //test email for illegal characters
-            fld.style.background = 'Yellow';
-            error = "Please enter a valid email address.\n";
+        if (!emailFilter.test(tfld)) {              //test email for illegal characters
+            //fld.style.background = 'Yellow';
+            //error = "Please enter a valid email address.\n";
         } else {
-            fld.style.background = 'White';
+            //fld.style.background = 'White';
+            return true;
         }
-        return error;
+        return false;
     }
         function validatePhone(fld) {
         var error = "";
