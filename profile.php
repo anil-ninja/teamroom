@@ -216,19 +216,19 @@ $obj = new profile($UserName);
         					echo "   <br/>
                                     <span class='icon-briefcase'>
                                     </span>&nbsp;&nbsp;&nbsp;
-                                    <a class = 'btn btn-default btn-xs' id='editprofile2' style='cursor: pointer;'>
+                                    <a class = 'btn btn-primary' id='editprofile2' style='cursor: pointer;'>
                                         Edit
                                     </a>
                                     <br/>
         							<span class='icon-home'>
                                     </span>&nbsp;&nbsp;&nbsp;
-                                    <a class = 'btn btn-default btn-xs' id='editprofile3' style='cursor: pointer;'>
+                                    <a class = 'btn btn-primary' id='editprofile3' style='cursor: pointer;'>
                                         Edit
                                     </a>
                                     <br/>
         							<span class='icon-comment'>
                                     </span>&nbsp;&nbsp;&nbsp;
-                                    <a class = 'btn btn-default btn-xs' id='editprofile4' style='cursor: pointer;'>
+                                    <a class = 'btn btn-primary' id='editprofile4' style='cursor: pointer;'>
                                         Edit
                                     </a>";
         					}
