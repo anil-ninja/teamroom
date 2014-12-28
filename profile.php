@@ -108,9 +108,9 @@ $obj = new profile($UserName);
                     echo "<br/>
                           <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                        echo "<center><span class='tags' style='cursor: pointer; padding:4px 15px 4px 15px; background-color:#04C;'><a id='demo4' data-toggle='modal' class = 'btn-primary' data-target='#uploadPicture'>
-                                Change Pic
-                              </a></span></center>";
+                        echo "<center><a id='demo4' data-toggle='modal' class = 'btn-primary' style='cursor: pointer; padding:4px 15px 4px 15px;' data-target='#uploadPicture'>
+                                <span class = 'icon-pencil'></span> Change Pic
+                              </a></center>";
                            } 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
@@ -133,9 +133,9 @@ $obj = new profile($UserName);
                 <div class="viewprofile">
                 <?php
                     if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<br/><span class='tags' style='cursor: pointer;width:100%; margin-left:60%; padding:4px 15px 4px 15px; background-color:#04C;'><a class = 'btn-primary' id='editprofile'>
-								Edit <span class = 'icon-pencil'></span>
-							</a></span><br/>";
+                        echo "<br/><a class = 'btn-primary' style='cursor: pointer;width:100%; margin-left:60%; padding:4px 15px 4px 15px;' id='editprofile'>
+								<span class = 'icon-pencil'></span> Edit 
+							</a><br/>";
                     }
                     echo " <span class='icon-user'>
                             </span>
@@ -191,7 +191,7 @@ $obj = new profile($UserName);
                                     </span>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
                         echo "      <br/>
-                                    <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
+                                    <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:4px 15px 4px 15px;'>
                                         <i class='icon-plus'></i> Skill
                                     </a>
                                     <br/>";
@@ -216,20 +216,20 @@ $obj = new profile($UserName);
         					echo "   <br/>
                                     <span class='icon-briefcase'>
                                     </span>&nbsp;&nbsp;&nbsp;
-                                    <a class = 'btn btn-primary' id='editprofile2' style='cursor: pointer;'>
-                                        Edit
+                                    <a class = 'btn-primary' style='cursor: pointer; padding:4px 15px 4px 15px;' id='editprofile2' >
+                                        <span class = 'icon-pencil'></span> Edit
                                     </a>
-                                    <br/>
+                                    <br/><br/>
         							<span class='icon-home'>
                                     </span>&nbsp;&nbsp;&nbsp;
-                                    <a class = 'btn btn-primary' id='editprofile3' style='cursor: pointer;'>
-                                        Edit
+                                    <a class = 'btn-primary' style='cursor: pointer; padding:4px 15px 4px 15px;' id='editprofile3'>
+                                        <span class = 'icon-pencil'></span> Edit
                                     </a>
-                                    <br/>
+                                    <br/><br/>
         							<span class='icon-comment'>
                                     </span>&nbsp;&nbsp;&nbsp;
-                                    <a class = 'btn btn-primary' id='editprofile4' style='cursor: pointer;'>
-                                        Edit
+                                    <a class = 'btn-primary' style='cursor: pointer; padding:4px 15px 4px 15px;' id='editprofile4'>
+                                       <span class = 'icon-pencil'></span> Edit
                                     </a>";
         					}
         					else {
