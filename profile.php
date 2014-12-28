@@ -92,18 +92,32 @@ $obj = new profile($UserName);
         <div class='row-fluid'>
 
             <div id='tab7' class="span2 offset1">
+				
                 <?php
-                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a class = 'btn btn-default btn-xs' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
-								Edit
-							</a>";
-                    }
+                 echo " 	<center>
+                             <b>
+                                <span id='first_name' style='font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>&nbsp" 
+                                    .ucfirst($profileViewFirstName)."
+                                </span> 
+                                <span id='last_name' style='font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>".ucfirst($profileViewLastName)."
+                                </span>
+                            
+                            </b>
+								</center>
+                            
+                           "
+                            
+                            ;
+                            
+                   
+                
+                    
                     echo "<br/>
                           <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                        echo "<a id='demo4' data-toggle='modal' class = 'btn btn-default btn-xs'style='cursor: pointer' data-target='#uploadPicture'>
+                        echo "<center><a id='demo4' data-toggle='modal' class = 'btn btn-link btn-xs'style='cursor: pointer' data-target='#uploadPicture'>
                                 Change Pic
-                              </a>";
+                              </a></center>";
                            } 
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
@@ -125,9 +139,12 @@ $obj = new profile($UserName);
                 <div class='alert_placeholder'></div>
                 <div class="viewprofile">
                 <?php
-                    
-                    echo "  <br/>
-                            <hr/>
+                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
+                        echo "<a class = 'btn btn-link btm-lg' id='editprofile' style='cursor: pointer; margin-left: 170px;'>
+								<span class = 'icon-pencil'></span>
+							</a>";
+                    }
+                    echo "  
                             <span class='icon-user'>
                             </span>
                             <strong> 
@@ -138,7 +155,7 @@ $obj = new profile($UserName);
                                 </span>
                             </strong>";
                             
-                    echo "&nbsp;(".$profileViewRank.")
+                    echo "&nbsp;<i>(".$profileViewRank.")</i>
                           <br/>
                           <span class='icon-envelope' id='email' style='cursor: pointer'>&nbsp;" 
                             . $profileViewEmail . "
