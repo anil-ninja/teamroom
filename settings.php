@@ -4,13 +4,6 @@ $user_id = $_SESSION['user_id'];
 if(!isset($_SESSION['user_id'])){
 	header("location: index.php") ;
 }
-if (isset($_POST['logout'])) {
-    header('Location: index.php');
-    unset($_SESSION['user_id']);
-    unset($_SESSION['first_name']);
-    session_destroy();
-    exit ;
-}
 ?>
 
 <!DOCTYPE html>
@@ -18,25 +11,18 @@ if (isset($_POST['logout'])) {
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
 	<title>change password</title>
+    <meta name="author" content="Anil">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Challenge, Project, Problem solving, problem">
     <meta name="author" content="Anil">
-    <link rel="stylesheet" href="css/bootstrap.css" media="screen">
-    <link rel="stylesheet" href="css/bootswatch.css">
-	<link href="css/bootstrap-responsive.css" rel="stylesheet">
-	<link href="css/custom.css" rel="stylesheet">
-	<link href="css/font-awesome.css" rel="stylesheet">
-	<link href="css/style.css" media="screen" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="js/jquery.autosize.js"></script>
-	<script src="js/jquery-1.js"></script>
-	
+    <?php include_once 'lib/htmt_inc_headers.php'; ?>
   </head>
   <body>
        <?php include_once 'html_comp/navbar_homepage.php'; ?>
        
-       <div style="padding-top: 50px"></div>
+       <div class="row-fluid">
        <div class='alert-placeholder'></div>
-       <div class="col-md-2" style="background-color:#FFF;">
+       <div class="span2">
             <div>
               <ul class="nav nav-tabs" role="tablist" style="font-size:17px">
                   <li role="presentation">
@@ -50,7 +36,7 @@ if (isset($_POST['logout'])) {
               <div role="tabpanel" id="tabchangePassword" >
                   
             <div class="form-group">
-                <div class="col-lg-5">
+                <div class="span5">
                     <input type="password" class="form-control" id="oldpassword" placeholder="Old password" /><br>
                     <input type="password" class="form-control" id="passwordnewchange1" placeholder="password" /><br>
                     <input type="password" class="form-control" id="passwordnewchange2" placeholder="Re-enter password"/><br/><br/>
@@ -59,7 +45,8 @@ if (isset($_POST['logout'])) {
             </div>
                 </div>
               </div>
-            
+</div>
+
         
     <script>
         function bootstrap_alert(elem, message, timeout,type) {
