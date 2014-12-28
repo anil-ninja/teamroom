@@ -25,6 +25,18 @@ include_once 'functions/delete_comment.php';
             
             <div id='tab5' class="span6">
                 <br>
+                
+                <?php echo "<div class='tab-content'>
+			     <div class='list-group-item'>
+				      <span class='color strong' style= 'font-size: 14pt;'>
+                <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
+                </p>
+              </span>
+				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
+			     </div>
+		  </div>";?>
+                
+                  
                 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                     <ul class="nav nav-tabs" style="padding: 0;">
                         <li class="active">
