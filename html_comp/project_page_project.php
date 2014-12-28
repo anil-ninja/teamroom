@@ -49,11 +49,11 @@ echo "<div class='list-group'>
                 <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
             </div>";
 if ($p_uid == $user_id) {
-    echo "<div class='list-group-item pull-right'>
+    echo "<div class='dropdown pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-              <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                <li><button class='btn-link' onclick='editproject(".$pro_id.")'>Edit Project</button></li>
-                <li><button class='btn-link' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</button></li>
+              <ul class='dropdown-menu'>
+                <li><a class='btn-link' href='#' onclick='editproject(".$pro_id.")'>Edit Project</a></li>
+                <li><a class='btn-link' href='#' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</a></li>
                 <li>
                   <a data-toggle='modal' class='btn-link' data-target='#project_order'>Sort Order</a>
                 </li>";
