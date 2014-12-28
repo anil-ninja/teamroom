@@ -232,14 +232,15 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     
                                     <label>Username</label>
                                     <input type="text" class="input-block-level" id="username" placeholder="Email or Username"/>
-                                    <label>Password<a href="index.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> </label>
+                                    <label>Password </label>
                                     <input type="password" class="input-block-level" id="passwordlogin" placeholder="Password"/>
                                     <label>
                                         <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                         &nbsp;&nbsp;&nbsp;Remember Me
+                                    
+                                        <a href="index.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a>
                                     </label>
                                     <br />
-
                                     <a class=" btn " id="request" value='login' onclick="validateLoginFormOnSubmit()">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                                 </div>
                                 <div class="span3">
@@ -309,7 +310,8 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                         </div>
                                     </div>
                                     <label>
-                                        <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
+                                        <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='agree_tc' />
+
                                         &nbsp;&nbsp;&nbsp;I Aggree With 
                                         <a href="index.php#TabsModalTnC" data-toggle="modal">Terms &amp; Conditions</a>
                                     </label>
