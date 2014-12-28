@@ -13,7 +13,7 @@ function user_articles ($db_handle, $user_IDF) {
         if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
             echo "<div class='jumbotron'>
                     <p align='center'> You have not created any article <br> Create article and Contribute<br><br>
-                    <a href='ninjas.php'> +Create Article </a>
+                    <a onclick='form_profile(8)'> +Create Article </a>
                     </p>
                 </div>";
         }
@@ -110,7 +110,7 @@ function user_challenges ($db_handle, $user_IDF) {
         if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
             echo "<div class='jumbotron'>
                     <p align='center'> You have not created any Challenge <br> Create Challenges and Contribute<br><br>
-                    <a href='ninjas.php'> +Create Challenge </a>
+                    <a onclick='form_profile(7)'> +Create Challenge </a>
                     </p>
                 </div>";
         }
@@ -208,7 +208,7 @@ function user_idea ($db_handle, $user_IDF) {
         if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
             echo "<div class='jumbotron'>
                     <p align='center'> You have not given any Idea <br> Share Idea and Contribute to Society<br><br>
-                    <a href='ninjas.php'> +Share Idea </a>
+                    <a onclick='form_profile(11)'> +Share Idea </a>
                     </p>
                 </div>";
         }
