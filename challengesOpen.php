@@ -163,7 +163,7 @@
             </div>
             </div>
             <?php
- echo "<div class='span7 offset1'>
+ echo "<div class='span8 offset1'>
 		<div class='panel-body' style=' margin:4px; background : rgb(240, 241, 242);'>
 		<p>
 		  <a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
