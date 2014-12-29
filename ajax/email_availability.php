@@ -20,7 +20,7 @@ return true ;
 }
 else
 {
-print "<span style=\"color:green;\">Email is available</span>";
+print "<span style=\"color:green;\"><i class='icon-ok'> </i>Ok</span>";
 return false;
 }
 ?>
