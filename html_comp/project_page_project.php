@@ -123,7 +123,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
     $username_pr_comment = $displayrowc['username'];
     $ida = $displayrowc['response_pr_id'];
     $idb = $displayrowc['user_id'];
-    $projectres = $displayrowc['stmt'];
+    $projectres = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowc['stmt'])));
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
@@ -429,7 +429,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         $username_commenter = $displayrowb['username'];
         $idc = $displayrowb['response_ch_id'];
         $idd = $displayrowb['user_id'];
-        $chalangeres = $displayrowb['stmt'];
+        $chalangeres = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt'])));
         echo "
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>

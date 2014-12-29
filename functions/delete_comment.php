@@ -409,4 +409,24 @@ function showLinks($stmt){
 	}
 	return $returnStmt;
 }
+function removescript($stmt){
+	$stmtArray = explode("<script>", $stmt);
+	$returnStmt = "";
+	foreach($stmtArray as $element){
+		
+		if(substr($element, 0, 4) == "<scr"){
+			$element = "<code>";
+		}
+		else if (substr($element, 0, 4) == "</sc") {
+			$element = "</code>";
+		}
+		
+		$returnStmt .= $element . " ";
+	}
+	return $returnStmt;
+	//$stmt1 = strstr($stmt, '<script>' , true);
+	//$stmt2 = strstr($stmt, '<script>');
+	//$stmt3 = $stmt1." ".$stmt2 ;
+	//$stmt4 = strstr($stmt3, '<script>' , true);
+}
 ?>
