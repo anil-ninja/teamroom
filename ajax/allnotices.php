@@ -19,12 +19,13 @@ if ($_POST['all']) {
 							<span class='icon-plus'></span>
 							<a href ='profile.php?username=".$uname25."'>".$fname25."</a> Created".$title25."
 						</div>" ;
-			$y++ ;
 			}
 	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE p_c_id IN (SELECT p_c_id  FROM involve_in WHERE user_id = '$user_id') and event_creater != '$user_id' )
 										 UNION
-										 (SELECT Distinct * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36, 37 ) 
-										 and p_c_id = '$user_id' and event_creater != '$user_id') order by timestamp DESC;") ;
+										 (SELECT Distinct * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 ) 
+										 and p_c_id = '$user_id' and event_creater != '$user_id')
+										 UNION
+										 (SELECT Distinct * FROM events WHERE event_type = '37' and p_c_id = '$user_id') order by timestamp DESC;") ;
 	while($notice1row = mysqli_fetch_array($notice1)) {
 		$eventid = $notice1row['id'] ;
 		$creater = $notice1row['event_creater'] ;
@@ -509,7 +510,7 @@ if ($_POST['all']) {
 				break;
 				
 			case 37:
-				$notice25 = mysqli_query($db_handle, "select Distinct a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
+				$notice25 = mysqli_query($db_handle, "select Distinct a.user_id, a.reminder, b.first_name from reminders as a join user_info
 													  as b where a.person_id = '$user_id' and a.user_id = b.user_id;") ;
 				while ($notice25row = mysqli_fetch_array($notice25)) {
 					$reminders = $notice25row['reminder'] ;
@@ -520,20 +521,9 @@ if ($_POST['all']) {
 					else {
 						$rname = $notice25row['first_name'] ;
 					}
-					$reminder_time = $notice25row['time'] ;
-					$starttime = strtotime($reminder_time) ;
-					$endtime = time() ;
-					if ($endtime <= $starttime) {
-						$timeleft = $starttime - $endtime ;
-					}
-					else {
-						$timeleft = $starttime ;
-					}
-					if ($timeleft < 600 && $timeleft > 0) {
-						$notice = $notice . "<div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
-												<span class='icon-bullhorn'>".$reminders. "</span> By : ".$rname."
-											</div>";
-					}
+					$notice = $notice . "<div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
+											<span class='icon-bullhorn'> ". $reminders."</span> By : ".$rname."
+										</div>";
 				}
 								
 				break;
