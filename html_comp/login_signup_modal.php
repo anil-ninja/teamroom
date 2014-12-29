@@ -28,18 +28,19 @@
                                 <div class="row-fluid">
                                     <div class="span5">
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Login Here</h4>
-
+                                    
                                         <label>Username</label>
-                                        <input type="text" class="input-block-level" id="username" placeholder="Enter email or username"/>
-                                        <label>Password<a href="index11.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a> </label>
+                                        <input type="text" class="input-block-level" id="username" placeholder="Email or Username"/>
+                                        <label>Password </label>
                                         <input type="password" class="input-block-level" id="passwordlogin" placeholder="Password"/>
                                         <label>
                                             <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                             &nbsp;&nbsp;&nbsp;Remember Me
+                                        
+                                            <a href="index.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a>
                                         </label>
                                         <br />
-
-                                        <a class=" btn " name="request" value='login' onclick="validateLoginFormOnSubmit()">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                                        <a class=" btn " id="request" value='login' onclick="validateLoginFormOnSubmit()">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                                     </div>
                                     <div class="span3">
                                         <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
@@ -89,7 +90,7 @@
                                         </div>
 
                                         <label>Email</label>
-                                        <input type="text" class="input-block-level" id="email" onkeyup="nospaces(this)"/>
+                                        <input type="email" class="input-block-level" id="email" onkeyup="nospaces(this)"/>
                                         <span id="status_email"></span>
 
                                         <label>Username</label>
@@ -106,7 +107,8 @@
                                             </div>
                                         </div>
                                         <label>
-                                            <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
+                                            <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='agree_tc' />
+
                                             &nbsp;&nbsp;&nbsp;I Aggree With 
                                             <a href="index.php#TabsModalTnC" data-toggle="modal">Terms &amp; Conditions</a>
                                         </label>
