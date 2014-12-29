@@ -92,8 +92,8 @@ function getnewnote(time, lid) {
 		cache: false,
 		success: function(result){
 			if(result == "no new notification") { 
-				$("#countnotice").val(0) ;
-				}
+				document.getElementById("countnotice").innerHTML = "" ;
+			}
 			else {
 				var notice = result.split("+") ;
 				$('.newnotices').append(notice['0']);
@@ -101,7 +101,7 @@ function getnewnote(time, lid) {
 				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
 				var neid = parseInt(notice['2']) ;
 				if (neid+='' != 0) {
-					$("#countnotice").val(newnum+='') ;
+					document.getElementById("countnotice").innerHTML = newnum+='' ;
 				}
 				if (newnum+='' != 0) {
 					$("#lasteventid").val(neid+='') ;

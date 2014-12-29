@@ -662,20 +662,16 @@ if ($_POST['notice']) {
 				} */
 			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
-			$data .= "<li class='dropdown navbar-text' style='cursor:pointer;'>
-					<a data-toggle='dropdown' onclick='updatetime()'>
-					<i class='icon-bell'></i>" ;
+		$data .= "<li class='dropdown navbar-text'>
+					<a class='dropdown-toggle' data-toggle='dropdown' onclick='updatetime()'><i class='icon-bell'></i>" ;
 			if ($y != 0) {
-				$data = $data . "<span class='badge' style='padding-left: 0; padding-right: 0; padding-bottom: 0; padding-top: 0; 
-									color: white;' id='countnotice'>".$y."</span>" ;
+				$data = $data . "<span class='badge' style='padding: 0px 0px 0px 0px; color: white;' id='countnotice'>".$y."</span>" ;
 				}
 	$data = $data . "</a>
 					<ul class='dropdown-menu'>
-						<li>
 							<li>".$notice."</li>
-							<div class='newnotices' ></div>
+							<li><div class='newnotices' ></div></li>
 							<li><a href='notifications.php'>See All</a></li>
-						</li>
 					</ul>
 				</li>" ;
 	echo $data."+".$data1 ;
