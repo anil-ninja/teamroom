@@ -48,7 +48,21 @@
                                                                     WHERE user_id = '$user_id' 
                                                                     AND project_type= '2');
                                             ");
-        while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
+        
+        if (mysqli_num_rows($project_title_display) == 0) {
+                echo "  <tr>
+                            <td>
+                                <i>No any projects to display,</i><br>
+                                <a class='active' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
+                                    <font size='1'> 
+                                        <i class='icon-plus'>&nbsp; Create Project</i>
+                                    </font>
+                                </a>
+                            </td>
+                        </tr>";
+        } 
+        else {
+            while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
                 $p_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_title_displayRow['project_title']))) ;
                 $idpro = $project_title_displayRow['project_id'] ;
                 if (strlen($p_title) > 30) {
@@ -71,6 +85,7 @@
                                 </a>
                             </td>
                         </tr>";
+            }
         }  
         echo "      </table>
                 </div>
@@ -91,30 +106,44 @@
             $project_public_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 
                                                                     as b WHERE a.user_id = '$user_id' and a.project_id = b.project_id and b.project_type = '1')  
                                                                     UNION (SELECT DISTINCT project_id, project_title, project_ETA, creation_time FROM projects WHERE user_id = '$user_id' and project_type= '1');");
-
-            while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
-				$public_pr_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow['project_title']))) ;
-				$idproject = $project_public_title_displayRow['project_id'] ;
-				if (strlen($public_pr_titlep) > 30) {
-					   $prtitlep = substr(ucfirst($public_pr_titlep),0,30)." ...";
-					} 
-                else {
-					$prtitlep = ucfirst($public_pr_titlep) ;
-				}								   
-				$p_etap = $project_public_title_displayRow['project_ETA'] ;
-				$p_timep = $project_public_title_displayRow['creation_time'] ;
-				$timefuncp = date("j F, g:i a",strtotime($p_timep));
-				$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
-				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
-    		echo "      <tr>
+            
+            if (mysqli_num_rows($project_public_title_display) == 0) {
+                echo "  <tr>
                             <td>
-                                <a href = 'project.php?project_id=".$idproject."' >
-                					<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:11px;text-align: left;'>
-                					   ".$prtitlep."
-                                    </button>
+                                <i>No any projects to display,</i><br>
+                                <a data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
+                                    <font size='1'> 
+                                        <i class='icon-plus'>&nbsp; Create Project</i>
+                                    </font>
                                 </a>
                             </td>
                         </tr>";
+            } 
+            else {
+                while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
+    				$public_pr_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow['project_title']))) ;
+    				$idproject = $project_public_title_displayRow['project_id'] ;
+    				if (strlen($public_pr_titlep) > 30) {
+    					   $prtitlep = substr(ucfirst($public_pr_titlep),0,30)." ...";
+    					} 
+                    else {
+    					$prtitlep = ucfirst($public_pr_titlep) ;
+    				}								   
+    				$p_etap = $project_public_title_displayRow['project_ETA'] ;
+    				$p_timep = $project_public_title_displayRow['creation_time'] ;
+    				$timefuncp = date("j F, g:i a",strtotime($p_timep));
+    				$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
+    				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
+        		echo "      <tr>
+                                <td>
+                                    <a href = 'project.php?project_id=".$idproject."' >
+                    					<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:11px;text-align: left;'>
+                    					   ".$prtitlep."
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>";
+                }
             } 
         ?>
 	                </table>
