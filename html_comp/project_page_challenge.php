@@ -150,16 +150,26 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
                                         <tbody>" ;
 		
             $oc = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, challenge_ETA, creation_time FROM challenges WHERE project_id = '$pro_id' AND challenge_type = '2' AND challenge_status = '1' ;");
-            while($ocrow = mysqli_fetch_array($oc)) {
-				$ocid = $ocrow['challenge_id'] ;
-				$octitle = $ocrow['challenge_title'] ;
-				$occtime = $ocrow['creation_time'] ;
-				$oceta = $ocrow['challenge_ETA'] ;
-				$rtoc = remaining_time($occtime, $oceta) ;
-		echo "<tr>
-				<td style='width:180px'><a href ='challengesOpen.php?challenge_id=".$ocid."'>".$octitle."</a></td>
-			  </tr>" ;
-	}
+            if (mysqli_num_rows($oc) == 0) {
+        		echo "<tr>
+						<td style='width:180px'>
+						<i> No content to display.</i>
+						</td>
+					  </tr>" ;    	
+            }
+            else {
+
+	            while($ocrow = mysqli_fetch_array($oc)) {
+					$ocid = $ocrow['challenge_id'] ;
+					$octitle = $ocrow['challenge_title'] ;
+					$occtime = $ocrow['creation_time'] ;
+					$oceta = $ocrow['challenge_ETA'] ;
+					$rtoc = remaining_time($occtime, $oceta) ;
+			echo "<tr>
+					<td style='width:180px'><a href ='challengesOpen.php?challenge_id=".$ocid."'>".$octitle."</a></td>
+				  </tr>" ;
+				}
+			}
             echo "</tbody>
                 </table></div>" ;
 
@@ -168,18 +178,27 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>In Progress</b></center>
 				 </thead>
-				 <tbody>
-				<tr>
-					<td>Type</td>
-					<td>Title</td>
-					<td>Owned</td>
-				</tr>" ;
+				 <tbody>";
 		
 	 $ip = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
 												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$pro_id' 
 												AND a.challenge_type != '6' AND a.challenge_status = '2' and a.challenge_id = b.challenge_id
 												and b.user_id = c.user_id;");
-      while($iprow = mysqli_fetch_array($ip)) {
+      
+	if (mysqli_num_rows($ip) == 0) {
+		echo "<tr>
+				<td style='width:180px'>
+				<i> No content to display.</i>
+				</td>
+			  </tr>" ;
+	}
+	else {
+		echo "<tr>
+				<td>Type</td>
+				<td>Title</td>
+				<td>Owned</td>
+			</tr>";
+		while($iprow = mysqli_fetch_array($ip)) {
 				$ipid = $iprow['challenge_id'] ;
 				$iptitle = $iprow['challenge_title'] ;
 				$iptype = $iprow['challenge_type'] ;
@@ -199,6 +218,7 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 			echo "</td><td><a href ='challengesOpen.php?challenge_id=".$ipid."'>".$iptitle."</a></td>
 					<td><a href ='profile.php?username=".$ipname."'>".$ipfname."</a></td>
 				</tr>" ;
+		}
 	}
 	echo "</tbody>
             </table></div>" ;
@@ -206,19 +226,30 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>In Review</b></center>
 				 </thead>
-				 <tbody>
-				<tr>
-					<td style='width:70px'>Type</td>
-					<td style='width:70px'>Title</td>
-					<td style='width:70px'>Submitted By</td>
-					<td style='width:70px'>ON</td>
-				</tr>" ;
+				 <tbody>";
+
+				
 		
-	 $ir = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
+	$ir = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
 												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$pro_id' 
 												AND a.challenge_type != '6' AND a.challenge_status = '4' and a.challenge_id = b.challenge_id
 												and b.user_id = c.user_id;");
-      while($irrow = mysqli_fetch_array($ir)) {
+    if (mysqli_num_rows($ir) == 0) {
+		echo "<tr>
+				<td style='width:180px'>
+				<i> No content to display.</i>
+				</td>
+			  </tr>";
+	}
+	else {
+		echo "
+			<tr>
+				<td style='width:70px'>Type</td>
+				<td style='width:70px'>Title</td>
+				<td style='width:70px'>Submitted By</td>
+				<td style='width:70px'>ON</td>
+			</tr>";
+    	while($irrow = mysqli_fetch_array($ir)) {
 				$irid = $irrow['challenge_id'] ;
 				$irtitle = $irrow['challenge_title'] ;
 				$irtype = $irrow['challenge_type'] ;
@@ -242,25 +273,36 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 					<td style='width:70px'>".$irontime."</td>
 				</tr>" ;
 	}
+}
 	echo "</tbody>
             </table></div>" ;
 echo  "<div class='list-group-item'style='font-size:10px;'>
 				<table class='table table-striped scroll '>
 				 <thead> <center><b>Completed</b></center>
 				 </thead>
-				 <tbody>
-				<tr>
+				 <tbody>";
+
+				
+		
+	$com = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
+												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$pro_id' 
+												AND a.challenge_type != '6' AND a.challenge_status = '5' and a.challenge_id = b.challenge_id
+												and b.user_id = c.user_id;");
+	if (mysqli_num_rows($com) == 0) {
+		echo "<tr>
+				<td style='width:180px'>
+				<i> No content to display.</i>
+				</td>
+			  </tr>";
+	}
+	else {
+		echo "<tr>
 					<td style='width:70px'>Type</td>
 					<td style='width:70px'>Title</td>
 					<td style='width:70px'>Submitted By</td>
 					<td style='width:70px'>ON</td>
-				</tr>" ;
-		
-	 $com = mysqli_query($db_handle, "SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_type, b.comp_ch_ETA, b.ownership_creation, b.time, c.first_name, c.username
-												from challenges as a join challenge_ownership as b join user_info as c where a.project_id = '$pro_id' 
-												AND a.challenge_type != '6' AND a.challenge_status = '5' and a.challenge_id = b.challenge_id
-												and b.user_id = c.user_id;");
-      while($comrow = mysqli_fetch_array($com)) {
+				</tr>";
+    	while($comrow = mysqli_fetch_array($com)) {
 				$comid = $comrow['challenge_id'] ;
 				$comtitle = $comrow['challenge_title'] ;
 				$comtype = $comrow['challenge_type'] ;
@@ -283,6 +325,7 @@ echo  "<div class='list-group-item'style='font-size:10px;'>
 					<td style='width:70px'><a href ='profile.php?username=".$comname."'>".$comfname."</a></td>
 					<td style='width:70px'>".$comontime."</td>
 				</tr>" ;
+		}
 	}
 	echo "</tbody>
             </table></div></div>" ;           
