@@ -18,32 +18,39 @@
 												and user_id NOT IN (select a.user_id FROM user_info as a join known_peoples as b
 												where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2')
 												 ORDER by rand() limit 0, 5 ;");
-		while ($RecommendedRow = mysqli_fetch_array($Recommended)) {
-			$friendFirstNamer = $RecommendedRow['first_name'];
-			$friendLastNamer = $RecommendedRow['last_name'];
-			$usernameFriendsr = $RecommendedRow['username'];
-			$useridFriendsr = $RecommendedRow['user_id'];
-			$friendRankr = $RecommendedRow['rank'];	     
+		if (mysqli_num_rows($Recommended) == 0) {
 			echo "<div class ='row' style='border-width: 1px; margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
-					<div class ='span3' style='padding:1px;'>
-						<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:35px; width: 35px;' class='img-responsive'>
-					</div>
-					<div id='demo9' class = 'span6' style='font-size:12px;padding: 1px;'>
-						<span class='color pull-left' id='new_added'>
-							<a href ='profile.php?username=" . $usernameFriendsr. "'>" 
-								.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."
-							</a>
-						</span>
-						<br/>
-						<span style='font-size:10px;'>".$friendRankr."</span>
-					</div>";
-			if (isset($_SESSION['user_id'])) {
-			  echo "<div id='demo8' class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
-						<input type = 'submit' class = 'btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
-					</div>";
-				}
-			echo "</div>";
+					<i> No Recommendation</i>
+				</div>";
+		}
+		else {
+			while ($RecommendedRow = mysqli_fetch_array($Recommended)) {
+				$friendFirstNamer = $RecommendedRow['first_name'];
+				$friendLastNamer = $RecommendedRow['last_name'];
+				$usernameFriendsr = $RecommendedRow['username'];
+				$useridFriendsr = $RecommendedRow['user_id'];
+				$friendRankr = $RecommendedRow['rank'];	     
+				echo "<div class ='row' style='border-width: 1px; margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+						<div class ='span3' style='padding:1px;'>
+							<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:35px; width: 35px;' class='img-responsive'>
+						</div>
+						<div id='demo9' class = 'span6' style='font-size:12px;padding: 1px;'>
+							<span class='color pull-left' id='new_added'>
+								<a href ='profile.php?username=" . $usernameFriendsr. "'>" 
+									.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."
+								</a>
+							</span>
+							<br/>
+							<span style='font-size:10px;'>".$friendRankr."</span>
+						</div>";
+				if (isset($_SESSION['user_id'])) {
+				  echo "<div id='demo8' class = 'span3' style='font-size:12px;padding-left: 1px; padding-right: 0px;'>
+							<input type = 'submit' class = 'btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
+						</div>";
+					}
+				echo "</div>";
 			}
+		}
 	} 
 ?>
 </div>
