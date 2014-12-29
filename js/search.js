@@ -111,8 +111,8 @@ function getnewnote(time, lid) {
 	});
 }
 function getallnotices() {
-	var all = 'all' ;
-	var dataString = 'all='+ all ; 
+	$('#allnotices').append("<div class='loading'><center><img src='img/loading.gif' /></center></div>");
+	var dataString = 'all=true' ; 
 	$.ajax({
 		type: "POST",
 		url: "ajax/allnotices.php",
@@ -121,7 +121,7 @@ function getallnotices() {
 		success: function(result){
 			//alert(result) ;
 			document.getElementById("allnotices").innerHTML = result ;
-			//$('.newnotices').append(notice['0']);
+			$('.loading').remove();
 		}
 	});
 } ;
