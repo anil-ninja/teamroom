@@ -21,7 +21,7 @@
 			if($obj->video == 0)
 				echo "<meta property=\"og:image\" content=\"$obj->url\" />";
 			else
-				echo "<meta property=\"og:video\" content=\"$obj->url\" />\n";
+				echo "<meta property=\"og:video\" content=\"http:$obj->url\" />\n";
         ?>
         <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
         <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
