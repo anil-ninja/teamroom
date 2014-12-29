@@ -387,7 +387,7 @@ $obj = new profile($UserName);
                             <input type="file" id="_fileprofilepic"/>
                             
                             <br/><br/>
-                            <a href="#" class=" btn btn-primary" id="upload_image"  value="Change">Upload&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                            <a href="#" class=" btn btn-primary" onclick="upload_image()"  value="Change">Upload&nbsp; <i class="icon-chevron-sign-right"></i></a>
                         </div>
                     </div>
                 </div>

@@ -342,14 +342,6 @@ function bootstrap_alert(elem, message, timeout,type) {
 		
 			}
 		}
-		
-		$("#upload_image").click(function(){
-      		var dataString = 'case=5' ;
-			var _file = document.getElementById('_fileprofilepic');
-			uploadFile1(_file,"profilepic",String(dataString),"ajax/change_profile.php");
-		});
-		
-		
 			
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');

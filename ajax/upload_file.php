@@ -60,9 +60,14 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 			case "profilepic":
 				$pic = explode(".", $_FILES["file"]["name"]) ;
 				$pict = $pic['1'] ;
-				$picname = $username.".".$pict ; 
+				if ($pict == "jpg") {
+					$picname = $username.".".$pict ;
+				}
+				else { 
+					$picname = $username.".jpg" ;
+				}
 				$filePath = "../uploads/profilePictures/".$picname;
-				if(!file_exists("../uploads/profilePictures/".$picname)) {
+				if(!file_exists($filePath)) {
 					saveFile($filePath); 
 				} 
 				 else {

@@ -208,3 +208,8 @@ function form_profile(type){
 		}
 	});
 }
+function upload_image(){
+      		var dataString = 'case=5' ;
+			var _file = document.getElementById('_fileprofilepic');
+			uploadFile1(_file,"profilepic",String(dataString),"ajax/change_profile.php");
+		}
