@@ -73,29 +73,6 @@ function dropDown_delete_comment_pr_old($deleteid, $user_ID, $owner_id) {
         </div>";
 }
 
-/*
-function dropDown_delete_comment_pr($deleteid, $user_ID, $owner_id) {
-    echo  "<div class='dropdown pull-right'>
-            <a href='#' id='themes'><span class='caret'></span></a>
-            <ul class='dropdown-menu'>";
-            if($owner_id == $user_ID) {
-                echo "<li>
-                        <a class='btn-link' href='#' onclick='delcomment(\"".$deleteid."\", 2);'>
-                            Delete
-                        </a>
-                    </li>";
-            }
-            else {
-               echo "<li>
-                        <a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 8);'>
-                            Report Spam
-                        </a>
-                    </li>";
-            }
-                echo "</ul>
-        </div>";
-}
-*/
 function dropDown_delete_comment_pr_ch_old($deleteid, $user_ID, $owner_id) {
     echo  "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
@@ -377,7 +354,7 @@ function recommended_project ($db_handle) {
                     <div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
                         <font size='2'> Recommended</font>
                     </div>
-                    <div class='panel-content'>
+                    <div class='bs-component'>
                         <table>";
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
@@ -396,7 +373,6 @@ function recommended_project ($db_handle) {
 
     echo "<tr><td id='step14' >
                 <a href = 'project.php?project_id=".$idproject2."'>
-        
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
                 data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:11px;text-align: left;'>
                 ".$prtitlep2."
