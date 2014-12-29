@@ -65,6 +65,7 @@ body { margin: 10px;}
 a {
   text-decoration: none;
   color: #202020;
+  cursor: pointer;
 }
 a:focus { outline: thin dotted; }
 

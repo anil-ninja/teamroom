@@ -3163,7 +3163,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 {
   background-color: transparent;
   color: #005580;
-  text-decoration: underline;
+  /* text-decoration: underline; */
 }
 .btn-link[disabled]:hover,.btn-link[disabled]:focus
 {
