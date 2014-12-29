@@ -669,7 +669,7 @@ if ($_POST['notice']) {
 				}
 	$data = $data . "</a>
 					<ul class='dropdown-menu'>
-							<li>".$notice."</li>
+							".$notice."
 							<li><div class='newnotices' ></div></li>
 							<li><a href='notifications.php'>See All</a></li>
 					</ul>
