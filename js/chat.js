@@ -128,10 +128,8 @@ function getallreminders() {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result) ;
 					var notice = result.split("+") ;
 					var neid = parseInt(notice['1']) ;
-					//alert(neid) ;
 					document.getElementById("allreminders").innerHTML = notice['0'];
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
 					$("#lastreminderid").val(neid+='') ;

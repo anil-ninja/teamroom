@@ -62,11 +62,11 @@
 			$usernameFriendsr = $RecommendedRow['username'];
 			$useridFriendsr = $RecommendedRow['user_id'];
 			$friendRankr = $RecommendedRow['rank'];	     
-			echo "<div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
-					<div class ='col-md-2'>
-						<img src='uploads/profilePictures/$usernameFriendsr.jpg' style='margin-left:-10px; height:35px;' onError=this.src='img/default.gif' class='img-responsive'>
+			echo "<div class ='row-fluid' style=' margin:1px; background : rgb(240, 241, 242);'>
+					<div class ='span3'>
+						<img src='uploads/profilePictures/$usernameFriendsr.jpg' style='height:35px;' onError=this.src='img/default.gif' class='img-responsive'>
 					</div>
-					<div id='demo9' class = 'col-md-6' style='font-size:10px;margin-left: -10px;'>
+					<div id='demo9' class = 'span6' style='font-size:10px;'>
 						<span class='color pull-left' id='new_added'>
 							<a href ='profile.php?username=" . $usernameFriendsr. "'>" 
 								.ucfirst($friendFirstNamer)." ".ucfirst($friendLastNamer)."
@@ -76,8 +76,8 @@
 						<span style='font-size:10px;'>".$friendRankr."</span>
 					</div>";
 			if (isset($_SESSION['user_id'])) {
-			  echo "<div id='demo8' class = 'col-md-2'>
-						<input type = 'submit' class = 'btn btn-success btn-xs' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
+			  echo "<div id='demo8' class = 'span2'>
+						<input type = 'submit' class = 'btn-success' onclick='knownperson(".$useridFriendsr.")' value = 'Link'/>
 					</div>";
 				}
 			echo "</div>";
