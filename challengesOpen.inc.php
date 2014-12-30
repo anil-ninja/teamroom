@@ -7,6 +7,7 @@ include_once 'models/challenge.php';
 $obj = new challenge($_GET['challenge_id']);
 $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
+
 $private_check = mysqli_query($db_handle, "SELECT challenge_type FROM challenges WHERE challenge_id = $challengeSearchID");
 $private_checkRow = mysqli_fetch_array($private_check);
 $private_ch_type = $private_checkRow['challenge_type'];
@@ -51,7 +52,7 @@ $challengeSearch_first = $challengeSearch_user_IDRow['first_name'];
 $challengeSearch_last = $challengeSearch_user_IDRow['last_name'];
 
 function challenge_display($db_handle, $challengeSearchID) {
-    
+    $username = $_SESSION['username'];    
     $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
                                                 a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
                                                 as a join user_info as b where a.challenge_id = '$challengeSearchID' AND a.challenge_status != '3' and a.challenge_status != '7' 
@@ -462,7 +463,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
             }
             echo "<div class='comments_".$chelangeid."'></div><div id='demo14' class='comments clearfix'>
                 <div class='pull-left lh-fix'>
-                    <img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>&nbsp
+                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                 </div>
                 <div class='comment-text'>";
             if (isset($_SESSION['user_id'])) {
