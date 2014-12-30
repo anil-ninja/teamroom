@@ -184,8 +184,8 @@ $obj = new profile($UserName);
                     echo "             
                                     </span>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                        echo "      
-                                    <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:4px 15px 4px 15px;'>
+                        echo "     <br/> 
+                                    <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
                                         <i class='icon-plus'></i> Skill
                                     </a>
                                     <br/>";
