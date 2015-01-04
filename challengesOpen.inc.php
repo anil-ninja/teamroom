@@ -362,7 +362,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                 echo "<div class='list-group idea'>
                                 <div class='list-group-item'>";
               dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                echo $display_title."<span class='icon-flash'></span>".$display_name_stmt."<br><br>";
+                echo $display_title."<span class='icon-lightbulb'></span>".$display_name_stmt."<br><br>";
             }
             else if ($ctype == 5) {
                 echo "<div class='list-group tree'>
@@ -415,7 +415,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                 else if ($ctype == 4) {
                     echo "<div class='list-group idea'>
                                 <div class='list-group-item'>";
-                                   echo $display_title."<span class='icon-flash'></span>".$display_name_stmt;
+                                   echo $display_title."<span class='icon-lightbulb'></span>".$display_name_stmt;
                 }
                 else if ($ctype == 6) {
                     echo "<div class='list-group deciduous'>

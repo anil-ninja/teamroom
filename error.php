@@ -1,12 +1,6 @@
 <?php
 include_once 'lib/db_connect.php';
-if (isset($_POST['logout'])) {
-    header('Location: ninjas.php');
-    unset($_SESSION['user_id']);
-    unset($_SESSION['first_name']);
-    session_destroy();
-    exit;
-}
+
 ?>
 <html lang="en">
     <head>
@@ -77,7 +71,7 @@ if (isset($_POST['logout'])) {
         else if ($challenge_type_type == 4) {
             echo "  <div class='list-group-item'>";
             echo $display_tilte_ch."
-                        <span class='icon-flash'></span>".$display_fname_likes;
+                        <span class='icon-lightbulb'></span>".$display_fname_likes;
         } 
         else if ($challenge_type_type == 3) {
             echo "  <div class='list-group-item'>";
@@ -160,7 +154,7 @@ if (isset($_POST['logout'])) {
  echo "<div class='span8 offset1'>
 		<div class='panel-body' style=' margin:4px; background : rgb(240, 241, 242);'>
 		<p>
-		  <a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
+		  <a href='http://www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 	   </div>
 	   </div>" ;
