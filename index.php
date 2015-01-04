@@ -335,10 +335,10 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <h4><i class="icon-question"></i>&nbsp;&nbsp;Login</h4>
                                     <div class="box">
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel.
+                                            Its your freedom to share ideas and connect with innovated, idealized minded person and help society to grow.
                                         </p>
                                         <p>
-                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit fusce vel sapien elit in.
+                                            Its good to be here, lets charge ourself.
                                         </p>
                                     </div>
                                     <div class="box">
@@ -385,28 +385,17 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <div class="box">
                                         <p>Getting Error With Password Recovery Click Here For <a href="index.php#">Support</a></p>
                                         <ul>
-
-
-                                            <li>Vestibulum pharetra lectus montes lacus!</li>
-                                            <li>Iaculis lectus augue pulvinar taciti.</li>
+                                            
                                         </ul>
-
                                     </div>
                                     <div class="box">
                                         <ul>
-                                            <li>Potenti facilisis felis sociis blandit euismod.</li>
-                                            <li>Odio mi hendrerit ad nostra.</li>
-                                            <li>Rutrum mi commodo molestie taciti.</li>
-                                            <li>Interdum ipsum ad risus conubia, porttitor.</li>
-                                            <li>Placerat litora, proin hac hendrerit ac volutpat.</li>
-                                            <li>Ornare, aliquam condimentum  habitasse.</li>
+                                            <li>Having repeated difficulty signing in?</li>
+                                            <li>Clearing your browser's cache and cookies may help.</li>
                                         </ul>
-
                                     </div>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

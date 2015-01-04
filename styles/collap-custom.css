@@ -1842,11 +1842,11 @@ div#navtab li a{
 .navbar-inner-subnav
 {
   background-color: #fafafa;
-  background-image: linear-gradient(to bottom,#4EC66e,#536B4D);
-  background-image: -moz-linear-gradient(top,#4EC66e,#536B4D);
-  background-image: -o-linear-gradient(top,#4EC66e,#536B4D);
-  background-image: -webkit-gradient(linear,0 0,0 100%,from(#4EC67F),to(#536B4D));
-  background-image: -webkit-linear-gradient(top,#4EC67F,#536B4D);
+  background-image: linear-gradient(to bottom,#3DB56E,#1b824A);
+  background-image: -moz-linear-gradient(top,#3DB56E,#1b824A);
+  background-image: -o-linear-gradient(top,#3DB56E,#1b824A);
+  background-image: -webkit-gradient(linear,0 0,0 100%,from(#3DB56E),to(#1b824A));
+  background-image: -webkit-linear-gradient(top,#3DB56E,#1b824A);
   background-repeat: repeat-x;
   border: 1px solid #d4d4d4;
   border-radius: 4px;
