@@ -24,7 +24,7 @@ class profile{
         mysqli_close($db_handle);
     }
     function getImage() {
-        return"<img src='uploads/profilePictures/$this->username.jpg' onError=this.src='img/default.gif'>";
+        return "http://".$_SERVER['HTTP_HOST']."/uploads/profilePictures/$this->username.jpg";
     }
     
 }
