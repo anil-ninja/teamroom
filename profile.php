@@ -305,7 +305,7 @@ $obj = new profile($UserName);
                         </li>
                         <li>
                             <a href="#tabIdeas" data-toggle="tab" id="user_idea" style="padding: 10px 5px;">
-                                <i class='icon-magnet'> </i><span>Idea</span> 
+                                <i class='icon-lightbulb'> </i><span>Idea</span> 
                                 <span class="badge">
                                     <?= $totalideaCreated ?>
                                 </span>

@@ -9,7 +9,7 @@
         |
         <span class="icon-film" onclick='show_form_h(10)' style="cursor: pointer;color: #000;"> Videos</span>
         | 
-        <span class="icon-magnet" onclick='show_form_h(11)' style="cursor: pointer;color: #000;"> Ideas</span>
+        <span class="icon-lightbulb" onclick='show_form_h(11)' style="cursor: pointer;color: #000;"> Ideas</span>
     </div>
     <div class='list-group-item'>
 		<div id='textForm' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
@@ -262,7 +262,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
         echo "<div class='list-group idea'>
                         <div class='list-group-item'>";
           dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-        echo $display_tilte_ch."<span class='icon-flash'></span>".$display_fname_likes.$display_ch_stmt_content;
+        echo $display_tilte_ch."<span class='icon-lightbulb'></span>".$display_fname_likes.$display_ch_stmt_content;
         $display_ch_stmt_content = "";
     } 
     if ($ctype == 3) {
