@@ -185,7 +185,9 @@
             $(".editbox").mouseup(function(){
             return false
             });
+            </script>
+            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a9978c1d02a7b3" async="async"></script>
             <?php include_once 'html_comp/insert_time.php'; ?>
-        </script>
     </body>
 </html>
