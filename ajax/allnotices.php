@@ -24,8 +24,7 @@ if ($_POST['all']) {
 							target='_blank'>". $title25."</a> on .".$eventtimeN."
 						</div>" ;
 			}
-	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE p_c_id IN (SELECT Distinct p_c_id  FROM involve_in WHERE user_id = '$user_id' and
-										 p_c_type IN ( 3, 4, 5, 6, 7, 10, 11, 13, 14, 15, 16, 17, 31, 33, 38 ) ) and event_creater != '$user_id' )
+	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') and event_creater != '$user_id' )
 										 UNION
 										 (SELECT Distinct * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 ) 
 										 and p_c_id = '$user_id' and event_creater != '$user_id')
@@ -527,7 +526,7 @@ if ($_POST['all']) {
 						$rname = ucfirst($notice25row['first_name']) ;
 					}
 					$notice = $notice . "<div class ='row-fluid' style=' margin:4px; background : rgb(240, 241, 242);'>
-											<span class='icon-bullhorn'> ". $reminders."</span> By : ".$rname."
+											<span class='icon-bullhorn'> ". $reminders."</span> By : ".$rname." on " .$eventtime."
 										</div>";
 				}
 								

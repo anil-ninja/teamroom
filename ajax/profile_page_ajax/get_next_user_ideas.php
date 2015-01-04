@@ -55,7 +55,7 @@ if ($_POST['user_next_idea']) {
         $show_idea = $show_idea. "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
                         .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$idea_title."'/>                    
-                    <span class='icon-flash'></span><span style= 'color: #808080'>
+                    <span class='icon-lightbulb'></span><span style= 'color: #808080'>
                     By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
                         <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp

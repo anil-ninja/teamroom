@@ -326,7 +326,7 @@ if ($_POST['chal']) {
         $show = $show . $dropDown_challenge_get;
         $dropDown_challenge_get = "";
     //dropdown for delete/edit/span idea ends here
-       $show = $show .$get_display_tilte."<span class='icon-flash'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+       $show = $show .$get_display_tilte."<span class='icon-lightbulb'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
        $get_display_ch_stmt_content = "" ;
     } 
     if ($ctype == 3) {  
