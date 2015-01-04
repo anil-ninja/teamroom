@@ -30,7 +30,8 @@ if ($_POST['time']) {
 						</div>" ;
 			$y++ ;
 			}
-	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE p_c_id IN (SELECT p_c_id  FROM involve_in WHERE user_id = '$user_id') 
+	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE p_c_id IN (SELECT p_c_id  FROM involve_in WHERE user_id = '$user_id' and
+										 p_c_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 )) 
 										 and timestamp > '$time' and event_creater != '$user_id' )
 										 UNION
 										 (SELECT * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 ) 
