@@ -14,18 +14,15 @@ if (isset($_POST['logout'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenges, Projects, Problem solving, problems">
         <meta name="author" content="Rajnish">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Challenge, Project, Problem solving, problem">
-        <meta name="author" content="Anil">
         <?php include_once 'lib/htmt_inc_headers.php'; ?>
     </head>
     <body>
 <?php 
     include_once 'html_comp/navbar_homepage.php'; 
 ?>
-        <div class="row" style="padding-top: 50px;">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-8">
+        <div class="row-fluid">
+            <div class="span1"></div>
+            <div class="span7">
                 <?php
                     $top_challenges = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.blob_id, a.challenge_title, a.creation_time, a.challenge_type, a.challenge_status, a.stmt, b.first_name, b.last_name, b.username from challenges as a join user_info as b 
                                         WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND blob_id = '0' AND challenge_status ='1' and a.user_id=b.user_id)
@@ -35,7 +32,7 @@ if (isset($_POST['logout'])) {
                    while ($top_challengesRow = mysqli_fetch_array($top_challenges)) {
                        $challenge_type_id = $top_challengesRow['challenge_id'];
                        $challenge_type_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['challenge_title'])));
-                       $challenge_type_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['stmt']))) ;
+                       $challenge_type_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['stmt'])))) ;
                        $challenge_type_first = $top_challengesRow['first_name'];
                        $challenge_type_last = $top_challengesRow['last_name'];
                        $challenge_type_username = $top_challengesRow['username'];
@@ -44,42 +41,63 @@ if (isset($_POST['logout'])) {
                        $challenge_type_time = $top_challengesRow['creation_time'];
                        $time_display = date("j F, g:i a", strtotime($challenge_type_time));
                        
-        $display_tilte_ch = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>" 
-                                .ucfirst($challenge_type_title)."</b></p>";
-        $display_fname_likes = "<span style= 'color: #808080'>
-                            &nbspBy: <a href ='profile.php?username=" . $challenge_type_username . "'>".ucfirst($challenge_type_first)." ".ucfirst($challenge_type_last)."</a> | ".$time_display."</span> | 
-                                <span class='glyphicon glyphicon-hand-up'>".$likes."</span> &nbsp <span class='glyphicon glyphicon-hand-down'>".$dislikes."</span>
-                            </div>                    
-                            <div class='list-group-item'>
-                                <br/>".$challenge_type_stmt."<br/><br/></div>";
-                     echo "<div class='list-group'>";
+        $display_tilte_ch = "
+                <p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b> 
+                    <a class='btn-link' style='color:#3B5998; word-wrap: break-word;' href='challengesOpen.php?challenge_id=".$challenge_type_id."' target='_blank'>"
+                        .ucfirst($challenge_type_title)."
+                    </a></b>
+                </p>";
+        $display_fname_likes = "
+                            <span style= 'color: #808080'> &nbspBy: 
+                                <a href ='profile.php?username=" . $challenge_type_username . "'>"
+                                    .ucfirst($challenge_type_first)." ".ucfirst($challenge_type_last)."
+                                </a> | ".$time_display."
+                            </span> | 
+                            <span class='icon-hand-up'>".$likes."</span> &nbsp 
+                            <span class='icon-hand-down'>".$dislikes."</span>
+                        </div>                    
+                        <div class='list-group-item'>
+                            <br/>".$challenge_type_stmt."<br/><br/>
+                        </div>";
+        echo "  <div class='list-group'>";
         if ($challenge_type_type == 1) {
             if ($challenge_type_status == 1 || $challenge_type_status == 2 || $challenge_type_status == 4 || $challenge_type_status == 5) {
-                echo "<div class='list-group-item'>";     
-                echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes;
+                echo "
+                    <div class='list-group-item'>";     
+                echo $display_tilte_ch."
+                        <span class='icon-question-sign'></span>".$display_fname_likes;
             } 
         }
         else if ($challenge_type_type == 7) {
-            echo "<div class='list-group-item'>";
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-book'></span>".$display_fname_likes;
+            echo "
+                    <div class='list-group-item'>";
+            echo $display_tilte_ch."
+                        <span class='icon-book'></span>".$display_fname_likes;
         }
         else if ($challenge_type_type == 4) {
-            echo "<div class='list-group-item'>";
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-flash'></span>".$display_fname_likes;
+            echo "  <div class='list-group-item'>";
+            echo $display_tilte_ch."
+                        <span class='icon-flash'></span>".$display_fname_likes;
         } 
         else if ($challenge_type_type == 3) {
-            echo "<div class='list-group-item'>";
-            echo $display_tilte_ch."<span class='glyphicon glyphicon-question-sign'></span>".$display_fname_likes;
+            echo "  <div class='list-group-item'>";
+            echo $display_tilte_ch."
+                        <span class='icon-question-sign'></span>".$display_fname_likes;
         }
-        echo "</div>";
-    }
-    ?>
+        echo "  </div>";
+        }
+        ?>
             </div>
-            <div class="col-md-2">
-           <?php 
-                echo "<div class='bs-component'>
-                        <div class = 'list-group'>
-                            <font size='4'><h3 class='panel-title'><p>Projects</p></h3></font><hr>";
+            <div class="span3">
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll" style="margin: 20px -15px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active" >
+                            <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Explore Public Projects </b></span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" >
+                        <div role="tabpanel" class="row tab-pane active">
+            <?php
                 $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 200) as stmt FROM projects 
                                                         WHERE project_type = '1' AND blob_id = '0')  
                                                     UNION 
@@ -89,26 +107,66 @@ if (isset($_POST['logout'])) {
                     $project_id_display = $projectsRow['project_id'];
                     $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                     $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])));
-                    echo " <div class='list-group-item' ><b>
-                        <a href='project.php?project_id=$project_id_display'>".$project_title_display."</a></b><br>"
-                    .$project_title_stmt."....<br></div>";
+                        echo " 
+                            <div class ='row' style='margin: 4px -15px 4px -15px;background : rgb(240, 241, 242);'>
+                                <a href='project.php?project_id=$project_id_display'>
+                                    <b>
+                                        <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
+                                            .ucfirst($project_title_display)."
+                                        </p>
+                                    </b>
+                                    <p style='word-wrap: break-word;'>"
+                                        .$project_title_stmt."
+                                    </p>
+                                </a>
+                            </div>";
                     }
-                echo "<br><hr><font size='4'><h3 class='panel-title'><p>Top Users</p></h3></font><hr>";
+            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll" style="margin: 20px -15px;">
+                    <ul class="nav nav-tabs">
+                        <li class="active" >
+                            <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Top Users</b></span></a>
+                        </li>
+                    </ul>
+                    <div class="tab-content" >
+                        <div role="tabpanel" class="row tab-pane active">
+            <?php
+                //echo "<br><hr><font size='4'><h3 class='panel-title'><p>Top Users</p></h3></font><hr>";
                 $top_users = mysqli_query($db_handle, "SELECT first_name, last_name, username FROM user_info ORDER BY rand() LIMIT 10 ;");
                 while($top_usersRow = mysqli_fetch_array($top_users)) {
                     $top_user_first = $top_usersRow['first_name'];
                     $top_user_last = $top_usersRow['last_name'];
                     $top_user_username = $top_usersRow['username'];
-                    echo "<p style='white-space: pre-line;height: 20px; font-size:14px;'><b>
-                    <a href ='profile.php?username=" . $top_user_username . "'>".ucfirst($top_user_first)."&nbsp ".ucfirst($top_user_last)."</a></b></p><br>
-                    ";
+                    echo "  <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                                <a href ='profile.php?username=" . $top_user_username . "'>
+                                    <b>
+                                        <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
+                                            .ucfirst($top_user_first)."&nbsp ".ucfirst($top_user_last)."
+                                        </p>
+                                    </b>
+                                </a>
+                            </div>";
                 }
             ?>  
+                        </div>
+                    </div>
+                </div>
             </div>
-            </div>
-        <?php include_once 'html_comp/signup.php' ; ?>
-        <?php include_once 'lib/html_inc_footers.php'; ?>
-        <?php include_once 'html_comp/login_signup_modal.php'; ?>
+        </div>
+        <?php
+ echo "<div class='span8 offset1'>
+		<div class='panel-body' style=' margin:4px; background : rgb(240, 241, 242);'>
+		<p>
+		  <a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+	   </div>
+	   </div>" ;
+ include_once 'html_comp/signup.php' ; 
+ include_once 'lib/html_inc_footers.php'; 
+ include_once 'html_comp/login_signup_modal.php'; ?>
 
     </body>
 </html>

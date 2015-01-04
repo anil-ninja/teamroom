@@ -1,8 +1,11 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
+include_once '../functions/delete_comment.php';
+include_once '../functions/collapMail.php';
 if($_POST['reminder']){
 	$user_id = $_SESSION['user_id'];
+	$username = $_SESSION['username'];
 	$reminder = $_POST['reminder'] ;
 	$self = $_POST['self'] ;
 	$eventtime = $_POST['eventtime'] ;

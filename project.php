@@ -15,25 +15,78 @@ include_once 'functions/delete_comment.php';
    </head>
 <body>
 	<?php include_once 'html_comp/navbar_homepage.php'; ?>
-        <div class=" media-body" style="padding-top: 50px;">
-            <div class="col-md-1"> </div>
-            <div class="col-md-2">
+
+    <div class='alert_placeholder'></div>
+    <div class="">
+        <div class="row-fluid">         
+            <div id='tab4' class="span2 offset1">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>  
-            <div class="col-md-6">
-                <div class='alert_placeholder'></div>
-                <div class="panel-primary" id='panel-cont'>
-                    <?php include_once 'html_comp/project_page_project.php'; ?>
-                </div>
-            </div>
-            <div class="col-md-3" style='width:290px'>
+            
+            <div id='tab5' class="span6">
+                <br>
                 
-                <?php include_once 'html_comp/project_page_challenge.php'; ?>
+                <?php echo "
+			<center>
+				      <span class='color strong' style= 'font-size: 14pt;'>
+                <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
+                </p>
+              </span>
+				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
+			</center>
+		  ";?>
+                
+                  
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+                    <ul class="nav nav-tabs" style="padding: 0;">
+                        <li class="active">
+                            <a href="#tabProject" data-toggle="tab" class="active " id="home_project" style="padding: 10px 5px;">
+                                <i class='icon-star'> </i><span>Project Detail</span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabDashboard" data-toggle="tab" id="dashboard_project" style="padding: 10px 5px;">
+                                <i class='icon-th-list'> </i><span>Project Dashboard</span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabteams" data-toggle="tab" id="teams_project" style="padding: 10px 5px;">
+                                <i class='icon-user'><i class='icon-user'></i> </i><span>Teams</span> 
+                           </a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" >
+                        <div role="tabpanel" class="row tab-pane active" id="tabProject">       
+                            <?php include_once 'html_comp/project_page_project.php'; ?>
+                            <div class="panel-primary" id='panel-cont'>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="row tab-pane" id="tabDashboard" >
+                            <div id="dashboard_project_content"></div>
+                        </div>
+                        <div role="tabpanel" class="row tab-pane" id="tabteams">
+                            <div id="teams_project_content"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>      
+            <div id='tab6' class="span2" style='width:290px'>
+                <br>
+                <?php include_once 'html_comp/right_panel_project.php'; ?>
             </div>	
         </div>
 		<?php 
+ echo "<div class='span7 offset3'>
+		<div class='panel-body' style=' margin:4px; background : rgb(240, 241, 242);'>
+		<p>
+		  <a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+	   </div>
+	   </div>" ;
                     if (isset($_SESSION['user_id'])) {
                         include_once 'html_comp/project_talk.php'; 
+                        include_once 'html_comp/friends.php'; 
                  ?>
                         <script>
                             $(document).ready(function(){
@@ -43,8 +96,19 @@ include_once 'functions/delete_comment.php';
                     <?php 
                         }
                 ?>   
-        <?php include_once 'lib/html_inc_footers.php'; ?>  
+        <?php include_once 'lib/html_inc_footers.php';
+        include_once 'html_comp/check.php'; ?>  
                  <script>
+    $('#dashboard_project').click(function(){
+        $('#dashboard_project_content').load('html_comp/project_page_challenge.php');       
+    });
+    $('#teams_project').click(function(){
+        $('#teams_project_content').load('html_comp/teams_panel_project.php');        
+    });
+
+$("#project_chat_form").hide();
+$("#project_chat_data").hide();
+
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
@@ -63,6 +127,39 @@ include_once 'functions/delete_comment.php';
 	});	
 	chatBoxes.push('<?= $projttitle ?>');
         </script>
+<script>
+var width = window.screen.availWidth;
+if(width < 800) {
+	$('#tab4').hide();
+	$('#tab6').hide();
+	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
+	$("#new").html($("#tab4").html() + $("#tab6").html());
+} ;
+</script>
+<script>
+$(function() {
+	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
+
+function toggleDivs() {
+    var $inner = $("#navtab");
+    if ($inner.css("margin-left") == "-170px") {
+        $inner.animate({'margin-left': '0'});
+		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
+    }
+    else {
+        $inner.animate({'margin-left': "-170px"}); 
+		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
+    }
+}
+$(".nav-btntab").bind("click", function(){
+    toggleDivs();
+});
+
+});
+</script>
+<!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script src="js/graph.js"></script>
         <!-- jQuery and jQuery UI (REQUIRED) -->
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
        
@@ -80,19 +177,12 @@ include_once 'functions/delete_comment.php';
 
         <!-- elFinder initialization (REQUIRED) -->
         <script type="text/javascript" charset="utf-8">
-            $().ready(function() {
-                var temp = "<?php echo $title."_".$pro_id; ?>";
-                var elf = $('#elfinder').elfinder({
-                    url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
-                    // lang: 'ru',             // language (OPTIONAL)
-                }).elfinder('instance');
-            });
       	$(".text").show();
 		$(".editbox").hide();
         </script>     
 <?php
-include_once 'html_comp/login_signup_modal.php';
- include_once 'html_comp/insert_time.php';
+    include_once 'html_comp/login_signup_modal.php';
+    include_once 'html_comp/insert_time.php';
 mysqli_close($db_handle);
 ?>
         </body>

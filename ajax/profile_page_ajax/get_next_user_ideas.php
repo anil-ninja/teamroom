@@ -23,7 +23,7 @@ if ($_POST['user_next_idea']) {
         $idea_id= $user_idea_displayRow['challenge_id'];
         $idea_title =str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_idea_displayRow['challenge_title'])));
         $idea_stmt1 = $user_idea_displayRow['stmt'];
-        $idea_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1)));
+        $idea_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1))));
         $idea_creation1 = $user_idea_displayRow['creation_time'];
         $idea_creation = date("j F, g:i a", strtotime($idea_creation1));
         $idea_firstname = $user_idea_displayRow['first_name'];
@@ -55,31 +55,31 @@ if ($_POST['user_next_idea']) {
         $show_idea = $show_idea. "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
                         .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$idea_title."'/>                    
-                    <span class='glyphicon glyphicon-flash'></span><span style= 'color: #808080'>
+                    <span class='icon-flash'></span><span style= 'color: #808080'>
                     By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
                 <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($idea_stmt, 0, 1) != '<') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 			}
 		else {
 			if (substr($idea_stmt, 0, 4) == ' <br') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
 			if (substr($idea_stmt, 0, 3) == '<s>') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
-			$chaaa = substr(strstr($idea_stmt, '<br/>'), 5) ;
-			$cha = strstr($idea_stmt, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($idea_stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($idea_stmt, '<br/>' , true)) ;
 			if(substr($idea_stmt, 0, 4) == '<img') {
 $show_idea = $show_idea. "<div class='editbox' style='width : 90%;' id='challenge_pic_".$idea_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/><br/>" ;
@@ -140,11 +140,11 @@ $show_idea = $show_idea. "<input id='_fileChallenge_".$idea_id."' class='btn btn
                 if (isset($_SESSION['user_id'])) {
     $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$idea_id."'
                         placeholder='Want to know your comment....'/>
-                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$idea_id."\", 1)' ><span class='glyphicon glyphicon-chevron-right'></span></button>";
+                    <button type='submit' class='btn btn-primary' onclick='comment(\"".$idea_id."\", 1)' ><span class='icon-chevron-right'></span></button>";
                 else {
             $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                                     </a>";
                         }
          $show_idea = $show_idea."</div></div></div>";

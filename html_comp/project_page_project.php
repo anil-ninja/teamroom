@@ -1,226 +1,30 @@
 <?php 
 	$_SESSION['project_id'] = $pro_id;
-	echo "<div class='list-group'>
-			<div class='list-group-item'>
-				<span class='color strong' style= 'font-size: 14pt;'><p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "</p></span>
-				<input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
-			</div>
-		  </div>";
-?>
-<?php if (isset($_SESSION['user_id'])) {
+	
+
+	if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
-        <div class='list-group-item'><span class="glyphicon glyphicon-pencil" id='challengepr' style="cursor: pointer"> Challenge</span>
-            | <span class="glyphicon glyphicon-pushpin" id='task' style="cursor: pointer"> Assign Task</span>
-            | <span class="glyphicon glyphicon-phone-alt" id='team' style="cursor: pointer"> Create Team</span>
-            | <span class="glyphicon glyphicon-tree-deciduous" id='notes' style="cursor: pointer"> Notes</span>
-            | <span class="glyphicon glyphicon-hdd" id='files' style="cursor: pointer"> Manage Files</span>
-            | <span class="glyphicon glyphicon-film" id='videopr' style="cursor: pointer"> Videos</span>
+        <div id='demo1' class='list-group-item'>
+          <span class="icon-pencil" onclick='show_form(1)' style="cursor: pointer; color:#000;"> Challenge</span>
+            | 
+          <span class="icon-pushpin" onclick='show_form(2)' style="cursor: pointer; color:#000;"> Assign Task</span>
+            | 
+          <span class="icon-phone-alt" onclick='show_form(3)' style="cursor: pointer; color:#000;"> Create Team</span>
+            | 
+          <span class="icon-tree-deciduous" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Notes</span>
+            | 
+          <span class="icon-hdd" onclick='show_form_pro(6, "<?=ucfirst($projttitle) ?>", "<?=$pro_id ?>")' style="cursor: pointer; color:#000;"> Manage Files</span>
+            | 
+          <span class="icon-film" onclick='show_form(4)' style="cursor: pointer; color:#000;"> Videos</span>
         </div>
         <div class='list-group-item'>
-            <div id='textForm'><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
-            <div id='challegeprForm'>
-
-                <input type="text" class="form-control" id="challange_title" placeholder="Challange Tilte .."/><br>
-                <input class="btn btn-default btn-sm" type="file" id="_fileChallengepr" style ="width: auto;"><br/>
-                <textarea rows="3" class="form-control" id="challangepr" placeholder="Description .. "></textarea><br>
-                <!---<div class="inline-form">
-                    Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
-                        <option value='0' selected >hour</option>
-                <?php /*
-                  $o = 1;
-                  while ($o <= 24) {
-                  echo "<option value='" . $o . "' >" . $o . "</option>";
-                  $o++;
-                  }
-                  ?>
-                  </select>
-                  <select class="btn btn-default btn-xs" id = "open" >
-                  <option value='10' selected >minute</option>
-                  <option value='20'  >20</option>
-                  <option value='30' >30</option>
-                  <option value='40'  >40</option>
-                  <option value='50' >50</option>
-                  </select><br/><br/>ETA :
-                  <select class="btn btn-default btn-xs" id = "cc_eta" >
-                  <option value='0' selected >Month</option>
-                  <?php
-                  $m = 1;
-                  while ($m <= 11) {
-                  echo "<option value='" . $m . "' >" . $m . "</option>";
-                  $m++;
-                  }
-                  ?>
-                  </select>
-                  <select class="btn btn-default btn-xs" id= "cc_etab" >
-                  <option value='0' selected >Days</option>
-                  <?php
-                  $d = 1;
-                  while ($d <= 30) {
-                  echo "<option value='" . $d . "' >" . $d . "</option>";
-                  $d++;
-                  }
-                  ?>
-                  </select>
-                  <select class="btn btn-default btn-xs" id= "cc_etac" >
-                  <option value='0' selected >hours</option>
-                  <?php
-                  $h = 1;
-                  while ($h <= 23) {
-                  echo "<option value='" . $h . "' >" . $h . "</option>";
-                  $h++;
-                  } */
-                ?>
-                    </select>
-                    <select class="btn btn-default btn-xs" id= "cc_etad" >	
-                        <option value='15' selected >minute</option>
-                        <option value='30' >30</option>
-                        <option value='45'  >45</option>
-                    </select>
-                </div><br/><br/> --->
-                <div class="input-group">Challenge Type : 
-                    <select class='btn-default btn-xs' id="type" >
-                        <option value=" 1" >Public</option>
-                        <option value=" 2" selected >Private</option>
-                    </select>
-                </div> 
-                <br>
-                <input type="button" value="Create Challenge" class="btn btn-success" id="create_challange_pb_pr"/>
-            </div><div id='invitation'></div>
-            <div id='taskForm'>
-                <?php
-                $owner_project = mysqli_query($db_handle, "select user_id from projects where project_id = '$pro_id';");
-                $owner_projectrow = mysqli_fetch_array($owner_project);
-                $ownerof_project = $owner_projectrow['user_id'];
-                if ($ownerof_project == $user_id) {
-                    $teams = mysqli_query($db_handle, "select DISTINCT team_name from teams where project_id = '$pro_id' and status = '1';");
-                    if (mysqli_num_rows($teams) > 0) {
-                        $task = "";
-                        $task .= "<div class='inline-form'>Assign To : &nbsp;&nbsp;
-									<select class='btn-default btn-xs' id = 'teamtask' >
-										<option value='0' selected > Select Team </option>";
-                        while ($teamsrow = mysqli_fetch_array($teams)) {
-                            $teamsname = $teamsrow['team_name'];
-                            $task = $task . "<option value='" . $teamsname . "' >" . $teamsname . "</option>";
-                        }
-                        $task = $task . "</select>&nbsp;&nbsp;&nbsp;&nbsp;
-									<select class='btn btn-default btn-xs' id= 'userstask' >	
-										<option value='0' selected >Select Member </option>";
-                        $users = mysqli_query($db_handle, "select DISTINCT a.user_id, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and 
-												a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
-												and a.member_status = '1' and a.user_id = b.user_id;");
-                        while ($userssrow = mysqli_fetch_array($users)) {
-                            $users_username_task = $userssrow['username'];
-                            $u_id = $userssrow['user_id'];
-                            $task = $task . "<option value='" . $u_id . "' >" . $users_username_task . "</option>";
-                        }
-                        $task = $task . "</select>&nbsp;&nbsp;&nbsp; <input type='email' id='emailtask' placeholder='Enter email-id'/></div><br/>
-						<div class='input-group' >
-						<span class='input-group-addon'>Title : </span>						
-						<input type='text' class='form-control' id='title' placeholder='Tilte ..'/>
-						</div><br>
-						<input class='btn btn-default btn-sm' type='file' id='_fileTask' style ='width: auto;'><br/>
-						<div class='input-group' >
-							<span class='input-group-addon'>Task : </span>						
-							<textarea rows='3' class='form-control' id='taskdetails' placeholder='Description .. '></textarea>
-						</div><br> ";
-                        /* <div class='inline-form'>
-                          ETA :
-                          <select class='btn btn-default btn-xs' id = 'c_eta' >
-                          <option value='0' selected >Month</option>" ;
-                          $m = 1;
-                          while ($m <= 11) {
-                          $task = $task . "<option value='" . $m . "' >" . $m . "</option>";
-                          $m++;
-                          }
-                          $task = $task ." </select>
-                          <select class='btn btn-default btn-xs' id= 'c_etab' >
-                          <option value='0' selected >Days</option> " ;
-                          $d = 1;
-                          while ($d <= 30) {
-                          $task = $task ."<option value='" . $d . "' >" . $d . "</option>";
-                          $d++;
-                          }
-                          $task = $task ."</select>
-                          <select class='btn btn-default btn-xs' id= 'c_etac' >
-                          <option value='0' selected >hours</option>" ;
-                          $h = 1;
-                          while ($h <= 23) {
-                          $task = $task ."<option value='" . $h . "' >" . $h . "</option>";
-                          $h++;
-                          }
-                          $task = $task ."</select>
-                          <select class='btn btn-default btn-xs' id= 'c_etad' >
-                          <option value='15' selected >minute</option>
-                          <option value='30' >30</option>
-                          <option value='45'  >45</option>
-                          </select>
-                          </div><br/> */
-                        $task = $task . "<br/><input type='button' value='Assign' class='btn btn-success' id='create_task'/>";
-
-                        echo $task;
-                    } else {
-                        echo "You hane no teams, Please create Team First";
-                    }
-                } else {
-                    echo "Not authorised, please contact project owner";
-                }
-                ?>
-            </div>
-            <div id='teamForm'>
-		<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
-				 if(mysqli_num_rows($member_project) != 0) {
-					 ?>
-                <div class="input-group" >
-                    <span class="input-group-addon">Team Name</span>
-                    <input type="text" class="form-control" id="team_name_A" placeholder="Team name ..">
-                </div>
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon">Create Team with (Email)</span>
-                    <input type="email" class="form-control" id = "email_team" placeholder="Enter First team member Email">
-                </div>
-                <br>
-                <input type="submit" class="btn btn-success" id = "create_team" value = "Create New Team" >
-         <?php } 
-				else echo "Please Join Project First"; ?>
-            </div>
-            <div id='VideoFormpr'>
-				<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
-				 if(mysqli_num_rows($member_project) != 0) {
-					 ?>
-                <input type='text' class="form-control" id="video_titlepr" placeholder="Vedio title .."/><br>
-                <input type='text' class="form-control" id="videoprjt" placeholder="Add Youtube URL"><br>
-                <textarea rows="3" class="form-control" id="videodespr" placeholder="Description .."></textarea><br><br>
-                <input type="button" value="Post" class="btn btn-success" id="create_videopr"/>
-                <?php } 
-				else echo "Please Join Project First"; ?>
-            </div>
-            <div id='notesForm'>
-				<?php	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
-				 if(mysqli_num_rows($member_project) != 0) {
-					 ?>
-                <input type='text' class="form-control" id="notes_title" placeholder="Heading .."/><br>
-                <input class="btn btn-default btn-sm" type="file" id="_fileNotes" style ="width: auto;"><br/>
-                <textarea rows="3" class="form-control" id="notestmt" placeholder="Notes about Project or Importent Things about Project"></textarea><br><br>
-                <input type="button" value="Post" class="btn btn-success" id="create_notes"/>
-                <?php } 
-				else echo "Please Join Project First"; ?>
-            </div>
-        <?php 
-		echo "<div id='manageForm'>" ;
-         $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id';");
-         if(mysqli_num_rows($member_project) != 0) {
-					   echo "<div id='elfinder'></div>" ;
-					}
-					else { echo "Please Join Project First"; }
-		echo "</div><br/>" ;
-           ?>
-        </div>
+			<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div> 
+			<div id='invitation'></div>
+		</div>           
     </div>
-
     <?php
-}
+	}
 
 $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM
                                       projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
@@ -229,7 +33,7 @@ $project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.creatio
                                       join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
-$projectst = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
+$projectst = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt']))));
 $fname = $project_row['first_name'];
 $projectcreation = $project_row['creation_time'];
 $lname = $project_row['last_name'];
@@ -241,15 +45,15 @@ $timef = date("j F, g:i a", strtotime($projectcreation));
 echo "<div class='list-group'>
         <div class='list-group-item'>
             <div class='pull-left lh-fix'>     
-                <span class='glyphicon glyphicon-question-sign'></span>
+                <span class='icon-question-sign'></span>
                 <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
             </div>";
 if ($p_uid == $user_id) {
-    echo "<div class='list-group-item pull-right'>
+    echo "<div class='dropdown pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-              <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                <li><button class='btn-link' onclick='editproject(".$pro_id.")'>Edit Project</button></li>
-                <li><button class='btn-link' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</button></li>
+              <ul class='dropdown-menu'>
+                <li><a class='btn-link' href='#' onclick='editproject(".$pro_id.")'>Edit Project</a></li>
+                <li><a class='btn-link' href='#' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</a></li>
                 <li>
                   <a data-toggle='modal' class='btn-link' data-target='#project_order'>Sort Order</a>
                 </li>";
@@ -262,8 +66,8 @@ if ($p_uid == $user_id) {
     echo "</ul></div>";
 }
 
-echo "<div class='row'>
-        <div class='col-md-4'>
+echo "<div class='row-fluid'>
+        <div class='span4'>
           <span class='color strong' style= 'color :lightblue;'>
              <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
           </span>  <br/>" . $timef . "
@@ -276,20 +80,20 @@ echo "</div>
       <div class='list-group-item'><span id='project_".$pro_id."' class='text'>".$projectst."</span><br/><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($projectst, 0, 1) != '<') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$projectst)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
 			}
 		else {
 			if (substr($projectst, 0, 4) == ' <br') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$projectst)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
 				}
 			if (substr($projectst, 0, 3) == '<s>') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".$projectst."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$projectst)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
 				}
-			$projectstmt1 = substr(strstr($projectst, '<br/>'), 5) ;
-			$projectst1 = strstr($projectst, '<br/>' , true) ;
+			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($projectst, '<br/>'), 5)) ;
+			$projectst1 = str_replace("<br/>", "\n",strstr($projectst, '<br/>' , true)) ;
 			if(substr($projectst, 0, 4) == '<img') {
 			echo "<div class='editbox' style='width : 90%;' id='project_pic_".$pro_id."' >".$projectst1."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/><br/>" ;
@@ -319,7 +123,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
     $username_pr_comment = $displayrowc['username'];
     $ida = $displayrowc['response_pr_id'];
     $idb = $displayrowc['user_id'];
-    $projectres = $displayrowc['stmt'];
+    $projectres = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowc['stmt'])));
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
@@ -341,12 +145,12 @@ echo "<div class='comments_".$pro_id."'></div><div class='comments clearfix'>
 				<img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
 			</div>";
 if (isset($_SESSION['user_id'])) {
-    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 85%; height: 30px;' id='own_ch_response_".$pro_id."' placeholder='Want to know your comment....' />
-            <button type='submit' onclick='comment(\"".$pro_id."\", 2)' class='btn-primary btn-sm glyphicon glyphicon-play'></button>";
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83%;' id='own_ch_response_".$pro_id."' placeholder='Want to know your comment....' />
+            <button type='submit' onclick='comment(\"".$pro_id."\", 2)' class='btn btn-primary icon-play'></button>";
 } else {
-    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+    echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83%;' placeholder='Want to know your comment....'/>
 			<a data-toggle='modal' data-target='#SignIn'>
-				<button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+				<button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
 			</a>";
 }
 echo "</div>
@@ -379,7 +183,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $eta_task = $tasksrow['challenge_ETA'];
     $creation_task = $tasksrow['creation_time'];
     $timetask = date("j F, g:i a", strtotime($creation_task));
-    $stmt_task = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt'])));
+    $stmt_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt']))));
     $fname_task = $tasksrow['first_name'];
     $lname_task = $tasksrow['last_name'];
     $tasketa = eta($eta_task);
@@ -420,9 +224,9 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         
         $dispaly_fname_likes ="<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> |
-                 ".$timefunct." | <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
+                 ".$timefunct." | <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_task_stmt_content .= "<br></div>                    
@@ -430,27 +234,27 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                         <span id='challenge_".$id_task."' class='text'>".$stmt_task."</span><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($stmt_task, 0, 1) != '<') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
 			if (substr($stmt_task, 0, 4) == ' <br') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
 			if (substr($stmt_task, 0, 3) == '<s>') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			$chaaa = substr(strstr($stmt_task, '<br/>'), 5) ;
-			$cha = strstr($stmt_task, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt_task, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
 			if(substr($stmt_task, 0, 4) == '<img') {
 $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
 					}
 			if(substr($stmt_task, 0, 2) == '<a') {
 $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_file_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
 					}
 			if(substr($stmt_task, 0, 3) == '<if') {
 $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_video_".$id_task."' >".$cha."</div>
@@ -474,13 +278,13 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task."\", 2)' value='Submit'/>";
             }
             
-            echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
+            echo $display_tilte_task."<span class='icon-pushpin'></span><span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span>
                      | Assigned To:&nbsp <a href ='profile.php?username=".$ownname."'>"
                 .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | ".$timefunct." | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
+                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
              
             echo $display_task_stmt_content;
@@ -494,7 +298,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
             }
             //	. "<br/> ETA Given:" .$etaown."
-            echo $display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span>".$dispaly_fname_likes.
+            echo $display_tilte_task."<span class='icon-pushpin'></span>".$dispaly_fname_likes.
             "<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span>
                 | Submitted On: ".$timecom;
             // . " ETA Taken : " . $timetaken . "
@@ -506,7 +310,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
             echo "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span>";
-            echo $display_tilte_task."<span class='glyphicon glyphicon-flag'></span>".$dispaly_fname_likes.
+            echo $display_tilte_task."<span class='icon-flag'></span>".$dispaly_fname_likes.
                 "<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>"
                     .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | Submitted: " . $timecom;
             echo $display_task_stmt_content;
@@ -522,7 +326,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         if (isset($_SESSION['user_id'])) {
            dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
-         echo $display_tilte_task."<span class='glyphicon glyphicon-film'></span>".$dispaly_fname_likes;
+         echo $display_tilte_task."<span class='icon-film'></span>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         
@@ -533,7 +337,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         if (isset($_SESSION['user_id'])) {
            dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
-         echo $display_tilte_task."<span class='glyphicon glyphicon-tree-deciduous'></span>".$dispaly_fname_likes;
+         echo $display_tilte_task."<span class='icon-tree-deciduous'></span>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         
@@ -546,7 +350,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$id_task."\", 5)' value='Accept'/>";
             }
-            echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
+            echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes;
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
             // . "&nbsp&nbsp&nbsp with ETA : " . $tasketa . "<br/>" . $remaintime .             
@@ -561,7 +365,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                   dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
                 }
             }
-            echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes;
+            echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes;
             echo "<br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
             .ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
             //. "<br>ETA Taken: ". $etaown." <br/> Time Remaining : " . $remaintimeown . "
@@ -575,7 +379,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                 echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
                dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
             }          
-            echo $display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$dispaly_fname_likes."
+            echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes."
             <br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | Submitted: ".$timefunct;
             //. "<br>    ETA Taken: " . $timetaken . "
@@ -590,7 +394,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
               dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
             }        
             //. "<br/>ETA Given: " . $etaown."
-            echo $display_tilte_task."<span class='glyphicon glyphicon-flag'></span>".$dispaly_fname_likes."
+            echo $display_tilte_task."<span class='icon-flag'></span>".$dispaly_fname_likes."
                 <br><hr>Owned By: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> 
                     </span> | Submitted On: " . $timecom;
             //. "<br>ETA Taken: ".$timetaken."
@@ -625,7 +429,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         $username_commenter = $displayrowb['username'];
         $idc = $displayrowb['response_ch_id'];
         $idd = $displayrowb['user_id'];
-        $chalangeres = $displayrowb['stmt'];
+        $chalangeres = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt'])));
         echo "
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
@@ -648,12 +452,12 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                             <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
     if (isset($_SESSION['user_id'])) {
-        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-              <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(\"".$id_task."\", 3)' ></button>";
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
+              <button type='submit' class='btn btn-primary icon-chevron-right' onclick='comment(\"".$id_task."\", 3)' ></button>";
     } else {
-        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+        echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                    <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                 </a>";
     }
     echo "</div></div></div>";

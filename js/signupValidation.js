@@ -15,66 +15,127 @@ $(document).ready(function() {
          }
     });
 });
-function validateSignupFormOnSubmit() {
-        var reason = "";
-		var firstname = $("#firstname").val() ;
-		var lastname = $("#lastname").val() ;
-		var email = $("#email").val() ;
-		var phone = $("#phone").val() ;
-		var username = $("#usernameR").val() ;
-		//alert("user");
-		var password = $("#passwordR").val() ;
-		var password2 = $("#password2R").val() ;
-       /* reason += validateFirstname(theForm.firstname);
-        reason += validateEmail(theForm.email);
-        reason += validateUsername(theForm.username);
-        reason += validatePhone(theForm.phone);
-        reason += validatePassword(theForm.password);
-        reason += validatePassword2(theForm.password,theForm.password2);
-        if (reason != "") {
-            alert("Some fields need correction:\n" + reason);
-            return false;
+
+function email_availability_check() {            
+    document.getElementById("email").onblur = function() {
+
+        var xmlhttp;
+
+        var email=document.getElementById("email");
+        if (email.value != ""){
+            if (window.XMLHttpRequest){
+                xmlhttp=new XMLHttpRequest();
+
+            } else {
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function(){
+                if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                    document.getElementById("status_email").innerHTML=xmlhttp.responseText;
+                }
+            };
+            xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
+            xmlhttp.send();
         }
-        return true;*/
-        var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email + '&phone='+ phone + '&username='+ username +
-         '&password='+ password + '&password2='+ password2 + '&request=Signup' ;
-         if(password==password2){
-         if(firstname==''){
-				bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
-		} else if(email==''){
-			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
-		} else if(phone==''){
-			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
-		} else if(username==''){
-			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
-		} else if(password==''){
-			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
-		} else if(password.length <'6'){
-			bootstrap_alert(".alert-placeholder", "password length should be atleast 6", 5000,"alert-warning");
-                }else if(password2==''){
-                        bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
-		} else {
-          $.ajax({
-					type: "POST",
-					url: "controllers/login_controller.php",
-					data: dataString,
-					cache: false,
-					success: function(result){
-							if(result){
-                                bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
-                                } 
-                           else {
-							  location.reload();
-							}		
-						} 
-					});
+    };
+}
+
+function validateSignupFormOnSubmit() {
+	var reason = "";
+	var firstname = $("#firstname").val() ;
+	var lastname = $("#lastname").val() ;
+	var email = $("#email").val() ;
+	var phone = $("#phone").val() ;
+	var username = $("#usernameR").val() ;
+	var password = $("#passwordR").val() ;
+	var password2 = $("#password2R").val() ;
+    var term_n_cond = document.getElementById("agree_tc").checked;
+
+    /* reason += validateFirstname(theForm.firstname);
+	reason += validateEmail(theForm.email);
+	reason += validateUsername(theForm.username);
+	reason += validatePhone(theForm.phone);
+	reason += validatePassword(theForm.password);
+	reason += validatePassword2(theForm.password,theForm.password2);
+	if (reason != "") {
+	alert("Some fields need correction:\n" + reason);
+	return false;
+	}
+	return true;*/
+	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email + '&phone='+ phone + '&username='+ username +
+	'&password='+ password + '&password2='+ password2 + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
+	if(password==password2){
+		if(firstname==''){
+			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
 		}
-		}		
-        else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
-    }
+		else if(email==''){
+			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
+		}
+        else if (validateEmail(email)==false) {
+            
+                bootstrap_alert(".alert-placeholder", "Enter a valid email id", 5000,"alert-warning");       
+            
+            //email_availability_check();
+        } 
+		else if(phone==''){
+			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
+		} 
+		else if(username==''){
+			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
+		}
+        else if(username.length <'6'){
+            bootstrap_alert(".alert-placeholder", "username length be atleast 6", 5000,"alert-warning");
+        } 
+		else if(password==''){
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
+		} 
+		else if(password.length <'6'){
+			bootstrap_alert(".alert-placeholder", "password length should be atleast 6", 5000,"alert-warning");
+		}
+		else if(password2==''){
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
+		}
+		else if(validatePath(firstname) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		}
+		else if(validatePath(username) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		}
+		else if(validatePath(lastname) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		} 
+        else if(term_n_cond==false){
+            bootstrap_alert(".alert-placeholder", "You have not accepted term and conditions", 5000,"alert-warning");
+        } 
+		else {
+			$.ajax({
+				type: "POST",
+				url: "controllers/login_controller.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result){
+						bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
+					} 
+					else {
+						location.reload();
+					}		
+				} 
+			});
+		}
+	}		
+	else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
+}
+function validatePath(path) {
+        if (path.match("^[a-zA-Z0-9.]*$")) {
+			return "true" ;
+			}
+		else {
+			return false;
+			}
+    } 
     function validateEmpty(fld) {
         var error = "";
-
         if (fld.value.length == 0) {
             fld.style.background = 'Yellow'; 
             error = "The required field has not been filled in.\n"
@@ -85,31 +146,35 @@ function validateSignupFormOnSubmit() {
     }
     function validateFirstname(fld) {
         var error = "";
-
-        if (fld.value == "") {
-            fld.style.border = "2px solid OrangeRed";
+        //cleanText = strInputCode.replace(/<\/?[^>]+(>|$)/g, "");
+        //OriginalString.replace(/(<([^>]+)>)/ig,"");
+        //html.replace(/<\/?(span|div|img|p...)\b[^<>]*>/g, "")
+        //\W/;
+		var illegalChars = /\W/; // allow letters, numbers, and underscores
+		if (fld.value == "") {
+            fld.style.border = "2px solid OrangeRed"; 
             error = "You didn't enter your first name.\n";
-        }
-        else {
-            fld.style.background = 'White';
-        }
-        return error;
-    }
-    function validateEmail(fld) {
-        var error="";
-        var tfld = trim(fld.value);                        // value of field with whitespace trimmed off
-        var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;
-
-        if (fld.value == "") {
-            fld.style.border = "2px solid OrangeRed";
-            error = "You didn't enter an email address.\n";
-        } else if (!emailFilter.test(tfld)) {              //test email for illegal characters
-            fld.style.background = 'Yellow';
-            error = "Please enter a valid email address.\n";
+        }  else if (illegalChars.test(fld.value)) {
+            fld.style.borderColor = 'Yellow'; 
+            error = "Letters, numbers, and underscores allowed in first name.\n";
         } else {
             fld.style.background = 'White';
         }
         return error;
+     }
+    function validateEmail(fld) {
+        var error="";
+        var tfld = trim(fld);                        // value of field with whitespace trimmed off
+        var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;
+
+        if (!emailFilter.test(tfld)) {              //test email for illegal characters
+            //fld.style.background = 'Yellow';
+            //error = "Please enter a valid email address.\n";
+        } else {
+            //fld.style.background = 'White';
+            return true;
+        }
+        return false;
     }
         function validatePhone(fld) {
         var error = "";

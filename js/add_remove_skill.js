@@ -188,4 +188,28 @@ function editProfile(fname, lname, email, phone) {
 					}
 				});
 			}
-};
+}
+function form_profile(type){
+	var dataString = 'form_type=' + type ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/forms.php",
+		data: dataString,
+		async: false ,
+		cache: false,
+		success: function(result){
+			if(type == 7){
+				document.getElementById("user_challenges_content").innerHTML = result ;
+			}
+			else if(type == 8){
+				document.getElementById("user_articles_content").innerHTML = result ;
+			}
+			else { document.getElementById("user_idea_content").innerHTML = result ; }
+		}
+	});
+}
+function upload_image(){
+      		var dataString = 'case=5' ;
+			var _file = document.getElementById('_fileprofilepic');
+			uploadFile1(_file,"profilepic",String(dataString),"ajax/change_profile.php");
+		}

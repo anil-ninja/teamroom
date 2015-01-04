@@ -14,6 +14,6 @@ print "<span style=\"color:red;\">Username already exists</span>";
 }
 else
 {
-print "<span style=\"color:green;\">Username is available</span>";
+print "<span style=\"color:green;\"><i class='icon-ok'> </i>Ok</span>";
 }
 ?>

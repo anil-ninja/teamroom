@@ -22,7 +22,7 @@ if ($_POST['next_CP']) {
             $i ++;
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
-            $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
+            $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
             $projectcreation1 = $project_table_displayRow['creation_time'];
@@ -55,20 +55,20 @@ if ($_POST['next_CP']) {
                         <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/><br/>";
      if(isset($_SESSION['user_id'])){
 		if(substr($project_stmt_table, 0, 1) != '<') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 			}
 		else {
 			if (substr($project_stmt_table, 0, 4) == ' <br') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
 			if (substr($project_stmt_table, 0, 3) == '<s>') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
-			$projectstmt1 = substr(strstr($project_stmt_table, '<br/>'), 5) ;
-			$projectst1 = strstr($project_stmt_table, '<br/>' , true) ;
+			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($project_stmt_table, '<br/>'), 5)) ;
+			$projectst1 = str_replace("<br/>", "\n",strstr($project_stmt_table, '<br/>' , true)) ;
 			if(substr($project_stmt_table, 0, 4) == '<img') {
 			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_pic_".$project_id_table."' >".$projectst1."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
@@ -132,13 +132,13 @@ $show_CP = $show_CP.  "<div id='commentscontainer'>
     if (isset($_SESSION['user_id'])) {
     $show_CP = $show_CP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$project_id_table."'
 						 placeholder='Want to know your comment....'/>
-						<button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$project_id_table."\", 2)' >
-						<span class='glyphicon glyphicon-chevron-right'></span></button>";
+						<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id_table."\", 2)' >
+						<span class='icon-chevron-right'></span></button>";
     } 
     else {
         $show_CP = $show_CP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                             <a data-toggle='modal' data-target='#SignIn'>
-                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                             </a>";
     }
 $show_CP = $show_CP. "</div>

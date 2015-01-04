@@ -19,29 +19,6 @@ function getnewtalk() {
 				}
 			});
 }
-
-function getnewreminder() {	
-	var uid = parseInt($("#lastreminderid").val()) ;
-	//alert(uid) ;
-	var dataString = 'reminders='+ uid  ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/newreminders.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					var notice = result.split("+") ;
-					var neid = parseInt(notice['1']) ;
-					//alert(neid) ;
-					$('.newreminders').append(notice['0']);
-					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid+='' != "0") {
-							$("#lastreminderid").val(neid+='') ;
-						}
-				}
-			});
-}
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}
@@ -58,14 +35,14 @@ $("#changeremindervalue").click(function(){
 							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
 						}
 						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
 							}
 							else if(reminder == "" && date == "") {
 								location.reload() ;
 								return false ;
 								}
 								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
 									}
 				}
 				else {
@@ -73,13 +50,13 @@ $("#changeremindervalue").click(function(){
 							var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
 						}
 						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
 							}
 							else if(reminder == "" && date == "") {
 								var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
 								}
 								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
 									}
 					
 					
@@ -151,16 +128,14 @@ function getallreminders() {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result) ;
 					var notice = result.split("+") ;
 					var neid = parseInt(notice['1']) ;
-					//alert(neid) ;
 					document.getElementById("allreminders").innerHTML = notice['0'];
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
 					$("#lastreminderid").val(neid+='') ;
 				}
 			});
-	setInterval(function(){ getnewreminder() },400000)();
+	//setInterval(function(){ getnewreminder() },400000)();
 }
 
 function submittalk(event,chatboxtextarea) {
@@ -210,3 +185,7 @@ function projecttalk() {
 	});
 	setInterval(function(){ getnewtalk() },3000)();
 };	
+function toggle() {
+	$("#project_chat_form").toggle();
+	$("#project_chat_data").toggle();
+	}

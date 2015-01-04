@@ -20,7 +20,7 @@ if ($_POST['last_article']) {
         $article_id=$user_articles_displayRow['challenge_id'];
         $article_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_articles_displayRow['challenge_title'])));
         $article_stmt1 = $user_articles_displayRow['stmt'];
-        $article_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1)));
+        $article_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1))));
         $article_firstname = $user_articles_displayRow['first_name'];
         $article_lastname = $user_articles_displayRow['last_name'];
         $article_username = $user_articles_displayRow['username'];
@@ -54,30 +54,30 @@ if ($_POST['last_article']) {
         $show_article = $show_article. "<p id='challenge_ti_".$article_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
                         .ucfirst($article_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$article_title."'/>
-                    <span class='glyphicon glyphicon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
+                    <span class='icon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
                 <br/><span id='challenge_".$article_id."' class='text'>".$article_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($article_stmt, 0, 1) != '<') {
-$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$article_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 			}
 		else {
 			if (substr($article_stmt, 0, 4) == ' <br') {
-$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$article_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 				}
 			if (substr($article_stmt, 0, 3) == '<s>') {
-$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$article_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 				}
-			$chaaa = substr(strstr($article_stmt, '<br/>'), 5) ;
-			$cha = strstr($article_stmt, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($article_stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($article_stmt, '<br/>' , true)) ;
 			if(substr($article_stmt, 0, 4) == '<img') {
 $show_article = $show_article. "<div class='editbox' style='width : 90%;' id='challenge_pic_".$article_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$article_id.")' id='pic_file_".$article_id."'/><br/><br/>" ;
@@ -140,14 +140,14 @@ $show_article = $show_article. "<input id='_fileChallenge_".$article_id."' class
                 if (isset($_SESSION['user_id'])) {
     $show_article = $show_article. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$article_id."'
                         placeholder='Want to know your comment....'/>
-                    <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$article_id."\", 1)' >
-                        <span class='glyphicon glyphicon-chevron-right'></span>
+                    <button type='submit' class='btn btn-primary' onclick='comment(\"".$article_id."\", 1)' >
+                        <span class='icon-chevron-right'></span>
                     </button>";
                 }
                 else {
     $show_article = $show_article. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                             <a data-toggle='modal' data-target='#SignIn'>
-                                <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                             </a>";
                 }
         $show_article = $show_article."</div></div></div>";

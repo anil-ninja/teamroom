@@ -1,7 +1,7 @@
 .chatbox {
 	position: fixed;
 	position:expression("absolute");
-	width: 225px;
+	width: 230px;
 	display:none;
 }
 
@@ -25,7 +25,7 @@
 	font-size: 13px;
 	color: #333333;
 	height:200px;
-	width:225px;
+	width:93%;
 	overflow-y:auto;
 	overflow-x:auto;
 	padding:7px;

@@ -46,19 +46,19 @@ class challenge{
         if (substr($this->stmt, 0, 4) == "<img") {
             $arrayStmt = explode(">", $this->stmt);
             
-            return substr($this->stmt,strlen($arrayStmt[0])+1,255);
+            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt,strlen($arrayStmt[0])+1,255)))));
         }
         if (substr($this->stmt, 0, 2) == "<a") {
             $arrayStmt = explode("</a>", $this->stmt);
             
-            return substr($this->stmt,strlen($arrayStmt[0])+4,255);
+            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt,strlen($arrayStmt[0])+4,255)))));
         }
         if (substr($this->stmt, 0, 4) == "<ifr") {
             $arrayStmt = explode("</iframe>", $this->stmt);
             $this->video = 1;
-            return substr($this->stmt,strlen($arrayStmt[0])+9,255);
+            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt,strlen($arrayStmt[0])+9,255)))));
         }
-        return substr($this->stmt, 0, 200);
+        return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt, 0, 200)))));
     }
     function getUrl($stmt){
         if (substr($stmt, 0, 4) == "<img") {

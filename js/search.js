@@ -24,8 +24,7 @@
 });
 (function() {showUp();})();
 function showUp() {
-	var update = "update" ;
-	var dataString = 'notice='+ update ;
+	var dataString = 'notice=true' ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/notifications.php",
@@ -59,19 +58,24 @@ return date.join("/") + " " + time.join(":") ;
 }
 function updatetime() {
 	var dataString = 'update=true' + '&case=1' ;
-	setTimeout(function(){
+	//setTimeout(function(){
 			$.ajax({
 				type: "POST",
 				url: "ajax/updatetime.php",
 				data: dataString,
 				cache: false,
 				success: function(result){
+					if(result == "updated") {
+						$("#countnotice").val(0) ;
+						}
+					else {
 					var notice = result.split("+") ;
 					document.getElementById("notifications").innerHTML = notice['0'];
 					document.getElementById("notificationlastid").innerHTML = notice['1'];
+					}
 				}
 			}); 
-			} , 10000) ;
+			//} , 60000) ;
 		} ;
 setInterval(function(){
 	var eid = parseInt($("#lasteventid").val()) ;
@@ -80,7 +84,6 @@ setInterval(function(){
 	getnewnote(time, eid+='') ;
 },120000)();
 function getnewnote(time, lid) {	
-	//alert (unix) ;
 	var dataString = 'time='+ time + '&lid=' + lid ;
 	$.ajax({
 		type: "POST",
@@ -88,25 +91,28 @@ function getnewnote(time, lid) {
 		data: dataString,
 		cache: false,
 		success: function(result){
-			//alert(result) ;
-			var notice = result.split("+") ;
-			$('.newnotices').append(notice['0']);
-			var num = $("#countnotice").val() ;
-			var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
-			var neid = parseInt(notice['2']) ;
-			//alert(neid+='' + "," + newnum ) ;
-			if (neid+='' != 0) {
-				$("#countnotice").val(newnum+='') ;
+			if(result == "no new notification") { 
+				document.getElementById("countnotice").innerHTML = "" ;
+			}
+			else {
+				var notice = result.split("+") ;
+				$('.newnotices').append(notice['0']);
+				var num = $("#countnotice").val() ;
+				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
+				var neid = parseInt(notice['2']) ;
+				if (neid+='' != 0) {
+					document.getElementById("countnotice").innerHTML = newnum+='' ;
 				}
-			if (newnum+='' != 0) {
-				$("#lasteventid").val(neid+='') ;
+				if (newnum+='' != 0) {
+					$("#lasteventid").val(neid+='') ;
 				}
+			}
 		}
 	});
 }
 function getallnotices() {
-	var all = 'all' ;
-	var dataString = 'all='+ all ; 
+	$('#allnotices').append("<div class='loading'><center><img src='img/loading.gif' /></center></div>");
+	var dataString = 'all=true' ; 
 	$.ajax({
 		type: "POST",
 		url: "ajax/allnotices.php",
@@ -115,7 +121,7 @@ function getallnotices() {
 		success: function(result){
 			//alert(result) ;
 			document.getElementById("allnotices").innerHTML = result ;
-			//$('.newnotices').append(notice['0']);
+			$('.loading').remove();
 		}
 	});
 } ;

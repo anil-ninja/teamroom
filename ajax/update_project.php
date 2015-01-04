@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
+include_once "../functions/delete_comment.php";
 if($_POST['id']){
 	$user_id = $_SESSION['user_id'];
 	$id= mysql_escape_String($_POST['id']);

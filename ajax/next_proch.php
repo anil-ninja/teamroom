@@ -101,9 +101,9 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 
                         $get_dispaly_fname_likes = "<span style= 'color: #808080'>
                                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | ".$timefunct." | 
-                                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
+                                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
+                                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
                         // list grp item stmt content for all type chall/article/idea/photo/video
                         $get_display_task_stmt .= "<br></div>                    
@@ -112,20 +112,20 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                                 <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($stmt_task, 0, 1) != '<') {
-		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
 			if (substr($stmt_task, 0, 4) == ' <br') {
-			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
 			if (substr($stmt_task, 0, 3) == '<s>') {
-		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".$stmt_task."</textarea>
+		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			$chaaa = substr(strstr($stmt_task, '<br/>'), 5) ;
-			$cha = strstr($stmt_task, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt_task, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
 			if(substr($stmt_task, 0, 4) == '<img') {
 			$get_display_task_stmt = $get_display_task_stmt.  "<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
@@ -151,12 +151,12 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                     
              $show = $show . $dropdown1 ;
              $dropdown1 = ""; 
-            $show = $show .$get_display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span><span style= 'color: #808080'>
+            $show = $show .$get_display_tilte_task."<span class='icon-pushpin'></span><span style= 'color: #808080'>
                             &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | 
                             Assigned To:<a href ='profile.php?username=" . $ownname ."'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> |
-                                <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
+                                <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
                                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
+                                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
                                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
                         //<br>ETA Given: " . $etaown . " <br/>" . $remaintimeown . "
                     $show = $show . $get_display_task_stmt;
@@ -172,7 +172,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
             if ($id_create == $user_id) {
                 $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task ."\", 6)'>Close</button>";
             }
-            $show = $show .$get_display_tilte_task."<span class='glyphicon glyphicon-pushpin'></span>".$get_dispaly_fname_likes."
+            $show = $show .$get_display_tilte_task."<span class='icon-pushpin'></span>".$get_dispaly_fname_likes."
 				<br><hr>Assigned To: <a href ='profile.php?username=" . $ownname ."'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: " . $timecom ;
 					 //. " ETA Taken : " . $timetaken . "
 			$show = $show .$get_display_task_stmt;
@@ -183,7 +183,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                     <div class='list-group-item'>";
                     
             $show = $show . "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span><br/>";
-            $show = $show . $get_display_tilte_task."<span class='glyphicon glyphicon-flag'></span>".$get_dispaly_fname_likes."
+            $show = $show . $get_display_tilte_task."<span class='icon-flag'></span>".$get_dispaly_fname_likes."
 				<br><hr>Assigned To: <a href ='profile.php?username=" . $ownname ."'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: ".$timecom;
 	    $show = $show . $get_display_task_stmt;
 	    $get_display_task_stmt = "" ;
@@ -196,7 +196,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
             $show = $show . $dropdown1 ;
             $dropdown1 = "";
         }
-        $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-film'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $show = $show . $get_display_tilte_task . "<span class='icon-film'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
         
     }
@@ -207,7 +207,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
             $show = $show . $dropdown1 ;
             $dropdown1 = "";
         }
-        $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-tree-deciduous'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $show = $show . $get_display_tilte_task . "<span class='icon-tree-deciduous'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
         
     }
@@ -222,7 +222,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
         //dropdown for delete/edit/span challenge ends here
 
         $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$id_task ."\", 5)' value='Accept'/>";
-        $show = $show . $get_display_tilte_task . "<span class='glyphicon glyphicon-question-sign'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $show = $show . $get_display_tilte_task . "<span class='icon-question-sign'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
                   
         }
@@ -239,7 +239,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                 $dropdown2 = "";                    
             }
         //dropdown for delete/edit/span challenge ends here
-            $show = $show . $get_display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$get_dispaly_fname_likes.
+            $show = $show . $get_display_tilte_task."<span class='icon-question-sign'></span>".$get_dispaly_fname_likes.
                           "<br><hr>Owned By: <a href ='profile.php?username=".$ownname."'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct .
                         $get_display_task_stmt;
                         $get_display_task_stmt = "" ;
@@ -259,7 +259,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
             if ($id_create == $user_id) {
                 $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task ."\", 6)'>Close</button>";
             }
-            $show = $show .$get_display_tilte_task."<span class='glyphicon glyphicon-question-sign'></span>".$get_dispaly_fname_likes."
+            $show = $show .$get_display_tilte_task."<span class='icon-question-sign'></span>".$get_dispaly_fname_likes."
             <br><hr>Owned By: <a href ='profile.php?username=" . $ownname . "'>".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: ".$timefunct
                     . $get_display_task_stmt;
                     $get_display_task_stmt = "" ;
@@ -277,7 +277,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
             }
 //dropdown for delete/edit/span challenge ends here
             $show = $show . "</span><span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>";
-            $show = $show . $get_display_tilte_task."<span class='glyphicon glyphicon-flag'></span>". $get_dispaly_fname_likes.
+            $show = $show . $get_display_tilte_task."<span class='icon-flag'></span>". $get_dispaly_fname_likes.
                             "<br><hr>Owned By: " . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> | Submitted: ".$timecom
                         .$get_display_task_stmt;
                         $get_display_task_stmt = "" ;
@@ -345,13 +345,13 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
                         </div>";
                 if (isset($_SESSION['user_id'])) {
-                    $show = $show . "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-                                    <button type='submit' class='btn-sm btn-primary glyphicon glyphicon-chevron-right' onclick='comment(\"".$id_task ."\", 3)' ></button>";
+                    $show = $show . "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
+                                    <button type='submit' class='btn-sm btn-primary icon-chevron-right' onclick='comment(\"".$id_task ."\", 3)' ></button>";
                 }
                 else {
-                   $show = $show . " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+                   $show = $show . " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
                                     </a>";
                 }
                $show = $show . "</div></div></div>";		

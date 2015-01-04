@@ -13,7 +13,7 @@ function user_articles ($db_handle, $user_IDF) {
         if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
             echo "<div class='jumbotron'>
                     <p align='center'> You have not created any article <br> Create article and Contribute<br><br>
-                    <a href='ninjas.php'> +Create Article </a>
+                    <a onclick='form_profile(8)'> +Create Article </a>
                     </p>
                 </div>";
         }
@@ -29,7 +29,7 @@ function user_articles ($db_handle, $user_IDF) {
             $article_id=$user_articles_displayRow['challenge_id'];
             $article_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_articles_displayRow['challenge_title'])));
             $article_stmt1 = $user_articles_displayRow['stmt'];
-            $article_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1)));
+            $article_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1))));
             $article_firstname = $user_articles_displayRow['first_name'];
             $article_lastname = $user_articles_displayRow['last_name'];
             $article_username = $user_articles_displayRow['username'];
@@ -50,30 +50,30 @@ function user_articles ($db_handle, $user_IDF) {
                 echo "<p id='challenge_ti_".$article_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
                         .ucfirst($article_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$article_title."'/>
-                    <span class='glyphicon glyphicon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
+                    <span class='icon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
                 <br/><span id='challenge_".$article_id."' class='text'>".$article_stmt."</span><br/><br/>";
         if(isset($_SESSION['user_id'])){
 		if(substr($article_stmt, 0, 1) != '<') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$article_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 			}
 		else {
 			if (substr($article_stmt, 0, 4) == ' <br') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$article_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 				}
 			if (substr($article_stmt, 0, 3) == '<s>') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".$article_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$article_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 				}
-			$chaaa = substr(strstr($article_stmt, '<br/>'), 5) ;
-			$cha = strstr($article_stmt, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($article_stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($article_stmt, '<br/>' , true)) ;
 			if(substr($article_stmt, 0, 4) == '<img') {
 echo "<div class='editbox' style='width : 90%;' id='challenge_pic_".$article_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$article_id.")' id='pic_file_".$article_id."'/><br/><br/>" ;
@@ -110,7 +110,7 @@ function user_challenges ($db_handle, $user_IDF) {
         if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
             echo "<div class='jumbotron'>
                     <p align='center'> You have not created any Challenge <br> Create Challenges and Contribute<br><br>
-                    <a href='ninjas.php'> +Create Challenge </a>
+                    <a onclick='form_profile(7)'> +Create Challenge </a>
                     </p>
                 </div>";
         }
@@ -125,7 +125,7 @@ function user_challenges ($db_handle, $user_IDF) {
         $challenge_id=$user_challenges_displayRow['challenge_id'];
         $challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title'])));
         $challenge_stmt1 = $user_challenges_displayRow['stmt'];
-        $challenge_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1)));
+        $challenge_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1))));
         $you_owned_or_not = $user_challenges_displayRow['user_id'];
         $chall_firstname = $user_challenges_displayRow['first_name'];
         $chall_lastname = $user_challenges_displayRow['last_name'];
@@ -147,31 +147,31 @@ function user_challenges ($db_handle, $user_IDF) {
         echo "<p id='challenge_ti_".$challenge_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
                     .ucfirst($challenge_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challenge_title."'/>                
-                <span class='glyphicon glyphicon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
+                <span class='icon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
-                    <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
+                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
             <br/><span id='challenge_".$challenge_id."' class='text'>".$challenge_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($challenge_stmt, 0, 1) != '<') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".$challenge_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challenge_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 			}
 		else {
 			if (substr($challenge_stmt, 0, 4) == ' <br') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".$challenge_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challenge_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 				}
 			if (substr($challenge_stmt, 0, 3) == '<s>') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".$challenge_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challenge_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 				}
-			$chaaa = substr(strstr($challenge_stmt, '<br/>'), 5) ;
-			$cha = strstr($challenge_stmt, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($challenge_stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($challenge_stmt, '<br/>' , true)) ;
 			if(substr($challenge_stmt, 0, 4) == '<img') {
 echo "<div class='editbox' style='width : 90%;' id='challenge_pic_".$challenge_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$challenge_id.")' id='pic_file_".$challenge_id."'/><br/><br/>" ;
@@ -208,7 +208,7 @@ function user_idea ($db_handle, $user_IDF) {
         if ($_SESSION['user_id'] == $user_IDF AND isset($_SESSION['user_id'])) {
             echo "<div class='jumbotron'>
                     <p align='center'> You have not given any Idea <br> Share Idea and Contribute to Society<br><br>
-                    <a href='ninjas.php'> +Share Idea </a>
+                    <a onclick='form_profile(11)'> +Share Idea </a>
                     </p>
                 </div>";
         }
@@ -223,7 +223,7 @@ function user_idea ($db_handle, $user_IDF) {
             $idea_id= $user_idea_displayRow['challenge_id'];
             $idea_title =str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_idea_displayRow['challenge_title'])));
             $idea_stmt1 = $user_idea_displayRow['stmt'];
-            $idea_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1)));
+            $idea_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1))));
             $idea_creation1 = $user_idea_displayRow['creation_time'];
             $idea_creation = date("j F, g:i a", strtotime($idea_creation1));
             $idea_firstname = $user_idea_displayRow['first_name'];
@@ -244,31 +244,31 @@ function user_idea ($db_handle, $user_IDF) {
             echo "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
                         .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$idea_title."'/>                    
-                    <span class='glyphicon glyphicon-flash'></span><span style= 'color: #808080'>
+                    <span class='icon-flash'></span><span style= 'color: #808080'>
                     By: <a href ='profile.php?username=" . $idea_username . "'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span> | 
-                        <span class='glyphicon glyphicon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
+                        <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'>
                             <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='glyphicon glyphicon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
                 <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($idea_stmt, 0, 1) != '<') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 			}
 		else {
 			if (substr($idea_stmt, 0, 4) == ' <br') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
 			if (substr($idea_stmt, 0, 3) == '<s>') {
-echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".$idea_stmt."</textarea>
+echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$idea_stmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
-			$chaaa = substr(strstr($idea_stmt, '<br/>'), 5) ;
-			$cha = strstr($idea_stmt, '<br/>' , true) ;
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($idea_stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($idea_stmt, '<br/>' , true)) ;
 			if(substr($idea_stmt, 0, 4) == '<img') {
 echo "<div class='editbox' style='width : 90%;' id='challenge_pic_".$idea_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/><br/>" ;
@@ -319,7 +319,7 @@ $no_created_projects = mysqli_num_rows($project_created_display);
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
-            $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
+            $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
             $projectcreation1 = $project_table_displayRow['creation_time'];
@@ -352,20 +352,20 @@ $no_created_projects = mysqli_num_rows($project_created_display);
             <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/><br/>";
    if(isset($_SESSION['user_id'])){
 		if(substr($project_stmt_table, 0, 1) != '<') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 			}
 		else {
 			if (substr($project_stmt_table, 0, 4) == ' <br') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
 			if (substr($project_stmt_table, 0, 3) == '<s>') {
-			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".$project_stmt_table."</textarea>
+			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
-			$projectstmt1 = substr(strstr($project_stmt_table, '<br/>'), 5) ;
-			$projectst1 = strstr($project_stmt_table, '<br/>' , true) ;
+			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($project_stmt_table, '<br/>'), 5)) ;
+			$projectst1 = str_replace("<br/>", "\n",strstr($project_stmt_table, '<br/>' , true)) ;
 			if(substr($project_stmt_table, 0, 4) == '<img') {
 			echo "<div class='editbox' style='width : 90%;' id='project_pic_".$project_id_table."' >".$projectst1."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
@@ -418,7 +418,7 @@ function joined_projects ($db_handle, $user_IDF) {
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
-            $project_stmt_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
+            $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
             $projectcreation1 = $project_table_displayRow['creation_time'];
@@ -479,13 +479,13 @@ function project_comments($db_handle, $project_id) {
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$project_id."'
 			 placeholder='Want to know your comment....'/>
-			<button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$project_id."\", 2)' >
-			<span class='glyphicon glyphicon-chevron-right'></span></button>";
+			<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id."\", 2)' >
+			<span class='icon-chevron-right'></span></button>";
     } 
     else {
         echo " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                    <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                 </a>";
     }
 echo "</div>
@@ -525,13 +525,13 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
             if (isset($_SESSION['user_id'])) {
         echo "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
                  placeholder='Want to know your comment....'/>
-                <button type='submit' class='btn-primary btn-sm' onclick='comment(\"".$challenge_id."\", 1)' >
-                <span class='glyphicon glyphicon-chevron-right'></span></button>";
+                <button type='submit' class='btn btn-primary' onclick='comment(\"".$challenge_id."\", 1)' >
+                <span class='icon-chevron-right'></span></button>";
             }
             else {
                 echo " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
                         <a data-toggle='modal' data-target='#SignIn'>
-                            <button type='submit' class='btn-primary btn-sm glyphicon glyphicon-play' name='login_comment'></button>
+                            <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
                         </a>";
             }
             echo "</div>

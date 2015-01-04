@@ -93,12 +93,14 @@ function add_member(PID, name) {
 							data: dataString,
 							cache: false,
 							success: function(result){
-								if(result=='Member Added succesfully!'){
-									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-									location.reload();
+								var notice = result.split("+") ;
+								if(notice['0'] == 'Member Added succesfully!'){
+									bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+									$('.team-member').append(notice['1']);
+									$("#email_add_member").val("") ;
 									}
 									else {
-										bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+										bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-warning");
 										}
 								}
 							});
@@ -112,6 +114,19 @@ function add_member(PID, name) {
 				});
 		}
 }
+function loadteampanel(team) {
+	var dataString = 'team=' + team ;
+	$.ajax({
+			type: "POST",
+			url: "ajax/team_panel_load.php",
+			data: dataString,
+			async: false ,
+			cache: false,
+			success: function(result){
+				document.getElementById("teams_project_content").innerHTML = result;
+			}
+		});
+} 
 function remove_member(PID, name, Uid){
 	bootbox.confirm("Do u really want to Remove this member?", function(result) {
 		if(result){
@@ -136,7 +151,7 @@ function remove_member(PID, name, Uid){
 }
 function comment(ID, type) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/>',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
 						+ '&case=' + type ;
 		if(project == ""){
 			return false ;
@@ -261,11 +276,46 @@ function dislike(Id, type) {
 						$("#dislikes_"+Id).val(nied+='') ;
 					}
 					else {
-						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
+						bootstrap_alert(".alert_placeholder", "Already Disliked", 3000,"alert-warning");
 						}
 				}
 			});
 	}
 function replaceAll(find, replace, str) {
 	return str.replace(new RegExp(find, 'g'), replace);
+}
+function set_remind() {
+	var reminder = convertSpecialChar($("#reminder_message").val()) ;
+	var self = $("#self_remind").val() ;
+	var eventtime = $("#datepick").val() ;
+	if(reminder==''){
+		bootstrap_alert(".alert_placeholder", "Reminder can not be empty", 5000,"alert-warning");
+		return false;
+	}
+	else if (eventtime == "") {
+		bootstrap_alert(".alert_placeholder", "Please Select Date and Time ", 5000,"alert-warning");
+		return false;
+		}
+	 else {
+	var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/submit_reminder.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			if(result=='Reminder Set succesfully!'){
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+				$("#reminder_message").val("") ;
+				$("#self_remind").val("") ;
+				$("#datepick").val("") ;
+			location.reload();
+			}
+			else {
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+				return false;
+				}
+		}
+	 });
+	}	
 }
