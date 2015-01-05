@@ -30,7 +30,7 @@
 	else {
 		$cha = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
 	}
-	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' ;") ;
+	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and member_status = '1' ;") ;
 	$collaboratorNo = mysqli_num_rows($collaborators) ;
 	echo $cha."<br/><br/>
 		<div class ='row-fluid' style='margin: 4px;font-size: 20px; color: blue;'>
