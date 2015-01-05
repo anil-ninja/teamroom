@@ -479,14 +479,16 @@ function project_comments($db_handle, $project_id) {
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id."'
 			 placeholder='Want to know your comment....'/>
-			<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id."\", 2)' style='margin-bottom: 10px;'>
+			<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id."\", 2)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
 		      <i class='icon-chevron-right'></i>
             </button>";
     } 
     else {
         echo " <input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn btn-primary icon-play' name='login_comment' style='margin-bottom: 10px;'></button>
+                    <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+                        <i class='icon-chevron-right'></i>
+                    </button>
                 </a>";
     }
 echo "</div>
@@ -526,14 +528,14 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
             if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$challenge_id."'
                  placeholder='Want to know your comment....'/>
-                <button type='submit' class='btn btn-primary' onclick='comment(\"".$challenge_id."\", 1)' style='margin-bottom: 10px;'>
+                <button type='submit' class='btn btn-primary' onclick='comment(\"".$challenge_id."\", 1)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
                     <i class='icon-chevron-right'></i>
                 </button>";
             }
             else {
                 echo " <input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                         <a data-toggle='modal' data-target='#SignIn'>
-                            <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px;'>
+                            <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
                                 <i class='icon-chevron-right'></i>
                             </button>
                         </a>";

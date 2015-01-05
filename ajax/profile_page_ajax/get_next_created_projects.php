@@ -132,13 +132,16 @@ $show_CP = $show_CP.  "<div id='commentscontainer'>
     if (isset($_SESSION['user_id'])) {
     $show_CP = $show_CP. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id_table."'
 						 placeholder='Want to know your comment....'/>
-						<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id_table."\", 2)' style='margin-bottom: 10px;'>
-						<span class='icon-chevron-right'></span></button>";
+						<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id_table."\", 2)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+						  <i class='icon-chevron-right'></i>
+                        </button>";
     } 
     else {
         $show_CP = $show_CP. "<input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                             <a data-toggle='modal' data-target='#SignIn'>
-                                <button type='submit' class='btn btn-primary icon-chevron-right' name='login_comment' style='margin-bottom: 10px;'></button>
+                                <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+                                    <i class='icon-chevron-right'></i>
+                                </button>
                             </a>";
     }
 $show_CP = $show_CP. "</div>
