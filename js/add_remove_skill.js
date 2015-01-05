@@ -45,6 +45,8 @@ $(document).ready(function(){
 		 return false;
 	});
 		
+
+/*		
 	$("#remove_skill").click(function(){
 		$("#remove_skill").attr('disabled','disabled');
 		var skill_id = $("#remove").val() ;
@@ -71,7 +73,34 @@ $(document).ready(function(){
   $("#remove_skill").removeAttr('disabled');
 		return false;
 	});    
+*/
 });
+
+
+function remove_skill(skill_id){
+	bootbox.confirm("Do u really want to Remove this skill?", function(result) {
+		if(result){
+			var dataString = 'case=3' + '&skill_id=' + skill_id;
+			$.ajax({
+				type: "POST",
+				url: "ajax/change_profile.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Skill Removed succesfully!') {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						location.reload();
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					}
+				}
+			});
+		 }
+	});
+}
+
+
 $(document).ready(function(){
 	$('#joined_project').click(function(){
 		$('#joined_project_content').load('ajax/profile_page_ajax/joined_projects.php');		
