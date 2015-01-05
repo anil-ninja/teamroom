@@ -44,6 +44,7 @@
 <div id="signupwithoutlogin" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span6 offset3">
+            
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-unlock"></i>&nbsp;<span>Subscribe</span></a></li>
@@ -61,7 +62,7 @@
                             <input type="email" class="input-block-level" id='subscriptionid' placeholder='Enter Email-ID'/>
                             <br>
                             <a href="#" class=" btn " onclick='Subscribe()'>Subscribe&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
-                            <a href="#" class="btn btn-primary pull-right" onclick='test2()'>Sign up</a>
+                            <a href='#' data-toggle='modal' class='btn btn-primary pull-right' data-target='#SignIn'>Sign up/Sign In</a>
                         </div>
                     </div>
                 </div>

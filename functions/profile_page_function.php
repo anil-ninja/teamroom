@@ -330,14 +330,14 @@ $no_created_projects = mysqli_num_rows($project_created_display);
             echo "<div class='list-group' >
                     <div class='list-group-item'>";
             if ($user_id_project == $_SESSION['user_id'] && isset($_SESSION['user_id'])) {
-                echo "<div class='pull-right'>
-                        <div class='list-group-item'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                <li><button class='btn-link' onclick='editproject(".$project_id_table.")'>Edit Project</button></li>
-                                <li><button class='btn-link' onclick='delChallenge(\"".$project_id_table."\", 4);'>Delete Project</button></li>
-                            </ul>
-                        </div>
+                echo "<div class='dropdown pull-right'>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'>
+                            <b class='caret'></b>
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li><a href='#' class='btn-link' onclick='editproject(".$project_id_table.")'>Edit Project</a></li>
+                            <li><a href='#' class='btn-link' onclick='delChallenge(\"".$project_id_table."\", 4);'>Delete Project</a></li>
+                        </ul>
                     </div>";
             }
 
@@ -479,14 +479,16 @@ function project_comments($db_handle, $project_id) {
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id."'
 			 placeholder='Want to know your comment....'/>
-			<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id."\", 2)' style='margin-bottom: 10px;'>
+			<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id."\", 2)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
 		      <i class='icon-chevron-right'></i>
             </button>";
     } 
     else {
         echo " <input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
-                    <button type='submit' class='btn btn-primary icon-play' name='login_comment' style='margin-bottom: 10px;'></button>
+                    <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+                        <i class='icon-chevron-right'></i>
+                    </button>
                 </a>";
     }
 echo "</div>
@@ -526,14 +528,14 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
             if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$challenge_id."'
                  placeholder='Want to know your comment....'/>
-                <button type='submit' class='btn btn-primary' onclick='comment(\"".$challenge_id."\", 1)' style='margin-bottom: 10px;'>
+                <button type='submit' class='btn btn-primary' onclick='comment(\"".$challenge_id."\", 1)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
                     <i class='icon-chevron-right'></i>
                 </button>";
             }
             else {
                 echo " <input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                         <a data-toggle='modal' data-target='#SignIn'>
-                            <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px;'>
+                            <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
                                 <i class='icon-chevron-right'></i>
                             </button>
                         </a>";

@@ -163,11 +163,11 @@ $obj = new profile($UserName);
                                 </span>";
         			  }
         				  echo " <br/>
-                                    <span>   
-                                        <span class='icon-screenshot'>
-                                        </span>Skills &nbsp;:" ; 
+                                    
+                                        <i class='icon-screenshot'>
+                                        </i>Skills &nbsp;:" ; 
 
-                    $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
+                    $skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     
                     if (mysqli_num_rows($skill_display) == 0) {
                             echo "      <span class='tags'>
@@ -175,14 +175,30 @@ $obj = new profile($UserName);
                                         </span>";
                     } 
                     else {
+                        echo "<div style ='text-align:justify;'>";
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-                            echo "      <span class='tags' style='line-height: 2.1;'>"
+                            $skill_id = $skill_displayRow['skill_id'];
+                            
+/*                            echo "      
+                                        <span class='tags' style='line-height: 2.1;'>"
                                             .$skill_displayRow['skill_name']."
-                                        </span>&nbsp;";
+                                        &nbsp;";
+*/
+                        
+                            echo "      <span class='color tags' style='line-height: 2.1;'>
+                                            ".$skill_displayRow['skill_name']."&nbsp";
+                            if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
+                                echo "      <a type='submit' class='btn-link badge' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+                                                <i class='icon-remove'></i>
+                                            </a>";
+                            }
+                         echo "         </span>
+                                        &nbsp;";
+
                         }
+                        echo "</div>";
                     }
-                    echo "             
-                                    </span>";
+
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
                         echo "     <br/> 
                                     <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>

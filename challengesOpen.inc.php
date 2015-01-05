@@ -469,14 +469,16 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
             if (isset($_SESSION['user_id'])) {
                 $userID = $_SESSION['user_id'];
                 echo "
-                    <input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$chelangeid."' placeholder='Want to know your comment....'/>
-                    <a type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' >
-                        <span class='icon-chevron-right'></span>
-                    </a>";
+                    <input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$chelangeid."' placeholder='Want to know your comment....'/>
+                    <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+                        <i class='icon-chevron-right'></i>
+                    </button>";
             } else {
-                echo "<input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 83%;' placeholder='Want to know your comment....'/>
+                echo "<input type='text' class='input-block-level' STYLE='width: 83%;' placeholder='Want to know your comment....'/>
                     <a data-toggle='modal' data-target='#SignIn'>
-                        <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
+                        <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+                            <i class='icon-chevron-right'></i>
+                        </button>
                     </a>";
             }
             echo "</div>
