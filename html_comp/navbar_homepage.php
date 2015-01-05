@@ -47,7 +47,7 @@
                            <?php
                                 $username = $_SESSION['username'];
                                 $name = $_SESSION['first_name'];
-                                echo "<img style='width: 25px; height: 25px;' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'/>&nbsp &nbsp<b>".ucfirst($name)."</b>&nbsp"; 
+                                echo "<img style='width: 25px; height: 25px;' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
                             ?>
                             <b class="caret"></b>
                         </a>
@@ -82,7 +82,7 @@
                         <div class='navbar-inner-subnav'>
                             <div class='container' >
                                 <div class='span8 offset2'>
-                                <ul id='step12' class='inline' >
+                                <ul id='step12' class='inline' style='margin: -2px 0 10px 25px;'>
                                     <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
                                     <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
                                     <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
