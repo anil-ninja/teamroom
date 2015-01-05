@@ -138,13 +138,13 @@ $show_idea = $show_idea. "<input id='_fileChallenge_".$idea_id."' class='btn btn
                     <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                 </div>";
                 if (isset($_SESSION['user_id'])) {
-    $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$idea_id."'
+    $show_idea = $show_idea. "<input type='text' STYLE='idth: 83.0%;' id='own_ch_response_".$idea_id."'
                         placeholder='Want to know your comment....'/>
                     <button type='submit' class='btn btn-primary' onclick='comment(\"".$idea_id."\", 1)' ><span class='icon-chevron-right'></span></button>";
                 else {
-            $show_idea = $show_idea. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+            $show_idea = $show_idea. "<input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn btn-primary icon-chevron-right' name='login_comment'></button>
                                     </a>";
                         }
          $show_idea = $show_idea."</div></div></div>";

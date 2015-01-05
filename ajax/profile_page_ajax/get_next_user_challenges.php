@@ -137,14 +137,14 @@ $show = $show. "<input id='_fileChallenge_".$challenge_id."' class='btn btn-defa
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
                         if (isset($_SESSION['user_id'])) {
-            $show = $show. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$challenge_id."'
+            $show = $show. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$challenge_id."'
                              placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn btn-primary' onclick='comment(\"".$challenge_id."\", 1)' ><span class='icon-chevron-right'></span></button>";
+                            <button type='submit' class='btn btn-primary' onclick='comment(\"".$challenge_id."\", 1)' style='margin-bottom: 10px;'><span class='icon-chevron-right'></span></button>";
                         }
                         else {
-            $show = $show. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+            $show = $show. "<input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn btn-primary icon-play' name='login_comment' style='margin-bottom: 10px;'></button>
                                     </a>";
                         }
 
