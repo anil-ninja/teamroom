@@ -251,9 +251,12 @@ function like(Id, type) {
 					if(result == 'Posted successfully') {
 						$("#likes_"+Id).val(nied+='') ;
 					}
+					else if(result == 'Please Log In First') {
+						test() ;
+					}
 					else {
-						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
-						}
+						bootstrap_alert(".alert_placeholder",result, 3000,"alert-warning");
+					}
 				}
 			});
 	}
@@ -275,9 +278,12 @@ function dislike(Id, type) {
 					if(result == 'Posted successfully') {
 						$("#dislikes_"+Id).val(nied+='') ;
 					}
+					else if(result == 'Please Log In First') {
+						test() ;
+					}
 					else {
 						bootstrap_alert(".alert_placeholder", "Already Disliked", 3000,"alert-warning");
-						}
+					}
 				}
 			});
 	}
