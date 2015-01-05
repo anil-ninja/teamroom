@@ -434,14 +434,15 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
 				dropDown_delete_comment_ch($comment_id, $user_id, $creater_ID);
         echo "</div></div></div>";
     }
-    echo "<div class='comments_".$chelangeid."'></div><div id='step15' class='comments clearfix'>
-                        <div class='pull-left lh-fix'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
-                        </div>
-                            <input type='text' class='input-block-level' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$chelangeid."'
-                             placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' ><span class='icon-chevron-right'></span></button>
-                    </div>";
+    echo "<div class='comments_".$chelangeid."'></div>
+        <div id='step15' class='comments clearfix'>
+            <div class='pull-left lh-fix'>
+                <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+            </div>
+            <input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$chelangeid."'
+             placeholder='Want to know your comment....'/>
+            <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' style='margin-bottom: 10px;'><span class='icon-chevron-right'></span></button>
+        </div>";
     echo "</div> </div> ";
 }
 ?>

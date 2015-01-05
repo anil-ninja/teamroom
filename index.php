@@ -235,9 +235,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <label>Password </label>
                                     <input type="password" class="input-block-level" id="passwordlogin" placeholder="Password"/>
                                     <label>
-                                        <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
+                                    <!----    <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                         &nbsp;&nbsp;&nbsp;Remember Me
-                                    
+                                    -->
                                         <a href="index.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a>
                                     </label>
                                     <br />

@@ -24,7 +24,14 @@ class profile{
         mysqli_close($db_handle);
     }
     function getImage() {
-        return "http://".$_SERVER['HTTP_HOST']."/uploads/profilePictures/$this->username.jpg";
+        $file_name = "uploads/profilePictures/$this->username.jpg";
+        if (file_exists($file_name)) {
+            return "http://".$_SERVER['HTTP_HOST']."/uploads/profilePictures/$this->username.jpg";
+        }
+        else {
+            return "http://".$_SERVER['HTTP_HOST']."/img/default.gif";
+        }
+        
     }
     
 }
