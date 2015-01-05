@@ -33,7 +33,7 @@ if ($_POST['id']) {
 			else { echo "Request send succesfully"; }
 			if(!mysqli_error($db_handle)) {
 				$body2 = "Hi, ".$mail." \n \n ".$username." Send Link to you. View at \n
-http://collap.com/profile.php?user_id=".$knownid ;
+http://collap.com/profile.php?username=".$mail ;
 				collapMail($emails, " Link Received ", $body2);
 				}
 			events($db_handle,$user_id,"28",$knownid);
