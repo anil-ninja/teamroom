@@ -345,13 +345,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
                         </div>";
                 if (isset($_SESSION['user_id'])) {
-                    $show = $show . "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-                                    <button type='submit' class='btn-sm btn-primary icon-chevron-right' onclick='comment(\"".$id_task ."\", 3)' ></button>";
+                    $show = $show . "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
+                                    <button type='submit' class='btn btn-primary' onclick='comment(\"".$id_task ."\", 3)' style='margin-bottom: 10px;'>
+                                        <i class='icon-chevron-right'></i>
+                                    </button>";
                 }
                 else {
-                   $show = $show . " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%;' placeholder='Want to know your comment....'/>
+                   $show = $show . " <input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px;'>
+                                            <i class='icon-chevron-right'></i>
+                                        </button>
                                     </a>";
                 }
                $show = $show . "</div></div></div>";		

@@ -541,9 +541,11 @@ if ($_POST['chal']) {
                         <div class='pull-left lh-fix'>
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
                         </div>
-                            <input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$chelangeid."'
+                            <input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$chelangeid."'
                              placeholder='Want to know your comment....'/>
-                            <button type='submit' class='btn btn-primary icon-chevron-right' onclick='comment(\"".$chelangeid."\", 1)' ></button>
+                            <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' style='margin-bottom: 10px;'>
+                                <i class='icon-chevron-right'></i>
+                            </button>
                     </div>";
     $show = $show . "</div> </div> ";
     }
