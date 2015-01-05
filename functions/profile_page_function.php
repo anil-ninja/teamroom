@@ -330,14 +330,14 @@ $no_created_projects = mysqli_num_rows($project_created_display);
             echo "<div class='list-group' >
                     <div class='list-group-item'>";
             if ($user_id_project == $_SESSION['user_id'] && isset($_SESSION['user_id'])) {
-                echo "<div class='pull-right'>
-                        <div class='list-group-item'>
-                            <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
-                            <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                                <li><button class='btn-link' onclick='editproject(".$project_id_table.")'>Edit Project</button></li>
-                                <li><button class='btn-link' onclick='delChallenge(\"".$project_id_table."\", 4);'>Delete Project</button></li>
-                            </ul>
-                        </div>
+                echo "<div class='dropdown pull-right'>
+                        <a href='#' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'>
+                            <b class='caret'></b>
+                        </a>
+                        <ul class='dropdown-menu'>
+                            <li><a href='#' class='btn-link' onclick='editproject(".$project_id_table.")'>Edit Project</a></li>
+                            <li><a href='#' class='btn-link' onclick='delChallenge(\"".$project_id_table."\", 4);'>Delete Project</a></li>
+                        </ul>
                     </div>";
             }
 
