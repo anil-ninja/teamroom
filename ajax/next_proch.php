@@ -15,7 +15,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                     AND a.blob_id = '0' and a.user_id = b.user_id)
                                 UNION
                                     (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
-                                    a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
+                                    a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
                                     WHERE a.project_id = '$p_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
                                     AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update DESC LIMIT $a, $b ;");
 	$show = "";
@@ -96,7 +96,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 							</div>";                    
 				}
                         // list grp item header for all type chall/article/idea/photo/video
-                        $get_display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
+                        $get_display_tilte_task = "<p style='font-size: 24px; line-height: 30px; id='challenge_ti_".$id_task."' class='text'><b>
                             <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
 
                         $get_dispaly_fname_likes = "<span style= 'color: #808080'>
@@ -207,7 +207,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
             $show = $show . $dropdown1 ;
             $dropdown1 = "";
         }
-        $show = $show . $get_display_tilte_task . "<span class='icon-tree-deciduous'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $show = $show . $get_display_tilte_task . "<span class='icon-leaf'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
         
     }

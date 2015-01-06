@@ -84,7 +84,7 @@
                                 <div class='span8 offset2'>
                                 <ul id='step12' class='inline' style='margin: -2px 0 10px 25px;'>
                                     <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
-                                    <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
+                                    <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-leaf'></span> Notes </button></li>
                                     <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
                 					<li><button class='btn-link' style='color:#fff;' id='filmprj' ><span class='icon-film'></span> Videos</button></li>
                 					<li><button class='btn-link' style='color:#fff;' id='flag' ><span class='icon-flag'></span> Completed challenges </button></li>

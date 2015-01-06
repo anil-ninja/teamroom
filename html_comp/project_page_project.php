@@ -12,7 +12,7 @@
             | 
           <span class="icon-user" onclick='show_form(3)' style="cursor: pointer; color:#000;"> Create Team</span>
             | 
-          <span class="icon-tree-deciduous" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Notes</span>
+          <span class="icon-leaf" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Notes</span>
             | 
           <span class="icon-hdd" onclick='show_form_pro(6, "<?=ucfirst($projttitle) ?>", "<?=$pro_id ?>")' style="cursor: pointer; color:#000;"> Manage Files</span>
             | 
@@ -77,7 +77,7 @@ echo "<div class='row-fluid'>
   </div> */
 echo "</div>
      </div>
-      <div class='list-group-item'><span id='project_".$pro_id."' class='text'>".$projectst."</span><br/><br/>";
+      <div class='list-group-item'><span id='project_".$pro_id."' class='text' style='line-height:22px;'>".$projectst."</span><br/><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($projectst, 0, 1) != '<') {
 			echo "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$projectst)."</textarea>
@@ -173,10 +173,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 									 WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
 									AND a.blob_id = '0' and a.user_id = b.user_id)
 									UNION
-								 (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
-								  a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
+								 (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt, a.creation_time, a.challenge_type,
+								  a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
 								  WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
 								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update ".$sort_by." LIMIT 0, 10 ;");
+
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
@@ -223,8 +224,14 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 	else { $dislikes = '' ; }
         
         // list grp item header for all type chall/article/idea/photo/video
-        $display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
-            <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
+        $display_tilte_task = "<p style='font-size: 24px; line-height: 30px;' id='challenge_ti_".$id_task."' class='text'>
+                                <b>
+                                  <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>"
+                                    .ucfirst($title_task)."
+                                  </a>
+                                </b>
+                              </p>
+                              <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
         
         $dispaly_fname_likes ="<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> |
@@ -235,39 +242,42 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_task_stmt_content .= "<br></div>                    
                     <div class='list-group-item'><br>
-                        <span id='challenge_".$id_task."' class='text'>".$stmt_task."</span><br/>";
+                        <span id='challenge_".$id_task."' class='text' style='line-height:22px;'>".$stmt_task."</span><br/>";
     if(isset($_SESSION['user_id'])){
-		if(substr($stmt_task, 0, 1) != '<') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+  		if(substr($stmt_task, 0, 1) != '<') {
+        $display_task_stmt_content = $display_task_stmt_content."
+                    <textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >"
+                      .str_replace("<br/>", "\n",$stmt_task)."
+                    </textarea>
+						        <input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
-		else {
-			if (substr($stmt_task, 0, 4) == ' <br') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+		  else {
+			  if (substr($stmt_task, 0, 4) == ' <br') {
+          $display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
+          						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			if (substr($stmt_task, 0, 3) == '<s>') {
-$display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+  			if (substr($stmt_task, 0, 3) == '<s>') {
+          $display_task_stmt_content = $display_task_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
+          						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt_task, '<br/>'), 5)) ;
-			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
-			if(substr($stmt_task, 0, 4) == '<img') {
-$display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
-					}
-			if(substr($stmt_task, 0, 2) == '<a') {
-$display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_file_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
-					}
-			if(substr($stmt_task, 0, 3) == '<if') {
-$display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_video_".$id_task."' >".$cha."</div>
-					<input type='text' class='editbox' id='url_video_".$id_task."' placeholder='Add You-tube URL'/><br/><br/>" ;
-					}
-$display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallenge_".$id_task."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
-					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$id_task.")' id='pic_file_save_".$id_task."'/>
-					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$id_task."' >".$chaaa."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$id_task.")' id='doneediting_".$id_task."'/>";		
+  			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt_task, '<br/>'), 5)) ;
+  			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
+  			if(substr($stmt_task, 0, 4) == '<img') {
+          $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
+        					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
+				}
+  			if(substr($stmt_task, 0, 2) == '<a') {
+          $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_file_".$id_task."' >".$cha."</div>
+          					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>" ;
+				}
+  			if(substr($stmt_task, 0, 3) == '<if') {
+          $display_task_stmt_content = $display_task_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_video_".$id_task."' >".$cha."</div>
+    					<input type='text' class='editbox' id='url_video_".$id_task."' placeholder='Add You-tube URL'/><br/><br/>" ;
+				}
+        $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallenge_".$id_task."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+				  	<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$id_task.")' id='pic_file_save_".$id_task."'/>
+					   <textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$id_task."' >".$chaaa."</textarea>
+						  <input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$id_task.")' id='doneediting_".$id_task."'/>";		
 			}
 		}
     if ($type_task == 5) {
@@ -330,7 +340,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         if (isset($_SESSION['user_id'])) {
            dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
-         echo $display_tilte_task."<span class='icon-film'></span>".$dispaly_fname_likes;
+         echo $display_tilte_task."<i class='icon-film'></i>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         
@@ -341,7 +351,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
         if (isset($_SESSION['user_id'])) {
            dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
-         echo $display_tilte_task."<span class='icon-tree-deciduous'></span>".$dispaly_fname_likes;
+         echo $display_tilte_task."<i class='icon-leaf'></i>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         
@@ -354,12 +364,13 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$id_task."\", 5)' value='Accept'/>";
             }
-            echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes;
+            echo $display_tilte_task."<i class='icon-question-sign'></i>".$dispaly_fname_likes;
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
             // . "&nbsp&nbsp&nbsp with ETA : " . $tasketa . "<br/>" . $remaintime .             
         }
-        if ($status_task == 2) {
+
+        else if ($status_task == 2) {
             echo "<div class='list-group sign'>
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
@@ -369,14 +380,14 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
                   dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
                 }
             }
-            echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes;
+            echo $display_tilte_task."<i class='icon-question-sign'></i>".$dispaly_fname_likes;
             echo "<br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
             .ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
             //. "<br>ETA Taken: ". $etaown." <br/> Time Remaining : " . $remaintimeown . "
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
         }
-        if ($status_task == 4) {
+        else if ($status_task == 4) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
@@ -390,7 +401,7 @@ $display_task_stmt_content = $display_task_stmt_content."<input id='_fileChallen
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
         }
-        if ($status_task == 5) {
+        else if ($status_task == 5) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
             echo "<span class='color strong pull-right' style= 'color :#3B5998;'>Closed</span>";
