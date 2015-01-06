@@ -35,7 +35,7 @@ if ($_POST['id']) {
 				$body2 = "Hi, ".$mail." \n \n ".$username." Send Link to you. View at \n
 http://collap.com/profile.php?username=".$mail ;
 				collapMail($emails, " Link Received ", $body2);
-				}
+			}
 			events($db_handle,$user_id,"28",$knownid);
 			involve_in($db_handle,$user_id,"28",$knownid);
 			mysqli_close($db_handle);
@@ -98,7 +98,7 @@ http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Colla
 Hi ".$userFirstName." ".$userLastName." \n \n ".$username." has accepted your challenge ".$challengeTtitle.". Click here to login to collap \n
 http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
 					collapMail($emails, "Challenge Accepted ", $body2);
-					} 
+				} 
 				events($db_handle,$user_id,"4",$knownid);
 				involve_in($db_handle,$user_id,"4",$knownid);
 				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;

@@ -35,13 +35,13 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
- //http://collap.com/project.php?project_id=".$pro_id ;
-	//			collapMail($emails, "Video Added IN Project ", $body2);
 				events($db_handle,$user_id,"36",$idfr);
 				}
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!";  }
-			else { echo "Skill added succesfully!"; }
+			else { echo "Skill added succesfully!"."+"."<span class='color tags' style='line-height: 2.1;'>".$skill."&nbsp 
+							<a type='submit' class='btn-link badge' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
+							onclick='remove_skill(\"".$id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+                            <i class='icon-remove'></i></a></span>&nbsp;"; }
 			exit ;
 			break ;
 			
@@ -51,13 +51,16 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
- //http://collap.com/project.php?project_id=".$pro_id ;
-	//			collapMail($emails, "Video Added IN Project ", $body2);
 				events($db_handle,$user_id,"36",$idfr);
 				}
+			$skill_display = mysqli_query($db_handle, "SELECT skill_name from skill_names WHERE skill_id = '$skill_Name' ;");
+			$skill_displayrow = mysqli_fetch_array($skill_display) ;
+			$skill_id = $skill_displayrow['skill_name'] ;
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!"; }
-			else { echo "Skill added succesfully!"; }
+			else { echo "Skill added succesfully!"."+"."<span class='color tags' style='line-height: 2.1;'>".$skill_id."&nbsp 
+							<a type='submit' class='btn-link badge' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
+							onclick='remove_skill(\"".$skill_Name."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+                            <i class='icon-remove'></i></a></span>&nbsp;"; }
 			exit ;
 			break ;
 			
@@ -85,9 +88,6 @@ if  ($_POST['case']) {
 					$emails = $friendsrow['email'] ;
 					$mail = $friendsrow['username'] ;
 					$idfr = $friendsrow['user_id'] ;
-					//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
-	 //http://collap.com/project.php?project_id=".$pro_id ;
-		//			collapMail($emails, "Video Added IN Project ", $body2);
 					events($db_handle,$user_id,"19",$idfr);
 					}
 				}
@@ -98,9 +98,6 @@ if  ($_POST['case']) {
 						$emails = $friendsrow['email'] ;
 						$mail = $friendsrow['username'] ;
 						$idfr = $friendsrow['user_id'] ;
-						//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
-		 //http://collap.com/project.php?project_id=".$pro_id ;
-			//			collapMail($emails, "Video Added IN Project ", $body2);
 						events($db_handle,$user_id,"20",$idfr);
 						}
 					}
@@ -112,9 +109,6 @@ if  ($_POST['case']) {
 						$emails = $friendsrow['email'] ;
 						$mail = $friendsrow['username'] ;
 						$idfr = $friendsrow['user_id'] ;
-						//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
-		 //http://collap.com/project.php?project_id=".$pro_id ;
-			//			collapMail($emails, "Video Added IN Project ", $body2);
 						events($db_handle,$user_id,"21",$idfr);
 						}
 					}
@@ -127,9 +121,6 @@ if  ($_POST['case']) {
 							$emails = $friendsrow['email'] ;
 							$mail = $friendsrow['username'] ;
 							$idfr = $friendsrow['user_id'] ;
-							//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
-			 //http://collap.com/project.php?project_id=".$pro_id ;
-				//			collapMail($emails, "Video Added IN Project ", $body2);
 							events($db_handle,$user_id,"22",$idfr);
 							}
 						}
@@ -141,9 +132,6 @@ if  ($_POST['case']) {
 							$emails = $friendsrow['email'] ;
 							$mail = $friendsrow['username'] ;
 							$idfr = $friendsrow['user_id'] ;
-							//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
-			 //http://collap.com/project.php?project_id=".$pro_id ;
-				//			collapMail($emails, "Video Added IN Project ", $body2);
 							events($db_handle,$user_id,"23",$idfr);
 							}
 						}
@@ -155,9 +143,6 @@ if  ($_POST['case']) {
 							$emails = $friendsrow['email'] ;
 							$mail = $friendsrow['username'] ;
 							$idfr = $friendsrow['user_id'] ;
-							//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
-			 //http://collap.com/project.php?project_id=".$pro_id ;
-				//			collapMail($emails, "Video Added IN Project ", $body2);
 							events($db_handle,$user_id,"24",$idfr);
 							}
 						}
@@ -170,9 +155,6 @@ if  ($_POST['case']) {
 						$emails = $friendsrow['email'] ;
 						$mail = $friendsrow['username'] ;
 						$idfr = $friendsrow['user_id'] ;
-						//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
-		 //http://collap.com/project.php?project_id=".$pro_id ;
-			//			collapMail($emails, "Video Added IN Project ", $body2);
 						events($db_handle,$user_id,"8",$idfr);
 						}
 					}
@@ -186,9 +168,6 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				//$body2 = "Hi, ".$mail." \n \n ".$username." Add Video IN Project (".$title."). View at \n
- //http://collap.com/project.php?project_id=".$pro_id ;
-	//			collapMail($emails, "Video Added IN Project ", $body2);
 				events($db_handle,$user_id,"25",$idfr);
 				}
 			echo "Posted succesfully!";

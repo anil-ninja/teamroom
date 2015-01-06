@@ -175,16 +175,9 @@ $obj = new profile($UserName);
                                         </span>";
                     } 
                     else {
-                        echo "<div style ='text-align:justify;'>";
+                        echo "<div style ='text-align:justify;' id='appendskill'>";
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                             $skill_id = $skill_displayRow['skill_id'];
-                            
-/*                            echo "      
-                                        <span class='tags' style='line-height: 2.1;'>"
-                                            .$skill_displayRow['skill_name']."
-                                        &nbsp;";
-*/
-                        
                             echo "      <span class='color tags' style='line-height: 2.1;'>
                                             ".$skill_displayRow['skill_name']."&nbsp";
                             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {

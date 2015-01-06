@@ -30,19 +30,21 @@ $(document).ready(function(){
 			data: dataString,
 			cache: false,
 			success: function(result){
-					if(result=='Skill added succesfully!') {
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						$("#skills").val("");
-						$("#insert").val("");
-						location.reload();
-				  }      
-				  else {
-				  	bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-				  }
+				var notice = result.split("+") ;
+				if(notice['0']=='Skill added succesfully!') {
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					$("#skills").val("");
+					$("#insert").val("");
+					$("#appendskill").append(notice['1']) ;
+					bootstrap_alert(".alert_placeholder", "Add more skills", 10000,"alert-info");
+				}      
+				else {
+				 	bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+				}
 			}
 		});
 	 $("#addskills").removeAttr('disabled');
-		 return false;
+		 //return false;
 	});
 		
 
