@@ -8,7 +8,11 @@
         <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects"></div>
 	<?php
 	$user_id = $_SESSION['user_id'] ;
-	$project_id = mysqli_query($db_handle, "SELECT * FROM projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.user_id = b.user_id ;");
+	$project_id = mysqli_query($db_handle, "(SELECT a.project_type, a.project_title, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM
+											projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id )
+											UNION
+											(SELECT a.project_type, a.project_title, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
+											join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id ) ;");
 	$project_idrow = mysqli_fetch_array($project_id) ; 
 	$stmt =  $project_idrow['stmt'] ;
 	$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_idrow['project_title']))) ;
