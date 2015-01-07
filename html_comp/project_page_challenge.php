@@ -50,8 +50,8 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
                             <a class='collapsed' data-toggle='collapse' data-parent='#Dashboard' href='#DashboardBody' aria-expanded='false' aria-controls='collapseFive'>
                                 <b>PROJECT DASHBOARD</b>
                             </a>
-						</div>
-						<div class='row-fluid' >
+						</div>" ;
+				echo "	<div class='row-fluid' >
 							<div class='span5' >
 								<div id='DashboardBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='DashboardHead'>   
 									<div class='panel-body' style='padding: 1px;'>
@@ -85,10 +85,12 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				if(mysqli_num_rows($totaltask) != 0) {			
 						echo "<div id='chart_div'></div>" ;
 				}
-				else {  echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;}	
+				else {  
+					echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;
+				}	
 					echo  "</div>
-						</div>
-						<div class='row-fluid' >
+						</div>" ;
+				  echo "<div class='row-fluid' >
 							<div class='span5' >
 								<div id='DashboardBody' class='panel-collapse collapse in' role='tabpanel' aria-labelledby='DashboardHead'>   
 									<div class='panel-body' style='padding: 1px;'>
@@ -130,7 +132,9 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 				if(mysqli_num_rows($totalchallenges) != 0) {			
 						echo "<div id='chart_div2'></div>" ;
 				}
-				else {  echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;}	
+				else {  
+					echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;
+				}	
 					echo "</div>
 						</div>" ;	  
  

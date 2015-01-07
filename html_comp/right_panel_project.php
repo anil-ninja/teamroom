@@ -27,6 +27,9 @@
 	if(substr($stmt, 0, 4) == '<img') {
 		$cha = strstr($stmt, '<br/>' , true) ;
 	}
+	else if(substr($stmt, 0, 5) == ' <img') {
+		$cha = strstr($stmt, '<br/>' , true) ;
+	}
 	else {
 		$cha = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
 	}
