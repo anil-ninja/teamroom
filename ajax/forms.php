@@ -84,15 +84,15 @@ if($_POST['form_type']){
                 if (mysqli_num_rows($teams) > 0) {
                     $task = "";
                     $task .= "<div class='inline-form'>Assign To : &nbsp;&nbsp;
-								<select class='btn btn-default' id = 'teamtask' >
+								<select id = 'teamtask' >
 								   <option value='0' selected > Select Team </option>";
                     while ($teamsrow = mysqli_fetch_array($teams)) {
                         $teamsname = $teamsrow['team_name'];
                         $task = $task . "<option value='" . $teamsname . "' >" . $teamsname . "</option>";
                     }
                     $task = $task . "</select>
-                                <label></label> Or 
-              					<select class='btn btn-default' id= 'userstask' >	
+                                <label></label> Or Select : &nbsp;&nbsp;&nbsp;
+              					<select id= 'userstask' >	
 									<option value='0' selected >Select Member </option>";
 					$users = mysqli_query($db_handle, "select DISTINCT a.user_id, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and 
 														a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
@@ -103,13 +103,13 @@ if($_POST['form_type']){
 						$task = $task . "<option value='" . $u_id . "' >" . $users_username_task . "</option>";
 					}
 					$task = $task . "</select>
-                                <label></label> Or 
+                                <label></label> Or Enter : &nbsp;&nbsp;&nbsp;&nbsp;
 								<input type='email' id='emailtask' placeholder='Enter email-id'/>
 							  </div><br/>
 							  <input type='text' class='input-block-level' id='title' placeholder='Tilte ..'/><br/>
 						      <input type='file' id='_fileTask' style ='width: auto;'><label></label>
 							  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='taskdetails' placeholder='Description .. '></textarea>
-							  <br/><input type='button' value='Assign' class='btn btn-primary' onclick='create_task()'/>" ;
+							  <br/><input type='button' value='Assign' class='btn btn-primary' onclick='create_task()'/><br/>" ;
 					 /* <div class='inline-form'>
                           ETA :
                           <select class='btn btn-default btn-xs' id = 'c_eta' >
