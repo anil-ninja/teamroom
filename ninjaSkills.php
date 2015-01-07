@@ -30,7 +30,8 @@ $user_id = $_SESSION['user_id'] ;
 		   $skilldata = "" ;
 		   $aboutdata = "" ;
 		   $userdata = "" ;
-		   $allusers = mysqli_query($db_handle, "SELECT Distinct user_id FROM user_skills WHERE skill_id = '$skill_id' ;") ;
+		   $_SESSION['last_users'] = 5 ;
+		   $allusers = mysqli_query($db_handle, "SELECT Distinct user_id FROM user_skills WHERE skill_id = '$skill_id' ORDER BY user_id DESC limit 0, 5 ;") ;
 		   while( $allusersRow = mysqli_fetch_array($allusers)) {
 			   $users_ids = $allusersRow['user_id'] ;
 			   $userinfo = mysqli_query($db_handle, "SELECT * from user_info where user_id = '$users_ids' ;") ;
@@ -87,7 +88,8 @@ $user_id = $_SESSION['user_id'] ;
 			$skilldata = "" ;
 		   $aboutdata = "" ;
 		   $userdata = "" ;	  
-			}		
+			}
+		echo "<div id='nextusers'></div>";			
 		if(isset($_SESSION['user_id'])) {
     		include_once 'html_comp/friends.php';
     	}
@@ -95,6 +97,26 @@ $user_id = $_SESSION['user_id'] ;
 	include_once 'lib/html_inc_footers.php';
 	include_once 'html_comp/login_signup_modal.php';
     include_once 'html_comp/insert_time.php';
-    ?>		  
+    ?>
+    <script>
+    $(window).scroll(function(event) {
+		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+			event.preventDefault();
+			var skill = <?php echo $skill_id ; ?> ;
+			var dataString = 'users=5' + '&skill_id=' + skill ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/nextSkilledusers.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#nextusers').append(result);
+				}
+			});
+		}
+	});
+    
+    </script>		  
 	</body>
 </html>	
