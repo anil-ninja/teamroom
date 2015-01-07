@@ -162,10 +162,7 @@ $obj = new profile($UserName);
                                     . $profileViewPhone . "  
                                 </span>";
         			  }
-        				  echo " <br/>
-                                    
-                                        <i class='icon-screenshot'>
-                                        </i>Skills &nbsp;:" ; 
+        				  echo " <br/><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
 
                     $skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     
@@ -185,9 +182,7 @@ $obj = new profile($UserName);
                                                 <i class='icon-remove'></i>
                                             </a>";
                             }
-                         echo "         </span>
-                                        &nbsp;";
-
+                         echo "</span>&nbsp;";
                         }
                         echo "</div>";
                     }
@@ -416,7 +411,20 @@ $obj = new profile($UserName);
                     <div class="tab-pane active">
                         <div class="row-fluid">
                             <h4>Select skill or add new skill</h4>
-
+							<?php 
+							$skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
+							echo "<div class='skillmodal' style ='text-align:justify;'><label>Your Skills</label>";
+							while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+								$skill_id = $skill_displayRow['skill_id'];
+								echo "<span class='color tags' style='line-height: 2.1;'>".$skill_displayRow['skill_name']."&nbsp
+										  <a type='submit' class='btn-link badge' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+												<i class='icon-remove'></i>
+										  </a>
+									  </span>&nbsp;";
+							}
+							echo "</div>";
+							?>
+							<label>Add more Skills</label><br/>
                             <label>Select Skill</label> 
                             <select class="inline-form" id = "skills" >
                                 <option value='0' selected>Default (none)</option>

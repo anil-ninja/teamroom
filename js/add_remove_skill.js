@@ -36,6 +36,7 @@ $(document).ready(function(){
 					$("#skills").val("");
 					$("#insert").val("");
 					$("#appendskill").append(notice['1']) ;
+					$(".skillmodal").append(notice['1']) ;
 					bootstrap_alert(".alert_placeholder", "Add more skills", 10000,"alert-info");
 				}      
 				else {
