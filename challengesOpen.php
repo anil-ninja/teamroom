@@ -47,7 +47,7 @@
                         <div class="list-group-item">
                 <?php 
                     echo "  <div id='demo10' class='row-fluid'>
-                                <div class='span3' style='margin: 4px 4px 4px 4px;background : rgb(240, 241, 242);'>
+                                <div class='span3' style='margin: 4px 4px 4px 4px;'>
                                     <img src='uploads/profilePictures/$ch_username.jpg'  style='width: 150px; height: 150px' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                                 </div>";
                     $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
