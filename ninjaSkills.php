@@ -56,42 +56,34 @@ $user_id = $_SESSION['user_id'] ;
 				  $usersSkillname = $usersSkillsRow['skill_name'] ;
 				  $usersSkillid = $usersSkillsRow['skill_id'] ;
 				  $skilldata .= "<span class='color tags' style='line-height: 2.1;background-color : #1ABC9C'>
-                                    <a href='ninjaSkills.php?skill_id=".$usersSkillid."' >".$usersSkillname."</a>&nbsp";
-                            if ((isset($_SESSION['user_id'])) && ($user_id == $users_ids)) {
-                   $skilldata = $skilldata ."<a type='submit' class='btn-link badge' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
-											onclick='remove_skill(\"".$usersSkillid."\");' data-toggle='tooltip' data-placement='bottom' 
-											data-original-title='Remove Skill'><i class='icon-remove'></i></a>";
-                             }
-                   $skilldata = $skilldata . "</span>&nbsp;";
+                                    <a href='ninjaSkills.php?skill_id=".$usersSkillid."' >".$usersSkillname."</a>&nbsp
+                                 </span>&nbsp;";
 			   }
 			   $usersAbout = mysqli_query($db_handle, "SELECT * FROM about_users WHERE user_id = '$users_ids' ;") ;
                $usersAboutRow = mysqli_fetch_array($usersAbout);
-               $aboutdata.= "<div class='panel panel-primary'>" ;
                if (mysqli_num_rows($usersAbout) != 0) {
-					$aboutdata = $aboutdata . "<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['organisation_name']."<br/>
-											   <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['living_town']."<br/>
-											   <span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user'] ;
+					$skilldata = $skilldata . "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['organisation_name']."<br/>
+											   <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['living_town'] ;
+					$aboutdata .= "<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user'] ;
 				}
         		else {
         			$aboutdata = $aboutdata ."<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
 											  <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
 											  <span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
         		}
-        		$aboutdata = $aboutdata ."</div>" ;
-        	echo "<div class='row-fluid' style='max-height : 170px ;'>
-					<div class='span2 offset1'>
+        	echo "<div class='panel panel-primary' style='max-height : 150px ; margin-left:150px;margin-right:100px;'>
+					<div class='container'>
+					<div class='span2'>
 						<img src='uploads/profilePictures/$usersUsername.jpg'  style='width:150px; height:150px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
 					</div>
-					<div class='span2'>
-						<div class='panel panel-primary'>".$userdata."</div>
-					</div>
-					<div class='span2'>
-						<div class='panel panel-primary'>
-							<div style ='text-align:justify;' id='appendskill'><i class='icon-screenshot'></i>Skills &nbsp;:".$skilldata."</div>
+					<div class='span3'>
+						<div style ='text-align:justify;' id='appendskill'>
+							".$userdata."<br/><i class='icon-screenshot'></i>Skills &nbsp;:".$skilldata."
 						</div>
 					</div>
 					<div class='span4'>".$aboutdata."</div>
-				  </div>" ;
+				  </div>
+				  </div><br/>" ;
 			$skilldata = "" ;
 		   $aboutdata = "" ;
 		   $userdata = "" ;	  
