@@ -176,7 +176,7 @@ $obj = new profile($UserName);
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                             $skill_id = $skill_displayRow['skill_id'];
                             echo "      <span class='color tags' style='line-height: 2.1;'>
-                                            ".$skill_displayRow['skill_name']."&nbsp";
+                                            <a href='ninjaSkills.php?skill_id=".$skill_id."' >".$skill_displayRow['skill_name']."</a>&nbsp";
                             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                                 echo "      <a type='submit' class='btn-link badge' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                                                 <i class='icon-remove'></i>
@@ -369,7 +369,7 @@ $obj = new profile($UserName);
 	   </div>
 	   </div>" ;
 	include_once 'html_comp/signup.php' ;
-			include_once 'lib/html_inc_footers.php'; 
+	include_once 'lib/html_inc_footers.php'; 
 			include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
 
