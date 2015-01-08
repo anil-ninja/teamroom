@@ -91,7 +91,7 @@
             </div>";
     }
     else {
-        echo "<div class='nav nav-tabs'>";
+        echo "<div class='nav nav-tabs'></div>";
     }
         if (isset($_SESSION['user_id'])) {
     ?>
