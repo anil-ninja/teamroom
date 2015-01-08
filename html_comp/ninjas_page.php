@@ -152,7 +152,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
             }
                echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes. "
                         <br> <hr>Accepted: <a href ='profile.php?username=" . $ownname ."'>"
-                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a>";
+                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | on ".$timefunct;
                         //  <br/> Time Remaining : " . $remaintimeown ."<br>
                    echo $display_ch_stmt_content;
                    $display_ch_stmt_content = "";
