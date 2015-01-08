@@ -16,6 +16,7 @@
 
         <!-- for Facebook -->          
         <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
+        <meta name="og:author" content="<?= $obj->first_name." ".$obj->last_name; ?>" />
         <meta property="og:type" content="article"/>
         <?php
 			if($obj->video == 0)
@@ -24,6 +25,8 @@
 				echo "<meta property=\"og:video\" content=\"http:$obj->url\" />\n";
         ?>
         <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
+		<meta property="og:image:type" content="image/jpeg" />
+
         <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
 
         <!-- for Twitter -->          
