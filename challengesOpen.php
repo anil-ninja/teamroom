@@ -43,12 +43,12 @@
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
         
         <div class="row-fluid">
-            <div class="span1"></div>
-            <div class="span7">
+            
+            <div class="span7 offset1">
                 <?php                
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
-                    <div class="list-group" style="margin: 20px -15px;">
+                    <div class="list-group" style="margin: 20px 0px;">
                         <div class="list-group-item">
                 <?php 
                     echo "  <div id='demo10' class='row-fluid'>
@@ -105,7 +105,7 @@
                         $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
                         $challenge_user_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt']))));
                         echo "
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                                     <b>
                                         <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
