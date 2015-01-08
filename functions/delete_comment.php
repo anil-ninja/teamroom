@@ -399,7 +399,7 @@ function showLinks($stmt){
 		
 		if(substr($element, 0, 4) == "http"){
 			
-			$element = "<a href=".html_entity_decode($element)." target='_blank'>".$element."</a>";
+			$element = "<a href='".html_entity_decode($element)."' target='_blank'>".$element."</a>";
 			
 		}
 		

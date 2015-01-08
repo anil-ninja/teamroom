@@ -151,7 +151,7 @@ function remove_member(PID, name, Uid){
 }
 function comment(ID, type) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
 						+ '&case=' + type ;
 		if(project == ""){
 			return false ;
@@ -303,7 +303,7 @@ function set_remind() {
 		return false;
 		}
 	 else {
-	var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
+	var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/submit_reminder.php",
