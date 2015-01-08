@@ -103,10 +103,10 @@ if($_POST['form_type']){
 						$task = $task . "<option value='" . $u_id . "' >" . $users_username_task . "</option>";
 					}
 					$task = $task . "</select>
-                                <label></label> Or Enter : &nbsp;&nbsp;&nbsp;&nbsp;
+                                <label></label> Or Enter : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type='email' id='emailtask' placeholder='Enter email-id'/>
 							  </div><br/>
-							  <input type='text' class='input-block-level' id='title' placeholder='Tilte ..'/><br/>
+							  <input type='text' class='input-block-level' id='titletask' placeholder='Tilte ..'/><br/>
 						      <input type='file' id='_fileTask' style ='width: auto;'><label></label>
 							  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='taskdetails' placeholder='Description .. '></textarea>
 							  <br/><input type='button' value='Assign' class='btn btn-primary' onclick='create_task()'/><br/>" ;

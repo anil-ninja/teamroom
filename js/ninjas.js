@@ -515,7 +515,7 @@ $("#pencil").click(function(){
 				success: function(result){
 					//alert(result);
 					if (result == 'true') {
-							var title = convertSpecialChar($("#title").val()) ;
+							var title = convertSpecialChar($("#titletask").val()) ;
 							var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
 							//var eta = parseInt($("#c_eta").val());
 							//var etab = parseInt($("#c_etab").val());
@@ -554,7 +554,7 @@ $("#pencil").click(function(){
 				  });
 				}
 			else {
-				var title = convertSpecialChar($("#title").val()) ;
+				var title = convertSpecialChar($("#titletask").val()) ;
 				var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
 				//var eta = parseInt($("#c_eta").val());
 				//var etab = parseInt($("#c_etab").val());

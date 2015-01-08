@@ -16,7 +16,7 @@ if($_POST['taskdetails']){
 	$time = date("Y-m-d H:i:s") ;
 	$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 	$inforow = mysqli_fetch_array($info) ;
-	$title = $inforow['project_title'] ;
+	$titlepro = $inforow['project_title'] ;
 	$type = $inforow['project_type'] ;
 	if (strlen($image) < 30 ) {
 		$details = $detailstext ;
@@ -31,7 +31,7 @@ if($_POST['taskdetails']){
 		$inforow = mysqli_fetch_array($info);
 		$mailto = $inforow['email'];
 		$mail = $inforow['username'];
-		$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$title."). View at \n
+		$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$titlepro."). View at \n
 http://collap.com/project.php?project_id=".$pro_id ;
 		collapMail($mailto, "  Task  assign ", $body2);	
 		events($db_handle,$user_id,"12",$owner) ;	
@@ -60,7 +60,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
 		$owner = $ownersrow['user_id'] ;	
 		$mailto = $ownersrow['email'] ;	
 		$mail = $ownersrow['username'] ;
-		$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$title."). View at \n
+		$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$titlepro."). View at \n
 http://collap.com/project.php?project_id=".$pro_id ;
 		collapMail($mailto, " Task  assign ", $body2);	
 		events($db_handle,$user_id,"12",$owner) ;
@@ -100,7 +100,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
 				$inforow = mysqli_fetch_array($info);
 				$mailto = $inforow['email'];
 				$mail = $inforow['username'];
-				$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$title."). View at \n
+				$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$titlepro."). View at \n
 http://collap.com/project.php?project_id=".$pro_id ;
 				collapMail($mailto, "  Task  assign", $body2);
 				events($db_handle,$user_id,"12",$owner) ;	
