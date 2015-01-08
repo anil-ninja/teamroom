@@ -94,11 +94,11 @@
                         <div role="tabpanel" class="row tab-pane active">
                 <?php 
                     $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
-                                                            WHERE challenge_type != '2' AND challenge_status !='3' AND challenge_status != '7' AND 
+                                                            WHERE challenge_type != '2' and challenge_type != '5' AND challenge_status !='3' AND challenge_status != '7' AND 
                                                             challenge_id != $challengeSearchID AND blob_id = '0')  
     														UNION 
     														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 250) as stmt FROM challenges as a JOIN blobs as b 
-    														WHERE a.blob_id = b.blob_id AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
+    														WHERE a.blob_id = b.blob_id  and challenge_type != '5' AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
@@ -133,10 +133,10 @@
                         <div role='tabpanel' class='row tab-pane active'>
                             <div>";
                     $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 250) as stmt FROM projects 
-                                                            WHERE project_type = '1' AND blob_id = '0')  
+                                                            WHERE project_type = '1' and project_status != '3' and project_status != '5' AND blob_id = '0')  
                                                         UNION 
                                                         (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 250) as stmt FROM projects as a JOIN blobs as b 
-                                                            WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 3 ;");
+                                                            WHERE a.blob_id = b.blob_id AND project_type= '1' and project_status != '3' and project_status != '5') ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
                         $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));

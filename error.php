@@ -94,10 +94,10 @@ include_once 'lib/db_connect.php';
                         <div role="tabpanel" class="row tab-pane active">
             <?php
                 $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 200) as stmt FROM projects 
-                                                        WHERE project_type = '1' AND blob_id = '0')  
+                                                        WHERE project_type = '1' and project_status != '3' and project_status != '5' AND blob_id = '0')  
                                                     UNION 
                                                     (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 200) as stmt FROM projects as a JOIN blobs as b 
-                                                        WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 10 ;");
+                                                        WHERE a.blob_id = b.blob_id AND project_type= '1' and project_status != '3' and project_status != '5') ORDER BY rand() LIMIT 10 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
                     $project_id_display = $projectsRow['project_id'];
                     $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
