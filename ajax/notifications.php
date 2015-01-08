@@ -54,68 +54,70 @@ if ($_POST['notice']) {
 		switch($type){
 			case 3:
 				$notice3 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
-				$notice3row = mysqli_fetch_array($notice3) ;
-				$challenge_id = $notice3row['challenge_id'] ;
-				$pro_id = $notice3row['project_id'] ;
-				$challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice3row['challenge_title']))) ;
-				if($pro_id == 0) {	
-					$notice = $notice ."<li style='margin:4px 5px 1px 10px;'>
-											<span class='icon-star'></span>
-											<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Commented On 
-											<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
-											target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title."</a> on  ".$eventtime."
-										</li>" ;
-					$y++ ;
-					insert($eventid, $user_id,  $db_handle) ;
-				}
-				else {
-					$projectinfo = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id';") ;
-					$projectinforow = mysqli_fetch_array($projectinfo) ;
-					$project_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow['project_title']))) ;
-					$notice = $notice ."<li style='margin:4px 5px 1px 10px; '>
-											<span class='icon-star'></span>
-											<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Commented In 
-											<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$pro_id."'
-											target='_blank'>".$project_title."</a>
-											On <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."'
-											target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title."</a> on  ".$eventtime."
-										</li>" ;
-					$y++ ;
-					insert($eventid, $user_id,  $db_handle) ;
+				while($notice3row = mysqli_fetch_array($notice3)) { 
+					$challenge_id = $notice3row['challenge_id'] ;
+					$pro_id = $notice3row['project_id'] ;
+					$challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice3row['challenge_title']))) ;
+					if($pro_id == 0) {	
+						$notice = $notice ."<li style='margin:4px 5px 1px 10px;'>
+												<span class='icon-star'></span>
+												<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Commented On 
+												<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
+												target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title."</a> on  ".$eventtime."
+											</li>" ;
+						$y++ ;
+						insert($eventid, $user_id,  $db_handle) ;
+					}
+					else {
+						$projectinfo = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id';") ;
+						$projectinforow = mysqli_fetch_array($projectinfo) ;
+						$project_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow['project_title']))) ;
+						$notice = $notice ."<li style='margin:4px 5px 1px 10px; '>
+												<span class='icon-star'></span>
+												<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Commented In 
+												<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$pro_id."'
+												target='_blank'>".$project_title."</a>
+												On <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."'
+												target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title."</a> on  ".$eventtime."
+											</li>" ;
+						$y++ ;
+						insert($eventid, $user_id,  $db_handle) ;
+					}
 				}
 				
 				break;
 			
 			case 4:
 				$notice4 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
-				$notice4row = mysqli_fetch_array($notice4) ;
-				$challenge_id2 = $notice4row['challenge_id'] ;
-				$pro_id2 = $notice4row['project_id'] ;
-				$challenge_title2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice4row['challenge_title']))) ;
-				if($pro_id2 == 0) {	
-					$notice = $notice ."<li style='margin:4px 5px 1px 10px; '>
-											<span class='icon-star'></span>
-											<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Accepted Challenge 
-											<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id2."' 
-											target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title2."</a> on  ".$eventtime."
-										</li>" ;
-					$y++ ;
-					insert($eventid, $user_id,  $db_handle) ;
-				}
-				else {
-					$projectinfo2 = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id2';") ;
-					$projectinforow2 = mysqli_fetch_array($projectinfo2) ;
-					$project_title2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow2['project_title']))) ;
-					$notice = $notice ."<li style='margin:4px 5px 1px 10px; '>
-											<span class='icon-star'></span>
-											<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Accepted Challenge In 
-											<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$pro_id2."' 
-											target='_blank'>".$project_title2."</a>
-											<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id2."'
-											target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title2."</a> on  ".$eventtime."
-										</li>" ;
-					$y++ ;
-					insert($eventid, $user_id,  $db_handle) ;
+				while($notice4row = mysqli_fetch_array($notice4)) {
+					$challenge_id2 = $notice4row['challenge_id'] ;
+					$pro_id2 = $notice4row['project_id'] ;
+					$challenge_title2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice4row['challenge_title']))) ;
+					if($pro_id2 == 0) {	
+						$notice = $notice ."<li style='margin:4px 5px 1px 10px; '>
+												<span class='icon-star'></span>
+												<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Accepted Challenge 
+												<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id2."' 
+												target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title2."</a> on  ".$eventtime."
+											</li>" ;
+						$y++ ;
+						insert($eventid, $user_id,  $db_handle) ;
+					}
+					else {
+						$projectinfo2 = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id2';") ;
+						$projectinforow2 = mysqli_fetch_array($projectinfo2) ;
+						$project_title2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow2['project_title']))) ;
+						$notice = $notice ."<li style='margin:4px 5px 1px 10px; '>
+												<span class='icon-star'></span>
+												<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Accepted Challenge In 
+												<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$pro_id2."' 
+												target='_blank'>".$project_title2."</a>
+												<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id2."'
+												target='_blank'	onclick=".update($user_id,$db_handle).">".$challenge_title2."</a> on  ".$eventtime."
+											</li>" ;
+						$y++ ;
+						insert($eventid, $user_id,  $db_handle) ;
+					}
 				}
 				
 				break;

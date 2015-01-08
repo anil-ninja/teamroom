@@ -30,7 +30,7 @@
         <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
 
         <!-- for Twitter -->          
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="photo" />
         <meta name="twitter:url" content="<?= "http://collap.com/challengesOpen.php?challenge_id=".$_GET['challenge_id'] ?>" />
         <meta name="twitter:title" content="<?= $obj->challenge_title; ?>" />
         <meta name="twitter:description" content="<?= $obj->getDiscription(); ?>" />
