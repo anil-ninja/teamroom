@@ -74,7 +74,7 @@ if ($_POST['users']) {
  if (mysqli_error($db_handle)) {
         echo "Failed!";
     } else {
-        $_SESSION['lastpanel'] = $a + $iR;
+        $_SESSION['last_users'] = $a + $iR;
         
         echo $data ;
         $iR = 0;
