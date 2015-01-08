@@ -2563,9 +2563,15 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
   right: 0;
   max-height:300px;
   width: 250px; 
-  overflow : scroll;
-  overflow-x: hidden;
 }
+.mousescroll {
+    overflow: hidden;
+}
+.mousescroll:hover {
+    overflow-y: scroll;
+}
+.slimScrollDiv { border: 1px solid #ccc; margin:10px; }
+
 .dropdown-menu .divider
 {
   background-color: #e5e5e5;

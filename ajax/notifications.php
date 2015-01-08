@@ -650,7 +650,7 @@ if ($_POST['notice']) {
 				$data = $data . "<span class='badge' style='padding: 0px; color: white;' id='countnotice'>".$y."</span>" ;
 				}
 	$data = $data . "</a>
-					<ul class='dropdown-menu pull-right'>
+					<ul class='dropdown-menu pull-right mousescroll'>
 							".$notice."
 							<li><div class='newnotices' ></div></li>
 							<li><a href='notifications.php'>See All</a></li>

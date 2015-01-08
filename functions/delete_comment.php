@@ -398,15 +398,10 @@ function showLinks($stmt){
 	foreach($stmtArray as $element){
 		
 		if(substr($element, 0, 4) == "http"){
-			$url=get_meta_tags("".$element."");
-			$element1 = get(file_get_contents(''.$element.''), "<title>", "</title");
-			$element4 = get(file_get_contents(''.$element.''), "<img", "/>");
-			$element2 = $url["description"] ;
-			$element3 = $url["keywords"] ;
-			$element = "<a href='".html_entity_decode($element)."' target='_blank'><br/> <img ".$element4." /> <br/> ".$element1." <br/> ".$element2." <br/> ".$element3." <br/> ".$element." </a>";
+			
+			$element = "<a href='".html_entity_decode($element)."' target='_blank'> ".$element." </a>";
 			
 		}
-		
 		$returnStmt .= $element . " ";
 	}
 	return $returnStmt;
@@ -426,15 +421,5 @@ function removescript($stmt){
 		$returnStmt .= $element . " ";
 	}
 	return $returnStmt;
-	//$stmt1 = strstr($stmt, '<script>' , true);
-	//$stmt2 = strstr($stmt, '<script>');
-	//$stmt3 = $stmt1." ".$stmt2 ;
-	//$stmt4 = strstr($stmt3, '<script>' , true);
-}
-function get($a,$b,$c) { 
-	// Gets a string between 2 strings
-	$y = explode($b,$a);
-	$x = explode($c,$y[1]);
-	return $x[0];
 }
 ?>
