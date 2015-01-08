@@ -285,6 +285,12 @@ if($_POST['form_type']){
 				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_idea()'/>" ;
 			exit ;
 			break ;
+			
+		case 12:
+			echo "<br/><input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
+				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_link()'/>" ;
+			exit ;
+			break ;
 	}
 	mysqli_close($db_handle) ;
 }

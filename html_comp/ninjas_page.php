@@ -10,6 +10,8 @@
         <span class="icon-film" onclick='show_form_h(10)' style="cursor: pointer;color: #000;"> Videos</span>
         | 
         <span class="icon-lightbulb" onclick='show_form_h(11)' style="cursor: pointer;color: #000;"> Ideas</span>
+        | 
+        <span class="icon-link" onclick='show_form_h(12)' style="cursor: pointer;color: #000;"> Share Links</span>
     </div>
     <div class='list-group-item'>
 		<div id='textForm' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>

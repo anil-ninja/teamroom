@@ -46,13 +46,13 @@
                                     <div class="span3">
                                         <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
                                         <div class="socials clearfix">
-                                            <a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
-                                            <a href='https://twitter.com/CollapCom' target'_blank' class="icon-twitter twitter" target='_blank'></a>
-                                            <a href='https://plus.google.com/u/0/' class="icon-google-plus google-plus" target='_blank'></a>
-                                            <a class="icon-pinterest pinterest"></a>
-                                            <a class="icon-linkedin linked-in"></a>
-                                            <a class="icon-github github"></a>
-                                        </div>
+											<a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
+											<a href='https://twitter.com/CollapCom' class="icon-twitter twitter" target='_blank'></a>
+											<a href='https://plus.google.com/u/0/103215845490732646217/about' class="icon-google-plus google-plus" target='_blank'></a>
+											<a href='https://www.pinterest.com/collapcom/' class="icon-pinterest pinterest" target='_blank'></a>
+											<a class="icon-linkedin linked-in"></a>
+											<a href='https://github.com/collapcom' class="icon-github github" target='_blank'></a>
+										</div>
                                     </div>
                                     <div class="span4">
                                         <h4><i class="icon-question"></i>&nbsp;&nbsp;Registration</h4>
@@ -121,13 +121,13 @@
                                     <div class="span3">
                                         <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
                                         <div class="socials clearfix">
-                                            <a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
-                                            <a href='https://twitter.com/CollapCom' target'_blank' class="icon-twitter twitter" target='_blank'></a>
-                                            <a href='https://plus.google.com/u/0/' class="icon-google-plus google-plus" target='_blank'></a>
-                                            <a class="icon-pinterest pinterest"></a>
-                                            <a class="icon-linkedin linked-in"></a>
-                                            <a class="icon-github github"></a>
-                                        </div>
+											<a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
+											<a href='https://twitter.com/CollapCom' class="icon-twitter twitter" target='_blank'></a>
+											<a href='https://plus.google.com/u/0/103215845490732646217/about' class="icon-google-plus google-plus" target='_blank'></a>
+											<a href='https://www.pinterest.com/collapcom/' class="icon-pinterest pinterest" target='_blank'></a>
+											<a class="icon-linkedin linked-in"></a>
+											<a href='https://github.com/collapcom' class="icon-github github" target='_blank'></a>
+										</div>
                                     </div>
                                     <div class="span4">
                                         <h4><i class="icon-question"></i>&nbsp;&nbsp;Login</h4>
@@ -202,84 +202,7 @@
             </div>
         </div>    
         <!--end modle-->
-<?php
-/*         
-        <!--Signup Modal -->
-            <div class="modal fade" id="SignUp" style="z-index: 9000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width:370px; height:auto">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                         
-                        <h4 class="modal-title" id="myModalLabel">New User Registration</h4>
-                    </div>
-                    <div class="alert-placeholder"> </div>
-                        <div class="modal-body">
-                            <div class="inline-form">
-                                <div class="row">
-                                    <div class="col-md-6">					
-                                        <input type="text" class="form-control" style="width: 100%" id="firstname" placeholder="First name" onkeyup="nospaces(this)"/>	
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" style="width: 100%" id="lastname" placeholder="Last name" onkeyup="nospaces(this)"/>					
-                                    </div>
-                                </div>
-                            </div><br/>	
-                                 <input type="email" class="form-control" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
-                                  <span id="status_email"></span>
-                                    <br/>					
-                            <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> <span id="status"></span>
-                           <br/>
-                           <div class="inline-form">
-							   <div class="row">
-									<div class="col-md-6">
-                             	<input type="password" class="form-control" style="width: 100%" id="passwordR" placeholder="password"/>
-								</div><div class="col-md-6">
-								<input type="password" class="form-control" style="width: 100%" id="password2R" placeholder="Re-enter password"/><br/><br/>
-							</div></div></div>
-                            <input type="submit" class="btn btn-primary btn-lg" name= "request" value = "Sign up" onclick="validateSignupFormOnSubmit()">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end modle-->
-
-    <!--project Order Sort content Modal -->
-        <div class="modal fade" id="project_order_old" style="z-index: 2000;" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" style="width:350px; height:auto">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span>
-                            <span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Sort Content</h4>
-                        
-                        <div class='alert_placeholder'></div>
-                    </div>
-                    <div class="modal-body">
-                        <div class="input-group">
-                            <form method="POST" action="">
-                                <select class="btn btn-default btn-xs" name="select_order" >    
-                                    <option value='ASC'>Ascending</option>
-                                    <option value='DESC'>Default</option>
-                                </select>
-                                <button type="submit" class="btn btn-success" name="request_order">Sort</button>                     
-                            </form>   
-                        </div>
-                        <br/>
-                                                
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--end modle-->
-*/
-?>      
+ 
 <!---- Projecct content order modal -->
         <div id="project_order" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="row-fluid" id="demo-1">
