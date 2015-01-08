@@ -10,13 +10,13 @@
         <!-- for Google -->
         <meta name="description" content="<?= $obj->getDiscription(); ?>" />
         <meta name="keywords" content="Challenges, Projects, Problem solving, problems" />
-        <meta name="author" content="<?= $obj->first_name." ".$obj->last_name; ?>" />
+        <meta name="author" content="<?= $obj->first_name.$obj->last_name; ?>" />
         <meta name="copyright" content="true" />
         <meta name="application-name" content="Article" />
 
         <!-- for Facebook -->          
         <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
-        <meta name="og:author" content="<?= $obj->first_name." ".$obj->last_name; ?>" />
+        <meta name="og:author" content="<?= $obj->first_name.$obj->last_name; ?>" />
         <meta property="og:type" content="article"/>
         <?php
 			if($obj->video == 0)
@@ -31,6 +31,8 @@
 
         <!-- for Twitter -->          
         <meta name="twitter:card" content="photo" />
+        <meta name="twitter:site" content="@collap">
+		<meta name="twitter:creator" content="<?= "@".$obj->first_name.$obj->last_name; ?>">
         <meta name="twitter:url" content="<?= "http://collap.com/challengesOpen.php?challenge_id=".$_GET['challenge_id'] ?>" />
         <meta name="twitter:title" content="<?= $obj->challenge_title; ?>" />
         <meta name="twitter:description" content="<?= $obj->getDiscription(); ?>" />
