@@ -23,7 +23,7 @@ if ($_POST['notice']) {
 			$eventtimeN = date("j F, g:i a", $strtime) ;
 			$title25 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice27row['project_title']))) ;
 			$uname25 = $notice27row['username'] ;
-			$notice .= "<div class ='row-fluid' style=' margin:4px; background : rgb(240, 241, 242);'>
+			$notice .= "<div class ='row-fluid' style='margin:4px 5px 0px 0px; background : rgb(240, 241, 242);'>
 							<span class='icon-plus'></span>
 							<a href ='profile.php?username=".$uname25."'>".$fname25."</a> Created 
 							<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id25."' 
