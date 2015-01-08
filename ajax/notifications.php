@@ -35,9 +35,7 @@ if ($_POST['notice']) {
 										 and timestamp > '$a' and event_creater != '$user_id' )
 										 UNION
 										 (SELECT * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 ) 
-										 and p_c_id = '$user_id' and timestamp > '$a' and event_creater != '$user_id')
-										 UNION
-										 (SELECT Distinct * FROM events WHERE event_type = '37' and p_c_id = '$user_id') order by timestamp DESC;") ;
+										 and p_c_id = '$user_id' and timestamp > '$a' and event_creater != '$user_id') order by timestamp DESC;") ;
 	while($notice1row = mysqli_fetch_array($notice1)) {
 		$eventid = $notice1row['id'] ;
 		$creater = $notice1row['event_creater'] ;
@@ -568,38 +566,6 @@ if ($_POST['notice']) {
 				
 				break;
 				
-			case 37:
-				$current = date("Y-m-d H:i:s") ;
-				$notice25 = mysqli_query($db_handle, "select Distinct a.id, a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
-													  as b where a.person_id = '$user_id' and a.user_id = '$creater' and a.user_id = b.user_id and a.time > '$current' ;") ;
-				$notice25row = mysqli_fetch_array($notice25) ;
-				$reminders = $notice25row['reminder'] ;
-				$ruser_id = $notice25row['user_id'] ;
-				if ($ruser_id == $user_id) {
-					$rname = "You" ;
-				}
-				else {
-					$rname = ucfirst($notice25row['first_name']) ;
-				}
-				$reminder_time = $notice25row['time'] ;
-				$starttime = strtotime($reminder_time) ;
-				$endtime = time() ;
-				if ($endtime <= $starttime) {
-					$timeleft = $starttime - $endtime ;
-				}
-				else {
-					$timeleft = $starttime ;
-				}
-				if ($timeleft < 600 && $timeleft > 0) {
-					$notice = $notice . "<li><div class ='row-fluid' style=' margin:4px 5px 1px 10px;'>
-											<span class='icon-bullhorn'> ". $reminders. "</span> By : ".$rname."
-										</div></li>";
-					$y++ ;
-					insert($eventid, $user_id,  $db_handle) ;
-				}
-								
-				break;
-				
 			case 38:
 				$notice26 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice26row = mysqli_fetch_array($notice26) ;
@@ -616,7 +582,35 @@ if ($_POST['notice']) {
 				
 				break;
 			}
-		}	
+		}
+		$notice25 = mysqli_query($db_handle, "select Distinct a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
+											as b where a.person_id = '$user_id' and a.user_id = b.user_id ;") ;
+		while ($notice25row = mysqli_fetch_array($notice25)) { 
+			$reminders = $notice25row['reminder'] ;
+			$ruser_id = $notice25row['user_id'] ;
+			if ($ruser_id == $user_id) {
+				$rname = "You" ;
+			}
+			else {
+				$rname = ucfirst($notice25row['first_name']) ;
+			}
+			$reminder_time = $notice25row['time'] ;
+			$starttime = strtotime($reminder_time) ;
+			$endtime = time() ;
+			if ($endtime <= $starttime) {
+				$timeleft = $starttime - $endtime ;
+			}
+			else {
+				$timeleft = $starttime ;
+			}
+			if ($timeleft < 600 && $timeleft > 0) {
+				$notice = $notice . "<li style=' margin:4px 5px 1px 10px;'>
+										<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
+									</li>";
+				$y++ ;
+			}
+		}
+								
 	/* $notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
 											join challenges as b where b.challenge_id = a.challenge_id and a.status = '1' 
 											and a.user_id = '$user_id';") ;

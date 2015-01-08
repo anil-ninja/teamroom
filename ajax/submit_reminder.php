@@ -21,7 +21,6 @@ if($_POST['reminder']){
 http://collap.com/profile.php?username=".$username ;
 					collapMail($emails, "Reminder Added", $body2);
 					}
-				events($db_handle,$user_id,"37",$self);
 				mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time)	VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;
 				if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
 				else { echo "Reminder Set succesfully!"; }
