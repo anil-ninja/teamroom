@@ -56,8 +56,8 @@ $user_id = $_SESSION['user_id'] ;
 			   while($usersSkillsRow = mysqli_fetch_array($usersSkills)) {
 				  $usersSkillname = $usersSkillsRow['skill_name'] ;
 				  $usersSkillid = $usersSkillsRow['skill_id'] ;
-				  $skilldata .= "<span class='color tags' style='line-height: 2.1;background-color : #1ABC9C'>
-                                    <a href='ninjaSkills.php?skill_id=".$usersSkillid."' >".$usersSkillname."</a>&nbsp
+				  $skilldata .= "<span class='btn-success'>
+                                    <a href='ninjaSkills.php?skill_id=".$usersSkillid."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$usersSkillname."</a>&nbsp
                                  </span>&nbsp;";
 			   }
 			   $usersAbout = mysqli_query($db_handle, "SELECT * FROM about_users WHERE user_id = '$users_ids' ;") ;
@@ -79,7 +79,7 @@ $user_id = $_SESSION['user_id'] ;
 					</div>
 					<div class='span3'>
 						<div style ='text-align:justify;' id='appendskill'>
-							".$userdata."<br/><i class='icon-screenshot'></i>Skills &nbsp;:".$skilldata."
+							".$userdata."<br/><i class='icon-screenshot'></i>Skills &nbsp;: &nbsp;".$skilldata."
 						</div>
 					</div>
 					<div class='span4'>".$aboutdata."</div>
