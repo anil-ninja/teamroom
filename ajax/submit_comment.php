@@ -89,7 +89,7 @@ http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborat
 							}
 					}
 				}
-			else { echo "Please Join Project First!"; }
+			//else { echo "Please Join Project First!"; }
 			}
 	$test .= "<div id='commentscontainer'>
 				<div class='comments clearfix'>
