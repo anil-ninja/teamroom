@@ -136,13 +136,13 @@
     </div><br/>
 	<div id='step13' class="panel panel-default">
 		<div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
-			<a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+			<a class="" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
 				<i class='icon-zoom-in'></i>&nbsp;
-				Eagle-eye view
+				Eagle Eye View
 				<i class='icon-chevron-down pull-right'></i>
 			</a>
 		</div>
-		<div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
 		<div class="panel-body" style="padding: 1px;">
 			<li><button class='btn-link' id='allPanels' ><i class='icon-eye-open'></i> All</button></li>
 			<li><button class='btn-link' id='pencil' ><i class='icon-question-sign'></i> <span>Open challenges</span></button></li>
