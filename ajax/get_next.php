@@ -296,7 +296,7 @@ if ($_POST['chal']) {
                         $show = $show . $dropDown_challenge_get;
                         $dropDown_challenge_get = "";
                         
-                        $show = $show .$get_display_tilte."<span class='icon-tree-deciduous'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
+                        $show = $show .$get_display_tilte."<span class='icon-leaf'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
                         $show = $show .$get_display_ch_stmt_content;
                         $get_display_ch_stmt_content = "" ;
     } 

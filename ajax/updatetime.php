@@ -1,6 +1,12 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
+function update($id,$db_handle) {
+	mysqli_query($db_handle, " UPDATE notifications SET status = '1' WHERE user_id = '$id' ;") ;
+}
+function insert($id, $user_ID,  $db_handle) {
+	 mysqli_query($db_handle, "INSERT INTO notifications (event_id, user_id) VALUES ('$id', '$user_ID') ;") ;
+}
 if($_POST['update']){
 	$user_id = $_SESSION['user_id'];
 	$a = date("Y-m-d H:i:s") ;

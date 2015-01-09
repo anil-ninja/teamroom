@@ -55,7 +55,7 @@ function requestaccept(ID) {
 function requestdelete(ID) {
 	bootbox.confirm("Delete Request !!!", function(result) {
 	if(result){
-		var dataString = 'id='+ ID + '&case=8';
+		var dataString = 'id=' + ID + '&case=8';
 		$.ajax({
 			type: "POST",
 			url: "ajax/knownperson.php",

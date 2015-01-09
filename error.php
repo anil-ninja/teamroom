@@ -14,7 +14,7 @@ include_once 'lib/db_connect.php';
 <?php 
     include_once 'html_comp/navbar_homepage.php'; 
 ?>
-        <div class="row-fluid">
+        <div class="row-fluid" style='margin-top: 50px;'>
             <div class="span1"></div>
             <div class="span7">
                 <?php

@@ -32,7 +32,7 @@ include_once 'functions/delete_comment.php';
                 <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
                 </p>
               </span>
-				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
+				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projectttitle."'/>
 			</center>
 		  ";?>
                 

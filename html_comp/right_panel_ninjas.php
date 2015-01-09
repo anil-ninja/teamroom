@@ -123,7 +123,7 @@
 				$remaining_time_ownas = remaining_time($timeas, $etaas);
 				$tooltipas = "Assigned To : " . ucfirst($fnameas) . " " . ucfirst($lnameas) . " On " . $timefunas;
 				echo "<a href='challengesOpen.php?challenge_id=" . $challenge_pageID . "'> 
-						<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+						<button type='submit' class='btn-link' data-toggle='tooltip' 
 							data-placement='left' data-original-title='" . $tooltipas .
 							 "'style='text-align: right;'>" . $chtitleas ;
 							 //."<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
