@@ -133,16 +133,16 @@
                         <div role='tabpanel' class='row tab-pane active'>
                             <div>";
                     $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 250) as stmt FROM projects 
-                                                            WHERE project_type = '1' and project_status != '3' and project_status != '5' AND blob_id = '0')  
+                                                            WHERE project_type = '1' AND blob_id = '0')  
                                                         UNION 
                                                         (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 250) as stmt FROM projects as a JOIN blobs as b 
-                                                            WHERE a.blob_id = b.blob_id AND project_type= '1' and project_status != '3' and project_status != '5') ORDER BY rand() LIMIT 3 ;");
+                                                            WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
                         $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                         $project_title_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])))); 
                     echo "  
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     						    <a href='project.php?project_id=".$project_id."'>
                                     <div class='panel-heading' style='padding-left: 0px;'>
                                         <b> 
