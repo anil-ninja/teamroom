@@ -1,6 +1,5 @@
 <?php
 include_once 'lib/db_connect.php';
-
 ?>
 <html lang="en">
     <head>
@@ -26,7 +25,7 @@ include_once 'lib/db_connect.php';
                                         WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND  challenge_status ='1' AND a.blob_id = c.blob_id and a.user_id=b.user_id ) ORDER BY creation_time DESC LIMIT 10;");
                    while ($top_challengesRow = mysqli_fetch_array($top_challenges)) {
                        $challenge_type_id = $top_challengesRow['challenge_id'];
-                       $challenge_type_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['challenge_title'])));
+                       $challenge_type_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['challenge_title']))));
                        $challenge_type_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['stmt'])))) ;
                        $challenge_type_first = $top_challengesRow['first_name'];
                        $challenge_type_last = $top_challengesRow['last_name'];

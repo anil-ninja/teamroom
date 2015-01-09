@@ -1,7 +1,5 @@
 <?php 
 	$_SESSION['project_id'] = $pro_id;
-	
-
 	if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
@@ -123,7 +121,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
     $username_pr_comment = $displayrowc['username'];
     $ida = $displayrowc['response_pr_id'];
     $idb = $displayrowc['user_id'];
-    $projectres = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowc['stmt'])));
+    $projectres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowc['stmt']))));
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
@@ -182,7 +180,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
     $id_create = $tasksrow['user_id'];
-    $title_task = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['challenge_title'])));
+    $title_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['challenge_title']))));
     $type_task = $tasksrow['challenge_type'];
     $status_task = $tasksrow['challenge_status'];
     $eta_task = $tasksrow['challenge_ETA'];
@@ -430,7 +428,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $answerrow = mysqli_fetch_array($answer);
         echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-        . str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $answerrow['stmt']))) . "<br/>";
+        . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/>";
     }
 
     $displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -444,7 +442,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $username_commenter = $displayrowb['username'];
         $idc = $displayrowb['response_ch_id'];
         $idd = $displayrowb['user_id'];
-        $chalangeres = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt'])));
+        $chalangeres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt']))));
         echo "
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>

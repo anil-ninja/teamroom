@@ -102,7 +102,7 @@
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
-                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
+                        $challenge_user_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title']))));
                         $challenge_user_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt']))));
                         echo "
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
@@ -139,7 +139,7 @@
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
+                        $project_title_display = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title']))));
                         $project_title_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])))); 
                     echo "  
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>

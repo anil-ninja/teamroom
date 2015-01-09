@@ -65,7 +65,7 @@ function challenge_display($db_handle, $challengeSearchID) {
         while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
             $ETA = $open_chalangerow['challenge_ETA'];
-            $ch_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
+            $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title']))));
             $owner_id = $open_chalangerow['user_id'];
             $ctype = $open_chalangerow['challenge_type'];
             $frstname = $open_chalangerow['first_name'];
@@ -338,9 +338,9 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                         $owlname = $ownedbrow['last_name'];
                         $owname = $ownedbrow['username'];
                         $initialtimen = strtotime($owtime) ;
-                                        $endtimen = strtotime($owtimesub) ;
-                                        $time_taken = ($endtimen-$initialtimen)/60 ;
-                                        $timetakennin = eta($time_taken);
+						$endtimen = strtotime($owtimesub) ;
+						$time_taken = ($endtimen-$initialtimen)/60 ;
+						$timetakennin = eta($time_taken);
                     if  ($owlstatus==1){
                         echo "<hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
                         .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | " . $timfunct;
@@ -394,7 +394,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                                                     UNION
                                                     (select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
                 while ($answerrow = mysqli_fetch_array($answer)) {
-                    $answer_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt'])));
+                    $answer_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))));
                     echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
                             <p align='center'>Answer</p></span>"
                         . $answer_stmt. "<br/><br>";
@@ -444,7 +444,7 @@ $display_name_stmt = $display_name_stmt."<input id='_fileChallenge_".$chelangeid
                 $challenge_ID = $commenterRow['challenge_id'];
                 $creater_ID = $commenterRow['user_id'];
                 $username_comment_ninjas = $commenterRow['username'];
-                $comment_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt'])));
+                $comment_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt']))));
                 echo "<div id='commentscontainer'>
                     <div class='comments clearfix'>
                         <div class='pull-left lh-fix'>

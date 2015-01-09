@@ -46,7 +46,7 @@ function requestaccept(ID) {
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						}
+					}
 				}
 			});
 		}

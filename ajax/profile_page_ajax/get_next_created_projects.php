@@ -20,7 +20,7 @@ if ($_POST['next_CP']) {
     $show_CP = "";
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $i ++;
-            $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
+            $project_title_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title']))));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
             $project_id_table = $project_table_displayRow['project_id'];
@@ -97,7 +97,7 @@ if ($_POST['next_CP']) {
         $lnam = $displayrowc['last_name'];
         $username_pr_comment = $displayrowc['username'];
         $ida = $displayrowc['response_pr_id'];
-        $projectres = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt'])));
+        $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
         $comment_user_id = $displayrowc['user_id'];
 $show_CP = $show_CP.  "<div id='commentscontainer'>
                 <div class='comments clearfix'>

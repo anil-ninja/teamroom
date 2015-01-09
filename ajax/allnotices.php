@@ -464,8 +464,6 @@ if ($_POST['all']) {
 										<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$id1."\")' value='Accept'/>
 										<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$id1."\")' value='Delete'/>
 									</div>" ;
-				 
-				
 				break;
 				
 			case 29:

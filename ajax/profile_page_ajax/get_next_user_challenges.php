@@ -20,7 +20,7 @@ if ($_POST['next']) {
     while($user_challenges_displayRow= mysqli_fetch_array($user_challenges_display)) {
     $i++;
         $challenge_id=$user_challenges_displayRow['challenge_id'];
-        $challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title'])));
+        $challenge_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title']))));
         $challenge_stmt1 = $user_challenges_displayRow['stmt'];
         $challenge_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1))));
         //$you_owned_or_not = $user_challenges_displayRow['user_id'];
@@ -106,7 +106,7 @@ $show = $show. "<input id='_fileChallenge_".$challenge_id."' class='btn btn-defa
     while ($commenterRow = mysqli_fetch_array($commenter)) {
         $comment_id = $commenterRow['response_ch_id'];
         $username_comment_ninjas = $commenterRow['username'];
-        $comment_all_ch = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt'])));
+        $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt']))));
         $comment_user_id = $commenterRow['user_id'];
         $show = $show. "<div id='commentscontainer'>
 				<div class='comments clearfix'>

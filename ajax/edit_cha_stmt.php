@@ -28,7 +28,7 @@ if($_POST['id']){
 				$blob = $myquery1Row['blob_id'] ;
 				mysqli_query($db_handle,"update blobs set stmt='$newstmt' where blob_id='$blob';") ;
 				}
-				echo $newstmt ;
+				echo showLinks($newstmt) ;
 		}
 		else {
 			$chaaa = $video."<br/> ".$projectsmt ;
@@ -42,7 +42,7 @@ if($_POST['id']){
 				$blob = $myquery1Row['blob_id'] ;
 				mysqli_query($db_handle,"update blobs set stmt='$chaaa' where blob_id='$blob';") ;
 				}
-				echo $chaaa ;
+				echo showLinks($chaaa) ;
 			}
 	mysqli_close($db_handle);
 }
