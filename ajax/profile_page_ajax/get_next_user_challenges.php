@@ -21,8 +21,10 @@ if ($_POST['next']) {
     $i++;
         $challenge_id=$user_challenges_displayRow['challenge_id'];
         $challenge_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title']))));
+        $challengetitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title'])));
         $challenge_stmt1 = $user_challenges_displayRow['stmt'];
         $challenge_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1))));
+        $challengestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1)));
         //$you_owned_or_not = $user_challenges_displayRow['user_id'];
         $chall_firstname = $user_challenges_displayRow['first_name'];
         $chall_lastname = $user_challenges_displayRow['last_name'];
@@ -54,7 +56,7 @@ if ($_POST['next']) {
         }
         $show = $show. "<p id='challenge_ti_".$challenge_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
-                    .ucfirst($challenge_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challenge_title."'/>                
+                    .ucfirst($challenge_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>                
                 <span class='icon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
                     <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
@@ -65,30 +67,30 @@ if ($_POST['next']) {
                 <div class='list-group-item'>
             <br/><span id='challenge_".$challenge_id."' class='text'>".$challenge_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
-		if(substr($challenge_stmt, 0, 1) != '<') {
-$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challenge_stmt)."</textarea>
+		if(substr($challengestmt, 0, 1) != '<') {
+$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 			}
 		else {
-			if (substr($challenge_stmt, 0, 4) == ' <br') {
-$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challenge_stmt)."</textarea>
+			if (substr($challengestmt, 0, 4) == ' <br') {
+$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 				}
-			if (substr($challenge_stmt, 0, 3) == '<s>') {
-$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challenge_stmt)."</textarea>
+			if (substr($challengestmt, 0, 3) == '<s>') {
+$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 				}
-			$chaaa = str_replace("<br/>", "\n",substr(strstr($challenge_stmt, '<br/>'), 5)) ;
-			$cha = str_replace("<br/>", "\n",strstr($challenge_stmt, '<br/>' , true)) ;
-			if(substr($challenge_stmt, 0, 4) == '<img') {
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($challengestmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($challengestmt, '<br/>' , true)) ;
+			if(substr($challengestmt, 0, 4) == '<img') {
 $show = $show. "<div class='editbox' style='width : 90%;' id='challenge_pic_".$challenge_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$challenge_id.")' id='pic_file_".$challenge_id."'/><br/><br/>" ;
 					}
-			if(substr($challenge_stmt, 0, 2) == '<a') {
+			if(substr($challengestmt, 0, 2) == '<a') {
 $show = $show. "<div class='editbox' style='width : 90%;' id='challenge_file_".$challenge_id."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$challenge_id.")' id='pic_file_".$challenge_id."'/><br/><br/>" ;
 					}
-			if(substr($challenge_stmt, 0, 3) == '<if') {
+			if(substr($challengestmt, 0, 3) == '<if') {
 $show = $show. "<div class='editbox' style='width : 90%;' id='challenge_video_".$challenge_id."' >".$cha."</div>
 					<input type='text' class='editbox' id='url_video_".$challenge_id."' placeholder='Add You-tube URL'/><br/><br/>" ;
 					}

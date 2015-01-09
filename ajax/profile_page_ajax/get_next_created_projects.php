@@ -21,8 +21,10 @@ if ($_POST['next_CP']) {
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $i ++;
             $project_title_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title']))));
+            $projecttitletable = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
+            $projectstmttable = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
             $projectcreation1 = $project_table_displayRow['creation_time'];
@@ -47,37 +49,37 @@ if ($_POST['next_CP']) {
             $show_CP = $show_CP. "<p id='project_ti_".$project_id_table."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                                     .ucfirst($project_title_table)."</a></b></p>
-                                    <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$project_title_table."'/>
+                                    <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$projecttitletable."'/>
                                 <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 </div>
                             <div class='list-group-item'>
                         <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/><br/>";
      if(isset($_SESSION['user_id'])){
-		if(substr($project_stmt_table, 0, 1) != '<') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
+		if(substr($projectstmttable, 0, 1) != '<') {
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$projectstmttable)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 			}
 		else {
-			if (substr($project_stmt_table, 0, 4) == ' <br') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
+			if (substr($projectstmttable, 0, 4) == ' <br') {
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$projectstmttable)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
-			if (substr($project_stmt_table, 0, 3) == '<s>') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$project_stmt_table)."</textarea>
+			if (substr($projectstmttable, 0, 3) == '<s>') {
+			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$projectstmttable)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
 				}
-			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($project_stmt_table, '<br/>'), 5)) ;
-			$projectst1 = str_replace("<br/>", "\n",strstr($project_stmt_table, '<br/>' , true)) ;
-			if(substr($project_stmt_table, 0, 4) == '<img') {
+			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($projectstmttable, '<br/>'), 5)) ;
+			$projectst1 = str_replace("<br/>", "\n",strstr($projectstmttable, '<br/>' , true)) ;
+			if(substr($projectstmttable, 0, 4) == '<img') {
 			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_pic_".$project_id_table."' >".$projectst1."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
 					}
-			if(substr($project_stmt_table, 0, 2) == '<a') {
+			if(substr($projectstmttable, 0, 2) == '<a') {
 			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_file_".$project_id_table."' >".$projectst1."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
 					}
-			if(substr($project_stmt_table, 0, 3) == '<if') {
+			if(substr($projectstmttable, 0, 3) == '<if') {
 			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_video_".$project_id_table."' >".$projectst1."</div>
 					<input type='text' class='editbox' id='project_url_video_".$project_id_table."' placeholder='Add You-tube URL'/><br/><br/>" ;
 					}
