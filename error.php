@@ -93,16 +93,16 @@ include_once 'lib/db_connect.php';
                         <div role="tabpanel" class="row tab-pane active">
             <?php
                 $projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 200) as stmt FROM projects 
-                                                        WHERE project_type = '1' and project_status != '3' and project_status != '5' AND blob_id = '0')  
+                                                        WHERE project_type = '1' AND blob_id = '0')  
                                                     UNION 
                                                     (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 200) as stmt FROM projects as a JOIN blobs as b 
-                                                        WHERE a.blob_id = b.blob_id AND project_type= '1' and project_status != '3' and project_status != '5') ORDER BY rand() LIMIT 10 ;");
+                                                        WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 10 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
                     $project_id_display = $projectsRow['project_id'];
                     $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                     $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])));
                         echo " 
-                            <div class ='row' style='margin: 4px -15px 4px -15px;background : rgb(240, 241, 242);'>
+                            <div class ='row' style='margin: 4px 0px 4px 0px;background : rgb(240, 241, 242);'>
                                 <a href='project.php?project_id=$project_id_display'>
                                     <b>
                                         <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
@@ -134,7 +134,7 @@ include_once 'lib/db_connect.php';
                     $top_user_first = $top_usersRow['first_name'];
                     $top_user_last = $top_usersRow['last_name'];
                     $top_user_username = $top_usersRow['username'];
-                    echo "  <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                    echo "  <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
                                 <a href ='profile.php?username=" . $top_user_username . "'>
                                     <b>
                                         <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
