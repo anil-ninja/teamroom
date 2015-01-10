@@ -5,7 +5,7 @@
     <head>
         <meta charset="utf-8">
         <title><?php chOpen_title($challenge_page_title); ?></title>
-        <meta name="author" content="">
+        <meta name="author" content="Anil">
         
         <!-- for Google -->
         <meta name="description" content="<?= $obj->getDiscription(); ?>" />
@@ -18,6 +18,8 @@
         <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
         <meta name="og:author" content="<?= $obj->first_name.$obj->last_name; ?>" />
         <meta property="og:type" content="article"/>
+        
+        <meta name="p:domain_verify" content="c336f4706953c5ce54aa851d2d3da4b5"/>
         <?php
 			if($obj->video == 0)
 				echo "<meta property=\"og:image\" content=\"$obj->url\" />\n";

@@ -56,6 +56,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 <head>
     <title>Welcome to collap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="p:domain_verify" content="c336f4706953c5ce54aa851d2d3da4b5"/>
     <link href="styles/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="css/preview.min.css" rel="stylesheet" />
@@ -76,31 +77,6 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
         <![endif]-->
 </head>
 <body class=" ">
-	<?php /*
-	<div class="navbar navbar-default navbar-fixed-top">
-        <div class="row">
-            <div class="col-md-2 navbar-header">
-                 <a class="brand" style='font-size:16pt; color: #fff; font-weight: bold;' href="index.php">
-                 <img src ='img/collap.gif' style="width:70px;">collap</a>
-            </div>
-            <div class="col-md-5"></div>
-            <div class="col-md-2 navbar-header pull-right" style="padding-top: 5px;">
-                
-                    <a class='btn btn-default' style="font-size: 14px;" href="#tabSignIn" role="tab" data-toggle="tab">Sign In</a>
-                 
-            </div>
-        </div>
-<!--subnavbar added here -->
-        <div class='nav navbar-inverse'>
-            <div class='col-md-offset-3 col-md-9 col-lg-9'>
-                <div class='list-inline' style='background:#3BD78C;'>
-                </div>
-            </div>
-        </div>
-<!--subnavbar ends here -->
-    </div>
-<!----navigation ends -->
-*/?>
     <div class="alert_placeholder"></div>  <!-- alert for login -->
     <div class="alert-placeholder"></div>  <!-- alert for signup -->
     <div class="navbar navbar-default navbar-fixed-top" >
