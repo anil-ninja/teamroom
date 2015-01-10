@@ -64,7 +64,6 @@ if($_POST['update']){
 				$notice3 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice3row = mysqli_fetch_array($notice3) ;
 				$challenge_id = $notice3row['challenge_id'] ;
-				$pro_id = $notice3row['project_id'] ;
 				$challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice3row['challenge_title']))) ;
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
@@ -82,7 +81,6 @@ if($_POST['update']){
 				$notice4 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice4row = mysqli_fetch_array($notice4) ;
 				$challenge_id2 = $notice4row['challenge_id'] ;
-				$pro_id2 = $notice4row['project_id'] ;
 				$challenge_title2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice4row['challenge_title']))) ;
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id2."' 
@@ -100,7 +98,6 @@ if($_POST['update']){
 				$notice5 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice5row = mysqli_fetch_array($notice5) ;
 				$challenge_id3 = $notice5row['challenge_id'] ;
-				$pro_id3 = $notice5row['project_id'] ;
 				$challenge_title3 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice5row['challenge_title']))) ;	
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id3."' 
@@ -118,7 +115,6 @@ if($_POST['update']){
 				$notice6 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice6row = mysqli_fetch_array($notice6) ;
 				$challenge_id4 = $notice6row['challenge_id'] ;
-				$pro_id4 = $notice6row['project_id'] ;
 				$challenge_title4 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice6row['challenge_title']))) ;
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
@@ -136,11 +132,7 @@ if($_POST['update']){
 				$notice7 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice7row = mysqli_fetch_array($notice7) ;
 				$challenge_id5 = $notice7row['challenge_id'] ;
-				$pro_id5 = $notice7row['project_id'] ;
 				$challenge_title5 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice7row['challenge_title']))) ;
-				$projectinfo5 = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id5';") ;
-				$projectinforow5 = mysqli_fetch_array($projectinfo5) ;
-				$project_title5 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow5['project_title']))) ;
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id5."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
@@ -168,11 +160,7 @@ if($_POST['update']){
 				$notice8 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice8row = mysqli_fetch_array($notice8) ;
 				$challenge_id6 = $notice8row['challenge_id'] ;
-				$pro_id6 = $notice8row['project_id'] ;
 				$challenge_title6 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice8row['challenge_title']))) ;
-				$projectinfo6 = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id6';") ;
-				$projectinforow6 = mysqli_fetch_array($projectinfo6) ;
-				$project_title6 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow6['project_title']))) ;
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id6."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
@@ -215,7 +203,7 @@ if($_POST['update']){
 				$projectinfo8 = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id8';") ;
 				$projectinforow8 = mysqli_fetch_array($projectinfo8) ;
 				$project_title8 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow8['project_title']))) ;
-				$notice = $notice ."<li><div class='row-fluid'>
+				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id8."' 
 										onclick= '".update($user_id,$db_handle)."' target='_blank'>
 											<span class='icon-star'></span>
@@ -283,7 +271,6 @@ if($_POST['update']){
 				$notice14 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice14row = mysqli_fetch_array($notice14) ;
 				$challenge_id12 = $notice14row['challenge_id'] ;
-				$pro_id12 = $notice14row['project_id'] ;
 				$challenge_title12 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice14row['challenge_title']))) ;	
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id12."' 
@@ -302,7 +289,6 @@ if($_POST['update']){
 				$notice15 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id';") ;
 				$notice15row = mysqli_fetch_array($notice15) ;
 				$challenge_id13 = $notice15row['challenge_id'] ;
-				$pro_id13 = $notice15row['project_id'] ;
 				$challenge_title13 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice15row['challenge_title']))) ;
 				$notice = $notice ."<li>
 										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id13."' 
