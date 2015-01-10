@@ -460,9 +460,7 @@ if ($_POST['all']) {
 				$id1 = $notice22row['id'] ;
 				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);'>
 										<span class='icon-plus'></span> 
-										<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Send Link on  ".$eventtime."<br/>
-										<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$id1."\")' value='Accept'/>
-										<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$id1."\")' value='Delete'/>
+										<a href ='profile.php?username=".$uname."'>".$fname."</a>&nbsp; Send Link on  ".$eventtime."
 									</div>" ;
 				break;
 				
