@@ -151,16 +151,12 @@ include_once 'lib/db_connect.php';
             </div>
         </div>
         <?php
- echo "<div class='span8 offset1'>
-		<div class='panel-body' style=' margin:4px; background : rgb(240, 241, 242);'>
-		<p>
-		  <a href='http://www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-	   </div>
-	   </div>" ;
  include_once 'html_comp/signup.php' ; 
  include_once 'lib/html_inc_footers.php'; 
  include_once 'html_comp/login_signup_modal.php'; ?>
-
+<div class='footer'>
+		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+</div>
     </body>
 </html>
