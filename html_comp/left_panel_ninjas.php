@@ -32,7 +32,7 @@
  		echo "
 			<div class='panel panel-default'>
 				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
-					<font size='2'>Classified</font>
+					<font size='2'><b>Classified</b></font>
                 </div>
 				<div class='bs-component'>
     	    	    <table>";   
@@ -97,7 +97,7 @@
     ?>
 			<div class='panel panel-default'>
 				<div class='panel-heading'style ='padding-top: 0px; padding-bottom: 0px;'>
-					<font size='2'>Public</font>
+					<font size='2'><b>Public</b></font>
                 </div>
 				<div class='bs-component'>
                     <table>

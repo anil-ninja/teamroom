@@ -352,7 +352,7 @@ function recommended_project ($db_handle) {
         echo "
                 <div class='panel panel-default bs-component'>
                     <div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
-                        <font size='2'> Recommended</font>
+                        <font size='2'><b> Recommended</b></font>
                     </div>
                         <table>";
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {

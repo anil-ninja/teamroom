@@ -94,17 +94,15 @@ $obj = new profile($UserName);
             <div id='tab7' class="span2 offset1">
 				
                 <?php
-                 echo " 	<center>
+                 echo " <center>
                              <b>
                                 <span id='first_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>&nbsp" 
                                     .ucfirst($profileViewFirstName)."
                                 </span> 
                                 <span id='last_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>".ucfirst($profileViewLastName)."
                                 </span>
-                            
                             </b>
-								</center>                           
-                           ";
+						</center>" ;
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
         				$check = mysqli_query($db_handle, "SELECT user_id FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
