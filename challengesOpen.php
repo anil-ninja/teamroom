@@ -50,36 +50,73 @@
                 ?>
                     <div class="list-group" style="margin: 20px 0px;">
                         <div class="list-group-item">
-                <?php 
-                    echo "  <div id='demo10' class='row-fluid'>
-                                <div class='span3' style='margin: 4px 4px 4px 4px;'>
-                                    <img src='uploads/profilePictures/$ch_username.jpg'  style='width: 150px; height: 150px' onError=this.src='img/default.gif' class='img-circle img-responsive'>
-                                </div>";
-                    $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
-                    $no_data = mysqli_num_rows($about_author);
-                        echo "  <div class='span8' style='margin: 4px 4px 4px 4px; padding-left:5px; background : rgb(240, 241, 242);'>";
-                    if ($no_data == 0){
-                        echo "
-                                    <span class='color strong' style= 'color :lightblue;'>
-                                        <a href ='profile.php?username=" . $ch_username . "'>"
-                                            .ucfirst($challengeSearch_first) . '&nbsp' . ucfirst($challengeSearch_last) . " 
-                                        </a>
-                                    </span><br>
-                                    <p> No information is available about this user </p>";
-                    } 
-                    else {
-                        $about_authorRow = mysqli_fetch_array($about_author);
-                        echo "
-                                    <span class='color strong' style= 'color :lightblue;'>
-                                        <a href ='profile.php?username=" . $ch_username . "'>"
-                                            .ucfirst($challengeSearch_first) . '&nbsp' . ucfirst($challengeSearch_last) . " 
-                                        </a>
-                                    </span><br><p>";
-                        echo $about_authorRow['about_user']."</p>";
-                    }
-                    echo "      </div>
-                            </div>"
-                ?>  
+					<?php
+					$data = "" ;
+	   $userinfo = mysqli_query($db_handle, "SELECT * from user_info where user_id = '$challengeSearch_user_ID' ;") ;
+	   $userinfoRow = mysqli_fetch_array($userinfo) ;
+	   $usersFirstname = $userinfoRow['first_name'] ;
+	   $usersLastname = $userinfoRow['last_name'] ;
+	   $usersUsername = $userinfoRow['username'] ;
+	   $usersRank = $userinfoRow['rank'] ;
+	   $usersEmail = $userinfoRow['email'] ;
+	   $usersPhone = $userinfoRow['contact_no'] ;
+	   echo " <div id='demo10' class='row-fluid' style='height:auto;word-wrap: break-word;'>
+			<div class='span2' style='margin: 4px 4px 4px 4px;'>
+				<img src='uploads/profilePictures/$ch_username.jpg'  style='width:150px; height:150px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+			</div>
+			<div class='span9' style=' padding-left:5px;'>
+				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'> 
+						<span class='icon-user'></span>
+						<strong>
+							<a href='profile.php?username=".$usersUsername."' >&nbsp".ucfirst($usersFirstname)." ".ucfirst($usersLastname)."</a>
+						</strong>&nbsp;
+						<i>(&nbsp;".$usersRank."&nbsp;)</i>
+				</div>
+				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+						<span class='icon-envelope' id='email' style='cursor: pointer;'>&nbsp;&nbsp;".$usersEmail."</span>" ;
+	  if($usersPhone != 1) {    
+			  echo "&nbsp;&nbsp;&nbsp;&nbsp;<span class='icon-phone' id='phone' style='cursor: pointer'>&nbsp;&nbsp;&nbsp;".$usersPhone."</span>";
+	  }
+	   $usersSkills = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE 
+											a.user_id = '$challengeSearch_user_ID' AND a.skill_id = b.skill_id ;");
+	   while($usersSkillsRow = mysqli_fetch_array($usersSkills)) {
+		  $usersSkillname = $usersSkillsRow['skill_name'] ;
+		  $usersSkillid = $usersSkillsRow['skill_id'] ;
+			$data .= "<span class='btn-success'>
+						<a href='ninjaSkills.php?skill_id=".$usersSkillid."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$usersSkillname."</a>&nbsp
+					  </span>&nbsp;";
+	   }
+	   $usersAbout = mysqli_query($db_handle, "SELECT * FROM about_users WHERE user_id = '$challengeSearch_user_ID' ;") ;
+	   $usersAboutRow = mysqli_fetch_array($usersAbout);
+	   if (mysqli_num_rows($usersAbout) != 0) {
+		echo "</div>
+			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+					<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['organisation_name']."&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['living_town']."
+			</div><br/>
+			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+				<i class='icon-screenshot'></i>Skills &nbsp;: &nbsp; ".$data."
+			</div><br/>
+			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user']."
+			</div>" ;
+		}
+		else {
+			echo "</div>
+			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+					<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;No Information Available &nbsp;&nbsp;&nbsp;&nbsp;
+					<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available
+			</div><br/>
+			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+				<i class='icon-screenshot'></i>Skills &nbsp;: &nbsp; ".$data."
+			</div><br/>
+			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available
+			</div>";
+		}
+	echo "</div>
+		  </div><br/>" ;
+              ?> 
                     </div>
                 </div>
             </div>
