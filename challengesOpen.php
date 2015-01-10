@@ -57,7 +57,7 @@
                                 </div>";
                     $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
                     $no_data = mysqli_num_rows($about_author);
-                        echo "  <div class='span9' style='margin: 4px 4px 4px 4px;background : rgb(240, 241, 242);'>";
+                        echo "  <div class='span8' style='margin: 4px 4px 4px 4px; padding-left:5px; background : rgb(240, 241, 242);'>";
                     if ($no_data == 0){
                         echo "
                                     <span class='color strong' style= 'color :lightblue;'>
