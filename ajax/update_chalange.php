@@ -3,7 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 if($_POST['id']){
 	$user_id = $_SESSION['user_id'];
-	$id=mysql_escape_String($_POST['id']);
+	$id = mysql_escape_String($_POST['id']);
 	$image = $_POST['img'] ;
 	$myquery = mysqli_query($db_handle,"(select stmt from challenges where challenge_id='$id' and blob_id = '0')
 										UNION 
@@ -27,7 +27,7 @@ if($_POST['id']){
 				mysqli_query($db_handle,"update blobs set stmt='$challange' where blob_id='$blob';") ;
 				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 				}
-	echo showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challange)))) ;
+	echo str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challange))) ;
 	mysqli_close($db_handle);
 } 
 else echo "Invalid parameters!";

@@ -100,18 +100,23 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         if(isset($_SESSION['user_id'])){
 		if(substr($chelangestmt, 0, 1) != '<') {
 $display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
 						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 			}
 		else {
 			if (substr($chelangestmt, 0, 4) == ' <br') {
 $display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
 						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 				}
-			if (substr($chelangestmt, 0, 3) == '<s>') {
+			if (substr($chelangestmt, 0, 3) == '<br') {
 $display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
+				}
+			if (substr($chelangestmt, 0, 4) == '<s>') {
+$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
 						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 				}
 			$chaaa = str_replace("<br/>", "\n",substr(strstr($chelangestmt, '<br/>'), 5)) ;
@@ -131,7 +136,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style=
 $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
 					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
 					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
-						<input type='submit' class='btn btn-success editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
 			}
 $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
 					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>" ;
