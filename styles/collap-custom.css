@@ -1705,8 +1705,8 @@ font-size: 13px !important;
 
 .cse input.gsc-search-button, input.gsc-search-button-v2 {
   display: inline-block;
-  margin-top: 3px !important;
-  margin-left: 0px !important;
+  margin-top: 4px !important;
+  margin: 0px !important;
   font-weight: normal;
   text-align: center;
   vertical-align: middle;
@@ -1717,12 +1717,16 @@ font-size: 13px !important;
   padding: 2px 12px !important;
   font-size: 14px;
   line-height: 1.22857143;
-  width: 25px !important;
+  width: 2px !important;
   border-radius: 0px !important;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+td.gsc-search-button{
+   background-color: #D6D6D6 !important;
 }
 
 .cse input.gsc-search-button, input.gsc-search-button {
@@ -1745,6 +1749,11 @@ input.gsc-input {
     height: 20px !important;
     padding-right: 0px !important;
 
+}
+td.gsc-input {
+    line-height: 15px !important;
+    height: 20px !important;
+    padding-right: 0px !important;
 }
 td.gsib_a  {
   padding: 0px !important;
