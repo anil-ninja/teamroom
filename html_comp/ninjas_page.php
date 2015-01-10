@@ -133,6 +133,8 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
 					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
 						<input type='submit' class='btn btn-success editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
 			}
+$display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>" ;
 		}
     if ($ctype == 1) {
         if ($status == 1) {

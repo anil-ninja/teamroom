@@ -125,6 +125,8 @@ if ($_POST['chal']) {
 					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
 			}
+		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
+					<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>" ;
 		}
 //dropdown for edit/delete added here for all type of challenges except status 2, 4, 5
         $dropDown_challenge_get = $dropDown_challenge_get ."<div class='list-group-item pull-right'>

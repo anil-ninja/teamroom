@@ -252,7 +252,7 @@ function like(Id, type) {
 						$("#likes_"+Id).val(nied+='') ;
 					}
 					else if(result == 'Please Log In First') {
-						test() ;
+						test3() ;
 					}
 					else {
 						bootstrap_alert(".alert_placeholder",result, 3000,"alert-warning");
@@ -279,7 +279,7 @@ function dislike(Id, type) {
 						$("#dislikes_"+Id).val(nied+='') ;
 					}
 					else if(result == 'Please Log In First') {
-						test() ;
+						test3() ;
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", "Already Disliked", 3000,"alert-warning");
