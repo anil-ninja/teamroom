@@ -1663,11 +1663,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                 </div>
 */
 ?>
-         
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
+      
     <script src="scripts/jquery-1.9.1.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/tabs-addon.js"></script>

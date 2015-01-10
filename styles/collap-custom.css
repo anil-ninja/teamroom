@@ -2108,12 +2108,3 @@ div#navtab li a{
   position: fixed;
   right: 0;
 }
-.footer {
-  right: 0;
-  max-height: 30px;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: rgb(240, 241, 242);
-  text-align: center;
-}
