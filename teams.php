@@ -29,7 +29,6 @@ $total_members = mysqli_num_rows($teams_member_display);
 
     <body>
          <?php include_once 'html_comp/navbar_homepage.php'; ?>
-   <div class='alert_placeholder'></div>
    <div class=" media-body " style="padding-top: 50px;">
 	   <div class="col-md-1"></div>
         <div class="col-md-2">

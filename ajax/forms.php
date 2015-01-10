@@ -16,7 +16,7 @@ if($_POST['form_type']){
 						  <option value='1' >Public</option>
 						  <option value='2' selected >Private</option>
 						</select><br/><br/>
-					<input type='button' value='Create Challenge' class='btn btn-success' onclick='create_challange_pb_pr()'/>" ;
+					<input type='button' value='Create Challenge' class='btn btn-primary' onclick='create_challange_pb_pr()'/>" ;
 			/* <div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                         <option value='0' selected >hour</option>
@@ -84,15 +84,15 @@ if($_POST['form_type']){
                 if (mysqli_num_rows($teams) > 0) {
                     $task = "";
                     $task .= "<div class='inline-form'>Assign To : &nbsp;&nbsp;
-								<select class='btn btn-default' id = 'teamtask' >
+								<select id = 'teamtask' >
 								   <option value='0' selected > Select Team </option>";
                     while ($teamsrow = mysqli_fetch_array($teams)) {
                         $teamsname = $teamsrow['team_name'];
                         $task = $task . "<option value='" . $teamsname . "' >" . $teamsname . "</option>";
                     }
                     $task = $task . "</select>
-                                <label></label> Or 
-              					<select class='btn btn-default' id= 'userstask' >	
+                                <label></label> Or Select : &nbsp;&nbsp;&nbsp;
+              					<select id= 'userstask' >	
 									<option value='0' selected >Select Member </option>";
 					$users = mysqli_query($db_handle, "select DISTINCT a.user_id, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and 
 														a.team_name IN (select DISTINCT team_name from teams where a.project_id = '$pro_id' and a.status = '1') 
@@ -103,13 +103,13 @@ if($_POST['form_type']){
 						$task = $task . "<option value='" . $u_id . "' >" . $users_username_task . "</option>";
 					}
 					$task = $task . "</select>
-                                <label></label> Or 
+                                <label></label> Or Enter : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 								<input type='email' id='emailtask' placeholder='Enter email-id'/>
 							  </div><br/>
-							  <input type='text' class='input-block-level' id='title' placeholder='Tilte ..'/><br/>
+							  <input type='text' class='input-block-level' id='titletask' placeholder='Tilte ..'/><br/>
 						      <input type='file' id='_fileTask' style ='width: auto;'><label></label>
 							  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='taskdetails' placeholder='Description .. '></textarea>
-							  <br/><input type='button' value='Assign' class='btn btn-success' onclick='create_task()'/>" ;
+							  <br/><input type='button' value='Assign' class='btn btn-primary' onclick='create_task()'/><br/>" ;
 					 /* <div class='inline-form'>
                           ETA :
                           <select class='btn btn-default btn-xs' id = 'c_eta' >
@@ -154,7 +154,7 @@ if($_POST['form_type']){
 			if(mysqli_num_rows($member_project) != 0) {
 				echo "<input type='text' class='input-block-level' id='team_name_A' placeholder='Team name ..'><br/>                  
 					  <input type='email' class='input-block-level' id='email_team' placeholder='Enter First team member Email'><br/>
-                      <input type='submit' class='btn btn-success' onclick='create_team()' value='Create New Team'>" ;
+                      <input type='submit' class='btn btn-primary' onclick='create_team()' value='Create New Team'>" ;
 			} 
 			else echo "Please Join Project First";
 			exit ;
@@ -165,7 +165,7 @@ if($_POST['form_type']){
 				echo "<input type='text' class='input-block-level' id='video_titlepr' placeholder='Vedio title ..'/><br>
 					  <input type='text' class='input-block-level' id='videoprjt' placeholder='Add Youtube URL'><br>
 					  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='videodespr' placeholder='Description ..'></textarea><br>
-					  <input type='button' value='Post' class='btn btn-success' onclick='create_videopr()'/>" ;
+					  <input type='button' value='Post' class='btn btn-primary' onclick='create_videopr()'/>" ;
 			} 
 			else echo "Please Join Project First";
 			exit ;
@@ -176,7 +176,7 @@ if($_POST['form_type']){
 				echo "<input type='text' class='input-block-level' id='notes_title' placeholder='Heading ..'/><br>
 					  <input type='file' id='_fileNotes' ><br/><label></label>
 					  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='notestmt' placeholder='Notes about Project or Importent Things about Project'></textarea><br>
-					  <input type='button' value='Post' class='btn btn-success' onclick='create_notes()'/>" ;
+					  <input type='button' value='Post' class='btn btn-primary' onclick='create_notes()'/>" ;
 			} 
 			else echo "Please Join Project First";
 			exit ;
@@ -283,6 +283,12 @@ if($_POST['form_type']){
 				  <input type='file' id='_fileIdea'><label></label>
 				  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='ideaA' placeholder='Description ..'></textarea><br>
 				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_idea()'/>" ;
+			exit ;
+			break ;
+			
+		case 12:
+			echo "<br/><input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
+				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_link()'/>" ;
 			exit ;
 			break ;
 	}

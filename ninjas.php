@@ -20,7 +20,7 @@ $view = 1 ;
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
    <div class="" >
-		<div class="row-fluid">  		
+		<div class="row-fluid" style='margin-top: 50px;'>  		
        		<div id='tab1' class="span2 offset1">
    				<?php 
    					include_once 'html_comp/left_panel_ninjas.php';   

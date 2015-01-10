@@ -46,7 +46,7 @@ function requestaccept(ID) {
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						}
+					}
 				}
 			});
 		}
@@ -55,7 +55,7 @@ function requestaccept(ID) {
 function requestdelete(ID) {
 	bootbox.confirm("Delete Request !!!", function(result) {
 	if(result){
-		var dataString = 'id='+ ID + '&case=8';
+		var dataString = 'id=' + ID + '&case=8';
 		$.ajax({
 			type: "POST",
 			url: "ajax/knownperson.php",
@@ -151,7 +151,7 @@ function remove_member(PID, name, Uid){
 }
 function comment(ID, type) {				
 		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
 						+ '&case=' + type ;
 		if(project == ""){
 			return false ;
@@ -251,9 +251,12 @@ function like(Id, type) {
 					if(result == 'Posted successfully') {
 						$("#likes_"+Id).val(nied+='') ;
 					}
+					else if(result == 'Please Log In First') {
+						test() ;
+					}
 					else {
-						bootstrap_alert(".alert_placeholder", "Already Liked", 3000,"alert-warning");
-						}
+						bootstrap_alert(".alert_placeholder",result, 3000,"alert-warning");
+					}
 				}
 			});
 	}
@@ -275,9 +278,12 @@ function dislike(Id, type) {
 					if(result == 'Posted successfully') {
 						$("#dislikes_"+Id).val(nied+='') ;
 					}
+					else if(result == 'Please Log In First') {
+						test() ;
+					}
 					else {
 						bootstrap_alert(".alert_placeholder", "Already Disliked", 3000,"alert-warning");
-						}
+					}
 				}
 			});
 	}
@@ -297,7 +303,7 @@ function set_remind() {
 		return false;
 		}
 	 else {
-	var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
+	var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/submit_reminder.php",

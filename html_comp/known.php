@@ -24,7 +24,7 @@
 											    (select a.first_name, a.last_name, a.username, a.user_id, a.rank FROM user_info as a join known_peoples as b
 											    where b.knowning_id = '$profileViewUserID' and b.requesting_user_id != '$user_id' and a.user_id = b.requesting_user_id and b.status = '2');");
     if (mysqli_num_rows($userProjects) == 0) {
-        echo "<div class ='row' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+        echo "<div class ='row' style='background : rgb(240, 241, 242);'>
                 <i>You are not Collaborating with anyone, Send link for Collaboration</i>
             </div>";
     } 
@@ -53,7 +53,7 @@
                         }		   
     		}
     		if ($flag) {			
-                        echo "<div class ='row' style='margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+                        echo "<div class ='row' style='margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
                                 <div class ='span3 ' style='padding:1px;'>
                                     <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:35px; width: 35px;' class='img-responsive'>
                                 </div>
@@ -64,7 +64,7 @@
                             </div>";
                     }		   
                     else {
-                        echo "<div class ='row' style='margin: 4px -15px 4px -15px;background : rgb(240, 241, 242);'>
+                        echo "<div class ='row' style='margin: 4px 0px 4px 0px;background : rgb(240, 241, 242);'>
                                 <div class ='span3' style='padding:1px;'>
                                     <img src='uploads/profilePictures/$usernameFriends.jpg'  onError=this.src='img/default.gif' style='height:35px; width: 35px;' class='img-responsive'>
                                 </div>

@@ -10,12 +10,13 @@
         <!-- for Google -->
         <meta name="description" content="<?= $obj->getDiscription(); ?>" />
         <meta name="keywords" content="Challenges, Projects, Problem solving, problems" />
-        <meta name="author" content="<?= $obj->first_name." ".$obj->last_name; ?>" />
+        <meta name="author" content="<?= $obj->first_name.$obj->last_name; ?>" />
         <meta name="copyright" content="true" />
         <meta name="application-name" content="Article" />
 
         <!-- for Facebook -->          
         <meta property="og:title" content="<?= $obj->challenge_title; ?>" />
+        <meta name="og:author" content="<?= $obj->first_name.$obj->last_name; ?>" />
         <meta property="og:type" content="article"/>
         <?php
 			if($obj->video == 0)
@@ -24,10 +25,14 @@
 				echo "<meta property=\"og:video\" content=\"http:$obj->url\" />\n";
         ?>
         <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
+		<meta property="og:image:type" content="image/jpeg" />
+
         <meta property="og:description" content="<?= $obj->getDiscription(); ?>" />
 
         <!-- for Twitter -->          
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="photo" />
+        <meta name="twitter:site" content="@collap">
+		<meta name="twitter:creator" content="<?= "@".$obj->first_name.$obj->last_name; ?>">
         <meta name="twitter:url" content="<?= "http://collap.com/challengesOpen.php?challenge_id=".$_GET['challenge_id'] ?>" />
         <meta name="twitter:title" content="<?= $obj->challenge_title; ?>" />
         <meta name="twitter:description" content="<?= $obj->getDiscription(); ?>" />
@@ -37,22 +42,22 @@
     <body>
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
         
-        <div class="row-fluid">
-            <div class="span1"></div>
-            <div class="span7">
+        <div class="row-fluid" style='margin-top: 50px;'>
+            
+            <div class="span7 offset1">
                 <?php                
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
-                    <div class="list-group" style="margin: 20px -15px;">
+                    <div class="list-group" style="margin: 20px 0px;">
                         <div class="list-group-item">
                 <?php 
                     echo "  <div id='demo10' class='row-fluid'>
-                                <div class='span3' style='margin: 4px 4px 4px 4px;background : rgb(240, 241, 242);'>
+                                <div class='span3' style='margin: 4px 4px 4px 4px;'>
                                     <img src='uploads/profilePictures/$ch_username.jpg'  style='width: 150px; height: 150px' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                                 </div>";
                     $about_author = mysqli_query($db_handle, "SELECT about_user FROM about_users WHERE user_id = $challengeSearch_user_ID;");
                     $no_data = mysqli_num_rows($about_author);
-                        echo "  <div class='span9' style='margin: 4px 4px 4px 4px;background : rgb(240, 241, 242);'>";
+                        echo "  <div class='span8' style='margin: 4px 4px 4px 4px; padding-left:5px; background : rgb(240, 241, 242);'>";
                     if ($no_data == 0){
                         echo "
                                     <span class='color strong' style= 'color :lightblue;'>
@@ -89,18 +94,18 @@
                         <div role="tabpanel" class="row tab-pane active">
                 <?php 
                     $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
-                                                            WHERE challenge_type != '2' AND challenge_status !='3' AND challenge_status != '7' AND 
+                                                            WHERE challenge_type != '2' and challenge_type != '5' AND challenge_status !='3' AND challenge_status != '7' AND 
                                                             challenge_id != $challengeSearchID AND blob_id = '0')  
     														UNION 
     														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 250) as stmt FROM challenges as a JOIN blobs as b 
-    														WHERE a.blob_id = b.blob_id AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
+    														WHERE a.blob_id = b.blob_id  and challenge_type != '5' AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
-                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
+                        $challenge_user_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title']))));
                         $challenge_user_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt']))));
                         echo "
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                                     <b>
                                         <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
@@ -131,13 +136,13 @@
                                                             WHERE project_type = '1' AND blob_id = '0')  
                                                         UNION 
                                                         (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 250) as stmt FROM projects as a JOIN blobs as b 
-                                                            WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 3 ;");
+                                                            WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
+                        $project_title_display = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title']))));
                         $project_title_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])))); 
                     echo "  
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     						    <a href='project.php?project_id=".$project_id."'>
                                     <div class='panel-heading' style='padding-left: 0px;'>
                                         <b> 

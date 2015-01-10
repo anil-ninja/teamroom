@@ -16,7 +16,7 @@ if(isset($_POST['id'])){
 		mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 		events($db_handle,$user_id,"16",$id);
 		involve_in($db_handle,$user_id,"16",$id);
-		if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
+		if(mysqli_error($db_handle)) { echo "Already Liked" ; }
 		else { echo "Posted successfully"; }
 		}
 		else if($case == 2){
@@ -24,7 +24,7 @@ if(isset($_POST['id'])){
 			mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 			events($db_handle,$user_id,"17",$id);
 			involve_in($db_handle,$user_id,"17",$id);
-			if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
+			if(mysqli_error($db_handle)) { echo "Already Disliked" ; }
 			else { echo "Posted successfully"; }
 			}
 			else {
@@ -51,7 +51,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
 					mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 					events($db_handle,$user_id,"16",$id);
 					involve_in($db_handle,$user_id,"16",$id);
-					if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
+					if(mysqli_error($db_handle)) { echo "Already Liked" ; }
 					else { echo "Posted successfully"; }
 					}
 					else {
@@ -59,7 +59,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
 						mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$challenge_id' ; ") ;
 						events($db_handle,$user_id,"17",$id);
 						involve_in($db_handle,$user_id,"17",$id);
-						if(mysqli_error($db_handle)) { echo mysqli_error($db_handle); }
+						if(mysqli_error($db_handle)) { echo "Already Disliked" ; }
 						else { echo "Posted successfully"; }
 						}
 					}	

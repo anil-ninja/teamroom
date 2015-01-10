@@ -89,7 +89,7 @@ $obj = new profile($UserName);
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
     <div class="">     
-        <div class='row-fluid'>
+        <div class='row-fluid' style='margin-top: 50px;'>
 
             <div id='tab7' class="span2 offset1">
 				
@@ -162,12 +162,9 @@ $obj = new profile($UserName);
                                     . $profileViewPhone . "  
                                 </span>";
         			  }
-        				  echo " <br/>
-                                    <span>   
-                                        <span class='icon-screenshot'>
-                                        </span>Skills &nbsp;:" ; 
+        				  echo " <br/><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
 
-                    $skill_display = mysqli_query($db_handle, "SELECT b.skill_name from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
+                    $skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     
                     if (mysqli_num_rows($skill_display) == 0) {
                             echo "      <span class='tags'>
@@ -175,14 +172,21 @@ $obj = new profile($UserName);
                                         </span>";
                     } 
                     else {
+                        echo "<div style ='text-align:justify;' id='appendskill'>";
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-                            echo "      <span class='tags' style='line-height: 2.1;'>"
-                                            .$skill_displayRow['skill_name']."
-                                        </span>&nbsp;";
+                            $skill_id = $skill_displayRow['skill_id'];
+                            echo "      <span class='btn-success'>
+                                            <a href='ninjaSkills.php?skill_id=".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."</a>&nbsp";
+                            if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
+                                echo "      <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+                                                <i class='icon-remove'></i>
+                                            </a>";
+                            }
+                         echo "</span>&nbsp;";
                         }
+                        echo "</div>";
                     }
-                    echo "             
-                                    </span>";
+
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
                         echo "     <br/> 
                                     <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
@@ -358,14 +362,14 @@ $obj = new profile($UserName);
 </div> 
 <?php
  echo "<div class='span7 offset3'>
-		<div class='panel-body' style=' margin:4px; background : rgb(240, 241, 242);'>
+		<div class='panel-body' style='margin:4px; background : rgb(240, 241, 242);'>
 		<p>
 		  <a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 	   </div>
 	   </div>" ;
 	include_once 'html_comp/signup.php' ;
-			include_once 'lib/html_inc_footers.php'; 
+	include_once 'lib/html_inc_footers.php'; 
 			include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
 
@@ -407,7 +411,20 @@ $obj = new profile($UserName);
                     <div class="tab-pane active">
                         <div class="row-fluid">
                             <h4>Select skill or add new skill</h4>
-
+							<?php 
+							$skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
+							echo "<div class='skillmodal' style ='text-align:justify;'><label>Your Skills</label>";
+							while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+								$skill_id = $skill_displayRow['skill_id'];
+								echo "<span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."&nbsp
+										  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+												<i class='icon-remove'></i>
+										  </a>
+									  </span>&nbsp;";
+							}
+							echo "</div>";
+							?>
+							<label>Add more Skills</label><br/>
                             <label>Select Skill</label> 
                             <select class="inline-form" id = "skills" >
                                 <option value='0' selected>Default (none)</option>

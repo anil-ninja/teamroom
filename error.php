@@ -1,9 +1,9 @@
 <?php
 include_once 'lib/db_connect.php';
-
 ?>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
         <title>not exists</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenges, Projects, Problem solving, problems">
@@ -14,7 +14,7 @@ include_once 'lib/db_connect.php';
 <?php 
     include_once 'html_comp/navbar_homepage.php'; 
 ?>
-        <div class="row-fluid">
+        <div class="row-fluid" style='margin-top: 50px;'>
             <div class="span1"></div>
             <div class="span7">
                 <?php
@@ -25,7 +25,7 @@ include_once 'lib/db_connect.php';
                                         WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND  challenge_status ='1' AND a.blob_id = c.blob_id and a.user_id=b.user_id ) ORDER BY creation_time DESC LIMIT 10;");
                    while ($top_challengesRow = mysqli_fetch_array($top_challenges)) {
                        $challenge_type_id = $top_challengesRow['challenge_id'];
-                       $challenge_type_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['challenge_title'])));
+                       $challenge_type_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['challenge_title']))));
                        $challenge_type_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['stmt'])))) ;
                        $challenge_type_first = $top_challengesRow['first_name'];
                        $challenge_type_last = $top_challengesRow['last_name'];
@@ -102,7 +102,7 @@ include_once 'lib/db_connect.php';
                     $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                     $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])));
                         echo " 
-                            <div class ='row' style='margin: 4px -15px 4px -15px;background : rgb(240, 241, 242);'>
+                            <div class ='row' style='margin: 4px 0px 4px 0px;background : rgb(240, 241, 242);'>
                                 <a href='project.php?project_id=$project_id_display'>
                                     <b>
                                         <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
@@ -134,7 +134,7 @@ include_once 'lib/db_connect.php';
                     $top_user_first = $top_usersRow['first_name'];
                     $top_user_last = $top_usersRow['last_name'];
                     $top_user_username = $top_usersRow['username'];
-                    echo "  <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px -15px 4px -15px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                    echo "  <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
                                 <a href ='profile.php?username=" . $top_user_username . "'>
                                     <b>
                                         <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"

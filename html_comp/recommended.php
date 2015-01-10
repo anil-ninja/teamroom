@@ -19,7 +19,7 @@
 												where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2')
 												 ORDER by rand() limit 0, 5 ;");
 		if (mysqli_num_rows($Recommended) == 0) {
-			echo "<div class ='row' style='border-width: 1px; margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+			echo "<div class ='row' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
 					<i> No Recommendation</i>
 				</div>";
 		}
@@ -30,7 +30,7 @@
 				$usernameFriendsr = $RecommendedRow['username'];
 				$useridFriendsr = $RecommendedRow['user_id'];
 				$friendRankr = $RecommendedRow['rank'];	     
-				echo "<div class ='row' style='border-width: 1px; margin: 4px -15px 4px -15px; background : rgb(240, 241, 242);'>
+				echo "<div class ='row' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
 						<div class ='span3' style='padding:1px;'>
 							<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:35px; width: 35px;' class='img-responsive'>
 						</div>

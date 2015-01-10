@@ -82,7 +82,7 @@ setInterval(function(){
 	var time = timeStamp() ;
 	//alert (time + "," + eid) ;
 	getnewnote(time, eid+='') ;
-},120000)();
+},300000)();
 function getnewnote(time, lid) {	
 	var dataString = 'time='+ time + '&lid=' + lid ;
 	$.ajax({
@@ -97,7 +97,7 @@ function getnewnote(time, lid) {
 			else {
 				var notice = result.split("+") ;
 				$('.newnotices').append(notice['0']);
-				var num = $("#countnotice").val() ;
+				var num = document.getElementById("countnotice").innerHTML ;
 				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
 				var neid = parseInt(notice['2']) ;
 				if (neid+='' != 0) {

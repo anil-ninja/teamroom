@@ -235,9 +235,9 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <label>Password </label>
                                     <input type="password" class="input-block-level" id="passwordlogin" placeholder="Password"/>
                                     <label>
-                                        <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
+                                    <!----    <button type="button" data-toggle="button" class="btn btn-mini custom-checkbox active"><i class="icon-ok"></i></button>
                                         &nbsp;&nbsp;&nbsp;Remember Me
-                                    
+                                    -->
                                         <a href="index.php#panel3" data-toggle="tab" class="pull-right"><i class="icon-question-sign"></i>&nbsp;Forgot Password</a>
                                     </label>
                                     <br />
@@ -247,11 +247,11 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
                                     <div class="socials clearfix">
                                         <a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
-                                        <a href='https://twitter.com/CollapCom' target'_blank' class="icon-twitter twitter" target='_blank'></a>
-                                        <a href='https://plus.google.com/u/0/' class="icon-google-plus google-plus" target='_blank'></a>
-                                        <a class="icon-pinterest pinterest"></a>
+                                        <a href='https://twitter.com/CollapCom' class="icon-twitter twitter" target='_blank'></a>
+                                        <a href='https://plus.google.com/u/0/103215845490732646217/about' class="icon-google-plus google-plus" target='_blank'></a>
+                                        <a href='https://www.pinterest.com/collapcom/' class="icon-pinterest pinterest" target='_blank'></a>
                                         <a class="icon-linkedin linked-in"></a>
-                                        <a class="icon-github github"></a>
+                                        <a href='https://github.com/collapcom' class="icon-github github" target='_blank'></a>
                                     </div>
                                 </div>
                                 <div class="span4">

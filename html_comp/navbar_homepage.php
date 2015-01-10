@@ -41,13 +41,13 @@
                         </p>
                     </li>
                     <li><a style="cursor: pointer;color: #fff;" id="demo"></a></li>
-                    <li id='step10' style='cursor:pointer;'><div id='notifications'></div><div id='notificationlastid'></div></li>
+                    <li id='step10' style='cursor:pointer;'><li id='notifications' class='dropdown' ></li><li id='notificationlastid'></li></li>
                     <li id='step11' class="dropdown">
                        <a href='#' class="dropdown-toggle" data-toggle="dropdown" style='color: #fff;'>
                            <?php
                                 $username = $_SESSION['username'];
                                 $name = $_SESSION['first_name'];
-                                echo "<img style='width: 25px; height: 25px;' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'/>&nbsp &nbsp<b>".ucfirst($name)."</b>&nbsp"; 
+                                echo "<img style='width: 25px; height: 25px;' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
                             ?>
                             <b class="caret"></b>
                         </a>
@@ -71,51 +71,6 @@
         </div>
     </div>
 </div>
-<!-- sub nav bar-->
-
-<div class="divider large visible-desktop"></div>
-    <div class="divider  hidden-desktop"></div>
-<?php
-    if (isset($_SESSION['user_id'])) {
-        if ($requestedPage == "project.php") {   
-            echo "  <div class='navbar-subnav subnavbar-fixed-top'> 
-                        <div class='navbar-inner-subnav'>
-                            <div class='container' >
-                                <div class='span8 offset2'>
-                                <ul id='step12' class='inline' >
-                                    <li><button class='btn-link' style='color:#fff;' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
-                                    <li><button class='btn-link' style='color:#fff;' id='deciduous' ><span class='icon-tree-deciduous'></span> Notes </button></li>
-                                    <li><button class='btn-link' style='color:#fff;' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
-                					<li><button class='btn-link' style='color:#fff;' id='filmprj' ><span class='icon-film'></span> Videos</button></li>
-                					<li><button class='btn-link' style='color:#fff;' id='flag' ><span class='icon-flag'></span> Completed challenges </button></li>
-                                </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>" ;
-        }
-        else if ($requestedPage == "ninjas.php"){
-            echo "<div class='navbar-subnav subnavbar-fixed-top'>
-					<div class='navbar-inner-subnav' >
-						<div class='container'>
-							<div class='span8 offset2'>
-								<ul id='step13' class='inline' >
-									<li><button class='btn-link' style='color:#fff;' id='allPanels' ><i class='icon-eye-open'></i> All</button></li>
-									<li><a class='btn-link' href='#' style='color:#fff;' id='pencil' ><i class='icon-question-sign'></i> <span>Open challenges</span></a></li>
-									<li><button class='btn-link' style='color:#fff;' id='globe' ><span class='icon-book'></span> Articles</button></li>
-									<li><button class='btn-link' style='color:#fff;' id='tree' ><span class='icon-lightbulb'></span> Ideas</button></li>
-									<li><button class='btn-link' style='color:#fff;' id='okch' ><span class='icon-flag'></span> Completed challenges </button></li>
-									<li><button class='btn-link' style='color:#fff;' id='filmnin' ><span class='icon-film'></span> Videos</button></li>
-									<li><button class='btn-link' style='color:#fff;' id='picch' ><span class='icon-picture'></span> Pics</button></li>
-								 </ul>
-							</div>
-						</div>
-					</div>
-				</div>";
-        }      
-        else { }
-    }
-?>
   <script>
   function confLogout(){
         bootbox.confirm("Meet You Soon !", function(result) {

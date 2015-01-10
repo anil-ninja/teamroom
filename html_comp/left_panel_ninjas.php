@@ -30,7 +30,6 @@
 <?php 
     if (isset($_SESSION['user_id'])) {              
  		echo "
-        <div class='nav nav-tabs'>
 			<div class='panel panel-default'>
 				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
 					<font size='2'>Classified</font>
@@ -92,7 +91,7 @@
             </div>";
     }
     else {
-        echo "<div class='nav nav-tabs'>";
+        echo "<div class='nav nav-tabs'></div>";
     }
         if (isset($_SESSION['user_id'])) {
     ?>

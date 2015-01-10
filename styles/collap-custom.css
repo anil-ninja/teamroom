@@ -1,5 +1,6 @@
 img {
   vertical-align: middle;
+  max-height: 400px;
 }
 .img-responsive,
 .thumbnail > img,
@@ -782,8 +783,8 @@ img {
 .list-group {
   margin-bottom: 20px;
   margin-top: 20px;
-  margin-left: -15px; 
-  margin-right: -15px;
+  margin-left: 0px; 
+  margin-right: 0px;
   padding-left: 0;
   background-color: #fafafa;
 }
@@ -1848,8 +1849,9 @@ div#navtab li a{
   background-image: -webkit-gradient(linear,0 0,0 100%,from(#3DB56E),to(#1b824A));
   background-image: -webkit-linear-gradient(top,#3DB56E,#1b824A);
   background-repeat: repeat-x;
-  border: 1px solid #d4d4d4;
+  /* border: 1px solid #d4d4d4;
   border-radius: 4px;
+  */
   box-shadow: 0 1px 4px rgba(0,0,0,0.065);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
   max-height: 20px;

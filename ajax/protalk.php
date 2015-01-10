@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
+include_once '../functions/delete_comment.php';
 if ($_POST['talks']) {
     $user_id = $_SESSION['user_id'];
     $id = $_POST['talks'] ;
@@ -14,7 +15,7 @@ $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,
 while ($displayrowc = mysqli_fetch_array($displayb)) {
 		$ida = $displayrowc['response_pr_id'];
 		$idb = $displayrowc['username'];
-		$projectres = $displayrowc['stmt'];
+		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
 		$data.= "<b>".$idb."</b>:	<small>" . $projectres . "</small><br/>";
 	}
 	if (mysqli_num_rows($displayb) != 0) {

@@ -2,37 +2,41 @@
 session_start();
 function checkNCreateFolder($username,$dir){
 	
-	if (!file_exists('../uploads/'.$username)) {
-		mkdir('../uploads/'.$username, 0777, true);
+	$root = "/var/www/html/collap_files/uploads/";
+	if (!file_exists($root.$username)) {
+		mkdir($root.$username, 0777, true);
 	}
-	if (!file_exists('../uploads/'.$username."/".$dir)) {
-		mkdir('../uploads/'.$username."/".$dir, 0777, true);
+	if (!file_exists($root.$username."/".$dir)) {
+		mkdir($root.$username."/".$dir, 0777, true);
 	}
-	return '../uploads/'.$username."/".$dir;
+	return 'uploads/'.$username."/".$dir;
 	
-	}
+}
+	
 function saveFile($filePath){
-	if (file_exists($filePath)) {
+	$root = "/var/www/html/collap_files/uploads/";
+	if (file_exists($root.$filePath)) {
         
         //echo $_FILES["file"]["name"] . " already exists. ";
       } else {
         
-        move_uploaded_file($_FILES["file"]["tmp_name"], $filePath);
+        move_uploaded_file($_FILES["file"]["tmp_name"], "/var/www/html/collap_files/".$filePath);
+        //create 4 size img
         if($_FILES["file"]["type"] == "image/png"){
-	        $image = imagecreatefrompng($filePath);
+	        $image = imagecreatefrompng("/var/www/html/collap_files/".$filePath);
 			$bg = imagecreatetruecolor(imagesx($image), imagesy($image));
 			imagefill($bg, 0, 0, imagecolorallocate($bg, 255, 255, 255));
 			imagealphablending($bg, TRUE);
 			imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
 			imagedestroy($image);
 			$quality = 50; // 0 = worst / smaller file, 100 = better / bigger file 
-			imagejpeg($bg, $filePath . ".jpg", $quality);
+			imagejpeg($bg, "/var/www/html/collap_files/".$filePath . ".jpg", $quality);
 			imagedestroy($bg);
 
         }
         //echo "File uploaded sucessfully";
       }
-	}
+}
 	
 if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
   $username = $_SESSION['username'];
@@ -52,7 +56,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/articlePic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath ;
 					exit;
 					
 					break;
@@ -66,19 +70,20 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				else { 
 					$picname = $username.".jpg" ;
 				}
-				$filePath = "../uploads/profilePictures/".$picname;
-				if(!file_exists($filePath)) {
+				$filePath = "uploads/profilePictures/".$picname;
+				if(!file_exists("/var/www/html/collap_files/".$filePath)) {
 					saveFile($filePath); 
 				} 
 				 else {
-					 unlink("../uploads/profilePictures/".$username.".jpg") ;
-					 unlink("../uploads/profilePictures/".$username.".png") ;
-					 unlink("../uploads/profilePictures/".$username.".jpeg") ;
-					 unlink("../uploads/profilePictures/".$username.".gif") ;
+					 unlink("/var/www/html/collap_files/uploads/profilePictures/".$username.".jpg") ;
+					 unlink("/var/www/html/collap_files/uploads/profilePictures/".$username.".png") ;
+					 unlink("/var/www/html/collap_files/uploads/profilePictures/".$username.".jpeg") ;
+					 unlink("/var/www/html/collap_files/uploads/profilePictures/".$username.".gif") ;
 					 saveFile($filePath);
-					 rename($filePath.".jpg",'../uploads/profilePictures/'.$username.".jpg");					 
+					 rename("/var/www/html/collap_files/".$filePath.".jpg",
+							'/var/www/html/collap_files/uploads/profilePictures/'.$username.".jpg");					 
 					 }
-				echo substr($filePath, 3);
+				echo $filePath;
 				exit;
 				
 				break;
@@ -92,7 +97,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/challengePic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -106,7 +111,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/ideaPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -120,7 +125,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/photoPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -134,7 +139,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/projectPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -148,7 +153,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/taskPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -162,7 +167,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/projectchalPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -176,7 +181,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/projectnotesPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -190,7 +195,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 						echo 'uploads/'.$username."/answerPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
 					}
 					else
-						echo substr($filePath, 3);
+						echo $filePath;
 					exit;
 					
 				break;
@@ -198,7 +203,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
     //  echo "fileName: ".$fileName; taskPic
   } 
   else if (($_FILES["file"]["type"] == "application/msword")
-            || ($_FILES["file"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") 
+            ||  ($_FILES["file"]["type"] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document") 
             ||  ($_FILES["file"]["type"] == "application/pdf")
             ||  ($_FILES["file"]["type"] == "application/vnd.ms-powerpoint")
             ||  ($_FILES["file"]["type"] == "application/vnd.oasis.opendocument.text")
@@ -211,7 +216,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 				$link = "<img src= \"img/".$picture.".jpg\" style= \"max-width: 100%;\" />" ;
 				$filePath = checkNCreateFolder($username,"files")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
 					saveFile($filePath) ;
-					echo "<a href=\"".substr($filePath, 3)."\" >".$link."</a> ";
+					echo "<a href=\"".$filePath."\" >".$link."</a> ";
 	  
 	  }
   else {

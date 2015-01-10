@@ -21,7 +21,7 @@ if(!isset($_SESSION['user_id'])) {
     	<?php include_once 'html_comp/navbar_homepage.php'; ?>
         
         <div class='alert_placeholder'></div>
-        <div class="row-fluid">
+        <div class="row-fluid" style='margin-top: 50px;'>
             <div class="span2 offset1">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>       

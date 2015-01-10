@@ -18,7 +18,7 @@ include_once 'functions/delete_comment.php';
 
     <div class='alert_placeholder'></div>
     <div class="">
-        <div class="row-fluid">         
+        <div class="row-fluid" style='margin-top: 50px;'>         
             <div id='tab4' class="span2 offset1">
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>  
@@ -32,7 +32,7 @@ include_once 'functions/delete_comment.php';
                 <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
                 </p>
               </span>
-				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projttitle."'/>
+				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projectttitle."'/>
 			</center>
 		  ";?>
                 

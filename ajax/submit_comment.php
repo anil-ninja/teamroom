@@ -89,7 +89,7 @@ http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborat
 							}
 					}
 				}
-			else { echo "Please Join Project First!"; }
+			//else { echo "Please Join Project First!"; }
 			}
 	$test .= "<div id='commentscontainer'>
 				<div class='comments clearfix'>
@@ -98,7 +98,7 @@ http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborat
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
-						&nbsp&nbsp&nbsp" . str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt)))."
+						&nbsp&nbsp&nbsp" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
 					</div>
 				</div>
 			</div>";

@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once "../lib/db_connect.php";
+include_once '../functions/delete_comment.php';
 if ($_POST['prtalk']) {
     $user_id = $_SESSION['user_id'];
     $pro_id = $_SESSION['project_id'];
@@ -14,7 +15,7 @@ if ($_POST['prtalk']) {
 	while ($displayrowc = mysqli_fetch_array($displayb)) {
 		$ida = $displayrowc['response_pr_id'];
 		$idb = $displayrowc['username'];
-		$projectres = $displayrowc['stmt'];
+		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
 		$data.= "<b>".$idb."</b>:	<small>" . $projectres . "</small><br/>";
 	}
 	$data = $data ."<div class='newtalkspr'></div>" ;

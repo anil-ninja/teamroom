@@ -278,7 +278,7 @@ a:hover,a:focus
 }
 .row
 {
-  margin-left: -20px;
+  margin-left: 0px;
   zoom: 1;
 }
 .row:before,.row:after
@@ -1040,7 +1040,7 @@ label
 }
 select,textarea,input[type="text"],input[type="password"],input[type="datetime"],input[type="datetime-local"],input[type="date"],input[type="month"],input[type="time"],input[type="week"],input[type="number"],input[type="email"],input[type="url"],input[type="search"],input[type="tel"],input[type="color"],.uneditable-input
 {
-  border-radius: 4px;
+  border-radius: 1px;
   color: #555;
   display: inline-block;
   font-size: 14px;
@@ -2561,7 +2561,17 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 {
   left: auto;
   right: 0;
+  height:auto;
+  width: 250px; 
 }
+.mousescroll {
+    overflow: hidden;
+}
+.mousescroll:hover {
+    overflow-y: scroll;
+}
+.slimScrollDiv { border: 1px solid #ccc; margin:10px; }
+
 .dropdown-menu .divider
 {
   background-color: #e5e5e5;
@@ -3878,8 +3888,9 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
   background-image: -webkit-gradient(linear,0 0,0 100%,from(#4EC67F),to(#536B4D));
   background-image: -webkit-linear-gradient(top,#4EC67F,#536B4D);
   background-repeat: repeat-x;
-  border: 1px solid #d4d4d4;
+/*  border: 1px solid #d4d4d4;
   border-radius: 4px;
+*/
   box-shadow: 0 1px 4px rgba(0,0,0,0.065);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff',endColorstr='#fff2f2f2',GradientType=0);
   min-height: 40px;

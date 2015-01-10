@@ -21,7 +21,7 @@ if ($_POST['next_JnPr']) {
         $show_JP = "";
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
             $i ++;
-            $project_title_table = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
+            $project_title_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title']))));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
             $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
             $project_id_table = $project_table_displayRow['project_id'];
@@ -53,7 +53,7 @@ if ($_POST['next_JnPr']) {
         $lnam = $displayrowc['last_name'];
         $username_pr_comment = $displayrowc['username'];
         $ida = $displayrowc['response_pr_id'];
-        $projectres = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt'])));
+        $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
         $comment_user_id = $displayrowc['user_id'];
 $show_JP = $show_JP.  "<div id='commentscontainer'>
                 <div class='comments clearfix'>
@@ -87,15 +87,18 @@ $show_JP = $show_JP. "<div class='list-group-item pull-right'>
                 <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
-    $show_JP = $show_JP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%; height: 30px;' id='own_ch_response_".$project_id_table."'
+    $show_JP = $show_JP. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id_table."'
 						 placeholder='Want to know your comment....'/>
-						<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id_table."\", 2)' >
-						<span class='icon-chevron-right'></span></button>";
+						<button type='submit' class='btn btn-primary' onclick='comment(\"".$project_id_table."\", 2)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+						  <i class='icon-chevron-right'></i>
+                        </button>";
     } 
     else {
-        $show_JP = $show_JP. "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%; height: 30px;' placeholder='Want to know your comment....'/>
+        $show_JP = $show_JP. "<input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                             <a data-toggle='modal' data-target='#SignIn'>
-                                <button type='submit' class='btn btn-primary icon-play' name='login_comment'></button>
+                                <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
+                                    <i class='icon-chevron-right'></i>
+                                </button>
                             </a>";
     }
 $show_JP = $show_JP. "</div>

@@ -35,14 +35,14 @@ $("#changeremindervalue").click(function(){
 							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
 						}
 						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
 							}
 							else if(reminder == "" && date == "") {
 								location.reload() ;
 								return false ;
 								}
 								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
 									}
 				}
 				else {
@@ -50,13 +50,13 @@ $("#changeremindervalue").click(function(){
 							var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
 						}
 						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
+							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
 							}
 							else if(reminder == "" && date == "") {
 								var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
 								}
 								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n','<br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
+									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
 									}
 					
 					
@@ -96,15 +96,24 @@ $(document).ready(function() {
 function Subscribe(){
 	var reminder = $("#subscriptionid").val() ;
 	var dataString = 'id=' + reminder ;
-	$.ajax({
-		type: "POST",
-		url: "ajax/subscribe.php",
-		data: dataString,
-		cache: false,
-		success: function(result){
-			bootstrap_alert(".alert_placeholder", "Subscribed  Successfully", 5000,"alert-success");
-		}
-	});
+	if(reminder = "") {
+		bootstrap_alert(".alert_placeholder", "Enter valid Email-ID", 5000,"alert-warning");
+		return false;	
+	}
+	else if (validateEmail(reminder)==false) {
+        bootstrap_alert(".alert-placeholder", "Enter a valid email id", 5000,"alert-warning");       
+    }
+	else {
+		$.ajax({
+			type: "POST",
+			url: "ajax/subscribe.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				bootstrap_alert(".alert_placeholder", "Subscribed  Successfully", 5000,"alert-success");
+			}
+		});
+	}
 }
 function bootstrap_alert(elem, message, timeout,type) {
   $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');

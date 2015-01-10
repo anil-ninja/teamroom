@@ -15,7 +15,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                     AND a.blob_id = '0' and a.user_id = b.user_id)
                                 UNION
                                     (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt,a.creation_time, a.challenge_type,
-                                    a.creation_time, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
+                                    a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
                                     WHERE a.project_id = '$p_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
                                     AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update DESC LIMIT $a, $b ;");
 	$show = "";
@@ -27,13 +27,15 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$username_task = $tasksrow['username'];
 			$id_task = $tasksrow['challenge_id'];
 			$id_create = $tasksrow['user_id'];
-			$title_task = $tasksrow['challenge_title'];
+			$title_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title']))));
+			$tasktitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title'])));
 			$type_task = $tasksrow['challenge_type'];
 			$status_task = $tasksrow['challenge_status'];
 			$eta_task = $tasksrow['challenge_ETA'];
 			$creation_task = $tasksrow['creation_time'];
 			$timetask = date("j F, g:i a",strtotime($creation_task));
-			$stmt_task = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt'])));
+			$stmt_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt']))));
+			$taskstmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt'])));
 			$fname_task = $tasksrow['first_name'];
 			$lname_task = $tasksrow['last_name'];
 			$tasketa = eta($eta_task) ;
@@ -96,8 +98,8 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 							</div>";                    
 				}
                         // list grp item header for all type chall/article/idea/photo/video
-                        $get_display_tilte_task = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$id_task."' class='text'><b>
-                            <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
+                        $get_display_tilte_task = "<p style='font-size: 24px; line-height: 30px; id='challenge_ti_".$id_task."' class='text'><b>
+                            <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$tasktitle."'/>";
 
                         $get_dispaly_fname_likes = "<span style= 'color: #808080'>
                                 &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> | ".$timefunct." | 
@@ -111,30 +113,30 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                                 <span id='challenge_".$id_task."' class='text'>".$stmt_task."</span>
                                                 <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/><br/>";
     if(isset($_SESSION['user_id'])){
-		if(substr($stmt_task, 0, 1) != '<') {
-		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
+		if(substr($taskstmt, 0, 1) != '<') {
+		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
-			if (substr($stmt_task, 0, 4) == ' <br') {
-			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
+			if (substr($taskstmt, 0, 4) == ' <br') {
+			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			if (substr($stmt_task, 0, 3) == '<s>') {
-		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$stmt_task)."</textarea>
+			if (substr($taskstmt, 0, 3) == '<s>') {
+		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
-			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt_task, '<br/>'), 5)) ;
-			$cha = str_replace("<br/>", "\n",strstr($stmt_task, '<br/>' , true)) ;
-			if(substr($stmt_task, 0, 4) == '<img') {
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($taskstmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($taskstmt, '<br/>' , true)) ;
+			if(substr($taskstmt, 0, 4) == '<img') {
 			$get_display_task_stmt = $get_display_task_stmt.  "<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
 					}
-			if(substr($stmt_task, 0, 2) == '<a') {
+			if(substr($taskstmt, 0, 2) == '<a') {
 			$get_display_task_stmt = $get_display_task_stmt . "<div class='editbox' style='width : 90%;' id='challenge_file_".$id_task."' >".$cha."</div>
 					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
 					}
-			if(substr($stmt_task, 0, 3) == '<if') {
+			if(substr($taskstmt, 0, 3) == '<if') {
 			$get_display_task_stmt = $get_display_task_stmt . "<div class='editbox' style='width : 90%;' id='challenge_video_".$id_task."' >".$cha."</div>
 					<input type='text' class='editbox' id='url_video_".$id_task."' placeholder='Add You-tube URL'/><br/><br/>" ;
 					}
@@ -207,7 +209,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
             $show = $show . $dropdown1 ;
             $dropdown1 = "";
         }
-        $show = $show . $get_display_tilte_task . "<span class='icon-tree-deciduous'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $show = $show . $get_display_tilte_task . "<span class='icon-leaf'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
         
     }
@@ -295,7 +297,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$answerrow = mysqli_fetch_array($answer) ;
 		$show = $show . "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-				.$answerrow['stmt']."<br/>" ;
+				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))))."<br/>" ;
 		}			
 		
 	$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
@@ -308,7 +310,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                 $lstname = $displayrowb['last_name'];
                 $username_commenter = $displayrowb['username'];
 				$idc = $displayrowb['response_ch_id'] ;
-				$chalangeres = $displayrowb['stmt'] ;
+				$chalangeres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowb['stmt'])))) ;
                 $comment_user_id = $displayrowb['user_id'];
 		$show = $show . "
 		<div id='commentscontainer'>
@@ -345,13 +347,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                             <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
                         </div>";
                 if (isset($_SESSION['user_id'])) {
-                    $show = $show . "<input type='text' STYLE='border: 1px solid #bdc7d8; width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
-                                    <button type='submit' class='btn-sm btn-primary icon-chevron-right' onclick='comment(\"".$id_task ."\", 3)' ></button>";
+                    $show = $show . "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
+                                    <button type='submit' class='btn btn-primary' onclick='comment(\"".$id_task ."\", 3)' style='margin-bottom: 10px;'>
+                                        <i class='icon-chevron-right'></i>
+                                    </button>";
                 }
                 else {
-                   $show = $show . " <input type='text' STYLE='border: 1px solid #bdc7d8; width: 86%;' placeholder='Want to know your comment....'/>
+                   $show = $show . " <input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
                                     <a data-toggle='modal' data-target='#SignIn'>
-                                        <button type='submit' class='btn-primary btn-sm icon-play' name='login_comment'></button>
+                                        <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px;'>
+                                            <i class='icon-chevron-right'></i>
+                                        </button>
                                     </a>";
                 }
                $show = $show . "</div></div></div>";		

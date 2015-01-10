@@ -27,7 +27,7 @@ if($_POST['id']){
 				mysqli_query($db_handle,"update blobs set stmt='$challange' where blob_id='$blob';") ;
 				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 				}
-	echo $challange ;
+	echo showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challange)))) ;
 	mysqli_close($db_handle);
 } 
 else echo "Invalid parameters!";
