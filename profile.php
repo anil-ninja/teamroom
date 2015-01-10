@@ -105,21 +105,6 @@ $obj = new profile($UserName);
                             </b>
 								</center>                           
                            ";
-                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a class = 'btn-link' style='cursor: pointer;margin-left:72%;color: #333;' id='editprofile'>
-                                <span class = 'icon-pencil'></span> Edit 
-                            </a>";
-                    }                    
-                    echo "<div>
-                          <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
-                    if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                        echo "<center>
-                                <a id='demo4' data-toggle='modal' class = 'btn-link' style='position: relative; top: -5px; padding: 4px; color: #333; font-weight: 600;cursor: pointer; padding:4px 15px 4px 15px;' data-target='#uploadPicture'>
-                                    <span class = 'icon-pencil'></span>Change Pic
-                                </a>
-                             </center>";
-                           } 
-                    echo "</div>";
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
         				$check = mysqli_query($db_handle, "SELECT user_id FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
@@ -135,7 +120,22 @@ $obj = new profile($UserName);
 								echo "<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$profileViewUserID.")' value = 'Link'/>";
 							}
         				}
-                    } 
+                    }
+                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
+                        echo "<a class = 'btn-link' style='cursor: pointer;margin-left:72%;color: #333;' id='editprofile'>
+                                <span class = 'icon-pencil'></span> Edit 
+                            </a>";
+                    }                    
+                    echo "<div>
+                          <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+                    if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
+                        echo "<center>
+                                <a id='demo4' data-toggle='modal' class = 'btn-link' style='position: relative; top: -5px; padding: 4px; color: #333; font-weight: 600;cursor: pointer; padding:4px 15px 4px 15px;' data-target='#uploadPicture'>
+                                    <span class = 'icon-pencil'></span>Change Pic
+                                </a>
+                             </center>";
+                           } 
+                    echo "</div>"; 
                 ?>
                 <div class='alert_placeholder'></div>
                 <div class="viewprofile">
