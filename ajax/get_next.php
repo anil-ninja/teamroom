@@ -124,11 +124,11 @@ if ($_POST['chal']) {
 			}
 		}
 //dropdown for edit/delete added here for all type of challenges except status 2, 4, 5
-        $dropDown_challenge_get .= "<div class='list-group-item pull-right'>
+        $dropDown_challenge_get = $dropDown_challenge_get ."<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-                    if($owner_id == $user_id) {
-        $dropDown_challenge_get = $dropDown_challenge_get. "<li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
+    if($owner_id == $user_id) {
+        $dropDown_challenge_get = $dropDown_challenge_get ."<li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
                               <li><button class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</button></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
@@ -147,7 +147,7 @@ if ($_POST['chal']) {
 //dropdown for edit/delete ended here for all type of challenges except status 2, 4, 5
 //dropdown for chall after accept state starts 
         if($owner_id == $user_id) {
-        $dropDown_ch_after_accept .=  "<div class='list-group-item pull-right'>
+        $dropDown_ch_after_accept = $dropDown_ch_after_accept ."<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
                     <li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
@@ -223,80 +223,13 @@ if ($_POST['chal']) {
                 $get_display_ch_stmt_content = "" ;
                     }
     }
-    if ($ctype == 2) {
-        if ($status == 1) {
-            $show .= "<div class='list-group challenge'>
-                        <div class='list-group-item'>";
-                        
-//dropdown for delete/edit/span challenge starts
-        $show = $show . $dropDown_challenge_get;
-        $dropDown_challenge_get = "";
-        //dropdown for delete/edit/span challenge ends here
-
-            
-        //    if ($remaintime != "Closed") {
-                $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>"       ;
-                                //. "<br> ETA : " . $sutime . "<br/>" . $remaintime;
-          //  } else {
-            //    $show = $show . " <br> " . $timefunction."<br>Closed";
-          //  }
-                $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>".$get_display_ch_stmt_content;
-                $get_display_ch_stmt_content = "" ;
-        } 
-        if ($status == 2) {
-            $show = $show . "<div class='list-group challenge'>
-                    <div class='list-group-item'>";
-                    
-        if($ownuser == $user_id) {			
-            $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
-        }
-        if($owner_id == $user_id) {
-            $show = $show . $dropDown_ch_after_accept;  
-            $dropDown_ch_after_accept = "";                 
-        }
-            $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
-                                        . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct;
-                                    //  <br/> Time Remaining : " . $remaintimeown ."<br>
-            $show = $show .$get_display_ch_stmt_content;
-            $get_display_ch_stmt_content = "" ;
-                                
-        }
-        if ($status == 4) {
-            $show = $show . "<div class='list-group openchalhide'>
-                    <div class='list-group-item'>";
-                                if($owner_id == $user_id) {
-                                    $show = $show . $dropDown_ch_after_accept; 
-                                    $dropDown_ch_after_accept = "";                
-                                }
-                                if($owner_id == $user_id) {			
-                    $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
-                                }
-                $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
-                                //. "<br/>  ETA Taken : " . $timeo ."
-                $show = $show .$get_display_ch_stmt_content;
-                $get_display_ch_stmt_content = "" ;	
-        }
-        if ($status == 5) {
-            $show = $show . "<div class='list-group openchalhide'>
-                    <div class='list-group-item'>";
-                    if($owner_id == $user_id) {
-                        $show = $show . $dropDown_ch_after_accept;   
-                        $dropDown_ch_after_accept = "";               
-                    }
-                $show = $show . $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a><br><hr>"
-                                    .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a></span><br> Submitted: ".$timecomm;
-
-                $show = $show .$get_display_ch_stmt_content; 
-                $get_display_ch_stmt_content = "" ;          
-        }
-    } 
+     
      if ($ctype == 6) {
         $show = $show . "<div class='list-group articlesch'>
 				<div class='list-group-item'> " ;
             
                         $show = $show . $dropDown_challenge_get;
-                        $dropDown_challenge_get = "";
+                        $dropDown_challenge_get = "" ;
                         
                         $show = $show .$get_display_tilte."<span class='icon-leaf'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
                         $show = $show .$get_display_ch_stmt_content;
@@ -307,7 +240,7 @@ if ($_POST['chal']) {
 				<div class='list-group-item'> " ;
                                     
                         $show = $show . $dropDown_challenge_get;
-                        $dropDown_challenge_get = "";
+                        $dropDown_challenge_get = "" ;
                     $show = $show . $get_display_tilte."<span class='icon-book'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
                     $get_display_ch_stmt_content = "" ;
     }
