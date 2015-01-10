@@ -68,16 +68,19 @@ if ($_POST['user_next_idea']) {
                 <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($ideastmt, 0, 1) != '<') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$ideastmt)."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$ideastmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 			}
 		else {
 			if (substr($ideastmt, 0, 4) == ' <br') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$ideastmt)."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$ideastmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
 			if (substr($ideastmt, 0, 3) == '<s>') {
-$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$ideastmt)."</textarea>
+$show_idea = $show_idea. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$idea_id."' >".str_replace("<br/>", "\n",$ideastmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$idea_id.")' id='pic_file_".$idea_id."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$idea_id.")' id='doneedit_".$idea_id."'/>";
 				}
 			$chaaa = str_replace("<br/>", "\n",substr(strstr($ideastmt, '<br/>'), 5)) ;

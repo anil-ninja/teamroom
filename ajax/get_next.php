@@ -91,16 +91,19 @@ if ($_POST['chal']) {
                         <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($chelangestmt, 0, 1) != '<') {
-	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea>
+	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 			}
 		else {
 			if (substr($chelangestmt, 0, 4) == ' <br') {
-		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea>
+		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 				}
 			if (substr($chelangestmt, 0, 3) == '<s>') {
-		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea>
+		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
 				}
 			$chaaa = str_replace("<br/>", "\n",substr(strstr($chelangestmt, '<br/>'), 5)) ;

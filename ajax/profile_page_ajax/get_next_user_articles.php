@@ -66,16 +66,19 @@ if ($_POST['last_article']) {
                 <br/><span id='challenge_".$article_id."' class='text'>".$article_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($articlestmt, 0, 1) != '<') {
-$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$articlestmt)."</textarea>
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$articlestmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$article_id.")' id='pic_file_".$article_id."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 			}
 		else {
 			if (substr($articlestmt, 0, 4) == ' <br') {
-$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$articlestmt)."</textarea>
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$articlestmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$article_id.")' id='pic_file_".$article_id."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 				}
 			if (substr($articlestmt, 0, 3) == '<s>') {
-$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$articlestmt)."</textarea>
+$show_article = $show_article. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$article_id."' >".str_replace("<br/>", "\n",$articlestmt)."</textarea><br/>
+						<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$article_id.")' id='pic_file_".$article_id."'/><br/>
 						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$article_id.")' id='doneedit_".$article_id."'/>";
 				}
 			$chaaa = str_replace("<br/>", "\n",substr(strstr($articlestmt, '<br/>'), 5)) ;
