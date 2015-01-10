@@ -22,12 +22,12 @@ if ($_POST['time']) {
 			$eventtimeN = date("j F, g:i a", $strtime) ;
 			$title25 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice27row['project_title']))) ;
 			$uname25 = $notice27row['username'] ;
-			$notice .= "<li><div class='row-fluid'>
-							<span class='icon-plus'></span>
-							<a href ='profile.php?username=".$uname25."'>".$fname25."</a> Created 
-							<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id25."' 
-							target='_blank'>". $title25."</a> on .".$eventtimeN."
-						</div></li>" ;
+			$notice .= "<li>
+							<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id25."' target='_blank'>
+								<span class='icon-plus'></span>
+								".$fname25." Created ". $title25." on .".$eventtimeN."
+							</a>
+						</li>" ;
 			$y++ ;
 			}
 	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') 
