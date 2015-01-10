@@ -140,9 +140,9 @@ if ($_POST['chal']) {
                         } */                                   
                      }
                     else {
-        $dropDown_challenge_get = $dropDown_challenge_get. "<li><button class='btn-link' onclick='spem(\"".$chelangeid."\", 5);'>Report Spam</button></li>";
+        $dropDown_challenge_get = $dropDown_challenge_get ."<li><button class='btn-link' onclick='spem(\"".$chelangeid."\", 5);'>Report Spam</button></li>";
                     } 
-        $dropDown_challenge_get = $dropDown_challenge_get. "</ul>
+        $dropDown_challenge_get = $dropDown_challenge_get ."</ul>
               </div>";
 //dropdown for edit/delete ended here for all type of challenges except status 2, 4, 5
 //dropdown for chall after accept state starts 

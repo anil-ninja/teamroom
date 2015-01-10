@@ -612,9 +612,9 @@ if($_POST['update']){
 				$timeleft = $starttime ;
 			}
 			if ($timeleft < 600 && $timeleft > 0) {
-				$notice = $notice . "<div class ='row-fluid' style=' margin:4px 5px 1px 10px;'>
+				$notice = $notice . "<li><a style=' margin:4px 5px 1px 10px;'>
 										<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
-									</div>";
+									</a></li>";
 				$y++ ;
 			}
 		}	

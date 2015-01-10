@@ -54,8 +54,8 @@ if ($_POST['users']) {
 									  <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
 									  <span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
 		}
-	$data .="<div class='panel panel-primary' style='max-height : 150px ; margin-left:150px;margin-right:100px;'>
-			<div class='container'>
+	$data .="<div class='panel panel-primary' style='margin-left:150px;margin-right:100px;'>
+			<div class='container' style='height:auto;'>
 			<div class='span2'>
 				<img src='uploads/profilePictures/$usersUsername.jpg'  style='width:150px; height:150px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
 			</div>
