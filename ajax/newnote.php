@@ -395,16 +395,18 @@ if ($_POST['time']) {
 			case 28:
 				$notice22 = mysqli_query($db_handle, " SELECT * FROM known_peoples where last_action_time > '$a' and status = '1' and knowning_id = '$user_id' and requesting_user_id = '$creater' ;") ;
 				$notice22row = mysqli_fetch_array($notice22) ;
-				$id1 = $notice22row['id'] ;
-				$notice = $notice ."<li><div class='row-fluid'>
-										<a href ='profile.php?username=".$uname."'>
-										<span class='icon-plus'></span> 
-										".$fname."</a>&nbsp; Send Link on  ".$eventtime."<br/>
-										<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$id1."\")' value='Accept'/>
-										<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$id1."\")' value='Delete'/>
-									</div></li>" ;
-				$y++ ;
-				insert($eventid, $user_id,  $db_handle) ;
+				$linkid = $notice22row['id'] ;
+				if(mysqli_num_rows($notice22) != 0) {
+					$notice = $notice ."<li><div class='row-fluid'>
+											<a href ='profile.php?username=".$uname."'>
+											<span class='icon-plus'></span> 
+											".$fname."</a>&nbsp; Send Link on  ".$eventtime."<br/>
+											<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$linkid."\")' value='Accept'/>
+											<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$linkid."\")' value='Delete'/>
+										</div></li>" ;
+					$y++ ;
+					insert($eventid, $user_id,  $db_handle) ;
+				}
 				
 				break;
 				
