@@ -1741,6 +1741,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     <script type="text/javascript" src="js/username_email_check.js"></script>
     <script type="text/javascript" src="js/signupValidation.js"></script>
     <script type="text/javascript" src="js/loginValidation.js"></script>
-<?php include_once 'html_comp/terms_and_condition_modal.php'; ?>
+<?php include_once 'html_comp/terms_and_condition_modal.php';
+	include_once 'html_comp/insert_time.php'; ?>
 </body>
 </html>
