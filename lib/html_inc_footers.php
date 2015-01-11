@@ -112,3 +112,10 @@
 <script src="js/date_time.js"></script>    
     <script src="scripts/tabs-addon.js"></script>
    <script type="text/javascript" src="js/intro.js"></script>
+   <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+   <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script>
+	$('.bs-component').jScrollPane();
+	$('#nav').jScrollPane();
+	$('#demo7').jScrollPane();
+</script>

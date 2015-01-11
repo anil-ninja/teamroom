@@ -347,13 +347,14 @@ function recommended_project ($db_handle) {
     $project_public_title_display2 = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time
                                                             FROM projects WHERE user_id != '$user_id' and project_type= '1' and project_id NOT
                                                             IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
-                                                            ORDER BY rand() LIMIT 5;");
+                                                            ORDER BY rand() LIMIT 10;");
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
         echo "
-                <div class='panel panel-default bs-component'>
+                <div class='panel panel-default'>
                     <div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
                         <font size='2'><b> Recommended</b></font>
                     </div>
+                    <div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
                         <table>";
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
@@ -389,6 +390,7 @@ function recommended_project ($db_handle) {
         echo "</td></tr>" ;
         }
         echo "</table>
+        </div>
         </div>";
     }
 }

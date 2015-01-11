@@ -34,7 +34,7 @@
 				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
 					<font size='2'><b>Classified</b></font>
                 </div>
-				<div class='bs-component'>
+				<div class='bs-component' style='max-height:130px; overflow-y:scroll;'>
     	    	    <table>";   
         $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time 
                                                                 FROM teams as a join projects as b 
@@ -64,8 +64,8 @@
             while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
                 $p_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_title_displayRow['project_title']))) ;
                 $idpro = $project_title_displayRow['project_id'] ;
-                if (strlen($p_title) > 30) {
-                    $prtitle = substr(ucfirst($p_title),0,30)." ...";
+                if (strlen($p_title) > 26) {
+                    $prtitle = substr(ucfirst($p_title),0,26)." ...";
                 } 
                 else {
                     $prtitle = ucfirst($p_title) ;
@@ -96,10 +96,10 @@
         if (isset($_SESSION['user_id'])) {
     ?>
 			<div class='panel panel-default'>
-				<div class='panel-heading'style ='padding-top: 0px; padding-bottom: 0px;'>
+				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
 					<font size='2'><b>Public</b></font>
                 </div>
-				<div class='bs-component'>
+				<div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
                     <table>
         <?php
             $project_public_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time FROM teams as a join projects 

@@ -28,12 +28,12 @@
             $time = time() - strtotime($status) ;
             $tooltip = ucfirst($friendFirstName)." ".ucfirst($friendLastName);
 
-            echo "  <div class ='row' style=' margin:4px; background : rgb(240, 241, 242);'>
+            echo "  <div class ='row-fluid' style=' margin:4px; background : rgb(240, 241, 242);'>
                         <a href=\"javascript:void(0)\" onclick=\"javascript:chatWith('".$usernameFriends."')\">
-                            <div class ='col-md-2'>
-                                    <img src='uploads/profilePictures/$usernameFriends.jpg'  style='margin-left:-10px;width:30px; height:35px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+                            <div class ='span3'>
+                                    <img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                             </div>
-                            <div class = 'col-md-7' style='font-size:10px;'>"
+                            <div class = 'span7' style='font-size:10px;'>"
                             .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
                  if($time < 6000) { echo "<br/>
                             online 
@@ -91,7 +91,6 @@
    <script>
 	$(".text").show();
 	$(".editbox").hide();
-	
 	$(function() {
 	$('#nav').stop().animate({'margin-right':'-170px'},1000);
 

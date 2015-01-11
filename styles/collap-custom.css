@@ -1771,18 +1771,16 @@ div#nav {
   background:#fff; 
   list-style: none;
   z-index: 1;
-  max-height:290px;
-  overflow-y: scroll; 
+  max-height:290px; 
   width: 200px; 
   border-radius:10px 0px 0px 10px
 }
-
 div#nav .nav-btn{
   background:#fff; 
   border-radius:10px 0px 0px 10px; 
   position:fixed; 
   top:80px; 
-  right:1px; 
+  right:0; 
   width:30px; 
   height:20px; 
   display:block; 

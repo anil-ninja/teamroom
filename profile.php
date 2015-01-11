@@ -89,7 +89,7 @@ $obj = new profile($UserName);
     <body>
         <?php include_once 'html_comp/navbar_homepage.php'; ?>
     <div class="">     
-        <div class='row-fluid' style='margin-top: 50px;'>
+        <div class='row-fluid' style='margin-top: 60px;'>
 
             <div id='tab7' class="span2 offset1">
 				

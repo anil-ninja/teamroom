@@ -27,7 +27,6 @@ if($_POST['challange']){
 		$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 		$inforow = mysqli_fetch_array($info) ;
 		$title = $inforow['project_title'] ;
-		$type = $inforow['project_type'] ;
 		$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
 											a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 		while ($memrow = mysqli_fetch_array($members)){
