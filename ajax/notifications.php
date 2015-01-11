@@ -552,7 +552,7 @@ if ($_POST['notice']) {
 	$data = $data . "</a>
 					<ul class='dropdown-menu pull-right'>
 							".$notice."
-							<li><div class='newnotices' ></div></li>
+							<span class='newnotices' ></span>
 							<li><a href='notifications.php'>See All</a></li>
 					</ul>" ;
 	echo $data."+".$data1 ;

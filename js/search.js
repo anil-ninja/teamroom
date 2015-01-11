@@ -73,13 +73,14 @@ function updatetime() {
 		//	} , 60000) ;
 		} ;
 setInterval(function(){
-	var eid = parseInt($("#lasteventid").val()) ;
+	var eid = $("#lasteventid").val() ;
 	var time = timeStamp() ;
 	//alert (time + "," + eid) ;
-	getnewnote(time, eid+='') ;
+	getnewnote(time, eid) ;
 },300000)();
 function getnewnote(time, lid) {	
 	var dataString = 'time='+ time + '&lid=' + lid ;
+	//alert(dataString) ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/newnote.php",
@@ -96,7 +97,7 @@ function getnewnote(time, lid) {
 				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
 				var neid = parseInt(notice['2']) ;
 				if (neid+='' != 0) {
-					document.getElementById("countnotice").innerHTML = newnum+='' ;
+					document.getElementById("countnotice").innerHTML = newnum ;
 				}
 				if (newnum+='' != 0) {
 					$("#lasteventid").val(neid+='') ;

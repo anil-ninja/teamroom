@@ -12,7 +12,7 @@ if ($_POST['time']) {
     $lid = $_POST['lid'] ;
     $time = date('Y-m-d H:i:s', strtotime($_POST['time'])-300) ;
     $notice = "" ;
-	  $y = 0 ;
+	$y = 0 ;
 	$notice27 = mysqli_query($db_handle, "select Distinct b.first_name, b.username, a.project_id, a.project_title, a.creation_time from projects as a join user_info as b
 											where a.creation_time > '$time' and a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 		while($notice27row = mysqli_fetch_array($notice27)) {
@@ -31,10 +31,10 @@ if ($_POST['time']) {
 			$y++ ;
 			}
 	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') 
-										 and timestamp > '$time' and event_creater != '$user_id' )
+										 and timestamp > '$time' and event_creater != '$user_id' and id > '$lid' )
 										 UNION
 										 (SELECT * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 ) 
-										 and p_c_id = '$user_id' and timestamp > '$time' and event_creater != '$user_id') order by timestamp DESC;") ;
+										 and p_c_id = '$user_id' and timestamp > '$time' and event_creater != '$user_id' and id > '$lid') order by timestamp DESC;") ;
 	while($notice1row = mysqli_fetch_array($notice1)) {
 		$eventid = $notice1row['id'] ;
 		$creater = $notice1row['event_creater'] ;
