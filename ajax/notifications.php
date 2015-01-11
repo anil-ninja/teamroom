@@ -24,7 +24,7 @@ if ($_POST['notice']) {
 			$title25 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice27row['project_title']))) ;
 			$uname25 = $notice27row['username'] ;
 			$notice .= "<li>
-							<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id25."' target='_blank'>
+							<a class='btn-link line' style='white-space: normal ;' href='project.php?project_id=".$project_id25."' target='_blank'>
 								<span class='icon-plus'></span>
 								".$fname25." Created ". $title25." on .".$eventtimeN."
 							</a>
@@ -58,7 +58,7 @@ if ($_POST['notice']) {
 				$challenge_id = $notice3row['challenge_id'] ;
 				$challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice3row['challenge_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Commented On ".$challenge_title." on  ".$eventtime."
@@ -75,7 +75,7 @@ if ($_POST['notice']) {
 				$challenge_id2 = $notice4row['challenge_id'] ;
 				$challenge_title2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice4row['challenge_title']))) ;
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id2."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id2."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Accepted Challenge ".$challenge_title2." on  ".$eventtime."
@@ -92,7 +92,7 @@ if ($_POST['notice']) {
 				$challenge_id3 = $notice5row['challenge_id'] ;
 				$challenge_title3 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice5row['challenge_title']))) ;
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id3."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id3."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Submit Answer of ".$challenge_title3." on  ".$eventtime."
@@ -109,7 +109,7 @@ if ($_POST['notice']) {
 				$challenge_id4 = $notice6row['challenge_id'] ;
 				$challenge_title4 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice6row['challenge_title']))) ;
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Closed Challenge ".$challenge_title4." on  ".$eventtime."
@@ -126,7 +126,7 @@ if ($_POST['notice']) {
 				$challenge_id5 = $notice7row['challenge_id'] ;
 				$challenge_title5 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice7row['challenge_title']))) ;
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id5."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id5."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Spammed Challenge ".$challenge_title5." on  ".$eventtime."
@@ -139,7 +139,7 @@ if ($_POST['notice']) {
 		
 			case 8:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick='".update($user_id,$db_handle)."'>
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick='".update($user_id,$db_handle)."'>
 											<span class='icon-star' ></span> ".$fname."&nbsp; Updated His Profile on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -154,7 +154,7 @@ if ($_POST['notice']) {
 				$challenge_id6 = $notice8row['challenge_id'] ;
 				$challenge_title6 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice8row['challenge_title']))) ;
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id6."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id6."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Created Challenge ".$challenge_title6." on  ".$eventtime."
@@ -173,7 +173,7 @@ if ($_POST['notice']) {
 				$team_name = $notice9row['team_name'] ;
 				$project_title7 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice9row['project_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id7."' 
+										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id7."' 
 										onclick='".update($user_id,$db_handle)."' target='_blank'>
 											<span class='icon-phone-alt' ></span>
 											".$fname."&nbsp; Created Team ".$team_name." in ".$project_title7." on  ".$eventtime."
@@ -196,7 +196,7 @@ if ($_POST['notice']) {
 				$projectinforow8 = mysqli_fetch_array($projectinfo8) ;
 				$project_title8 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow8['project_title']))) ;
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id8."' 
+										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id8."' 
 										onclick= '".update($user_id,$db_handle)."' target='_blank'>
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Assigned Task ".$challenge_title8." In ".$project_title8." on  ".$eventtime."
@@ -213,7 +213,7 @@ if ($_POST['notice']) {
 				$pro_id9 = $notice11row['project_id'] ;
 				$project_title9 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice11row['project_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id9."' 
+										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id9."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
 											<span class='icon-phone-alt' ></span>
 											".$fname." Joined in ".$project_title9." on  ".$eventtime."
@@ -229,7 +229,7 @@ if ($_POST['notice']) {
 				$notice12row = mysqli_fetch_array($notice12) ;
 				$pro_id10 = $notice12row['project_id'] ;
 				$project_title10 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice12row['project_title']))) ;	
-				$notice = $notice ."<li><a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id10."' 
+				$notice = $notice ."<li><a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id10."' 
 										target='_blank'>
 										<span class='icon-phone-alt' onclick=".update($user_id,$db_handle)."></span>
 										".$fname."&nbsp;	Commented On 
@@ -248,7 +248,7 @@ if ($_POST['notice']) {
 				$team_name2 = $notice13row['team_name'] ;
 				$project_title11 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice13row['project_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id11."' 
+										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id11."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
 											<span class='icon-plus' ></span>
 											".$fname."&nbsp;	Add member in Team ".$team_name2." in ".$project_title11." on  ".$eventtime."
@@ -265,7 +265,7 @@ if ($_POST['notice']) {
 				$challenge_id12 = $notice14row['challenge_id'] ;
 				$challenge_title12 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice14row['challenge_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id12."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id12."' 
 										target='_blank' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Likes ".$challenge_title12." on  ".$eventtime."
@@ -283,7 +283,7 @@ if ($_POST['notice']) {
 				$challenge_id13 = $notice15row['challenge_id'] ;
 				$challenge_title13 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice15row['challenge_title']))) ;
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id13."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id13."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>
 											".$fname."&nbsp; Dislike ".$challenge_title13." on  ".$eventtime."
@@ -296,7 +296,7 @@ if ($_POST['notice']) {
 				
 			case 18:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname."`s Rank Updated to ".$rank ." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -307,7 +307,7 @@ if ($_POST['notice']) {
 				
 			case 19:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname." Updated His First name on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -318,7 +318,7 @@ if ($_POST['notice']) {
 				
 			case 20:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname." Updated His Last Name to ".$lname ." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -329,7 +329,7 @@ if ($_POST['notice']) {
 				
 			case 21:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname." Updated His Phome No. to ".$phone ." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -341,7 +341,7 @@ if ($_POST['notice']) {
 				$notice19row = mysqli_fetch_array($notice19) ;
 				$org = $notice19row['organisation_name'] ;
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname." Changed His Organisation to ".$org." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -355,7 +355,7 @@ if ($_POST['notice']) {
 				$notice20row = mysqli_fetch_array($notice20) ;
 				$town = $notice20row['living_town'] ;
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname." Changed His Town to ".$town." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -369,7 +369,7 @@ if ($_POST['notice']) {
 				$notice21row = mysqli_fetch_array($notice21) ;
 				$about = $notice21row['about_user'] ;
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname." Changed His Information to ".$about." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -380,7 +380,7 @@ if ($_POST['notice']) {
 				
 			case 25:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 											<span class='icon-star' ></span> ".$fname." Updated His Profile Picture on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -395,7 +395,7 @@ if ($_POST['notice']) {
 				$linkid = $notice22row['id'] ;
 				if(mysqli_num_rows($notice22) != 0) {
 					$notice = $notice ."<li><div class='row-fluid'>
-											<a href ='profile.php?username=".$uname."'>
+											<a href ='profile.php?username=".$uname."' style='white-space: normal ;' >
 											<span class='icon-plus'></span> 
 											".$fname."</a>&nbsp; Send Link on  ".$eventtime."<br/>
 											<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$linkid."\")' value='Accept'/>
@@ -409,7 +409,7 @@ if ($_POST['notice']) {
 				
 			case 29:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."'>
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;'>
 											<span class='icon-plus'></span> ".$fname." Accepted Link on  ".$eventtime."
 										<a/>
 									</li>" ;
@@ -420,7 +420,7 @@ if ($_POST['notice']) {
 				
 			case 30:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."'>
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;'>
 											<span class='icon-plus'></span> ".$fname."&nbsp; Deleted Link on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -435,7 +435,7 @@ if ($_POST['notice']) {
 				$pro_id21 = $notice23row['project_id'] ;
 				$project_title21 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice23row['project_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id21."' 
+										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id21."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
 											<span class='icon-phone-alt' ></span> ".$fname." Masseged In ".$project_title21." on  ".$eventtime."
 										</a>
@@ -451,7 +451,7 @@ if ($_POST['notice']) {
 				$pro_id22 = $notice24row['project_id'] ;
 				$project_title22 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice24row['project_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id22."' 
+										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id22."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
 											<span class='icon-phone-alt' ></span> ".$fname." Edited Project ".$project_title22." on  ".$eventtime."
 										</a>
@@ -478,7 +478,7 @@ if ($_POST['notice']) {
 				$challenge_id24 = $notice26row['challenge_id'] ;
 				$challenge_titl24 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice26row['challenge_title']))) ;	
 				$notice = $notice ."<li>
-										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
+										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
 											<span class='icon-star'></span>	".$fname."&nbsp; Spammed Challenge ".$challenge_title." on  ".$eventtime."
 										</a>
@@ -510,7 +510,7 @@ if ($_POST['notice']) {
 				$timeleft = $starttime ;
 			}
 			if ($timeleft < 600 && $timeleft > 0) {
-				$notice = $notice . "<li><a>
+				$notice = $notice . "<li><a style='white-space: normal ;'>
 										<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
 									</a></li>";
 				$y++ ;
