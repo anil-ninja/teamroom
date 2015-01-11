@@ -24,7 +24,7 @@ if ($_POST['time']) {
 			$uname25 = $notice27row['username'] ;
 			$notice .= "<li>
 							<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$project_id25."' target='_blank'>
-								<span class='icon-plus'></span>
+								<i class='icon-plus'></i>
 								".$fname25." Created ". $title25." on .".$eventtimeN."
 							</a>
 						</li>" ;
@@ -59,7 +59,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Commented On ".$challenge_title." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -76,7 +76,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id2."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Accepted Challenge ".$challenge_title2." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -93,7 +93,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id3."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Submit Answer of ".$challenge_title3." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -110,7 +110,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Closed Challenge ".$challenge_title4." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -128,7 +128,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id5."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Spammed Challenge ".$challenge_title5." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -140,7 +140,7 @@ if ($_POST['time']) {
 			case 8:
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick='".update($user_id,$db_handle)."'>
-											<span class='icon-star' ></span> ".$fname."&nbsp; Updated His Profile on  ".$eventtime."
+											<i class='icon-star'></i> ".$fname."&nbsp; Updated His Profile on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -157,7 +157,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id6."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Created Challenge ".$challenge_title6." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -176,7 +176,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id7."' 
 										onclick='".update($user_id,$db_handle)."' target='_blank'>
-											<span class='icon-phone-alt' ></span>
+											<i class='icon-share' ></i>
 											".$fname."&nbsp; Created Team ".$team_name." in ".$project_title7." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -199,7 +199,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id8."' 
 										onclick= '".update($user_id,$db_handle)."' target='_blank'>
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Assigned Task ".$challenge_title8." In ".$project_title8." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -216,7 +216,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id9."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
-											<span class='icon-phone-alt' ></span>
+											<i class='icon-share' ></i>
 											".$fname." Joined in ".$project_title9." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -231,8 +231,8 @@ if ($_POST['time']) {
 				$pro_id10 = $notice12row['project_id'] ;
 				$project_title10 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice12row['project_title']))) ;	
 				$notice = $notice ."<li><a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id10."' 
-										target='_blank'>
-										<span class='icon-phone-alt' onclick=".update($user_id,$db_handle)."></span>
+										target='_blank' onclick=".update($user_id,$db_handle).">
+										<i class='icon-share'></i>
 										".$fname."&nbsp;	Commented On 
 										".$project_title10." on  ".$eventtime."
 									</a></li>" ;
@@ -251,7 +251,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id11."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
-											<span class='icon-plus' ></span>
+											<i class='icon-plus' ></i>
 											".$fname."&nbsp;	Add member in Team ".$team_name2." in ".$project_title11." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -269,7 +269,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id12."' 
 										target='_blank' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Likes ".$challenge_title12." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -288,7 +288,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id13."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>
+											<i class='icon-star'></i>
 											".$fname."&nbsp; Dislike ".$challenge_title13." on  ".$eventtime."
 										</a>
 									</li>" ;
@@ -300,7 +300,7 @@ if ($_POST['time']) {
 			case 18:
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname."`s Rank Updated to ".$rank ." on  ".$eventtime."
+											<i class='icon-star'></i> ".$fname."`s Rank Updated to ".$rank ." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -311,7 +311,7 @@ if ($_POST['time']) {
 			case 19:
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname." Updated His First name on  ".$eventtime."
+											<i class='icon-star'></i> ".$fname." Updated His First name on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -322,7 +322,7 @@ if ($_POST['time']) {
 			case 20:
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname." Updated His Last Name to ".$lname ." on  ".$eventtime."
+											<i class='icon-star'></i> ".$fname." Updated His Last Name to ".$lname ." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -333,7 +333,7 @@ if ($_POST['time']) {
 			case 21:
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname." Updated His Phome No. to ".$phone ." on  ".$eventtime."
+											<i class='icon-star'></i> ".$fname." Updated His Phome No. to ".$phone ." on  ".$eventtime."
 										</a>
 									</li>" ;
 				
@@ -345,7 +345,7 @@ if ($_POST['time']) {
 				$org = $notice19row['organisation_name'] ;
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname." Changed His Organisation to ".$org." on  ".$eventtime."
+											<i class='icon-star'></i> ".$fname." Changed His Organisation to ".$org." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -359,7 +359,7 @@ if ($_POST['time']) {
 				$town = $notice20row['living_town'] ;
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname." Changed His Town to ".$town." on  ".$eventtime."
+											<i class='icon-star'></i> ".$fname." Changed His Town to ".$town." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -373,7 +373,7 @@ if ($_POST['time']) {
 				$about = $notice21row['about_user'] ;
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname." Changed His Information to ".$about." on  ".$eventtime."
+											<i class='icon-star' ></i> ".$fname." Changed His Information to ".$about." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -384,7 +384,7 @@ if ($_POST['time']) {
 			case 25:
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
-											<span class='icon-star' ></span> ".$fname." Updated His Profile Picture on  ".$eventtime."
+											<i class='icon-star' ></i> ".$fname." Updated His Profile Picture on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -398,8 +398,8 @@ if ($_POST['time']) {
 				$linkid = $notice22row['id'] ;
 				if(mysqli_num_rows($notice22) != 0) {
 					$notice = $notice ."<li><div class='row-fluid'>
-											<a href ='profile.php?username=".$uname."' style='white-space: normal ;'>
-											<span class='icon-plus'></span> 
+											<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
+											<i class='icon-plus'></i> 
 											".$fname."</a>&nbsp; Send Link on  ".$eventtime."<br/>
 											<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$linkid."\")' value='Accept'/>
 											<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$linkid."\")' value='Delete'/>
@@ -412,8 +412,8 @@ if ($_POST['time']) {
 				
 			case 29:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' style='white-space: normal ;'>
-											<span class='icon-plus'></span> ".$fname." Accepted Link on  ".$eventtime."
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
+											<i class='icon-plus'></i> ".$fname." Accepted Link on  ".$eventtime."
 										<a/>
 									</li>" ;
 				$y++ ;
@@ -423,8 +423,8 @@ if ($_POST['time']) {
 				
 			case 30:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' style='white-space: normal ;'>
-											<span class='icon-plus'></span> ".$fname."&nbsp; Deleted Link on  ".$eventtime."
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
+											<i class='icon-plus'></i> ".$fname."&nbsp; Deleted Link on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -440,7 +440,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id21."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
-											<span class='icon-phone-alt' ></span> ".$fname." Masseged In ".$project_title21." on  ".$eventtime."
+											<i class='icon-share' ></i> ".$fname." Masseged In ".$project_title21." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -456,7 +456,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id22."' 
 										onclick=".update($user_id,$db_handle)." target='_blank'>
-											<span class='icon-phone-alt' ></span> ".$fname." Edited Project ".$project_title22." on  ".$eventtime."
+											<i class='icon-share' ></i> ".$fname." Edited Project ".$project_title22." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -466,8 +466,8 @@ if ($_POST['time']) {
 				
 			case 36:
 				$notice = $notice ."<li>
-										<a href ='profile.php?username=".$uname."' style='white-space: normal ;'>
-											<span class='icon-plus'></span>	".$fname." Added Skills to his profile on  ".$eventtime."
+										<a href ='profile.php?username=".$uname."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
+											<i class='icon-plus'></i>	".$fname." Added Skills to his profile on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
@@ -483,7 +483,7 @@ if ($_POST['time']) {
 				$notice = $notice ."<li>
 										<a class='btn-link' style='white-space: normal ;' href='challengesOpen.php?challenge_id=".$challenge_id."' 
 										target='_blank'	onclick=".update($user_id,$db_handle).">
-											<span class='icon-star'></span>	".$fname."&nbsp; Spammed Challenge ".$challenge_title." on  ".$eventtime."
+											<i class='icon-star'></i>	".$fname."&nbsp; Spammed Challenge ".$challenge_title." on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;
