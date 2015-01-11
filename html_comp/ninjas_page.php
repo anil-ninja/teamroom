@@ -97,7 +97,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         $display_ch_stmt_content .= "</div>                    
                                 <div class='list-group-item'>
                         <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/><br/>";
-                        
+        $display_ch_stmt_content = $display_ch_stmt_content . editchallenge($chelangestmt, $chelangeid) ;             
     if ($ctype == 1) {
         if ($status == 1) {
             echo "<div class='list-group challenge'>

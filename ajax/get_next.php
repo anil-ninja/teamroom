@@ -89,50 +89,7 @@ if ($_POST['chal']) {
         $get_display_ch_stmt_content = "</div>                    
                                 <div class='list-group-item'>
                         <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/><br/>";
-    if(isset($_SESSION['user_id'])){
-		if(substr($chelangestmt, 0, 1) != '<') {
-	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-			}
-		else {
-			if (substr($chelangestmt, 0, 4) == ' <br') {
-		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			if (substr($chelangestmt, 0, 4) 3= '<br') {
-		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			if (substr($chelangestmt, 0, 3) == '<s>') {
-		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			$chaaa = str_replace("<br/>", "\n",substr(strstr($chelangestmt, '<br/>'), 5)) ;
-			$cha = str_replace("<br/>", "\n",strstr($chelangestmt, '<br/>' , true)) ;
-			if(substr($chelangestmt, 0, 4) == '<img') {
-	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<div class='editbox' style='width : 90%;' id='challenge_pic_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelangestmt, 0, 2) == '<a') {
-	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<div class='editbox' style='width : 90%;' id='challenge_file_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelangestmt, 0, 3) == '<if') {
-	$get_display_ch_stmt_content = $get_display_ch_stmt_content ."<div class='editbox' style='width : 90%;' id='challenge_video_".$chelangeid."' >".$cha."</div>
-					<input type='text' class='editbox' id='url_video_".$chelangeid."' placeholder='Add You-tube URL'/><br/><br/>" ;
-					}
-	$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
-					<input type='submit' class='btn btn-primary editbox' value='Save' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
-					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
-			}
-		$get_display_ch_stmt_content = $get_display_ch_stmt_content . "<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
-					<input type='submit' class='btn btn-primary editbox' value='Save' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>" ;
-		}
+		$get_display_ch_stmt_content = $get_display_ch_stmt_content. editchallenge($chelangestmt, $chelangeid) ;
 //dropdown for edit/delete added here for all type of challenges except status 2, 4, 5
         $dropDown_challenge_get = $dropDown_challenge_get ."<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
