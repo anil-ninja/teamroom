@@ -419,4 +419,52 @@ function removescript($stmt){
 	}
 	return $returnStmt;
 }
+function editchallenge($stmt, $ch_id) {
+	$data = "" ;
+	$user_id = $_SESSION['user_id'] ;
+	if(isset($_SESSION['user_id'])){
+		if(substr($stmt, 0, 1) != '<') {
+           $data .= "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea><br/>
+					 <input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+					 <input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+		}
+		else {
+			if (substr($stmt, 0, 4) == ' <br') {
+$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+				}
+			if (substr($stmt, 0, 3) == '<br') {
+$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+				}
+			if (substr($stmt, 0, 4) == '<s>') {
+$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+				}
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($stmt, '<br/>' , true)) ;
+			if(substr($chelangestmt, 0, 4) == '<img') {
+$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$ch_id."' >".$cha."</div>
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/><br/>" ;
+					}
+			if(substr($chelangestmt, 0, 2) == '<a') {
+$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_file_".$ch_id."' >".$cha."</div>
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/><br/>" ;
+					}
+			if(substr($chelangestmt, 0, 3) == '<if') {
+$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_video_".$ch_id."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$ch_id."' placeholder='Add You-tube URL'/><br/><br/>" ;
+					}
+$display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$ch_id.")' id='pic_file_save_".$ch_id."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$ch_id."' >".$chaaa."</textarea>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedchallenge(".$ch_id.")' id='doneediting_".$ch_id."'/>";		
+			}
+$display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$ch_id.")' id='pic_file_save_".$ch_id."'/>" ;
+		}
+}
 ?>
