@@ -1,7 +1,7 @@
 (function(){
 
-  $('.bs-component [data-toggle="popover"]').popover();
-  $('.bs-component [data-toggle="tooltip"]').tooltip();
+  $('.abcd [data-toggle="popover"]').popover();
+  $('.abcd [data-toggle="tooltip"]').tooltip();
 
   function cleanSource(html) {
     var lines = html.split(/\n/);
