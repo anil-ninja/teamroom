@@ -77,13 +77,6 @@ include_once 'functions/delete_comment.php';
             </div>	
         </div>
 		<?php 
- echo "<div class='span7 offset3'>
-		<div class='panel-body' style=' margin:4px; background : rgb(240, 241, 242);'>
-		<p>
-		  <a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-	   </div>
-	   </div>" ;
                     if (isset($_SESSION['user_id'])) {
                         include_once 'html_comp/project_talk.php'; 
                         include_once 'html_comp/friends.php'; 
@@ -98,6 +91,10 @@ include_once 'functions/delete_comment.php';
                 ?>   
         <?php include_once 'lib/html_inc_footers.php';
         include_once 'html_comp/check.php'; ?>  
+<div class='footer'>
+		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+</div>
                  <script>
     $('#dashboard_project').click(function(){
         $('#dashboard_project_content').load('html_comp/project_page_challenge.php');       

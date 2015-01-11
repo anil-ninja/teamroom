@@ -58,7 +58,7 @@ return date.join("/") + " " + time.join(":") ;
 }
 function updatetime() {
 	var dataString = 'update=true' + '&case=1' ;
-	//setTimeout(function(){
+	setTimeout(function(){
 			$.ajax({
 				type: "POST",
 				url: "ajax/updatetime.php",
@@ -75,7 +75,7 @@ function updatetime() {
 					}
 				}
 			}); 
-			//} , 60000) ;
+			} , 60000) ;
 		} ;
 setInterval(function(){
 	var eid = parseInt($("#lasteventid").val()) ;

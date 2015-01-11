@@ -83,7 +83,10 @@ function test() {
 };
 function test2() {
   $("#signupwithoutlogin").modal("hide");
-  $("#SignUp").modal("show");
+  $("#SignIn").modal("show");
+};
+function test3() {
+  $("#SignIn").modal("show");
 };
 $(document).ready(function() {
     $('#subscriptionid').keydown(function(event) {

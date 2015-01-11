@@ -46,8 +46,10 @@ if(!isset($_SESSION['user_id'])){
                 </div>
               </div>
 </div>
-
-        
+<div class='footer'>
+		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+</div>  
     <script>
         function bootstrap_alert(elem, message, timeout,type) {
             $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; right: 20%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');

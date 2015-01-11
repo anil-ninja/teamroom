@@ -68,17 +68,25 @@ if ($_POST['next']) {
             <br/><span id='challenge_".$challenge_id."' class='text'>".$challenge_stmt."</span><br/><br/>";
 if(isset($_SESSION['user_id'])){
 		if(substr($challengestmt, 0, 1) != '<') {
-$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
+$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file(".$challenge_id.")' id='pic_file_".$challenge_id."'/><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 			}
 		else {
 			if (substr($challengestmt, 0, 4) == ' <br') {
-$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
+$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file(".$challenge_id.")' id='pic_file_".$challenge_id."'/><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
+				}
+			if (substr($challengestmt, 0, 3) == '<br') {
+$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file(".$challenge_id.")' id='pic_file_".$challenge_id."'/><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 				}
 			if (substr($challengestmt, 0, 3) == '<s>') {
-$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
+$show = $show. "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$challenge_id."' >".str_replace("<br/>", "\n",$challengestmt)."</textarea><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file(".$challenge_id.")' id='pic_file_".$challenge_id."'/><br/>
+				<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$challenge_id.")' id='doneedit_".$challenge_id."'/>";
 				}
 			$chaaa = str_replace("<br/>", "\n",substr(strstr($challengestmt, '<br/>'), 5)) ;
 			$cha = str_replace("<br/>", "\n",strstr($challengestmt, '<br/>' , true)) ;
@@ -97,8 +105,10 @@ $show = $show. "<div class='editbox' style='width : 90%;' id='challenge_video_".
 $show = $show. "<input id='_fileChallenge_".$challenge_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
 					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$challenge_id.")' id='pic_file_save_".$challenge_id."'/>
 					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$challenge_id."' >".$chaaa."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$challenge_id.")' id='doneediting_".$challenge_id."'/>";		
+					<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$challenge_id.")' id='doneediting_".$challenge_id."'/>";		
 			}
+$show = $show. "<input id='_fileChallenge_".$challenge_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$challenge_id.")' id='pic_file_save_".$challenge_id."'/>" ;
 		}	
         $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $challenge_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')

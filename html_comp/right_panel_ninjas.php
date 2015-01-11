@@ -144,13 +144,13 @@
 		</div>
 		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
 		<div class="panel-body" style="padding: 1px;">
-			<li><button class='btn-link' id='allPanels' ><i class='icon-eye-open'></i> All</button></li>
-			<li><button class='btn-link' id='pencil' ><i class='icon-question-sign'></i> <span>Open challenges</span></button></li>
-			<li><button class='btn-link' id='globe' ><span class='icon-book'></span> Articles</button></li>
-			<li><button class='btn-link' id='tree' ><span class='icon-lightbulb'></span> Ideas</button></li>
-			<li><button class='btn-link' id='okch' ><span class='icon-flag'></span> Completed challenges </button></li>
-			<li><button class='btn-link' id='filmnin' ><span class='icon-film'></span> Videos</button></li>
-			<li><button class='btn-link' id='picch' ><span class='icon-picture'></span> Pics</button></li>
+			<li><button class='btn-link' style='color: #000' id='allPanels' ><i class='icon-eye-open'></i> All</button></li>
+			<li><button class='btn-link' id='pencil' style='color: #000' ><i class='icon-question-sign'></i> <span>Open challenges</span></button></li>
+			<li><button class='btn-link' id='globe' style='color: #000'><span class='icon-book'></span> Articles</button></li>
+			<li><button class='btn-link' id='tree' style='color: #000'><span class='icon-lightbulb'></span> Ideas</button></li>
+			<li><button class='btn-link' id='okch' style='color: #000'><span class='icon-flag'></span> Completed challenges </button></li>
+			<li><button class='btn-link' id='filmnin' style='color: #000'><span class='icon-film'></span> Videos</button></li>
+			<li><button class='btn-link' id='picch' style='color: #000'><span class='icon-picture'></span> Pics</button></li>
 		</div>
 	</div>
     </div>

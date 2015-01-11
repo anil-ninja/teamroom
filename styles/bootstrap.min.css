@@ -2562,7 +2562,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
   left: auto;
   right: 0;
   height:auto;
-  width: 250px; 
+  width: 400px; 
 }
 .mousescroll {
     overflow: hidden;
@@ -5555,4 +5555,15 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus
 .affix
 {
   position: fixed;
+}
+.footer {
+  position : relative;
+  right: 0;
+  max-height: 40px;
+  margin-bottom: 0px;
+  left: 0;
+  z-index : 9999 ;
+  background-color: #fff;
+  padding-bottom : 15px;
+  text-align: center;
 }

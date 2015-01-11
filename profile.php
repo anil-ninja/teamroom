@@ -94,32 +94,15 @@ $obj = new profile($UserName);
             <div id='tab7' class="span2 offset1">
 				
                 <?php
-                 echo " 	<center>
+                 echo " <center>
                              <b>
                                 <span id='first_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>&nbsp" 
                                     .ucfirst($profileViewFirstName)."
                                 </span> 
                                 <span id='last_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>".ucfirst($profileViewLastName)."
                                 </span>
-                            
                             </b>
-								</center>                           
-                           ";
-                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
-                        echo "<a class = 'btn-link' style='cursor: pointer;margin-left:72%;color: #333;' id='editprofile'>
-                                <span class = 'icon-pencil'></span> Edit 
-                            </a>";
-                    }                    
-                    echo "<div>
-                          <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
-                    if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
-                        echo "<center>
-                                <a id='demo4' data-toggle='modal' class = 'btn-link' style='position: relative; top: -5px; padding: 4px; color: #333; font-weight: 600;cursor: pointer; padding:4px 15px 4px 15px;' data-target='#uploadPicture'>
-                                    <span class = 'icon-pencil'></span>Change Pic
-                                </a>
-                             </center>";
-                           } 
-                    echo "</div>";
+						</center>" ;
                     if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] != $profileViewUserID)) {
         				$user_id = $_SESSION['user_id'] ;
         				$check = mysqli_query($db_handle, "SELECT user_id FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
@@ -135,7 +118,22 @@ $obj = new profile($UserName);
 								echo "<input type = 'submit' class = 'btn btn-success' onclick='knownperson(".$profileViewUserID.")' value = 'Link'/>";
 							}
         				}
-                    } 
+                    }
+                    if (isset($_SESSION['user_id']) && $profileViewUserID == $_SESSION['user_id']) {
+                        echo "<a class = 'btn-link' style='cursor: pointer;margin-left:72%;color: #333;' id='editprofile'>
+                                <span class = 'icon-pencil'></span> Edit 
+                            </a>";
+                    }                    
+                    echo "<div>
+                          <img src='uploads/profilePictures/$UserName.jpg'  style='width:200px; height:200px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>"; 
+                    if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
+                        echo "<center>
+                                <a id='demo4' data-toggle='modal' class = 'btn-link' style='position: relative; top: -5px; padding: 4px; color: #333; font-weight: 600;cursor: pointer; padding:4px 15px 4px 15px;' data-target='#uploadPicture'>
+                                    <span class = 'icon-pencil'></span>Change Pic
+                                </a>
+                             </center>";
+                           } 
+                    echo "</div>"; 
                 ?>
                 <div class='alert_placeholder'></div>
                 <div class="viewprofile">
@@ -361,13 +359,6 @@ $obj = new profile($UserName);
     ?>
 </div> 
 <?php
- echo "<div class='span7 offset3'>
-		<div class='panel-body' style='margin:4px; background : rgb(240, 241, 242);'>
-		<p>
-		  <a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a></p>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-	   </div>
-	   </div>" ;
 	include_once 'html_comp/signup.php' ;
 	include_once 'lib/html_inc_footers.php'; 
 			include_once 'html_comp/check.php'; ?> 
@@ -447,6 +438,10 @@ $obj = new profile($UserName);
             </div>
         </div>
     </div>
+</div>
+<div class='footer'>
+		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
 <script>
 var width = window.screen.availWidth;

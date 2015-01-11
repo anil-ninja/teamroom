@@ -26,7 +26,9 @@ $user_id = $_SESSION['user_id'] ;
         <?php include_once 'lib/htmt_inc_headers.php'; ?>
     </head>
     <body>
-		   <?php include_once 'html_comp/navbar_homepage.php'; 
+		   <?php include_once 'html_comp/navbar_homepage.php'; ?>
+		   <div class= '' style='margin-top: 60px;'></div>
+		   <?php
 		   $skilldata = "" ;
 		   $aboutdata = "" ;
 		   $userdata = "" ;
@@ -72,8 +74,8 @@ $user_id = $_SESSION['user_id'] ;
 											  <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
 											  <span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;No Information Available";
         		}
-        	echo "<div class='panel panel-primary' style='max-height : 150px ; margin-left:150px;margin-right:100px;'>
-					<div class='container'>
+        	echo "<div class='panel panel-default' style='margin-left:150px;margin-right:100px;'>
+					<div class='container' style='height:auto;'>
 					<div class='span2'>
 						<img src='uploads/profilePictures/$usersUsername.jpg'  style='width:150px; height:150px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
 					</div>
@@ -98,6 +100,10 @@ $user_id = $_SESSION['user_id'] ;
 	include_once 'html_comp/login_signup_modal.php';
     include_once 'html_comp/insert_time.php';
     ?>
+<div class='footer'>
+		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+</div>
     <script>
     $(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {

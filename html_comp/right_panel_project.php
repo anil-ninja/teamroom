@@ -114,11 +114,11 @@
 		</div>
 		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
 		<div class="panel-body" style="padding: 1px;">
-			<li><button class='btn-link' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
-			<li><button class='btn-link' id='deciduous' ><span class='icon-leaf'></span> Notes </button></li>
-			<li><button class='btn-link' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
-			<li><button class='btn-link' id='filmprj' ><span class='icon-film'></span> Videos</button></li>
-			<li><button class='btn-link' id='flag' ><span class='icon-flag'></span> Completed challenges </button></li>
+			<li><button class='btn-link' style='color: #000' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
+			<li><button class='btn-link' style='color: #000' id='deciduous' ><span class='icon-leaf'></span> Notes </button></li>
+			<li><button class='btn-link' style='color: #000' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
+			<li><button class='btn-link' style='color: #000' id='filmprj' ><span class='icon-film'></span> Videos</button></li>
+			<li><button class='btn-link' style='color: #000' id='flag' ><span class='icon-flag'></span> Completed challenges </button></li>
 		</div>
 	</div>
     </div>

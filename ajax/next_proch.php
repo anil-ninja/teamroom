@@ -114,37 +114,47 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                                 <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/><br/>";
     if(isset($_SESSION['user_id'])){
 		if(substr($taskstmt, 0, 1) != '<') {
-		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+		$get_display_task_stmt = $get_display_task_stmt.  "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 			}
 		else {
 			if (substr($taskstmt, 0, 4) == ' <br') {
-			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+				}
+			if (substr($taskstmt, 0, 3) == '<br') {
+			$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
 			if (substr($taskstmt, 0, 3) == '<s>') {
-		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
+		$get_display_task_stmt = $get_display_task_stmt . "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$id_task."' >".str_replace("<br/>", "\n",$taskstmt)."</textarea><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$id_task.")' id='doneedit_".$id_task."'/>";
 				}
 			$chaaa = str_replace("<br/>", "\n",substr(strstr($taskstmt, '<br/>'), 5)) ;
 			$cha = str_replace("<br/>", "\n",strstr($taskstmt, '<br/>' , true)) ;
 			if(substr($taskstmt, 0, 4) == '<img') {
 			$get_display_task_stmt = $get_display_task_stmt.  "<div class='editbox' style='width : 90%;' id='challenge_pic_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
 					}
 			if(substr($taskstmt, 0, 2) == '<a') {
 			$get_display_task_stmt = $get_display_task_stmt . "<div class='editbox' style='width : 90%;' id='challenge_file_".$id_task."' >".$cha."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$id_task.")' id='pic_file_".$id_task."'/><br/><br/>" ;
 					}
 			if(substr($taskstmt, 0, 3) == '<if') {
 			$get_display_task_stmt = $get_display_task_stmt . "<div class='editbox' style='width : 90%;' id='challenge_video_".$id_task."' >".$cha."</div>
 					<input type='text' class='editbox' id='url_video_".$id_task."' placeholder='Add You-tube URL'/><br/><br/>" ;
 					}
 			$get_display_task_stmt = $get_display_task_stmt . "<input id='_fileChallenge_".$id_task."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
-					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file(".$id_task.")' id='pic_file_save_".$id_task."'/>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$id_task.")' id='pic_file_save_".$id_task."'/>
 					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$id_task."' >".$chaaa."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedchallenge(".$id_task.")' id='doneediting_".$id_task."'/>";		
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedchallenge(".$id_task.")' id='doneediting_".$id_task."'/>";		
 			}
+		$get_display_task_stmt = $get_display_task_stmt . "<input id='_fileChallenge_".$id_task."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$id_task.")' id='pic_file_save_".$id_task."'/>" ;
 		}
     if ($type_task == 5) {
          if ($status_task == 2) {

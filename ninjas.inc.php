@@ -9,7 +9,7 @@ $username = $_SESSION['username'];
 $rank = $_SESSION['rank'];
 $email = $_SESSION['email'];
 
-if(isset($_POST['accept'])) {
+/* if(isset($_POST['accept'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='eye' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
 			<div class='modal-dialog'> 
@@ -35,7 +35,7 @@ if(isset($_POST['accept'])) {
 			</div> 
 		</div>
 	</div>" ;
-}
+} */
 /* if(isset($_POST['eta'])) {
 	$id = $_POST['id'] ;
 	echo "<div style='display: block;' class='modal fade in' id='asd' tabindex='-1' role='dialog' aria-labelledby='shareuserinfo' aria-hidden='false'>
