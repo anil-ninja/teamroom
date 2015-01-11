@@ -174,7 +174,7 @@ echo "</div>
 <div class="panel-primary eye_open" id="prch">
     <p id='home-ch'></p>
 <?php
-$_SESSION['lastpr'] = '10';
+$_SESSION['lastpr'] = '5';
 $_SESSION['project_id'] = $pro_id;
 $display_task_stmt_content = "" ;
 $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
@@ -185,7 +185,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 								 (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt, a.creation_time, a.challenge_type,
 								  a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
 								  WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
-								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update ".$sort_by." LIMIT 0, 10 ;");
+								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update ".$sort_by." LIMIT 0, 5 ;");
 
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];

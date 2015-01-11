@@ -36,8 +36,8 @@ $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.chal
 											(SELECT DISTINCT d.project_id, a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time, a.last_update,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.challenge_type !='2' and a.blob_id = c.blob_id and a.user_id = b.user_id )
-											 ORDER BY last_update DESC LIMIT 0, 10;");
-$_SESSION['lastpanel'] = '10';
+											 ORDER BY last_update DESC LIMIT 0, 6;");
+$_SESSION['lastpanel'] = '6';
 $display_ch_stmt_content = "";
 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
