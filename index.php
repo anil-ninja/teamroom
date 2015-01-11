@@ -64,6 +64,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     <link href="styles/font-awesome.min.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
 
+    <link rel="shortcut icon" href="favicon.ico">
 
     <!--[if IE 7]>
         <link href="styles/font-awesome-ie7.min.css" rel="stylesheet" />
