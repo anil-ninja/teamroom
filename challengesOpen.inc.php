@@ -110,9 +110,9 @@ function challenge_display($db_handle, $challengeSearchID) {
 						</p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/>";
         $display_name_stmt .= "<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
-                    <span id='demo11' class='badge icon-hand-up' style='cursor: pointer; float: none; color: #ffff;' onclick='like(\"".$chelangeid ."\", 1)'>
+                    <span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none; color: #ffff;' onclick='like(\"".$chelangeid ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span id='demo13' class='badge icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'>
+                    <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span></div>                    
                        <div class='list-group-item'>
                         <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 16px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span>";
