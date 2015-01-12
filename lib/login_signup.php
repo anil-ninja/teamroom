@@ -30,7 +30,7 @@ function signup(){
             else {
 				$pas = md5($pas);
 				$logintime = date("y-m-d H:i:s") ;
-		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password, last_login) VALUES ('$firstname', '$lastname', '$email', '$username', '$pas', '$logintime') ; ") ;		
+		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password, last_login, registeration_time) VALUES ('$firstname', '$lastname', '$email', '$username', '$pas', '$logintime', '$logintime') ; ") ;		
                 $user_create_id = mysqli_insert_id($db_handle);
                // echo $user_create_id ;
                 $hash_keyR = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
