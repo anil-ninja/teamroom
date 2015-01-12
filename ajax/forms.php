@@ -16,7 +16,7 @@ if($_POST['form_type']){
 						  <option value='1' >Public</option>
 						  <option value='2' selected >Private</option>
 						</select><br/><br/>
-					<input type='button' value='Create Challenge' class='btn btn-primary' id='create_challange_pb_pr' />" ;
+					<input type='button' value='Create Challenge' class='btn btn-primary' id='create_challange_pb_pr' onclick='create_challange_pb_pr()' />" ;
 			/* <div class="inline-form">
                     Challenge Open For : <select class="btn btn-default btn-xs" id= "open_time" >	
                         <option value='0' selected >hour</option>
