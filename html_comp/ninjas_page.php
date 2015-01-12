@@ -150,62 +150,6 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 $display_ch_stmt_content = "";
             }
     } 
-    if($ctype == 2) {
-	if ($status == 1) {
-            echo "<div class='list-group challenge'>
-                        <div class='list-group-item'>";
-                                
-           dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-            
-            //if ($remaintime != "Closed") {
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
-                                //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
-            //} else {
-               // echo " <br> " . $timefunction."<br>Closed";
-            //}
-                echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a>".$display_ch_stmt_content;
-                $display_ch_stmt_content = "";
-        } 
-        if ($status == 2) {
-            echo "<div class='list-group challenge'>
-                    <div class='list-group-item' >";
-          dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-            if($ownuser == $user_id) {			
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
-            }
-            echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a>";
-                                  //  <br/> Time Remaining : " . $remaintimeown ."<br>
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        
-        }
-        if ($status == 4) {
-            echo "<div class='list-group openchalhide'>
-                    <div class='list-group-item'>";
-         dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-            if($owner_id == $user_id) {			
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
-            }
-            echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
-                                //. "<br/>  ETA Taken : " . $timeo ."
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        }
-        if ($status == 5) {
-            echo "<div class='list-group openchalhide'>
-                    <div class='list-group-item' >";
-                                    // ETA Given : " . $timeo . "
-                                    
-                                    //. "<br/> ETA Taken : " . $timetakennin . "
-                         dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-            echo  $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br><hr>Submitted: "
-                            .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a> | ".$timecomm;
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        }
-    }
     if ($ctype == 6) {
         echo "<div class='list-group articlesch'>
                 <div class='list-group-item'>";
@@ -257,39 +201,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                $display_ch_stmt_content = "";
                     
         }
-        if ($status == 2) {
-            echo "<div class='list-group challenge'>
-                    <div class='list-group-item'>";
-                     dropDown_challenge($chelangeid, $user_id, $remaining_time_own, $owner_id) ;
-                        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
-                        if ($owner_id != $user_id ) {
-                            if(mysqli_num_rows($owneduser) == 0){
-                                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
-                            }
-                        }
-                        else {
-                            echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
-                        }
-                        echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes;
-$ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
-                                                from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
-            while ($ownedbrow = mysqli_fetch_array($ownedb)) {
-                $owtime = $ownedbrow['ownership_creation'];
-                $timfunct = date("j F, g:i a", strtotime($owtime));
-                $owfname = $ownedbrow['first_name'];
-                $owlname = $ownedbrow['last_name'];
-                $owname = $ownedbrow['username'];
-                echo "<hr>";
-                if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
-                }
-                echo "Owned: <a href ='profile.php?username=" . $owname . "'>"
-                    .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct;
-            }                
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        }
-        if ($status == 4) {
+        if ($status == 4 || $status == 2) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item'>";
                      dropDown_challenge($chelangeid, $user_id, $remaintimeown, $owner_id) ;
@@ -319,14 +231,14 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
               if  ($owlstatus==1){
-                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                echo "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a>| ".$timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<br><hr><input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
+                    echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
                 }
             }
             if  ($owlstatus==2){
-                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                echo "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | " . $timfunct." | Submitted: " .$owtimesubmit ;
                 //." and Time Taken : ".$timetakennin."
             }
@@ -355,14 +267,14 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
               if  ($owlstatus==1){
-                echo "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                echo "<br>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | " . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
+                    echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
                 }
             }
             if  ($owlstatus==2){
-                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                echo "<br/>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | ".$timfunct."| Submitted: " .$owtimesubmit ;
                 //." and Time Taken : ".$timetakennin."
             }
@@ -372,7 +284,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
         }
     }
     
-    if ($status == 4 || $status == 5) {
+    if ($status == 4 || $status == 5 || $status == 2) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION
                                             (select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
