@@ -460,12 +460,12 @@ function editchallenge($stmt, $ch_id) {
 			$data = $data."<div class='editbox' style='width : 90%;' id='challenge_video_".$ch_id."' >".$cha."</div>
 					<input type='text' class='editbox' id='url_video_".$ch_id."' placeholder='Add You-tube URL'/><br/>" ;
 					}
-			$data = $data."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+			$data = $data."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
 					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$ch_id.")' id='pic_file_save_".$ch_id."'/>
 					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$ch_id."' >".$chaaa."</textarea>
 						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedchallenge(".$ch_id.")' id='doneediting_".$ch_id."'/>";		
 			}
-		$data = $data."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+		$data = $data."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
 					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$ch_id.")' id='pic_file_save_".$ch_id."'/>" ;
 		}
 	return $data ;
@@ -509,12 +509,12 @@ function editproject($stmt, $pro_id) {
 			$data = $data."<div class='editbox' style='width : 90%;' id='project_video_".$pro_id."' >".$projectst1."</div>
 					<input type='text' class='editbox' id='project_url_video_".$pro_id."' placeholder='Add You-tube URL'/><br/>" ;
 					}
-			$data = $data."<input id='project_fileChallenge_".$pro_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+			$data = $data."<input id='project_fileChallenge_".$pro_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
 						<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$pro_id.")' id='pic_file_project_".$pro_id."'/>
 						<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_p_".$pro_id."' >".$stmt1."</textarea>
 						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedpro(".$pro_id.")' id='doneediting_project_".$pro_id."'/>";		
 			}
-		$data = $data."<input id='project_fileChallenge_".$pro_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
+		$data = $data."<input id='project_fileChallenge_".$pro_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
 					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$pro_id.")' id='pic_file_project_".$pro_id."'/>" ;
 		}
 	return $data ;

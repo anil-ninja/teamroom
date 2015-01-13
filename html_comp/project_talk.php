@@ -1,4 +1,4 @@
-<div style="bottom: 0px; right: 20px; display: block;" class="chatbox" id="chatbox_<?= $pro_id ?>">
+<div style="bottom: 0px; right: 30px; display: block;" class="chatbox" id="chatbox_<?= $pro_id ?>">
 <div class="chatboxhead">
 	<div class="chatboxtitle">Project Conversation</div>
 	<div class="chatboxoptions">
