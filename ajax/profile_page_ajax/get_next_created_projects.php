@@ -54,7 +54,7 @@ if ($_POST['next_CP']) {
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 </div>
                             <div class='list-group-item'>
-                        <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/><br/>";
+                        <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/>";
              $show_CP = $show_CP. editproject($projectstmttable, $project_id_table) ;            
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')

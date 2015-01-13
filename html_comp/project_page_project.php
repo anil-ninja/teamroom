@@ -76,7 +76,7 @@ echo "<div class='row-fluid'>
   </div> */
 echo "</div>
      </div>
-      <div class='list-group-item'><span id='project_".$pro_id."' class='text' style='line-height:22px;'>".$projectst."</span><br/><br/>";
+      <div class='list-group-item'><span id='project_".$pro_id."' class='text' style='line-height:22px;'>".$projectst."</span><br/>";
    echo editproject($projectstmt, $pro_id) ;
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')

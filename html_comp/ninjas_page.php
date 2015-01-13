@@ -97,7 +97,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_ch_stmt_content .= "</div>                    
                                 <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/><br/>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/>";
         $display_ch_stmt_content = $display_ch_stmt_content . editchallenge($chelangestmt, $chelangeid) ;             
     if ($ctype == 1) {
         if ($status == 1) {

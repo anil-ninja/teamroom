@@ -111,7 +111,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$get_display_task_stmt .= "<br></div>                    
 								<div class='list-group-item'><br>
 									<span id='challenge_".$id_task."' class='text'>".$stmt_task."</span>
-									<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/><br/>";
+									<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/>";
 			$get_display_task_stmt = $get_display_task_stmt . editchallenge($taskstmt, $id_task) ;
     if ($type_task == 5) {
          if ($status_task == 2) {

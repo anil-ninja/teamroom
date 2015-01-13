@@ -154,7 +154,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 						$("#video_title").val("") ;
 						$("#videosub").val("") ;
 						$("#videodes").val("") ;
-						$(".newPosts").prepend(notice['0']) ;
+						location.reload();
+						//$(".newPosts").prepend(notice['0']) ;
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -213,7 +214,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 						$("#video_title").val("") ;
 						$("#video").val("") ;
-						$(".newPosts").prepend(notice['0']) ;
+						location.reload();
+						//$(".newPosts").prepend(notice['0']) ;
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");

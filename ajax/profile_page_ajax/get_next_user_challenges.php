@@ -65,7 +65,7 @@ if ($_POST['next']) {
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
-            <br/><span id='challenge_".$challenge_id."' class='text'>".$challenge_stmt."</span><br/><br/>";
+            <br/><span id='challenge_".$challenge_id."' class='text'>".$challenge_stmt."</span><br/>";
 		$show = $show. editchallenge($challengestmt, $challenge_id) ;
         $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $challenge_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')

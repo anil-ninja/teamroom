@@ -232,7 +232,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                         }
                     }
                     echo "</div><div class='list-group-item'>
-                            <br/>" .$chelange . "<br/><br/>";
+                            <br/>" .$chelange . "<br/>";
                 } 
                  
                 if ($status == 4) {
@@ -281,7 +281,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     }
                 }
                 echo "</div><div class='list-group-item'>
-                            <br/>" .$chelange . "<br/><br/>";
+                            <br/>" .$chelange . "<br/>";
             }
                  
                 if ($status == 5) {
@@ -320,7 +320,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     }
                 }
                 echo "</div><div class='list-group-item'>
-                            <br/>" .$chelange . "<br/><br/>";
+                            <br/>" .$chelange . "<br/>";
             }
         }
             else if ($ctype == 4) {
