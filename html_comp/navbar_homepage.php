@@ -40,7 +40,7 @@
                             </b>
                         </p>
                     </li>
-                    <li><a style="cursor: pointer;color: #fff;" id="demo"></a></li>
+               <!---<li><a style="cursor: pointer;color: #fff;" id="demo"></a></li> --->
                     <li id='step10' style='cursor:pointer;'><li id='notifications' class='dropdown' ></li><li id='notificationlastid'></li></li>
                     <li id='step11' class="dropdown">
                        <a href='#' class="dropdown-toggle" data-toggle="dropdown" style='color: #fff;'>

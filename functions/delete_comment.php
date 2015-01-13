@@ -347,13 +347,14 @@ function recommended_project ($db_handle) {
     $project_public_title_display2 = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time
                                                             FROM projects WHERE user_id != '$user_id' and project_type= '1' and project_id NOT
                                                             IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
-                                                            ORDER BY rand() LIMIT 5;");
+                                                            ORDER BY rand() LIMIT 10;");
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
         echo "
-                <div class='panel panel-default bs-component'>
+                <div class='panel panel-default'>
                     <div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
                         <font size='2'><b> Recommended</b></font>
                     </div>
+                    <div class='bs-component' style='max-height:200px;overflow-y:scroll;'>
                         <table>";
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
@@ -389,6 +390,7 @@ function recommended_project ($db_handle) {
         echo "</td></tr>" ;
         }
         echo "</table>
+        </div>
         </div>";
     }
 }
@@ -418,5 +420,103 @@ function removescript($stmt){
 		$returnStmt .= $element . " ";
 	}
 	return $returnStmt;
+}
+function editchallenge($stmt, $ch_id) {
+	$data = "" ;
+	$user_id = $_SESSION['user_id'] ;
+	if(isset($_SESSION['user_id'])){
+		if(substr($stmt, 0, 1) != '<') {
+           $data .= "<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+					 <input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+					 <input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+		}
+		else {
+			if (substr($stmt, 0, 4) == ' <br') {
+			$data = $data."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+				}
+			if (substr($stmt, 0, 3) == '<br') {
+			$data = $data."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+				}
+			if (substr($stmt, 0, 4) == '<s>') {
+			$data = $data."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$ch_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$ch_id.")' id='doneedit_".$ch_id."'/>";
+				}
+			$chaaa = str_replace("<br/>", "\n",substr(strstr($stmt, '<br/>'), 5)) ;
+			$cha = str_replace("<br/>", "\n",strstr($stmt, '<br/>' , true)) ;
+			if(substr($stmt, 0, 4) == '<img') {
+			$data = $data."<div class='editbox' style='width : 90%;' id='challenge_pic_".$ch_id."' >".$cha."</div>
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>" ;
+					}
+			if(substr($stmt, 0, 2) == '<a') {
+			$data = $data."<div class='editbox' style='width : 90%;' id='challenge_file_".$ch_id."' >".$cha."</div>
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$ch_id.")' id='pic_file_".$ch_id."'/><br/>" ;
+					}
+			if(substr($stmt, 0, 3) == '<if') {
+			$data = $data."<div class='editbox' style='width : 90%;' id='challenge_video_".$ch_id."' >".$cha."</div>
+					<input type='text' class='editbox' id='url_video_".$ch_id."' placeholder='Add You-tube URL'/><br/>" ;
+					}
+			$data = $data."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$ch_id.")' id='pic_file_save_".$ch_id."'/>
+					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$ch_id."' >".$chaaa."</textarea>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedchallenge(".$ch_id.")' id='doneediting_".$ch_id."'/>";		
+			}
+		$data = $data."<input id='_fileChallenge_".$ch_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$ch_id.")' id='pic_file_save_".$ch_id."'/>" ;
+		}
+	return $data ;
+}
+function editproject($stmt, $pro_id) {
+	$data = "" ;
+	$user_id = $_SESSION['user_id'] ;
+	if(isset($_SESSION['user_id'])){
+		if(substr($stmt, 0, 1) != '<') {
+			$data .= "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+					 <input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/>
+					 <input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
+			}
+		else {
+			if (substr($stmt, 0, 4) == ' <br') {
+			$data = $data."<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+					       <input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/>
+						   <input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
+				}
+			if (substr($stmt, 0, 3) == '<br') {
+			$data = $data."<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+						   <input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/>
+						   <input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
+				}
+			if (substr($stmt, 0, 3) == '<s>') {
+			$data = $data."<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$pro_id."' >".str_replace("<br/>", "\n",$stmt)."</textarea>
+						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedproject(".$pro_id.")' id='project_doneedit_".$pro_id."'/>";
+				}
+			$stmt1 = str_replace("<br/>", "\n",substr(strstr($stmt, '<br/>'), 5)) ;
+			$projectst1 = str_replace("<br/>", "\n",strstr($stmt, '<br/>' , true)) ;
+			if(substr($stmt, 0, 4) == '<img') {
+			$data = $data."<div class='editbox' style='width : 90%;' id='project_pic_".$pro_id."' >".$projectst1."</div>
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/>" ;
+					}
+			if(substr($stmt, 0, 2) == '<a') {
+			$data = $data."<div class='editbox' style='width : 90%;' id='project_file_".$pro_id."' >".$projectst1."</div>
+					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file_project(".$pro_id.")' id='project_pic_file_".$pro_id."'/><br/>" ;
+					}
+			if(substr($stmt, 0, 3) == '<if') {
+			$data = $data."<div class='editbox' style='width : 90%;' id='project_video_".$pro_id."' >".$projectst1."</div>
+					<input type='text' class='editbox' id='project_url_video_".$pro_id."' placeholder='Add You-tube URL'/><br/>" ;
+					}
+			$data = $data."<input id='project_fileChallenge_".$pro_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
+						<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$pro_id.")' id='pic_file_project_".$pro_id."'/>
+						<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_p_".$pro_id."' >".$stmt1."</textarea>
+						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedpro(".$pro_id.")' id='doneediting_project_".$pro_id."'/>";		
+			}
+		$data = $data."<input id='project_fileChallenge_".$pro_id."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'>
+					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$pro_id.")' id='pic_file_project_".$pro_id."'/>" ;
+		}
+	return $data ;
 }
 ?>

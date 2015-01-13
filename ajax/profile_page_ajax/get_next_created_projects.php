@@ -54,51 +54,8 @@ if ($_POST['next_CP']) {
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 </div>
                             <div class='list-group-item'>
-                        <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/><br/>";
-     if(isset($_SESSION['user_id'])){
-		if(substr($projectstmttable, 0, 1) != '<') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$projectstmttable)."</textarea><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
-			}
-		else {
-			if (substr($projectstmttable, 0, 4) == ' <br') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$projectstmttable)."</textarea><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
-				}
-			if (substr($projectstmttable, 0, 3) == '<br') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$projectstmttable)."</textarea><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
-				}
-			if (substr($projectstmttable, 0, 3) == '<s>') {
-			$show_CP = $show_CP. "<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_".$project_id_table."' >".str_replace("<br/>", "\n",$projectstmttable)."</textarea><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Add photo' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedproject(".$project_id_table.")' id='project_doneedit_".$project_id_table."'/>";
-				}
-			$projectstmt1 = str_replace("<br/>", "\n",substr(strstr($projectstmttable, '<br/>'), 5)) ;
-			$projectst1 = str_replace("<br/>", "\n",strstr($projectstmttable, '<br/>' , true)) ;
-			if(substr($projectstmttable, 0, 4) == '<img') {
-			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_pic_".$project_id_table."' >".$projectst1."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
-					}
-			if(substr($projectstmttable, 0, 2) == '<a') {
-			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_file_".$project_id_table."' >".$projectst1."</div>
-					<input type='submit' class='btn-success btn-xs editbox' value='Update' onclick='upload_pic_file_project(".$project_id_table.")' id='project_pic_file_".$project_id_table."'/><br/><br/>" ;
-					}
-			if(substr($projectstmttable, 0, 3) == '<if') {
-			$show_CP = $show_CP. "<div class='editbox' style='width : 90%;' id='project_video_".$project_id_table."' >".$projectst1."</div>
-					<input type='text' class='editbox' id='project_url_video_".$project_id_table."' placeholder='Add You-tube URL'/><br/><br/>" ;
-					}
-			$show_CP = $show_CP. "<input id='project_fileChallenge_".$project_id_table."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
-					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$project_id_table.")' id='pic_file_project_".$project_id_table."'/>
-					<textarea row='5' class='editbox' style='width : 90%;' id= 'project_stmt_p_".$project_id_table."' >".$projectstmt1."</textarea>
-						<input type='submit' class='btn-success btn-xs editbox' value='Save' onclick='saveeditedpro(".$project_id_table.")' id='doneediting_project_".$project_id_table."'/>";		
-			}
-		$show_CP = $show_CP. "<input id='project_fileChallenge_".$project_id_table."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
-					<input type='submit' class='btn-success btn-xs editbox' value='Upload New Photo/File' onclick='save_pic_file_project(".$project_id_table.")' id='pic_file_project_".$project_id_table."'/>" ;
-		}                                      
+                        <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/>";
+             $show_CP = $show_CP. editproject($projectstmttable, $project_id_table) ;            
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION

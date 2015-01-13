@@ -1,5 +1,4 @@
 <br/>
-<div class="bs-component">
     <div id='step2' class="panel panel-default">
         <div class="panel-heading" style="padding: 5px;" role="tab" id="headingOne">
             <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
@@ -135,14 +134,14 @@
 		</div>
     </div><br/>
 	<div id='step13' class="panel panel-default">
-		<div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
-			<a class="" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+		<div class="panel-heading" style="padding: 5px;" role="tab" id="headingFour">
+			<a class="" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFour">
 				<i class='icon-zoom-in'></i>&nbsp;
 				Eagle Eye View
 				<i class='icon-chevron-down pull-right'></i>
 			</a>
 		</div>
-		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
+		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingFour">
 		<div class="panel-body" style="padding: 1px;">
 			<li><button class='btn-link' style='color: #000' id='allPanels' ><i class='icon-eye-open'></i> All</button></li>
 			<li><button class='btn-link' id='pencil' style='color: #000' ><i class='icon-question-sign'></i> <span>Open challenges</span></button></li>
@@ -154,7 +153,6 @@
 		</div>
 	</div>
     </div>
-</div>
 <!--Change reminder Modal starts here -->
 <div id="changeremindervalues" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">

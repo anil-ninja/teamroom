@@ -8,6 +8,7 @@
 	</ul>
 	<div class="tab-content" >
 	    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
+			<div class='bs-component' style='max-height:280px;'>
 <?php 
 	
 		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
@@ -17,7 +18,7 @@
 												a.user_id = b.knowning_id and b.status != '4' and b.status != '3')
 												and user_id NOT IN (select a.user_id FROM user_info as a join known_peoples as b
 												where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2')
-												 ORDER by rand() limit 0, 5 ;");
+												 ORDER by rand() limit 0, 10 ;");
 		if (mysqli_num_rows($Recommended) == 0) {
 			echo "<div class ='row' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
 					<i> No Recommendation</i>
@@ -53,6 +54,7 @@
 		}
 	} 
 ?>
+</div>
 </div>
 </div>
 </div>

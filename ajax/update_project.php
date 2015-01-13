@@ -17,8 +17,13 @@ if($_POST['id']){
 		$challange = $stmt ;
 	}
 	else {
-		$challange = $image." ".strstr($stmt, '<br/>') ;
+		if(substr($stmt, 0, 4) == '<img') {
+			$challange = $image." ".strstr($stmt, '<br/>') ;
 		}
+		else {
+			$challange = $image." <br/> ".$stmt ;
+		}
+	}
 	$time = date("Y-m-d H:i:s") ;
 	if(strlen($challange) < 1000) {
 			mysqli_query($db_handle,"update projects set stmt='$challange' where project_id='$id';") ;

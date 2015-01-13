@@ -1,6 +1,6 @@
-<div style="bottom: 0px; right: 20px; display: block;" class="chatbox" id="chatbox_<?= $projttitle ?>">
+<div style="bottom: 0px; right: 30px; display: block;" class="chatbox" id="chatbox_<?= $pro_id ?>">
 <div class="chatboxhead">
-	<div class="chatboxtitle"><?= $projttitle ?></div>
+	<div class="chatboxtitle">Project Conversation</div>
 	<div class="chatboxoptions">
 		<a onclick="toggle()" style ='cursor: pointer;'>-</a> 
 	</div>

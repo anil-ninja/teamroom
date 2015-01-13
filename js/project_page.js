@@ -28,17 +28,10 @@ function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}		
 		function create_challange_pb_pr(){
+			$("#create_challange_pb_pr").attr('disabled','disabled');
 			//alert("i am geting fucked");
 			var challenge = convertSpecialChar($("#challangepr").val()) ;
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
-			//var open_time = parseInt($("#open_time").val());
-			//var open = parseInt($("#open").val());
-			//var opentime = parseInt(open_time*60+open) ;
-			//var eta = parseInt($("#cc_eta").val());
-			//var etab = parseInt($("#cc_etab").val());
-			//var etac = parseInt($("#cc_etac").val());
-			//var etad = parseInt($("#cc_etad").val());
-			//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
@@ -46,10 +39,12 @@ function convertSpecialChar(str){
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
+				$("#create_challange_pb_pr").removeAttr('disabled');
 				return false ;
 			}
 			else if(challenge_title==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				$("#create_challange_pb_pr").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -61,6 +56,7 @@ function convertSpecialChar(str){
 		}
 	
 		function create_notes(){
+			$("#create_notes").attr('disabled','disabled');
 			var notes = convertSpecialChar($("#notestmt").val()) ;
 			var notes_title = convertSpecialChar($("#notes_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
@@ -68,6 +64,7 @@ function convertSpecialChar(str){
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
+				$("#create_notes").removeAttr('disabled');
 				return false ;
 			}
 			else {
@@ -77,7 +74,7 @@ function convertSpecialChar(str){
 			uploadFile1(_file,"projectnotesPic",String(dataString),"ajax/submit_notes.php");
 			}
 		}
-		
+	$(document).ready(function(){	
 		$("#answerch").click(function(){
 			$("#answerch").attr('disabled','disabled');
 			var answerchal = convertSpecialChar($("#answerchal").val()) ;
@@ -98,7 +95,7 @@ function convertSpecialChar(str){
 				uploadFile1(_file,"answerPic",String(dataString),"ajax/submit_answer.php");
 			}
 		});
-	$(document).ready(function(){
+	
 		     $('.tree-toggle').click(function () {
 	$(this).parent().children('ul.tree').toggle(200);
 });	

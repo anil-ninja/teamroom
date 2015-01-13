@@ -58,7 +58,7 @@ return date.join("/") + " " + time.join(":") ;
 }
 function updatetime() {
 	var dataString = 'update=true' + '&case=1' ;
-	setTimeout(function(){
+	//setTimeout(function(){
 			$.ajax({
 				type: "POST",
 				url: "ajax/updatetime.php",
@@ -66,25 +66,21 @@ function updatetime() {
 				cache: false,
 				success: function(result){
 					if(result == "updated") {
-						$("#countnotice").val(0) ;
-						}
-					else {
-					var notice = result.split("+") ;
-					document.getElementById("notifications").innerHTML = notice['0'];
-					document.getElementById("notificationlastid").innerHTML = notice['1'];
+						document.getElementById("countnotice").innerHTML = "" ;
 					}
 				}
 			}); 
-			} , 60000) ;
+		//	} , 60000) ;
 		} ;
 setInterval(function(){
-	var eid = parseInt($("#lasteventid").val()) ;
+	var eid = $("#lasteventid").val() ;
 	var time = timeStamp() ;
 	//alert (time + "," + eid) ;
-	getnewnote(time, eid+='') ;
+	getnewnote(time, eid) ;
 },300000)();
 function getnewnote(time, lid) {	
 	var dataString = 'time='+ time + '&lid=' + lid ;
+	//alert(dataString) ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/newnote.php",
@@ -101,7 +97,7 @@ function getnewnote(time, lid) {
 				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
 				var neid = parseInt(notice['2']) ;
 				if (neid+='' != 0) {
-					document.getElementById("countnotice").innerHTML = newnum+='' ;
+					document.getElementById("countnotice").innerHTML = newnum ;
 				}
 				if (newnum+='' != 0) {
 					$("#lasteventid").val(neid+='') ;

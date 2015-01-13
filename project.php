@@ -122,7 +122,7 @@ $("#project_chat_data").hide();
 			});
 		}
 	});	
-	chatBoxes.push('<?= $projttitle ?>');
+	chatBoxes.push('<?= $pro_id ?>');
         </script>
 <script>
 var width = window.screen.availWidth;

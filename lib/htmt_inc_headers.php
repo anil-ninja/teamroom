@@ -21,6 +21,8 @@
 <link href='../../fonts.googleapis.com/css%3Ffamily=PT+Sans:400,700.css' rel='stylesheet' type='text/css'>
 <link href="styles/font-awesome.min.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
+
+<link rel="shortcut icon" href="favicon.ico">
 <!--end of new css -->
 
 <link rel="stylesheet" href="css/bootswatch.css">
@@ -36,3 +38,4 @@
 <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/introjs.css" />
+<link type="text/css" rel="stylesheet" media="all" href="css/jquery.jscrollpane.css" />

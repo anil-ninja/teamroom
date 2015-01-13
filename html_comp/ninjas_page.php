@@ -18,6 +18,7 @@
 		<div id='remindervalue'></div>
     </div>
 </div>
+<div class='newPosts' ></div>
 <?php
 $user_id = $_SESSION['user_id'];
 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
@@ -36,8 +37,8 @@ $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.chal
 											(SELECT DISTINCT d.project_id, a.challenge_id, d.project_title, a.challenge_title, a.challenge_status, a.user_id, a.challenge_ETA, a.challenge_type, c.stmt, a.creation_time, a.last_update,
 											b.first_name, b.last_name, b.username from challenges as a join user_info as b join blobs as c join projects as d
 											WHERE a.project_id = d.project_id and d.project_type='1' and a.challenge_status != '3' and a.challenge_status != '7' and a.challenge_type !='5' and a.challenge_type !='2' and a.blob_id = c.blob_id and a.user_id = b.user_id )
-											 ORDER BY last_update DESC LIMIT 0, 10;");
-$_SESSION['lastpanel'] = '10';
+											 ORDER BY last_update DESC LIMIT 0, 6;");
+$_SESSION['lastpanel'] = '6';
 $display_ch_stmt_content = "";
 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
@@ -96,51 +97,8 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_ch_stmt_content .= "</div>                    
                                 <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/><br/>";
-                        if(isset($_SESSION['user_id'])){
-		if(substr($chelangestmt, 0, 1) != '<') {
-$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-			}
-		else {
-			if (substr($chelangestmt, 0, 4) == ' <br') {
-$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			if (substr($chelangestmt, 0, 3) == '<br') {
-$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			if (substr($chelangestmt, 0, 4) == '<s>') {
-$display_ch_stmt_content = $display_ch_stmt_content."<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_".$chelangeid."' >".str_replace("<br/>", "\n",$chelangestmt)."</textarea><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Add photo' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveedited(".$chelangeid.")' id='doneedit_".$chelangeid."'/>";
-				}
-			$chaaa = str_replace("<br/>", "\n",substr(strstr($chelangestmt, '<br/>'), 5)) ;
-			$cha = str_replace("<br/>", "\n",strstr($chelangestmt, '<br/>' , true)) ;
-			if(substr($chelangestmt, 0, 4) == '<img') {
-$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_pic_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelangestmt, 0, 2) == '<a') {
-$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_file_".$chelangeid."' >".$cha."</div>
-					<input type='submit' class='btn btn-primary editbox' value='Update' onclick='upload_pic_file(".$chelangeid.")' id='pic_file_".$chelangeid."'/><br/><br/>" ;
-					}
-			if(substr($chelangestmt, 0, 3) == '<if') {
-$display_ch_stmt_content = $display_ch_stmt_content."<div class='editbox' style='width : 90%;' id='challenge_video_".$chelangeid."' >".$cha."</div>
-					<input type='text' class='editbox' id='url_video_".$chelangeid."' placeholder='Add You-tube URL'/><br/><br/>" ;
-					}
-$display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
-					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>
-					<textarea row='5' class='editbox' style='width : 90%;' id= 'challenge_stmt_p_".$chelangeid."' >".$chaaa."</textarea>
-						<input type='submit' class='btn btn-primary editbox' value='Save' onclick='saveeditedchallenge(".$chelangeid.")' id='doneediting_".$chelangeid."'/>";		
-			}
-$display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_".$chelangeid."' class='btn btn-default editbox' type='file' title='Upload Photo' label='Add photos to your post' style ='width: auto;'><br/>
-					<input type='submit' class='btn btn-primary editbox' value='Upload New Photo/File' onclick='save_pic_file(".$chelangeid.")' id='pic_file_save_".$chelangeid."'/>" ;
-		}
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/>";
+        $display_ch_stmt_content = $display_ch_stmt_content . editchallenge($chelangestmt, $chelangeid) ;             
     if ($ctype == 1) {
         if ($status == 1) {
             echo "<div class='list-group challenge'>
@@ -193,62 +151,6 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                 $display_ch_stmt_content = "";
             }
     } 
-    if($ctype == 2) {
-	if ($status == 1) {
-            echo "<div class='list-group challenge'>
-                        <div class='list-group-item'>";
-                                
-           dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-            
-            //if ($remaintime != "Closed") {
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
-                                //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
-            //} else {
-               // echo " <br> " . $timefunction."<br>Closed";
-            //}
-                echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a>".$display_ch_stmt_content;
-                $display_ch_stmt_content = "";
-        } 
-        if ($status == 2) {
-            echo "<div class='list-group challenge'>
-                    <div class='list-group-item' >";
-          dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-            if($ownuser == $user_id) {			
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
-            }
-            echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br> <hr> Accepted: <a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a>";
-                                  //  <br/> Time Remaining : " . $remaintimeown ."<br>
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        
-        }
-        if ($status == 4) {
-            echo "<div class='list-group openchalhide'>
-                    <div class='list-group-item'>";
-         dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-            if($owner_id == $user_id) {			
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
-            }
-            echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
-                                . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
-                                //. "<br/>  ETA Taken : " . $timeo ."
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        }
-        if ($status == 5) {
-            echo "<div class='list-group openchalhide'>
-                    <div class='list-group-item' >";
-                                    // ETA Given : " . $timeo . "
-                                    
-                                    //. "<br/> ETA Taken : " . $timetakennin . "
-                         dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-            echo  $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a><br><hr>Submitted: "
-                            .ucfirst($ownfname).'&nbsp'.ucfirst($ownlname)."</a> | ".$timecomm;
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        }
-    }
     if ($ctype == 6) {
         echo "<div class='list-group articlesch'>
                 <div class='list-group-item'>";
@@ -300,39 +202,7 @@ $display_ch_stmt_content = $display_ch_stmt_content."<input id='_fileChallenge_"
                $display_ch_stmt_content = "";
                     
         }
-        if ($status == 2) {
-            echo "<div class='list-group challenge'>
-                    <div class='list-group-item'>";
-                     dropDown_challenge($chelangeid, $user_id, $remaining_time_own, $owner_id) ;
-                        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
-                        if ($owner_id != $user_id ) {
-                            if(mysqli_num_rows($owneduser) == 0){
-                                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
-                            }
-                        }
-                        else {
-                            echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
-                        }
-                        echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes;
-$ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, b.first_name, b.last_name,b.username
-                                                from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
-            while ($ownedbrow = mysqli_fetch_array($ownedb)) {
-                $owtime = $ownedbrow['ownership_creation'];
-                $timfunct = date("j F, g:i a", strtotime($owtime));
-                $owfname = $ownedbrow['first_name'];
-                $owlname = $ownedbrow['last_name'];
-                $owname = $ownedbrow['username'];
-                echo "<hr>";
-                if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
-                }
-                echo "Owned: <a href ='profile.php?username=" . $owname . "'>"
-                    .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct;
-            }                
-            echo $display_ch_stmt_content;
-            $display_ch_stmt_content = "";
-        }
-        if ($status == 4) {
+        if ($status == 4 || $status == 2) {
             echo "<div class='list-group challenge'>
                     <div class='list-group-item'>";
                      dropDown_challenge($chelangeid, $user_id, $remaintimeown, $owner_id) ;
@@ -362,14 +232,14 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
               if  ($owlstatus==1){
-                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                echo "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a>| ".$timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<br><hr><input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
+                    echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
                 }
             }
             if  ($owlstatus==2){
-                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                echo "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | " . $timfunct." | Submitted: " .$owtimesubmit ;
                 //." and Time Taken : ".$timetakennin."
             }
@@ -398,14 +268,14 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
               if  ($owlstatus==1){
-                echo "<br><hr>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
+                echo "<br>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | " . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
-                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
+                    echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
                 }
             }
             if  ($owlstatus==2){
-                echo "<br><hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                echo "<br/>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | ".$timfunct."| Submitted: " .$owtimesubmit ;
                 //." and Time Taken : ".$timetakennin."
             }
@@ -415,7 +285,7 @@ $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.
         }
     }
     
-    if ($status == 4 || $status == 5) {
+    if ($status == 4 || $status == 5 || $status == 2) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION
                                             (select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
