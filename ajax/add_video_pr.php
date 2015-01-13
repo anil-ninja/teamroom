@@ -11,7 +11,9 @@ if($_POST['videos']){
 	$challenge_title = $_POST['title'] ;
 	$videodes = $_POST['videodes'] ;
 	$challange = $challangetext."<br/> ".$videodes ;
-	$username = $_SESSION['username'];
+	$firstname = $_SESSION['first_name'] ;
+	$username = $_SESSION['username'] ;
+	$remaintime = 99 ;
 	$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 	$inforow = mysqli_fetch_array($info) ;
 	$title = $inforow['project_title'] ;
@@ -42,9 +44,47 @@ if($_POST['videos']){
 			involve_in($db_handle,$user_id,"10",$idp);
 			events($db_handle,$user_id,"10",$idp); 
 			}
+	$timefunct = date("j F, g:i a") ;
+	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $challange)))) ;
+	$title = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $challenge_title)))) ;
+	$ntitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $challenge_title))) ;
+	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $challange))) ;
+	$data = "<div class='list-group film'>
+                <div class='list-group-item'>
+					<div class='dropdown pull-right'>
+						<a href='#'' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
+						<ul class='dropdown-menu'>
+							<li><a class='btn-link' href='#' onclick='edit_content(\"".$idp."\", 1)'>Edit</a></li>
+							<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
+						</ul>
+					</div>" ;
+    $data = $data ."<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' 
+					id='challenge_ti_".$idp."' class='text'><b>
+					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($title)."</a>
+					</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>
+					<span class='icon-film'></span>
+					<span style= 'color: #808080'>
+					&nbspBy: <a href ='profile.php?username=" . $username . "'>".ucfirst($firstname)."</a> | ".$timefunct."</span> | 
+                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 1)'>
+                        <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span> &nbsp
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 2)'>
+                        <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span>
+                    </div><div class='list-group-item'>
+                    <br/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; 
+                    font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/>" ;
+       $data = $data .editchallenge($nchallange, $idp) ;
+      $data = $data ."<div class='comments_".$idp."'></div>
+					<div id='step15' class='comments clearfix'>
+						<div class='pull-left lh-fix'>
+							<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+						</div>
+						<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$idp."'
+						 placeholder='Want to know your comment....'/>
+						<button type='submit' class='btn btn-primary' onclick='comment(\"".$idp."\", 1)' style='margin-bottom: 10px;'>
+						<span class='icon-chevron-right'></span></button>
+					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
-	else { echo "Video Posted Successfully !!!"; }				
-
+	else { echo "Video Posted Successfully !!!"."+".$data ; }
 	mysqli_close($db_handle);
 }
 else echo "Invalid parameters!";	

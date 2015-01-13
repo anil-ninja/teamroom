@@ -356,7 +356,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 			<br/><span id='challenge_".$id_task."' class='text' >".$stmt_task."</span>
 			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>" ;
  */
-    if (($type_task == 1 || $type_task == 2 || $type_task == 5) && ($status_task == 4 || $status_task == 5)) {
+    if ($status_task == 4 || $status_task == 5) {
 
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$id_task' and blob_id = '0' and status = '2')
                                             UNION

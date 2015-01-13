@@ -150,12 +150,13 @@ function bootstrap_alert(elem, message, timeout,type) {
 				success: function(result){
 					var notice = result.split("+") ;
 					if(notice['0'] = "Video Posted Successfully !!!") {
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 						$("#video_title").val("") ;
 						$("#videosub").val("") ;
 						$("#videodes").val("") ;
-						location.reload();
-						//$(".newPosts").prepend(notice['0']) ;
+						$(".newPosts").prepend(notice['1']) ;
+						$("#create_video").removeAttr('disabled');
+						$(".editbox").hide() ;
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -211,11 +212,13 @@ function bootstrap_alert(elem, message, timeout,type) {
 				success: function(result){
 					var notice = result.split("+") ;
 					if(notice['0'] = "Video Posted Successfully !!!") {
-						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						$("#video_title").val("") ;
-						$("#video").val("") ;
-						location.reload();
-						//$(".newPosts").prepend(notice['0']) ;
+						bootstrap_alert(".alert_placeholder", notice['1'], 5000,"alert-success");
+						$("#video_titlepr").val("") ;
+						$("#videoprjt").val("") ;
+						$("#videodespr").val("") ;
+						$(".newPosts").prepend(notice['1']) ;
+						$("#create_videopr").removeAttr('disabled');
+						$(".editbox").hide() ;
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
