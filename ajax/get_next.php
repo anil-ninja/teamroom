@@ -28,8 +28,6 @@ if ($_POST['chal']) {
 											 ORDER BY last_update DESC LIMIT $a, $b;");
     $show = "";
     $get_display_ch_stmt_content = "" ;
-    $dropDown_challenge_get = "";
-    $dropDown_ch_after_accept = "";
     $iR = 0;
     while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         $iR++;
@@ -91,11 +89,11 @@ if ($_POST['chal']) {
                         <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/><br/>";
 		$get_display_ch_stmt_content = $get_display_ch_stmt_content. editchallenge($chelangestmt, $chelangeid) ;
 //dropdown for edit/delete added here for all type of challenges except status 2, 4, 5
-        $dropDown_challenge_get = $dropDown_challenge_get ."<div class='list-group-item pull-right'>
+        $dropDown_challenge_get = "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
     if($owner_id == $user_id) {
-        $dropDown_challenge_get = $dropDown_challenge_get ."<li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
+        $dropDown_challenge_get .= "<li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
                               <li><button class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</button></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
@@ -113,7 +111,7 @@ if ($_POST['chal']) {
               </div>";
 //dropdown for edit/delete ended here for all type of challenges except status 2, 4, 5
 //dropdown for chall after accept state starts 
-        $dropDown_ch_after_accept = $dropDown_ch_after_accept ."<div class='list-group-item pull-right'>
+        $dropDown_ch_after_accept = "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
                     <li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
