@@ -374,6 +374,14 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#_fileNotes").val("") ;
 							$("#create_notes").removeAttr('disabled');
 							break;
+							
+						case 7:
+							$("#emailtask").val("") ;
+							$("#titletask").val("") ;
+							$("#taskdetails").val("") ;
+							$("#_fileTask").val("") ;
+							$("#create_task").removeAttr('disabled');
+							break;
 					}
 					$(".newPosts").prepend(notice['2']) ;
 					$(".editbox").hide() ;
@@ -642,12 +650,6 @@ $("#pencil").click(function(){
 			else {
 				var title = convertSpecialChar($("#titletask").val()) ;
 				var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
-				//var eta = parseInt($("#c_eta").val());
-				//var etab = parseInt($("#c_etab").val());
-				//var etac = parseInt($("#c_etac").val());
-				//var etad = parseInt($("#c_etad").val());
-				//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
-				// Returns successful data submission message when the entered information is stored in database.
 				var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
 				 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
 				//alert(dataString);
@@ -701,9 +703,9 @@ $("#pencil").click(function(){
 								success: function(result){
 								if(result = "Team Created Successfully !!!") {
 									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-									location.reload() ;
 									$("#team_name_A").val("") ;
 									$("#email_team").val("") ;
+									$("#create_team").removeAttr('disabled');
 									}
 									else{
 										bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -771,7 +773,6 @@ $("#pencil").click(function(){
 								success: function(result){
 									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 								if(result = "Invitation Send Successfully !!!") {
-									location.reload() ;
 									$("#fnameteam").val("") ;
 									$("#snameteam").val("") ;
 									$("#teamemail").val("") ;

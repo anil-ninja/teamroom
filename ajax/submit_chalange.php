@@ -75,7 +75,7 @@ else { */
                     font-family: Georgia, Times New Roman, Times,serif; color: #444;'>".$chelange."</span><br/>" ;
        $data = $data .editchallenge($nchallange, $idp) ;
       $data = $data ."<div class='comments_".$idp."'></div>
-					<div id='step15' class='comments clearfix'>
+					<div class='comments clearfix'>
 						<div class='pull-left lh-fix'>
 							<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
 						</div>
