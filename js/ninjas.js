@@ -212,7 +212,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				success: function(result){
 					var notice = result.split("+") ;
 					if(notice['0'] = "Video Posted Successfully !!!") {
-						bootstrap_alert(".alert_placeholder", notice['1'], 5000,"alert-success");
+						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 						$("#video_titlepr").val("") ;
 						$("#videoprjt").val("") ;
 						$("#videodespr").val("") ;
@@ -329,12 +329,61 @@ function bootstrap_alert(elem, message, timeout,type) {
 			data: dataString,
 			cache: false,
 			success: function(result){
-				if(result=='Posted succesfully!'){
-					bootstrap_alert(".alert_placeholder", result, 55000,"alert-success");
+				var notice = result.split("+") ;
+				if(notice['0'] == "Posted succesfully!") {
+					bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+					switch (parseInt(notice['1'])) {
+						case 1:
+							$("#ideaA").val("") ;
+							$("#idea_titleA").val("") ;
+							$("#_fileIdea").val("") ;
+							$("#create_idea").removeAttr('disabled');
+							break;
+							
+						case 2:
+							$("#picturech").val("") ;
+							$("#picture_title").val("") ;
+							$("#_filePhotos").val("") ;
+							$("#create_picture").removeAttr('disabled');
+							break;
+							
+						case 3:
+							$("#articlech").val("") ;
+							$("#article_title").val("") ;
+							$("#_fileArticle").val("") ;
+							$("#create_article").removeAttr('disabled');
+							break;
+							
+						case 4:
+							$("#challange").val("") ;
+							$("#challange_title").val("") ;
+							$("#_fileChallenge").val("") ;
+							$("#submit_ch").removeAttr('disabled');
+							break;
+						
+						case 5:
+							$("#challangepr").val("") ;
+							$("#challange_title").val("") ;
+							$("#_fileChallengepr").val("") ;
+							$("#create_challange_pb_pr").removeAttr('disabled');
+							break;
+							
+						case 6:
+							$("#notestmt").val("") ;
+							$("#notes_title").val("") ;
+							$("#_fileNotes").val("") ;
+							$("#create_notes").removeAttr('disabled');
+							break;
+					}
+					$(".newPosts").prepend(notice['2']) ;
+					$(".editbox").hide() ;
+				}
+				else if(notice['0'] == "Answer Submitted succesfully!"){
+					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-success");
 					location.reload();
 				}
 				else {
-					bootstrap_alert(".alert_placeholder", result, 55000,"alert-warning");
+					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-warning");
 					location.reload();
 				}
 			}

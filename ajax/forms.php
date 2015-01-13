@@ -8,6 +8,7 @@ if($_POST['form_type']){
 	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 	switch($type){
 		case 1:
+			if(mysqli_num_rows($member_project) != 0) {
 			 echo "<input type='text' class='input-block-level' id='challange_title' placeholder='Challange Tilte ..'/><br>
 					<input type='file' id='_fileChallengepr' style ='width: auto;'><br/>
 					<textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='challangepr' placeholder='Description .. '></textarea><br>
@@ -72,6 +73,8 @@ if($_POST['form_type']){
                     </select>
                 </div><br/><br/>
 				*/
+			} 
+			else echo "Please Join Project First";
 			exit ;
 			break ;
 			

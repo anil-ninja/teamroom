@@ -32,14 +32,6 @@ function convertSpecialChar(str){
 			//alert("i am geting fucked");
 			var challenge = convertSpecialChar($("#challangepr").val()) ;
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
-			//var open_time = parseInt($("#open_time").val());
-			//var open = parseInt($("#open").val());
-			//var opentime = parseInt(open_time*60+open) ;
-			//var eta = parseInt($("#cc_eta").val());
-			//var etab = parseInt($("#cc_etab").val());
-			//var etac = parseInt($("#cc_etac").val());
-			//var etad = parseInt($("#cc_etad").val());
-			//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 

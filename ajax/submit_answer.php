@@ -37,14 +37,14 @@ http://collap.com/challengesOpen.php?challenge_id=".$ch_id." \n \n Let's Collabo
 			if (strlen($notes) < 1000) {
 				mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$ch_id', '$notes', '2'); ") ;
 				if(mysqli_error($db_handle)) { echo "Failed to Post Answer!"; }
-				else { echo "Posted succesfully!"; }
+				else { echo "Answer Submitted succesfully!"; }
 				}
 				else {
 					mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$notes');");        
 					$id = mysqli_insert_id($db_handle);
 					mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, blob_id, stmt, status) VALUES ('$user_id', '$ch_id', '$id', ' ', '2');");
 					if(mysqli_error($db_handle)) { echo "Failed to Post Answer!"; }
-					else { echo "Posted succesfully!"; }
+					else { echo "Answer Submitted succesfully!"; }
 				}
 			}
 			else {
@@ -74,14 +74,14 @@ http://collap.com/challengesOpen.php?challenge_id=".$ch_id." \n \n Let's Collabo
 					if (strlen($notes) < 1000) {
 						mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, status) VALUES ('$user_id', '$ch_id', '$notes', '2'); ") ;
 						if(mysqli_error($db_handle)) { echo "Failed to Post Answer!"; }
-						else { echo "Posted succesfully!"; }
+						else { echo "Answer Submitted succesfully!"; }
 						}
 						else {
 							mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$notes');");        
 							$id = mysqli_insert_id($db_handle);
 							mysqli_query($db_handle, "INSERT INTO response_challenge (user_id, challenge_id, blob_id, stmt, status) VALUES ('$user_id', '$ch_id', '$id', ' ', '2');");
 							if(mysqli_error($db_handle)) { echo "Failed to Post Answer!"; }
-							else { echo "Posted succesfully!"; }
+							else { echo "Answer Submitted succesfully!"; }
 						}
 					}
 					else {echo "Please Join Project First!"; }

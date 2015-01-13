@@ -29,6 +29,12 @@ if($_POST['video']){
        $idp = mysqli_insert_id($db_handle);
       involve_in($db_handle,$user_id,"1",$idp); 
 	}
+	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idp' and like_status = '1' ;");
+	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
+	else { $likes = '' ; }
+	$totaldislikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idp' and like_status = '2' ;");
+	if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
+	else { $dislikes = '' ; }
 	$data = "" ;
 	$timefunct = date("j F, g:i a") ;
 	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $challange)))) ;
