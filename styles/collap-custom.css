@@ -1771,7 +1771,7 @@ div#nav {
   background:#fff; 
   list-style: none;
   z-index: 1;
-  max-height:290px; 
+  max-height:400px; 
   width: 200px; 
   border-radius:10px 0px 0px 10px
 }

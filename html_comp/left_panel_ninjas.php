@@ -4,22 +4,21 @@
         <li id='step6' class="active" >
 <?php 
     if (isset($_SESSION['user_id'])) {
-        echo "
-            <a class='pull-right active' data-toggle='modal' data-target='#createProject' style='cursor:pointer; padding-top: 4px; padding-bottom: 4px;'> 
-                <span><b> PROJECTS</b></span>
-                <font size='1'> 
-                    <i class='icon-plus'>&nbsp; Add</i>
+        echo "<a class='btn-link' data-toggle='modal' data-target='#createProject' style='cursor:pointer;padding :5px 18px;color:#000;'> 
+                <b> Projects </b>
+                <font size='1'> &nbsp;&nbsp;&nbsp;
+                    <i class='icon-plus'></i>Add
                 </font>
-            </a>";
+			 </a>";
     }
     else {
         echo "
-            <a class='pull-right active' data-toggle='modal' data-target='#SignIn' style='cursor:pointer; pull-right'> 
-                <span><b>&nbsp;PROJECTS</b></span>
-                <font size='1'>&nbsp;&nbsp;&nbsp; 
-                    <i class='icon-plus'>&nbsp; Add</i>
+            <a class='btn-link' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;padding :5px 18px;color:#000;'> 
+                <b> Projects </b>
+                <font size='1'> &nbsp;&nbsp;&nbsp;
+                    <i class='icon-plus'></i>Add
                 </font>
-            </a>";
+			 </a>";
     }
 ?>
         </li>
@@ -32,7 +31,7 @@
  		echo "
 			<div class='panel panel-default'>
 				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
-					<font size='2'><b>Classified</b></font>
+					<font size='2'><b>Classified Projects</b></font>
                 </div>
 				<div class='bs-component' style='max-height:130px; overflow-y:scroll;'>
     	    	    <table>";   
