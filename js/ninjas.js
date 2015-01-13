@@ -148,11 +148,13 @@ function bootstrap_alert(elem, message, timeout,type) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					if(result = "Video Posted Successfully !!!") {
+					var notice = result.split("+") ;
+					if(notice['0'] = "Video Posted Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						location.reload() ;
 						$("#video_title").val("") ;
-						$("#video").val("") ;
+						$("#videosub").val("") ;
+						$("#videodes").val("") ;
+						$(".newPosts").prepend(notice['0']) ;
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -206,11 +208,12 @@ function bootstrap_alert(elem, message, timeout,type) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					if(result = "Video Posted Successfully !!!") {
+					var notice = result.split("+") ;
+					if(notice['0'] = "Video Posted Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						location.reload() ;
 						$("#video_title").val("") ;
 						$("#video").val("") ;
+						$(".newPosts").prepend(notice['0']) ;
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");

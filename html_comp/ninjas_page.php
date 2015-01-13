@@ -18,6 +18,7 @@
 		<div id='remindervalue'></div>
     </div>
 </div>
+<div class='newPosts' ></div>
 <?php
 $user_id = $_SESSION['user_id'];
 $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 

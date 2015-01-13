@@ -21,7 +21,7 @@ if ($_POST['all']) {
 							<i class='icon-plus'></i>
 							<a href ='profile.php?username=".$uname25."'>".$fname25."</a> Created 
 							<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id25."' 
-							target='_blank'>". $title25."</a> on .".$eventtimeN."
+							target='_blank'>". $title25."</a> on ".$eventtimeN."
 						</div>" ;
 			}
 	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') and event_creater != '$user_id' )

@@ -130,6 +130,7 @@ echo "</div>
 
 <div class="panel-primary eye_open" id="prch">
     <p id='home-ch'></p>
+    <div class='newPosts' ></div>
 <?php
 $_SESSION['lastpr'] = '5';
 $_SESSION['project_id'] = $pro_id;
