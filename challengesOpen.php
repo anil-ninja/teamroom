@@ -150,7 +150,7 @@
                         $challenge_user_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title']))));
                         $challenge_user_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt']))));
                         echo "
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                                     <b>
                                         <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
@@ -187,7 +187,7 @@
                         $project_title_display = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title']))));
                         $project_title_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])))); 
                     echo "  
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     						    <a href='project.php?project_id=".$project_id."'>
                                     <div class='panel-heading' style='padding-left: 0px;'>
                                         <b> 

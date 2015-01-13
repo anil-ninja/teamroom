@@ -344,9 +344,8 @@ function involve_in($db_handle,$user_ID,$type,$id){
 
 function recommended_project ($db_handle) {
     $user_id = $_SESSION['user_id'];
-    $project_public_title_display2 = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time
-                                                            FROM projects WHERE user_id != '$user_id' and project_type= '1' and project_id NOT
-                                                            IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
+    $project_public_title_display2 = mysqli_query($db_handle, "SELECT DISTINCT * FROM projects WHERE user_id != '$user_id' and project_type= '1' and 
+																project_id NOT IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
                                                             ORDER BY rand() LIMIT 10;");
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
         echo "
@@ -359,12 +358,22 @@ function recommended_project ($db_handle) {
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
             $idproject2 = $project_public_title_displayRow2['project_id'] ;
-        if (strlen($public_pr_titlep2) > 30) {
-            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,30)." ...";
+        if (strlen($public_pr_titlep2) > 22) {
+            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,22)." ...";
         } 
         else {
             $prtitlep2 = ucfirst($public_pr_titlep2) ;
-        }                                  
+        }
+        $Prostmt3 =  $project_public_title_displayRow2['stmt'] ;
+		if(substr($Prostmt3, 0, 4) == '<img') {
+			$ProjectPic3 = strstr($Prostmt3, '<br/>' , true) ;
+		}
+		else if(substr($Prostmt3, 0, 5) == ' <img') {
+			$ProjectPic3 = strstr($Prostmt3, '<br/>' , true) ;
+		}
+		else {
+			$ProjectPic3 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+		}                                  
         $p_etap2 = $project_public_title_displayRow2['project_ETA'] ;
         $p_timep2 = $project_public_title_displayRow2['creation_time'] ;
         $timefuncp2 = date("j F, g:i a",strtotime($p_timep2));
@@ -374,9 +383,11 @@ function recommended_project ($db_handle) {
     echo "<tr><td id='step14' >
                 <a href = 'project.php?project_id=".$idproject2."'>
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:11px;text-align: left;'>
-                ".$prtitlep2."
-                
+                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
+                <div class='row-fluid'>
+					<div class='span3' style='height:15px;width:15px;'>".$ProjectPic3 ."</div>
+					<div class='span8'>". $prtitlep2."</div>
+				</div>                
             </button></a></td><td id='step7' >";
                 //$remaining_time_ownp.
         if (isset($_SESSION['user_id'])) {
