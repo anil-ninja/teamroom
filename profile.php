@@ -96,10 +96,10 @@ $obj = new profile($UserName);
                 <?php
                  echo " <center>
                              <b>
-                                <span id='first_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>&nbsp" 
+                                <span id='first_name' style='font-size: 20px;'>&nbsp" 
                                     .ucfirst($profileViewFirstName)."
                                 </span> 
-                                <span id='last_name' style='font-size: 20px; font-family: open_sans_condensedbold,Calibri,sans-serif;'>".ucfirst($profileViewLastName)."
+                                <span id='last_name' style='font-size: 20px;'>".ucfirst($profileViewLastName)."
                                 </span>
                             </b>
 						</center>" ;

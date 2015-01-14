@@ -3,7 +3,7 @@
 	if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
-        <div id='demo1' class='list-group-item'>
+        <div id='demo1' class='list-group-item' style='font-family: Tenali Ramakrishna, sans-serif;'>
           <span class="icon-pencil" onclick='show_form(1)' style="cursor: pointer; color:#000;"> Challenge</span>
             | 
           <span class="icon-pushpin" onclick='show_form(2)' style="cursor: pointer; color:#000;"> Assign Task</span>
@@ -193,7 +193,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 	else { $dislikes = '' ; }
         
         // list grp item header for all type chall/article/idea/photo/video
-        $display_tilte_task = "<p style='font-size: 24px; line-height: 30px;' id='challenge_ti_".$id_task."' class='text'>
+        $display_tilte_task = "<p style='font-family: Tenali Ramakrishna, sans-serif;font-size: 24px; line-height: 30px;' id='challenge_ti_".$id_task."' class='text'>
                                 <b>
                                   <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>"
                                     .ucfirst($title_task)."

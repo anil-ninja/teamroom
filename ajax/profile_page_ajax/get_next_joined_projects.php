@@ -34,7 +34,7 @@ if ($_POST['next_JnPr']) {
             
             $show_JP = $show_JP. "<div class='list-group'>
                                     <div class='list-group-item'>";
-            $show_JP = $show_JP. "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+            $show_JP = $show_JP. "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                                     .ucfirst($project_title_table)."</a></b></p>
                                 <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"

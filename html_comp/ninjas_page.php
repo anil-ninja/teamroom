@@ -1,6 +1,6 @@
 <div class='list-group'>
 	<div class='alert_placeholder'></div>
-    <div id='step1' class='list-group-item' >
+    <div id='step1' class='list-group-item' style='font-family: Tenali Ramakrishna, sans-serif;'>
         <span onclick='show_form_h(7)' class="icon-question-sign" style="cursor: pointer;color: #000;"> Challenge</span>
         |
         <span onclick='show_form_h(8)' class="icon-book" style="cursor: pointer;color: #000;"> Article</span>
@@ -97,7 +97,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_ch_stmt_content .= "</div>                    
                                 <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; font-family: Open Sans, sans-serif; color: #444;'>".$chelange."</span><br/>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>";
         $display_ch_stmt_content = $display_ch_stmt_content . editchallenge($chelangestmt, $chelangeid) ;             
     if ($ctype == 1) {
         if ($status == 1) {

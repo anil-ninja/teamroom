@@ -153,7 +153,7 @@
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                                     <b>
-                                        <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
+                                        <p style='font-size:14px; word-wrap: break-word;color:#3B5998;'>"
                                             .ucfirst($challenge_user_title)."
                                         </p>
                                     </b>
@@ -191,7 +191,7 @@
     						    <a href='project.php?project_id=".$project_id."'>
                                     <div class='panel-heading' style='padding-left: 0px;'>
                                         <b> 
-                                            <p style='font-family: Sans-serif; font-size:14px;word-wrap: break-word;color:#3B5998;'>"
+                                            <p style=' font-size:14px;word-wrap: break-word;color:#3B5998;'>"
     							                .ucfirst($project_title_display)."
                                             </p>
                                         </b>
