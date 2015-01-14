@@ -64,8 +64,8 @@
 				$ProjectPicLink2 =explode("\"",$ProjectPicFull)[1] ; 			
 				$ProjectPic = "<img src='".resize_image($ProjectPicLink2, 15, 15)."' onError=this.src='img/default.gif'>" ;
 				
-                if (strlen($p_title) > 22) {
-                    $prtitle = substr(ucfirst($p_title),0,22)." ...";
+                if (strlen($p_title) > 15) {
+                    $prtitle = substr(ucfirst($p_title),0,15)." ...";
                 } 
                 else {
                     $prtitle = ucfirst($p_title) ;
@@ -118,8 +118,8 @@
 					$ProjectPicLink =explode("\"",$ProjectPicFull2)[1] ; 				
 					$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 15, 15)."' onError=this.src='img/default.gif'>" ;
 
-    				if (strlen($public_pr_titlep) > 22) {
-    					   $prtitlep = substr(ucfirst($public_pr_titlep),0,22)." ...";
+    				if (strlen($public_pr_titlep) > 15) {
+    					   $prtitlep = substr(ucfirst($public_pr_titlep),0,15)." ...";
     					} 
                     else {
     					$prtitlep = ucfirst($public_pr_titlep) ;
@@ -178,8 +178,8 @@
 					$ProjectPicLink3 =explode("\"",$ProjectPicFull3)[1] ; 				
 					$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15)."' onError=this.src='img/default.gif'>" ;
 
-    				if (strlen($public_titlep) > 22) {
-    					   $publicTitle = substr(ucfirst($public_titlep),0,22)." ...";
+    				if (strlen($public_titlep) > 15) {
+    					   $publicTitle = substr(ucfirst($public_titlep),0,15)." ...";
     					} 
                     else {
     					$publicTitle = ucfirst($public_titlep) ;
