@@ -1,6 +1,6 @@
 <?php
 include_once '../lib/db_connect.php';
-
+include_once '../functions/image_resize.php';
 session_start();
 if(!isset($_SESSION['user_id'])) 
     header ('location: index.php');
@@ -100,7 +100,7 @@ if ($_POST['team']) {
                             
                             <a href ='profile.php?username=" . $username . "'>
                                 <div class ='span2'>
-                                    <img src='uploads/profilePictures/$username.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif'>
+                                    <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
                                 </div>
                                 <div class = 'span7' style='font-size:10px;'>
                                     <span class='color pull-left' id='new_added'>" 

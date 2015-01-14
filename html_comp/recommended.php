@@ -33,7 +33,7 @@
 				$friendRankr = $RecommendedRow['rank'];	     
 				echo "<div class ='row-fluid' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
 						<div class ='span3' style='padding:1px;'>
-							<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:35px; width: 35px;' class='img-responsive'>
+							<img src='".resize_image("uploads/profilePictures/$usernameFriendsr.jpg", 30, 30)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
 						</div>
 						<div id='demo9' class = 'span6' style='font-size:12px;padding: 1px;'>
 							<span class='color pull-left' id='new_added'>

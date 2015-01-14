@@ -31,7 +31,7 @@
             echo "  <div class ='row-fluid' style=' margin:4px; background : rgb(240, 241, 242);'>
                         <a href=\"javascript:void(0)\" onclick=\"javascript:chatWith('".$usernameFriends."')\">
                             <div class ='span3'>
-                                    <img src='uploads/profilePictures/$usernameFriends.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+                                    <img src='".resize_image("uploads/profilePictures/$usernameFriends.jpg", 30, 30)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                             </div>
                             <div class = 'span7' style='font-size:10px;'>"
                             .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
@@ -64,7 +64,7 @@
 			$friendRankr = $RecommendedRow['rank'];	     
 			echo "<div class ='row-fluid' style=' margin:1px; background : rgb(240, 241, 242);'>
 					<div class ='span3'>
-						<img src='uploads/profilePictures/$usernameFriendsr.jpg' style='height:35px;' onError=this.src='img/default.gif' class='img-responsive'>
+						<img src='".resize_image("uploads/profilePictures/$usernameFriendsr.jpg", 30, 30)."' style='height:30px;' onError=this.src='img/default.gif' class='img-responsive'>
 					</div>
 					<div id='demo9' class = 'span6' style='font-size:10px;'>
 						<span class='color pull-left' id='new_added'>

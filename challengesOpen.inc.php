@@ -414,7 +414,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 echo "<div id='commentscontainer'>
                     <div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
-                            <img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>
+                            <img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
                         </div>
                     <div class='comment-text'>
                     <span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
@@ -429,7 +429,7 @@ function challenge_display($db_handle, $challengeSearchID) {
             }
             echo "<div class='comments_".$chelangeid."'></div><div id='demo14' class='comments clearfix'>
                 <div class='pull-left lh-fix'>
-                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                    <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
                 </div>
                 <div class='comment-text'>";
             if (isset($_SESSION['user_id'])) {

@@ -13,7 +13,6 @@ $view = 1 ;
 	<title>collap</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Challenge, Project, Problem solving, problem">
-    <meta name="author" content="Anil">
     <?php include_once 'lib/htmt_inc_headers.php'; ?>
   </head>
   <body>

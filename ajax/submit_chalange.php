@@ -2,6 +2,7 @@
 session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
+include_once '../functions/image_resize.php';
 if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
 	$challangetext = $_POST['challange'] ;
@@ -76,7 +77,7 @@ else { */
       $data = $data ."<div class='comments_".$idp."'></div>
 					<div class='comments clearfix'>
 						<div class='pull-left lh-fix'>
-							<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
 						</div>
 						<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$idp."'
 						 placeholder='Want to know your comment....'/>

@@ -1,5 +1,6 @@
 <?php 
 include_once '../functions/delete_comment.php';
+include_once '../functions/image_resize.php';
 include_once '../lib/db_connect.php';
 session_start();
 $pro_id = $_SESSION['project_id'];
@@ -285,7 +286,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username_commenter.jpg'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username_commenter.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
 				</div>
 				<div class='comment-text'>
 					<span class='pull-left color strong'>
@@ -300,7 +301,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     }
     echo "<div class='comments_".$id_task."'></div><div class='comments clearfix'>
                         <div class='pull-left'>
-                            <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
+                            <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
