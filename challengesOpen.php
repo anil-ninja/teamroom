@@ -161,7 +161,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                         $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
                         $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
                     echo "  
-                            <div class ='span6 box' style=' margin: 2px ;min-height: 200px;'>
+                            <div class ='span6 box' style=' margin: 4px ;min-height: 200px;'>
     						    <a href='project.php?project_id=".$project_id."'>
                                     <div class='panel-heading'>
                                         <b> 
@@ -202,6 +202,16 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
                         $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
                         $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
+                        if(substr($challenge_user_stmt, 0, 4) == '<img') {
+							$ProjectPic = strstr($challenge_user_stmt, '<br/>' , true) ;
+							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
+							$ProjectPicLink =explode("\"",$ProjectPic)['1'] ; 				
+							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
+							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
+						}
+						else {
+							$ProjectStmt = $challenge_user_stmt ;
+						}
                         echo "
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
@@ -211,7 +221,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                         </p>
                                     </b>
                                     <p style='word-wrap: break-word;'>"
-                                        .$challenge_user_stmt."
+                                        .$ProjectStmt."
                                     </p>
                                 </a>
                             </div>";
