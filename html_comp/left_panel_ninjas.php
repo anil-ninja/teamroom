@@ -76,10 +76,10 @@
                 $title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
                 // $remaining_time_own = remaining_time($p_time, $p_eta);
                 echo " <a href = 'project.php?project_id=".$idpro."'>
-							<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title=' ".$title."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
+							<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title=' ".$title."' style='color:#000;font-size:12px;text-align: left;width:100%;height: 20px;'>
 								<div class='row-fluid'>
 									<div class='span3' style='height:15px;width:15px;'>".$ProjectPic ."</div>
-									<div class='span8' style='font-size:12px;'>". $prtitle."</div>
+									<div class='span9' >". $prtitle."</div>
 								</div>
 							</button>
 						</a>";
@@ -130,10 +130,10 @@
     				$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
         		echo "<a href = 'project.php?project_id=".$idproject."' >
-                    	<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
+                    	<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:12px;text-align: left;width:100%;height: 20px;'>
                     	    <div class='row-fluid'>
 								<div class='span3' style='height:15px;width:15px;'>".$ProjectPic2 ."</div>
-								<div class='span8' style='font-size:12px;'>". $prtitlep."</div>
+								<div class='span9' >". $prtitlep."</div>
 							</div>
                          </button>
                        </a>";
@@ -191,10 +191,10 @@
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);
     				if($typeProject == 1){	
 						echo "<a href = 'project.php?project_id=".$publicID."' >
-								<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$publicTitleTooltip."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
+								<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$publicTitleTooltip."' style='color:#000;font-size:12px;text-align: left;width:100%;height: 20px;'>
 								   <div class='row-fluid'>
 										<div class='span3' style='height:15px;width:15px;'>".$ProjectPic3 ."</div>
-										<div class='span8' style='font-size:12px;'>". $publicTitle."</div>
+										<div class='span9' >". $publicTitle."</div>
 									</div>
 								</button>
 							</a>";

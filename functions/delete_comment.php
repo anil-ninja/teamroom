@@ -383,10 +383,10 @@ function recommended_project ($db_handle) {
     echo "<tr><td id='step14' >
                 <a href = 'project.php?project_id=".$idproject2."'>
                 <button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
-                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
+                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:12px;text-align: left;width:100%;height: 20px;'>
                 <div class='row-fluid'>
 					<div class='span3' style='height:15px;width:15px;'>".$ProjectPic3 ."</div>
-					<div class='span8' style='font-size:12px;'>". $prtitlep2."</div>
+					<div class='span9' >". $prtitlep2."</div>
 				</div>                
             </button></a></td><td id='step7' >";
                 //$remaining_time_ownp.
