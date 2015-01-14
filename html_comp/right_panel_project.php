@@ -32,7 +32,7 @@
 		$ProjectPic4 = strstr($stmt, '<br/>' , true) ;
 	}
 	else {
-		$ProjectPic4 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+		$ProjectPic4 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 	}
 	$ProjectPicLink4 =explode("\"",$ProjectPic4)['1'] ; 				
 	$ProjectPic4 = "<img src='".resize_image($ProjectPicLink4, 280, 280)."' onError=this.src='img/default.gif' style='width:100%;'>" ;				
