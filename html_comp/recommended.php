@@ -31,7 +31,7 @@
 				$usernameFriendsr = $RecommendedRow['username'];
 				$useridFriendsr = $RecommendedRow['user_id'];
 				$friendRankr = $RecommendedRow['rank'];	     
-				echo "<div class ='row' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
+				echo "<div class ='row-fluid' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
 						<div class ='span3' style='padding:1px;'>
 							<img src='uploads/profilePictures/$usernameFriendsr.jpg'  onError=this.src='img/default.gif' style='height:35px; width: 35px;' class='img-responsive'>
 						</div>

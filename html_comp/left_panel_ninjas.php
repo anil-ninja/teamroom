@@ -78,9 +78,9 @@
                 // $remaining_time_own = remaining_time($p_time, $p_eta);
                 echo "<tr>
 						<td style='padding-left: 5px;'>
-							<a href = 'project.php?project_id=".$idpro."'>".$ProjectPic ."
+							<a href = 'project.php?project_id=".$idpro."'>".$ProjectPic ."</a>
 						</td>
-						<td>". $prtitle."</a></td>
+						<td><a href = 'project.php?project_id=".$idpro."'>". $prtitle."</a></td>
 					  </tr>";
             }
         }  
@@ -131,9 +131,9 @@
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
         		echo "<tr>
 						<td style='padding-left: 5px;'>
-							<a href = 'project.php?project_id=".$idproject."'>".$ProjectPic2 ."
+							<a href = 'project.php?project_id=".$idproject."'>".$ProjectPic2 ."</a>
 						</td>
-						<td>". $prtitlep."</a></td>
+						<td><a href = 'project.php?project_id=".$idproject."'>". $prtitlep."</a></td>
 					  </tr>";
                 }
             } 
@@ -191,9 +191,9 @@
     				if($typeProject == 1){	
 						echo "<tr>
 								<td style='padding-left: 5px;'>
-									<a href = 'project.php?project_id=".$publicID."'>".$ProjectPic3 ."
+									<a href = 'project.php?project_id=".$publicID."'>".$ProjectPic3 ."</a>
 								</td>
-								<td>". $publicTitle."</a></td>
+								<td><a href = 'project.php?project_id=".$publicID."'>". $publicTitle."</a></td>
 							  </tr>";
                      }
                 }

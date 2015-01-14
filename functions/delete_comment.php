@@ -358,8 +358,8 @@ function recommended_project ($db_handle) {
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
             $idproject2 = $project_public_title_displayRow2['project_id'] ;
-        if (strlen($public_pr_titlep2) > 15) {
-            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,15)." ...";
+        if (strlen($public_pr_titlep2) > 12) {
+            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,12)." ...";
         } 
         else {
             $prtitlep2 = ucfirst($public_pr_titlep2) ;
@@ -382,9 +382,9 @@ function recommended_project ($db_handle) {
 
     echo "<tr>
 			<td style='padding-left: 5px;'>
-				<a href = 'project.php?project_id=".$idproject2."'>".$ProjectPic3 ."
+				<a href = 'project.php?project_id=".$idproject2."'>".$ProjectPic3 ."</a>
 			</td>
-			<td id='step14' >". $prtitlep2."</a></td>
+			<td id='step14' ><a href = 'project.php?project_id=".$idproject2."'>". $prtitlep2."</a></td>
 		  <td id='step7' >";
                 //$remaining_time_ownp.
         if (isset($_SESSION['user_id'])) {
