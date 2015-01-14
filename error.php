@@ -1,5 +1,6 @@
 <?php
 include_once 'lib/db_connect.php';
+include_once 'functions/image_resize.php';
 ?>
 <html lang="en">
     <head>

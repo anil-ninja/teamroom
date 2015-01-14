@@ -54,15 +54,16 @@
                 $p_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_title_displayRow['project_title']))) ;
                 $idpro = $project_title_displayRow['project_id'] ;
                 $Prostmt =  $project_title_displayRow['stmt'] ;
+                //echo $Prostmt;
                 if(substr($Prostmt, 0, 4) == '<img') {
-					$ProjectPic = strstr($Prostmt, '<br/>' , true) ;
-				}
-				else if(substr($Prostmt, 0, 5) == ' <img') {
-					$ProjectPic = strstr($Prostmt, '<br/>' , true) ;
+					$ProjectPicFull = strstr($Prostmt, '<br/>' , true) ;
 				}
 				else {
-					$ProjectPic = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+					$ProjectPicFull = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 				}
+				$ProjectPicLink2 =explode("\"",$ProjectPicFull)[1] ; 				
+				$ProjectPic = "<img src='".resize_image($ProjectPicLink2, 15, 15)."' onError=this.src='img/default.gif'>" ;
+				
                 if (strlen($p_title) > 22) {
                     $prtitle = substr(ucfirst($p_title),0,22)." ...";
                 } 
@@ -78,7 +79,7 @@
 							<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title=' ".$title."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
 								<div class='row-fluid'>
 									<div class='span3' style='height:15px;width:15px;'>".$ProjectPic ."</div>
-									<div class='span8'>". $prtitle."</div>
+									<div class='span8' style='font-size:12px;'>". $prtitle."</div>
 								</div>
 							</button>
 						</a>";
@@ -109,14 +110,14 @@
     				$idproject = $project_public_title_displayRow['project_id'] ;
     				$Prostmt2 =  $project_public_title_displayRow['stmt'] ;
 					if(substr($Prostmt2, 0, 4) == '<img') {
-						$ProjectPic2 = strstr($Prostmt2, '<br/>' , true) ;
-					}
-					else if(substr($Prostmt2, 0, 5) == ' <img') {
-						$ProjectPic2 = strstr($Prostmt2, '<br/>' , true) ;
+						$ProjectPicFull2 = strstr($Prostmt2, '<br/>' , true) ;
 					}
 					else {
-						$ProjectPic2 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+						$ProjectPicFull2 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
 					}
+					$ProjectPicLink =explode("\"",$ProjectPicFull2)[1] ; 				
+					$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 15, 15)."' onError=this.src='img/default.gif'>" ;
+
     				if (strlen($public_pr_titlep) > 22) {
     					   $prtitlep = substr(ucfirst($public_pr_titlep),0,22)." ...";
     					} 
@@ -129,10 +130,10 @@
     				$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
         		echo "<a href = 'project.php?project_id=".$idproject."' >
-                    	<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
+                    	<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
                     	    <div class='row-fluid'>
 								<div class='span3' style='height:15px;width:15px;'>".$ProjectPic2 ."</div>
-								<div class='span8'>". $prtitlep."</div>
+								<div class='span8' style='font-size:12px;'>". $prtitlep."</div>
 							</div>
                          </button>
                        </a>";
@@ -169,14 +170,14 @@
     				$public_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $joinedPublicProjectsRow['project_title']))) ;
     				$Prostmt3 =  $joinedPublicProjectsRow['stmt'] ;
 					if(substr($Prostmt3, 0, 4) == '<img') {
-						$ProjectPic3 = strstr($Prostmt3, '<br/>' , true) ;
-					}
-					else if(substr($Prostmt3, 0, 5) == ' <img') {
-						$ProjectPic3 = strstr($Prostmt3, '<br/>' , true) ;
+						$ProjectPicFull3 = strstr($Prostmt3, '<br/>' , true) ;
 					}
 					else {
-						$ProjectPic3 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+						$ProjectPicFull3 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
 					}
+					$ProjectPicLink3 =explode("\"",$ProjectPicFull3)[1] ; 				
+					$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15)."' onError=this.src='img/default.gif'>" ;
+
     				if (strlen($public_titlep) > 22) {
     					   $publicTitle = substr(ucfirst($public_titlep),0,22)." ...";
     					} 
@@ -190,10 +191,10 @@
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);
     				if($typeProject == 1){	
 						echo "<a href = 'project.php?project_id=".$publicID."' >
-								<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$publicTitleTooltip."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
+								<button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$publicTitleTooltip."' style='color:#000;font-size:11px;text-align: left;width:100%;height: 20px;'>
 								   <div class='row-fluid'>
 										<div class='span3' style='height:15px;width:15px;'>".$ProjectPic3 ."</div>
-										<div class='span8'>". $publicTitle."</div>
+										<div class='span8' style='font-size:12px;'>". $publicTitle."</div>
 									</div>
 								</button>
 							</a>";

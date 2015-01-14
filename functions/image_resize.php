@@ -1,7 +1,10 @@
 <?php
 
 function resize_image($file, $w, $h, $crop=FALSE) {
+	$url = $file;
 	$file = "/var/www/html/collap_files/" . $file;
+	if(!file_exists(explode(".",$file)[0] . "_".$w."x".$h.".jpg")){
+	
     list($width, $height) = getimagesize($file);
     $r = $width / $height;
     if ($crop) {
@@ -25,9 +28,11 @@ function resize_image($file, $w, $h, $crop=FALSE) {
     $dst = imagecreatetruecolor($newwidth, $newheight);
     imagecopyresampled($dst, $src, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 	
-	imagejpeg($dst, explode(".",$file)[0] . "_icon.jpg", 100);
+	imagejpeg($dst, explode(".",$file)[0] . "_".$w."x".$h.".jpg", 100);
 	imagedestroy($dst);
+	}
+	return  explode(".",$url)[0] . "_".$w."x".$h.".jpg";
 }
 
-resize_image("uploads/anil/challengePic/2015-01-11_01:09:00pm_wwc.jpg", 15, 15);
+//resize_image("uploads/anil/challengePic/2015-01-11_01:09:00pm_wwc.jpg", 15, 15);
 ?>

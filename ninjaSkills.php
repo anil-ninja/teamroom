@@ -3,6 +3,7 @@ include_once 'lib/db_connect.php';
 include_once 'html_comp/start_time.php';
 include_once 'functions/profile_page_function.php';
 include_once 'functions/delete_comment.php';
+include_once 'functions/image_resize.php';
 $skill_id = $_GET['skill_id'];
 $check = mysqli_query($db_handle, "SELECT * FROM skill_names WHERE skill_id = '$skill_id' ;") ;
 if (mysqli_num_rows($check) == 0) {

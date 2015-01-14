@@ -3,6 +3,7 @@ include_once 'lib/db_connect.php';
 include_once 'html_comp/start_time.php';
 include_once 'functions/profile_page_function.php';
 include_once 'functions/delete_comment.php';
+include_once 'functions/image_resize.php';
 $UserName = $_GET['username'];
 session_start();
 $userInfo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE username = '$UserName';");
