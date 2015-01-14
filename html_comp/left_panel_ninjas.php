@@ -4,7 +4,7 @@
         <li id='step6' class="active" >
 <?php 
     if (isset($_SESSION['user_id'])) {
-        echo "<a class='btn-link' data-toggle='modal' data-target='#createProject' style='cursor:pointer;padding :5px 18px;color:#000;'> 
+        echo "<a class='btn-link' data-toggle='modal' data-target='#createProject' style='cursor:pointer;padding :5px;color:#000;'> 
                 <b> Projects </b>
                 <font size='1'> &nbsp;&nbsp;&nbsp;
                     <i class='icon-plus'></i>Add
@@ -13,7 +13,7 @@
     }
     else {
         echo "
-            <a class='btn-link' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;padding :5px 18px;color:#000;'> 
+            <a class='btn-link' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;padding :5px ;color:#000;'> 
                 <b> Projects </b>
                 <font size='1'> &nbsp;&nbsp;&nbsp;
                     <i class='icon-plus'></i>Add
@@ -30,7 +30,7 @@
     if (isset($_SESSION['user_id'])) {              
  		echo "
 			<div class='panel panel-default'>
-				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
+				<div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
 					<font size='2'><b>Classified Projects</b></font>
                 </div>
 				<div class='bs-component' style='max-height:130px; overflow-y:scroll;'>";   
@@ -76,7 +76,7 @@
                 $title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
                 // $remaining_time_own = remaining_time($p_time, $p_eta);
                 echo " <a href = 'project.php?project_id=".$idpro."'>
-							<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title=' ".$title."' style='color:#000;font-size:12px;text-align:left; padding: 0px 15px; width:100%;height: 20px;'>
+							<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title=' ".$title."' style='color:#000;font-size:12px;text-align:left; padding: 0px 5px; width:100%;height: 20px;'>
 								<div class='row-fluid'>
 									<div class='span3' style='height:15px;width:15px;'>".$ProjectPic ."</div>
 									<div class='span9' >". $prtitle."</div>
@@ -89,7 +89,7 @@
             </div>";
     ?>
 			<div class='panel panel-default'>
-				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
+				<div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
 					<font size='2'><b>Public Projects</b></font>
                 </div>
 				<div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
@@ -130,7 +130,7 @@
     				$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
         		echo "<a href = 'project.php?project_id=".$idproject."' >
-                    	<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:12px; padding: 0px 15px; text-align: left;width:100%;height: 20px;'>
+                    	<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$titlep."' style='color:#000;font-size:12px; padding: 0px 5px; text-align: left;width:100%;height: 20px;'>
                     	    <div class='row-fluid'>
 								<div class='span3' style='height:15px;width:15px;'>".$ProjectPic2 ."</div>
 								<div class='span9' >". $prtitlep."</div>
@@ -143,7 +143,7 @@
                 </div>
             </div>
             <div class='panel panel-default'>
-				<div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
+				<div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
 					<font size='2'><b>Joined Projects</b></font>
                 </div>
 				<div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
@@ -191,7 +191,7 @@
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);
     				if($typeProject == 1){	
 						echo "<a href = 'project.php?project_id=".$publicID."' >
-								<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$publicTitleTooltip."' style='color:#000;font-size:12px; padding: 0px 15px; text-align: left;width:100%;height: 20px;'>
+								<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' data-placement='bottom' data-original-title='".$publicTitleTooltip."' style='color:#000;font-size:12px; padding: 0px 5px; text-align: left;width:100%;height: 20px;'>
 								   <div class='row-fluid'>
 										<div class='span3' style='height:15px;width:15px;'>".$ProjectPic3 ."</div>
 										<div class='span9' >". $publicTitle."</div>

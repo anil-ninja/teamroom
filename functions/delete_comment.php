@@ -350,7 +350,7 @@ function recommended_project ($db_handle) {
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
         echo "
                 <div class='panel panel-default'>
-                    <div class='panel-heading' style ='padding-top: 0px; padding-bottom: 0px;'>
+                    <div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
                         <font size='2'><b> Recommended</b></font>
                     </div>
                     <div class='bs-component' style='max-height:200px;overflow-y:scroll;'>
@@ -383,7 +383,7 @@ function recommended_project ($db_handle) {
     echo "<tr><td id='step14' >
                 <a href = 'project.php?project_id=".$idproject2."'>
                 <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
-                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:12px; padding: 0px 15px; text-align: left;width:100%;height: 20px;'>
+                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:12px; padding: 0px 5px; text-align: left;width:100%;height: 20px;'>
                 <div class='row-fluid'>
 					<div class='span3' style='height:15px;width:15px;'>".$ProjectPic3 ."</div>
 					<div class='span9' >". $prtitlep2."</div>
