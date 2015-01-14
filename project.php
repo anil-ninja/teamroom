@@ -28,7 +28,7 @@ include_once 'functions/delete_comment.php';
                 
                 <?php echo "
 			<center>
-				      <span class='color strong' style= 'font-size: 14pt;'>
+				      <span class='color strong' style= 'font-family: Tenali Ramakrishna, sans-serif; font-size: 14pt;'>
                 <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
                 </p>
               </span>
