@@ -21,25 +21,23 @@ if($_POST['project_title']){
                                   VALUES ('$user_id', '$project_title', '$project_st', '$project_eta', '$type');");
 		$idp = mysqli_insert_id($db_handle);                           
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name, team_owner) VALUES ('$user_id', '$idp', 'defaultteam', '$user_id') ;" ) ;
-		if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
-		else { echo "Posted succesfully!"; }
-		}
-		else {
-			mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$project_st');");
-            $id = mysqli_insert_id($db_handle);
-			mysqli_query($db_handle, "INSERT INTO projects (user_id, blob_id, project_title, stmt, project_ETA, project_type) 
-									VALUES ('$user_id', '$id', '$project_title', ' ', '$project_eta', '$type');");
-			$idp = mysqli_insert_id($db_handle);
-			mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name, team_owner) VALUES ('$user_id', '$idp', 'defaultteam', '$user_id') ;" ) ;
-			if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
-			else { echo "Posted succesfully!"; }
-			}
+	}
+	else {
+		mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$project_st');");
+		$id = mysqli_insert_id($db_handle);
+		mysqli_query($db_handle, "INSERT INTO projects (user_id, blob_id, project_title, stmt, project_ETA, project_type) 
+								VALUES ('$user_id', '$id', '$project_title', ' ', '$project_eta', '$type');");
+		$idp = mysqli_insert_id($db_handle);
+		mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name, team_owner) VALUES ('$user_id', '$idp', 'defaultteam', '$user_id') ;" ) ;
+	}
 	if($type == 2) { 
 		involve_in($db_handle,$user_id,"2",$idp); 
-		}  
-		else {
-		  involve_in($db_handle,$user_id,"9",$idp);
-			}
+	}  
+	else {
+	  involve_in($db_handle,$user_id,"9",$idp);
+	}
+	if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
+	else { echo "Posted succesfully!"."+"."8"; }
 	mysqli_close($db_handle);
 	}
 ?>

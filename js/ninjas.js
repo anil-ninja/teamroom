@@ -382,6 +382,10 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#_fileTask").val("") ;
 							$("#create_task").removeAttr('disabled');
 							break;
+						
+						case 8:
+							location.reload();
+							break;
 					}
 					$(".newPosts").prepend(notice['2']) ;
 					$(".editbox").hide() ;
