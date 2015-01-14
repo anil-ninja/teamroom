@@ -358,8 +358,8 @@ function recommended_project ($db_handle) {
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
             $idproject2 = $project_public_title_displayRow2['project_id'] ;
-        if (strlen($public_pr_titlep2) > 12) {
-            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,12)." ...";
+        if (strlen($public_pr_titlep2) > 10) {
+            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,10)." ...";
         } 
         else {
             $prtitlep2 = ucfirst($public_pr_titlep2) ;
@@ -382,8 +382,8 @@ function recommended_project ($db_handle) {
 
     echo "<tr><td id='step14' >
                 <a href = 'project.php?project_id=".$idproject2."'>
-                <button type='submit' class='btn btn-link' name='projectphp' data-toggle='tooltip' 
-                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:12px;text-align: left;width:100%;height: 20px;'>
+                <button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
+                data-placement='bottom' data-original-title='".$titlep2."' style='color:#000;font-size:12px; padding: 0px 15px; text-align: left;width:100%;height: 20px;'>
                 <div class='row-fluid'>
 					<div class='span3' style='height:15px;width:15px;'>".$ProjectPic3 ."</div>
 					<div class='span9' >". $prtitlep2."</div>
