@@ -381,7 +381,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 			<div class='span10 offset1'>
 			<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
 				<ul class="nav nav-tabs">
-                        <li class="active"><a href="index.php#panel1" data-toggle="tab" class="active ">About Collap Page:</a></li>
+                        <li class="active"><a href="#" data-toggle="tab" class="active ">About Collap :</a></li>
                     </ul>
                     <div class="tab-content">
 						
