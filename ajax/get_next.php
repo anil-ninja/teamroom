@@ -86,7 +86,7 @@ if ($_POST['chal']) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $get_display_ch_stmt_content = "</div>                    
                                 <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='font-size: 14px'>".$chelange."</span><br/>";
 		$get_display_ch_stmt_content = $get_display_ch_stmt_content. editchallenge($chelangestmt, $chelangeid) ;
 //dropdown for edit/delete added here for all type of challenges except status 2, 4, 5
         $dropDown_challenge_get = "<div class='list-group-item pull-right'>

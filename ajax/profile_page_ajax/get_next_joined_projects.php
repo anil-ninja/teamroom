@@ -40,7 +40,7 @@ if ($_POST['next_JnPr']) {
                                 <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 </div>
-                            <div class='list-group-item'>
+                            <div class='list-group-item' style='font-size: 14px;'>
                         <br/>".$project_stmt_table."</span><br/>";
                                        
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 

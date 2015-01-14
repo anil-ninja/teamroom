@@ -58,7 +58,7 @@ function user_articles ($db_handle, $user_IDF) {
                         <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
-                    <div class='list-group-item'>
+                    <div class='list-group-item' style='font-size: 14px;'>
                 <br/><span id='challenge_".$article_id."' class='text'>".$article_stmt."</span><br/>";
 			echo editchallenge($articlestmt, $article_id) ;
             comments_all_type_challenges ($db_handle, $article_id);
@@ -126,7 +126,7 @@ function user_challenges ($db_handle, $user_IDF) {
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
-            <br/><span id='challenge_".$challenge_id."' class='text'>".$challenge_stmt."</span><br/>";
+            <br/><span id='challenge_".$challenge_id."' class='text' style='font-size: 14px;'>".$challenge_stmt."</span><br/>";
 			echo editchallenge($challengestmt, $challenge_id) ;
          comments_all_type_challenges ($db_handle, $challenge_id);
          echo "</div>";
@@ -192,7 +192,7 @@ function user_idea ($db_handle, $user_IDF) {
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
-                <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/>";
+                <br/><span id='challenge_".$idea_id."' class='text' style='font-size: 14px;'>".$idea_stmt."</span><br/>";
                 echo editchallenge($ideastmt, $idea_id) ;
              comments_all_type_challenges ($db_handle, $idea_id);
              echo "</div>";
@@ -258,7 +258,7 @@ $no_created_projects = mysqli_num_rows($project_created_display);
                         .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                     </div>
                 <div class='list-group-item'>
-            <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/>";
+            <br/><span id='project_".$project_id_table."' class='text' style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
 			echo editproject($projectstmttable, $project_id_table) ;
                        project_comments($db_handle, $project_id_table);
                echo "</div>";
@@ -309,7 +309,7 @@ function joined_projects ($db_handle, $user_IDF) {
                     <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
                         .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                     </div>
-                <div class='list-group-item'>
+                <div class='list-group-item' style='font-size: 14px;'>
             <br/>".$project_stmt_table."</span><br/>";
                       
                     project_comments($db_handle, $project_id_table);

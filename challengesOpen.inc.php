@@ -116,7 +116,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span></div>                    
                        <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 16px;color: #444;'>".$chelange."</span>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px;color: #444;'>".$chelange."</span>";
        $display_name_stmt = $display_name_stmt . editchallenge($chelangestmt, $chelangeid) ;
             if (isset ($_SESSION['user_id'])) {
 				$user_id = $_SESSION['user_id'];

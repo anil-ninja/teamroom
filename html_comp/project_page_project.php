@@ -113,7 +113,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_task_stmt_content .= "<br></div>                    
                     <div class='list-group-item'><br>
-                        <span id='challenge_".$id_task."' class='text' style='line-height:22px;'>".$stmt_task."</span><br/>";
+                        <span id='challenge_".$id_task."' class='text' style='line-height:22px;font-size: 14px;'>".$stmt_task."</span><br/>";
         $display_task_stmt_content = $display_task_stmt_content. editchallenge($taskstmt, $id_task) ;
     
     if ($type_task == 5) {

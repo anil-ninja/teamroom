@@ -105,7 +105,7 @@
 			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
 				<i class='icon-screenshot'></i>Skills &nbsp;: &nbsp; ".$data."
 			</div><br/>
-			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+			<div class='row-fluid' style ='text-align:justify;font-size: 14px;word-wrap: break-word;'>
 				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user']."
 			</div>" ;
 		}
@@ -128,8 +128,8 @@
                     </div>
                 </div>
                 <div class="list-group" style="margin: 20px 0px;">
-					<label> &nbsp;&nbsp;&nbsp; About Collap Page:</label>
-                    <div class="list-group-item">
+					<label> &nbsp;&nbsp;&nbsp; About Collap : </label>
+                    <div class="list-group-item" style='font-size: 14px;'>
 						<p>Collap is a powerful online platform which enables you to take a dig at problems, big or small, and collaborate with like minded people to make the world a better place.</p>
 						<p>Identify any problem you want solved and let the world know about it. Assemble your team and have a go at it. Interested Collapers can join your quest and contribute which ever way they can. 
 Collap provides you a wide range of helpful tools which enable hassle-free collaboration. Create and manage projects and be in control with our Project Dashboard all through the process. Share ideas freely and come up with innovative solutions.</p>
