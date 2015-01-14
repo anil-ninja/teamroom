@@ -61,7 +61,7 @@
 				else {
 					$ProjectPicFull = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 				}
-				$ProjectPicLink2 =explode("\"",$ProjectPicFull)[1] ; 				
+				$ProjectPicLink2 =explode("\"",$ProjectPicFull)[1] ; 			
 				$ProjectPic = "<img src='".resize_image($ProjectPicLink2, 15, 15)."' onError=this.src='img/default.gif'>" ;
 				
                 if (strlen($p_title) > 22) {
@@ -113,7 +113,7 @@
 						$ProjectPicFull2 = strstr($Prostmt2, '<br/>' , true) ;
 					}
 					else {
-						$ProjectPicFull2 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+						$ProjectPicFull2 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 					}
 					$ProjectPicLink =explode("\"",$ProjectPicFull2)[1] ; 				
 					$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 15, 15)."' onError=this.src='img/default.gif'>" ;
@@ -173,7 +173,7 @@
 						$ProjectPicFull3 = strstr($Prostmt3, '<br/>' , true) ;
 					}
 					else {
-						$ProjectPicFull3 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+						$ProjectPicFull3 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 					}
 					$ProjectPicLink3 =explode("\"",$ProjectPicFull3)[1] ; 				
 					$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15)."' onError=this.src='img/default.gif'>" ;

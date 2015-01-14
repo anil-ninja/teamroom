@@ -369,7 +369,7 @@ function recommended_project ($db_handle) {
 			$ProjectPicFull3 = strstr($Prostmt3, '<br/>' , true) ;
 		}
 		else {
-			$ProjectPicFull3 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+			$ProjectPicFull3 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 		}
 		$ProjectPicLink3 =explode("\"",$ProjectPicFull3)[1] ; 				
 		$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15)."' onError=this.src='img/default.gif'>" ;

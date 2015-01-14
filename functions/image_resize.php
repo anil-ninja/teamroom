@@ -3,8 +3,7 @@
 function resize_image($file, $w, $h, $crop=FALSE) {
 	$url = $file;
 	$file = "/var/www/html/collap_files/" . $file;
-	if(!file_exists(explode(".",$file)[0] . "_".$w."x".$h.".jpg")){
-	
+	if(!file_exists(explode(".",$file)[0] . "_".$w."x".$h.".jpg")){	
     list($width, $height) = getimagesize($file);
     $r = $width / $height;
     if ($crop) {
