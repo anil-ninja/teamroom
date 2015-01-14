@@ -4,7 +4,7 @@ include_once 'html_comp/start_time.php';
 include_once 'functions/delete_comment.php';
 include_once 'functions/image_resize.php';
 $pro_id = $_GET['project_id'] ;
-
+$_SESSION['project_id']= $pro_id;
 if (isset($_POST['request_order']) && ($_POST['select_order'] == 'ASC')) {
   //$sort_by = 'ASC';
   mysqli_query($db_handle, "INSERT INTO project_order (project_id) VALUES ('$pro_id');");

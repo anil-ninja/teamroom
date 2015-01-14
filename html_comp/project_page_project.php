@@ -1,6 +1,14 @@
 <?php 
-	$_SESSION['project_id'] = $pro_id;
-	if (isset($_SESSION['user_id'])) {
+include_once '../functions/delete_comment.php';
+include_once '../lib/db_connect.php';
+session_start();
+$pro_id = $_SESSION['project_id'];
+$user_id = $_SESSION['user_id'] ;
+$username = $_SESSION['username'] ;
+$projectData = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
+$projectDataRow = mysqli_fetch_array($projectData) ;
+$projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $projectDataRow['project_title']))) ;
+ if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
         <div id='demo1' class='list-group-item' style='font-family: Tenali Ramakrishna, sans-serif;'>
@@ -12,7 +20,7 @@
             | 
           <span class="icon-leaf" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Notes</span>
             | 
-          <span class="icon-hdd" onclick='show_form_pro(6, "<?=ucfirst($projttitle) ?>", "<?=$pro_id ?>")' style="cursor: pointer; color:#000;"> Manage Files</span>
+          <span class="icon-hdd" onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;"> Manage Files</span>
             | 
           <span class="icon-film" onclick='show_form(4)' style="cursor: pointer; color:#000;"> Videos</span>
         </div>
@@ -23,128 +31,22 @@
     </div>
     <?php
 	}
-
-$project = mysqli_query($db_handle, "(SELECT a.user_id, a.project_ETA, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM
-                                      projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' and a.user_id = b.user_id AND a.project_type !=3)
-                                      UNION
-                                      (SELECT a.user_id, a.project_ETA, a.creation_time, b.stmt, c.first_name, c.last_name, c.username FROM projects as a
-                                      join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type !=3);");
-$project_row = mysqli_fetch_array($project);
-$p_uid = $project_row['user_id'];
-$projectst = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt']))));
-$projectstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
-$fname = $project_row['first_name'];
-$projectcreation = $project_row['creation_time'];
-$lname = $project_row['last_name'];
-$username_project = $project_row['username'];
-$projecteta = $project_row['project_ETA'];
-$timepr = eta($projecteta);
-$prtime = remaining_time($projectcreation, $projecteta);
-$timef = date("j F, g:i a", strtotime($projectcreation));
-echo "<div class='list-group'>
-        <div class='list-group-item'>
-            <div class='pull-left lh-fix'>     
-                <span class='icon-question-sign'></span>
-                <img src='uploads/profilePictures/$username_project.jpg'  onError=this.src='img/default.gif' style='width: 50px; height: 50px'>&nbsp &nbsp
-            </div>";
-if ($p_uid == $user_id) {
-    echo "<div class='dropdown pull-right'>
-            <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-              <ul class='dropdown-menu'>
-                <li><a class='btn-link' href='#' onclick='editproject(".$pro_id.")'>Edit Project</a></li>
-                <li><a class='btn-link' href='#' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</a></li>
-                <li>
-                  <a data-toggle='modal' class='btn-link' data-target='#project_order'>Sort Order</a>
-                </li>";
-    /* if ($prtime == 'Closed') {
-      echo "<form method='POST' class='inline-form'>
-      <input type='hidden' name='id' value='" . $pro_id . "'/>
-      <input class='btn-link' type='submit' name='eta_project_change' value='Change ETA'/>
-      </form>";
-      } */
-    echo "</ul></div>";
-}
-
-echo "<div class='row-fluid'>
-        <div class='span4'>
-          <span class='color strong' style= 'color :lightblue;'>
-             <a href ='profile.php?username=" . $username_project . "'>" . ucfirst($fname) . '&nbsp' . ucfirst($lname) . "</a>
-          </span>  <br/>" . $timef . "
-        <br/></div>";
-/*      <div class='col-md-5'>
-  ETA in &nbsp".$timepr."<br>Time Left:".$prtime."
-  </div> */
-echo "</div>
-     </div>
-      <div class='list-group-item'><span id='project_".$pro_id."' class='text' style='line-height:22px;'>".$projectst."</span><br/>";
-   echo editproject($projectstmt, $pro_id) ;
-$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
-                                        where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
-                                        UNION
-                                        (SELECT DISTINCT c.stmt, a.user_id, a.response_pr_id, a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b join blobs as c 
-                                        where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = c.blob_id and a.status = '1') ORDER BY response_pr_creation ASC;");
-while ($displayrowc = mysqli_fetch_array($displayb)) {
-    $frstnam = $displayrowc['first_name'];
-    $lnam = $displayrowc['last_name'];
-    $username_pr_comment = $displayrowc['username'];
-    $ida = $displayrowc['response_pr_id'];
-    $idb = $displayrowc['user_id'];
-    $projectres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowc['stmt']))));
-    echo "<div id='commentscontainer'>
-            <div class='comments clearfix'>
-                <div class='pull-left lh-fix'>
-                    <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
-                </div>
-                <div class='comment-text'>
-                    <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " 
-                    " . ucfirst($lnam) . "</a>&nbsp</span> 
-                    <small>" . $projectres . "</small>";
-    if (isset($_SESSION['user_id'])) {
-       dropDown_delete_comment_pr($ida, $user_id, $idb) ;
-    }
-    echo "</div>
-         </div> 
-        </div>";
-}
-echo "<div class='comments_".$pro_id."'></div><div class='comments clearfix'>
-			<div class='pull-left lh-fix'>
-				<img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
-			</div>";
-if (isset($_SESSION['user_id'])) {
-    echo "<input type='text' class='input-block-level' STYLE='width: 83%;' id='own_ch_response_".$pro_id."' placeholder='Want to know your comment....' />
-          <button type='submit' onclick='comment(\"".$pro_id."\", 2)' class='btn btn-primary' style='margin-bottom: 10px;'>
-            <i class='icon-chevron-right'></i>
-          </button>";
-} else {
-    echo "<input type='text' class='input-block-level' STYLE='width: 83%;' placeholder='Want to know your comment....'/>
-			<a data-toggle='modal' data-target='#SignIn'>
-				<button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px;'>
-          <i class='icon-chevron-right'></i>
-        </button>
-			</a>";
-}
-echo "</div>
-	</div>
-</div>";
 ?>
-
 <div class="panel-primary eye_open" id="prch">
     <p id='home-ch'></p>
     <div class='newPosts' ></div>
 <?php
 $_SESSION['lastpr'] = '5';
-$_SESSION['project_id'] = $pro_id;
 $display_task_stmt_content = "" ;
-$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, a.challenge_type,
-									a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
+$tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, a.stmt, a.creation_time, 
+									 a.challenge_type, a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b
 									 WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
-									AND a.blob_id = '0' and a.user_id = b.user_id)
+									 AND a.blob_id = '0' and a.user_id = b.user_id)
 									UNION
-								 (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt, a.creation_time, a.challenge_type,
-								  a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b JOIN blobs AS c 
-								  WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
-								   AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update ".$sort_by." LIMIT 0, 5 ;");
-
+									 (SELECT DISTINCT a.last_update, a.challenge_id, a.user_id, a.challenge_title, a.challenge_ETA, c.stmt, a.creation_time, 
+									 a.challenge_type, a.challenge_status, b.first_name, b.last_name, b.username FROM challenges AS a JOIN user_info AS b 
+									 JOIN blobs AS c WHERE a.project_id = '$pro_id' AND a.challenge_status !='3' AND a.challenge_status !='7'
+									 AND a.blob_id = c.blob_id and a.user_id = b.user_id ) ORDER BY last_update DESC LIMIT 0, 5 ;");
 while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
@@ -417,3 +319,6 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 }
 ?>
 </div>
+<script>
+	$(".editbox").hide();
+</script>

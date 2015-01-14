@@ -17,7 +17,6 @@ $total_members = mysqli_num_rows($teams_member_display);
 ?>
 
         <div class="row-fluid">
-            
                 <div class="tab-content">
                     <div class='list-group-item'>
                         <a  style='font-size: 12pt; color :#3B5998;'>
@@ -51,13 +50,11 @@ $total_members = mysqli_num_rows($teams_member_display);
             <?php
                 echo "<p style='color :#3B5998;' class='color strong'> Teams</p>
                         <div class ='row-fluid'>";
-                $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams 
-                                                                    WHERE project_id='$pro_id';"
-                                                    );
+                $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id' ;") ;
                 while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                     $list_of_teams = $teams_name_displayRow['team_name'];
                     echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
-                                <a class='btn-link' onclick='loadteampanel(\"".$list_of_teams."\"   )'>"
+                                <a class='btn-link' onclick='loadteampanel(\"".$list_of_teams."\")'>"
                                     .ucfirst($list_of_teams)."
                                 </a>
                             </div>";
