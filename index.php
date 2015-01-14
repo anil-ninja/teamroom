@@ -376,8 +376,27 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div><br/><br/><br/>
+        <div class='row-fluid'>
+			<div class='span10 offset1'>
+			<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+				<ul class="nav nav-tabs">
+                        <li class="active"><a href="index.php#panel1" data-toggle="tab" class="active ">About Collap Page:</a></li>
+                    </ul>
+                    <div class="tab-content">
+						
+						<div class="box">
+						<p>Collap is a powerful online platform which enables you to take a dig at problems, big or small, and collaborate with like minded people to make the world a better place.</p>
+						<p>Identify any problem you want solved and let the world know about it. Assemble your team and have a go at it. Interested Collapers can join your quest and contribute which ever way they can. 
+Collap provides you a wide range of helpful tools which enable hassle-free collaboration. Create and manage projects and be in control with our Project Dashboard all through the process. Share ideas freely and come up with innovative solutions.</p>
+						<p>Make your realm private and work on that secret project you’ve long been planning. 
+Participate in projects and upgrade your Level. Earn a special place in Collap for each incremental step. Sharpen your skills while lending them to do good. </p>
+						<p> Challenges to solve your technical problems and help change the world! . Meet people,  allows everybody to share their ideas, views, challenges and achievements with the like minded for mutual benefits. In this collap v1 release, we are going to limit to some functionality due to technically liabilities and available resources.</p>
+					</div>
+					</div>
+				</div>
+			</div>
+        </div><br/><br/><br/>
     <?php 
     /*
 

@@ -271,7 +271,6 @@ $obj = new profile($UserName);
             </div>
 
             <div class="span6">
-                <div id='demo6' class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                     <ul class="nav nav-tabs" style="padding: 0;">
                         <li class="active">
                             <a href="#tabCreatedProjects" data-toggle="tab" class="active " id="created_project" style="padding: 10px 5px;">
@@ -315,37 +314,36 @@ $obj = new profile($UserName);
                         </li>
                     </ul>
                 <div class="tab-content" >
-                    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">       
+                    <div role="tabpanel" class="tab-pane fade in active" id="tabCreatedProjects">       
                         <?php created_projects($db_handle,$profileViewUserID); ?>
                         <div id='next_CP'>
                         </div>
                     </div>
-                    <div role="tabpanel" class="row tab-pane" id="tabJoinedProjects" >
+                    <div role="tabpanel" class="tab-pane fade" id="tabJoinedProjects" >
                         <div id="joined_project_content">
                             
                         </div>
                         <div id='next_JnPr'>
                         </div>
                     </div>
-                    <div role="tabpanel" class="row tab-pane" id="tabArticles">
+                    <div role="tabpanel" class="tab-pane fade" id="tabArticles">
                         <div id="user_articles_content">
                             
                         </div>
                         <div id='next_user_article'>
                         </div>
                     </div>
-                    <div role="tabpanel" class="row tab-pane" id="tabChallanges">
+                    <div role="tabpanel" class="tab-pane fade" id="tabChallanges">
                         <div id="user_challenges_content">
                             
                         </div>
                         <div id='next_user_chall'>
                         </div>
                     </div>
-                    <div role="tabpanel" class="row tab-pane" id="tabIdeas">
+                    <div role="tabpanel" class="tab-pane fade" id="tabIdeas">
                         <div id="user_idea_content"></div>
                         <div id="user_next_idea"></div>
                     </div>
-                </div>
             </div>
         </div>
         <div id='tab9' class ="span2">
