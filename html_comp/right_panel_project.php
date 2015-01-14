@@ -29,17 +29,16 @@
 		$type = "Private" ;
 	}
 	if(substr($stmt, 0, 4) == '<img') {
-		$cha = strstr($stmt, '<br/>' , true) ;
-	}
-	else if(substr($stmt, 0, 5) == ' <img') {
-		$cha = strstr($stmt, '<br/>' , true) ;
+		$ProjectPic4 = strstr($stmt, '<br/>' , true) ;
 	}
 	else {
-		$cha = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
+		$ProjectPic4 = "<img src='fonts/project.jpg'  onError=this.src='img/default.gif'>" ;
 	}
+	$ProjectPicLink4 =explode("\"",$ProjectPic4)['1'] ; 				
+	$ProjectPic4 = "<img src='".resize_image($ProjectPicLink4, 280, 280)."' onError=this.src='img/default.gif' style='width:100%;'>" ;				
 	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and member_status = '1' ;") ;
 	$collaboratorNo = mysqli_num_rows($collaborators) ;
-	echo $cha."<br/><br/>
+	echo $ProjectPic4."<br/><br/>
 		<div class ='row-fluid' style='margin: 4px;'><span class='color strong' style= 'font-size: 14pt;'>
 			".ucfirst($title)."</span>
 		</div><br/>
@@ -86,16 +85,11 @@
 			</div>
 		</div><br/>" ;
 	if($project_type == 1) {
-		if(isset($_SESSION['user_id'])){
-			$user_exist = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and user_id = '$user_id' ;") ;
-			$user_existNo = mysqli_num_rows($user_exist) ;
-			if($user_existNo == 0) {
-					echo "<button class='btn-link' onclick='joinproject(".$pro_id.")'>Join</button>
-						  <button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
-			}
-			else {
-				echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
-			}
+		$user_exist = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and user_id = '$user_id' ;") ;
+		$user_existNo = mysqli_num_rows($user_exist) ;
+		if($user_existNo == 0) {
+			echo "<button class='btn-link' onclick='joinproject(".$pro_id.")'>Join</button>
+				  <button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 		}
 		else {
 			echo "<button class='btn-link' onclick='test3()'>Join</button>
@@ -103,8 +97,7 @@
 		}
 	}
 	else {
-		echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>
-			  <button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
+		echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 	}
 	?>
 </div>

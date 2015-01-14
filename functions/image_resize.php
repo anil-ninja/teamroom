@@ -33,5 +33,5 @@ function resize_image($file, $w, $h, $crop=FALSE) {
 	return  explode(".",$url)[0] . "_".$w."x".$h.".jpg";
 }
 
-//resize_image("uploads/anil/challengePic/2015-01-11_01:09:00pm_wwc.jpg", 15, 15);
+//echo resize_image("fonts/project.jpg", 280, 280);
 ?>
