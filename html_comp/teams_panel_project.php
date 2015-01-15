@@ -48,8 +48,12 @@ $total_members = mysqli_num_rows($teams_member_display);
                     </div>
                     <div class='list-group-item'>
             <?php
-                echo "<p style='color :#3B5998;' class='color strong'> Teams</p>
-                        <div class ='row-fluid'>";
+            $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+			if(mysqli_num_rows($member_project) != 0) {
+				echo "<a class='btn-link pull-right' data-toggle='modal' data-target='#AddTeam'>Create Team</a>" ;
+			}
+                echo "<p style='color :#3B5998;' class='color strong'> Teams </p>
+                        <div class ='row-fluid' id='ProjectTeams'>";
                 $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id' ;") ;
                 while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                     $list_of_teams = $teams_name_displayRow['team_name'];
@@ -73,7 +77,7 @@ $total_members = mysqli_num_rows($teams_member_display);
         $rank = $teams_member_displayRow['rank'];
         $user_id_member = $teams_member_displayRow['user_id'];
         
-        echo "              <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>";
+        echo "<div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>";
 
             if ($team_owner_project == $user_id && $user_id_member != $user_id) {
                         echo "  <a type='submit' class='btn-link badge pull-right' id='remove_member' 
@@ -106,5 +110,5 @@ $total_members = mysqli_num_rows($teams_member_display);
             echo "  </div>";
         ?>
         </div>
-   </div> 
-    <?php include_once 'kanban.php'; ?>
+   </div>    
+   <?php include_once 'kanban.php'; ?>

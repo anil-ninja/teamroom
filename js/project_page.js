@@ -207,3 +207,238 @@ $("#sign").click(function(){
   	$(".deciduous").hide(1000);
   });
 });	
+	
+function create_team(){
+	$("#create_team").attr('disabled','disabled');
+	var team = $("#team_name_A").val() ;
+	var email = $("#email_team").val() ;
+	var newteam = document.getElementById("myteamname").innerHTML ;
+	if(newteam ==""){
+		if(team =="") {
+			bootstrap_alert(".alert_placeholder", "Please Enter Team Name", 5000,"alert-warning");
+			$("#create_team").removeAttr('disabled');
+			return false ;
+		}
+		else if (email == "") {
+			bootstrap_alert(".alert_placeholder", "Please Enter Email_id", 5000,"alert-warning");
+			$("#create_team").removeAttr('disabled');
+			return false ;
+		}
+		else {
+			submitTeam(team, email) ;
+		}
+	}
+	else {
+		if(email == "") {
+			var dataString = 'team='+ newteam  ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/create_team_new.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					var notice = result.split("+") ;
+					if(notice['0'] = "Team Created Successfully !!!") {
+						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+						$("#team_name_A").val("") ;
+						$("#email_team").val("") ;
+						$("#create_team").removeAttr('disabled');
+						var data = "<div class\='span4' style\=' margin:4px; background : rgb(240, 241, 242);'>" +
+									"<a class\='btn-link' onclick\='loadteampanel(\"" + team + "\")'>" + 
+									team + "</a></div>" ;
+						$("#ProjectTeams").append(data);
+						$(".TeamName").hide();
+						$("#team_name_A").show();
+						document.getElementById("myteamname").innerHTML = "" ;
+						$(".TeamMembers").empty();
+						$("#AddTeam").modal("hide");
+					}
+					else{
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+						$("#create_team").removeAttr('disabled');
+					}
+				}				
+			}) ;
+		}
+		else {
+			submitTeam(newteam, email) ;
+		}
+	}	
+}
+function submitTeam(team,email) {
+	$.ajax({
+		type: "POST",
+		url: "ajax/email.php",
+		data: 'email='+ email,
+		cache: false,
+		success: function(result){
+			//alert(result);
+			if (result == 'true') {
+				var dataString = 'team='+ team + '&email='+ email ;
+				$.ajax({
+					type: "POST",
+					url: "ajax/create_team_new.php",
+					data: dataString,
+					cache: false,
+					success: function(result){
+						var notice = result.split("+") ;
+						if(notice['0'] = "Team Created Successfully !!!") {
+							bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+							$("#team_name_A").val("") ;
+							$("#email_team").val("") ;
+							$("#create_team").removeAttr('disabled');
+							var data = "<div class\='span4' style\=' margin:4px; background : rgb(240, 241, 242);'>" +
+										"<a class\='btn-link' onclick\='loadteampanel(\"" + team + "\")'>" + 
+										team + "</a></div>" ;
+							$("#ProjectTeams").append(data);
+							$(".TeamName").hide();
+							$("#team_name_A").show();
+							document.getElementById("myteamname").innerHTML = "" ;
+							$(".TeamMembers").empty();
+							$("#AddTeam").modal("hide");
+						}
+						else{
+							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+							$("#create_team").removeAttr('disabled');
+						}
+					}				
+				}) ;
+			}
+			else if (result == 'same') {
+				bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
+				$("#create_team").removeAttr('disabled');
+				return false ;
+			}
+			else {
+				var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4>" + "<table><tbody>" +
+							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span></td>" +
+							"<td><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div></td></tr> " +
+							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span></td>" +
+							"<td><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div></td></tr> " + 
+							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span></td>" +
+							"<td><input type='text' class\='form-control' id='teamemail' value=\'" + email + "\' /></div></td></tr></tbody></table>" +
+							"<input type='submit' class\='btn btn-success' id='invitememberpr' onclick ='invitememberpr()' value='Invite Him/Her' /> <br/> ";
+					//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
+				document.getElementById("create_team_modal").innerHTML =  modal;
+				return false ;
+			}
+		}
+   });
+}
+
+	function invitememberpr(){
+		$("#invitememberpr").attr('disabled','disabled');
+			var fname = $("#fnameteam").val() ;
+			var sname = $("#snameteam").val() ;
+			var email = $("#teamemail").val() ;
+			if(fname =="") {
+				bootstrap_alert(".alert_placeholder", "Please Enter First Name", 5000,"alert-warning");
+				$("#invitememberpr").removeAttr('disabled');
+				return false ;
+			}
+			else if (sname == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Second Name", 5000,"alert-warning");
+				$("#invitememberpr").removeAttr('disabled');
+				return false ;
+			}
+			else if (email == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Email-ID", 5000,"alert-warning");
+				$("#invitememberpr").removeAttr('disabled');
+				return false ;
+			}
+			else {
+			$.ajax({
+				type: "POST",
+				url: "ajax/email.php",
+				data: 'email='+ email,
+				cache: false,
+				success: function(result){
+					if (result == 'false') {
+							var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email ;
+							$.ajax({
+								type: "POST",
+								url: "ajax/send_invitation.php",
+								data: dataString,
+								cache: false,
+								success: function(result){
+									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+								if(result = "Invitation Send Successfully !!!") {
+									$("#fnameteam").val("") ;
+									$("#snameteam").val("") ;
+									$("#teamemail").val("") ;
+									location.reload();
+									
+									}
+								}				
+							});
+							$("#invitememberpr").removeAttr('disabled');
+						}
+						else {
+							bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
+							$("#invitememberpr").removeAttr('disabled');
+							return false ;							
+							}
+					}
+				});
+			}
+		}
+function CreateTeamMember(userid){
+	$("#create_team").attr('disabled','disabled');
+	var team = $("#team_name_A").val() ;
+	if(team == "") {
+		var newteam = document.getElementById("myteamname").innerHTML ;
+		if(newteam ==""){
+			bootstrap_alert(".alert_placeholder", "Please Enter Team Name", 5000,"alert-warning");
+			$("#create_team").removeAttr('disabled');
+			return false ;
+		}
+		else {
+			var dataString = 'team='+ newteam + '&userid='+ userid ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/create_team_new.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					var notice = result.split("+") ;
+					if(notice['0'] = "Team Created Successfully !!!") {
+						bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
+						$("#username_"+userid).hide();
+						$(".TeamMembers").append(notice['1']);
+						$("#create_team").removeAttr('disabled');						
+					}
+					else{
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+						$("#create_team").removeAttr('disabled');
+					}
+				}				
+			}) ;
+		}
+	}
+	else {
+		var dataString = 'team='+ team + '&userid='+ userid ;
+		$.ajax({
+			type: "POST",
+			url: "ajax/create_team_new.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				var notice = result.split("+") ;
+				if(notice['0'] = "Team Created Successfully !!!") {
+					bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
+					$("#username_"+userid).hide();
+					$(".TeamName").show();
+					$("#team_name_A").hide();
+					document.getElementById("myteamname").innerHTML = team ;
+					$(".TeamMembers").append(notice['1']);
+					$("#create_team").removeAttr('disabled');
+					
+				}
+				else{
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					$("#create_team").removeAttr('disabled');
+				}
+			}				
+		}) ;
+	} 
+}	

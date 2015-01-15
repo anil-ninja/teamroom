@@ -17,8 +17,6 @@ $projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replac
             | 
           <span class="icon-pushpin" onclick='show_form(2)' style="cursor: pointer; color:#000;"> Assign Task</span>
             | 
-          <span class="icon-user" onclick='show_form(3)' style="cursor: pointer; color:#000;"> Create Team</span>
-            | 
           <span class="icon-leaf" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Notes</span>
             | 
           <span class="icon-hdd" onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;"> Manage Files</span>
