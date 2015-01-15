@@ -21,7 +21,7 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 define ('DBPATH','localhost');
 define ('DBUSER','root');
-define ('DBPASS','redhat111111');
+define ('DBPASS','redhat@11111p');
 define ('DBNAME','ninjasTeamRoom');
 
 session_start();
