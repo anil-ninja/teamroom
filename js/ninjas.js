@@ -157,6 +157,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 						$(".newPosts").prepend(notice['1']) ;
 						$("#create_video").removeAttr('disabled');
 						$(".editbox").hide() ;
+						$("#remindervalue").hide() ;
+						$("#textForm").show();
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -219,6 +221,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 						$(".newPosts").prepend(notice['1']) ;
 						$("#create_videopr").removeAttr('disabled');
 						$(".editbox").hide() ;
+						$("#invitation").hide() ;
+						$("#selecttext").show();
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -338,6 +342,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#idea_titleA").val("") ;
 							$("#_fileIdea").val("") ;
 							$("#create_idea").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 							
 						case 2:
@@ -345,6 +351,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#picture_title").val("") ;
 							$("#_filePhotos").val("") ;
 							$("#create_picture").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 							
 						case 3:
@@ -352,6 +360,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#article_title").val("") ;
 							$("#_fileArticle").val("") ;
 							$("#create_article").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 							
 						case 4:
@@ -359,6 +369,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#challange_title").val("") ;
 							$("#_fileChallenge").val("") ;
 							$("#submit_ch").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 						
 						case 5:
@@ -366,6 +378,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#challange_title").val("") ;
 							$("#_fileChallengepr").val("") ;
 							$("#create_challange_pb_pr").removeAttr('disabled');
+							$("#invitation").hide() ;
+							$("#selecttext").show();
 							break;
 							
 						case 6:
@@ -373,6 +387,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#notes_title").val("") ;
 							$("#_fileNotes").val("") ;
 							$("#create_notes").removeAttr('disabled');
+							$("#invitation").hide() ;
+							$("#selecttext").show();
 							break;
 							
 						case 7:
@@ -381,6 +397,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#taskdetails").val("") ;
 							$("#_fileTask").val("") ;
 							$("#create_task").removeAttr('disabled');
+							$("#invitation").hide() ;
+							$("#selecttext").show();
 							break;
 						
 						case 8:
@@ -710,6 +728,8 @@ $("#pencil").click(function(){
 									$("#team_name_A").val("") ;
 									$("#email_team").val("") ;
 									$("#create_team").removeAttr('disabled');
+									$("#invitation").hide() ;
+									$("#selecttext").show();
 									}
 									else{
 										bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -780,6 +800,9 @@ $("#pencil").click(function(){
 									$("#fnameteam").val("") ;
 									$("#snameteam").val("") ;
 									$("#teamemail").val("") ;
+									$("#invitation").hide() ;
+									$("#selecttext").show();
+									
 									}
 								}				
 							});

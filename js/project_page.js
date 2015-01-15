@@ -118,6 +118,7 @@ function show_form(type){
 		cache: false,
 		success: function(result){
 			$("#selecttext").hide();
+			$("#invitation").show() ;
 			document.getElementById("invitation").innerHTML = result ;
 		}
 	});
@@ -132,12 +133,14 @@ function show_form_pro(type, title, ID) {
 		cache: false,
 		success: function(result){
 			$("#selecttext").hide();
+			$("#invitation").show() ;
 			document.getElementById("invitation").innerHTML = result ;
 			elf(title, ID) ;
 		}
 	});
 }
 function elf(title, ID){
+	$("#invitation").show() ;
 	var temp = title + "_" + ID ;
     var elf = $('#elfinder').elfinder({
 		url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
@@ -154,6 +157,7 @@ function show_form_h(type){
 		cache: false,
 		success: function(result){
 			$("#textForm").hide();
+			$("#remindervalue").show() ;
 			document.getElementById("remindervalue").innerHTML = result ;
 		}
 	});

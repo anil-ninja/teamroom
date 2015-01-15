@@ -8,12 +8,14 @@ if($_POST['fname']){
 	$uname = mysqli_query($db_handle,"select * from user_info where user_id = '$user_id' ;") ;
 		$unamerow = mysqli_fetch_array($uname) ;
 		$name = $unamerow['username'] ;
+		$senderfname = $unamerow['first_name'] ;
+		$senderlname = $unamerow['last_name'] ;
 		$fname = $_POST['fname'] ;
 		$sname = $_POST['sname'] ;
 		$email = $_POST['email'] ;
-		$body2 = "Hi, ".$name." \n \n ".$username." Send Invitation To Join http://collap.com \n  \n View at \n
-http://collap.com/profile.php?user_id=".$username ;
-		collapMail($email, $name." Invitation To Join ", $body2) ; 
+		$body2 = "Hi, ".$fname." ".$sname." \n \n ".$senderfname." ".$senderlname." Send Invitation To Join http://collap.com \n  \n View at \n
+http://collap.com/profile.php?username = ".$username ;
+		collapMail($email, " Invitation To Join ", $body2) ; 
 		if(mysqli_error($db_handle)) { echo "An error occured Sorry try again!"; }
 		else { echo "Invitation Send Successfully !!!"; }	
 }	
