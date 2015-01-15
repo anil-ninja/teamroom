@@ -18,20 +18,14 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 */
-
-define ('DBPATH','localhost');
-define ('DBUSER','root');
-define ('DBPASS','redhat@11111p');
-define ('DBNAME','ninjasTeamRoom');
-
+include_once 'lib/db_connect.php';
 session_start();
 
 if(!isset($_SESSION['username'])) {
 	exit ;	
 	}
 global $dbh;
-$dbh = mysql_connect(DBPATH,DBUSER,DBPASS);
-mysql_selectdb(DBNAME,$dbh);
+$dbh = $db_handle ;
 
 if ($_GET['action'] == "chatheartbeat") { chatHeartbeat(); } 
 if ($_GET['action'] == "sendchat") { sendChat(); } 

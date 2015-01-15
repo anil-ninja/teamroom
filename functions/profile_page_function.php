@@ -1,5 +1,6 @@
 <?php
 include_once 'delete_comment.php';
+include_once 'image_resize.php';
 function user_articles ($db_handle, $user_IDF) {
     $user_articles_display = mysqli_query($db_handle, "(SELECT a.last_update, a.challenge_id, a.challenge_title, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM challenges as a 
                                                         JOIN user_info as b WHERE a.challenge_type=7 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
