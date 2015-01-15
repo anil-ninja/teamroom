@@ -317,7 +317,7 @@ function submitTeam(team,email) {
 							"<td><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div></td></tr> " + 
 							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span></td>" +
 							"<td><input type='text' class\='form-control' id='teamemail' value=\'" + email + "\' /></div></td></tr></tbody></table>" +
-							"<input type='submit' class\='btn btn-success' id='invitememberpr' onclick ='invitememberpr()' value='Invite Him/Her' /> <br/> ";
+							"<input type='submit' class\='btn btn-success' id='invitememberpr' onclick ='invitememberpr("+ team +")' value='Invite Him/Her' /> <br/> ";
 					//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
 				document.getElementById("create_team_modal").innerHTML =  modal;
 				return false ;
@@ -326,7 +326,7 @@ function submitTeam(team,email) {
    });
 }
 
-	function invitememberpr(){
+	function invitememberpr(team){
 		$("#invitememberpr").attr('disabled','disabled');
 			var fname = $("#fnameteam").val() ;
 			var sname = $("#snameteam").val() ;
@@ -354,34 +354,34 @@ function submitTeam(team,email) {
 				cache: false,
 				success: function(result){
 					if (result == 'false') {
-							var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email ;
-							$.ajax({
-								type: "POST",
-								url: "ajax/send_invitation.php",
-								data: dataString,
-								cache: false,
-								success: function(result){
-									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-								if(result = "Invitation Send Successfully !!!") {
-									$("#fnameteam").val("") ;
-									$("#snameteam").val("") ;
-									$("#teamemail").val("") ;
-									location.reload();
-									
-									}
-								}				
-							});
-							$("#invitememberpr").removeAttr('disabled');
-						}
-						else {
-							bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
-							$("#invitememberpr").removeAttr('disabled');
-							return false ;							
-							}
+						var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email + '&team=' + team ;
+						$.ajax({
+							type: "POST",
+							url: "ajax/send_invitation.php",
+							data: dataString,
+							cache: false,
+							success: function(result){
+								bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+							if(result = "Invitation Send Successfully !!!") {
+								$("#fnameteam").val("") ;
+								$("#snameteam").val("") ;
+								$("#teamemail").val("") ;
+								location.reload();
+								
+								}
+							}				
+						});
+						$("#invitememberpr").removeAttr('disabled');
 					}
-				});
-			}
+					else {
+						bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
+						$("#invitememberpr").removeAttr('disabled');
+						return false ;							
+					}
+				}
+			});
 		}
+	}
 function CreateTeamMember(userid){
 	$("#create_team").attr('disabled','disabled');
 	var team = $("#team_name_A").val() ;

@@ -83,9 +83,6 @@ http://collap.com/project.php?project_id=".$pro_id ;
 				  </div>
 			   </a>
 			</div>" ;
-	$dataTeam = "<div class='span4' style\=' margin:4px; background : rgb(240, 241, 242);'>
-					<a class\='btn-link' onclick\='loadteampanel(\"".$team ."\")'> 
-										".$team." </a></div>"  ;
     if(mysqli_error($db_handle)) { echo "Failed to Create Team!"; }
 	else { echo "Team Created Successfully !!!"."+".$data; }    
  mysqli_close($db_handle);
