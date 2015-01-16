@@ -152,7 +152,80 @@
 			<li><button class='btn-link' id='picch' style='color: #000'><span class='icon-picture'></span> Pics</button></li>
 		</div>
 	</div>
-    </div>
+    </div><br/>
+	<div class="panel panel-default">
+		<div class="panel-heading" style="padding: 5px;" role="tab" id="headingFour">
+			<i class='icon-user'></i>&nbsp;	Our Top Three Users
+		</div>
+		<?php
+			$NoChal = 0 ;
+			$NoIdea = 0 ;
+			$NoArticle = 0 ;
+			$topusers = mysqli_query($db_handle, "select * from user_info order by rank DESC Limit 0, 3 ;") ;
+			while($topusersrow = mysqli_fetch_array($topusers)) {
+				$FirstName = $topusersrow['first_name'] ;
+				$LastName = $topusersrow['last_name'] ;
+				$UserName = $topusersrow['username'] ;
+				$Rank = $topusersrow['rank'] ;
+				$UserId = $topusersrow['user_id'] ;
+				$projects = mysqli_query($db_handle, "select project_id from projects where user_id = '$UserId' and project_type != '3' and project_type != '5' ;") ;
+				$challenges = mysqli_query($db_handle, "select challenge_type from challenges where user_id = '$UserId' and challenge_status != '3' and challenge_status != '7' ;") ;
+				while($challengesrow = mysqli_fetch_array($challenges)){
+					$chType = $challengesrow['challenge_type'] ;
+					if($chType == '1' || $chType == '2' || $chType == '3' || $chType == '5'){
+						$NoChal ++ ;
+					}
+					else if ($chType == '4') {
+						$NoIdea ++ ;
+					}
+					else {
+						$NoArticle ++ ;
+					}
+				}
+				echo "<div class='list-group' style='margin-top:5px;'>
+                        <div class='list-group-item'>
+							<div class ='row-fluid' style='margin: 4px;'>
+								<div class='span3'>
+									<img src='".resize_image("uploads/profilePictures/$UserName.jpg", 30, 30)."' onError=this.src='img/default.gif' style='width:30px;height:30px;'>
+								</div>
+								<div class='span8'>
+									<a href ='profile.php?username=".$UserName."'>".ucfirst($FirstName)." ".ucfirst($LastName)." &nbsp;  (&nbsp;".$Rank."&nbsp;)</a>
+								</div>
+							</div>
+							<table>
+								<thead>
+									<tr>
+										<th>Created</th>
+										<th style='padding-left:50px;'>No.</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Projects</td>
+										<td style='padding-left:50px;'>".mysqli_num_rows($projects)."</td>
+									</tr>
+									<tr>
+										<td>Challenges</td>
+										<td style='padding-left:50px;'>".$NoChal."</td>
+									</tr>
+									<tr>
+										<td>Ideas</td>
+										<td style='padding-left:50px;'>".$NoIdea."</td>
+									</tr>
+									<tr>
+										<td>Articles</td>
+										<td style='padding-left:50px;'>".$NoArticle."</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>" ;
+			$NoChal = 0 ;
+			$NoIdea = 0 ;
+			$NoArticle = 0 ;
+			} 
+		?>
+	</div>
 <!--Change reminder Modal starts here -->
 <div id="changeremindervalues" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
