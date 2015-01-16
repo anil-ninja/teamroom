@@ -1,4 +1,5 @@
 ﻿<?php
+include_once 'lib/db_connect.php';
 session_start();
 include_once 'html_comp/start_time.php';
 if (isset($_SESSION['first_name'])) {  
@@ -1761,6 +1762,6 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
     <script type="text/javascript" src="js/signupValidation.js"></script>
     <script type="text/javascript" src="js/loginValidation.js"></script>
 <?php include_once 'html_comp/terms_and_condition_modal.php' ;
-	include_once 'html_comp/insert_time.php' ; ?>
+		include_once 'html_comp/insert_time.php' ; ?>
 </body>
 </html>

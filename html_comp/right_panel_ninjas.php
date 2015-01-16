@@ -155,13 +155,13 @@
     </div><br/>
 	<div class="panel panel-default">
 		<div class="panel-heading" style="padding: 5px;" role="tab" id="headingFour">
-			<i class='icon-user'></i>&nbsp;	Our Top Three Users
+			<i class='icon-user'></i>&nbsp; Top Users
 		</div>
 		<?php
 			$NoChal = 0 ;
 			$NoIdea = 0 ;
 			$NoArticle = 0 ;
-			$topusers = mysqli_query($db_handle, "select * from user_info order by rank DESC Limit 0, 3 ;") ;
+			$topusers = mysqli_query($db_handle, "select * from (select * from user_info order by rank DESC Limit 0, 6) as data ORDER BY rand() LIMIT 3 ;") ;
 			while($topusersrow = mysqli_fetch_array($topusers)) {
 				$FirstName = $topusersrow['first_name'] ;
 				$LastName = $topusersrow['last_name'] ;
