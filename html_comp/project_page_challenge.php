@@ -83,6 +83,9 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 							<div class='span7' >" ;
 				if(mysqli_num_rows($totaltask) != 0) {			
 						echo "<div id='chart_div'></div>" ;
+		?>
+						<script type="text/javascript">drawChart() ;</script>
+		<?php
 				}
 				else {  
 					echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;
@@ -130,6 +133,9 @@ $totalnotes = mysqli_query($db_handle, "select challenge_id from challenges WHER
 							<div class='span7' >" ;
 				if(mysqli_num_rows($totalchallenges) != 0) {			
 						echo "<div id='chart_div2'></div>" ;
+		?>
+						<script type="text/javascript">drawChart2() ;</script>
+		<?php
 				}
 				else {  
 					echo "<p style='font-size: 20px; text-align: center; margin-top: 20px; color: lightblue;'> No Data Available</p>" ;
@@ -333,7 +339,3 @@ echo  "<div class='list-group-item'style='font-size:10px;'>
 	echo "</tbody>
             </table></div></div>" ;           
 ?>
-<script>
-        drawChart() ;       
-		drawChart2() ;      
-</script>
