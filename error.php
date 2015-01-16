@@ -1,5 +1,6 @@
 <?php
 include_once 'lib/db_connect.php';
+include_once 'functions/image_resize.php';
 ?>
 <html lang="en">
     <head>
@@ -36,7 +37,7 @@ include_once 'lib/db_connect.php';
                        $time_display = date("j F, g:i a", strtotime($challenge_type_time));
                        
         $display_tilte_ch = "
-                <p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b> 
+                <p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b> 
                     <a class='btn-link' style='color:#3B5998; word-wrap: break-word;' href='challengesOpen.php?challenge_id=".$challenge_type_id."' target='_blank'>"
                         .ucfirst($challenge_type_title)."
                     </a></b>
@@ -50,7 +51,7 @@ include_once 'lib/db_connect.php';
                             <span class='icon-hand-up'>".$likes."</span> &nbsp 
                             <span class='icon-hand-down'>".$dislikes."</span>
                         </div>                    
-                        <div class='list-group-item'>
+                        <div class='list-group-item' style='font-size: 14px;'>
                             <br/>".$challenge_type_stmt."<br/><br/>
                         </div>";
         echo "  <div class='list-group'>";

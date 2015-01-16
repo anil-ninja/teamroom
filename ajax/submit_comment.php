@@ -3,6 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 include_once '../functions/collapMail.php';
+include_once '../functions/image_resize.php';
 if($_POST['id']){
 	$user_id = $_SESSION['user_id'];
 	$username = $_SESSION['username'];
@@ -94,7 +95,7 @@ http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborat
 	$test .= "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>

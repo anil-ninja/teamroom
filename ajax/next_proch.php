@@ -2,6 +2,7 @@
 session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
+include_once '../functions/image_resize.php';
 if($_POST['proch']){
 	$user_id = $_SESSION['user_id'];
 	$p_id = $_SESSION['project_id'];
@@ -98,7 +99,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 							</div>";                    
 				}
                         // list grp item header for all type chall/article/idea/photo/video
-			$get_display_tilte_task = "<p style='font-size: 24px; line-height: 30px; id='challenge_ti_".$id_task."' class='text'><b>
+			$get_display_tilte_task = "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 30px; id='challenge_ti_".$id_task."' class='text'><b>
 				<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>".ucfirst($title_task)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$tasktitle."'/>";
 
 			$get_dispaly_fname_likes = "<span style= 'color: #808080'>
@@ -110,7 +111,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			// list grp item stmt content for all type chall/article/idea/photo/video
 			$get_display_task_stmt .= "<br></div>                    
 								<div class='list-group-item'><br>
-									<span id='challenge_".$id_task."' class='text'>".$stmt_task."</span>
+									<span id='challenge_".$id_task."' class='text' style='font-size: 14px'>".$stmt_task."</span>
 									<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/><br/>";
 			$get_display_task_stmt = $get_display_task_stmt . editchallenge($taskstmt, $id_task) ;
     if ($type_task == 5) {
@@ -283,7 +284,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username_commenter_pr_ch.jpg'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username_commenter_pr_ch.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
 				</div>
 				<div class='comment-text'>
 					<span class='pull-left color strong'>
@@ -311,7 +312,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 		}
 		$show = $show . "<div class='comments_".$id_task."'></div><div class='comments clearfix'>
                         <div class='pull-left'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
+                            <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp;
                         </div>";
                 if (isset($_SESSION['user_id'])) {
                     $show = $show . "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>

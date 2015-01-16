@@ -121,7 +121,7 @@ function login(){
 					$usernameFriends = $userProjectsRow['username'];
 					$useridFriends = $userProjectsRow['user_id'];
 					events($db_handle,$id,"18",$useridFriends) ;
-					$body2 = "Hi, ".$usernameFriends." \n \n ".$username." Updated his rank to ".$new_rank." View at \n
+					$body2 = "Hi, ".$usernameFriends." \n \n ".$username."'s rank has been Updated to ".$new_rank."  See more at \n
 http://collap.com/profile.php?username=".$username ;
 					collapMail($friendFirstName, "Rank Updated ", $body2);
 				}

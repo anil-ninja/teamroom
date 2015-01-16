@@ -3,6 +3,7 @@ session_start();
 include_once '../../lib/db_connect.php';
 include_once '../../functions/profile_page_function.php';
 include_once '../../functions/delete_comment.php';
+include_once '../../functions/image_resize.php';
 
 if ($_POST['user_next_idea']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
@@ -54,7 +55,7 @@ if ($_POST['user_next_idea']) {
               </div>";
             
         }
-        $show_idea = $show_idea. "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+        $show_idea = $show_idea. "<p id='challenge_ti_".$idea_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
                         .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$ideatitle."'/>                    
                     <span class='icon-lightbulb'></span><span style= 'color: #808080'>
@@ -65,7 +66,7 @@ if ($_POST['user_next_idea']) {
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
-                <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/>";
+                <br/><span id='challenge_".$idea_id."' class='text' style='font-size: 14px;'>".$idea_stmt."</span><br/>";
 	$show_idea = $show_idea. editchallenge($ideastmt, $idea_id) ;
         $commenter = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $idea_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -80,7 +81,7 @@ if ($_POST['user_next_idea']) {
         $show_idea = $show_idea. "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
                                             <span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" 
@@ -104,7 +105,7 @@ if ($_POST['user_next_idea']) {
     $show_idea = $show_idea. "
             <div class='comments_".$idea_id."'></div><div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
-                    <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                    <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
                 </div>";
                 if (isset($_SESSION['user_id'])) {
     $show_idea = $show_idea. "<input type='text' STYLE='idth: 83.0%;' id='own_ch_response_".$idea_id."'

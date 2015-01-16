@@ -1,6 +1,6 @@
 <?php
 include_once '../lib/db_connect.php';
-
+include_once '../functions/image_resize.php';
 session_start();
 if(!isset($_SESSION['user_id'])) 
     header ('location: index.php');
@@ -51,8 +51,12 @@ if ($_POST['team']) {
     }
     $data_display = $data_display. "
                     </div>
-                    <div class='list-group-item'>
-                        <p style='color :#3B5998;' class='color strong'> Teams</p>
+                    <div class='list-group-item'>" ;
+    $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+	if(mysqli_num_rows($member_project) != 0) {
+		$data_display = $data_display."<a class='btn-link pull-right' data-toggle='modal' data-target='#AddTeam'>Create Team</a>" ;
+	}
+        $data_display = $data_display."<p style='color :#3B5998;' class='color strong'> Teams</p>
                             <div class ='row-fluid'>";
 
     $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name, project_id FROM teams WHERE project_id='$pro_id';");
@@ -100,7 +104,7 @@ if ($_POST['team']) {
                             
                             <a href ='profile.php?username=" . $username . "'>
                                 <div class ='span2'>
-                                    <img src='uploads/profilePictures/$username.jpg'  style='width:30px; height:35px;' onError=this.src='img/default.gif'>
+                                    <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
                                 </div>
                                 <div class = 'span7' style='font-size:10px;'>
                                     <span class='color pull-left' id='new_added'>" 

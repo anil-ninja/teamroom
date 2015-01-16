@@ -3,6 +3,7 @@ session_start();
 include_once '../../lib/db_connect.php';
 include_once '../../functions/profile_page_function.php';
 include_once '../../functions/delete_comment.php';
+include_once '../../functions/image_resize.php';
 
 if ($_POST['next_JnPr']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
@@ -34,13 +35,13 @@ if ($_POST['next_JnPr']) {
             
             $show_JP = $show_JP. "<div class='list-group'>
                                     <div class='list-group-item'>";
-            $show_JP = $show_JP. "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+            $show_JP = $show_JP. "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                                     .ucfirst($project_title_table)."</a></b></p>
                                 <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 </div>
-                            <div class='list-group-item'>
+                            <div class='list-group-item' style='font-size: 14px;'>
                         <br/>".$project_stmt_table."</span><br/>";
                                        
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
@@ -58,7 +59,7 @@ if ($_POST['next_JnPr']) {
 $show_JP = $show_JP.  "<div id='commentscontainer'>
                 <div class='comments clearfix'>
                     <div class='pull-left lh-fix'>
-                        <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
+                        <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
                     </div>
                     <div class='comment-text'>
                         <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
@@ -84,7 +85,7 @@ $show_JP = $show_JP. "<div class='list-group-item pull-right'>
     }
     $show_JP = $show_JP. "<div class='comments_".$project_id_table."'></div><div class='comments clearfix'>
             <div class='pull-left lh-fix'>
-                <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
+                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
     $show_JP = $show_JP. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id_table."'

@@ -157,6 +157,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 						$(".newPosts").prepend(notice['1']) ;
 						$("#create_video").removeAttr('disabled');
 						$(".editbox").hide() ;
+						$("#remindervalue").hide() ;
+						$("#textForm").show();
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -219,6 +221,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 						$(".newPosts").prepend(notice['1']) ;
 						$("#create_videopr").removeAttr('disabled');
 						$(".editbox").hide() ;
+						$("#invitation").hide() ;
+						$("#selecttext").show();
 						}
 						else{
 							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -338,6 +342,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#idea_titleA").val("") ;
 							$("#_fileIdea").val("") ;
 							$("#create_idea").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 							
 						case 2:
@@ -345,6 +351,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#picture_title").val("") ;
 							$("#_filePhotos").val("") ;
 							$("#create_picture").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 							
 						case 3:
@@ -352,6 +360,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#article_title").val("") ;
 							$("#_fileArticle").val("") ;
 							$("#create_article").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 							
 						case 4:
@@ -359,6 +369,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#challange_title").val("") ;
 							$("#_fileChallenge").val("") ;
 							$("#submit_ch").removeAttr('disabled');
+							$("#remindervalue").hide() ;
+							$("#textForm").show();
 							break;
 						
 						case 5:
@@ -366,6 +378,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#challange_title").val("") ;
 							$("#_fileChallengepr").val("") ;
 							$("#create_challange_pb_pr").removeAttr('disabled');
+							$("#invitation").hide() ;
+							$("#selecttext").show();
 							break;
 							
 						case 6:
@@ -373,6 +387,22 @@ function bootstrap_alert(elem, message, timeout,type) {
 							$("#notes_title").val("") ;
 							$("#_fileNotes").val("") ;
 							$("#create_notes").removeAttr('disabled');
+							$("#invitation").hide() ;
+							$("#selecttext").show();
+							break;
+							
+						case 7:
+							$("#emailtask").val("") ;
+							$("#titletask").val("") ;
+							$("#taskdetails").val("") ;
+							$("#_fileTask").val("") ;
+							$("#create_task").removeAttr('disabled');
+							$("#invitation").hide() ;
+							$("#selecttext").show();
+							break;
+						
+						case 8:
+							location.reload();
 							break;
 					}
 					$(".newPosts").prepend(notice['2']) ;
@@ -642,12 +672,6 @@ $("#pencil").click(function(){
 			else {
 				var title = convertSpecialChar($("#titletask").val()) ;
 				var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
-				//var eta = parseInt($("#c_eta").val());
-				//var etab = parseInt($("#c_etab").val());
-				//var etac = parseInt($("#c_etac").val());
-				//var etad = parseInt($("#c_etad").val());
-				//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
-				// Returns successful data submission message when the entered information is stored in database.
 				var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
 				 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
 				//alert(dataString);
@@ -668,125 +692,3 @@ $("#pencil").click(function(){
 				}
 			}			
 		}
-		
-		function create_team(){
-			$("#create_team").attr('disabled','disabled');
-			var team = $("#team_name_A").val() ;
-			var email = $("#email_team").val() ;
-			if(team =="") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Team Name", 5000,"alert-warning");
-				$("#create_team").removeAttr('disabled');
-				return false ;
-			}
-			else if (email == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Email_id", 5000,"alert-warning");
-				$("#create_team").removeAttr('disabled');
-				return false ;
-			}
-			else {
-			$.ajax({
-				type: "POST",
-				url: "ajax/email.php",
-				data: 'email='+ email,
-				cache: false,
-				success: function(result){
-					//alert(result);
-					if (result == 'true') {
-							var dataString = 'team='+ team + '&email='+ email ;
-							$.ajax({
-								type: "POST",
-								url: "ajax/create_team.php",
-								data: dataString,
-								cache: false,
-								success: function(result){
-								if(result = "Team Created Successfully !!!") {
-									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-									location.reload() ;
-									$("#team_name_A").val("") ;
-									$("#email_team").val("") ;
-									}
-									else{
-										bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-										$("#create_team").removeAttr('disabled');
-										}
-								}				
-							}) ;
-						}
-						else if (result == 'same') {
-							bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
-							$("#create_team").removeAttr('disabled');
-							return false ;
-						}
-						else {
-							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4>" +
-										"<div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span>" +
-										"<input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div> <br/> " +
-										"<div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span>" +
-										"<input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div> <br/> " + 
-										"<div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span>" +
-										"<input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br>" +
-										"<input type='submit' class\='btn btn-success' id='invitememberpr' onclick ='invitememberpr()' value='Invite Him/Her' /> <br/> ";
-							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
-							$("#invitation").show().html(modal);
-							return false ;
-							}
-						}
-				  });
-				}	
-		}	
-	function invitememberpr(){
-		$("#invitememberpr").attr('disabled','disabled');
-			var fname = $("#fnameteam").val() ;
-			var sname = $("#snameteam").val() ;
-			var email = $("#teamemail").val() ;
-			if(fname =="") {
-				bootstrap_alert(".alert_placeholder", "Please Enter First Name", 5000,"alert-warning");
-				$("#invitememberpr").removeAttr('disabled');
-				return false ;
-			}
-			else if (sname == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Second Name", 5000,"alert-warning");
-				$("#invitememberpr").removeAttr('disabled');
-				return false ;
-			}
-			else if (email == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Email-ID", 5000,"alert-warning");
-				$("#invitememberpr").removeAttr('disabled');
-				return false ;
-			}
-			else {
-			$.ajax({
-				type: "POST",
-				url: "ajax/email.php",
-				data: 'email='+ email,
-				cache: false,
-				success: function(result){
-					if (result == 'false') {
-							var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email ;
-							$.ajax({
-								type: "POST",
-								url: "ajax/send_invitation.php",
-								data: dataString,
-								cache: false,
-								success: function(result){
-									bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-								if(result = "Invitation Send Successfully !!!") {
-									location.reload() ;
-									$("#fnameteam").val("") ;
-									$("#snameteam").val("") ;
-									$("#teamemail").val("") ;
-									}
-								}				
-							});
-							$("#invitememberpr").removeAttr('disabled');
-						}
-						else {
-							bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
-							$("#invitememberpr").removeAttr('disabled');
-							return false ;							
-							}
-					}
-				});
-			}
-		}
-	

@@ -3,6 +3,7 @@
 	position:expression("absolute");
 	width: 230px;
 	display:none;
+	z-index:10000;
 }
 
 .chatboxhead {

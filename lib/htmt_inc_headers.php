@@ -21,7 +21,9 @@
 <link href='../../fonts.googleapis.com/css%3Ffamily=PT+Sans:400,700.css' rel='stylesheet' type='text/css'>
 <link href="styles/font-awesome.min.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
-
+<link href='http://fonts.googleapis.com/css?family=Tenali+Ramakrishna' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>	
 <link rel="shortcut icon" href="favicon.ico">
 <!--end of new css -->
 

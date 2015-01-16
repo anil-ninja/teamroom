@@ -63,7 +63,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     <link href='../../fonts.googleapis.com/css%3Ffamily=PT+Sans:400,700.css' rel='stylesheet' type='text/css'>
     <link href="styles/font-awesome.min.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
-
+	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
     <link rel="shortcut icon" href="favicon.ico">
 
     <!--[if IE 7]>
@@ -88,7 +88,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: 'Open Sans', sans-serif;" href="index.php">
+                <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: Courgette, cursive;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"><i>collap</i>
 
                  </a>
@@ -221,7 +221,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <a class=" btn " id="request" value='login' onclick="validateLoginFormOnSubmit()">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                                 </div>
                                 <div class="span3">
-                                    <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
+                                    <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp; Social Profiles </h4>
                                     <div class="socials clearfix">
                                         <a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
                                         <a href='https://twitter.com/CollapCom' class="icon-twitter twitter" target='_blank'></a>
@@ -235,13 +235,12 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <h4><i class="icon-question"></i>&nbsp;&nbsp;Registration</h4>
                                     <div class="box">
                                         <p>
-                                            Collap.com provide set of features and functionality to registored user which help then in<br/>
-                                            a. Project/Team management<br/>
-                                            b. Give and Take Challenges/Idea<br/>
-                                        </p>
-                                        <p>
-                                            Collap can be used by people in different domains. Collap is useful to Enterprinors, Prof., 
-                                            students, Freelances and other organization or individuels.
+                                           Introducing a powerful online platform to collaborate with like minded people and change the world, 
+                                           solving one problem at a time. 
+                                         </p>
+                                         <p>
+                                           Collap offers a wide range of tools to identify a challenge and assemble your own team to collaborate and crack it.
+                                            Here’s to the the joy of collaborative problem solving! 
                                         </p>
                                     </div>
                                     <div class="box">
@@ -377,8 +376,27 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div><br/><br/><br/>
+        <div class='row-fluid'>
+			<div class='span10 offset1'>
+			<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+				<ul class="nav nav-tabs">
+                        <li class="active"><a href="#" data-toggle="tab" class="active ">About Collap :</a></li>
+                    </ul>
+                    <div class="tab-content">
+						
+						<div class="box">
+						<p>Collap is a powerful online platform which enables you to take a dig at problems, big or small, and collaborate with like minded people to make the world a better place.</p>
+						<p>Identify any problem you want solved and let the world know about it. Assemble your team and have a go at it. Interested Collapers can join your quest and contribute which ever way they can. 
+Collap provides you a wide range of helpful tools which enable hassle-free collaboration. Create and manage projects and be in control with our Project Dashboard all through the process. Share ideas freely and come up with innovative solutions.</p>
+						<p>Make your realm private and work on that secret project you’ve long been planning. 
+Participate in projects and upgrade your Level. Earn a special place in Collap for each incremental step. Sharpen your skills while lending them to do good. </p>
+						<p> Challenges to solve your technical problems and help change the world! . Meet people,  allows everybody to share their ideas, views, challenges and achievements with the like minded for mutual benefits. In this collap v1 release, we are going to limit to some functionality due to technically liabilities and available resources.</p>
+					</div>
+					</div>
+				</div>
+			</div>
+        </div><br/><br/><br/>
     <?php 
     /*
 

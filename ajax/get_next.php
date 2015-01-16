@@ -2,6 +2,7 @@
 session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
+include_once '../functions/image_resize.php';
 if ($_POST['chal']) {
     $user_id = $_SESSION['user_id'];
     $limit = $_SESSION['lastpanel'];
@@ -75,7 +76,7 @@ if ($_POST['chal']) {
 	if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
 	else { $dislikes = '' ; }
         // list grp item header for all type chall/article/idea/photo/video
-            $get_display_tilte = "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif' id='challenge_ti_".$chelangeid."' class='text'><b>
+            $get_display_tilte = "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' id='challenge_ti_".$chelangeid."' class='text'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/>";
             $get_display_fname_likes ="<span style= 'color: #808080'>
                 &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
@@ -86,7 +87,7 @@ if ($_POST['chal']) {
         // list grp item stmt content for all type chall/article/idea/photo/video
         $get_display_ch_stmt_content = "</div>                    
                                 <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span><br/>";
+                        <br/><span id='challenge_".$chelangeid."' class='text' style='font-size: 14px'>".$chelange."</span><br/>";
 		$get_display_ch_stmt_content = $get_display_ch_stmt_content. editchallenge($chelangestmt, $chelangeid) ;
 //dropdown for edit/delete added here for all type of challenges except status 2, 4, 5
         $dropDown_challenge_get = "<div class='list-group-item pull-right'>
@@ -371,7 +372,7 @@ if ($_POST['chal']) {
         $show = $show . "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
@@ -393,7 +394,7 @@ if ($_POST['chal']) {
     }
 	$show = $show . "<div class='comments_".$chelangeid."'></div><div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
-                            <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp;
+                            <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp;
                         </div>
                             <input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$chelangeid."'
                              placeholder='Want to know your comment....'/>

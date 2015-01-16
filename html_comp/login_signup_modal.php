@@ -58,14 +58,13 @@
                                         <h4><i class="icon-question"></i>&nbsp;&nbsp;Registration</h4>
                                         <div class="box">
                                             <p>
-                                                Collap.com provide set of features and functionality to registored user which help then in<br/>
-                                                a. Project/Team management<br/>
-                                                b. Give and Take Challenges/Idea<br/>
-                                            </p>
-                                            <p>
-                                                Collap can be used by people in different domains. Collap is useful to Enterprinors, Prof., 
-                                                students, Freelances and other organization or individuels.
-                                            </p>
+											   Introducing a powerful online platform to collaborate with like minded people and change the world, 
+											   solving one problem at a time. 
+											 </p>
+											 <p>
+											   Collap offers a wide range of tools to identify a challenge and assemble your own team to collaborate and crack it.
+												Here’s to the the joy of collaborative problem solving! 
+											</p>
                                         </div>
                                         <div class="box">
                                             Don't Have An Account.<br />
@@ -119,7 +118,7 @@
 
                                     </div>
                                     <div class="span3">
-                                        <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social</h4>
+                                        <h4><i class="icon-expand-alt"></i>&nbsp;&nbsp;Social Profiles </h4>
                                         <div class="socials clearfix">
 											<a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
 											<a href='https://twitter.com/CollapCom' class="icon-twitter twitter" target='_blank'></a>

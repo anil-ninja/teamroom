@@ -105,7 +105,7 @@
 			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
 				<i class='icon-screenshot'></i>Skills &nbsp;: &nbsp; ".$data."
 			</div><br/>
-			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+			<div class='row-fluid' style ='text-align:justify;font-size: 14px;word-wrap: break-word;'>
 				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user']."
 			</div>" ;
 		}
@@ -127,6 +127,59 @@
               ?> 
                     </div>
                 </div>
+                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+				<ul class="nav nav-tabs">
+                        <li class="active"><a href="#" data-toggle="tab" class="active ">About Collap :</a></li>
+                    </ul>
+                    <div class="tab-content">
+						
+						<div class="box">
+						<p>Collap is a powerful online platform which enables you to take a dig at problems, big or small, and collaborate with like minded people to make the world a better place.</p>
+						<p>Identify any problem you want solved and let the world know about it. Assemble your team and have a go at it. Interested Collapers can join your quest and contribute which ever way they can. 
+Collap provides you a wide range of helpful tools which enable hassle-free collaboration. Create and manage projects and be in control with our Project Dashboard all through the process. Share ideas freely and come up with innovative solutions.</p>
+						<p>Make your realm private and work on that secret project you’ve long been planning. 
+Participate in projects and upgrade your Level. Earn a special place in Collap for each incremental step. Sharpen your skills while lending them to do good. </p>
+						<p> Challenges to solve your technical problems and help change the world! . Meet people,  allows everybody to share their ideas, views, challenges and achievements with the like minded for mutual benefits. In this collap v1 release, we are going to limit to some functionality due to technically liabilities and available resources.</p>
+					</div>
+					</div>
+				</div><br/><br/>
+				<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+				<ul class="nav nav-tabs">
+                        <li class="active"><a href="#" data-toggle="tab" class="active ">Top Projects :</a></li>
+                    </ul>
+                    <div class="tab-content">
+						
+						<div class="row-fluid">
+				<?php
+				$projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 250) as stmt FROM projects 
+                                                            WHERE project_type = '1' AND blob_id = '0')  
+                                                        UNION 
+                                                        (SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 250) as stmt FROM projects as a JOIN blobs as b 
+                                                            WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 4 ;");
+                    while($projectsRow = mysqli_fetch_array($projects)) {
+                        $project_id = $projectsRow['project_id'];
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                    echo "  
+                            <div class ='span6 box' style=' margin: 4px ;min-height: 200px;'>
+    						    <a href='project.php?project_id=".$project_id."'>
+                                    <div class='panel-heading'>
+                                        <b> 
+                                            <p style=' font-size:14px;word-wrap: break-word;color:#3B5998;'>"
+    							                .ucfirst($project_title_display)."
+                                            </p>
+                                        </b>
+                                    </div>
+                                    <div class='panel-content'>
+                                        <p style='word-wrap: break-word;'>"
+                                            .$project_title_stmt."....
+                                        </p><br>
+                                    </div>
+                                </a>
+    					    </div>";
+                    }				
+				?>
+				</div></div></div>
             </div>
             <div class="span3">
                 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll" style="margin: 20px -15px;">
@@ -147,18 +200,28 @@
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
-                        $challenge_user_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title']))));
-                        $challenge_user_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt']))));
+                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
+                        $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
+                        if(substr($challenge_user_stmt, 0, 4) == '<img') {
+							$ProjectPic = strstr($challenge_user_stmt, '<br/>' , true) ;
+							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
+							$ProjectPicLink =explode("\"",$ProjectPic)['1'] ; 				
+							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
+							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
+						}
+						else {
+							$ProjectStmt = $challenge_user_stmt ;
+						}
                         echo "
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     							<a href='challengesOpen.php?challenge_id=$challenge_user_chID'>
                                     <b>
-                                        <p style='font-family: Sans-serif; font-size:14px; word-wrap: break-word;color:#3B5998;'>"
+                                        <p style='font-size:14px; word-wrap: break-word;color:#3B5998;'>"
                                             .ucfirst($challenge_user_title)."
                                         </p>
                                     </b>
                                     <p style='word-wrap: break-word;'>"
-                                        .$challenge_user_stmt."
+                                        .$ProjectStmt."
                                     </p>
                                 </a>
                             </div>";
@@ -184,14 +247,14 @@
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title']))));
-                        $project_title_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])))); 
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
                     echo "  
-                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 4px 0px 4px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
+                            <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     						    <a href='project.php?project_id=".$project_id."'>
                                     <div class='panel-heading' style='padding-left: 0px;'>
                                         <b> 
-                                            <p style='font-family: Sans-serif; font-size:14px;word-wrap: break-word;color:#3B5998;'>"
+                                            <p style=' font-size:14px;word-wrap: break-word;color:#3B5998;'>"
     							                .ucfirst($project_title_display)."
                                             </p>
                                         </b>

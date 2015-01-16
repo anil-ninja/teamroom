@@ -11,7 +11,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: 'Open Sans', sans-serif;" href="index.php">
+            <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: Courgette, cursive;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"/><i>collap</i>
             </a>
             <div id='step8' class="nav-collapse collapse navbar-responsive-collapse navbar-search span4">

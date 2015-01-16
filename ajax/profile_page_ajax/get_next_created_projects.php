@@ -3,6 +3,7 @@ session_start();
 include_once '../../lib/db_connect.php';
 include_once '../../functions/profile_page_function.php';
 include_once '../../functions/delete_comment.php';
+include_once '../../functions/image_resize.php';
 
 if ($_POST['next_CP']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
@@ -46,7 +47,7 @@ if ($_POST['next_CP']) {
                         </div>
                     </div>";
             }
-            $show_CP = $show_CP. "<p id='project_ti_".$project_id_table."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+            $show_CP = $show_CP. "<p id='project_ti_".$project_id_table."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                                     .ucfirst($project_title_table)."</a></b></p>
                                     <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$projecttitletable."'/>
@@ -54,7 +55,7 @@ if ($_POST['next_CP']) {
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 </div>
                             <div class='list-group-item'>
-                        <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/>";
+                        <br/><span id='project_".$project_id_table."' class='text' style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
              $show_CP = $show_CP. editproject($projectstmttable, $project_id_table) ;            
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -71,7 +72,7 @@ if ($_POST['next_CP']) {
 $show_CP = $show_CP.  "<div id='commentscontainer'>
                 <div class='comments clearfix'>
                     <div class='pull-left lh-fix'>
-                        <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
+                        <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
                     </div>
                     <div class='comment-text'>
                         <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
@@ -96,7 +97,7 @@ $show_CP = $show_CP.  "<div id='commentscontainer'>
     }
     $show_CP = $show_CP. "<div class='comments_".$project_id_table."'></div><div class='comments clearfix'>
             <div class='pull-left lh-fix'>
-                <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
+                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
     $show_CP = $show_CP. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id_table."'

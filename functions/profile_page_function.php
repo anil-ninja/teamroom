@@ -1,5 +1,6 @@
 <?php
 include_once 'delete_comment.php';
+include_once 'image_resize.php';
 function user_articles ($db_handle, $user_IDF) {
     $user_articles_display = mysqli_query($db_handle, "(SELECT a.last_update, a.challenge_id, a.challenge_title, a.creation_time, a.stmt, b.first_name, b.last_name, b.username FROM challenges as a 
                                                         JOIN user_info as b WHERE a.challenge_type=7 AND a.user_id=$user_IDF AND (a.challenge_status!=3 AND a.challenge_status!=7) AND a.blob_id=0 AND a.user_id=b.user_id)
@@ -49,7 +50,7 @@ function user_articles ($db_handle, $user_IDF) {
                 $user_id = ($_SESSION['user_id']);
                 dropDown_delete_after_accept($article_id, $user_id, $user_IDF) ;
             }
-                echo "<p id='challenge_ti_".$article_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                echo "<p id='challenge_ti_".$article_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
                         .ucfirst($article_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$articletitle."'/>
                     <span class='icon-book'></span><span style= 'color: #808080'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "'>".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> | 
@@ -58,7 +59,7 @@ function user_articles ($db_handle, $user_IDF) {
                         <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'>
                             <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
-                    <div class='list-group-item'>
+                    <div class='list-group-item' style='font-size: 14px;'>
                 <br/><span id='challenge_".$article_id."' class='text'>".$article_stmt."</span><br/>";
 			echo editchallenge($articlestmt, $article_id) ;
             comments_all_type_challenges ($db_handle, $article_id);
@@ -115,7 +116,7 @@ function user_challenges ($db_handle, $user_IDF) {
             $user_id = ($_SESSION['user_id']);
             dropDown_delete_after_accept($challenge_id, $user_id, $user_IDF) ;
         }
-        echo "<p id='challenge_ti_".$challenge_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+        echo "<p id='challenge_ti_".$challenge_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
                     .ucfirst($challenge_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>                
                 <span class='icon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
@@ -126,7 +127,7 @@ function user_challenges ($db_handle, $user_IDF) {
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
                 </div>
                 <div class='list-group-item'>
-            <br/><span id='challenge_".$challenge_id."' class='text'>".$challenge_stmt."</span><br/>";
+            <br/><span id='challenge_".$challenge_id."' class='text' style='font-size: 14px;'>".$challenge_stmt."</span><br/>";
 			echo editchallenge($challengestmt, $challenge_id) ;
          comments_all_type_challenges ($db_handle, $challenge_id);
          echo "</div>";
@@ -181,7 +182,7 @@ function user_idea ($db_handle, $user_IDF) {
                 $user_id = ($_SESSION['user_id']);
                 dropDown_delete_after_accept($idea_id, $user_id, $user_IDF) ;
             }
-            echo "<p id='challenge_ti_".$idea_id."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+            echo "<p id='challenge_ti_".$idea_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
                         .ucfirst($idea_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$ideatitle."'/>                    
                     <span class='icon-lightbulb'></span><span style= 'color: #808080'>
@@ -192,7 +193,7 @@ function user_idea ($db_handle, $user_IDF) {
                             <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
                     </div>
                     <div class='list-group-item'>
-                <br/><span id='challenge_".$idea_id."' class='text'>".$idea_stmt."</span><br/>";
+                <br/><span id='challenge_".$idea_id."' class='text' style='font-size: 14px;'>".$idea_stmt."</span><br/>";
                 echo editchallenge($ideastmt, $idea_id) ;
              comments_all_type_challenges ($db_handle, $idea_id);
              echo "</div>";
@@ -250,7 +251,7 @@ $no_created_projects = mysqli_num_rows($project_created_display);
                     </div>";
             }
 
-                echo "<p id='project_ti_".$project_id_table."' class='text' style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+                echo "<p id='project_ti_".$project_id_table."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                         <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                         .ucfirst($project_title_table)."</a></b></p>
                         <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$projecttitletable."'/>
@@ -258,7 +259,7 @@ $no_created_projects = mysqli_num_rows($project_created_display);
                         .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                     </div>
                 <div class='list-group-item'>
-            <br/><span id='project_".$project_id_table."' class='text'>".$project_stmt_table."</span><br/>";
+            <br/><span id='project_".$project_id_table."' class='text' style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
 			echo editproject($projectstmttable, $project_id_table) ;
                        project_comments($db_handle, $project_id_table);
                echo "</div>";
@@ -303,13 +304,13 @@ function joined_projects ($db_handle, $user_IDF) {
             $username_project = $project_table_displayRow['username'];
             echo "<div class='list-group'>
                     <div class='list-group-item'>";
-            echo "<p style='font-famiy: Calibri,sans-serif; font-size: 24px; line-height: 42px; font-family: open_sans_condensedbold ,Calibri,sans-serif'><b>
+            echo "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                         <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                         .ucfirst($project_title_table)."</a></b></p>
                     <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
                         .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                     </div>
-                <div class='list-group-item'>
+                <div class='list-group-item' style='font-size: 14px;'>
             <br/>".$project_stmt_table."</span><br/>";
                       
                     project_comments($db_handle, $project_id_table);
@@ -335,7 +336,7 @@ function project_comments($db_handle, $project_id) {
         echo "<div id='commentscontainer'>
                 <div class='comments clearfix'>
                     <div class='pull-left lh-fix'>
-                        <img src='uploads/profilePictures/$username_pr_comment.jpg'  onError=this.src='img/default.gif'>
+                        <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
                     </div>
                     <div class='comment-text'>
                         <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
@@ -350,7 +351,7 @@ function project_comments($db_handle, $project_id) {
     }
     echo "<div class='comments_".$project_id."'></div><div class='comments clearfix'>
             <div class='pull-left lh-fix'>
-                <img src='uploads/profilePictures/" . $username . ".jpg'  onError=this.src='img/default.gif'>&nbsp
+                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id."'
@@ -386,7 +387,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='uploads/profilePictures/$username_comment_ninjas.jpg'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
@@ -399,7 +400,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
     }
     echo "<div class='comments_".$challenge_id."'></div><div class='comments clearfix'>
             <div class='pull-left lh-fix'>
-                <img src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'>&nbsp
+                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
             </div>";
             if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$challenge_id."'

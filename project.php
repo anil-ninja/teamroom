@@ -10,7 +10,6 @@ include_once 'functions/delete_comment.php';
             <title><?= $projttitle ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Challenge, Project, Problem solving, problem">
-        <meta name="author" content="Anil">
         <?php include_once 'lib/htmt_inc_headers.php'; ?>
    </head>
 <body>
@@ -28,25 +27,27 @@ include_once 'functions/delete_comment.php';
                 
                 <?php echo "
 			<center>
-				      <span class='color strong' style= 'font-size: 14pt;'>
+				      <span class='color strong' style= 'font-family: Tenali Ramakrishna, sans-serif; font-size: 28px;'>
                 <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
                 </p>
               </span>
 				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projectttitle."'/>
 			</center>
-		  ";?>
-                
-                  
-                <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
-                    <ul class="nav nav-tabs" style="padding: 0;">
+		  ";?>                 
+                    <ul class="nav nav-tabs" style="padding: 0;" id="myTab">
                         <li class="active">
-                            <a href="#tabProject" data-toggle="tab" class="active " id="home_project" style="padding: 10px 5px;">
-                                <i class='icon-star'> </i><span>Project Detail</span> 
+                            <a href="#tabProjectData" data-toggle="tab" class="active " id="project_data" style="padding: 10px 5px;">
+                                <i class='icon-star'> </i><span>Project</span> 
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#tabProjectContent" data-toggle="tab" id="home_project" style="padding: 10px 5px;">
+                                <i class='icon-star'> </i><span>Outgoings</span> 
                             </a>
                         </li>
                         <li>
                             <a href="#tabDashboard" data-toggle="tab" id="dashboard_project" style="padding: 10px 5px;">
-                                <i class='icon-th-list'> </i><span>Project Dashboard</span> 
+                                <i class='icon-th-list'> </i><span>Dashboard</span> 
                             </a>
                         </li>
                         <li>
@@ -56,20 +57,24 @@ include_once 'functions/delete_comment.php';
                         </li>
                     </ul>
 
-                    <div class="tab-content" >
-                        <div role="tabpanel" class="row tab-pane active" id="tabProject">       
-                            <?php include_once 'html_comp/project_page_project.php'; ?>
+                    <div class="tab-content" id= 'myTabContent'>
+                        <div role="tabpanel" class="tab-pane fade in active" id="tabProjectData">       
+                            <?php include_once 'html_comp/project_page_data.php'; ?>
                             <div class="panel-primary" id='panel-cont'>
                             </div>
+                            </div>
                         </div>
-                        <div role="tabpanel" class="row tab-pane" id="tabDashboard" >
+                        <div role="tabpanel" class="tab-pane fade" id="tabProjectContent">
+							<div id="home_project_content"></div> 
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="tabDashboard" >
                             <div id="dashboard_project_content"></div>
                         </div>
-                        <div role="tabpanel" class="row tab-pane" id="tabteams">
+                        <div role="tabpanel" class="tab-pane fade" id="tabteams">
                             <div id="teams_project_content"></div>
                         </div>
                     </div>
-                </div>
+                 
             </div>      
             <div id='tab6' class="span2" style='width:290px'>
                 <br>
@@ -96,6 +101,9 @@ include_once 'functions/delete_comment.php';
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
                  <script>
+    $('#home_project').click(function(){
+        $('#home_project_content').load('html_comp/project_page_project.php');       
+    });
     $('#dashboard_project').click(function(){
         $('#dashboard_project_content').load('html_comp/project_page_challenge.php');       
     });
@@ -105,7 +113,7 @@ include_once 'functions/delete_comment.php';
 
 $("#project_chat_form").hide();
 $("#project_chat_data").hide();
-
+$('#scrollFriends').jScrollPane() ;
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();

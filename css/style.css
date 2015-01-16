@@ -43,7 +43,7 @@ audio:not([controls]) {
  */
 
 html {
-  font-family: times-serif; /* 1 */
+  font-family: Open Sans, sans-serif; /* 1 */
   -ms-text-size-adjust: 100%; /* 2 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
@@ -371,7 +371,7 @@ table {
 body {
   text-align: left;
   direction: ltr;
-  font-family: 'lucida grande',tahoma,verdana,arial,sans-serif;
+  font-family: Open Sans, sans-serif;
   font-size: 12px;
 }
 

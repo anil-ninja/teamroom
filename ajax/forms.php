@@ -152,16 +152,6 @@ if($_POST['form_type']){
 			else  echo "Not authorised, please contact project owner"; 
 			exit ;
 			break ;
-			
-		case 3:
-			if(mysqli_num_rows($member_project) != 0) {
-				echo "<input type='text' class='input-block-level' id='team_name_A' placeholder='Team name ..'><br/>                  
-					  <input type='email' class='input-block-level' id='email_team' placeholder='Enter First team member Email'><br/>
-                      <input type='submit' class='btn btn-primary' id='create_team' onclick='create_team()' value='Create New Team'>" ;
-			} 
-			else echo "Please Join Project First";
-			exit ;
-			break ;
 		
 		case 4:
 			if(mysqli_num_rows($member_project) != 0) {
