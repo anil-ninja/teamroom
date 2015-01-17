@@ -51,7 +51,7 @@ if ($_POST['next_CP']) {
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                                     .ucfirst($project_title_table)."</a></b></span>
                                     <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$projecttitletable."'/>
-                                <span style= 'color: #808080;'>By: <a href ='profile.php?username=" . $username_project . "'>"
+                                <span style= 'color: #808080;'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                                 <hr/><span id='project_".$project_id_table."' class='text' style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
              $show_CP = $show_CP. editproject($projectstmttable, $project_id_table) ;            

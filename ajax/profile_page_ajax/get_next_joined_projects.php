@@ -35,14 +35,12 @@ if ($_POST['next_JnPr']) {
             
             $show_JP = $show_JP. "<div class='list-group'>
                                     <div class='list-group-item'>";
-            $show_JP = $show_JP. "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
+            $show_JP = $show_JP. "<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
-                                    .ucfirst($project_title_table)."</a></b></p>
-                                <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
+                                    .ucfirst($project_title_table)."</a></b></span>
+                                <span style= 'color: #808080;'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
-                                </div>
-                            <div class='list-group-item' style='font-size: 14px;'>
-                        <br/>".$project_stmt_table."</span><br/>";
+                                <hr/><span style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
                                        
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
