@@ -53,7 +53,7 @@
                 <div class="tab-content ">
                     <div class="tab-pane active">
                         <div class="row-fluid">
-                            <a href='collap.com'><p style='font-size:26px;text-align:center;'><img src ='img/collap.gif' style="width:50px; height:40px;">Collap</p></a>
+                            <a href='index.php'><p style='font-size:26px;text-align:center;'><img src ='img/collap.gif' style="width:50px; height:40px;">Collap</p></a>
                             <h4><i class="icon-user"></i>&nbsp;&nbsp;Let's Collaborate</h4>
                             <p style='font-size:14px;margin-top:20px;text-align:center; word-wrap: break-word;color:#3B5998;'>
                                 Collap is exodus to make collaboration strong. Lets work together to do more... 

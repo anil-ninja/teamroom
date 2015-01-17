@@ -353,7 +353,7 @@ function recommended_project ($db_handle) {
                     <div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
                         <font size='2'><b> Recommended</b></font>
                     </div>
-                    <div class='bs-component' style='max-height:200px;overflow-y:scroll;'>
+                    <div class='bs-component' style='max-height:140px;overflow-y:scroll;'>
                         <table>";
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;

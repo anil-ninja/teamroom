@@ -9,7 +9,7 @@ if ($_POST['all']) {
     $notice = "" ;
 	$notice = "" ;
 	$notice27 = mysqli_query($db_handle, "select b.first_name, b.username, a.project_id, a.project_title, a.creation_time from projects as a join user_info as b
-											where a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+											where a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id order by creation_time DESC ;") ;
 		while($notice27row = mysqli_fetch_array($notice27)) {
 			$fname25 = ucfirst($notice27row['first_name']) ;
 			$project_id25 = $notice27row['project_id'] ;
