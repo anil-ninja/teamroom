@@ -29,13 +29,14 @@ function convertSpecialChar(str){
 	}		
 		function create_challange_pb_pr(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
-			//alert("i am geting fucked");
+			var ID = $("#ProjectIDValue").val() ;
 			var challenge = convertSpecialChar($("#challangepr").val()) ;
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title)))) + '&type='+ type ;//+ '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') ;
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))
+			 + '&type='+ type + '&project_id=' + ID ;//+ '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
@@ -57,10 +58,12 @@ function convertSpecialChar(str){
 	
 		function create_notes(){
 			$("#create_notes").attr('disabled','disabled');
+			var ID = $("#ProjectIDValue").val() ;
 			var notes = convertSpecialChar($("#notestmt").val()) ;
 			var notes_title = convertSpecialChar($("#notes_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + '&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
+							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
 			//alert(dataString);
 			if(notes==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
@@ -245,7 +248,7 @@ function create_team(){
 						$("#email_team").val("") ;
 						$("#create_team").removeAttr('disabled');
 						var data = "<div class\='span4' style\=' margin:4px; background : rgb(240, 241, 242);'>" +
-									"<a class\='btn-link' onclick\='loadteampanel(\"" + team + "\")'>" + 
+									"<a class\='btn-link' onclick\='loadteampanel(\"" + ID + "\",\"" + team + "\")'>" + 
 									team + "</a></div>" ;
 						$("#ProjectTeams").append(data);
 						$(".TeamName").hide();

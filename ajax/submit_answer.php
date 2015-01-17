@@ -6,7 +6,7 @@ include_once '../functions/collapMail.php';
 if($_POST['answer']){
 		$user_id = $_SESSION['user_id'] ;
 		$username = $_SESSION['username'];
-		$pro_id = $_SESSION['project_id'] ;
+		$pro_id = $_POST['project_id'] ;
 		$ch_id = $_POST['cid'] ;
 		$ownerinfo = mysqli_query($db_handle,"select b.username, b.email, a.challenge_title, b.firat_name, b.last_name from challenges as a join user_info as b where a.challenge_id = '$ch_id' and a.user_id = b.user_id ;") ;
 		$ownerinforow = mysqli_fetch_array($ownerinfo) ;

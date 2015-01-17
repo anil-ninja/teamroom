@@ -7,7 +7,7 @@ include_once '../functions/image_resize.php';
 if($_POST['id']){
 	$user_id = $_SESSION['user_id'];
 	$username = $_SESSION['username'];
-	$pro_id = $_SESSION['project_id'] ;
+	$pro_id = $_POST['project_id'] ;
 	$info = mysqli_query($db_handle,"select * from user_info where user_id = '$user_id' ;") ;
 	$inforow = mysqli_fetch_array($info) ;
 	$id = $_POST['id'];
@@ -22,14 +22,14 @@ if($_POST['id']){
 		if (strlen($stmt)<1000) {	
 			mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
 			$comment_id = mysqli_insert_id($db_handle);
-			}
-			else {
-				mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
-				$ida = mysqli_insert_id($db_handle);
-				mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
-				$comment_id = mysqli_insert_id($db_handle);
-				}
 		}
+		else {
+			mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
+			$ida = mysqli_insert_id($db_handle);
+			mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
+			$comment_id = mysqli_insert_id($db_handle);
+		}
+	}
 	else { 	
 		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 		if(mysqli_num_rows($member_project) != 0) {
@@ -39,59 +39,59 @@ if($_POST['id']){
 				if (strlen($resp_stmt)<1000) {
 					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
 					$comment_id = mysqli_insert_id($db_handle);
-					}
-					else {
-						mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
-						$idb = mysqli_insert_id($db_handle);
-						mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$idb');") ;
-						$comment_id = mysqli_insert_id($db_handle);
-						}
-					}
+				}
 				else {
-					events($db_handle,$user_id,"3",$id);
-					involve_in($db_handle,$user_id,"3",$id);
-					$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
-					$inforowt = mysqli_fetch_array($infoet) ;
-					$title = $inforowt['project_title'] ;
-					$type = $inforowt['project_type'] ;
-					$chtype = mysqli_query($db_handle, "select * from challenges where challenge_id = '$id' and project_id = '$pro_id' ;") ;
-					$chtyperow = mysqli_fetch_array($chtype) ;
-					$chtyperowval = $chtyperow['challenge_type'] ;
-					$challangeTtitle = $chtyperow['challenge_title'] ;
-					if($chtyperowval == 1 || $chtyperowval == 2 || $chtyperowval == 3) { $challangeType = "Challenge" ; }
-					else if($chtyperowval == 5) { $challangeType = "Task" ; }
-					else if($chtyperowval == 6) { $challangeType = "Notes" ; }
-					else { $challangeType = "Videos" ; }
-					if($type == 2) {
-						$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where 
-															a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
-						while ($memrow = mysqli_fetch_array($members)){
-							$emails = $memrow['email'] ;
-							$mail = $memrow['username'] ;
-							$userFirstName = $memrow['first_name'] ;
-							$userLastName = $memrow['last_name'] ;
-							$body2 = "From : Collap Notifications \n \n Subject : ".$challangeType." ".$challangeTtitle." has a new comment \n
+					mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
+					$idb = mysqli_insert_id($db_handle);
+					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$idb');") ;
+					$comment_id = mysqli_insert_id($db_handle);
+				}
+			}
+			else {
+				events($db_handle,$user_id,"3",$id);
+				involve_in($db_handle,$user_id,"3",$id);
+				$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
+				$inforowt = mysqli_fetch_array($infoet) ;
+				$title = $inforowt['project_title'] ;
+				$type = $inforowt['project_type'] ;
+				$chtype = mysqli_query($db_handle, "select * from challenges where challenge_id = '$id' and project_id = '$pro_id' ;") ;
+				$chtyperow = mysqli_fetch_array($chtype) ;
+				$chtyperowval = $chtyperow['challenge_type'] ;
+				$challangeTtitle = $chtyperow['challenge_title'] ;
+				if($chtyperowval == 1 || $chtyperowval == 2 || $chtyperowval == 3) { $challangeType = "Challenge" ; }
+				else if($chtyperowval == 5) { $challangeType = "Task" ; }
+				else if($chtyperowval == 6) { $challangeType = "Notes" ; }
+				else { $challangeType = "Videos" ; }
+				if($type == 2) {
+					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where 
+														a.project_id = '$pro_id' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+					while ($memrow = mysqli_fetch_array($members)){
+						$emails = $memrow['email'] ;
+						$mail = $memrow['username'] ;
+						$userFirstName = $memrow['first_name'] ;
+						$userLastName = $memrow['last_name'] ;
+						$body2 = "From : Collap Notifications \n \n Subject : ".$challangeType." ".$challangeTtitle." has a new comment \n
 Hi ".$userFirstName." ".$userLastName." \n
 $username has written a new comment on your ".$challangeType." ".$challangeTtitle.". Click here to see the comment. \n
 http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborate \n Team Collap " ;
-							collapMail($emails, "Comment on challenge", $body2);
-						}
-					}
-					mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
-					if (strlen($stmt)<1000) {	
-						mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
-						$comment_id = mysqli_insert_id($db_handle);
-						}
-						else {
-							mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
-							$ida = mysqli_insert_id($db_handle);
-							mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
-							$comment_id = mysqli_insert_id($db_handle);
-							}
+						collapMail($emails, "Comment on challenge", $body2);
 					}
 				}
-			//else { echo "Please Join Project First!"; }
+				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
+				if (strlen($stmt)<1000) {	
+					mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
+					$comment_id = mysqli_insert_id($db_handle);
+				}
+				else {
+					mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
+					$ida = mysqli_insert_id($db_handle);
+					mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
+					$comment_id = mysqli_insert_id($db_handle);
+				}
 			}
+		}
+			//else { echo "Please Join Project First!"; }
+	}
 	$test .= "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
@@ -105,7 +105,7 @@ http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborat
 			</div>";
 	if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
 	else { echo $test."+"."Posted succesfully!"; }
-	}
+}
 else echo "Invalid parameters!";
 mysqli_close($db_handle);
 ?>

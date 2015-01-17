@@ -77,45 +77,45 @@ function add_member(PID, name) {
 	var email = $("#email_add_member").val() ;
     var dataString = 'email='+ email + '&id='+ PID + '&name='+ name + '&case=1';
     if (email == "") {
-         bootstrap_alert(".alert_placeholder", "Email can't be empty", 5000,"alert-success");
-         }
-         else {
-			 $.ajax({
-				type: "POST",
-				url: "ajax/email.php",
-				data: 'email='+ email,
-				cache: false,
-				success: function(result){
-					if (result == "true") {
-						$.ajax({
-							type: "POST",
-							url: "ajax/add_member_team.php",
-							data: dataString,
-							cache: false,
-							success: function(result){
-								var notice = result.split("+") ;
-								if(notice['0'] == 'Member Added succesfully!'){
-									bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
-									$('.team-member').append(notice['1']);
-									$("#email_add_member").val("") ;
-									}
-									else {
-										bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-warning");
-										}
-								}
-							});
-						}
-						else {
-							bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
-							$("#invitemember").removeAttr('disabled');
-							return false ;							
+       bootstrap_alert(".alert_placeholder", "Email can't be empty", 5000,"alert-success");
+    }
+    else {
+		$.ajax({
+			type: "POST",
+			url: "ajax/email.php",
+			data: 'email='+ email,
+			cache: false,
+			success: function(result){
+				if (result == "true") {
+					$.ajax({
+						type: "POST",
+						url: "ajax/add_member_team.php",
+						data: dataString,
+						cache: false,
+						success: function(result){
+							var notice = result.split("+") ;
+							if(notice['0'] == 'Member Added succesfully!'){
+								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+								$('.team-member').append(notice['1']);
+								$("#email_add_member").val("") ;
 							}
-					}
-				});
-		}
+							else {
+								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-warning");
+							}
+						}
+					});
+				}
+				else {
+					bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
+					$("#invitemember").removeAttr('disabled');
+					return false ;							
+				}
+			}
+		});
+	}
 }
-function loadteampanel(team) {
-	var dataString = 'team=' + team ;
+function loadteampanel(ID, team) {
+	var dataString = 'team=' + team + '&project_id=' + ID ;
 	$.ajax({
 			type: "POST",
 			url: "ajax/team_panel_load.php",
@@ -150,33 +150,34 @@ function remove_member(PID, name, Uid){
 	});
 }
 function comment(ID, type) {				
-		var project = convertSpecialChar($("#own_ch_response_"+ID).val());
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-						+ '&case=' + type ;
-		if(project == ""){
-			return false ;
-			}
-				else {
-					$.ajax({
-						type: "POST",
-						url: "ajax/submit_comment.php",
-						data: dataString,
-						cache: false,
-						success: function(result){
-							var notice = result.split("+") ;
-							if(notice['1']== 'Posted succesfully!'){
-							$("#own_ch_response_"+ID).val('') ;
-							$('.comments_'+ID).append(notice['0']);
-							}
-						}
-					});
+	var project = convertSpecialChar($("#own_ch_response_"+ID).val());
+	var IDPr = $("#ProjectIDValue").val() ;
+	var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+					+ '&case=' + type + '&project_id=' + IDPr ;
+	if(project == ""){
+		return false ;
+	}
+	else {
+		$.ajax({
+			type: "POST",
+			url: "ajax/submit_comment.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				var notice = result.split("+") ;
+				if(notice['1']== 'Posted succesfully!'){
+					$("#own_ch_response_"+ID).val('') ;
+					$('.comments_'+ID).append(notice['0']);
 				}
+			}
+		});
+	}
 } ;
 function accept_pub(ID, type){
 		   bootbox.confirm("Really Accept Challenge !!!", function(result) {
 		if(result){
-			var ID = $("#ProjectIDValue").val() ;
-			var dataString = 'id='+ ID + '&case=' + type + '&project_id=' + ID ;
+			var IDPr = $("#ProjectIDValue").val() ;
+			var dataString = 'id='+ ID + '&case=' + type + '&project_id=' + IDPr ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/knownperson.php",
@@ -193,8 +194,8 @@ function accept_pub(ID, type){
 function closechal(ID, type){
 		   bootbox.confirm("Really Close Challenge !!!", function(result) {
 		if(result){
-			var ID = $("#ProjectIDValue").val() ;
-			var dataString = 'id='+ ID + '&case=' + type + '&project_id=' + ID ;
+			var IDPr = $("#ProjectIDValue").val() ;
+			var dataString = 'id='+ ID + '&case=' + type + '&project_id=' + IDPr ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/knownperson.php",

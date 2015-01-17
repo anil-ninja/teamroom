@@ -26,7 +26,7 @@ $(document).ready(function(){
 			}
 		$.ajax({
 			type: "POST",
-			url: "ajax/change_profile.php",
+			url: "ajax/change_profile.php",																																														
 			data: dataString,
 			cache: false,
 			success: function(result){

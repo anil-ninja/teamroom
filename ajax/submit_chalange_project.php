@@ -6,7 +6,7 @@ include_once '../functions/collapMail.php';
 include_once '../functions/image_resize.php';
 if($_POST['challange']){
 	$user_id = $_SESSION['user_id'];
-	$pro_id = $_SESSION['project_id'] ;	
+	$pro_id = $_POST['project_id'] ;	
 	$challangetext = $_POST['challange'];
 	$username = $_SESSION['username'];
 	$opentime = 1;//$_POST['opentime'] ;
@@ -74,19 +74,18 @@ http://collap.com/project.php?project_id=".$pro_id ;
 						</ul>
 					</div>
 					<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$idp."\", 5)' value='Accept'/>" ;
-    $data = $data ."<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
+    $data = $data ."<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
 					id='challenge_ti_".$idp."' class='text'><b>
 					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($title)."</a>
-					</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>
+					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>
 					<span class='icon-question-sign'></span>
-					<span style= 'color: #808080'>
-					&nbspBy: <a href ='profile.php?username=" . $username . "'>".ucfirst($firstname)."</a> | ".$timefunct."</span> | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 1)'>
-                        <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 2)'>
+					<span style= 'color: #808080;'>
+					&nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a> | ".$timefunct." | </span>
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$idp ."\", 1)'>
+                        <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span> &nbsp;
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$idp ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span>
-                    </div><div class='list-group-item'>
-                    <br/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
+                    <hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
        $data = $data .editchallenge($nchallange, $idp) ;
       $data = $data ."<div class='comments_".$idp."'></div>
 					<div id='step15' class='comments clearfix'>

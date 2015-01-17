@@ -244,6 +244,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		function submit_ch(){
 			$("#submit_ch").attr('disabled','disabled');
 			var challenge = convertSpecialChar($("#challange").val()) ;
+			var ID = $("#ProjectIDValue").val() ;
 			var domain = url_domain(challenge);
 			if (domain == "www.youtube.com"){
 				var linkId = refineVedioId(getVedioId(challenge));
@@ -254,7 +255,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			}
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;			
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title)))) ;
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))  + '&project_id=' + ID ;
 			if(challenge==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 				$("#submit_ch").removeAttr('disabled');
