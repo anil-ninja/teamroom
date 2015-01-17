@@ -5,7 +5,7 @@ include_once '../functions/collapMail.php';
 if($_POST['fname']){
 	$user_id = $_SESSION['user_id'] ;
 	$username = $_SESSION['username'];
-	$pro_id = $_SESSION['project_id'] ;
+	$pro_id = $_POST['project_id'] ;
 	$uname = mysqli_query($db_handle,"select * from user_info where user_id = '$user_id' ;") ;
 	$unamerow = mysqli_fetch_array($uname) ;
 	$name = $unamerow['username'] ;

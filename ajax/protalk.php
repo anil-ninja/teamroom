@@ -5,7 +5,7 @@ include_once '../functions/delete_comment.php';
 if ($_POST['talks']) {
     $user_id = $_SESSION['user_id'];
     $id = $_POST['talks'] ;
-    $pro_id = $_SESSION['project_id'];
+    $pro_id = $_POST['project_id'];
     $data = "" ;
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id, a.response_pr_creation, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.response_pr_id > '$id' and a.response_pr_id != '$id' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '5')

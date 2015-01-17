@@ -4,7 +4,7 @@ include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 if ($_POST['prtalk']) {
     $user_id = $_SESSION['user_id'];
-    $pro_id = $_SESSION['project_id'];
+    $pro_id = $_POST['project_id'];
     $data = "" ;
     $data2 = "" ;
 	$displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,a.response_pr_creation, b.username from response_project as a join user_info as b 

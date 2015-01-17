@@ -1,6 +1,7 @@
 function getnewtalk() {	
 	var uid = parseInt($("#lastprchatid").val()) ;
-	var dataString = 'talks='+ uid  ;
+	var ID = $("#ProjectIDValue").val() ;
+	var dataString = 'talks='+ uid  + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/protalk.php",
@@ -23,61 +24,59 @@ function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}
 $("#changeremindervalue").click(function(){
-      		//$("#create_video").attr('disabled','disabled');
-			var reminder = convertSpecialChar($("#newremindervalue").val()) ;
-			var date = $("#datepicker").val() ;
-			var value = $("#datepickervalue").val() ;
-			var userid = $("#valueuserid").val() ;
-			var newuserid = $("#selfremind").val() ;
-			//alert(newuserid + "," + userid) ;
-			if(newuserid == userid) {
-					if(reminder == "" && date != "") {
-							var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
-						}
-						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
-							}
-							else if(reminder == "" && date == "") {
-								location.reload() ;
-								return false ;
-								}
-								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
-									}
-				}
-				else {
-					if(reminder == "" && date != "") {
-							var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
-						}
-						else if (date == "" && reminder != "") {
-							var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
-							}
-							else if(reminder == "" && date == "") {
-								var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
-								}
-								else {
-									var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
-									}
-					
-					
-					}
-			$.ajax({
-				type: "POST",
-				url: "ajax/change_reminder.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					if(result = "Changed Successfully !!!") {
-						location.reload() ;
-						$("#datepicker").val("") ;
-						$("#datepickervalue").val("") ;
-						$("#newremindervalue").val("") ;
-						$("#valueuserid").val("") ;
-						}
-					}
-			});	
-		});
+	//$("#create_video").attr('disabled','disabled');
+	var reminder = convertSpecialChar($("#newremindervalue").val()) ;
+	var date = $("#datepicker").val() ;
+	var value = $("#datepickervalue").val() ;
+	var userid = $("#valueuserid").val() ;
+	var newuserid = $("#selfremind").val() ;
+	//alert(newuserid + "," + userid) ;
+	if(newuserid == userid) {
+		if(reminder == "" && date != "") {
+			var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
+		}
+		else if (date == "" && reminder != "") {
+			var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
+		}
+		else if(reminder == "" && date == "") {
+			location.reload() ;
+			return false ;
+		}
+		else {
+			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
+		}
+	}
+	else {
+		if(reminder == "" && date != "") {
+			var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
+		}
+		else if (date == "" && reminder != "") {
+			var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
+		}
+		else if(reminder == "" && date == "") {
+			var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
+		}
+		else {
+			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
+		}
+	}
+	$.ajax({
+		type: "POST",
+		url: "ajax/change_reminder.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+			if(result = "Changed Successfully !!!") {
+				location.reload() ;
+				$("#datepicker").val("") ;
+				$("#datepickervalue").val("") ;
+				$("#newremindervalue").val("") ;
+				$("#valueuserid").val("") ;
+			}
+		}
+	});	
+});
 function test() {
   $("#signupwithoutlogin").modal("show");
 };
@@ -160,7 +159,8 @@ function submittalk(event,chatboxtextarea) {
 		return false;
 	}
 	 else {
-		var dataString = 'talk='+ message ;
+		 var ID = $("#ProjectIDValue").val() ;
+		var dataString = 'talk='+ message + '&project_id=' + ID ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/project_talks.php",
@@ -179,8 +179,8 @@ function submittalk(event,chatboxtextarea) {
 }
 };
 function projecttalk() {
-	var username = 'name' ;
-	var dataString = 'prtalk='+ username ;
+	var ID = $("#ProjectIDValue").val() ;
+	var dataString = 'prtalk=username' + '&project_id=' + ID ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/project_talk.php",
