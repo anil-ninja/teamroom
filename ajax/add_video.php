@@ -54,7 +54,7 @@ if($_POST['video']){
     $data = $data ."<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px; ' 
 					id='challenge_ti_".$idp."' class='text'><b>
 					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($title)."</a>
-					</b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>
+					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>
 					<span class='icon-film'></span>
 					<span style= 'color: #808080;'>
 					&nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a> | ".$timefunct." | </span> 

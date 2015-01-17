@@ -76,18 +76,19 @@ if ($_POST['chal']) {
 	if (mysqli_num_rows($totaldislikes) > 0) { $dislikes = mysqli_num_rows($totaldislikes) ;}
 	else { $dislikes = '' ; }
         // list grp item header for all type chall/article/idea/photo/video
-            $get_display_tilte = "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' id='challenge_ti_".$chelangeid."' class='text'><b>
-                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/>";
-            $get_display_fname_likes ="<span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$chelangeid ."\", 1)'>
+            $get_display_tilte = "<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' id='challenge_ti_".$chelangeid."' class='text'><b>
+                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>
+                ".ucfirst($ch_title)."</a></b></span><br/>
+                <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/>";
+            $get_display_fname_likes ="<span style= 'color: #808080;'>
+                &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>
+                ".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction." | </span>
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$chelangeid ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
-        $get_display_ch_stmt_content = "</div>                    
-                                <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='font-size: 14px'>".$chelange."</span><br/>";
+        $get_display_ch_stmt_content = "<hr/><span id='challenge_".$chelangeid."' class='text' style='font-size: 14px'>".$chelange."</span><br/>";
 		$get_display_ch_stmt_content = $get_display_ch_stmt_content. editchallenge($chelangestmt, $chelangeid) ;
 //dropdown for edit/delete added here for all type of challenges except status 2, 4, 5
         $dropDown_challenge_get = "<div class='list-group-item pull-right'>

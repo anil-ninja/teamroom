@@ -52,7 +52,7 @@ function user_articles ($db_handle, $user_IDF) {
             }
                 echo "<span id='challenge_ti_".$article_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
-                        .ucfirst($article_title)."</a></b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$articletitle."'/>
+                        .ucfirst($article_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$articletitle."'/>
                     <span class='icon-book'></span><span style= 'color: #808080;'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "' style= 'color: #808080'>
                     ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created." | </span> 
                         <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$article_id ."\", 1)'>
@@ -117,7 +117,7 @@ function user_challenges ($db_handle, $user_IDF) {
         }
         echo "<span id='challenge_ti_".$challenge_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                 <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
-                    .ucfirst($challenge_title)."</a></b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>                
+                    .ucfirst($challenge_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>                
                 <span class='icon-question-sign'></span><span style= 'color: #808080;'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "' style= 'color: #808080;'>
                 ".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation." | </span>
@@ -182,7 +182,7 @@ function user_idea ($db_handle, $user_IDF) {
             }
             echo "<span id='challenge_ti_".$idea_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                     <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idea_id."' target='_blank'>" 
-                        .ucfirst($idea_title)."</a></b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$ideatitle."'/>                    
+                        .ucfirst($idea_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$ideatitle."'/>                    
                     <span class='icon-lightbulb'></span><span style= 'color: #808080;'>
                     By: <a href ='profile.php?username=" . $idea_username . "' style= 'color: #808080;'>
                     ".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation." | </span>
@@ -250,7 +250,7 @@ $no_created_projects = mysqli_num_rows($project_created_display);
 
                 echo "<span id='project_ti_".$project_id_table."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                         <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
-                        .ucfirst($project_title_table)."</a></b></span>
+                        .ucfirst($project_title_table)."</a></b></span><br/>
                         <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$projecttitletable."'/>
                     <span style= 'color: #808080;'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
                         .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span>
@@ -301,7 +301,7 @@ function joined_projects ($db_handle, $user_IDF) {
                     <div class='list-group-item'>";
             echo "<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                         <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
-                        .ucfirst($project_title_table)."</a></b></span>
+                        .ucfirst($project_title_table)."</a></b></span><br/>
                     <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
                         .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
                     <span style='font-size: 14px;'><".$project_stmt_table."</span><br/>";

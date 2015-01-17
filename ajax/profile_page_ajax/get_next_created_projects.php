@@ -49,7 +49,7 @@ if ($_POST['next_CP']) {
             }
             $show_CP = $show_CP. "<span id='project_ti_".$project_id_table."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
-                                    .ucfirst($project_title_table)."</a></b></span>
+                                    .ucfirst($project_title_table)."</a></b></span><br/>
                                     <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$projecttitletable."'/>
                                 <span style= 'color: #808080;'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 

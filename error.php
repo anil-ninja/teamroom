@@ -41,7 +41,7 @@ include_once 'functions/image_resize.php';
                     <a class='btn-link' style='color:#3B5998; word-wrap: break-word;' href='challengesOpen.php?challenge_id=".$challenge_type_id."' target='_blank'>"
                         .ucfirst($challenge_type_title)."
                     </a></b>
-                </span>";
+                </span><br/>";
         $display_fname_likes = "
                             <span style= 'color: #808080'> &nbspBy: 
                                 <a href ='profile.php?username=" . $challenge_type_username . "' style= 'color: #808080'>"

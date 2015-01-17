@@ -108,14 +108,14 @@ function challenge_display($db_handle, $challengeSearchID) {
 	else { $dislikes = '' ; }
         $display_title = "<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' id='challenge_ti_".$chelangeid."' class='text'><b>
 							<a class='btn-link' style='color:#3B5998; word-wrap: break-word;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a></b>
-						</span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/><br/>";
+						</span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/><br/>";
         $display_name_stmt .= "<span style= 'color: #808080;'>
                 &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
                     <span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none; color: #808080;' onclick='like(\"".$chelangeid ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
                     <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;color: #808080;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>
-                        <hr/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px;color: #444;'>".$chelange."</span>";
+                        <hr/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px;color: #444;'>".$chelange."</span><br/>";
        $display_name_stmt = $display_name_stmt . editchallenge($chelangestmt, $chelangeid) ;
             if (isset ($_SESSION['user_id'])) {
 				$user_id = $_SESSION['user_id'];
