@@ -3,7 +3,7 @@ include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
 include_once '../lib/db_connect.php';
 session_start();
-$pro_id = $_SESSION['project_id'];
+$pro_id = $_GET['project_id'];
 $user_id = $_SESSION['user_id'] ;
 $username = $_SESSION['username'] ;
 $projectData = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
@@ -12,19 +12,19 @@ $projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replac
  if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
-        <div id='demo1' class='list-group-item' style='font-family: Tenali Ramakrishna, sans-serif;'>
-          <span class="icon-pencil" onclick='show_form(1)' style="cursor: pointer; color:#000;"> Challenge</span>
+        <div id='demo1' class='list-group-item'>
+          <i class="icon-pencil"></i><span onclick='show_form(1)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Challenge</span>
             | 
-          <span class="icon-pushpin" onclick='show_form(2)' style="cursor: pointer; color:#000;"> Assign Task</span>
+          <i class="icon-pushpin"></i><span onclick='show_form(2)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Assign Task</span>
             | 
-          <span class="icon-leaf" onclick='show_form(5)' style="cursor: pointer; color:#000;"> Notes</span>
+          <i class="icon-leaf"></i><span onclick='show_form(5)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Notes</span>
             | 
-          <span class="icon-hdd" onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;"> Manage Files</span>
+          <i class="icon-hdd"></i><span onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Manage Files</span>
             | 
-          <span class="icon-film" onclick='show_form(4)' style="cursor: pointer; color:#000;"> Videos</span>
+          <i class="icon-film"></i><span onclick='show_form(4)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
         </div>
         <div class='list-group-item'>
-			<div id='selecttext' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div> 
+			<div id='selecttext' ><p style="color: grey;">Please Select Post Type From Above ......</p></div> 
 			<div id='invitation'></div>
 		</div>           
     </div>
@@ -94,24 +94,23 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 	else { $dislikes = '' ; }
         
         // list grp item header for all type chall/article/idea/photo/video
-        $display_tilte_task = "<p style='font-family: Tenali Ramakrishna, sans-serif;font-size: 24px; line-height: 30px;' id='challenge_ti_".$id_task."' class='text'>
+        $display_tilte_task = "<span style='font-family: Tenali Ramakrishna, sans-serif;font-size: 24px; line-height: 30px;' id='challenge_ti_".$id_task."' class='text'>
                                 <b>
                                   <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>"
                                     .ucfirst($title_task)."
                                   </a>
                                 </b>
-                              </p>
-                              <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$tasktitle."'/>";
+                              </span>
+                              <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$tasktitle."'/><br/>";
         
         $dispaly_fname_likes ="<span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span> |
-                 ".$timefunct." | <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
+                &nbspBy: <a style= 'color: #808080' href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp; |
+                 ".$timetask." | </span><span class='icon-hand-up' style='cursor: pointer;color: #808080' onclick='like(\"".$id_task ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080' onclick='dislike(\"".$id_task ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
-        $display_task_stmt_content .= "<br></div>                    
-                    <div class='list-group-item'><br>
+        $display_task_stmt_content .= "<hr/>
                         <span id='challenge_".$id_task."' class='text' style='line-height:22px;font-size: 14px;'>".$stmt_task."</span><br/>";
         $display_task_stmt_content = $display_task_stmt_content. editchallenge($taskstmt, $id_task) ;
     
@@ -128,12 +127,12 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             }
             
             echo $display_tilte_task."<span class='icon-pushpin'></span><span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp</span>
+                &nbspBy: <a href ='profile.php?username=" . $username_task . "' style= 'color: #808080'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp
                      | Assigned To:&nbsp <a href ='profile.php?username=".$ownname."'>"
-                .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | ".$timefunct." | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'>
+                .ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct." |  </span> 
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080' onclick='like(\"".$id_task ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080' onclick='dislike(\"".$id_task ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
              
             echo $display_task_stmt_content;
@@ -148,8 +147,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             }
             //	. "<br/> ETA Given:" .$etaown."
             echo $display_tilte_task."<span class='icon-pushpin'></span>".$dispaly_fname_likes.
-            "<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span>
-                | Submitted On: ".$timecom;
+            "<hr>Assigned To: <span class='color strong' style= 'color: #808080'>" . ucfirst($ownfname)." ".ucfirst($ownlname)."</a>
+                | Submitted On: ".$timecom."</span>";
             // . " ETA Taken : " . $timetaken . "
             
             echo $display_task_stmt_content;
@@ -158,10 +157,10 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 5) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
-            echo "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span>";
+            echo "<span class='color strong pull-right' style= 'color: #808080'><p>Closed</p></span>";
             echo $display_tilte_task."<span class='icon-flag'></span>".$dispaly_fname_likes.
-                "<br><hr>Assigned To: <span class='color strong' style= 'color :#3B5998;'>"
-                    .ucfirst($ownfname)." ".ucfirst($ownlname)."</a></span> | Submitted: " . $timecom;
+                "<hr>Assigned To: <span class='color strong' style= 'color: #808080'>"
+                    .ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: " . $timecom."</span>";
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
             //. "<br/>ETA Given:" .$etaown."
@@ -216,8 +215,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                 }
             }
             echo $display_tilte_task."<i class='icon-question-sign'></i>".$dispaly_fname_likes;
-            echo "<br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=".$ownname."'>"
-            .ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | ".$timefunct;
+            echo "<hr>Owned By: <span class='color strong' style= 'color: #808080'><a href ='profile.php?username=".$ownname."' style= 'color: #808080'>"
+            .ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct."</span>";
             //. "<br>ETA Taken: ". $etaown." <br/> Time Remaining : " . $remaintimeown . "
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
@@ -230,8 +229,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
             }          
             echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes."
-            <br><hr>Owned By: <span class='color strong'><a href ='profile.php?username=" . $ownname . "'>"
-            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a></span> | Submitted: ".$timefunct;
+            <hr>Owned By: <span class='color strong' style= 'color: #808080'><a href ='profile.php?username=" . $ownname . "' style= 'color: #808080'>"
+            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | Submitted: ".$timecom."</span>";
             //. "<br>    ETA Taken: " . $timetaken . "
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
@@ -245,8 +244,8 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             }        
             //. "<br/>ETA Given: " . $etaown."
             echo $display_tilte_task."<span class='icon-flag'></span>".$dispaly_fname_likes."
-                <br><hr>Owned By: <span class='color strong' style= 'color :#3B5998;'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> 
-                    </span> | Submitted On: " . $timecom;
+                <hr>Owned By: <span class='color strong' style= 'color: #808080'><a href ='profile.php?username=" . $ownname . "' style= 'color: #808080'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> 
+                     | Submitted On: " . $timecom."</span>";
             //. "<br>ETA Taken: ".$timetaken."
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;

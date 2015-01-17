@@ -6,7 +6,7 @@ if(!isset($_SESSION['user_id']))
     header ('location: index.php');
 else {
     $user_id = $_SESSION['user_id'];
-    $pro_id = $_SESSION['project_id'];
+    $pro_id = $_GET['project_id'];
 } 
     
 $team_name = 'Defaultteam';

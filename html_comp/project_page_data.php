@@ -3,7 +3,7 @@ include_once '../functions/delete_comment.php';
 include_once '../lib/db_connect.php';
 session_start();
 $user_id = $_SESSION['user_id'] ;
-$pro_id = $_SESSION['project_id'] ;
+$pro_id = $_GET['project_id'] ;
 	$project = mysqli_query($db_handle, "(SELECT a.user_id, a.stmt FROM projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' 
 										and a.user_id = b.user_id AND a.project_type != '3' and a.project_type != '5')
 										UNION

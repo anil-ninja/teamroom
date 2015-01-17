@@ -47,15 +47,13 @@ if ($_POST['next_CP']) {
                         </div>
                     </div>";
             }
-            $show_CP = $show_CP. "<p id='project_ti_".$project_id_table."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
+            $show_CP = $show_CP. "<span id='project_ti_".$project_id_table."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
                                     <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
-                                    .ucfirst($project_title_table)."</a></b></p>
+                                    .ucfirst($project_title_table)."</a></b></span>
                                     <input type='text' class='editbox' style='width : 90%;' id='project_title_".$project_id_table."' value='".$projecttitletable."'/>
-                                <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
+                                <span style= 'color: #808080;'>By: <a href ='profile.php?username=" . $username_project . "'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
-                                </div>
-                            <div class='list-group-item'>
-                        <br/><span id='project_".$project_id_table."' class='text' style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
+                                <hr/><span id='project_".$project_id_table."' class='text' style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
              $show_CP = $show_CP. editproject($projectstmttable, $project_id_table) ;            
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')

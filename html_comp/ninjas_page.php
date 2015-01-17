@@ -1,20 +1,20 @@
 <div class='list-group'>
 	<div class='alert_placeholder'></div>
-    <div id='step1' class='list-group-item' style='font-family: Tenali Ramakrishna, sans-serif;'>
-        <span onclick='show_form_h(7)' class="icon-question-sign" style="cursor: pointer;color: #000;"> Challenge</span>
+    <div id='step1' class='list-group-item'>
+        <i class="icon-question-sign"></i><span onclick='show_form_h(7)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Challenge</span>
         |
-        <span onclick='show_form_h(8)' class="icon-book" style="cursor: pointer;color: #000;"> Article</span>
+        <i class="icon-book"></i><span onclick='show_form_h(8)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Article</span>
         |
-        <span class="icon-picture" onclick='show_form_h(9)' style="cursor: pointer;color: #000;"> Photos</span>
+        <i class="icon-picture"></i><span onclick='show_form_h(9)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Photos</span>
         |
-        <span class="icon-film" onclick='show_form_h(10)' style="cursor: pointer;color: #000;"> Videos</span>
+        <i class="icon-film"></i><span onclick='show_form_h(10)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
         | 
-        <span class="icon-lightbulb" onclick='show_form_h(11)' style="cursor: pointer;color: #000;"> Ideas</span>
+        <i class="icon-lightbulb"></i><span onclick='show_form_h(11)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Ideas</span>
        <!-- | 
         <span class="icon-link" onclick='show_form_h(12)' style="cursor: pointer;color: #000;"> Share Links</span> -->
     </div>
     <div class='list-group-item'>
-		<div id='textForm' ><p style="color: grey;"><I>Please Select Post Type From Above ......</I></p></div>
+		<div id='textForm' ><p style="color: grey;">Please Select Post Type From Above ......</p></div>
 		<div id='remindervalue'></div>
     </div>
 </div>
@@ -86,18 +86,17 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 	else { $dislikes = '' ; }
         
         // list grp item header for all type chall/article/idea/photo/video
-        $display_tilte_ch = "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' id='challenge_ti_".$chelangeid."' class='text'><b>
-            <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/>";
-        $display_fname_likes = "<span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$chelangeid ."\", 1)'>
+        $display_tilte_ch = "<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' id='challenge_ti_".$chelangeid."' class='text'><b>
+            <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a>
+            </b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/><br/>";
+        $display_fname_likes = "<span style= 'color: #808080;'>
+                &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$chelangeid ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$chelangeid ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
-        $display_ch_stmt_content .= "</div>                    
-                                <div class='list-group-item'>
-                        <br/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>";
+        $display_ch_stmt_content .= "<hr/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>";
         $display_ch_stmt_content = $display_ch_stmt_content . editchallenge($chelangestmt, $chelangeid) ;             
     if ($ctype == 1) {
         if ($status == 1) {
@@ -121,8 +120,8 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
             }
                echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes. "
-                        <br> <hr>Accepted: <a href ='profile.php?username=" . $ownname ."'>"
-                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | on ".$timefunct ;
+                        <hr>Accepted: <a href ='profile.php?username=" . $ownname ."' style= 'color: #808080;'>"
+                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | <span style= 'color: #808080;'>on ".$timefunct."</span>" ;
                         //  <br/> Time Remaining : " . $remaintimeown ."<br>
                    echo $display_ch_stmt_content;
                    $display_ch_stmt_content = "";
@@ -134,8 +133,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     if($owner_id == $user_id) {			
                         echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
             }
-                    echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
-                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timecomm ;
+                    echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes."<hr>Submitted: 
+							<a href ='profile.php?username=" . $ownname . "' style= 'color: #808080;'>"
+                            . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | <span style= 'color: #808080;'>Submitted: ".$timecomm."</span>" ;
                                             //. "<br/>  ETA Taken : " . $timeo ."
                     echo $display_ch_stmt_content;
                     $display_ch_stmt_content = "";
@@ -144,8 +144,9 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             echo "<div class='list-group openchalhide'>
                     <div class='list-group-item'>";
                 dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
-            echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes. "<br> <hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | Submitted: " . $timecomm ;
+            echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes. "<hr>Owned: 
+								<a href ='profile.php?username=" . $ownname . "' style= 'color: #808080;'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | <span style= 'color: #808080;'>Submitted: " . $timecomm."</span>" ;
                                     //. "<br/> ETA Taken : " . $timetakennin . "
                 echo $display_ch_stmt_content;
                 $display_ch_stmt_content = "";
@@ -232,15 +233,15 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
               if  ($owlstatus==1){
-                echo "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a>| ".$timfunct;
+                echo "<hr/>Owned: <a href ='profile.php?username=" . $owname . "' style= 'color: #808080;'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a>| <span style= 'color: #808080;'>".$timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
                     echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
                 }
             }
             if  ($owlstatus==2){
-                echo "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | " . $timfunct." | Submitted: " .$owtimesubmit ;
+                echo "<hr/>Owned: <a href ='profile.php?username=" . $owname . "' style= 'color: #808080;'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | <span style= 'color: #808080;'>" . $timfunct." | Submitted: " .$owtimesubmit ;
                 //." and Time Taken : ".$timetakennin."
             }
         }
@@ -268,15 +269,15 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
               if  ($owlstatus==1){
-                echo "<br>Owned: <span class='color strong'><a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a></span> | " . $timfunct;
+                echo "<hr/>Owned: <span style= 'color: #808080;'><a href ='profile.php?username=" . $owname . "'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct."</span>";
                 if ($ownedbrow['user_id'] == $user_id ) {
                     echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
                 }
             }
             if  ($owlstatus==2){
-                echo "<br/>Owned: <a href ='profile.php?username=" . $owname . "'>"
-                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | ".$timfunct."| Submitted: " .$owtimesubmit ;
+                echo "<hr/>Owned: <a href ='profile.php?username=" . $owname . "' style= 'color: #808080;'>"
+                . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | ".$timfunct."| <span style= 'color: #808080;'>Submitted: " .$owtimesubmit."</span>" ;
                 //." and Time Taken : ".$timetakennin."
             }
             }

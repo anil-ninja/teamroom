@@ -1,6 +1,7 @@
 <?php
 include_once 'project.inc.php';
 include_once 'functions/delete_comment.php';
+$pro_id = $_GET['project_id'] ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,13 +60,12 @@ include_once 'functions/delete_comment.php';
 
                     <div class="tab-content" id= 'myTabContent'>
                         <div role="tabpanel" class="tab-pane fade in active" id="tabProjectData">       
-                            <?php include_once 'html_comp/project_page_data.php'; ?>
-                            <div class="panel-primary" id='panel-cont'>
-                            </div>
+                            <?php include_once 'html_comp/project_page_data.php' ; ?>
                             </div>
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tabProjectContent">
-							<div id="home_project_content"></div> 
+							<div id="home_project_content"></div>
+							<div class="panel-primary" id='panel-cont'></div> 
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tabDashboard" >
                             <div id="dashboard_project_content"></div>
@@ -102,13 +102,13 @@ include_once 'functions/delete_comment.php';
 </div>
                  <script>
     $('#home_project').click(function(){
-        $('#home_project_content').load('html_comp/project_page_project.php');       
+        $('#home_project_content').load('html_comp/project_page_project.php?project_id='+ <?= $pro_id ;?>);       
     });
     $('#dashboard_project').click(function(){
-        $('#dashboard_project_content').load('html_comp/project_page_challenge.php');       
+        $('#dashboard_project_content').load('html_comp/project_page_challenge.php?project_id='+ <?= $pro_id ;?>);       
     });
     $('#teams_project').click(function(){
-        $('#teams_project_content').load('html_comp/teams_panel_project.php');        
+        $('#teams_project_content').load('html_comp/teams_panel_project.php?project_id='+ <?= $pro_id ;?>);        
     });
 
 $("#project_chat_form").hide();
