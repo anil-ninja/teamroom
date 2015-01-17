@@ -103,6 +103,7 @@ function login(){
 		$id = $responseRow['user_id'];
 		$rank = $responseRow['rank'];
 		$lastlogintime = $responseRow['last_login'];
+		$_SESSION['last_login'] = $lastlogintime ;
 		$obj = new rank($id);
 		$new_rank = $obj->user_rank ;
 		if($new_rank != $rank) {
@@ -127,7 +128,6 @@ http://collap.com/profile.php?username=".$username ;
 				}
 			}
 		}
-		$_SESSION['last_login'] = $lastlogintime ;
 		$_SESSION['user_id'] = $id ;
 		$_SESSION['first_name'] = $responseRow['first_name'] ;
 		$_SESSION['username'] = $responseRow['username'] ;

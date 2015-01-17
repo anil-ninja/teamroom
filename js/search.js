@@ -88,7 +88,6 @@ function getnewnote(time, lid) {
 		cache: false,
 		success: function(result){
 			if(result == "no new notification") { 
-				document.getElementById("countnotice").innerHTML = "" ;
 			}
 			else {
 				var notice = result.split("+") ;
@@ -121,26 +120,27 @@ function getallnotices() {
 		}
 	});
 } ;
-     function searchingform() {
-            var keyword1 = $("#searchfor").val() ;
-            //alert(keyword1);
-            var dataString = 'keyword='+ keyword1 ;
-            //alert(dataString);
-            if(keyword1==''){
-                alert("Please Enter Something !!!");
-            }	else {
-                $.ajax({
-                    type: "GET",
-                    url: "search.php",
-                    data: dataString,
-                    cache: false,
-                    success: function(result){
-                        //alert(result);
-                        challenges = JSON.parse(result);
-                        //alert(challenges);
-                        //alert(show_search_results(challenges));
-                        document.getElementById("home-ch").innerHTML = show_search_results(challenges);			
-                    }
-                });
-            }
-        };
+function searchingform() {
+	var keyword1 = $("#searchfor").val() ;
+	//alert(keyword1);
+	var dataString = 'keyword='+ keyword1 ;
+	//alert(dataString);
+	if(keyword1==''){
+		alert("Please Enter Something !!!");
+	}	
+	else {
+		$.ajax({
+			type: "GET",
+			url: "search.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				//alert(result);
+				challenges = JSON.parse(result);
+				//alert(challenges);
+				//alert(show_search_results(challenges));
+				document.getElementById("home-ch").innerHTML = show_search_results(challenges);			
+			}
+		});
+	}
+};
