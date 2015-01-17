@@ -9,7 +9,7 @@ if($_POST['taskdetails']){
 	$firstname = $_SESSION['first_name'] ;
 	$username = $_SESSION['username'] ;
 	$detailstext = $_POST['taskdetails'] ;
-	$pro_id = $_SESSION['project_id'];
+	$pro_id = $_POST['project_id'];
 	$team = $_POST['team'] ;
 	$email = $_POST['email'] ;
 	$users = $_POST['users'] ;
@@ -150,20 +150,19 @@ http://collap.com/project.php?project_id=".$pro_id ;
 							<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
 						</ul>
 					</div>
-					<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
+					<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
 					id='challenge_ti_".$idp."' class='text'><b>
 					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
-					</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
-					<span class='icon-pushpin'></span><span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username . "'>".ucfirst($firstname)."</a>&nbsp</span>
-                     | Assigned To:&nbsp <a href ='profile.php?username=".$usersName."'>"
-                .ucfirst($usersFirstName)."</a></span> | ".$timefunct." | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 3)'>
+					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
+					<span class='icon-pushpin'></span><span style= 'color: #808080;'>
+                &nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a>&nbsp;
+                     | Assigned To:&nbsp <a href ='profile.php?username=".$usersName."' style= 'color: #808080;'>"
+                .ucfirst($usersFirstName)."</a> | ".$timefunct." | </span>
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$idp ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 4)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$idp ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span>
-                    </div><div class='list-group-item'>
-                    <br/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
+                    <hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
             $data = $data .editchallenge($nchallange, $idp) ;
             $data = $data ."<div class='comments_".$idp."'></div>
 					<div id='step15' class='comments clearfix'>
@@ -191,20 +190,19 @@ http://collap.com/project.php?project_id=".$pro_id ;
 							<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
 						</ul>
 					</div>
-					<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
+					<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
 					id='challenge_ti_".$idp."' class='text'><b>
 					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
-					</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
-					<span class='icon-pushpin'></span><span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username . "'>".ucfirst($firstname)."</a>&nbsp</span>
-                     | Assigned To:&nbsp <a href ='profile.php?username=".$usersName."'>"
-                .ucfirst($usersFirstName)."</a></span> | ".$timefunct." | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 3)'>
+					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
+					<span class='icon-pushpin'></span><span style= 'color: #808080;'>
+                &nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a>&nbsp;
+                     | Assigned To:&nbsp <a href ='profile.php?username=".$usersName."' style= 'color: #808080;'>"
+                .ucfirst($usersFirstName)."</a> | ".$timefunct." | </span>
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$idp ."\", 3)'>
                          <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 4)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$idp ."\", 4)'>
                         <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span>
-                    </div><div class='list-group-item'>
-                    <br/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
+                    <hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
             $data = $data .editchallenge($nchallange, $idp) ;
             $data = $data ."<div class='comments_".$idp."'></div>
 					<div id='step15' class='comments clearfix'>

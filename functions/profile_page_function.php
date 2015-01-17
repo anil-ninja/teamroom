@@ -303,7 +303,7 @@ function joined_projects ($db_handle, $user_IDF) {
                         <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
                         .ucfirst($project_title_table)."</a></b></span><br/>
                     <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
-                        .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
+                        .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span><hr/> 
                     <span style='font-size: 14px;'><".$project_stmt_table."</span><br/>";
                  project_comments($db_handle, $project_id_table);
                echo "</div>";

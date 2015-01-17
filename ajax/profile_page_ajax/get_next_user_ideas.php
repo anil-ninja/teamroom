@@ -111,6 +111,7 @@ if ($_POST['user_next_idea']) {
                     <button type='submit' class='btn btn-primary' onclick='comment(\"".$idea_id."\", 1)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'>
                         <i class='icon-chevron-right'></i>
                     </button>";
+				}
                 else {
             $show_idea = $show_idea. "
                             <input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>

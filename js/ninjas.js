@@ -609,87 +609,90 @@ $("#pencil").click(function(){
 			}
 		}
     
-		function create_task(){
-			$("#create_task").attr('disabled','disabled');
-			var team = $("#teamtask").val() ;
-			var users = $("#userstask").val() ;
-			var email = $("#emailtask").val() ;
-			if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team != '0' && users !='0' && email =="")
-			||(team != '0' && users =='0' && email !="")||(team == '0' && users !='0' && email !="")) {
-				bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
-				$("#create_task").removeAttr('disabled');
-				return false ;
-			}
-			if (email != "") {
-			$.ajax({
-				type: "POST",
-				url: "ajax/email.php",
-				data: 'email='+ email,
-				cache: false,
-				success: function(result){
-					//alert(result);
-					if (result == 'true') {
-							var title = convertSpecialChar($("#titletask").val()) ;
-							var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
-							//var eta = parseInt($("#c_eta").val());
-							//var etab = parseInt($("#c_etab").val());
-							//var etac = parseInt($("#c_etac").val());
-							//var etad = parseInt($("#c_etad").val());
-							//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
-							// Returns successful data submission message when the entered information is stored in database.
-							var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-							 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
-							//alert(dataString);
-							if(title==''){
-								bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-								$("#create_task").removeAttr('disabled');
-								return false ;
-							}
-							else if(taskdetails==''){
-								bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
-								$("#create_task").removeAttr('disabled');
-								return false ;
-							}
-							else {
-								//file upload
-								var _file = document.getElementById('_fileTask');
-								uploadFile1(_file,"taskPic",String(dataString),"ajax/submit_task.php");
-							}				
+function create_task(){
+	$("#create_task").attr('disabled','disabled');
+	var team = $("#teamtask").val() ;
+	var users = $("#userstask").val() ;
+	var email = $("#emailtask").val() ;
+	var ID = $("#ProjectIDValue").val() ;
+	if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team != '0' && users !='0' && email =="")
+		||(team != '0' && users =='0' && email !="")||(team == '0' && users !='0' && email !="")) {
+		bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
+		$("#create_task").removeAttr('disabled');
+		return false ;
+	}
+	if (email != "") {
+		$.ajax({
+			type: "POST",
+			url: "ajax/email.php",
+			data: 'email='+ email,
+			cache: false,
+			success: function(result){
+			//alert(result);
+				if (result == 'true') {
+					var title = convertSpecialChar($("#titletask").val()) ;
+					var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
+					//var eta = parseInt($("#c_eta").val());
+					//var etab = parseInt($("#c_etab").val());
+					//var etac = parseInt($("#c_etac").val());
+					//var etad = parseInt($("#c_etad").val());
+					//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
+					// Returns successful data submission message when the entered information is stored in database.
+					var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
+									 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) 
+									 + '&team='+ team + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
+					//alert(dataString);
+					if(title==''){
+						bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+						$("#create_task").removeAttr('disabled');
+						return false ;
 					}
-					else if (result == 'same') {
-							bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
-							$("#create_task").removeAttr('disabled');
-							return false ;
-						}
-						else {
-							var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div> <br/> <div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div> <br/> <div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' id='invite'  value='Invite Him/Her' /> <br/> ";
-							//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
-							$("#invitation").show().html(modal);
-							return false ;
-							}
-						}
-				  });
+					else if(taskdetails==''){
+						bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
+						$("#create_task").removeAttr('disabled');
+						return false ;
+					}
+					else {
+						//file upload
+						var _file = document.getElementById('_fileTask');
+						uploadFile1(_file,"taskPic",String(dataString),"ajax/submit_task.php");
+					}				
 				}
-			else {
-				var title = convertSpecialChar($("#titletask").val()) ;
-				var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
-				var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-				 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team + '&users='+ users ;//+ '&challange_eta='+ (challange_eta+='') ;
-				//alert(dataString);
-				if(title==''){
-					bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
-					$("#create_task").removeAttr('disabled');
-					return false ;
-				}
-				else if(taskdetails==''){
-					bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
+				else if (result == 'same') {
+					bootstrap_alert(".alert_placeholder","Please enter Friends email-id Not Yours !!!" , 5000,"alert-warning");
 					$("#create_task").removeAttr('disabled');
 					return false ;
 				}
 				else {
-					//file upload
-					var _file = document.getElementById('_fileTask');
-					uploadFile1(_file,"taskPic",String(dataString),"ajax/submit_task.php");
+					var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div> <br/> <div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div> <br/> <div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' id='invite'  value='Invite Him/Her' /> <br/> ";
+					//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
+					$("#invitation").show().html(modal);
+					return false ;
 				}
-			}			
+			}
+	  });
+	}
+	else {
+		var title = convertSpecialChar($("#titletask").val()) ;
+		var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
+		var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
+						 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team 
+						 + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
+		//alert(dataString);
+		if(title==''){
+			bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+			$("#create_task").removeAttr('disabled');
+			return false ;
 		}
+		else if(taskdetails==''){
+			bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
+			$("#create_task").removeAttr('disabled');
+			return false ;
+		}
+		else {
+			//file upload
+			var _file = document.getElementById('_fileTask');
+			uploadFile1(_file,"taskPic",String(dataString),"ajax/submit_task.php");
+		}
+	}			
+}
