@@ -3,7 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 if($_POST['form_type']){
 	$user_id = $_SESSION['user_id'];
-	$pro_id = $_SESSION['project_id'];
+	$pro_id = $_POST['project_id'];
 	$type = $_POST['form_type'] ;
 	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 	switch($type){
@@ -158,7 +158,7 @@ if($_POST['form_type']){
 				echo "<input type='text' class='input-block-level' id='video_titlepr' placeholder='Vedio title ..'/><br>
 					  <input type='text' class='input-block-level' id='videoprjt' placeholder='Add Youtube URL'><br>
 					  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='videodespr' placeholder='Description ..'></textarea><br>
-					  <input type='button' value='Post' class='btn btn-primary' id='create_videopr' onclick='create_videopr()'/>" ;
+					  <input type='button' value='Post' class='btn btn-primary' id='create_videopr' onclick='create_videopr(\"".$pro_id."\")'/>" ;
 			} 
 			else echo "Please Join Project First";
 			exit ;

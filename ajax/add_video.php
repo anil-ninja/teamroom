@@ -51,19 +51,18 @@ if($_POST['video']){
 							<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
 						</ul>
 					</div>" ;
-    $data = $data ."<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px; ' 
+    $data = $data ."<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px; ' 
 					id='challenge_ti_".$idp."' class='text'><b>
 					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($title)."</a>
-					</b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>
+					</b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>
 					<span class='icon-film'></span>
-					<span style= 'color: #808080'>
-					&nbspBy: <a href ='profile.php?username=" . $username . "'>".ucfirst($firstname)."</a> | ".$timefunct."</span> | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 1)'>
+					<span style= 'color: #808080;'>
+					&nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a> | ".$timefunct." | </span> 
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$idp ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$idp ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span>
-                    </div><div class='list-group-item'>
-                    <br/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; 
+                    <hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; 
                      color: #444;'>".$chelange."</span><br/>" ;
        $data = $data .editchallenge($nchallange, $idp) ;
       $data = $data ."<div class='comments_".$idp."'></div>

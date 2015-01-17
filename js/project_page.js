@@ -108,8 +108,8 @@ return str.replace(new RegExp(find, 'g'), replace);
 }
 	
 	});
-function show_form(type){
-	var dataString = 'form_type=' + type ;
+function show_form(type, ID){
+	var dataString = 'form_type=' + type + '&project_id=' + ID ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/forms.php",

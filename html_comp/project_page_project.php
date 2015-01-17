@@ -13,15 +13,15 @@ $projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replac
     ?>
     <div class='list-group'>
         <div id='demo1' class='list-group-item'>
-          <i class="icon-pencil"></i><span onclick='show_form(1)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Challenge</span>
+          <i class="icon-pencil"></i><span onclick='show_form(1, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Challenge</span>
             | 
-          <i class="icon-pushpin"></i><span onclick='show_form(2)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Assign Task</span>
+          <i class="icon-pushpin"></i><span onclick='show_form(2, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Assign Task</span>
             | 
-          <i class="icon-leaf"></i><span onclick='show_form(5)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Notes</span>
+          <i class="icon-leaf"></i><span onclick='show_form(5, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Notes</span>
             | 
           <i class="icon-hdd"></i><span onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Manage Files</span>
             | 
-          <i class="icon-film"></i><span onclick='show_form(4)' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
+          <i class="icon-film"></i><span onclick='show_form(4, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
         </div>
         <div class='list-group-item'>
 			<div id='selecttext' ><p style="color: grey;">Please Select Post Type From Above ......</p></div> 

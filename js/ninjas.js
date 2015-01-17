@@ -175,7 +175,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 		}
 
-		function create_videopr(){
+		function create_videopr(ID){
 			$("#create_videopr").attr('disabled','disabled');
 			var challenge = $("#videoprjt").val() ;
 			var video_title = convertSpecialChar($("#video_titlepr").val()) ;
@@ -205,7 +205,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			}
 			else {
 				var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
+				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/add_video_pr.php",
