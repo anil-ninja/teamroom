@@ -9,7 +9,7 @@ if ($_POST['team']) {
 	$team = $_POST['team'] ;
 	$email = $_POST['email'] ;
 	$user_id = $_SESSION['user_id'] ;
-	$pro_id = $_SESSION['project_id'] ;
+	$pro_id = $_POST['project_id'] ;
 	$username = $_SESSION['username'];
 	$info =  mysqli_query($db_handle, "select * from projects where project_id = '$pro_id' ;") ;
 	$inforow = mysqli_fetch_array($info) ;

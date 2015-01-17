@@ -104,7 +104,6 @@
 <div id="AddTeam" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style='position:absolute;'>
     <div class="row-fluid">
         <div class="span6 offset3">
-            
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Create Team</span></a></li>

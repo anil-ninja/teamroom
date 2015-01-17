@@ -8,7 +8,7 @@ else {
     $user_id = $_SESSION['user_id'];
     $pro_id = $_GET['project_id'];
 } 
-    
+   echo "<input type='hidden' id='ProjectIDValue' value='".$pro_id ."'/>" ;
 $team_name = 'Defaultteam';
 
 $teams_member_display = mysqli_query($db_handle, "select b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 

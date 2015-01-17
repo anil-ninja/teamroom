@@ -212,6 +212,7 @@ function create_team(){
 	$("#create_team").attr('disabled','disabled');
 	var team = $("#team_name_A").val() ;
 	var email = $("#email_team").val() ;
+	var ID = $("#ProjectIDValue").val() ;
 	var newteam = document.getElementById("myteamname").innerHTML ;
 	if(newteam ==""){
 		if(team =="") {
@@ -225,12 +226,12 @@ function create_team(){
 			return false ;
 		}
 		else {
-			submitTeam(team, email) ;
+			submitTeam(team, email, ID) ;
 		}
 	}
 	else {
 		if(email == "") {
-			var dataString = 'team='+ newteam  ;
+			var dataString = 'team='+ newteam + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/create_team_new.php",
@@ -261,11 +262,11 @@ function create_team(){
 			}) ;
 		}
 		else {
-			submitTeam(newteam, email) ;
+			submitTeam(newteam, email, ID) ;
 		}
 	}	
 }
-function submitTeam(team,email) {
+function submitTeam(team,email, ID) {
 	$.ajax({
 		type: "POST",
 		url: "ajax/email.php",
@@ -274,7 +275,7 @@ function submitTeam(team,email) {
 		success: function(result){
 			//alert(result);
 			if (result == 'true') {
-				var dataString = 'team='+ team + '&email='+ email ;
+				var dataString = 'team='+ team + '&email='+ email + '&project_id=' + ID ;
 				$.ajax({
 					type: "POST",
 					url: "ajax/create_team_new.php",
@@ -385,6 +386,7 @@ function submitTeam(team,email) {
 function CreateTeamMember(userid){
 	$("#create_team").attr('disabled','disabled');
 	var team = $("#team_name_A").val() ;
+	var ID = $("#ProjectIDValue").val() ;
 	if(team == "") {
 		var newteam = document.getElementById("myteamname").innerHTML ;
 		if(newteam ==""){
@@ -393,7 +395,7 @@ function CreateTeamMember(userid){
 			return false ;
 		}
 		else {
-			var dataString = 'team='+ newteam + '&userid='+ userid ;
+			var dataString = 'team='+ newteam + '&userid='+ userid + '&project_id=' + ID  ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/create_team_new.php",
@@ -416,7 +418,7 @@ function CreateTeamMember(userid){
 		}
 	}
 	else {
-		var dataString = 'team='+ team + '&userid='+ userid ;
+		var dataString = 'team='+ team + '&userid='+ userid + '&project_id=' + ID ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/create_team_new.php",

@@ -8,7 +8,7 @@ else { header ('location:../index.php'); }
 
 if ($_POST['id']) {
 	$knownid = $_POST['id'];
-	$pro_id = $_SESSION['project_id'] ;
+	$pro_id = $_POST['project_id'] ;
 	$case = $_POST['type'];
 	$time = date("Y-m-d H:i:s") ;
 	$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
