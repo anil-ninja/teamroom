@@ -8,7 +8,7 @@ else {
 if(isset($_POST['id'])){
 	$user_id = $_SESSION['user_id'];
 	$id = $_POST['id'];
-	$pro_id = $_SESSION['project_id'];
+	$pro_id = $_POST['project_id'];
 	$case = $_POST['case'];	
 	$time = date("Y-m-d H:i:s") ;
     if($case == 1){

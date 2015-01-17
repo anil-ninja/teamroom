@@ -2,6 +2,7 @@
 include_once 'project.inc.php';
 include_once 'functions/delete_comment.php';
 $pro_id = $_GET['project_id'] ;
+ echo "<input type='hidden' id='ProjectIDValue' value='".$pro_id ."'/>" ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,7 +118,8 @@ $('#scrollFriends').jScrollPane() ;
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
-			var dataString = 'proch=10' ;
+			var ID = $("#ProjectIDValue").val() ;
+			var dataString = 'proch=10' + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/next_proch.php",

@@ -148,8 +148,9 @@ if ($_POST['chal']) {
             $show = $show . $dropDown_ch_after_accept;
             $dropDown_ch_after_accept = "";
            }
-            $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Accepted: <a href ='profile.php?username=" . $ownname ."'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct;
+            $show = $show . $get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "<hr><span style= 'color: #808080;'>Accepted: 
+										<a href ='profile.php?username=" . $ownname ."' style= 'color: #808080;'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct ."</span>";
                                   //  <br/> Time Remaining : " . $remaintimeown ."<br>
                   $show = $show . $get_display_ch_stmt_content;
                   $get_display_ch_stmt_content = "" ;	
@@ -163,8 +164,9 @@ if ($_POST['chal']) {
 				$dropDown_ch_after_accept = "";                
                 $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
              }    
-			$show = $show.$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "<br> <hr>Submitted: <a href ='profile.php?username=" . $ownname . "'>"
-			. ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | " . $timecomm ;
+			$show = $show.$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "<hr><span style= 'color: #808080;'>
+												Submitted: <a href ='profile.php?username=" . $ownname . "'style= 'color: #808080;'>"
+												. ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | " . $timecomm ."</span>";
 							//. "<br/>  ETA Taken : " . $timeo ."
 			$show = $show. $get_display_ch_stmt_content;
 			$get_display_ch_stmt_content = "" ;
@@ -176,8 +178,9 @@ if ($_POST['chal']) {
 				$show = $show . $dropDown_ch_after_accept; 
 				$dropDown_ch_after_accept = "";                   
 			}
-            $show = $show .  $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes. "<br> <hr>Owned: <a href ='profile.php?username=" . $ownname . "'>"
-                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a><br> Submitted On : " . $timecomm ;
+            $show = $show .  $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes. "<hr><span style= 'color: #808080;'>
+												Owned: <a href ='profile.php?username=" . $ownname . "' style= 'color: #808080;'>"
+                                    . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a><br> Submitted On : " . $timecomm ."</span>";
                                     //. "<br/> ETA Taken : " . $timetakennin . "
 			$show = $show . $get_display_ch_stmt_content;
 			$get_display_ch_stmt_content = "" ;
@@ -185,7 +188,7 @@ if ($_POST['chal']) {
     }
      
      if ($ctype == 6) {
-        $show = $show . "<div class='list-group articlesch'>
+        $show = $show . "<div class='list-group articlesch'> 
 				<div class='list-group-item'> " ;
             
 		$show = $show . $dropDown_challenge_get;
@@ -272,7 +275,7 @@ if ($_POST['chal']) {
                 else {
                     $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                 }
-                $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes;
+                $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes."<span style= 'color: #808080;'>";
                         
                 $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -290,18 +293,18 @@ if ($_POST['chal']) {
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
                 if  ($owlstatus==1){
-                    $show = $show . "<br/>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                    $show = $show . "<hr/>Owned: <a href ='profile.php?username=" . $owname . "' style= 'color: #808080;'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | ".$timfunct;
                     if ($ownedbrow['user_id'] == $user_id ) {
                         $show = $show . "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                     }
                 }
                 if  ($owlstatus==2){
-                    $show = $show . "<br/>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                    $show = $show . "<br/>Owned: <a href ='profile.php?username=" . $owname . "' style= 'color: #808080;'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | " . $timfunct." | Submitted: " .$owtimesubmit ;
                 }
             }
-            $show = $show . $get_display_ch_stmt_content;
+            $show = $show . "</span>".$get_display_ch_stmt_content;
             $get_display_ch_stmt_content = "" ;
         }
         if ($status == 5) {
@@ -312,7 +315,7 @@ if ($_POST['chal']) {
         $dropDown_challenge_get = "";
                     //dropdown for delete/edit/span challenge ends here
 
-              $show = $show . $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes;
+              $show = $show . $get_display_tilte."<span class='icon-flag'></span>".$get_display_fname_likes."<span style= 'color: #808080;'>";
             
             $ownedb = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.status, a.comp_ch_ETA, a.time, a.ownership_creation, b.first_name, b.last_name,b.username
                                                 from challenge_ownership as a join user_info as b where a.challenge_id = '$chelangeid' and b.user_id = a.user_id ;");
@@ -330,25 +333,22 @@ if ($_POST['chal']) {
 				$time_taken = ($endtimen-$initialtimen)/60 ;
 				$timetakennin = eta($time_taken);
             if  ($owlstatus==1){
-                $show = $show . "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                $show = $show . "<hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct;
                 if ($ownedbrow['user_id'] == $user_id ) {
                     $show = $show . "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                 }
             }
             if  ($owlstatus==2){
-                $show = $show . "<br>Owned: <a href ='profile.php?username=" . $owname . "'>"
+                $show = $show . "<hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
                 . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . "</a> | ".$timfunct."| Submitted: " .$owtimesubmit ;
                 //." and Time  Taken : ".$timetakennin."
             }
         }
-        $show = $show . $get_display_ch_stmt_content;
+        $show = $show . "</span>".$get_display_ch_stmt_content;
         $get_display_ch_stmt_content = "" ;
         }
      }
-   /*$show = $show . "<div class='list-group-item'><p align='center' style='font-size: 14pt;' id='challenge_ti_".$chelangeid."' class='text' ><b>" . ucfirst($ch_title) . "</b></p>
-			<br/><span id='challenge_".$chelangeid."' class='text' >".$chelange."</span>
-			<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$ch_title."'/>";    */
     if ($status == 4 || $status == 5 || $status == 2) {
         $answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
                                             UNION

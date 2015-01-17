@@ -175,7 +175,8 @@ function comment(ID, type) {
 function accept_pub(ID, type){
 		   bootbox.confirm("Really Accept Challenge !!!", function(result) {
 		if(result){
-			var dataString = 'id='+ ID + '&case=' + type ;
+			var ID = $("#ProjectIDValue").val() ;
+			var dataString = 'id='+ ID + '&case=' + type + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/knownperson.php",
@@ -192,7 +193,8 @@ function accept_pub(ID, type){
 function closechal(ID, type){
 		   bootbox.confirm("Really Close Challenge !!!", function(result) {
 		if(result){
-			var dataString = 'id='+ ID + '&case=' + type ;
+			var ID = $("#ProjectIDValue").val() ;
+			var dataString = 'id='+ ID + '&case=' + type + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/knownperson.php",
@@ -234,13 +236,14 @@ function answersubmit(chelangeid, type){
 } ;
 function like(Id, type) {
 	var uid = $("#likes_"+Id).val() ;
+	var IDPr = $("#ProjectIDValue").val() ;
 	if (uid == '') {
 		var nied = 1 ;
 		}
 		else {
 			var nied = parseInt(parseInt(uid)+1) ;
 			}
-	var dataString = 'id='+ Id + '&case=' + type ;
+	var dataString = 'id='+ Id + '&case=' + type + '&project_id=' + IDPr ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/likes.php",
@@ -262,13 +265,14 @@ function like(Id, type) {
 	}
 function dislike(Id, type) {
 	var uid = $("#dislikes_"+Id).val() ;
+	var IDPr = $("#ProjectIDValue").val() ;
 	if (uid == '') {
 		var nied = 1 ;
 		}
 		else {
 			var nied = parseInt(parseInt(uid)+1) ;
 			}
-	var dataString = 'id='+ Id + '&case=' + type ;
+	var dataString = 'id='+ Id + '&case=' + type + '&project_id=' + IDPr ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/likes.php",

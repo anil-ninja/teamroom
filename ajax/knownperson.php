@@ -10,7 +10,7 @@ else {
 	if ($_POST['id']) {
 		$user_id = $_SESSION['user_id'] ;
 		$knownid = $_POST['id'];
-		$pro_id = $_SESSION['project_id'] ;
+		$pro_id = $_POST['project_id'] ;
 		$sql = mysqli_query($db_handle,"SELECT * FROM user_info where user_id='$knownid' ;") ;
 		$data = mysqli_fetch_array($sql) ;
 		$emails = $data['email'] ;

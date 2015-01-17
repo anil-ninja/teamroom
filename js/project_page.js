@@ -395,7 +395,7 @@ function CreateTeamMember(userid){
 			return false ;
 		}
 		else {
-			var dataString = 'team='+ newteam + '&userid='+ userid + '&project_id=' + ID  ;
+			var dataString = 'team='+ newteam + '&userid='+ userid + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/create_team_new.php",
