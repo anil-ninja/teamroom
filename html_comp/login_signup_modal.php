@@ -18,13 +18,13 @@
                     <h4>Collaborate Grow and help Society</h4>
                     <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="index.php#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
-                            <li><a href="index.php#panel2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
+                            <li><a href="index.php#panel1" data-toggle="tab"><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
+                            <li class="active"><a href="index.php#panel2" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
                             <li><a href="index.php#panel3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
                             <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                         </ul>
                         <div class="tab-content ">
-                            <div class="tab-pane active" id="panel1">
+                            <div class="tab-pane" id="panel1">
                                 <div class="row-fluid">
                                     <div class="span5">
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Login Here</h4>
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="panel2">
+                            <div class="tab-pane active" id="panel2">
                                 <div class="row-fluid">
                                     <div class="span5">
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Register Here</h4>
