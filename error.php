@@ -37,8 +37,8 @@ include_once 'functions/image_resize.php';
                        $time_display = date("j F, g:i a", strtotime($challenge_type_time));
                        
         $display_tilte_ch = "
-                <span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b> 
-                    <a class='btn-link' style='color:#3B5998; word-wrap: break-word;' href='challengesOpen.php?challenge_id=".$challenge_type_id."' target='_blank'>"
+                <span style='font-family: Tenali Ramakrishna, sans-serif;'><b> 
+                    <a class='btn btn-link' style='color:#3B5998;font-size: 28px;padding:10px 0px 0px ;' href='challengesOpen.php?challenge_id=".$challenge_type_id."' target='_blank'>"
                         .ucfirst($challenge_type_title)."
                     </a></b>
                 </span><br/>";

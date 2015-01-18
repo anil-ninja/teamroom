@@ -33,8 +33,12 @@ function resize_image($file, $w, $h, $crop=FALSE) {
 			
 			imagejpeg($dst, explode(".",$file)[0] . "_".$w."x".$h.".jpg", 100);
 			imagedestroy($dst);
+			
+			return  explode(".",$url)[0] . "_".$w."x".$h.".jpg";
 		}
-		return  explode(".",$url)[0] . "_".$w."x".$h.".jpg";
+		else {
+			return 'img/default.gif' ;
+		}
 	}
 	else {
 		return $url ;

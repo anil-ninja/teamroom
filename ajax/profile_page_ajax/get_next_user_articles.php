@@ -54,8 +54,8 @@ if ($_POST['last_article']) {
               </div>";
             }
 
-        $show_article = $show_article. "<span id='challenge_ti_".$article_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
-                    <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
+        $show_article = $show_article. "<span id='challenge_ti_".$article_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif;'><b>
+                    <a class='btn btn-link' style='color:#3B5998;font-size: 28px;padding:10px 0px 0px ;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
                         .ucfirst($article_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$articletitle."'/>
                     <span class='icon-book'></span><span style= 'color: #808080;'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "' style= 'color: #808080;'>
                     ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created." | </span>

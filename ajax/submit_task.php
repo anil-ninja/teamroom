@@ -150,9 +150,8 @@ http://collap.com/project.php?project_id=".$pro_id ;
 							<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
 						</ul>
 					</div>
-					<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
-					id='challenge_ti_".$idp."' class='text'><b>
-					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
+					<span style='font-family: Tenali Ramakrishna, sans-serif;' id='challenge_ti_".$idp."' class='text'><b>
+					<a class='btn btn-link' style='color:#3B5998;font-size: 28px;padding:10px 0px 0px ;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
 					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
 					<span class='icon-pushpin'></span><span style= 'color: #808080;'>
                 &nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a>&nbsp;
@@ -190,9 +189,8 @@ http://collap.com/project.php?project_id=".$pro_id ;
 							<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
 						</ul>
 					</div>
-					<span style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;' 
-					id='challenge_ti_".$idp."' class='text'><b>
-					<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
+					<span style='font-family: Tenali Ramakrishna, sans-serif;'	id='challenge_ti_".$idp."' class='text'><b>
+					<a class='btn btn-link' style='color:#3B5998;font-size: 28px;padding:10px 0px 0px ;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
 					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
 					<span class='icon-pushpin'></span><span style= 'color: #808080;'>
                 &nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a>&nbsp;
