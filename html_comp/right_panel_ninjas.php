@@ -78,7 +78,6 @@
 						<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 							data-placement='right' data-original-title='" . $tooltip . 
 							"'style='text-align: left;'>" . $chtitle ;
-							//. "<p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
 				 echo "</button></a><br/>";
 			}
 		}
@@ -125,7 +124,6 @@
 						<button type='submit' class='btn-link' data-toggle='tooltip' 
 							data-placement='left' data-original-title='" . $tooltipas .
 							 "'style='text-align: right;'>" . $chtitleas ;
-							 //."<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
 					 echo "</button></a><br/>";
 			}
 		}

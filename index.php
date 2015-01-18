@@ -312,10 +312,12 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <h4><i class="icon-question"></i>&nbsp;&nbsp;Login</h4>
                                     <div class="box">
                                         <p>
-                                            Its your freedom to share ideas and connect with innovated, idealized minded person and help society to grow.
-                                        </p>
-                                        <p>
-                                            Its good to be here, lets charge ourself.
+                                           Introducing a powerful online platform to collaborate with like minded people and change the world, 
+                                           solving one problem at a time. 
+                                         </p>
+                                         <p>
+                                           Collap offers a wide range of tools to identify a challenge and assemble your own team to collaborate and crack it.
+                                            Here’s to the the joy of collaborative problem solving! 
                                         </p>
                                     </div>
                                     <div class="box">

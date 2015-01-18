@@ -65,7 +65,6 @@ if(width < 800) {
 
 $('#challange').on('keyup', function(){
     $(this).css('height', '50px');
-    alert ("dddddddd");
 });
 </script>
 <script>

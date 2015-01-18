@@ -11,19 +11,19 @@ $pro_id = $_GET['project_id'] ;
         <meta charset="utf-8">
             <title><?= $projttitle ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Challenge, Project, Problem solving, problem">
-        <?php include_once 'lib/htmt_inc_headers.php'; ?>
-   </head>
-<body>
-	<?php include_once 'html_comp/navbar_homepage.php'; ?>
-
-    <div class='alert_placeholder'></div>
-    <div class="">
-        <div class="row-fluid" style='margin-top: 50px;'>         
-            <div id='tab4' class="span2 offset1">
-                <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
-            </div>  
-            
+    <meta name="description" content="Challenge, Project, Problem solving, problem">
+    <?php include_once 'lib/htmt_inc_headers.php'; ?>
+  </head>
+  <body>
+   <?php include_once 'html_comp/navbar_homepage.php'; ?>
+   <div class='alert_placeholder'></div>
+   <div class="" >
+		<div class="row-fluid" style='margin-top: 50px;'>  		
+       		<div id='tab4' class="span2 offset1">
+   				<?php 
+   					include_once 'html_comp/left_panel_ninjas.php';   
+				?>
+   			</div>           
             <div id='tab5' class="span6">
                 <br>
                 
