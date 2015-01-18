@@ -447,3 +447,58 @@ function CreateTeamMember(userid){
 		}) ;
 	} 
 }	
+function invitememb(ID){
+		$("#invitememb").attr('disabled','disabled');
+			var fname = $("#fnameteam").val() ;
+			var sname = $("#snameteam").val() ;
+			var email = $("#teamemail").val() ;
+			if(fname =="") {
+				bootstrap_alert(".alert_placeholder", "Please Enter First Name", 5000,"alert-warning");
+				$("#invitememb").removeAttr('disabled');
+				return false ;
+			}
+			else if (sname == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Second Name", 5000,"alert-warning");
+				$("#invitememb").removeAttr('disabled');
+				return false ;
+			}
+			else if (email == "") {
+				bootstrap_alert(".alert_placeholder", "Please Enter Email-ID", 5000,"alert-warning");
+				$("#invitememb").removeAttr('disabled');
+				return false ;
+			}
+			else {
+			$.ajax({
+				type: "POST",
+				url: "ajax/email.php",
+				data: 'email='+ email,
+				cache: false,
+				success: function(result){
+					if (result == 'false') {
+						var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email + '&team=' + team + '&project_id=' + ID ;
+						$.ajax({
+							type: "POST",
+							url: "ajax/send_invitation.php",
+							data: dataString,
+							cache: false,
+							success: function(result){
+								bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+							if(result = "Invitation Send Successfully !!!") {
+								$("#fnameteam").val("") ;
+								$("#snameteam").val("") ;
+								$("#teamemail").val("") ;
+								location.reload();	
+								}
+							}				
+						});
+						$("#invitememb").removeAttr('disabled');
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
+						$("#invitememb").removeAttr('disabled');
+						return false ;							
+					}
+				}
+			});
+		}
+	}

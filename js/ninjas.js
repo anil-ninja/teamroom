@@ -664,8 +664,14 @@ function create_task(){
 					return false ;
 				}
 				else {
-					var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div> <br/> <div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div> <br/> <div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span><input type='text' class\='form-control' id='teamemail' placeholder='Enter Email-ID' /></div><br><br><input type='submit' class\='btn btn-success' id='invite'  value='Invite Him/Her' /> <br/> ";
-					//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
+					var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4>" + "<table><tbody>" +
+							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span></td>" +
+							"<td><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div></td></tr> " +
+							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span></td>" +
+							"<td><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div></td></tr> " + 
+							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span></td>" +
+							"<td><input type='text' class\='form-control' id='teamemail' value=\'" + email + "\' /></div></td></tr></tbody></table>" +
+							"<input type='submit' class\='btn btn-success' id='invitememb' onclick ='invitememb("+ ID +")' value='Invite Him/Her' /> <br/> ";
 					$("#invitation").show().html(modal);
 					return false ;
 				}
