@@ -34,7 +34,7 @@
 					<font size='2'><b>Classified Projects</b></font>
                 </div>
 				<div class='bs-component' style='max-height:130px; overflow-y:scroll;'>
-				<table><tbody>";   
+				<table><tbody style='font-size:12px;line-height:20px;'>";   
         $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time, b.stmt 
                                                             FROM teams as a join projects as b WHERE a.user_id = '$user_id' 
                                                             AND a.project_id = b.project_id AND b.project_type = '2')  
@@ -92,7 +92,7 @@
 					<font size='2'><b>Public Projects</b></font>
                 </div>
 				<div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
-					<table><tbody>
+					<table><tbody style='font-size:12px;line-height:20px;'>
         <?php
             $project_public_title_display = mysqli_query($db_handle, "SELECT * FROM projects WHERE user_id = '$user_id' and project_type = '1' ;") ;
             
@@ -145,7 +145,7 @@
 					<font size='2'><b>Joined Projects</b></font>
                 </div>
 				<div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
-					<table><tbody>
+					<table><tbody style='font-size:12px;line-height:20px;'>
         <?php
             $allJoinedProjects = mysqli_query($db_handle, "SELECT DISTINCT project_id FROM teams WHERE project_id NOT IN 
 																	  (SELECT project_id FROM projects WHERE user_id = '$user_id' and 
