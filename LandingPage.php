@@ -266,4 +266,6 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
 
 
-</body></html>
+</body>
+<?php mysqli_close($db_handle); ?>
+</html>

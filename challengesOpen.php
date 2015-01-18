@@ -210,7 +210,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
 						}
 						else {
-							$ProjectStmt = $challenge_user_stmt ;
+							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_user_stmt))) ;
 						}
                         echo "
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
@@ -263,7 +263,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                         <p style='word-wrap: break-word;'>"
                                             .$project_title_stmt."....
                                         </p><br>
-                                    </div>
+                                    </div>`
                                 </a>
     					    </div>";
                     }
