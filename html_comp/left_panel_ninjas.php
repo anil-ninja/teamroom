@@ -24,7 +24,7 @@
         </li>
     </ul>
 
-    <div class='list-group-item' style="padding-left: 0px; padding-right: 0px;">
+    <div class='list-group-item' style="padding: 0px;">
         
 <?php 
     if (isset($_SESSION['user_id'])) {              

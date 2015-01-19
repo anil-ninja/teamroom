@@ -57,7 +57,7 @@
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
                     <div class="list-group" style="margin: 20px 0px;">
-                        <div class="list-group-item">
+                        <div class="list-group-item" style="padding: 0px;">
 					<?php
 					$data = "" ;
 	   $userinfo = mysqli_query($db_handle, "SELECT * from user_info where user_id = '$challengeSearch_user_ID' ;") ;
