@@ -8,42 +8,34 @@ include_once 'models/challenge.php';
 $obj = new challenge($_GET['challenge_id']);
 $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
-
-$private_check = mysqli_query($db_handle, "SELECT challenge_type FROM challenges WHERE challenge_id = $challengeSearchID");
-$private_checkRow = mysqli_fetch_array($private_check);
-$private_ch_type = $private_checkRow['challenge_type'];
-if (!isset($_SESSION['user_id']) AND $private_ch_type == 2) {
-    include_once 'error.php';
-    exit;
-} 
-elseif (isset($_SESSION['user_id']) AND $private_ch_type == 2) {
-    $userID = $_SESSION['user_id'];
-    $private_ch_fn = private_challenge_access($db_handle, $userID, $challengeSearchID);
-    if ($private_ch_fn == 0) {
-        include_once 'error.php';
-        exit;
-    }
-}
-$open_chalange = mysqli_query($db_handle, "SELECT DISTINCT challenge_id, challenge_title from challenges 
-            WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id='$challengeSearchID';");
+$open_chalange = mysqli_query($db_handle, "SELECT challenge_id, challenge_title from challenges WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id= '$challengeSearchID' ;");
 $open_chalangeRtitle = mysqli_fetch_array($open_chalange);
 $challenge_page_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangeRtitle['challenge_title'])));
+$emptySearch = mysqli_num_rows($open_chalange);
+if ($emptySearch == 0) {
+    include_once 'error.php';
+    exit;                       //echo "no longer exists";
+}
+$userID = $_SESSION['user_id'];
+$private_check = mysqli_query($db_handle, "SELECT project_id, challenge_type FROM challenges WHERE challenge_id = $challengeSearchID");
+$private_checkRow = mysqli_fetch_array($private_check);
+$private_ch_type = $private_checkRow['challenge_type'];
+$pro_id = $private_checkRow['project_id'];
+if($pro_id != '0') {
+	$checkAccess = mysqli_query($db_handle, "SELECT * FROM teams WHERE project_id = '$pro_id' and user_id = '$userID' and member_status = '1' ;");
+	$checkAccessRow = mysqli_fetch_array($checkAccess) ;
+	$AccessID = $checkAccessRow['user_id'] ;
+	if ($userID != $AccessID) { 
+		include_once 'error.php';
+		exit;
+	} 
+}
 function chOpen_title($title_length) {
     if (strlen($title_length) < 40) {
         echo  $title_length;
     } else {
         echo substr($title_length, 0, 40)."....";
     }
-}
-$emptySearch = mysqli_num_rows($open_chalange);
-if ($emptySearch == 0) {
-    include_once 'error.php';
-    exit;                       //echo "no longer exists";
-}
-function private_challenge_access($db_handle, $user_id, $challenge_id) {
-    $public_Private = mysqli_query($db_handle, "SELECT user_id FROM challenges WHERE challenge_id = $challenge_id AND user_id = $user_id AND challenge_type = 2;");
-    $public_PrivateRow = mysqli_num_rows($public_Private);
-    return $public_PrivateRow;
 }
 $challengeSearch_user = mysqli_query($db_handle, "SELECT a.user_id, b.username, b.first_name, b.last_name from challenges as a JOIN user_info as b WHERE a.challenge_id = $challengeSearchID AND a.user_id=b.user_id;");
 $challengeSearch_user_IDRow = mysqli_fetch_array($challengeSearch_user);
