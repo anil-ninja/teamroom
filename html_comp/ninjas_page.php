@@ -87,7 +87,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         
         // list grp item header for all type chall/article/idea/photo/video
         $display_tilte_ch = "<span style='font-family: Tenali Ramakrishna, sans-serif;' id='challenge_ti_".$chelangeid."' class='text'>
-            <a class='btn btn-link' style='color:#3B5998;font-size: 28px;padding:10px 0px 0px ;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'><b>".ucfirst($ch_title)."</b></a>
+            <a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'><b>".ucfirst($ch_title)."</b></a>
             </span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/><br/>";
         $display_fname_likes = "<span style= 'color: #808080;'>
                 &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span> | 

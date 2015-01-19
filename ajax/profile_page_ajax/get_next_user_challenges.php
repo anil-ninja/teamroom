@@ -56,8 +56,8 @@ if ($_POST['next']) {
                         </div>";
         }
         $show = $show. "<span id='challenge_ti_".$challenge_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif;'><b>
-                <a class='btn btn-link' style='color:#3B5998;font-size: 28px;padding:10px 0px 0px ;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
-                    .ucfirst($challenge_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>                
+                <a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
+                    .ucfirst($challenge_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>
                 <span class='icon-question-sign'></span><span style= 'color: #808080;'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "' style= 'color: #808080;'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation." | </span>
                     <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$challenge_id ."\", 1)'>

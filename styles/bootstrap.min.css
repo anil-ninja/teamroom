@@ -3622,10 +3622,9 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 }
 .nav-tabs>.active>a,.nav-tabs>.active>a:hover,.nav-tabs>.active>a:focus
 {
-  background-color: #f5f5f5 ;
-  border: 1px solid #ddd;
+  border: 1px solid #BABBBD;
   border-bottom-color: transparent;
-  color: #555;
+  color: #BABBBD;
   cursor: default;
 }
 .nav-pills>li>a

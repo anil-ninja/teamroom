@@ -100,7 +100,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 				}
                         // list grp item header for all type chall/article/idea/photo/video
 			$get_display_tilte_task = "<span style='font-family: Tenali Ramakrishna, sans-serif;' id='challenge_ti_".$id_task."' class='text'><b>
-						<a class='btn btn-link' style='color:#3B5998;font-size: 28px;padding:10px 0px 0px ;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>
+						<a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$id_task."' target='_blank'>
 					".ucfirst($title_task)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$tasktitle."'/>";
 
 			$get_dispaly_fname_likes = "<span style= 'color: #808080;'>
