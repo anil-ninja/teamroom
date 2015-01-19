@@ -1,6 +1,6 @@
 <?php
 
-function resize_image($file, $w, $h, $crop=FALSE) {
+function resize_image($file, $w, $h, $type, $crop=FALSE) {
 	$url = $file;
 	if(explode(".",$file)[1] == 'jpg'){
 		$file = "/var/www/html/collap_files/" . $file;
@@ -38,7 +38,8 @@ function resize_image($file, $w, $h, $crop=FALSE) {
 			return  explode(".",$url)[0] . "_".$w."x".$h.".jpg";
 		}
 		else {
-			return 'img/default.gif' ;
+			if($type == '1') { return 'fonts/project.jpg' ; }
+			else { return 'img/default.gif' ; }
 		}
 	}
 	else {

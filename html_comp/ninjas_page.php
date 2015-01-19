@@ -310,7 +310,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
@@ -321,7 +321,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     echo "<div class='comments_".$chelangeid."'></div>
         <div id='step15' class='comments clearfix'>
             <div class='pull-left lh-fix'>
-                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
+                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
             </div>
             <input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$chelangeid."'
              placeholder='Want to know your comment....'/>

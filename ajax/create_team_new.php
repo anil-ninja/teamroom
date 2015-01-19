@@ -75,7 +75,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
 				</a>
 				<a href ='profile.php?username=".$newusername."'>
 				   <div class ='span2'>
-					  <img src='".resize_image("uploads/profilePictures/$newusername.jpg", 30, 30)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
+					  <img src='".resize_image("uploads/profilePictures/$newusername.jpg", 30, 30, 2)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
 				  </div>
 				  <div class = 'span7' style='font-size:10px;'>
 					  <span class='color pull-left' id='new_added'>".ucfirst($newuserfname)." ".ucfirst($newuserlname)."</span><br/>

@@ -70,7 +70,7 @@ if ($_POST['next_CP']) {
 $show_CP = $show_CP.  "<div id='commentscontainer'>
                 <div class='comments clearfix'>
                     <div class='pull-left lh-fix'>
-                        <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
+                        <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
                     </div>
                     <div class='comment-text'>
                         <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
@@ -95,7 +95,7 @@ $show_CP = $show_CP.  "<div id='commentscontainer'>
     }
     $show_CP = $show_CP. "<div class='comments_".$project_id_table."'></div><div class='comments clearfix'>
             <div class='pull-left lh-fix'>
-                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
+                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
     $show_CP = $show_CP. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id_table."'

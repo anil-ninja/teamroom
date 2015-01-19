@@ -35,7 +35,7 @@
 		$ProjectPic4 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 	}
 	$ProjectPicLink4 =explode("\"",$ProjectPic4)['1'] ; 				
-	$ProjectPic4 = "<img src='".resize_image($ProjectPicLink4, 280, 280)."' onError=this.src='img/default.gif' style='width:100%;'>" ;				
+	$ProjectPic4 = "<img src='".resize_image($ProjectPicLink4, 280, 280, 1)."' onError=this.src='img/default.gif' style='width:100%;'>" ;				
 	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and member_status = '1' ;") ;
 	$collaboratorNo = mysqli_num_rows($collaborators) ;
 	echo $ProjectPic4."<br/><br/>
@@ -117,11 +117,11 @@
 		</div>
 		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
 		<div class="panel-body" style="padding: 1px;">
-			<li><button class='btn-link' style='color: #000' id='sign' ><span class='icon-question-sign'></span> Open challenges</button></li>
-			<li><button class='btn-link' style='color: #000' id='deciduous' ><span class='icon-leaf'></span> Notes </button></li>
-			<li><button class='btn-link' style='color: #000' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button></li>
-			<li><button class='btn-link' style='color: #000' id='filmprj' ><span class='icon-film'></span> Videos</button></li>
-			<li><button class='btn-link' style='color: #000' id='flag' ><span class='icon-flag'></span> Completed challenges </button></li>
+			<button class='btn-link' style='color: #000' id='sign' ><span class='icon-question-sign'></span> Open challenges</button><br/>
+			<button class='btn-link' style='color: #000' id='deciduous' ><span class='icon-leaf'></span> Notes </button><br/>
+			<button class='btn-link' style='color: #000' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button><br/>
+			<button class='btn-link' style='color: #000' id='filmprj' ><span class='icon-film'></span> Videos</button><br/>
+			<button class='btn-link' style='color: #000' id='flag' ><span class='icon-flag'></span> Completed challenges </button>
 		</div>
 	</div>
     </div>

@@ -206,7 +206,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 							$ProjectPic = strstr($challenge_user_stmt, '<br/>' , true) ;
 							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
 							$ProjectPicLink =explode("\"",$ProjectPic)['1'] ; 				
-							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
+							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280, 2)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
 							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
 						}
 						else {

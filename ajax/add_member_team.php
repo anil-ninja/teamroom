@@ -44,7 +44,7 @@ if ($_POST['email']) {
 						</a>
 						<a href ='profile.php?username=".$uname."'>
                            <div class ='span2'>
-                              <img src='".resize_image("uploads/profilePictures/$uname.jpg", 30, 30)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
+                              <img src='".resize_image("uploads/profilePictures/$uname.jpg", 30, 30, 2)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
                           </div>
                           <div class = 'span7' style='font-size:10px;'>
                               <span class='color pull-left' id='new_added'>".ucfirst($firstname)." ".ucfirst($lastname)."</span><br/>

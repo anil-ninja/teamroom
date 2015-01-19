@@ -259,7 +259,7 @@ function recommended_project ($db_handle) {
 			$ProjectPicFull3 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 		}
 		$ProjectPicLink3 =explode("\"",$ProjectPicFull3)[1] ; 				
-		$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
+		$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15, 1)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
 
         $p_etap2 = $project_public_title_displayRow2['project_ETA'] ;
         $p_timep2 = $project_public_title_displayRow2['creation_time'] ;

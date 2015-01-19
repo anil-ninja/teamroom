@@ -166,7 +166,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
             $data = $data ."<div class='comments_".$idp."'></div>
 					<div id='step15' class='comments clearfix'>
 						<div class='pull-left lh-fix'>
-							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
+							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
 						</div>
 						<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$idp."'
 						 placeholder='Want to know your comment....'/>
@@ -205,7 +205,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
             $data = $data ."<div class='comments_".$idp."'></div>
 					<div id='step15' class='comments clearfix'>
 						<div class='pull-left lh-fix'>
-							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
+							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
 						</div>
 						<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$idp."'
 						 placeholder='Want to know your comment....'/>

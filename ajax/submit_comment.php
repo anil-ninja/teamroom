@@ -95,7 +95,7 @@ http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborat
 	$test .= "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
+					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
 					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
