@@ -22,13 +22,19 @@ $private_checkRow = mysqli_fetch_array($private_check);
 $private_ch_type = $private_checkRow['challenge_type'];
 $pro_id = $private_checkRow['project_id'];
 if($pro_id != '0') {
-	$checkAccess = mysqli_query($db_handle, "SELECT * FROM teams WHERE project_id = '$pro_id' and user_id = '$userID' and member_status = '1' ;");
-	$checkAccessRow = mysqli_fetch_array($checkAccess) ;
-	$AccessID = $checkAccessRow['user_id'] ;
-	if ($userID != $AccessID) { 
+	if(isset($_SESSION['user_id'])){
+		$checkAccess = mysqli_query($db_handle, "SELECT * FROM teams WHERE project_id = '$pro_id' and user_id = '$userID' and member_status = '1' ;");
+		$checkAccessRow = mysqli_fetch_array($checkAccess) ;
+		$AccessID = $checkAccessRow['user_id'] ;
+		if ($userID != $AccessID) { 
+			include_once 'error.php';
+			exit;
+		}
+	}
+	else {
 		include_once 'error.php';
 		exit;
-	} 
+	}
 }
 function chOpen_title($title_length) {
     if (strlen($title_length) < 40) {
