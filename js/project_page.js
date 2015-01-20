@@ -38,12 +38,12 @@ function convertSpecialChar(str){
 			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))
 			 + '&type='+ type + '&project_id=' + ID ;//+ '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
-			if(challenge==''){
+			if(replaceAll('\\s', '',challenge)==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 				$("#create_challange_pb_pr").removeAttr('disabled');
 				return false ;
 			}
-			else if(challenge_title==''){
+			else if(replaceAll('\\s', '',challenge_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#create_challange_pb_pr").removeAttr('disabled');
 				return false ;
@@ -65,12 +65,12 @@ function convertSpecialChar(str){
 			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
 							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
 			//alert(dataString);
-			if(notes==''){
+			if(replaceAll('\\s', '',notes)==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
 				$("#create_notes").removeAttr('disabled');
 				return false ;
 			}
-			else if(notes_title =='') {
+			else if(replaceAll('\\s', '',notes_title) =='') {
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#create_notes").removeAttr('disabled');
 				return false ;
@@ -91,12 +91,12 @@ function convertSpecialChar(str){
 			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
 							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
 			//alert(dataString);
-			if(notes==''){
+			if(replaceAll('\\s', '',notes)==''){
 				bootstrap_alert(".alert_placeholder", "Issue can not be empty", 5000,"alert-warning");
 				$("#create_issue").removeAttr('disabled');
 				return false ;
 			}
-			else if(notes_title =='') {
+			else if(replaceAll('\\s', '',notes_title) =='') {
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#create_issue").removeAttr('disabled');
 				return false ;
@@ -115,7 +115,7 @@ function convertSpecialChar(str){
 			var answercid = $("#answercid").val() ;
 			var pid = $("#prcid").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
-			if(answerchal==''){
+			if (replaceAll('\\s', '',answerchal) == ""){
 				bootstrap_alert(".alert_placeholder", "Answer can not be empty", 5000,"alert-warning");
 				$("#answerch").removeAttr('disabled');
 				return false ;
@@ -262,13 +262,13 @@ function create_team(){
 	var email = $("#email_team").val() ;
 	var ID = $("#ProjectIDValue").val() ;
 	var newteam = document.getElementById("myteamname").innerHTML ;
-	if(newteam ==""){
-		if(team =="") {
+	if(replaceAll('\\s', '',newteam) ==""){
+		if(replaceAll('\\s', '',team) =="") {
 			bootstrap_alert(".alert_placeholder", "Please Enter Team Name", 5000,"alert-warning");
 			$("#create_team").removeAttr('disabled');
 			return false ;
 		}
-		else if (email == "") {
+		else if (replaceAll('\\s', '',email) == "") {
 			bootstrap_alert(".alert_placeholder", "Please Enter Email_id", 5000,"alert-warning");
 			$("#create_team").removeAttr('disabled');
 			return false ;
@@ -278,7 +278,7 @@ function create_team(){
 		}
 	}
 	else {
-		if(email == "") {
+		if(replaceAll('\\s', '',email) == "") {
 			var dataString = 'team='+ newteam + '&project_id=' + ID ;
 			$.ajax({
 				type: "POST",
@@ -380,17 +380,17 @@ function submitTeam(team,email, ID) {
 			var fname = $("#fnameteam").val() ;
 			var sname = $("#snameteam").val() ;
 			var email = $("#teamemail").val() ;
-			if(fname =="") {
+			if(replaceAll('\\s', '',fname) =="") {
 				bootstrap_alert(".alert_placeholder", "Please Enter First Name", 5000,"alert-warning");
 				$("#invitememberpr").removeAttr('disabled');
 				return false ;
 			}
-			else if (sname == "") {
+			else if (replaceAll('\\s', '',sname) == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Second Name", 5000,"alert-warning");
 				$("#invitememberpr").removeAttr('disabled');
 				return false ;
 			}
-			else if (email == "") {
+			else if (replaceAll('\\s', '',email) == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Email-ID", 5000,"alert-warning");
 				$("#invitememberpr").removeAttr('disabled');
 				return false ;
@@ -435,9 +435,9 @@ function CreateTeamMember(userid){
 	$("#create_team").attr('disabled','disabled');
 	var team = $("#team_name_A").val() ;
 	var ID = $("#ProjectIDValue").val() ;
-	if(team == "") {
+	if(replaceAll('\\s', '',team) == "") {
 		var newteam = document.getElementById("myteamname").innerHTML ;
-		if(newteam ==""){
+		if(replaceAll('\\s', '',newteam) ==""){
 			bootstrap_alert(".alert_placeholder", "Please Enter Team Name", 5000,"alert-warning");
 			$("#create_team").removeAttr('disabled');
 			return false ;
@@ -497,17 +497,17 @@ function invitememb(ID){
 			var fname = $("#fnameteam").val() ;
 			var sname = $("#snameteam").val() ;
 			var email = $("#teamemail").val() ;
-			if(fname =="") {
+			if(replaceAll('\\s', '',fname) =="") {
 				bootstrap_alert(".alert_placeholder", "Please Enter First Name", 5000,"alert-warning");
 				$("#invitememb").removeAttr('disabled');
 				return false ;
 			}
-			else if (sname == "") {
+			else if (replaceAll('\\s', '',sname) == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Second Name", 5000,"alert-warning");
 				$("#invitememb").removeAttr('disabled');
 				return false ;
 			}
-			else if (email == "") {
+			else if (replaceAll('\\s', '',email) == "") {
 				bootstrap_alert(".alert_placeholder", "Please Enter Email-ID", 5000,"alert-warning");
 				$("#invitememb").removeAttr('disabled');
 				return false ;

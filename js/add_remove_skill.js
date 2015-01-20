@@ -13,7 +13,7 @@ $(document).ready(function(){
 		var insert = $("#insert").val() ;
 		var skills = $("#skills").val() ;
 		var dataString = "";
-		if ((skills == '0' && insert =='')||(skills != '0' && insert !='')) {
+		if ((skills == '0' && replaceAll('\\s', '',insert) =='')||(skills != '0' && replaceAll('\\s', '',insert) !='')) {
 			 bootstrap_alert(".alert_placeholder", "Please ,Enter one Value!!!!", 5000,"alert-warning");
 			 $("#addskills").removeAttr('disabled');
 			 return false;
@@ -161,16 +161,16 @@ function editProfile(fname, lname, email, phone) {
 	var about = $("#aboutuser").val() ;
 	var townname = $("#livingtown").val() ;
 	var comp = $("#companyname").val() ;
-	if (newfname == "") {
+	if (replaceAll('\\s', '',newfname) == "") {
 		bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
 		$("#newfirstname").val(fname) ;
 		return false ;
 	}
-	else if ((newlname == "") && (newphone == "") && (about == "") && (townname == "") && (comp == "")) {
+	else if ((replaceAll('\\s', '',newlname) == "") && (replaceAll('\\s', '',newphone) == "") && (replaceAll('\\s', '',about) == "") && (replaceAll('\\s', '',townname) == "") && (replaceAll('\\s', '',comp) == "")) {
 		bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
 		return false ;
 	}
-	else if ((newfname == fname) && (newlname == lname) && (newphone == phone) && (about == "") && (townname == "") && (comp == "")) {
+	else if ((newfname == fname) && (newlname == lname) && (newphone == phone) && (replaceAll('\\s', '',about) == "") && (replaceAll('\\s', '',townname) == "") && (replaceAll('\\s', '',comp) == "")) {
 		bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
 		return false ;
 	}

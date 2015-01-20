@@ -70,8 +70,7 @@ document.getElementById("usernameR").onblur = function() {
                     xmlhttp.open("GET","ajax/email_exist_check_forget_password.php?email_forget="+encodeURIComponent(email_forget.value),true);
                     xmlhttp.send();
                 }
-                if (result = "No user registered with this Email, <br>Please try again with different Email-id or Signup") {
-                    
+                if (result = "No user registered with this Email, <br>Please try again with different Email-id or Signup") {                    
                 }
             };
             //check for email exist or not for forget password request ends

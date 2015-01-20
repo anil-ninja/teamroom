@@ -125,7 +125,7 @@ function searchingform() {
 	//alert(keyword1);
 	var dataString = 'keyword='+ keyword1 ;
 	//alert(dataString);
-	if(keyword1==''){
+	if(replaceAll('\\s', '',keyword1)==''){
 		alert("Please Enter Something !!!");
 	}	
 	else {

@@ -32,13 +32,13 @@ $("#changeremindervalue").click(function(){
 	var newuserid = $("#selfremind").val() ;
 	//alert(newuserid + "," + userid) ;
 	if(newuserid == userid) {
-		if(reminder == "" && date != "") {
+		if(replaceAll('\\s', '',reminder) == "" && replaceAll('\\s', '',date) != "") {
 			var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
 		}
-		else if (date == "" && reminder != "") {
+		else if (replaceAll('\\s', '',date) == "" && replaceAll('\\s', '',reminder) != "") {
 			var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=2' ;
 		}
-		else if(reminder == "" && date == "") {
+		else if(replaceAll('\\s', '',reminder) == "" && replaceAll('\\s', '',date) == "") {
 			location.reload() ;
 			return false ;
 		}
@@ -47,13 +47,13 @@ $("#changeremindervalue").click(function(){
 		}
 	}
 	else {
-		if(reminder == "" && date != "") {
+		if(replaceAll('\\s', '',reminder) == "" && replaceAll('\\s', '',date) != "") {
 			var dataString = 'value='+ value + '&date='+ date + '&case=6' + '&user='+ newuserid ;
 		}
-		else if (date == "" && reminder != "") {
+		else if (replaceAll('\\s', '',date) == "" && replaceAll('\\s', '',reminder) != "") {
 			var dataString = 'value='+ value + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=5' + '&user='+ newuserid ;
 		}
-		else if(reminder == "" && date == "") {
+		else if(replaceAll('\\s', '',reminder) == "" && replaceAll('\\s', '',date) == "") {
 			var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
 		}
 		else {
@@ -98,7 +98,7 @@ $(document).ready(function() {
 function Subscribe(){
 	var reminder = $("#subscriptionid").val() ;
 	var dataString = 'id=' + reminder ;
-	if(reminder = "") {
+	if(replaceAll('\\s', '',reminder) = "") {
 		bootstrap_alert(".alert_placeholder", "Enter valid Email-ID", 5000,"alert-warning");
 		return false;	
 	}
@@ -154,7 +154,7 @@ function submittalk(event,chatboxtextarea) {
 		message = $(chatboxtextarea).val();
 		$(chatboxtextarea).val('');
 		$(chatboxtextarea).focus();
-	if(message==''){
+	if(replaceAll('\\s', '',message)==''){
 		//bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
 		return false;
 	}

@@ -124,48 +124,48 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
-			if (challenge == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
-				$("#create_video").removeAttr('disabled');
-				return false ;
-			}
-			else if (video_title == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
-				$("#create_video").removeAttr('disabled');
-				return false ;
-			}
-			else if (videodes == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
-				$("#create_video").removeAttr('disabled');
-				return false ;
-			}
-			else {
-				var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/add_video.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					var notice = result.split("+") ;
-					if(notice['0'] = "Video Posted Successfully !!!") {
-						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
-						$("#video_title").val("") ;
-						$("#videosub").val("") ;
-						$("#videodes").val("") ;
-						$(".newPosts").prepend(notice['1']) ;
-						$("#create_video").removeAttr('disabled');
-						$(".editbox").hide() ;
-						$("#remindervalue").hide() ;
-						$("#textForm").show();
-						}
-						else{
-							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-							$("#create_video").removeAttr('disabled');
+				if (replaceAll('\\s', '',challenge) == "") {
+					bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
+					$("#create_video").removeAttr('disabled');
+					return false ;
+				}
+				else if (replaceAll('\\s', '',video_title) == "") {
+					bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
+					$("#create_video").removeAttr('disabled');
+					return false ;
+				}
+				else if (replaceAll('\\s', '',videodes) == "") {
+					bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
+					$("#create_video").removeAttr('disabled');
+					return false ;
+				}
+				else {
+					var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
+					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
+					$.ajax({
+						type: "POST",
+						url: "ajax/add_video.php",
+						data: dataString,
+						cache: false,
+						success: function(result){
+							var notice = result.split("+") ;
+							if(notice['0'] = "Video Posted Successfully !!!") {
+								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+								$("#video_title").val("") ;
+								$("#videosub").val("") ;
+								$("#videodes").val("") ;
+								$(".newPosts").prepend(notice['1']) ;
+								$("#create_video").removeAttr('disabled');
+								$(".editbox").hide() ;
+								$("#remindervalue").hide() ;
+								$("#textForm").show();
+							}
+							else{
+								bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+								$("#create_video").removeAttr('disabled');
 							}
 						}
-				  });
+					});
 				}
 			}
 			else {
@@ -188,48 +188,48 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
-			if (challenge == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
-				$("#create_videopr").removeAttr('disabled');
-				return false ;
-			}
-			else if (video_title == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
-				$("#create_videopr").removeAttr('disabled');
-				return false ;
-			}
-			else if (videodes == "") {
-				bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
-				$("#create_videopr").removeAttr('disabled');
-				return false ;
-			}
-			else {
-				var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-				 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) + '&project_id=' + ID ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/add_video_pr.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					var notice = result.split("+") ;
-					if(notice['0'] = "Video Posted Successfully !!!") {
-						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
-						$("#video_titlepr").val("") ;
-						$("#videoprjt").val("") ;
-						$("#videodespr").val("") ;
-						$(".newPosts").prepend(notice['1']) ;
-						$("#create_videopr").removeAttr('disabled');
-						$(".editbox").hide() ;
-						$("#invitation").hide() ;
-						$("#selecttext").show();
-						}
-						else{
-							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-							$("#create_videopr").removeAttr('disabled');
+				if (replaceAll('\\s', '',challenge) == "") {
+					bootstrap_alert(".alert_placeholder", "Please Enter url", 5000,"alert-warning");
+					$("#create_videopr").removeAttr('disabled');
+					return false ;
+				}
+				else if (replaceAll('\\s', '',video_title) == "") {
+					bootstrap_alert(".alert_placeholder", "Please Enter Title", 5000,"alert-warning");
+					$("#create_videopr").removeAttr('disabled');
+					return false ;
+				}
+				else if (replaceAll('\\s', '',videodes) == "") {
+					bootstrap_alert(".alert_placeholder", "Please Enter Description", 5000,"alert-warning");
+					$("#create_videopr").removeAttr('disabled');
+					return false ;
+				}
+				else {
+					var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
+					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) + '&project_id=' + ID ;
+					$.ajax({
+						type: "POST",
+						url: "ajax/add_video_pr.php",
+						data: dataString,
+						cache: false,
+						success: function(result){
+							var notice = result.split("+") ;
+							if(notice['0'] = "Video Posted Successfully !!!") {
+								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+								$("#video_titlepr").val("") ;
+								$("#videoprjt").val("") ;
+								$("#videodespr").val("") ;
+								$(".newPosts").prepend(notice['1']) ;
+								$("#create_videopr").removeAttr('disabled');
+								$(".editbox").hide() ;
+								$("#invitation").hide() ;
+								$("#selecttext").show();
 							}
-					}
-				  });
+							else{
+								bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+								$("#create_videopr").removeAttr('disabled');
+							}
+						}
+					});
 				}
 			}
 			else {
@@ -256,11 +256,11 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;			
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
 			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))  + '&project_id=' + ID ;
-			if(challenge==''){
+			if(replaceAll('\\s', '',challenge)==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 				$("#submit_ch").removeAttr('disabled');
 			}
-			else if(challenge_title==''){
+			else if(replaceAll('\\s', '',challenge_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#submit_ch").removeAttr('disabled');
 			}
@@ -434,26 +434,21 @@ function bootstrap_alert(elem, message, timeout,type) {
 			$("#create_article").attr('disabled','disabled');
 			var article = convertSpecialChar($("#articlech").val()) ;
 			var article_title = convertSpecialChar($("#article_title").val()) ;
-			if(article==''){
+			if(replaceAll('\\s', '',article)==''){
 				bootstrap_alert(".alert_placeholder", "Article can not be empty", 5000,"alert-warning");
 				$("#create_article").removeAttr('disabled');
 				return false;
 			}
-			else if(article_title==''){
+			else if(replaceAll('\\s', '',article_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#create_article").removeAttr('disabled');
 				return false;
-			} else {
-			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article)))) + 
-			'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article_title))))  ;
-			//alert(dataString);
-			
-			//file upload
-			var _file = document.getElementById('_fileArticle');
-			//alert(uploadFile(_file,"articlePic"));
-			uploadFile1(_file,"articlePic",String(dataString),"ajax/submit_article.php");
-		
+			} 
+			else {
+				var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article)))) + 
+				'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article_title))))  ;
+				var _file = document.getElementById('_fileArticle');
+				uploadFile1(_file,"articlePic",String(dataString),"ajax/submit_article.php");
 			}
 		}
 			
@@ -471,19 +466,18 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
 			'&type='+ type ;//+ '&project_eta='+ (project_eta+='')  ;
 			//alert(dataString);
-			if(project_title==''){
+			if(replaceAll('\\s', '',project_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#create_project").removeAttr('disabled');
 			}
-			else if(project_stmt==''){
+			else if(replaceAll('\\s', '',project_stmt)==''){
 				bootstrap_alert(".alert_placeholder", "Project can not be empty", 5000,"alert-warning");
 				$("#create_project").removeAttr('disabled');
 			}
 			else {
-				//file upload
-			var _file = document.getElementById('_fileProject');
-			//alert(uploadFile(_file,"articlePic"));
-			uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
+				var _file = document.getElementById('_fileProject');
+				//alert(uploadFile(_file,"articlePic"));
+				uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
 			}
 		});
 		
@@ -574,18 +568,18 @@ $("#pencil").click(function(){
 			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',idea)))) + '&idea_title='+ 
 			replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',idea_title))))  ;
 			//alert(dataString);
-			if(idea == ''){
+			if(replaceAll('\\s', '',idea) == ''){
 				bootstrap_alert(".alert_placeholder", "Idea can not be empty", 5000,"alert-warning");
 				$("#create_idea").removeAttr('disabled');
 			}
-			else if(idea_title==''){
+			else if(replaceAll('\\s', '',idea_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#create_idea").removeAttr('disabled');
 			}
 			else { 
 				//file upload
-			var _file = document.getElementById('_fileIdea');
-			uploadFile1(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
+				var _file = document.getElementById('_fileIdea');
+				uploadFile1(_file,"ideaPic",String(dataString),"ajax/submit_idea.php");
 			}
 		}
 	
@@ -597,11 +591,11 @@ $("#pencil").click(function(){
 			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',picturech)))) 
 			+ '&picture_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',picture_title))))  ;
 			//alert(dataString);
-			if(picturech == ''){
+			if(replaceAll('\\s', '',picturech) == ''){
 				bootstrap_alert(".alert_placeholder", "Details can not be empty", 5000,"alert-warning");
 				$("#create_picture").removeAttr('disabled');
 			}
-			else if(picture_title==''){
+			else if(replaceAll('\\s', '',picture_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 				$("#create_picture").removeAttr('disabled');
 			}
@@ -612,9 +606,9 @@ $("#pencil").click(function(){
 					bootstrap_alert(".alert_placeholder", "Please upload a Photo", 5000,"alert-warning");
 					$("#create_picture").removeAttr('disabled');
 					}
-					else {
-						uploadFile1(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
-						}
+				else {
+					uploadFile1(_file,"photoPic",String(dataString),"ajax/submit_photo.php");
+				}
 			}
 		}
     
@@ -624,13 +618,13 @@ function create_task(){
 	var users = $("#userstask").val() ;
 	var email = $("#emailtask").val() ;
 	var ID = $("#ProjectIDValue").val() ;
-	if((team == '0' && users =='0' && email =="")||(team != '0' && users !='0' && email !="")||(team != '0' && users !='0' && email =="")
-		||(team != '0' && users =='0' && email !="")||(team == '0' && users !='0' && email !="")) {
+	if((team == '0' && users =='0' && replaceAll('\\s', '',email) =="")||(team != '0' && users !='0' && replaceAll('\\s', '',email) !="")||(team != '0' && users !='0' && replaceAll('\\s', '',email) =="")
+		||(team != '0' && users =='0' && replaceAll('\\s', '',email) !="")||(team == '0' && users !='0' && replaceAll('\\s', '',email) !="")) {
 		bootstrap_alert(".alert_placeholder", "Please select one value", 5000,"alert-warning");
 		$("#create_task").removeAttr('disabled');
 		return false ;
 	}
-	if (email != "") {
+	if (replaceAll('\\s', '',email) != "") {
 		$.ajax({
 			type: "POST",
 			url: "ajax/email.php",
@@ -651,12 +645,12 @@ function create_task(){
 									 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) 
 									 + '&team='+ team + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
 					//alert(dataString);
-					if(title==''){
+					if(replaceAll('\\s', '',title)==''){
 						bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 						$("#create_task").removeAttr('disabled');
 						return false ;
 					}
-					else if(taskdetails==''){
+					else if(replaceAll('\\s', '',taskdetails)==''){
 						bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
 						$("#create_task").removeAttr('disabled');
 						return false ;
@@ -694,12 +688,12 @@ function create_task(){
 						 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team 
 						 + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
 		//alert(dataString);
-		if(title==''){
+		if(replaceAll('\\s', '',title)==''){
 			bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 			$("#create_task").removeAttr('disabled');
 			return false ;
 		}
-		else if(taskdetails==''){
+		else if(replaceAll('\\s', '',taskdetails)==''){
 			bootstrap_alert(".alert_placeholder", "Task Details can not be empty", 5000,"alert-warning");
 			$("#create_task").removeAttr('disabled');
 			return false ;

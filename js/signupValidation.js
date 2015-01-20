@@ -65,10 +65,10 @@ function validateSignupFormOnSubmit() {
 	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email + '&phone='+ phone + '&username='+ username +
 	'&password='+ password + '&password2='+ password2 + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
 	if(password==password2){
-		if(firstname==''){
+		if(replaceAll('\\s', '',firstname)==''){
 			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
 		}
-		else if(email==''){
+		else if(replaceAll('\\s', '',email)==''){
 			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
 		}
         else if (validateEmail(email)==false) {
@@ -77,22 +77,22 @@ function validateSignupFormOnSubmit() {
             
             //email_availability_check();
         } 
-		else if(phone==''){
+		else if(replaceAll('\\s', '',phone)==''){
 			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
 		} 
-		else if(username==''){
+		else if(replaceAll('\\s', '',username)==''){
 			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
 		}
         else if(username.length <'6'){
             bootstrap_alert(".alert-placeholder", "username length be atleast 6", 5000,"alert-warning");
         } 
-		else if(password==''){
+		else if(replaceAll('\\s', '',password)==''){
 			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		} 
 		else if(password.length <'6'){
 			bootstrap_alert(".alert-placeholder", "password length should be atleast 6", 5000,"alert-warning");
 		}
-		else if(password2==''){
+		else if(replaceAll('\\s', '',password2)==''){
 			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		}
 		else if(validatePath(firstname) !== 'true'){
@@ -244,3 +244,6 @@ function validatePath(path) {
     {
         return s.replace(/^\s+|\s+$/, '');
     }
+function replaceAll(find, replace, str) {
+	return str.replace(new RegExp(find, 'g'), replace);
+}

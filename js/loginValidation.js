@@ -20,15 +20,6 @@ function validateLoginFormOnSubmit() {
     var reason = "";
     var username = $("#username").val() ;
     var password = $("#passwordlogin").val() ;
-    //accept_challenge
-    //reason += validateUsername(username);
-    //reason += validatePassword(password);
-
-    //if (reason != "") {
-        //bootstrap_alert(".alert_placeholder", "Oops, Username is empty!", 5000,"alert-warning");
-        //alert("Some fields need correction:\n" + reason);
-        //return false;
-    //}
     var dataString = 'username='+ username + '&password='+ password + '&request=login' ;
     // AJAX Code To Submit Form.
     //alert(dataString);
@@ -41,12 +32,11 @@ function validateLoginFormOnSubmit() {
             
            // bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
             if(result){
-                                bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-               
-            } else {
+                 bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+            } 
+            else {
                 //$("#accept_challenge").click() ;
-                location.reload();
-                
+                location.reload();   
             }
         }
     });
@@ -90,7 +80,6 @@ function validateEmpty(fld) {
 
 function validateUsername(fld) {
     var error = "";
-
     if (fld.value == "") {
         $("#username").style.border = "2px solid OrangeRed"; 
         error = "You didn't enter a username.\n";
