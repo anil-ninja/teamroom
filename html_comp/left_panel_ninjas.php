@@ -43,7 +43,7 @@
                                                             FROM projects WHERE user_id = '$user_id' AND project_type= '2');");
         
         if (mysqli_num_rows($project_title_display) == 0) {
-			echo " <tr><td><i>No any projects to display,</i><br>
+			echo " <tr><td>No any projects to display,<br>
 					<a class='active' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
 						<font size='1'> 
 							<i class='icon-plus'>&nbsp; Create Project</i>
@@ -97,7 +97,7 @@
             $project_public_title_display = mysqli_query($db_handle, "SELECT * FROM projects WHERE user_id = '$user_id' and project_type = '1' ;") ;
             
             if (mysqli_num_rows($project_public_title_display) == 0) {
-                echo "<tr><td><i>No any projects to display,</i><br>
+                echo "<tr><td>No any projects to display,<br>
 					<a data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
 						<font size='1'> 
 							<i class='icon-plus'>&nbsp; Create Project</i>
@@ -152,12 +152,7 @@
 																	  (project_type = '1' or project_type = '2')) and user_id = '$user_id' ;") ;
             
             if (mysqli_num_rows($allJoinedProjects) == 0) {
-                echo "<tr><td><i>No any projects to display,</i><br>
-                      <a data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
-                          <font size='1'> 
-                             <i class='icon-plus'>&nbsp; Create Project</i>
-                          </font>
-                      </a></td></tr>";
+                echo "<tr><td>No any projects to display</td></tr>";
             } 
             else {
                 while ($allJoinedProjectsRow = mysqli_fetch_array($allJoinedProjects)) {

@@ -3,6 +3,10 @@ include_once 'project.inc.php';
 include_once 'functions/delete_comment.php';
 $pro_id = $_GET['project_id'] ;
  echo "<input type='hidden' id='ProjectIDValue' value='".$pro_id ."'/>" ;
+$Outgoings = mysqli_query($db_handle, "select challenge_id from challenges where project_id ='$pro_id' and challenge_status != '3' AND challenge_status != '7' ;");
+$totalOutgoings = mysqli_num_rows($Outgoings) ;
+$teamsCount = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id';") ;
+$totalTeams = mysqli_num_rows($teamsCount) ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +46,10 @@ $pro_id = $_GET['project_id'] ;
                         </li>
                         <li>
                             <a href="#tabProjectContent" data-toggle="tab" id="home_project" style="padding: 10px 5px;">
-                                <i class='icon-star'> </i><span>Outgoings</span> 
+                                <i class='icon-star'> </i><span>Outgoings</span>
+                                    <?php if($totalOutgoings != '0') { 
+										echo "<span class='badge'>".$totalOutgoings."</span>" ; 
+										}  ?>
                             </a>
                         </li>
                         <li>
@@ -52,7 +59,8 @@ $pro_id = $_GET['project_id'] ;
                         </li>
                         <li>
                             <a href="#tabteams" data-toggle="tab" id="teams_project" style="padding: 10px 5px;">
-                                <i class='icon-user'><i class='icon-user'></i> </i><span>Teams</span> 
+                                <i class='icon-user'><i class='icon-user'></i> </i><span>Teams</span>
+                                <span class='badge'><?=$totalTeams ;?></span>
                            </a>
                         </li>
                     </ul>

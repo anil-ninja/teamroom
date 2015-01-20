@@ -296,15 +296,15 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username_commenter.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
-				</div>
-				<div class='comment-text'>
-					<span class='pull-left color strong'>
-						&nbsp<a href ='profile.php?username=" . $username_commenter . "'>" . ucfirst($fstname) . "&nbsp" . $lstname . "</a>&nbsp" .
-        "</span><small>" . $chalangeres . "</small>";
-        if (isset($_SESSION['user_id'])) {
+					<img src='".resize_image("uploads/profilePictures/$username_commenter.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+				</div>" ;
+		if (isset($_SESSION['user_id'])) {
            dropDown_delete_comment_pr_ch($idc, $user_id, $idd) ;
         }
+		echo "<div class='comment-text'>
+					<span class='pull-left color strong'>
+						<a href ='profile.php?username=" . $username_commenter . "'>" . ucfirst($fstname) . "&nbsp" . $lstname . "</a>&nbsp" .
+        "</span><small>" . $chalangeres . "</small>";
         echo "</div>
 			</div> 
 		</div>";

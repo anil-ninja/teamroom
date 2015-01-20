@@ -48,15 +48,15 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
                 <div class='pull-left lh-fix'>
-                    <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
-                </div>
-                <div class='comment-text'>
+                    <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+                </div>" ;
+     if (isset($_SESSION['user_id'])) {
+       dropDown_delete_comment_pr($ida, $user_id, $idb) ;
+    }
+           echo "<div class='comment-text'>
                     <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " 
                     " . ucfirst($lnam) . "</a>&nbsp</span> 
                     <small>" . $projectres . "</small>";
-    if (isset($_SESSION['user_id'])) {
-       dropDown_delete_comment_pr($ida, $user_id, $idb) ;
-    }
     echo "</div>
          </div> 
         </div>";
