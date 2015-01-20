@@ -28,13 +28,11 @@ $pro_id = $_GET['project_id'] ;
                 <br>
                 
                 <?php echo "
-			<center>
-				      <span class='color strong' style= 'font-family: Tenali Ramakrishna, sans-serif; font-size: 28px;'>
+				      <span class='color strong' style= 'font-family: Tenali Ramakrishna, sans-serif; font-size: 32px;'>
                 <p id='project_ti_".$pro_id."' class='text'>" .ucfirst($projttitle) . "
                 </p>
               </span>
 				      <input type='text' class='editbox' style='width : 90%;' id='project_title_".$pro_id."' value='".$projectttitle."'/>
-			</center>
 		  ";?>                 
                     <ul class="nav nav-tabs" style="padding: 0;" id="myTab">
                         <li class="active">
