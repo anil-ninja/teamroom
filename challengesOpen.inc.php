@@ -381,15 +381,15 @@ function challenge_display($db_handle, $challengeSearchID) {
                 echo "<div id='commentscontainer'>
                     <div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
-                            <img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
-                        </div>
-                    <div class='comment-text'>
-                    <span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
-                        &nbsp&nbsp&nbsp".$comment_stmt;
-                if (isset($_SESSION['user_id'])) {
+                            <img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+                        </div>" ;
+                 if (isset($_SESSION['user_id'])) {
                     $user_id = $_SESSION['user_id'];
                  dropDown_delete_comment_ch($comment_id, $user_id, $creater_ID);
                 }
+                echo "<div class='comment-text'>
+                    <span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
+                        &nbsp;&nbsp;".$comment_stmt;
                 echo "</div>
                 </div>
             </div>";

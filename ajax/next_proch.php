@@ -258,7 +258,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                 $dropdown2 = "";                    
             }
 //dropdown for delete/edit/span challenge ends here
-            $show = $show . "</span><span class='color strong' style= 'color :#3B5998;'><p align='center'>Closed</p></span><br/>";
+            $show = $show . "<span class='color strong' style= 'color :#3B5998;'><p>Closed</p></span>";
             $show = $show . $get_display_tilte_task."<span class='icon-flag'></span>". $get_dispaly_fname_likes.
                             "<hr/><span style= 'color: #808080;'> Owned By: <a href ='profile.php?username=".$ownname."'style= 'color: #808080;'>
                             " . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> | Submitted: ".$timecom."</span>".$get_display_task_stmt;

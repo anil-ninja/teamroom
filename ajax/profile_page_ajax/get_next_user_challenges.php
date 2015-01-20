@@ -79,11 +79,8 @@ if ($_POST['next']) {
         $show = $show. "<div id='commentscontainer'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
-					</div>
-					<div class='comment-text'>
-						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
-						&nbsp&nbsp&nbsp" .$comment_all_ch ;
+					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+					</div>" ;
         if (isset($_SESSION['user_id'])) {
               $show = $show . "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
@@ -98,7 +95,9 @@ if ($_POST['next']) {
              $show = $show . "</ul>
         </div>";
         }
-        $show = $show."</div></div></div>";
+        $show = $show."<div class='comment-text'>
+						<span class='pull-left color strong'><a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
+						&nbsp;&nbsp;" .$comment_all_ch."</div></div></div>";
     }
     $show = $show. "<div class='comments_".$challenge_id."'></div><div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
