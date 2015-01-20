@@ -293,18 +293,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 		<div id='commentscontainer'>
 			<div class='comments clearfix'>
 				<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username_commenter_pr_ch.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>
-				</div>
-				<div class='comment-text'>
-					<span class='pull-left color strong'>
-						&nbsp<a href ='profile.php?username=".$username_commenter."'>". ucfirst($fstname)."&nbsp".$lstname."</a>&nbsp".
-					"</span><small>".$chalangeres."</small>";
-        //delete comment dropdown chall function is not called due to function call witihin concatination string and then further concatenated to $show
-        $show = $show . "<div class='list-group-item pull-right'>
+					<img src='".resize_image("uploads/profilePictures/$username_commenter_pr_ch.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+				</div>" ;
+		 $show = $show . "<div class='list-group-item pull-right'>
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
                             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
-
-
                             if($comment_user_id == $user_id) {
                                 $show = $show . "<li><button class='btn-link' href='#'>Edit</button></li>
                                                   <li><button class='btn-link' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete</button></li>";
@@ -314,8 +307,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                             }
              $show = $show . "</ul>
                             </div>";
-             //delete comment dropdown ends
-            $show = $show . "</div>
+		$show = $show . "<div class='comment-text'>
+					<span class='pull-left color strong'>
+						&nbsp;<a href ='profile.php?username=".$username_commenter."'>". ucfirst($fstname)."&nbsp;".$lstname."</a>&nbsp;".
+					"</span><small>".$chalangeres."</small>";
+        $show = $show . "</div>
 			</div> 
                     </div>";
 		}
