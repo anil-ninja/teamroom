@@ -284,6 +284,17 @@ if($_POST['form_type']){
 				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_link()'/>" ;
 			exit ;
 			break ;
+			
+		case 13:
+			if(mysqli_num_rows($member_project) != 0) {
+				echo "<input type='text' class='input-block-level' id='issue_title' placeholder='Heading ..'/><br>
+					  <input type='file' id='_fileIssue' ><br/><label></label>
+					  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='issuestmt' placeholder='Issue related to Project'></textarea><br>
+					  <input type='button' value='Post' class='btn btn-primary' id='create_issue' onclick='create_issue()'/>" ;
+			} 
+			else echo "Please Join Project First";
+			exit ;
+			break ;
 	}
 	mysqli_close($db_handle) ;
 }

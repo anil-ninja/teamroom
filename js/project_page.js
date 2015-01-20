@@ -70,11 +70,42 @@ function convertSpecialChar(str){
 				$("#create_notes").removeAttr('disabled');
 				return false ;
 			}
+			else if(notes_title =='') {
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				$("#create_notes").removeAttr('disabled');
+				return false ;
+			}
 			else {
 				//file upload
 			var _file = document.getElementById('_fileNotes');
 			//alert(uploadFile(_file,"articlePic"));
 			uploadFile1(_file,"projectnotesPic",String(dataString),"ajax/submit_notes.php");
+			}
+		}
+		function create_issue(){
+			$("#create_issue").attr('disabled','disabled');
+			var ID = $("#ProjectIDValue").val() ;
+			var notes = convertSpecialChar($("#issuestmt").val()) ;
+			var notes_title = convertSpecialChar($("#issue_title").val()) ;
+			// Returns successful data submission message when the entered information is stored in database.
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
+							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
+			//alert(dataString);
+			if(notes==''){
+				bootstrap_alert(".alert_placeholder", "Issue can not be empty", 5000,"alert-warning");
+				$("#create_issue").removeAttr('disabled');
+				return false ;
+			}
+			else if(notes_title =='') {
+				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
+				$("#create_issue").removeAttr('disabled');
+				return false ;
+			}
+			else {
+				//file upload
+			var _file = document.getElementById('_fileIssue');
+			//alert(uploadFile(_file,"articlePic"));
+			uploadFile1(_file,"projectissuePic",String(dataString),"ajax/submit_issues.php");
 			}
 		}
 	$(document).ready(function(){	
@@ -173,11 +204,13 @@ $("#eye_open").click(function(){
   	$(".pushpin").show(1000);
   	$(".videofilm").show(1000);
   	$(".flag").show(1000);
+  	$(".asterisk").show(1000);
   });
 $("#sign").click(function(){
   	$(".pushpin").hide(1000);
   	$(".deciduous").hide(1000);
   	$(".videofilm").hide(1000);
+  	$(".asterisk").hide(1000);
   	$(".flag").hide(1000);
     $(".sign").show(1000);
   });
@@ -185,12 +218,14 @@ $("#sign").click(function(){
   	$(".sign").hide(1000);
   	$(".pushpin").hide(1000);
   	$(".videofilm").hide(1000);
+  	$(".asterisk").hide(1000);
   	$(".flag").hide(1000);
     $(".deciduous").show(1000);
   });
   $("#pushpin").click(function(){
   	$(".sign").hide(1000);
   	$(".deciduous").hide(1000);
+  	$(".asterisk").hide(1000);
   	$(".videofilm").hide(1000);
   	$(".flag").hide(1000);
     $(".pushpin").show(1000);
@@ -199,6 +234,7 @@ $("#sign").click(function(){
   	$(".sign").hide(1000);
   	$(".flag").show(1000);
   	$(".videofilm").hide(1000);
+  	$(".asterisk").hide(1000);
   	$(".pushpin").hide(1000);
   	$(".deciduous").hide(1000);
   });
@@ -207,6 +243,15 @@ $("#sign").click(function(){
   	$(".flag").hide(1000);
   	$(".videofilm").show(1000);
   	$(".pushpin").hide(1000);
+  	$(".asterisk").hide(1000);
+  	$(".deciduous").hide(1000);
+  });
+  $("#asterisk").click(function(){
+  	$(".sign").hide(1000);
+  	$(".flag").hide(1000);
+  	$(".videofilm").hide(1000);
+  	$(".pushpin").hide(1000);
+  	$(".asterisk").show(1000);
   	$(".deciduous").hide(1000);
   });
 });	

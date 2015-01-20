@@ -405,6 +405,15 @@ function bootstrap_alert(elem, message, timeout,type) {
 						case 8:
 							location.reload();
 							break;
+							
+						case 9:
+							$("#issue_title").val("") ;
+							$("#issuestmt").val("") ;
+							$("#_fileIssue").val("") ;
+							$("#create_issue").removeAttr('disabled');
+							$("#invitation").hide() ;
+							$("#selecttext").show();
+							break;
 					}
 					$(".newPosts").prepend(notice['2']) ;
 					$(".editbox").hide() ;

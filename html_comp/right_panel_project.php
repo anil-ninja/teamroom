@@ -121,7 +121,8 @@
 			<button class='btn-link' style='color: #000' id='deciduous' ><span class='icon-leaf'></span> Notes </button><br/>
 			<button class='btn-link' style='color: #000' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button><br/>
 			<button class='btn-link' style='color: #000' id='filmprj' ><span class='icon-film'></span> Videos</button><br/>
-			<button class='btn-link' style='color: #000' id='flag' ><span class='icon-flag'></span> Completed challenges </button>
+			<button class='btn-link' style='color: #000' id='flag' ><span class='icon-flag'></span> Completed challenges </button><br/>
+			<button class='btn-link' style='color: #000' id='asterisk' ><span class='icon-asterisk'></span> Issues </button>
 		</div>
 	</div>
     </div>

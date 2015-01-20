@@ -296,7 +296,13 @@ function challenge_display($db_handle, $challengeSearchID) {
                 echo "<div class='list-group deciduous'>
                                 <div class='list-group-item'>";
               dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
-                           echo $display_title."<span class='icon-tree-deciduous'></span>".$display_name_stmt;
+                           echo $display_title."<span class='icon-leaf'></span>".$display_name_stmt;
+            }
+            else if ($ctype == 9) {
+                echo "<div class='list-group asterisk'>
+                                <div class='list-group-item'>";
+              dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
+                           echo $display_title."<span class='icon-asterisk'></span>".$display_name_stmt;
             }
             else if ($ctype == 7) {
                 echo "<div class='list-group articlesch'>
@@ -342,7 +348,12 @@ function challenge_display($db_handle, $challengeSearchID) {
                 else if ($ctype == 6) {
                     echo "<div class='list-group deciduous'>
                                 <div class='list-group-item'>";
-                                    echo $display_title."<span class='icon-tree-deciduous'></span>".$display_name_stmt;
+                                    echo $display_title."<span class='icon-leaf'></span>".$display_name_stmt;
+                }
+                else if ($ctype == 9) {
+                    echo "<div class='list-group asterisk'>
+                                <div class='list-group-item'>";
+                                    echo $display_title."<span class='icon-asterisk'></span>".$display_name_stmt;
                 }
                 else if ($ctype == 7) {
                     echo "<div class='list-group articlesch'>

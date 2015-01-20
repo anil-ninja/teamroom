@@ -22,6 +22,8 @@ $projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replac
           <i class="icon-hdd"></i><span onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Manage Files</span>
             | 
           <i class="icon-film"></i><span onclick='show_form(4, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
+           | 
+          <i class="icon-asterisk"></i><span onclick='show_form(13, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Issues</span>
         </div>
         <div class='list-group-item'>
 			<div id='selecttext' ><p style="color: grey;">Please Select Post Type From Above ......</p></div> 
@@ -186,6 +188,17 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
            dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
          echo $display_tilte_task."<i class='icon-leaf'></i>".$dispaly_fname_likes;
+         echo $display_task_stmt_content;
+         $display_task_stmt_content = "" ;
+        
+    }
+    if ($type_task == 9) {
+        echo "<div class='list-group asterisk'>
+                    <div class='list-group-item'>";
+        if (isset($_SESSION['user_id'])) {
+           dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
+        }
+         echo $display_tilte_task."<i class='icon-asterisk'></i>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         

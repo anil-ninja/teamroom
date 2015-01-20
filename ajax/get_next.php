@@ -197,6 +197,17 @@ if ($_POST['chal']) {
 		$show = $show .$get_display_tilte."<span class='icon-leaf'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
 		$show = $show .$get_display_ch_stmt_content;
 		$get_display_ch_stmt_content = "" ;
+    }
+    if ($ctype == 9) {
+        $show = $show . "<div class='list-group asterisk'> 
+				<div class='list-group-item'> " ;
+            
+		$show = $show . $dropDown_challenge_get;
+		$dropDown_challenge_get = "" ;
+		
+		$show = $show .$get_display_tilte."<span class='icon-asterisk'></span>".$get_display_fname_likes."| At: <a href='project.php?project_id=$public_project_id'>".ucfirst($timeopen)."</a>";
+		$show = $show .$get_display_ch_stmt_content;
+		$get_display_ch_stmt_content = "" ;
     } 
      if ($ctype == 7) {
         $show = $show . "<div class='list-group articlesch'>

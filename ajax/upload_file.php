@@ -186,6 +186,20 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					
 				break;
 				
+			case "projectissuePic":
+			
+					$filePath = checkNCreateFolder($username,"projectissuePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
+					saveFile($filePath) ;
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/projectissuePic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
+					}
+					else
+						echo $filePath;
+					exit;
+					
+				break;
+				
 			case "answerPic":
 			
 					$filePath = checkNCreateFolder($username,"answerPic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];

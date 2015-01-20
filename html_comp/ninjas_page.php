@@ -160,6 +160,14 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 .$display_ch_stmt_content;
         $display_ch_stmt_content = "";
     }
+    if ($ctype == 9) {
+        echo "<div class='list-group asterisk'>
+                <div class='list-group-item'>";
+               dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
+        echo $display_tilte_ch."<span class='icon-asterisk'></span>".$display_fname_likes."| At: <a href='project.php?project_id=$open_project_id'>".ucfirst($timeopen)."</a>"
+                .$display_ch_stmt_content;
+        $display_ch_stmt_content = "";
+    }
     if ($ctype == 7) {
         echo "<div class='list-group articlesch'>
                 <div class='list-group-item'>";
