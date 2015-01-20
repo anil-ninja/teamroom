@@ -73,7 +73,7 @@ http://collap.com/project.php?project_id=".$pro_id ;
 							<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
 						</ul>
 					</div>
-					<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$idp."\", 5)' value='Accept'/>" ;
+					<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$idp."\", 5)' value='Accept'/>" ;
     $data = $data ."<span style='font-family: Tenali Ramakrishna, sans-serif;' id='challenge_ti_".$idp."' class='text'><b>
 					<a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($title)."</a>
 					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$ntitle."'/>

@@ -34,7 +34,7 @@ if($_POST['project_title']){
 		involve_in($db_handle,$user_id,"2",$idp); 
 	}  
 	else {
-	  involve_in($db_handle,$user_id,"9",$idp);
+ 	  involve_in($db_handle,$user_id,"9",$idp);
 	}
 	if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
 	else { echo "Posted succesfully!"."+"."8"; }

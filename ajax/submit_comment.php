@@ -34,16 +34,16 @@ if($_POST['id']){
 		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 		if(mysqli_num_rows($member_project) != 0) {
 			if($case == 2) { 
-				events($db_handle,$user_id,"14",$id);
-				involve_in($db_handle,$user_id,"14",$id);
+				events($db_handle,$user_id,"14",$pro_id);
+				involve_in($db_handle,$user_id,"14",$pro_id);
 				if (strlen($resp_stmt)<1000) {
-					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
+					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$pro_id', '$stmt');") ;
 					$comment_id = mysqli_insert_id($db_handle);
 				}
 				else {
 					mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
 					$idb = mysqli_insert_id($db_handle);
-					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$idb');") ;
+					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt, blob_id) VALUES ('$user_id', '$pro_id', ' ', '$idb');") ;
 					$comment_id = mysqli_insert_id($db_handle);
 				}
 			}

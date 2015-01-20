@@ -133,7 +133,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                     $show = $show . $get_display_task_stmt;
                     $get_display_task_stmt = "" ;
             if ($ownid == $user_id) {
-                $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task ."\", 2)' value='Submit'/>";
+                $show = $show . "<input class='btn-primary pull-right' type='submit' onclick='answersubmit(\"".$id_task ."\", 2)' value='Submit'/>";
             }
                  
         }
@@ -205,7 +205,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
         $dropdown1 = ""; 
         //dropdown for delete/edit/span challenge ends here
 
-        $show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$id_task ."\", 5)' value='Accept'/>";
+        $show = $show . "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$id_task ."\", 5)' value='Accept'/>";
         $show = $show . $get_display_tilte_task . "<span class='icon-question-sign'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;
                   
@@ -214,7 +214,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                     $show = $show . "<div class='list-group sign'>
                                         <div class='list-group-item'>";
 				if ($ownid == $user_id) {
-					$show = $show . "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$id_task ."\", 2)' value='Submit'/>";
+					$show = $show . "<input class='btn-primary pull-right' type='submit' onclick='answersubmit(\"".$id_task ."\", 2)' value='Submit'/>";
 				}
 
                 //dropdown for delete/edit/span challenge starts

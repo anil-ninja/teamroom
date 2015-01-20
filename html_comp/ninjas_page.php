@@ -104,7 +104,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                         <div class='list-group-item'>";
                         dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;            
             //if ($remaintime != "Closed") {
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                echo "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                                 //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
             //} else {
                // echo " <br> " . $timefunction."<br>Closed";
@@ -117,7 +117,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     <div class='list-group-item' >";
           dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
             if($ownuser == $user_id) {			
-                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
+                echo "<input class='btn-primary pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>" ;
             }
                echo $display_tilte_ch."<span class='icon-question-sign'></span>".$display_fname_likes. "
                         <hr>Accepted: <a href ='profile.php?username=" . $ownname ."' style= 'color: #808080;'>"
@@ -195,7 +195,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                     <div class='list-group-item' >";
                     dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                 if ($owner_id != $user_id) {
-                    echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                    echo "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                 }
                 else {
                     echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
@@ -218,7 +218,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                        $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                         if ($owner_id != $user_id ) {
                             if(mysqli_num_rows($owneduser) == 0){
-                                echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                                echo "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                             }
                         }
                         else {
