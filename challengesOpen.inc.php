@@ -325,7 +325,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     $answer_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))));
                     echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
                             <p align='center'>Answer</p></span>"
-                        . $answer_stmt. "<br/>";
+                        . $answer_stmt. "<br/><br/>";
                 }
             }
             }

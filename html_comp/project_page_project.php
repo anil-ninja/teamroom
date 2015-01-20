@@ -159,7 +159,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         if ($status_task == 5) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
-            echo "<span class='color strong pull-right' style= 'color: #808080'><p>Closed</p></span>";
+            echo "<span class='color strong pull-right' style= 'color: #808080'>Closed</span>";
             echo $display_tilte_task."<span class='icon-flag'></span>".$dispaly_fname_likes.
                 "<hr>Assigned To: <span class='color strong' style= 'color: #808080'>"
                     .ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: " . $timecom."</span>";
@@ -277,7 +277,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $answerrow = mysqli_fetch_array($answer);
         echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-        . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/>";
+        . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/><br/>";
     }
 
     $displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a

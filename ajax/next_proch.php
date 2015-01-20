@@ -154,7 +154,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$show = $show . "<div class='list-group flag'>
                     <div class='list-group-item'>";
                     
-            $show = $show . "<span class='color strong pull-right' style= 'color :#3B5998;'><p>Closed</p></span><br/>";
+            $show = $show . "<span class='color strong pull-right' style= 'color :#3B5998;'>Closed</span><br/>";
             $show = $show . $get_display_tilte_task."<span class='icon-flag'></span>".$get_dispaly_fname_likes."<span style= 'color: #808080;'>
 													<hr>Assigned To: <a href ='profile.php?username=" . $ownname ."' style= 'color: #808080;'>
 													".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: ".$timecom."</span>";
@@ -274,7 +274,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$answerrow = mysqli_fetch_array($answer) ;
 		$show = $show . "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))))."<br/>" ;
+				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))))."<br/><br/>" ;
 		}			
 		
 	$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
