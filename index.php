@@ -226,7 +226,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <div class="socials clearfix">
                                         <a href='https://www.facebook.com/pages/collapcom/739310236156746' class="icon-facebook facebook" target='_blank'></a>
                                         <a href='https://twitter.com/CollapCom' class="icon-twitter twitter" target='_blank'></a>
-                                        <a href='https://plus.google.com/u/0/103215845490732646217/about' class="icon-google-plus google-plus" target='_blank'></a>
+                                        <a href="https://plus.google.com/117170233233281087141" rel="publisher" class="icon-google-plus google-plus" target='_blank'></a>
                                         <a href='https://www.pinterest.com/collapcom/' class="icon-pinterest pinterest" target='_blank'></a>
                                         <a class="icon-linkedin linked-in"></a>
                                         <a href='https://github.com/collapcom' class="icon-github github" target='_blank'></a>
