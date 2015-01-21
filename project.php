@@ -23,7 +23,7 @@ $totalTeams = mysqli_num_rows($teamsCount) ;
    <div class='alert_placeholder'></div>
    <div class="" >
 		<div class="row-fluid" style='margin-top: 50px;'>  		
-       		<div id='tab4' class="span2 offset1">
+       		<div id='tab4' class="span2" style='margin-left:50px; width:280px;'>
    				<?php 
    					include_once 'html_comp/left_panel_ninjas.php';   
 				?>
@@ -83,7 +83,7 @@ $totalTeams = mysqli_num_rows($teamsCount) ;
                     </div>
                  
             </div>      
-            <div id='tab6' class="span2" style='width:290px'>
+            <div id='tab6' class="span2" style='width:260px'>
                 <br>
                 <?php include_once 'html_comp/right_panel_project.php'; ?>
             </div>	

@@ -48,18 +48,17 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 		
 		switch($_GET['typeOfPic']){
 			case "articlePic":
-					
-					$filePath = checkNCreateFolder($username,"articlePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
-					saveFile($filePath);
-					if($_FILES["file"]["type"] == "image/png"){
-						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/articlePic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
-					}
-					else
-						echo $filePath ;
-					exit;
-					
-					break;
+				$filePath = checkNCreateFolder($username,"articlePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
+				saveFile($filePath);
+				if($_FILES["file"]["type"] == "image/png"){
+					$temp = explode(".", $_FILES["file"]["name"]);
+					echo 'uploads/'.$username."/articlePic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
+				}
+				else
+					echo $filePath ;
+				exit;
+				
+				break;
 			
 			case "profilepic":
 				$pic = explode(".", $_FILES["file"]["name"]) ;

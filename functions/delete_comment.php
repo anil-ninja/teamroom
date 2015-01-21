@@ -245,8 +245,8 @@ function recommended_project ($db_handle) {
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
             $idproject2 = $project_public_title_displayRow2['project_id'] ;
-        if (strlen($public_pr_titlep2) > 12) {
-            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,12)." ...";
+        if (strlen($public_pr_titlep2) > 24) {
+            $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,24)."...";
         } 
         else {
             $prtitlep2 = ucfirst($public_pr_titlep2) ;

@@ -20,7 +20,7 @@ $view = 1 ;
    <div class='alert_placeholder'></div>
    <div class="" >
 		<div class="row-fluid" style='margin-top: 50px;'>  		
-       		<div id='tab1' class="span2 offset1">
+       		<div id='tab1' class="span2" style='margin-left:60px; width:280px;'>
    				<?php 
    					include_once 'html_comp/left_panel_ninjas.php';   
 				?>
