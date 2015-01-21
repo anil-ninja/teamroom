@@ -192,11 +192,11 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                         <div role="tabpanel" class="row tab-pane active">
                 <?php 
                     $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
-                                                            WHERE challenge_type != '2' and challenge_type != '5' AND challenge_status !='3' AND challenge_status != '7' AND 
+                                                            WHERE challenge_type != '2' and challenge_type != '5' and challenge_type != '6' and challenge_type != '9' AND challenge_status !='3' AND challenge_status != '7' AND 
                                                             challenge_id != $challengeSearchID AND blob_id = '0')  
     														UNION 
     														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 250) as stmt FROM challenges as a JOIN blobs as b 
-    														WHERE a.blob_id = b.blob_id  and challenge_type != '5' AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
+    														WHERE a.blob_id = b.blob_id  and challenge_type != '5' and challenge_type != '6' and challenge_type != '9' AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
