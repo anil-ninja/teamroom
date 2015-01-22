@@ -1,30 +1,19 @@
 <br/>
-<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
-    <ul class="nav nav-tabs">
-        <li id='step6' class="active" >
 <?php 
     if (isset($_SESSION['user_id'])) {
-        echo "<a class='btn-link' data-toggle='modal' data-target='#createProject' style='cursor:pointer;padding :5px;color:#000;'> 
-                <b> Projects </b>
-                <font size='1'> &nbsp;&nbsp;&nbsp;
-                    <i class='icon-plus'></i>Add
-                </font>
+        echo "<a id='step6' class='btn btn-primary' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>  
+                <i class='icon-plus'></i>Add Projects
 			 </a>";
     }
     else {
-        echo "
-            <a class='btn-link' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;padding :5px ;color:#000;'> 
-                <b> Projects </b>
-                <font size='1'> &nbsp;&nbsp;&nbsp;
-                    <i class='icon-plus'></i>Add
-                </font>
-			 </a>";
+        echo "<a id='step6' class='btn btn-primary' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;> 
+                <i class='icon-plus'></i>Add Projects
+			  </a>";
     }
 ?>
-        </li>
-    </ul>
-
-    <div class='list-group-item' style="padding: 0px;">
+ <br/><br/>
+  <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+   <div class='list-group-item' style="padding: 0px;">
         
 <?php 
     if (isset($_SESSION['user_id'])) {              
