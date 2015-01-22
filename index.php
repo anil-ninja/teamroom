@@ -362,7 +362,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                 <div class="span7">
                                     <h4><i class="icon-question"></i>&nbsp;&nbsp;Help</h4>
                                     <div class="box">
-                                        <p>Getting Error With Password Recovery Click Here For <a href="index.php#">Support</a></p>
+                                        <p><a href="index.php#">Getting Error With Password Recovery</a></p>
                                         <ul>
                                             
                                         </ul>
@@ -399,7 +399,37 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 					</div>
 				</div>
 			</div>
-        </div><br/><br/><br/>
+        </div><br/><br/>
+		<div class="row-fluid">
+			<div class='span10 offset1'>
+			<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+				<ul class="nav nav-tabs">
+                    <li class="active"><a href="#" data-toggle="tab" class="active icon-briefcase "> Top Projects</a></li>
+                </ul>
+                <div class="tab-content">
+		<?php
+		$projects = mysqli_query($db_handle, "(SELECT DISTINCT project_id, project_title, LEFT(stmt, 250) as stmt FROM projects 
+													WHERE project_type = '1' AND blob_id = '0')  
+												UNION 
+												(SELECT DISTINCT a.project_id, a.project_title, LEFT(b.stmt, 250) as stmt FROM projects as a JOIN blobs as b 
+													WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 4 ;");
+			while($projectsRow = mysqli_fetch_array($projects)) {
+				$project_id = $projectsRow['project_id'];
+				$project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
+				$project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+			echo "<div class ='span3 box' style=' margin: 4px ;min-height: 200px;'>
+					<a href='project.php?project_id=".$project_id."'>
+						<div class='panel-heading'>
+							<b><p style=' font-size:14px;word-wrap: break-word;color:#3B5998;'>".ucfirst($project_title_display)."</p></b>
+						</div>
+						<div class='panel-content'>
+							<p style='word-wrap: break-word;'>".$project_title_stmt."....</p><br>
+						</div>
+					</a>
+				</div>";
+			}				
+		?>
+		</div></div></div></div><br/>
     <?php 
     /*
 

@@ -134,7 +134,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                                 <div class='list-group-item'>";
                    dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                     //if ($remaintime != "Closed") {
-                        echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                        echo "<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                                         //. $timefunction . "<br> ETA : " . $sutime . "<br/>" . $remaintime;
                     //} else {
                     // echo " <br> " . $timefunction."<br>Closed";
@@ -146,7 +146,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                             <div class='list-group-item'>";
                   dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
                     if($ownuser == $user_id) {			
-                        echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                        echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                     }
                     echo $display_title."<span class='icon-question-sign'></span>
                                         <span style= 'color: #808080'>
@@ -158,7 +158,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     echo "<div class='list-group openchalhide'>
                             <div class='list-group-item'>";
                      if($owner_id == $user_id) {			
-                        echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
+                        echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                     }
                   dropDown_delete_after_accept($chelangeid, $user_id, $owner_id) ;
                     echo $display_title."
@@ -185,10 +185,10 @@ function challenge_display($db_handle, $challengeSearchID) {
                             <div class='list-group-item'>";
                       dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
                         if ($owner_id != $user_id) {
-                            echo "<input class='btn btn-primary btn-default-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                            echo "<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                         }
                     else {
-                        echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
+                        echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                     }
                     echo $display_title."<span class='icon-question-sign'></span>".$display_name_stmt;
                 }	
@@ -204,11 +204,11 @@ function challenge_display($db_handle, $challengeSearchID) {
                         $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                     if ($owner_id != $user_id ) {
                         if(mysqli_num_rows($owneduser) == 0){
-                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                            echo "<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                         }
                     }
                     else {
-                        echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
+                        echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                     }
                 echo $display_title."<span class='icon-question-sign'></span>
                             <span style= 'color: #808080;'>
@@ -233,7 +233,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                         echo "<hr>Owned: <a href ='profile.php?username=" . $owname . "' style= 'color: #808080;'>"
                         . ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | ".$timfunct ;
                         if ($ownedbrow['user_id'] == $user_id ) {
-                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                            echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                         }
                     }
                     if  ($owlstatus==2){
@@ -269,7 +269,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                         echo "<hr>Owned: <a href ='profile.php?username=" . $owname . "'>"
                         .ucfirst($owfname) . '&nbsp' . ucfirst($owlname) . " </a> | " . $timfunct;
                         if ($ownedbrow['user_id'] == $user_id ) {
-                            echo "<input class='btn btn-primary btn-sm pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+                            echo "<input class='btn btn-primary pull-right' type='submit' style='padding: 0px 0px 0px;' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
                         }
                     }
                     if  ($owlstatus==2){
@@ -335,7 +335,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                     echo "<div class='list-group challenge'>
                             <div class='list-group-item'>
                                 <a data-toggle='modal' data-target='#SignIn'>
-                                    <button class='btn btn-primary btn-sm pull-right' >Accept</button>
+                                    <button class='btn btn-primary pull-right' >Accept</button>
                                 </a>";
                                     echo $display_title."<span class='icon-question-sign'></span>".$display_name_stmt;
                           
