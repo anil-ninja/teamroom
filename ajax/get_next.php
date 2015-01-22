@@ -131,7 +131,7 @@ if ($_POST['chal']) {
         //dropdown for delete/edit/span challenge ends here
 
         //    if ($remaintime != "Closed") {
-                $show = $show . "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>"       ;
+                $show = $show . "<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>"       ;
                                 //. "<br> ETA : " . $sutime . "<br/>" . $remaintime;
           //  } else {
             //    $show = $show . " <br> " . $timefunction."<br>Closed";
@@ -144,7 +144,7 @@ if ($_POST['chal']) {
                     <div class='list-group-item' >";
                                    
         if($ownuser == $user_id) {			
-            $show = $show . "<input class='btn-primary pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
+            $show = $show . "<input class='btn btn-primary pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 1)' value='Submit'/>";
             $show = $show . $dropDown_ch_after_accept;
             $dropDown_ch_after_accept = "";
            }
@@ -162,7 +162,7 @@ if ($_POST['chal']) {
 			if($owner_id == $user_id) {
 				$show = $show . $dropDown_ch_after_accept;   
 				$dropDown_ch_after_accept = "";                
-                $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
+                $show = $show . "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
              }    
 			$show = $show.$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes. "<hr><span style= 'color: #808080;'>
 												Submitted: <a href ='profile.php?username=" . $ownname . "'style= 'color: #808080;'>"
@@ -248,10 +248,10 @@ if ($_POST['chal']) {
                     //dropdown for delete/edit/span challenge ends here
 
         if ($owner_id != $user_id) {
-            $show = $show . "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+            $show = $show . "<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
         }
         else {
-            $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
+            $show = $show . "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
         }
         $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
         $get_display_ch_stmt_content = "" ;
@@ -280,11 +280,11 @@ if ($_POST['chal']) {
                 $owneduser = mysqli_query($db_handle, "SELECT user_id from challenge_ownership where challenge_id = '$chelangeid' and user_id = '$user_id' ;");
                 if ($owner_id != $user_id ) {
                     if(mysqli_num_rows($owneduser) == 0){
-                        $show = $show . "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
+                        $show = $show . "<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>" ;
                     }
                 }
                 else {
-                    $show = $show . "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
+                    $show = $show . "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 3)'>Close</button>";
                 }
                 $show = $show .$get_display_tilte."<span class='icon-question-sign'></span>".$get_display_fname_likes."<span style= 'color: #808080;'>";
                         

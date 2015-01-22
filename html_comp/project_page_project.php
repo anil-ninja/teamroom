@@ -125,7 +125,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                 dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
             }
             if (($ownid == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<input class='btn-primary pull-right' type='submit' onclick='answersubmit(\"".$id_task."\", 2)' value='Submit'/>";
+                echo "<input class='btn btn-primary pull-right' type='submit' onclick='answersubmit(\"".$id_task."\", 2)' value='Submit'/>";
             }
             
             echo $display_tilte_task."<span class='icon-pushpin'></span><span style= 'color: #808080'>
@@ -145,7 +145,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             echo "<div class='list-group pushpin'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
+                echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
             }
             //	. "<br/> ETA Given:" .$etaown."
             echo $display_tilte_task."<span class='icon-pushpin'></span>".$dispaly_fname_likes.
@@ -209,7 +209,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
                dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
-                echo "<input class='btn-primary pull-right' type='submit' onclick='accept_pub(\"".$id_task."\", 5)' value='Accept'/>";
+                echo "<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$id_task."\", 5)' value='Accept'/>";
             }
             echo $display_tilte_task."<i class='icon-question-sign'></i>".$dispaly_fname_likes;
             echo $display_task_stmt_content;
@@ -222,7 +222,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     <div class='list-group-item'>";
             if (isset($_SESSION['user_id'])) {
                 if ($ownid == $user_id) {
-                    echo "<input class='btn-primary pull-right' type='submit' onclick='answersubmit(\"".$id_task."\", 2)' value='Submit'/>";
+                    echo "<input class='btn btn-primary pull-right' type='submit' onclick='answersubmit(\"".$id_task."\", 2)' value='Submit'/>";
                 } else {
                   dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
                 }
@@ -238,7 +238,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             echo "<div class='list-group flag'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
-                echo "<button type='submit' class='btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
+                echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
                dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
             }          
             echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes."

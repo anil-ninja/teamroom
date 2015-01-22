@@ -235,13 +235,11 @@ function recommended_project ($db_handle) {
 																project_id NOT IN (SELECT DISTINCT project_id FROM teams WHERE user_id = '$user_id')
                                                             ORDER BY rand() LIMIT 10;");
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
-        echo "
-                <div class='panel panel-default'>
-                    <div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
-                        <font size='2'><b> Recommended</b></font>
-                    </div>
-                    <div class='bs-component' style='max-height:140px;overflow-y:scroll;'>
-                        <table><tbody style='font-size:12px;line-height:20px;'>";
+        echo "<div class='panel panel-default'>
+                  <div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
+                       <font size='2'><b> Recommended</b></font>
+                  </div>
+                  <div class='bs-component' style='max-height:140px;overflow-y:scroll;'>";
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
             $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
             $idproject2 = $project_public_title_displayRow2['project_id'] ;
@@ -267,12 +265,12 @@ function recommended_project ($db_handle) {
         $titlep2 =  strtoupper($public_pr_titlep2)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp2 ;
         // $remaining_time_ownp = remaining_time($p_timep, $p_etap);
 
-    echo "<tr>
-			<td style='padding-left: 5px;'>
+    echo "<div class='row-fluid' style='font-size:12px;line-height:20px;margin: 2px 0px 2px 5px;'>
+			<div class='span1'>
 				<a href = 'project.php?project_id=".$idproject2."'>".$ProjectPic3 ."</a>
-			</td>
-			<td id='step14' ><a href = 'project.php?project_id=".$idproject2."'>". $prtitlep2."</a></td>
-		  <td id='step7' >";
+			</div>
+			<div class='span8' id='step14' ><a href = 'project.php?project_id=".$idproject2."'>". $prtitlep2."</a></div>
+		  <div class='span2' id='step7' >";
                 //$remaining_time_ownp.
         if (isset($_SESSION['user_id'])) {
             echo "<button type='submit' class='btn-link' onclick='joinproject(".$idproject2.")' data-toggle='tooltip' 
@@ -282,10 +280,9 @@ function recommended_project ($db_handle) {
         else {
             echo "<a class='pull-right' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;font-size:12px; pull-right'>Join</a>";
         }
-        echo "</td></tr>" ;
+        echo "</div></div>" ;
         }
-        echo "</tbody></table>
-        </div>
+        echo "</div>
         </div>";
     }
 }
