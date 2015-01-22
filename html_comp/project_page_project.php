@@ -316,13 +316,13 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     if (isset($_SESSION['user_id'])) {
         echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$id_task."' placeholder='Want to know your comment....'/>
               <button type='submit' class='btn btn-primary' onclick='comment(\"".$id_task."\", 3)' style='margin-bottom: 10px;'>
-                <i class='icon-chevron-right'></i>
+                <span class='icon-chevron-right'></span>
               </button>";
     } else {
-        echo "<input type='text' class='input-block-level' STYLE='width: 86%;' placeholder='Want to know your comment....'/>
+        echo "<input type='text' class='input-block-level' STYLE='width: 83.0%;' placeholder='Want to know your comment....'/>
                 <a data-toggle='modal' data-target='#SignIn'>
                     <button type='submit' class='btn btn-primary' name='login_comment' style='margin-bottom: 10px;'>
-                      <i class='icon-chevron-right'></i>
+                      <span class='icon-chevron-right'></span>
                     </button>
                 </a>";
     }

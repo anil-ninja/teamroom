@@ -89,20 +89,20 @@
 			$user_exist = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and user_id = '$user_id' ;") ;
 			$user_existNo = mysqli_num_rows($user_exist) ;
 			if($user_existNo == 0) {
-					echo "<button class='btn-link' onclick='joinproject(".$pro_id.")'>Join</button>
-						  <button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
+					echo "<button class='btn btn-primary' onclick='joinproject(".$pro_id.")'>Join</button>
+						  <button id='demo2' class='btn btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 			}
 			else {
-				echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
+				echo "<button id='demo2' class='btn btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 			}
 		}
 		else {
-			echo "<button class='btn-link' onclick='test3()'>Join</button>
-				  <button id='demo2' class='btn-primary pull-right' onclick='test3()'> Message</button>" ;
+			echo "<button class='btn btn-primary' onclick='test3()'>Join</button>
+				  <button id='demo2' class='btn btn-primary pull-right' onclick='test3()'> Message</button>" ;
 		}
 	}
 	else {
-		echo "<button id='demo2' class='btn-primary pull-right' onclick='toggle()'> Message</button>" ;
+		echo "<button id='demo2' class='btn btn-primary pull-right' onclick='toggle()'> Message</button>" ;
 	}
 	?>
 </div>

@@ -333,7 +333,8 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
             </div>
             <input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$chelangeid."'
              placeholder='Want to know your comment....'/>
-            <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' style='margin-bottom: 10px;'><span class='icon-chevron-right'></span></button>
+            <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' style='margin-bottom: 10px;'>
+            <span class='icon-chevron-right'></span></button>
         </div>";
     echo "</div> </div> ";
 }
