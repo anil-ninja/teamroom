@@ -263,7 +263,7 @@ $obj = new profile($UserName);
     						  echo "<textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'>".$aboutuserRow['about_user']."</textarea>" ;
     					  }
     					  else { echo "<textarea row='3' id='aboutuser' class='form-control' placeholder='About Yourself'></textarea>" ; }
-    					  echo "<br/><a class='btn-success btn-sm' style='cursor:pointer;' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
+    					  echo "<br/><a class='btn btn-primary' style='cursor:pointer;' onclick='editProfile(\"".$profileViewFirstName."\",\"".$profileViewLastName.
                                      "\",\"".$profileViewEmail."\",\"".$profileViewPhone."\")'>Change</a>";
                         }
                     ?>
