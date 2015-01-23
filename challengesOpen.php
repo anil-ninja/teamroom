@@ -81,7 +81,7 @@
 						<i>(&nbsp;".$usersRank."&nbsp;)</i>
 				</div>
 				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
-						<span class='icon-envelope' id='email' style='cursor: pointer;'>&nbsp;&nbsp;".$usersEmail."</span>" ;
+						<span class='icon-envelope' id='email_auth' style='cursor: pointer;'>&nbsp;&nbsp;".$usersEmail."</span>" ;
 	  if($usersPhone != 1) {    
 			  echo "&nbsp;&nbsp;&nbsp;&nbsp;<span class='icon-phone' id='phone' style='cursor: pointer'>&nbsp;&nbsp;&nbsp;".$usersPhone."</span>";
 	  }

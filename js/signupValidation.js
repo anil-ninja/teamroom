@@ -45,7 +45,7 @@ function validateSignupFormOnSubmit() {
 	var firstname = $("#firstname").val() ;
 	var lastname = $("#lastname").val() ;
 	var email = $("#email").val() ;
-	var phone = $("#phone").val() ;
+	//var phone = $("#phone").val() ;
 	var username = $("#usernameR").val() ;
 	var password = $("#passwordR").val() ;
 	var password2 = $("#password2R").val() ;
@@ -62,7 +62,7 @@ function validateSignupFormOnSubmit() {
 	return false;
 	}
 	return true;*/
-	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email + '&phone='+ phone + '&username='+ username +
+	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username +
 	'&password='+ password + '&password2='+ password2 + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
 	if(password==password2){
 		if(replaceAll('\\s', '',firstname)==''){
@@ -77,9 +77,9 @@ function validateSignupFormOnSubmit() {
             
             //email_availability_check();
         } 
-		else if(replaceAll('\\s', '',phone)==''){
+		/*else if(replaceAll('\\s', '',phone)==''){
 			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
-		} 
+		} */
 		else if(replaceAll('\\s', '',username)==''){
 			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
 		}
@@ -244,6 +244,6 @@ function validatePath(path) {
     {
         return s.replace(/^\s+|\s+$/, '');
     }
-function replaceAll(find, replace, str) {
+function replaceAll(find, replace, str="") {
 	return str.replace(new RegExp(find, 'g'), replace);
 }
