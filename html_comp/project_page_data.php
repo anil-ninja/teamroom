@@ -4,13 +4,14 @@ include_once '../lib/db_connect.php';
 session_start();
 $user_id = $_SESSION['user_id'] ;
 $pro_id = $_GET['project_id'] ;
-	$project = mysqli_query($db_handle, "(SELECT a.user_id, a.stmt FROM projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' 
+	$project = mysqli_query($db_handle, "(SELECT a.user_id, a.stmt, a.project_type FROM projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' 
 										and a.user_id = b.user_id AND a.project_type != '3' and a.project_type != '5')
 										UNION
-										(SELECT a.user_id, b.stmt FROM projects as a join blobs as b join user_info as c WHERE a.project_id = '$pro_id' 
+										(SELECT a.user_id, b.stmt, a.project_type FROM projects as a join blobs as b join user_info as c WHERE a.project_id = '$pro_id' 
 										and a.blob_id = b.blob_id and a.user_id = c.user_id AND a.project_type != '3' AND a.project_type != '5' );");
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
+$projectType = $project_row['project_type'];
 $projectstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
 if(substr($projectstmt, 0, 4) == '<img'){
 	$projectstmt2 = substr(strstr($projectstmt, "<br/>" ), 5 ) ; 
@@ -31,6 +32,18 @@ if ($p_uid == $user_id) {
 			  </ul>
          </div>";
 }
+if($projectType == 1) {
+	if(isset($_SESSION['user_id'])){
+		$user_exist = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status='1' ;") ;
+		$user_existNo = mysqli_num_rows($user_exist) ;
+		if($user_existNo == 0) {
+				echo "<button class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</button>" ;
+		}
+	}
+	else {
+		echo "<button class='btn btn-primary pull-right' onclick='test3()'>Join</button>" ;
+		}
+	}
 echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/>";
    echo editproject($projectstmt, $pro_id) ;
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 

@@ -5951,3 +5951,6 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus
   background-color: #1ba1e2;
   color: #ffffff;
 }
+.bg-red {
+  background-color: #e51400 !important;
+}
