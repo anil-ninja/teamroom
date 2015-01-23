@@ -151,7 +151,7 @@ $obj = new profile($UserName);
                             
                     echo "&nbsp;<i>(&nbsp;".$profileViewRank."&nbsp;)</i>
                           <br/>
-                          <span class='icon-envelope' id='email' style='cursor: pointer'>&nbsp;&nbsp;" 
+                          <span class='icon-envelope' id='email_user' style='cursor: pointer'>&nbsp;&nbsp;" 
                             . $profileViewEmail . "
                           </span>" ;
                      if($profileViewPhone != 1) {    
