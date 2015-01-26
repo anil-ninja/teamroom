@@ -11,8 +11,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 function delcomment(ID, type) {
 	bootbox.confirm("Do u really want to delete this comment?", function(result) {
 	if(result){
-		var ID = $("#ProjectIDValue").val() ;
-		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + ID;
+		var IDPr = $("#ProjectIDValue").val() ;
+		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr;
 		$.ajax({
 			type: "POST",
 			url: "ajax/delete_chalange.php",
@@ -29,8 +29,8 @@ function delcomment(ID, type) {
 function delChallenge(ID, type) {
     bootbox.confirm("Do u really want to delete?", function(result) {
 	if(result){ 
-		var ID = $("#ProjectIDValue").val() ;
-		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + ID ;
+		var IDPr = $("#ProjectIDValue").val() ;
+		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/delete_chalange.php",
@@ -48,8 +48,8 @@ function delChallenge(ID, type) {
 function spem(ID, type) {
 	bootbox.confirm("Sure To Spam?", function(result) {
 	if(result){
-		var ID = $("#ProjectIDValue").val() ;
-		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + ID ;
+		var IDPr = $("#ProjectIDValue").val() ;
+		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/delete_chalange.php",
