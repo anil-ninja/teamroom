@@ -22,7 +22,7 @@ if(!isset($_SESSION['user_id'])) {
         
         <div class='alert_placeholder'></div>
         <div class="row-fluid" style='margin-top: 50px;'>
-            <div class="span2 offset1">
+            <div class="span2" style='margin-left:60px; width:280px;'>
                 <?php include_once 'html_comp/left_panel_ninjas.php'   ?>
             </div>       
             <div class="span6">
