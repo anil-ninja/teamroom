@@ -60,8 +60,8 @@
     <?php
     } else {
         echo "<li>
-                <p class='navbar-text' style='cursor: pointer'>
-                    <a class='btn' data-toggle='modal' data-target='#SignIn'>Sign In / Sign Up &nbsp;&nbsp;&nbsp;<i class='icon-chevron-sign-right'></i></a>
+                <p class='navbar-text' style='cursor: pointer;'>
+                    <a class='btn pull-right active' data-toggle='modal' data-target='#SignIn'>Sign In / Sign Up &nbsp;&nbsp;&nbsp;<i class='icon-chevron-sign-right'></i></a>
                 </p>
             </li>";
     }
