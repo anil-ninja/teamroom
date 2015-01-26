@@ -18,14 +18,14 @@ if ($_POST['id']) {
 			mysqli_query($db_handle, "UPDATE response_challenge SET status = '3' WHERE response_ch_id = '$knownid' and user_id = '$user_id' ;") ;
 			if(mysqli_error($db_handle)) { echo "Failed to delete!"; } 
 			else { echo "Deleted succesfully!"; }
-			exit ;
+			 
 			break ;
 			
 		case 2:
 			mysqli_query($db_handle, "UPDATE response_project SET status = '3' WHERE response_pr_id = '$knownid' and user_id = '$user_id' ;") ;
 			if(mysqli_error($db_handle)) { echo "Failed to delete!"; } 
 			else { echo "Deleted succesfully!"; }
-			exit ;
+			 
 			break ;
 			
 		case 4:
@@ -35,14 +35,14 @@ if ($_POST['id']) {
 				echo "Deleted succesfully!"; 
 				unset($_SESSION['project_id']);
 				}
-			exit ;
+			 
 			break ;
 		
 		case 3:
 			mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '3' WHERE challenge_id = '$knownid' and user_id = '$user_id';") ;
 			if(mysqli_error($db_handle)) { echo "Failed to delete!"; }
 			else { echo "Deleted succesfully!"; }
-			exit ;
+			 
 			break ;
 			
 		case 5:
@@ -51,14 +51,14 @@ if ($_POST['id']) {
 			involve_in($db_handle,$user_id,"38",$knownid) ;
 			if(mysqli_error($db_handle)) { echo "Failed to Spam!"; }
 			else { echo "Spammed succesfully!"; }
-			exit ;
+			 
 			break ;
 			
 		case 6:
 			mysqli_query($db_handle, "UPDATE response_challenge SET status = '4' WHERE response_ch_id = '$knownid' ;") ;
 			if(mysqli_error($db_handle)) { echo "Failed to Spam!"; }
 			else { echo "Spammed succesfully!"; }
-			exit ;
+			 
 			break ;
 		
 		case 7:
@@ -68,7 +68,7 @@ if ($_POST['id']) {
 				else { echo "Spammed succesfully!"; }
 				}
 				else {echo "Please Join Project First!"; }
-			exit ;
+			 
 			break ;
 			
 		case 8:
@@ -78,7 +78,7 @@ if ($_POST['id']) {
 				else { echo "Spammed succesfully!"; }
 				}
 				else {echo "Please Join Project First!"; }		
-			exit ;
+			 
 			break ;
 			
 		case 9:
@@ -90,7 +90,7 @@ if ($_POST['id']) {
 				else { echo "Spammed succesfully!"; }
 				}
 				else {echo "Please Join Project First!"; }		
-			exit ;
+			 
 			break ;
 			
 		case 10:
@@ -100,7 +100,7 @@ if ($_POST['id']) {
 				else { echo "Spammed succesfully!"; }
 				}
 				else {echo "Please Join Project First!"; }
-			exit ;
+			 
 			break ;
 		}
 	}

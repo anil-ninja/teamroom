@@ -61,7 +61,7 @@
     } else {
         echo "<li>
                 <p class='navbar-text' style='cursor: pointer'>
-                    <b><a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In / Sign Up</a></b>
+                    <a class='btn' data-toggle='modal' data-target='#SignIn'>Sign In / Sign Up &nbsp;&nbsp;&nbsp;<i class='icon-chevron-sign-right'></i></a>
                 </p>
             </li>";
     }

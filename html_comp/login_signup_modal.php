@@ -114,7 +114,7 @@
                                         </label>
                                         <br />
 
-                                        <a class=" btn " id = "request" onclick="validateSignupFormOnSubmit()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                                        <a class=" btn " id = "request_reg" onclick="validateSignupFormOnSubmit()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
 
                                     </div>
                                     <div class="span3">
