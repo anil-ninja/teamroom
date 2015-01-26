@@ -47,7 +47,7 @@
                            <?php
                                 $username = $_SESSION['username'];
                                 $name = $_SESSION['first_name'];
-                                echo "<img style='width: 25px; height: 25px;' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
+                                echo "<img style='width: 25px; height: 25px;' src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
                             ?>
                             <b class="caret"></b>
                         </a>
