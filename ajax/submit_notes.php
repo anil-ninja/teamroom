@@ -28,10 +28,10 @@ if($_POST['notes']){
 		} 
 	if (strlen($image) < 30 ) {
 		$notes = $notestext ;
-		}
-		else {
-			$notes = $image."<br/> ".$notestext ;
-			}
+	}
+	else {
+		$notes = $image."<br/> ".$notestext ;
+	}
 	$notes_title = $_POST['notes_title'] ;
 	if (strlen($notes) < 1000) {
 		mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, project_id, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 

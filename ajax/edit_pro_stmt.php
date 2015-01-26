@@ -41,11 +41,18 @@ if($_POST['id']){
 			mysqli_query($db_handle,"update projects set stmt='$chaaa', project_title='$project' where project_id='$id';") ;
 		}
 		else {
-			mysqli_query($db_handle,"update projects set project_title='$project' where project_id='$id';") ;
 			$myquery1 = mysqli_query($db_handle,"select blob_id from projects where project_id='$id';") ;
 			$myquery1Row = mysqli_fetch_array($myquery1) ;
 			$blob = $myquery1Row['blob_id'] ;
-			mysqli_query($db_handle,"update blobs set stmt='$chaaa' where blob_id='$blob';") ;
+			if($blob != '0') {
+				mysqli_query($db_handle,"update blobs set stmt='$chaaa' where blob_id='$blob';") ;
+				mysqli_query($db_handle,"update projects set project_title='$project' where project_id='$id';") ;
+			}
+			else {
+				mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt)	VALUES (default, '$chaaa');");
+				$idb = mysqli_insert_id($db_handle);
+				mysqli_query($db_handle,"update projects set project_title='$project', blob_id = '$idb' where project_id='$id' ;") ;
+			}
 		}
 		echo showLinks($chaaa) ;
 	}

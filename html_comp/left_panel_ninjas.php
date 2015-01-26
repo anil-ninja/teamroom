@@ -171,7 +171,7 @@
     </nav>
     <nav class='sidebar light'>
     <ul>
-    <div class='bs-component' style='max-height:120px;'> " ;
+    <div class='bs-component' style='max-height:200px;'> " ;
             // recommended project function defined in functions/delete_comment for use in profile page joined project tab
                 recommended_project ($db_handle);
             // function call here ends

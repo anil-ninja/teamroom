@@ -80,7 +80,7 @@ function bootstrap_alert(elem, message, timeout,type) {
   }
 };
 function url_domain(data) {
-  var    a      = document.createElement('a');
+  var a = document.createElement('a');
          a.href = data;
 
   return a.hostname;

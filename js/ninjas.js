@@ -1,5 +1,7 @@
 function replaceAll(find, replace, str) {
-return str.replace(new RegExp(find, 'g'), replace);
+	if(str == null)
+		str = "";
+	return str.replace(new RegExp(find, 'g'), replace);
 }
 function url_domain(data) {
   var    a      = document.createElement('a');
