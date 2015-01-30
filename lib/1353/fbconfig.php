@@ -19,6 +19,7 @@ FacebookSession::setDefaultApplication( '235401549997398','dc5cb7d9ca7b4122a1446
     $helper = new FacebookRedirectLoginHelper('http://collap.com/lib/1353/fbconfig.php' );
 try {
   $session = $helper->getSessionFromRedirect();
+  $loginUrl = $helper->getLoginUrl( array( 'email' ) );
 } catch( FacebookRequestException $ex ) {
   // When Facebook returns an error
 } catch( Exception $ex ) {
@@ -27,19 +28,23 @@ try {
 // see if we have a session
 if ( isset( $session ) ) {
   // graph api request for user data
-  $request = new FacebookRequest( $session, 'GET', '/me?fields=name,first_name,last_name,email' );
+  //$friends = (new FacebookRequest( $session, 'GET', '/me/friends' ))->execute()->getGraphObject()->asArray();
+
+  $request = new FacebookRequest( $session, 'GET', '/me' );
   $response = $request->execute();
   // get response
   $graphObject = $response->getGraphObject();
      	$fbid = $graphObject->getProperty('id');              // To Get Facebook ID
  	    $fbfullname = $graphObject->getProperty('name'); // To Get Facebook full name
 	    $femail = $graphObject->getProperty('email');    // To Get Facebook email ID
+	    $temp = $response->getGraphObject()->asArray();
+	    print_r($temp);
 	/* ---- Session Variables -----*/
 	    $_SESSION['FBID'] = $fbid;           
         $_SESSION['FULLNAME'] = $fbfullname;
 	    $_SESSION['EMAIL'] =  $femail;
     /* ---- header location after session ----*/
-  header("Location: index.php");
+  //header("Location: index.php");
 } else {
   $loginUrl = $helper->getLoginUrl();
  header("Location: ".$loginUrl);
