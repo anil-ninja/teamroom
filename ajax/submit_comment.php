@@ -70,11 +70,19 @@ if($_POST['id']){
 						$mail = $memrow['username'] ;
 						$userFirstName = $memrow['first_name'] ;
 						$userLastName = $memrow['last_name'] ;
-						$body2 = "From : Collap Notifications \n \n Subject : ".$challangeType." ".$challangeTtitle." has a new comment \n
-Hi ".$userFirstName." ".$userLastName." \n
-$username has written a new comment on your ".$challangeType." ".$challangeTtitle.". Click here to see the comment. \n
-http://collap.com/challengesOpen.php?challenge_id=".$id." \n \n Let's Collaborate \n Team Collap " ;
-						collapMail($emails, "Comment on challenge", $body2);
+						$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".$challangeTtitle."</h2><p>Hi ".$userFirstName." ".$userLastName.",</p>
+<p>There is a new comment on one of your contributions on collap.</p>
+<p>Your username is: ".$mail."</p>
+<p>".$username." has written a new comment on your ".$challangeType." ".$challangeTtitle."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/challengesOpen.php?challenge_id=".$id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+					collapMail($emails, "Comment on challenge", $body2, file_get_contents('../html_comp/mailheader.php'));
 					}
 				}
 				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
