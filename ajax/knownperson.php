@@ -46,10 +46,16 @@ http://collap.com/profile.php?username=".$mail ;
 			case 2:
 				events($db_handle,$user_id,"4",$knownid);
 				involve_in($db_handle,$user_id,"4",$knownid);
-				$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." accepted \n
-Hi ".$userFirst." ".$userLast." \n \n ".$username." has accepted your challenge ".$challengeTtitle.". Click here to login to collap \n
-http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
-				collapMail($owneremail, "Challenge Accepted ", $body2);
+				$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirst)." ".ucfirst($userLast).",</p><p>One of the challanges posted by you on collap has been accepted.</p>
+<p>".ucfirst($username)." has accepted your challenge ".$challengeTtitle."</p><table><tr><td class='padding'>
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+				collapMail($owneremail, "Challenge Accepted ", $body2, file_get_contents('../html_comp/mailheader.php'));
 				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;
 				mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 										VALUES ('$user_id', '$knownid', '1');") ;
@@ -65,10 +71,16 @@ http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Colla
 					$ownerMail = $mailidrow['email'] ;
 					$userFirstN = $mailidrow['first_name'] ;
 					$userLastN = $mailidrow['last_name'] ;
-					$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." is now closed \n
-Hi ".$userFirstN." ".$userLastN." \n \n ".$username." \n \n ".$challengeTtitle." is now closed. Click here to view the challenge and all answers submitted \n
-http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
-					collapMail($ownerMail, "Close challenge ", $body2);
+					$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstN)." ".ucfirst($userLastN).",</p><p>A challange posted on collap in which you are involved has been closed.</p>
+<p>".ucfirst($username)." has, accepted an answer and closed the Challange, ".$challengeTtitle."</p><table><tr><td class='padding'>
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+					collapMail($ownerMail, "Close challenge ", $body2, file_get_contents('../html_comp/mailheader.php'));
 				}
 				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = '$knownid' ; ") ;
 				echo "Challenge Closed succesfully";
@@ -96,10 +108,16 @@ http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Colla
 						$mail = $memrow['username'] ;
 						$userFirstName = $memrow['first_name'] ;
 						$userLastName = $memrow['last_name'] ;
-						$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." accepted \n
-Hi ".$userFirstName." ".$userLastName." \n \n ".$username." has accepted your challenge ".$challengeTtitle.". Click here to login to collap \n
-http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
-						collapMail($emails, "Challenge Accepted ", $body2);
+						$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p><p>One of the challanges posted by you on collap has been accepted.</p>
+<p>".ucfirst($username)." has accepted your challenge ".$challengeTtitle."</p><table><tr><td class='padding'>
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+				collapMail($emails, "Challenge Accepted ", $body2, file_get_contents('../html_comp/mailheader.php'));
 					} 
 					events($db_handle,$user_id,"4",$knownid);
 					involve_in($db_handle,$user_id,"4",$knownid);
@@ -125,10 +143,16 @@ http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Colla
 						$mail = $memrow['username'] ;
 						$userFirstName = $memrow['first_name'] ;
 						$userLastName = $memrow['last_name'] ;
-						$body2 = "From : Collap Notifications \n \n Subject : Challenge ".$challengeTtitle." is now closed \n
-Hi ".$userFirstName." ".$userLastName." \n \n ".$username." \n \n ".$challengeTtitle." is now closed. Click here to view the challenge and all answers submitted \n
-http://collap.com/challengesOpen.php?challenge_id=".$knownid." \n \n Let's Collaborate \n Team Collap " ;
-						collapMail($emails, "Challenge Closed ", $body2);
+						$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p><p>A challange posted on collap in which you are involved has been closed.</p>
+<p>".ucfirst($username)." has, accepted an answer and closed the Challange, ".$challengeTtitle."</p><table><tr><td class='padding'>
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+					collapMail($emails, "Close challenge ", $body2, file_get_contents('../html_comp/mailheader.php'));
 						} 
 					events($db_handle,$user_id,"6",$knownid);
 					involve_in($db_handle,$user_id,"6",$knownid);

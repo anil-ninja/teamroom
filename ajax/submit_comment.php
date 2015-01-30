@@ -75,7 +75,6 @@ if($_POST['id']){
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
 <h2>".ucfirst($challangeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>There is a new comment on one of your contributions on collap.</p>
-<p>Your username is: ".$mail."</p>
 <p>".ucfirst($username)." has written a new comment on your ".ucfirst($challangeType)." ".ucfirst($challangeTtitle)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/challengesOpen.php?challenge_id=".$id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
 <p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>

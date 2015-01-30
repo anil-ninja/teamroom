@@ -170,10 +170,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                     </ul>
                     * */
                     ?>
-                    <!--<a class='btn btn-default' style="font-size: 14px;" href="#tabSignIn" role="tab" data-toggle="tab">Sign In</a>-->
-                
-                <a href="index.php#panel1" data-toggle="tab" class=" btn pull-right active">Sign In&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
-                                
+                    <!--<a class='btn btn-default' style="font-size: 14px;" href="#tabSignIn" role="tab" data-toggle="tab">Sign In</a>-->             
                 </div>
                 <!-- /.nav-collapse -->
             </div>
