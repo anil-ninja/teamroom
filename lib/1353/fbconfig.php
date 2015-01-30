@@ -16,32 +16,41 @@ use Facebook\HttpClients\FacebookHttpable;
 // init app with app id and secret
 FacebookSession::setDefaultApplication( '235401549997398','dc5cb7d9ca7b4122a1446fe271957b93' );
 // login helper with redirect_uri
-    $helper = new FacebookRedirectLoginHelper('http://collap.com/lib/1353/fbconfig.php' );
+
+$helper = new FacebookCanvasLoginHelper();
 try {
-  $session = $helper->getSessionFromRedirect();
-} catch( FacebookRequestException $ex ) {
-  // When Facebook returns an error
-} catch( Exception $ex ) {
-  // When validation fails or other local issues
+$session = $helper->getSession();
+} catch (FacebookRequestException $ex) {
+echo $ex->getMessage();
+} catch (\Exception $ex) {
+echo $ex->getMessage();
 }
-// see if we have a session
-if ( isset( $session ) ) {
-  // graph api request for user data
-  $request = new FacebookRequest( $session, 'GET', '/me?fields=name,first_name,last_name,email' );
-  $response = $request->execute();
-  // get response
-  $graphObject = $response->getGraphObject();
-     	$fbid = $graphObject->getProperty('id');              // To Get Facebook ID
- 	    $fbfullname = $graphObject->getProperty('name'); // To Get Facebook full name
-	    $femail = $graphObject->getProperty('email');    // To Get Facebook email ID
-	/* ---- Session Variables -----*/
-	    $_SESSION['FBID'] = $fbid;           
-        $_SESSION['FULLNAME'] = $fbfullname;
-	    $_SESSION['EMAIL'] =  $femail;
-    /* ---- header location after session ----*/
-  header("Location: index.php");
+if ($session) {
+try {
+// $request = new FacebookRequest($session, 'GET', '/me');
+// $response = $request->execute();
+// $me = $response->getGraphObject();
+// echo $me->getProperty('name');
+// $postRequest = new FacebookRequest($session, 'POST', '/me/feed', array('link' => 'http://codenmind.com', 'description' => 'new description', 'message' => 'My first post using my facebook app.'));
+// $postResponse = $postRequest->execute();
+// $posting = $postResponse->getGraphObject();
+// echo $posting->getProperty('id');
+// uploading image to user timeline using facebook php sdk v4
+$response = (new FacebookRequest(
+$session, 'POST', '/me/photos', array(
+'source' => new CURLFile('picture.jpg', 'image/jpg'),
+'message' => 'User provided message'
+)
+)
+)->execute()->getGraphObject();
+if($response) {
+echo "Done";
+}
+} catch(FacebookRequestException $e) {
+echo $e->getMessage();
+}
 } else {
-  $loginUrl = $helper->getLoginUrl();
- header("Location: ".$loginUrl);
-}
+$helper = new FacebookRedirectLoginHelper('http://collap.com/lib/1353/fbconfig.php');
+$auth_url = $helper->getLoginUrl(array('email', 'publish_actions'));
+echo "<script>window.top.location.href='".$auth_url."'</script>";
 ?>
