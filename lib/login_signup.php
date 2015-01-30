@@ -38,7 +38,7 @@ function signup(){
                 $id_access_id =  mysqli_insert_id($db_handle);
                 $hash_keyR = $hash_keyR.".".$id_access_id;
                 //echo $hash_keyR ;
-                $body = file_get_contents('../html_comp/mailheader.php')."<tr><td><p>Hi ".$username.",</p>
+                $body = "<tr><td><p>Hi ".$username.",</p>
 <p>Welcome to Collap. We are building an engaged community of problem solvers in different domains of Science, Technology, Marketing, Economics, Electronics, Electrical, Mechanical, Computer Science, etc. We provide tools, technology and platform to manage projects, host and solve challenges, hosting articles, ideas, etc</p>
 <p>We are excited to have you on-board and there’s just one step to verify if it’s actually your e-mail address:</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/verifyEmail.php?hash_key=".$hash_keyR."' class='btn-primary'>Click Here to Verify Your Email</a></p></td></tr></table>
@@ -48,7 +48,7 @@ function signup(){
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p>
 </td></tr></table></div></td><td></td></tr></table></body></html>" ;
                 
-                collapMail($email, "Email Verification From Collap", $body);
+                collapMail($email, "Email Verification From Collap", $body, file_get_contents('../html_comp/mailheader.php'));
                 $body2 = "Thanks for joining Collap,  ".$username."! \n \n We’re thrilled to have you on board. Be sure to save your important account details for future reference: \n \n
 Your username is: ".$username." \n \n 
 You’ve joined a talented community of professionals dedicated to doing great work. And the first step for building your career here is to update profile \n \n
