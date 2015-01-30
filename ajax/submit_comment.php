@@ -105,6 +105,12 @@ if($_POST['id']){
 					<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 					</div>
+					<div class='list-group-item pull-right'>
+						<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+						<ul class='dropdown-menu' aria-labelledby='dropdown'>
+							<li><button class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</button></li>
+						</ul>
+					</div>
 					<div class='comment-text'>
 						<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
 						&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
