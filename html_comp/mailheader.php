@@ -147,18 +147,3 @@ width: 100%;
 }
 </style>
 </head>
-<body bgcolor="#f6f6f6">
-<!-- body -->
-<table class="body-wrap">
-<tr>
-<td></td>
-<td class="container" bgcolor="#FFFFFF">
-<!-- content -->
-<div class="content">
-<table>
-<tr>
-<td>
-<img style="width:108px" src = "http://collap.com/img/collap.gif"/>
-<i style="font-size:58px;">collap.com</i>
-</td>
-</tr>
