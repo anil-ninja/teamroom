@@ -61,6 +61,7 @@ if($_POST['id']){
 				if($chtyperowval == 1 || $chtyperowval == 2 || $chtyperowval == 3) { $challangeType = "Challenge" ; }
 				else if($chtyperowval == 5) { $challangeType = "Task" ; }
 				else if($chtyperowval == 6) { $challangeType = "Notes" ; }
+				else if($chtyperowval == 9) { $challangeType = "Issues" ; }
 				else { $challangeType = "Videos" ; }
 				if($type == 2) {
 					$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where 
@@ -72,10 +73,10 @@ if($_POST['id']){
 						$userLastName = $memrow['last_name'] ;
 						$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".$challangeTtitle."</h2><p>Hi ".$userFirstName." ".$userLastName.",</p>
+<h2>".ucfirst($challangeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>There is a new comment on one of your contributions on collap.</p>
 <p>Your username is: ".$mail."</p>
-<p>".$username." has written a new comment on your ".$challangeType." ".$challangeTtitle."</p>
+<p>".ucfirst($username)." has written a new comment on your ".ucfirst($challangeType)." ".ucfirst($challangeTtitle)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/challengesOpen.php?challenge_id=".$id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
 <p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
 <p>Thanks,</p><p>Collap Team</p>
