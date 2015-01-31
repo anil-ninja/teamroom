@@ -284,7 +284,7 @@ function joined_projects ($db_handle, $user_IDF) {
         }
         else {
             echo "<div class='jumbotron'>
-                    <p align='center'>Oops No project has been joined yet</p>
+                    <p align='center'>Oops No project has been joined yet </p>
                 </div>";
         }
     }
@@ -306,7 +306,7 @@ function joined_projects ($db_handle, $user_IDF) {
                         .ucfirst($project_title_table)."</a></b></span><br/>
                     <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
                         .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span><hr/> 
-                    <span style='font-size: 14px;'><".$project_stmt_table."</span><br/>";
+                    <span style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
                  project_comments($db_handle, $project_id_table);
                echo "</div>";
         }   
