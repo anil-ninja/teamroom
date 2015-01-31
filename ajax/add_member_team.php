@@ -28,15 +28,26 @@ if ($_POST['email']) {
 				events($db_handle,$user_id,"15",$pro_id);
 				involve_in($db_handle,$user_id,"15",$pro_id); 
 				mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
-				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
+				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id' and
 										a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 				while ($memrow = mysqli_fetch_array($members)){
 					$emails = $memrow['email'] ;
 					$mail = $memrow['username'] ;
-					$body2 = "Hi, ".$mail." \n \n ".$username." add new member in team (".$team_name."). View new member profile at \n
- http://collap.com/profile.php?username=".$uname ;
-					collapMail($emails, "Member Added IN Team", $body2);
-				}
+					$userFirstName = $memrow['first_name'] ;
+					$userLastName = $memrow['last_name'] ;
+					$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>Add Member in Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+<p>A new member has been added in team ".$team_name.".</p>
+<p>".$team_name." has a new member ".$uname." in project ".ucfirst($title)."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+					collapMail($emails, "Member Added IN Team", $body2, file_get_contents('../html_comp/mailheader.php'));
+					}
 			}
 			$data = "<div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
 						<a type='submit' class='btn-link badge pull-right' id='remove_member' onclick='remove_member(\"".$pro_id."\", \"".$team_name."\", \"".$uid."\");' 

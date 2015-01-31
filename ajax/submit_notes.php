@@ -36,7 +36,7 @@ if($_POST['notes']){
 <h2>".ucfirst($title)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new Note has been created in project ".ucfirst($title).".</p>
 <p>".ucfirst($username)." has posted a new Note ".$notes_title." in project ".ucfirst($title)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
 <p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
 <p>Thanks,</p><p>Collap Team</p>
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
