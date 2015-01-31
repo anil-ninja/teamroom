@@ -95,8 +95,8 @@ if ($_POST['chal']) {
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>";
     if($owner_id == $user_id) {
-        $dropDown_challenge_get .= "<li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
-                              <li><button class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</button></li>";                    
+        $dropDown_challenge_get .= "<li><a class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</a></li>
+                              <li><a class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</a></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
                                     <form method='POST' class='inline-form'>
@@ -107,7 +107,7 @@ if ($_POST['chal']) {
                         } */                                   
                      }
                     else {
-        $dropDown_challenge_get = $dropDown_challenge_get ."<li><button class='btn-link' onclick='spem(\"".$chelangeid."\", 5);'>Report Spam</button></li>";
+        $dropDown_challenge_get = $dropDown_challenge_get ."<li><a class='btn-link' onclick='spem(\"".$chelangeid."\", 5);'>Report Spam</a></li>";
                     } 
         $dropDown_challenge_get = $dropDown_challenge_get ."</ul>
               </div>";
@@ -116,8 +116,8 @@ if ($_POST['chal']) {
         $dropDown_ch_after_accept = "<div class='list-group-item pull-right'>
                 <a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
                 <ul class='dropdown-menu' aria-labelledby='dropdown'>
-                    <li><button class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</button></li>
-                    <li><button class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</button></li>
+                    <li><a class='btn-link' onclick='edit_content(\"".$chelangeid."\", 1)'>Edit</a></li>
+                    <li><a class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</a></li>
                 </ul>
             </div>";                    
 //dropdown for chall after accept state ends 
@@ -390,10 +390,10 @@ if ($_POST['chal']) {
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
             <ul class='dropdown-menu' aria-labelledby='dropdown'>";
             if($creater_ID == $user_id) {
-                $show = $show . "<li><button class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</button></li>";
+                $show = $show . "<li><a class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</a></li>";
             } 
             else {
-               $show = $show . "<li><button class='btn-link' onclick='spem(\"".$comment_id."\", 6);'>Report Spam</button></li>";
+               $show = $show . "<li><a class='btn-link' onclick='spem(\"".$comment_id."\", 6);'>Report Spam</a></li>";
             }
                 $show = $show . "</ul>
         </div>";

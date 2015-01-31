@@ -100,15 +100,15 @@ if($_POST['id']){
 		}
 			//else { echo "Please Join Project First!"; }
 	}
-	$test .= "<div id='commentscontainer' id='comment_".$comment_id.">
+	$test .= "<div id='commentscontainer' id='comment_".$comment_id."'>
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 					</div>
-					<div class='list-group-item pull-right'>
+					<div class='dropdown pull-right'>
 						<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-						<ul class='dropdown-menu' aria-labelledby='dropdown'>
-							<li><button class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</button></li>
+						<ul class='dropdown-menu'>
+							<li><a class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</a></li>
 						</ul>
 					</div>
 					<div class='comment-text'>
