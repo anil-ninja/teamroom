@@ -57,6 +57,9 @@ $response = $request->execute();
 $graphObject = $response->getGraphObject()->asArray();
 // print profile data
 echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
+$friends = (new FacebookRequest( $session, 'GET', '/me/friends' ))->execute()->getGraphObject()->asArray();
+echo '<pre>' . print_r( $friends, 1 ) . '</pre>';
+
 // print logout url using session and redirect_uri (logout.php page should destroy the session)
 echo '<a href="' . $helper->getLogoutUrl( $session, 'logout.php' ) . '">Logout</a>';
 } else {
