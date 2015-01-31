@@ -571,13 +571,19 @@ function getnextprchal(clas, int) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result) ;
-					$('#prch').append(result);
-					$('.loading').remove();
-					showprclass(int) ;
-					var numItem = $('div.'+clas).length;
-					if (numItem < 3) {
-						getnextprchal(clas, int) ;
+					var notice = result.split("<") ;
+					if (notice['0'] == 'no data') {
+						$('#prch').append("<p align='center' style='font-size:24px;'>No Data Available</p>");
+						$('.loading').remove();
+					}
+					else {
+						$('#prch').append(result);
+						$('.loading').remove();
+						showprclass(int) ;
+						var numItem = $('div.'+clas).length;
+						if (numItem < 3) {
+							getnextprchal(clas, int) ;
+						}
 					}
 				}
 			});

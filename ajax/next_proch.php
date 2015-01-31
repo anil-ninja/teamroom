@@ -336,14 +336,16 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                $show = $show . "</div></div></div>";		
 	}	
 												
-	if(mysqli_error($db_handle)) 
-	{ 
+	if(mysqli_error($db_handle)) { 
 		echo "Failed!"; 
 	}
 	else { 
-		$_SESSION['lastpr'] = $a+$iR;
-		echo $show ; 
+		if(mysqli_num_rows($tasks) != 0) {
+			$_SESSION['lastpr'] = $a+$iR;
+			echo $show ;
 		}
+		else echo "no data" ;
+	}
 }
 	
 

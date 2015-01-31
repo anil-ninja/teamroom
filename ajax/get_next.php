@@ -416,14 +416,17 @@ if ($_POST['chal']) {
     }
     if (mysqli_error($db_handle)) {
         echo "Failed!";
-    } else {
-        $_SESSION['lastpanel'] = $a + $iR;
-        
-        echo $show ;
-        $iR = 0;
     }
+    else {
+		if(mysqli_num_rows($open_chalange) != 0) {
+			$_SESSION['lastpanel'] = $a + $iR;
+			echo $show ;
+		}
+		else echo "no data" ;
+    }
+    $iR = 0;
 }
-       else echo "Invalid parameters!";
+else echo "Invalid parameters!";
 mysqli_close($db_handle);
 ?>
 <script>

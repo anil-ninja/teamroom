@@ -29,13 +29,19 @@ function getnextchal (clas, int) {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result) ;
-					$('#panel-cont').append(result);
-					$('.loading').remove();
-					showclass(int) ;
-					var numItem = $('div.'+clas).length;
-					if (numItem < 3) {
-						getnextchal(clas, int) ;
+					var notice = result.split("<") ;
+					if (notice['0'] == 'no data') {
+						$('#panel-cont').append("<p align='center' style='font-size:24px;'>No Data Available</p>");
+						$('.loading').remove();
+					}
+					else {
+						$('#panel-cont').append(result);
+						$('.loading').remove();
+						showclass(int) ;
+						var numItem = $('div.'+clas).length;
+						if (numItem < 3) {
+							getnextchal(clas, int) ;
+						}
 					}
 				}
 			});
