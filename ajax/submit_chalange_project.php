@@ -27,14 +27,25 @@ if($_POST['challange']){
 	$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 	$inforow = mysqli_fetch_array($info) ;
 	$title = $inforow['project_title'] ;
-	$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
+	$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id' and
 										a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 	while ($memrow = mysqli_fetch_array($members)){
 		$emails = $memrow['email'] ;
 		$mail = $memrow['username'] ;
-		$body2 = "Hi, ".$mail." \n \n ".$username." Create Challenge IN Project (".$title."). View at \n
-http://collap.com/project.php?project_id=".$pro_id ;
-		collapMail($emails, " Challenge Created", $body2);
+		$userFirstName = $memrow['first_name'] ;
+		$userLastName = $memrow['last_name'] ;
+		$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($title)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+<p>A new Challenge has been created in project ".ucfirst($title).".</p>
+<p>".ucfirst($username)." has posted a new Challenge ".$challenge_title." in project ".ucfirst($title)."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+		collapMail($emails, "Challenge Created IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
 		} 
 	if (strlen($challange) < 1000) {
 		mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 

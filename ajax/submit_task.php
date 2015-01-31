@@ -33,9 +33,20 @@ if($_POST['taskdetails']){
 		$inforow = mysqli_fetch_array($info);
 		$mailto = $inforow['email'];
 		$mail = $inforow['username'];
-		$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$titlepro."). View at \n
-http://collap.com/project.php?project_id=".$pro_id ;
-		collapMail($mailto, "  Task  assign ", $body2);	
+		$userFirstName = $inforow['first_name'] ;
+		$userLastName = $inforow['last_name'] ;
+		$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+<p>A new Task has been assigned in project ".ucfirst($titlepro).".</p>
+<p>".ucfirst($username)." has assigned a new Task ".$title." in project ".ucfirst($titlepro)."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+		collapMail($mailto, "Task assigned IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
 		events($db_handle,$user_id,"12",$owner) ;	
 		if (strlen($details) < 1000) {
 			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
@@ -58,9 +69,20 @@ http://collap.com/project.php?project_id=".$pro_id ;
 		$owner = $ownersrow['user_id'] ;	
 		$mailto = $ownersrow['email'] ;	
 		$mail = $ownersrow['username'] ;
-		$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$titlepro."). View at \n
-http://collap.com/project.php?project_id=".$pro_id ;
-		collapMail($mailto, " Task  assign ", $body2);	
+		$userFirstName = $ownersrow['first_name'] ;
+		$userLastName = $ownersrow['last_name'] ;
+		$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+<p>A new Task has been assigned in project ".ucfirst($titlepro).".</p>
+<p>".ucfirst($username)." has assigned a new Task ".$title." in project ".ucfirst($titlepro)."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+		collapMail($mailto, "Task assigned IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
 		events($db_handle,$user_id,"12",$owner) ;
 		$insert =  mysqli_query($db_handle,"select user_id from teams where project_id = '$pro_id' and user_id = '$owner' ;") ;
 		if (mysqli_num_rows($insert) == 0){
@@ -94,9 +116,20 @@ http://collap.com/project.php?project_id=".$pro_id ;
 				$inforow = mysqli_fetch_array($info);
 				$mailto = $inforow['email'];
 				$mail = $inforow['username'];
-				$body2 = "Hi, ".$mail." \n \n ".$username." assign Task to you IN Project (".$titlepro."). View at \n
-http://collap.com/project.php?project_id=".$pro_id ;
-				collapMail($mailto, "  Task  assign", $body2);
+				$userFirstName = $inforow['first_name'] ;
+				$userLastName = $inforow['last_name'] ;
+				$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+<p>A new Task has been assigned in project ".ucfirst($titlepro).".</p>
+<p>".ucfirst($username)." has assigned a new Task ".$title." in project ".ucfirst($titlepro)."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+				collapMail($mailto, "Task assigned IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
 				events($db_handle,$user_id,"12",$owner) ;	
 				mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ; 
 			}                  

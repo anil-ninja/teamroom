@@ -10,6 +10,13 @@ if($_POST['notes']){
 	$notestext = $_POST['notes'] ;
 	$image = $_POST['img'] ;
 	$remaintime = 99 ;
+	if (strlen($image) < 30 ) {
+		$notes = $notestext ;
+	}
+	else {
+		$notes = $image."<br/> ".$notestext ;
+	}
+	$notes_title = $_POST['notes_title'] ;
 	$firstname = $_SESSION['first_name'] ;
 	$username = $_SESSION['username'] ;
 	$time = date("Y-m-d H:i:s") ;
@@ -17,22 +24,26 @@ if($_POST['notes']){
 	$inforow = mysqli_fetch_array($info) ;
 	$title = $inforow['project_title'] ;
 	$type = $inforow['project_type'] ;
-	$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username from teams as a join user_info as b where a.project_id = '$pro_id' and
+	$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id' and
 										a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 	while ($memrow = mysqli_fetch_array($members)){
 		$emails = $memrow['email'] ;
 		$mail = $memrow['username'] ;
-		$body2 = "Hi, ".$mail." \n \n ".$username." Create Issue IN Project (".$title."). View at \n
- http://collap.com/project.php?project_id=".$pro_id ;
-		collapMail($emails, " Issue Created IN Project ", $body2);
+		$userFirstName = $memrow['first_name'] ;
+		$userLastName = $memrow['last_name'] ;
+		$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>".ucfirst($title)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+<p>A new Issue has been created in project ".ucfirst($title).".</p>
+<p>".ucfirst($username)." has posted a new Issue ".$notes_title." in project ".ucfirst($title)."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View your contribution</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
+		collapMail($emails, "Issue Created IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
 		} 
-	if (strlen($image) < 30 ) {
-		$notes = $notestext ;
-		}
-		else {
-			$notes = $image."<br/> ".$notestext ;
-			}
-	$notes_title = $_POST['notes_title'] ;
 	if (strlen($notes) < 1000) {
 		mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, project_id, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 
 									VALUES ('$user_id', '$notes_title', '$pro_id', '$notes', '1', '1', '9', '$time') ; ") ;
