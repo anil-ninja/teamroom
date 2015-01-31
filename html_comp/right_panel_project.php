@@ -117,6 +117,7 @@
 		</div>
 		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
 		<div class="panel-body" style="padding: 1px;">
+			<button class='btn-link' style='color: #000' id='eye_open' ><span class='icon-eye-open'></span> ALL</button><br/>
 			<button class='btn-link' style='color: #000' id='sign' ><span class='icon-question-sign'></span> Open challenges</button><br/>
 			<button class='btn-link' style='color: #000' id='deciduous' ><span class='icon-leaf'></span> Notes </button><br/>
 			<button class='btn-link' style='color: #000' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button><br/>

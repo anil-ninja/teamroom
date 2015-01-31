@@ -77,7 +77,7 @@ if ($_POST['last_article']) {
         $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt']))));
         $comment_user_id = $commenterRow['user_id'];
         $show_article = $show_article. "<div id='commentscontainer'>
-				<div class='comments clearfix' id='comment_".$comment_id.">
+				<div class='comments clearfix' id='comment_".$comment_id."'>
 					<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 					</div>" ;

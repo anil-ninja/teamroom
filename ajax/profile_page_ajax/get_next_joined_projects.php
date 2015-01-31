@@ -53,7 +53,7 @@ if ($_POST['next_JnPr']) {
         $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
         $comment_user_id = $displayrowc['user_id'];
 $show_JP = $show_JP.  "<div id='commentscontainer'>
-                <div class='comments clearfix' id='comment_".$ida.">
+                <div class='comments clearfix' id='comment_".$ida."'>
                     <div class='pull-left lh-fix'>
                         <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
                     </div>";

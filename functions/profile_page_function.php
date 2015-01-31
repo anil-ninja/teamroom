@@ -328,7 +328,7 @@ function project_comments($db_handle, $project_id) {
         $idB = $displayrowc['user_id'];
         $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
         echo "<div id='commentscontainer'>
-                <div class='comments clearfix' id='comment_".$ida.">
+                <div class='comments clearfix' id='comment_".$ida."'>
                     <div class='pull-left lh-fix'>
                         <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
                     </div>";
@@ -378,7 +378,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
         $username_comment_ninjas = $commenterRow['username'];
         $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt']))));
         echo "<div id='commentscontainer'>
-				<div class='comments clearfix' id='comment_".$comment_id.">
+				<div class='comments clearfix' id='comment_".$comment_id."'>
 					<div class='pull-left lh-fix'>
 						<img src='".resize_image("uploads/profilePictures/$username_comment_ninjas.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 					</div>" ;

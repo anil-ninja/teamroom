@@ -235,7 +235,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             $display_task_stmt_content = "" ;
         }
         else if ($status_task == 4) {
-            echo "<div class='list-group flag'>
+            echo "<div class='list-group sign'>
                     <div class='list-group-item'>";
             if (($id_create == $user_id) && (isset($_SESSION['user_id']))) {
                 echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$id_task."\", 6)'>Close</button>";
@@ -294,7 +294,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $chalangeres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt']))));
         echo "
 		<div id='commentscontainer'>
-			<div class='comments clearfix' id='comment_".$idc.">
+			<div class='comments clearfix' id='comment_".$idc."'>
 				<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username_commenter.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 				</div>" ;

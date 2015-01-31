@@ -116,7 +116,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
     if ($type_task == 5) {
          if ($status_task == 2) {
 			 $show .= "<div class='list-group pushpin'>
-                                    <div class='list-group-item'>";
+                          <div class='list-group-item'>";
                                     
              $show = $show . $dropdown1 ;
              $dropdown1 = ""; 
@@ -138,8 +138,8 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                  
         }
         if ($status_task == 4) {
-			$show = $show . "<div class='list-group flag'>
-                                            <div class='list-group-item'>";                               
+			$show = $show . "<div class='list-group pushpin'>
+                                 <div class='list-group-item'>";                               
             if ($id_create == $user_id) {
                 $show = $show . "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$id_task ."\", 6)'>Close</button>";
             }
@@ -231,7 +231,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                         
         }
         if ($status_task == 4) {
-            $show = $show . "<div class='list-group flag'>
+            $show = $show . "<div class='list-group sign'>
                                 <div class='list-group-item'>";
                     
     //dropdown for delete/edit/span challenge starts
@@ -291,7 +291,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                 $comment_user_id = $displayrowb['user_id'];
 		$show = $show . "
 		<div id='commentscontainer'>
-			<div class='comments clearfix' id='comment_".$idc.">
+			<div class='comments clearfix' id='comment_".$idc."'>
 				<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username_commenter_pr_ch.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 				</div>" ;
