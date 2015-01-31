@@ -20,7 +20,7 @@ function delcomment(ID, type) {
 			cache: false,
 			success: function(result){
 				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				location.reload();
+				document.getElementById("comment_"+ID).remove();
 				}
 			});
        }

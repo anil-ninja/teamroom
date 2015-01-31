@@ -294,7 +294,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $chalangeres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt']))));
         echo "
 		<div id='commentscontainer'>
-			<div class='comments clearfix'>
+			<div class='comments clearfix' id='comment_".$idc.">
 				<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username_commenter.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 				</div>" ;

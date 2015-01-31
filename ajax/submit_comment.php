@@ -100,7 +100,7 @@ if($_POST['id']){
 		}
 			//else { echo "Please Join Project First!"; }
 	}
-	$test .= "<div id='commentscontainer'>
+	$test .= "<div id='commentscontainer' id='comment_".$comment_id.">
 				<div class='comments clearfix'>
 					<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;

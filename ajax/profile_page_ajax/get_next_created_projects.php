@@ -68,7 +68,7 @@ if ($_POST['next_CP']) {
         $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
         $comment_user_id = $displayrowc['user_id'];
 $show_CP = $show_CP.  "<div id='commentscontainer'>
-                <div class='comments clearfix'>
+                <div class='comments clearfix' id='comment_".$ida.">
                     <div class='pull-left lh-fix'>
                         <img src='".resize_image("uploads/profilePictures/$username_pr_comment.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
                     </div>";

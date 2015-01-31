@@ -291,7 +291,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                 $comment_user_id = $displayrowb['user_id'];
 		$show = $show . "
 		<div id='commentscontainer'>
-			<div class='comments clearfix'>
+			<div class='comments clearfix' id='comment_".$idc.">
 				<div class='pull-left lh-fix'>
 					<img src='".resize_image("uploads/profilePictures/$username_commenter_pr_ch.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 				</div>" ;
