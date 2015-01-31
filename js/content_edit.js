@@ -143,7 +143,7 @@ function saveeditedproject(ID)  {
 				url: "ajax/edit_pro_stmt.php",
 				data: dataString,
 				cache: false,
-				success: function(html){
+				success: function(result){
 					$("#project_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',project)))));
 					$("#project_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
 				}

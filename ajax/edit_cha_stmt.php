@@ -44,11 +44,18 @@ if($_POST['id']){
 			mysqli_query($db_handle,"update challenges set stmt='$chaaa', challenge_title='$project', last_update = '$time' where challenge_id='$id';") ;
 		}
 		else {
-			mysqli_query($db_handle,"update challenges set challenge_title='$project', last_update = '$time' where challenge_id='$id';") ;
 			$myquery1 = mysqli_query($db_handle,"select blob_id from challenges where challenge_id='$id';") ;
 			$myquery1Row = mysqli_fetch_array($myquery1) ;
 			$blob = $myquery1Row['blob_id'] ;
-			mysqli_query($db_handle,"update blobs set stmt='$chaaa' where blob_id='$blob';") ;
+			if($blob != '0') {
+				mysqli_query($db_handle,"update blobs set stmt='$newstmt' where blob_id='$blob';") ;
+				mysqli_query($db_handle,"update challenges set challenge_title='$project', last_update = '$time' where challenge_id='$id';") ;
+			}
+			else {
+				mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt)	VALUES (default, '$newstmt');");
+				$idb = mysqli_insert_id($db_handle);
+				mysqli_query($db_handle,"update challenges set challenge_title='$project', blob_id = '$idb', last_update = '$time' where challenge_id='$id';") ;
+			}
 		}
 		echo showLinks($chaaa) ;
 	}

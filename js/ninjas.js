@@ -288,7 +288,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 				submitCreateArticle1("",data1,url1);
 			}
 				return false ;
-		} else {
+		}
+		else {
 
 		var data = new FormData();
 		data.append('file', _file.files[0]);

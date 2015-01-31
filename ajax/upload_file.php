@@ -10,7 +10,6 @@ function checkNCreateFolder($username,$dir){
 		mkdir($root.$username."/".$dir, 0777, true);
 	}
 	return 'uploads/'.$username."/".$dir;
-	
 }
 	
 function saveFile($filePath){
