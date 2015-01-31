@@ -36,7 +36,7 @@
 	}
 	$ProjectPicLink4 =explode("\"",$ProjectPic4)['1'] ; 				
 	$ProjectPic4 = "<img src='".resize_image($ProjectPicLink4, 280, 280, 1)."' onError=this.src='img/default.gif' style='width:100%;'>" ;				
-	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and member_status = '1' ;") ;
+	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and member_status = '1' and user_id !='0' ;") ;
 	$collaboratorNo = mysqli_num_rows($collaborators) ;
 	echo $ProjectPic4."<br/><br/>
 		<div class ='row-fluid' style='margin: 4px;'><span class='color strong' style= 'font-family: Tenali Ramakrishna, sans-serif;font-size: 24px;'>
