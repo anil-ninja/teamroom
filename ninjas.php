@@ -95,7 +95,7 @@ $(".nav-btntab").bind("click", function(){
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();
          $('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
-         var dataString = 'chal=10' ;
+         var dataString = 'chal=6' ;
          var value = parseInt($("#viewchid").val()) ;
 			$.ajax({
 				type: "POST",

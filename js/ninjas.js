@@ -22,7 +22,7 @@ function getnextchal (clas, int) {
 	$('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
 	var numItems = $('div.'+clas).length;
 	if (numItems < 3) {
-	var dataString = 'chal=10' ;
+	var dataString = 'chal=6' ;
 		$.ajax({
 				type: "POST",
 				url: "ajax/get_next.php",
@@ -33,6 +33,10 @@ function getnextchal (clas, int) {
 					$('#panel-cont').append(result);
 					$('.loading').remove();
 					showclass(int) ;
+					var numItem = $('div.'+clas).length;
+					if (numItem < 3) {
+						getnextchal(clas, int) ;
+					}
 				}
 			});
 		}

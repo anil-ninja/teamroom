@@ -199,7 +199,7 @@ if ($_POST['chal']) {
 		$get_display_ch_stmt_content = "" ;
     }
     if ($ctype == 9) {
-        $show = $show . "<div class='list-group asterisk'> 
+        $show = $show . "<div class='list-group challenge'> 
 				<div class='list-group-item'> " ;
             
 		$show = $show . $dropDown_challenge_get;

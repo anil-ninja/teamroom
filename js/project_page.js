@@ -213,6 +213,8 @@ $("#sign").click(function(){
   	$(".asterisk").hide(1000);
   	$(".flag").hide(1000);
     $(".sign").show(1000);
+    $("#viewprchid").val(2);
+    getnextprchal('sign',2) ;
   });
   $("#deciduous").click(function(){
   	$(".sign").hide(1000);
@@ -221,6 +223,8 @@ $("#sign").click(function(){
   	$(".asterisk").hide(1000);
   	$(".flag").hide(1000);
     $(".deciduous").show(1000);
+    $("#viewprchid").val(3);
+    getnextprchal('deciduous',3) ;
   });
   $("#pushpin").click(function(){
   	$(".sign").hide(1000);
@@ -229,6 +233,8 @@ $("#sign").click(function(){
   	$(".videofilm").hide(1000);
   	$(".flag").hide(1000);
     $(".pushpin").show(1000);
+    $("#viewprchid").val(4);
+    getnextprchal('pushpin',4) ;
   });
   $("#flag").click(function(){
   	$(".sign").hide(1000);
@@ -237,6 +243,8 @@ $("#sign").click(function(){
   	$(".asterisk").hide(1000);
   	$(".pushpin").hide(1000);
   	$(".deciduous").hide(1000);
+  	$("#viewprchid").val(5);
+    getnextprchal('flag',5) ;
   });
   $("#filmprj").click(function(){
   	$(".sign").hide(1000);
@@ -245,6 +253,8 @@ $("#sign").click(function(){
   	$(".pushpin").hide(1000);
   	$(".asterisk").hide(1000);
   	$(".deciduous").hide(1000);
+  	$("#viewprchid").val(6);
+    getnextprchal('videofilm',6) ;
   });
   $("#asterisk").click(function(){
   	$(".sign").hide(1000);
@@ -253,6 +263,8 @@ $("#sign").click(function(){
   	$(".pushpin").hide(1000);
   	$(".asterisk").show(1000);
   	$(".deciduous").hide(1000);
+  	$("#viewprchid").val(7);
+    getnextprchal('asterisk',7) ;
   });
 });	
 	
@@ -545,5 +557,95 @@ function invitememb(ID){
 					}
 				}
 			});
+		}
+	}
+function getnextprchal(clas, int) {
+	$('#prch').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
+	var numItems = $('div.'+clas).length;
+	if (numItems < 3) {
+	var ID = $("#ProjectIDValue").val() ;
+	var dataString = 'proch=5' + '&project_id=' + ID ;
+		$.ajax({
+				type: "POST",
+				url: "ajax/next_proch.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					//alert(result) ;
+					$('#prch').append(result);
+					$('.loading').remove();
+					showclass(int) ;
+					var numItem = $('div.'+clas).length;
+					if (numItem < 3) {
+						getnextprchal(clas, int) ;
+					}
+				}
+			});
+		}
+	}
+function showprclass(int) {
+	switch(int){
+		case 1:
+			$(".sign").show(1000);
+			$(".deciduous").show(1000);
+			$(".pushpin").show(1000);
+			$(".videofilm").show(1000);
+			$(".flag").show(1000);
+			$(".asterisk").show(1000);
+			break;
+			
+		case 2:
+			$(".pushpin").hide(1000);
+			$(".deciduous").hide(1000);
+			$(".videofilm").hide(1000);
+			$(".asterisk").hide(1000);
+			$(".flag").hide(1000);
+			$(".sign").show(1000);
+			break;
+			
+		case 3:
+			$(".pushpin").hide(1000);
+			$(".deciduous").show(1000);
+			$(".videofilm").hide(1000);
+			$(".asterisk").hide(1000);
+			$(".flag").hide(1000);
+			$(".sign").hide(1000);
+			break;
+			
+		case 4:
+			$(".pushpin").show(1000);
+			$(".deciduous").hide(1000);
+			$(".videofilm").hide(1000);
+			$(".asterisk").hide(1000);
+			$(".flag").hide(1000);
+			$(".sign").hide(1000);
+			break;
+			
+		case 5:
+			$(".pushpin").hide(1000);
+			$(".deciduous").hide(1000);
+			$(".videofilm").hide(1000);
+			$(".asterisk").hide(1000);
+			$(".flag").show(1000);
+			$(".sign").hide(1000);
+			break;
+			
+		case 6:
+			$(".pushpin").hide(1000);
+			$(".deciduous").hide(1000);
+			$(".videofilm").show(1000);
+			$(".asterisk").hide(1000);
+			$(".flag").hide(1000);
+			$(".sign").hide(1000);
+			break;
+			
+		case 7:
+			$(".pushpin").hide(1000);
+			$(".deciduous").hide(1000);
+			$(".videofilm").hide(1000);
+			$(".asterisk").show(1000);
+			$(".flag").hide(1000);
+			$(".sign").hide(1000);
+			break;
 		}
 	}

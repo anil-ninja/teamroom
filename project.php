@@ -7,6 +7,7 @@ $Outgoings = mysqli_query($db_handle, "select challenge_id from challenges where
 $totalOutgoings = mysqli_num_rows($Outgoings) ;
 $teamsCount = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id';") ;
 $totalTeams = mysqli_num_rows($teamsCount) ;
+$view = 1 ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,6 +50,7 @@ $totalTeams = mysqli_num_rows($teamsCount) ;
                                 <i class='icon-star'> </i><span>Outgoings</span>
                                     <?php if($totalOutgoings != '0') { 
 										echo "<span class='badge'>".$totalOutgoings."</span>" ; 
+										echo "<input type='hidden' id='viewprchid' value='".$view."'/>";
 										}  ?>
                             </a>
                         </li>
@@ -124,16 +126,19 @@ $('#scrollFriends').jScrollPane() ;
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
+			$('#prch').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
 			var ID = $("#ProjectIDValue").val() ;
-			var dataString = 'proch=10' + '&project_id=' + ID ;
+			var dataString = 'proch=5' + '&project_id=' + ID ;
+			var value = parseInt($("#viewprchid").val()) ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/next_proch.php",
 				data: dataString,
 				cache: false,
 				success: function(result){
-					//alert(result) ;
 					$('#prch').append(result);
+					$('.loading').remove();
+					showprclass(value) ;
 				}
 			});
 		}
