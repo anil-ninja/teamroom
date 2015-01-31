@@ -574,7 +574,7 @@ function getnextprchal(clas, int) {
 					//alert(result) ;
 					$('#prch').append(result);
 					$('.loading').remove();
-					showclass(int) ;
+					showprclass(int) ;
 					var numItem = $('div.'+clas).length;
 					if (numItem < 3) {
 						getnextprchal(clas, int) ;
