@@ -328,17 +328,18 @@ function uploadFile(_file,typeOfPic,data1,url1,ID){
 			if ((res['1'] == "jpg") || (res['1'] == "jpeg") || (res['1'] == "png") || (res['1'] == "gif")){
 				var imgTx = "<img src=\""+ilink+"\" style=\"max-width: 100%;\" onError=\"this.src=\"img/default.gif\"\" />";
 			}
-				else {
-					var imgTx = ilink ;
-					}
-			if (imgTx.length < 30) { alert(imgTx); }
-		var dataString = data + '&img='+ imgTx ;
-		//alert(dataString) ;
-		}
 			else {
-				var	dataString =  data ;
-				//alert(dataString) ;			
-				}
+				var imgTx = ilink ;
+			}
+			var dataString = data + '&img='+ imgTx ;
+		}
+		else {
+			var	dataString =  data ;
+		}
+		if (ilink != "" && imgTx.length < 30) { 
+			bootstrap_alert(".alert_placeholder", imgTx, 5000,"alert-warning");
+		}
+		else {
 			$.ajax({
 				type: "POST",
 				url: url,
@@ -350,8 +351,9 @@ function uploadFile(_file,typeOfPic,data1,url1,ID){
 					$("#_fileChallenge_"+ID).val('');
 				}
 			});
-	$(".editbox").hide();
-	$(".text").show();  
+			$(".editbox").hide();
+			$(".text").show();
+		}  
 	}
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");

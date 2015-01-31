@@ -327,12 +327,15 @@ function bootstrap_alert(elem, message, timeout,type) {
 			else {
 				var imgTx = ilink ;
 			}
-			if (imgTx.length < 30) { bootstrap_alert(".alert_placeholder", imgTx, 5000,"alert-warning"); }
 			var dataString = data + '&img='+ imgTx ;
 		}
 		else {
 			var	dataString =  data ;
 		}
+		if (ilink != "" && imgTx.length < 30) { 
+			bootstrap_alert(".alert_placeholder", imgTx, 5000,"alert-warning");
+		}
+		else {
 		$.ajax({
 			type: "POST",
 			url: url,
@@ -434,7 +437,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 			}
 		});
-		return false; 
+		return false;
+	} 
 	}
 		function create_article(){
 			$("#create_article").attr('disabled','disabled');
