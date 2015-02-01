@@ -89,8 +89,6 @@ $(".nav-btntab").bind("click", function(){
 });
 </script>
 	<script>
-	$('.bs-component').jScrollPane();
-	$('#nav').jScrollPane();
 	$(window).scroll(function(event) {
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();

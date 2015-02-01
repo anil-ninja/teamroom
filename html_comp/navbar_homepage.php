@@ -31,12 +31,13 @@
                     <?php
                     if (isset($_SESSION['user_id'])) {
                     ?>
+                    <li><a class="btn-link" style='cursor: pointer;color: #fff;' href="index.php">Home &nbsp;&nbsp;&nbsp; | </a></li> 
                     <li>
                         <p id='step9' class="navbar-text" style='cursor: pointer;color: #fff;'>
                             <b> Rank :  
                                 <?php 
                                     $rank = $_SESSION['rank'];
-                                    echo $rank; ?>
+                                    echo $rank."&nbsp;&nbsp;&nbsp; | "; ?>
                             </b>
                         </p>
                     </li>

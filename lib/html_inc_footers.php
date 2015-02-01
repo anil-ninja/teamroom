@@ -208,8 +208,6 @@ function replaceAll(find, replace, str) {
    <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
 <script>
 	$('.bs-component').jScrollPane();
-	$('#nav').jScrollPane();
-	$('#demo7').jScrollPane();
 </script>
 
 

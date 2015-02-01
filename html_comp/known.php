@@ -4,8 +4,8 @@
               <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Collaborating With </b></span></a>
         </li>
     </ul>
-    <div id='demo7' class="tab-content" style='max-height:280px;'>
-        <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
+    <div id='demo7' class="tab-content bs-component" style='max-height:280px;'>
+        <div role="tabpanel" class="row tab-pane active " id="tabCreatedProjects" >
  <div>
 	<?php
 	$user_id = $_SESSION['user_id'] ;

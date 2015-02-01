@@ -45,14 +45,13 @@
 	float: left;
 }
 
-.jspTrack:hover
-{
+.bs-component:hover .jspTrack {
+
 	background: #F0F0F0;
 	position: relative;
 	border-radius:10px 10px 10px 10px;
 }
-
-.jspDrag:hover
+.bs-component:hover .jspDrag
 {
 	background: #a0a0a0;
 	position: relative;

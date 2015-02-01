@@ -6,9 +6,8 @@
               <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Recommended</b></span></a>
         </li>
 	</ul>
-	<div class="tab-content" >
+	<div class="tab-content bs-component" style='max-height:280px;'>
 	    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
-			<div class='bs-component' style='max-height:280px;'>
 <?php 
 	
 		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
@@ -54,7 +53,6 @@
 		}
 	} 
 ?>
-</div>
 </div>
 </div>
 </div>
