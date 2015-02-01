@@ -517,11 +517,11 @@ if ($_POST['notice']) {
 			}
 		}			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
-		$data .= "<a class='dropdown-toggle' data-toggle='dropdown' onclick='updatetime()'><i class='btn-success icon-bell'></i>" ;
+		$data .= "<a class='dropdown-toggle' data-toggle='dropdown' style='color: white; onclick='updatetime()'><i class='btn-success icon-bell'></i>" ;
 			if ($y != 0) {
 				$data = $data . "<span class='badge' style='padding: 0px; color: white;' id='countnotice'>".$y."</span>" ;
 				}
-	$data = $data . "</a>
+	$data = $data . "&nbsp;&nbsp; |</a>
 					<ul class='dropdown-menu pull-right'>
 							".$notice."
 							<span class='newnotices' ></span>

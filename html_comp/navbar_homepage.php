@@ -33,7 +33,7 @@
                     ?>
                     <li><a class="btn-link" style='cursor: pointer;color: #fff;' href="index.php">Home &nbsp;&nbsp;&nbsp; | </a></li> 
                     <li>
-                        <p id='step9' class="navbar-text" style='cursor: pointer;color: #fff;'>
+                        <p id='step9' class="navbar-text" style='color: #fff;'>
                             <b> Rank :  
                                 <?php 
                                     $rank = $_SESSION['rank'];
