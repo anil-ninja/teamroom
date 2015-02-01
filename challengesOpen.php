@@ -1,5 +1,6 @@
 <?php 
     include_once 'challengesOpen.inc.php'; 
+    include_once 'functions/extract_keywords.php';
 ?>
 <html lang="en">
     <head>
@@ -9,7 +10,7 @@
         
         <!-- for Google -->
         <meta name="description" content="<?= $obj->getDiscription(); ?>" />
-        <meta name="keywords" content="Challenges, Projects, Problem solving, problems" />
+        <meta name="keywords" content="<?php echo extract_keywords($obj->stmt); ?>" />
         <meta name="author" content="<?= $obj->first_name.$obj->last_name; ?>" />
         <meta name="copyright" content="true" />
         <meta name="application-name" content="Article" />

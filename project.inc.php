@@ -2,6 +2,7 @@
 include_once 'ninjas.inc.php';
 include_once 'html_comp/start_time.php';
 include_once 'functions/delete_comment.php';
+include_once 'functions/extract_keywords.php';
 include_once 'functions/image_resize.php';
 $pro_id = $_GET['project_id'] ;
 if (isset($_POST['request_order']) && ($_POST['select_order'] == 'ASC')) {
@@ -13,11 +14,10 @@ elseif (isset($_POST['request_order']) && ($_POST['select_order'] == 'DESC')) {
   mysqli_query($db_handle, "DELETE FROM project_order WHERE project_id ='$pro_id';");
 }
 
-if(!checkProject($pro_id,$user_id,$db_handle))
-	{	 
+if(!checkProject($pro_id,$user_id,$db_handle)) {	 
 	header("location: ninjas.php") ;
-		exit ;
-	} 	
+	exit ;
+} 	
 $user_id = $_SESSION['user_id'] ;
 $name = $_SESSION['first_name'];
 $rank = $_SESSION['rank'] ;
@@ -46,4 +46,13 @@ if ($pro_id == $order_check_pro_id) {
 else {
 	$sort_by = 'DESC';
 }
+$Outgoings = mysqli_query($db_handle, "select challenge_id from challenges where project_id ='$pro_id' and challenge_status != '3' AND challenge_status != '7' ;");
+$totalOutgoings = mysqli_num_rows($Outgoings) ;
+$teamsCount = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id';") ;
+$totalTeams = mysqli_num_rows($teamsCount) ;
+$stmtproject = mysqli_query($db_handle, "(SELECT stmt FROM projects WHERE project_id = '$pro_id' and blob_id = '0')
+										UNION 
+										(SELECT b.stmt FROM projects as a join blobs as b WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id );");
+$stmtprojectRow = mysqli_fetch_array($stmtproject) ;
+$keywords = extract_keywords($stmtprojectRow['stmt']);
 ?>

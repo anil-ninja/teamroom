@@ -1,12 +1,7 @@
 <?php
 include_once 'project.inc.php';
-include_once 'functions/delete_comment.php';
 $pro_id = $_GET['project_id'] ;
  echo "<input type='hidden' id='ProjectIDValue' value='".$pro_id ."'/>" ;
-$Outgoings = mysqli_query($db_handle, "select challenge_id from challenges where project_id ='$pro_id' and challenge_status != '3' AND challenge_status != '7' ;");
-$totalOutgoings = mysqli_num_rows($Outgoings) ;
-$teamsCount = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id';") ;
-$totalTeams = mysqli_num_rows($teamsCount) ;
 $view = 1 ;
 ?>
 <!DOCTYPE html>
@@ -16,6 +11,7 @@ $view = 1 ;
         <meta charset="utf-8">
             <title><?= $projttitle ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="<?php echo $keywords;?>">
     <meta name="description" content="Challenge, Project, Problem solving, problem">
     <?php include_once 'lib/htmt_inc_headers.php'; ?>
   </head>
