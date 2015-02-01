@@ -9,7 +9,7 @@ function ninjas_intro(){
               },
               {
                 element: '#step1',
-                intro: '<b> Welcome To Collap </b> <br/> Post your Challenges, Articles and share your Ideas and Photos here.',
+                intro: '<b> Select Post Type </b> <br/> Post your Challenges, Articles and share your Ideas and Photos here.',
                 position: 'bottom'
               },
               {
@@ -19,17 +19,22 @@ function ninjas_intro(){
               },
               {
                 element: '#step3',
-                intro: "<b>Edit Reminders </b><br/> Edit reminders here",
+                intro: "<b>View and Edit Reminders </b><br/> You can see Reminders, which are set previously. You can also edit reminders here.",
                 position: 'bottom'
               },
               {
                 element: '#step4',
-                intro: '<b> Tasks To Do </b><br/> Track your task to do here.',
+                intro: '<b> Tasks To Do </b><br/> Get a list of Tasks, which are assigned to you or accepted by you.',
                 position: 'bottom'
               },
               {
                 element: '#step5',
-                intro: "<b> Tasks to Get Done</b><br/> Trak progress of your challenges/tasks assigned by you here",
+                intro: "<b> Tasks to Get Done</b><br/> Track progress of your challenges or tasks assigned by you here",
+                position: 'bottom'
+              },
+              {
+                element: '#step13',
+                intro: "<b> Post Filter </b><br/> Have a Eagle-eye view. Choose post of your interest by clicking options above Open-challenges, Articles, Ideas etc.",
                 position: 'bottom'
               },
               {
@@ -63,18 +68,13 @@ function ninjas_intro(){
                 position: 'bottom'
               },
               {
-                element: '#step13',
-                intro: "<b> Post Filter </b><br/> Filter the Posts by Selecting there type",
-                position: 'bottom'
-              },
-              {
                 element: '#step14',
-                intro: "<b> Links to your Projects </b><br/> Navigate through your projects by selecting one here",
+                intro: "<b> Link to Projects </b><br/> Navigate through projects by selecting one here",
                 position: 'bottom'
               },
               {
                 element: '#step15',
-                intro: "<b> Comments </b><br/> Put your comments here and click the button next to it",
+                intro: "<b> Comments </b><br/> You can comment over every Project, Challenge, Article etc. by selecting bar below it",
                 position: 'bottom'
               },
               {
@@ -167,11 +167,11 @@ function project_intro() {
             steps: [
 			  {
                 element: '#demo1',
-                intro: '<b> Welcome To Collap </b><br/> You can post Challenges, Notes and Assign Task and Create Team and Manege files by clicking here.',
+                intro: '<b> Welcome To Project </b><br/> You can post Challenges, Notes and Assign Task and Create Team and Manege files by clicking here.',
                 position: 'bottom'
               },
               {
-                element: '#dashboard_project',
+                element: '#home_project',
                 intro: "<b> Welcome To Collap </b><br/> You can view ongoing progress of project by clicking here.",
                 position: 'bottom'
               },

@@ -31,12 +31,13 @@
                     <?php
                     if (isset($_SESSION['user_id'])) {
                     ?>
+                    <li><a class="btn-link" style='cursor: pointer;color: #fff;' href="index.php">Home &nbsp;&nbsp;&nbsp; | </a></li> 
                     <li>
-                        <p id='step9' class="navbar-text" style='cursor: pointer;color: #fff;'>
+                        <p id='step9' class="navbar-text" style='color: #fff;'>
                             <b> Rank :  
                                 <?php 
                                     $rank = $_SESSION['rank'];
-                                    echo $rank; ?>
+                                    echo $rank."&nbsp;&nbsp;&nbsp; | "; ?>
                             </b>
                         </p>
                     </li>
@@ -47,7 +48,7 @@
                            <?php
                                 $username = $_SESSION['username'];
                                 $name = $_SESSION['first_name'];
-                                echo "<img style='width: 25px; height: 25px;' src='uploads/profilePictures/$username.jpg'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
+                                echo "<img style='width: 25px; height: 25px;' src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
                             ?>
                             <b class="caret"></b>
                         </a>
@@ -60,8 +61,8 @@
     <?php
     } else {
         echo "<li>
-                <p class='navbar-text' style='cursor: pointer'>
-                    <b><a data-toggle='modal' data-target='#SignIn' style='color: #fff;'>Sign In / Sign Up</a></b>
+                <p class='navbar-text' style='cursor: pointer;'>
+                    <a class='btn pull-right active' data-toggle='modal' data-target='#SignIn'>Sign In / Sign Up &nbsp;&nbsp;&nbsp;<i class='icon-chevron-sign-right'></i></a>
                 </p>
             </li>";
     }

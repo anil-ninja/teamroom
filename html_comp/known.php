@@ -4,8 +4,8 @@
               <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Collaborating With </b></span></a>
         </li>
     </ul>
-    <div id='demo7' class="tab-content" style='max-height:280px;'>
-        <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
+    <div id='demo7' class="tab-content bs-component" style='max-height:280px;'>
+        <div role="tabpanel" class="row tab-pane active " id="tabCreatedProjects" >
  <div>
 	<?php
 	$user_id = $_SESSION['user_id'] ;
@@ -53,7 +53,7 @@
 					}
 					else { echo "<div class ='row' style='margin: 4px 0px 4px 10px; background : rgb(240, 241, 242);'>" ; }
                           echo "<div class ='span3 ' style='padding:1px;'>
-                                    <img src='".resize_image("uploads/profilePictures/$usernameFriends.jpg", 30, 30)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
+                                    <img src='".resize_image("uploads/profilePictures/$usernameFriends.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
                                 </div>
                                 <div class = 'span8' style='font-size:12px;padding: 1px;'><span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriends. "'>" 
                                     .ucfirst($friendFirstName)." ".ucfirst($friendLastName)."</a></span><br/><span style='font-size:10px;'>"
@@ -67,7 +67,7 @@
 					}
 					else { echo "<div class ='row' style='margin: 4px 0px 4px 10px; background : rgb(240, 241, 242);'>" ; }
                           echo "<div class ='span3' style='padding:1px;'>
-                                    <img src='".resize_image("uploads/profilePictures/$usernameFriends.jpg", 30, 30)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
+                                    <img src='".resize_image("uploads/profilePictures/$usernameFriends.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
                                 </div>
                                 <div class = 'span6' style='font-size:12px;padding: 1px;'>
                                     <span class='color pull-left' id='new_added'><a href ='profile.php?username=" . $usernameFriends. "'>" 

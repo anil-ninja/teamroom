@@ -20,7 +20,7 @@ $view = 1 ;
    <div class='alert_placeholder'></div>
    <div class="" >
 		<div class="row-fluid" style='margin-top: 50px;'>  		
-       		<div id='tab1' class="span2 offset1">
+       		<div id='tab1' class="span2" style='margin-left:60px; width:280px;'>
    				<?php 
    					include_once 'html_comp/left_panel_ninjas.php';   
 				?>
@@ -65,7 +65,6 @@ if(width < 800) {
 
 $('#challange').on('keyup', function(){
     $(this).css('height', '50px');
-    alert ("dddddddd");
 });
 </script>
 <script>
@@ -90,13 +89,11 @@ $(".nav-btntab").bind("click", function(){
 });
 </script>
 	<script>
-	$('.bs-component').jScrollPane();
-	$('#nav').jScrollPane();
 	$(window).scroll(function(event) {
     if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
          event.preventDefault();
          $('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
-         var dataString = 'chal=10' ;
+         var dataString = 'chal=6' ;
          var value = parseInt($("#viewchid").val()) ;
 			$.ajax({
 				type: "POST",

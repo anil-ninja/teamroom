@@ -6,9 +6,8 @@
               <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Recommended</b></span></a>
         </li>
 	</ul>
-	<div class="tab-content" >
+	<div class="tab-content bs-component" style='max-height:280px;'>
 	    <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects">
-			<div class='bs-component' style='max-height:280px;'>
 <?php 
 	
 		$Recommended = mysqli_query($db_handle, "SELECT * FROM user_info where user_id NOT IN (SELECT a.user_id FROM user_info as a join 
@@ -31,9 +30,9 @@
 				$usernameFriendsr = $RecommendedRow['username'];
 				$useridFriendsr = $RecommendedRow['user_id'];
 				$friendRankr = $RecommendedRow['rank'];	     
-				echo "<div class ='row-fluid' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
+				echo "<div class ='row' style='margin: 4px 0px 4px 5px; background : rgb(240, 241, 242);'>
 						<div class ='span3' style='padding:1px;'>
-							<img src='".resize_image("uploads/profilePictures/$usernameFriendsr.jpg", 30, 30)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
+							<img src='".resize_image("uploads/profilePictures/$usernameFriendsr.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
 						</div>
 						<div id='demo9' class = 'span6' style='font-size:12px;padding: 1px;'>
 							<span class='color pull-left' id='new_added'>
@@ -54,7 +53,6 @@
 		}
 	} 
 ?>
-</div>
 </div>
 </div>
 </div>

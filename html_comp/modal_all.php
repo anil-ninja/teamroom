@@ -44,7 +44,6 @@
 <div id="signupwithoutlogin" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span6 offset3">
-            
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-unlock"></i>&nbsp;<span>Subscribe</span></a></li>
@@ -53,7 +52,7 @@
                 <div class="tab-content ">
                     <div class="tab-pane active">
                         <div class="row-fluid">
-                            <a href='collap.com'><p style='font-size:26px;text-align:center;'><img src ='img/collap.gif' style="width:50px; height:40px;">Collap</p></a>
+                            <a href='index.php'><p style='font-size:26px;text-align:center;'><img src ='img/collap.gif' style="width:50px; height:40px;">Collap</p></a>
                             <h4><i class="icon-user"></i>&nbsp;&nbsp;Let's Collaborate</h4>
                             <p style='font-size:14px;margin-top:20px;text-align:center; word-wrap: break-word;color:#3B5998;'>
                                 Collap is exodus to make collaboration strong. Lets work together to do more... 
@@ -62,7 +61,7 @@
                             <input type="email" class="input-block-level" id='subscriptionid' placeholder='Enter Email-ID'/>
                             <br>
                             <a href="#" class=" btn " onclick='Subscribe()'>Subscribe&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
-                            <a href='#' data-toggle='modal' class='btn btn-primary pull-right' data-target='#SignIn'>Sign up/Sign In</a>
+                            <a class='btn btn-primary pull-right' onclick='test2()'>Sign up/Sign In</a>
                         </div>
                     </div>
                 </div>
@@ -104,7 +103,6 @@
 <div id="AddTeam" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style='position:absolute;'>
     <div class="row-fluid">
         <div class="span6 offset3">
-            
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Create Team</span></a></li>

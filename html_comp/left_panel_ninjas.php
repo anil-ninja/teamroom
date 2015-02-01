@@ -1,40 +1,23 @@
 <br/>
-<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
-    <ul class="nav nav-tabs">
-        <li id='step6' class="active" >
 <?php 
     if (isset($_SESSION['user_id'])) {
-        echo "<a class='btn-link' data-toggle='modal' data-target='#createProject' style='cursor:pointer;padding :5px;color:#000;'> 
-                <b> Projects </b>
-                <font size='1'> &nbsp;&nbsp;&nbsp;
-                    <i class='icon-plus'></i>Add
-                </font>
+        echo "<a id='step6' class='btn btn-primary' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>  
+                <i class='icon-plus'></i>Create Projects
 			 </a>";
     }
     else {
-        echo "
-            <a class='btn-link' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;padding :5px ;color:#000;'> 
-                <b> Projects </b>
-                <font size='1'> &nbsp;&nbsp;&nbsp;
-                    <i class='icon-plus'></i>Add
-                </font>
-			 </a>";
+        echo "<a id='step6' class='btn btn-primary' data-toggle='modal' data-target='#SignIn' style='cursor:pointer;> 
+                <i class='icon-plus'></i>Create Projects
+			  </a>";
     }
 ?>
-        </li>
-    </ul>
-
-    <div class='list-group-item' style="padding-left: 0px; padding-right: 0px;">
-        
+<br/><br/>
+    <nav class="sidebar light">
+    <ul>
+		<div class='bs-component' style='max-height:120px;'>       
 <?php 
     if (isset($_SESSION['user_id'])) {              
- 		echo "
-			<div class='panel panel-default'>
-				<div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
-					<font size='2'><b>Classified Projects</b></font>
-                </div>
-				<div class='bs-component' style='max-height:130px; overflow-y:scroll;'>
-				<table><tbody>";   
+ 		echo "<li class='title'>Classified Projects</li>";   
         $project_title_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time, b.stmt 
                                                             FROM teams as a join projects as b WHERE a.user_id = '$user_id' 
                                                             AND a.project_id = b.project_id AND b.project_type = '2')  
@@ -43,12 +26,10 @@
                                                             FROM projects WHERE user_id = '$user_id' AND project_type= '2');");
         
         if (mysqli_num_rows($project_title_display) == 0) {
-			echo " <tr><td><i>No any projects to display,</i><br>
-					<a class='active' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
-						<font size='1'> 
+			echo " <li class='stick'>No any projects to display,<br>
+					<a class='active' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>
 							<i class='icon-plus'>&nbsp; Create Project</i>
-						</font>
-					</a></td></tr>";
+					</a></li>";
         } 
         else {
             while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
@@ -63,10 +44,10 @@
 					$ProjectPicFull = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 				}
 				$ProjectPicLink2 =explode("\"",$ProjectPicFull)[1] ; 			
-				$ProjectPic = "<img src='".resize_image($ProjectPicLink2, 15, 15)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
+				$ProjectPic = "<img src='".resize_image($ProjectPicLink2, 15, 15, 1)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
 				
-                if (strlen($p_title) > 15) {
-                    $prtitle = substr(ucfirst($p_title),0,15)." ...";
+                if (strlen($p_title) > 35) {
+                    $prtitle = substr(ucfirst($p_title),0,35)."...";
                 } 
                 else {
                     $prtitle = ucfirst($p_title) ;
@@ -76,33 +57,29 @@
                 $timefunc = date("j F, g:i a",strtotime($p_time));
                 $title =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefunc ;
                 // $remaining_time_own = remaining_time($p_time, $p_eta);
-                echo "<tr>
-						<td style='padding-left: 5px;'>
-							<a href = 'project.php?project_id=".$idpro."'>".$ProjectPic ."</a>
-						</td>
-						<td><a href = 'project.php?project_id=".$idpro."'>". $prtitle."</a></td>
-					  </tr>";
+                echo "<li class='stick'>
+							<a href = 'project.php?project_id=".$idpro."' style='white-space:nowrap;'>".$ProjectPic ." ". $prtitle."</a>
+					  </li>";
             }
-        }  
-        echo "</tbody></table></div>
-            </div>";
-    ?>
-			<div class='panel panel-default'>
-				<div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
-					<font size='2'><b>Public Projects</b></font>
-                </div>
-				<div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
-					<table><tbody>
+        }
+	}  
+    ?> 
+    </div>
+    </ul>
+    </nav>
+    <nav class="sidebar light">
+    <ul>
+		<div class='bs-component' style='max-height:120px;'> 
+		<li class='title'>Public Projects</li>
         <?php
+        if (isset($_SESSION['user_id'])) {
             $project_public_title_display = mysqli_query($db_handle, "SELECT * FROM projects WHERE user_id = '$user_id' and project_type = '1' ;") ;
             
             if (mysqli_num_rows($project_public_title_display) == 0) {
-                echo "<tr><td><i>No any projects to display,</i><br>
-					<a data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
-						<font size='1'> 
+                echo "<li class='stick'>No any projects to display,<br>
+					<a data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>
 							<i class='icon-plus'>&nbsp; Create Project</i>
-						</font>
-					</a></td></tr>";
+					</a></li>";
             } 
             else {
                 while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
@@ -116,10 +93,10 @@
 						$ProjectPicFull2 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 					}
 					$ProjectPicLink =explode("\"",$ProjectPicFull2)[1] ; 				
-					$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 15, 15)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
+					$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 15, 15, 1)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
 
-    				if (strlen($public_pr_titlep) > 15) {
-    					   $prtitlep = substr(ucfirst($public_pr_titlep),0,15)." ...";
+    				if (strlen($public_pr_titlep) > 35) {
+    					   $prtitlep = substr(ucfirst($public_pr_titlep),0,35)."...";
     					} 
                     else {
     					$prtitlep = ucfirst($public_pr_titlep) ;
@@ -129,35 +106,28 @@
     				$timefuncp = date("j F, g:i a",strtotime($p_timep));
     				$titlep =  strtoupper($public_pr_titlep)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncp ;
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
-        		echo "<tr>
-						<td style='padding-left: 5px;'>
-							<a href = 'project.php?project_id=".$idproject."'>".$ProjectPic2 ."</a>
-						</td>
-						<td><a href = 'project.php?project_id=".$idproject."'>". $prtitlep."</a></td>
-					  </tr>";
+        		echo "<li class='stick'>
+							<a href = 'project.php?project_id=".$idproject."' style='white-space:nowrap;'>".$ProjectPic2 ." ". $prtitlep."</a>
+					  </li>";
                 }
-            } 
-        ?>      </tbody></table>
-                </div>
-            </div>
-            <div class='panel panel-default'>
-				<div class='panel-heading' style ='padding: 0px 0px 0px 5px;'>
-					<font size='2'><b>Joined Projects</b></font>
-                </div>
-				<div class='bs-component' style='max-height:130px;overflow-y:scroll;'>
-					<table><tbody>
+            }
+		} 
+        ?> 
+        </div>
+        </ul>
+    </nav>
+    <nav class="sidebar light">
+    <ul>
+		<div class='bs-component' style='max-height:120px;'>  
+        <li class='title'>Joined Projects</li>
         <?php
+        if (isset($_SESSION['user_id'])) {
             $allJoinedProjects = mysqli_query($db_handle, "SELECT DISTINCT project_id FROM teams WHERE project_id NOT IN 
 																	  (SELECT project_id FROM projects WHERE user_id = '$user_id' and 
 																	  (project_type = '1' or project_type = '2')) and user_id = '$user_id' ;") ;
             
             if (mysqli_num_rows($allJoinedProjects) == 0) {
-                echo "<tr><td><i>No any projects to display,</i><br>
-                      <a data-toggle='modal' data-target='#createProject' style='cursor:pointer;'> 
-                          <font size='1'> 
-                             <i class='icon-plus'>&nbsp; Create Project</i>
-                          </font>
-                      </a></td></tr>";
+                echo "<li class='stick'>No any projects to display</li>";
             } 
             else {
                 while ($allJoinedProjectsRow = mysqli_fetch_array($allJoinedProjects)) {
@@ -175,10 +145,10 @@
 						$ProjectPicFull3 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 					}
 					$ProjectPicLink3 =explode("\"",$ProjectPicFull3)[1] ; 				
-					$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
+					$ProjectPic3 = "<img src='".resize_image($ProjectPicLink3, 15, 15, 1)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
 
-    				if (strlen($public_titlep) > 15) {
-    					   $publicTitle = substr(ucfirst($public_titlep),0,15)." ...";
+    				if (strlen($public_titlep) > 35) {
+    					   $publicTitle = substr(ucfirst($public_titlep),0,35)."...";
     					} 
                     else {
     					$publicTitle = ucfirst($public_titlep) ;
@@ -189,23 +159,23 @@
     				$publicTitleTooltip =  strtoupper($publicTitle)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$publicTimeFunction ;
     				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);
     				if($typeProject == 1){	
-						echo "<tr>
-								<td style='padding-left: 5px;'>
-									<a href = 'project.php?project_id=".$publicID."'>".$ProjectPic3 ."</a>
-								</td>
-								<td><a href = 'project.php?project_id=".$publicID."'>". $publicTitle."</a></td>
-							  </tr>";
+						echo "<li class='stick'>
+								<a href = 'project.php?project_id=".$publicID."' style='white-space:nowrap;'>".$ProjectPic3 ." ". $publicTitle."</a>
+							  </li>";
                      }
                 }
             } 
-        ?>       </tbody></table>
-                </div>
-            </div>
-        <?php
     }
+    echo "</div>
+    </ul>
+    </nav>
+    <nav class='sidebar light'>
+    <ul>
+    <div class='bs-component' style='max-height:200px;'> " ;
             // recommended project function defined in functions/delete_comment for use in profile page joined project tab
                 recommended_project ($db_handle);
             // function call here ends
         ?>
-        </div>	
-    </div>
+        </div>
+        </ul>
+    </nav>

@@ -18,13 +18,13 @@
                     <h4>Collaborate Grow and help Society</h4>
                     <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
                         <ul class="nav nav-tabs">
-                            <li class="active"><a href="index.php#panel1" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
-                            <li><a href="index.php#panel2" data-toggle="tab"><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
+                            <li><a href="index.php#panel1" data-toggle="tab"><i class="icon-lock"></i>&nbsp;<span>Login</span></a></li>
+                            <li class="active"><a href="index.php#panel2" data-toggle="tab" class="active "><i class="icon-user"></i>&nbsp;<span>Register</span></a></li>
                             <li><a href="index.php#panel3" data-toggle="tab"><i class="icon-key"></i>&nbsp;<span>Forgot Password</span></a></li>
                             <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
                         </ul>
                         <div class="tab-content ">
-                            <div class="tab-pane active" id="panel1">
+                            <div class="tab-pane" id="panel1">
                                 <div class="row-fluid">
                                     <div class="span5">
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Login Here</h4>
@@ -73,7 +73,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane" id="panel2">
+                            <div class="tab-pane active" id="panel2">
                                 <div class="row-fluid">
                                     <div class="span5">
                                         <h4><i class="icon-user"></i>&nbsp;&nbsp; Register Here</h4>
@@ -114,7 +114,7 @@
                                         </label>
                                         <br />
 
-                                        <a class=" btn " id = "request" onclick="validateSignupFormOnSubmit()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                                        <a class=" btn " id = "request_reg" onclick="validateSignupFormOnSubmit()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
 
                                     </div>
                                     <div class="span3">
@@ -132,11 +132,13 @@
                                         <h4><i class="icon-question"></i>&nbsp;&nbsp;Login</h4>
                                         <div class="box">
                                             <p>
-                                                Its your freedom to share ideas and connect with innovated, idealized minded person and help society to grow.
-                                            </p>
-                                            <p>
-                                                Its good to be here, lets charge ourself.
-                                            </p>
+											   Introducing a powerful online platform to collaborate with like minded people and change the world, 
+											   solving one problem at a time. 
+											 </p>
+											 <p>
+											   Collap offers a wide range of tools to identify a challenge and assemble your own team to collaborate and crack it.
+												Here’s to the the joy of collaborative problem solving! 
+											</p>
                                         </div>
                                         <div class="box">
                                             Already Have An Account.<br />

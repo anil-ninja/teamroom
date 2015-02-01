@@ -10,7 +10,6 @@ function checkNCreateFolder($username,$dir){
 		mkdir($root.$username."/".$dir, 0777, true);
 	}
 	return 'uploads/'.$username."/".$dir;
-	
 }
 	
 function saveFile($filePath){
@@ -30,7 +29,7 @@ function saveFile($filePath){
 			imagecopy($bg, $image, 0, 0, 0, 0, imagesx($image), imagesy($image));
 			imagedestroy($image);
 			$quality = 50; // 0 = worst / smaller file, 100 = better / bigger file 
-			imagejpeg($bg, "/var/www/html/collap_files/".$filePath . ".jpg", $quality);
+			imagejpeg($bg, "/var/www/html/collap_files/".explode(".", $filePath)['0'] . "_png.jpg", $quality);
 			imagedestroy($bg);
 
         }
@@ -48,18 +47,17 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 		
 		switch($_GET['typeOfPic']){
 			case "articlePic":
-					
-					$filePath = checkNCreateFolder($username,"articlePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
-					saveFile($filePath);
-					if($_FILES["file"]["type"] == "image/png"){
-						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/articlePic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
-					}
-					else
-						echo $filePath ;
-					exit;
-					
-					break;
+				$filePath = checkNCreateFolder($username,"articlePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
+				saveFile($filePath);
+				if($_FILES["file"]["type"] == "image/png"){
+					$temp = explode(".", $_FILES["file"]["name"]);
+					echo 'uploads/'.$username."/articlePic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
+				}
+				else
+					echo $filePath ;
+				exit;
+				
+				break;
 			
 			case "profilepic":
 				$pic = explode(".", $_FILES["file"]["name"]) ;
@@ -94,7 +92,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/challengePic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/challengePic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;
@@ -108,7 +106,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/ideaPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/ideaPic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;
@@ -122,7 +120,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/photoPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/photoPic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;
@@ -136,7 +134,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/projectPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/projectPic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;
@@ -150,7 +148,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/taskPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/taskPic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;
@@ -164,7 +162,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/projectchalPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/projectchalPic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;
@@ -178,7 +176,21 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/projectnotesPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/projectnotesPic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
+					}
+					else
+						echo $filePath;
+					exit;
+					
+				break;
+				
+			case "projectissuePic":
+			
+					$filePath = checkNCreateFolder($username,"projectissuePic")."/".date("Y-m-d_h:i:sa")."_".$_FILES["file"]["name"];
+					saveFile($filePath) ;
+					if($_FILES["file"]["type"] == "image/png"){
+						$temp = explode(".", $_FILES["file"]["name"]);
+						echo 'uploads/'.$username."/projectissuePic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;
@@ -192,7 +204,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
 					saveFile($filePath) ;
 					if($_FILES["file"]["type"] == "image/png"){
 						$temp = explode(".", $_FILES["file"]["name"]);
-						echo 'uploads/'.$username."/answerPic/".date("Y-m-d_h:i:sa")."_".$temp[0].".png.jpg";
+						echo 'uploads/'.$username."/answerPic/".date("Y-m-d_h:i:sa")."_".$temp[0]."_png.jpg";
 					}
 					else
 						echo $filePath;

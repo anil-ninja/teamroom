@@ -37,35 +37,30 @@ include_once 'functions/image_resize.php';
                        $time_display = date("j F, g:i a", strtotime($challenge_type_time));
                        
         $display_tilte_ch = "
-                <p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b> 
-                    <a class='btn-link' style='color:#3B5998; word-wrap: break-word;' href='challengesOpen.php?challenge_id=".$challenge_type_id."' target='_blank'>"
+                <span style='font-family: Tenali Ramakrishna, sans-serif;'><b> 
+                    <a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$challenge_type_id."' target='_blank'>"
                         .ucfirst($challenge_type_title)."
                     </a></b>
-                </p>";
+                </span><br/>";
         $display_fname_likes = "
                             <span style= 'color: #808080'> &nbspBy: 
-                                <a href ='profile.php?username=" . $challenge_type_username . "'>"
+                                <a href ='profile.php?username=" . $challenge_type_username . "' style= 'color: #808080'>"
                                     .ucfirst($challenge_type_first)." ".ucfirst($challenge_type_last)."
-                                </a> | ".$time_display."
-                            </span> | 
+                                </a> | ".$time_display." | </span>
                             <span class='icon-hand-up'>".$likes."</span> &nbsp 
                             <span class='icon-hand-down'>".$dislikes."</span>
-                        </div>                    
-                        <div class='list-group-item' style='font-size: 14px;'>
-                            <br/>".$challenge_type_stmt."<br/><br/>
+                            <hr/><span style='font-size: 14px;'>".$challenge_type_stmt."</span><br/>
                         </div>";
         echo "  <div class='list-group'>";
         if ($challenge_type_type == 1) {
             if ($challenge_type_status == 1 || $challenge_type_status == 2 || $challenge_type_status == 4 || $challenge_type_status == 5) {
-                echo "
-                    <div class='list-group-item'>";     
+                echo "<div class='list-group-item'>";     
                 echo $display_tilte_ch."
                         <span class='icon-question-sign'></span>".$display_fname_likes;
             } 
         }
         else if ($challenge_type_type == 7) {
-            echo "
-                    <div class='list-group-item'>";
+            echo "<div class='list-group-item'>";
             echo $display_tilte_ch."
                         <span class='icon-book'></span>".$display_fname_likes;
         }
@@ -154,7 +149,8 @@ include_once 'functions/image_resize.php';
         <?php
  include_once 'html_comp/signup.php' ; 
  include_once 'lib/html_inc_footers.php'; 
- include_once 'html_comp/login_signup_modal.php'; ?>
+ include_once 'html_comp/login_signup_modal.php';
+ mysqli_close($db_handle); ?>
 <div class='footer'>
 		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>

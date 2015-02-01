@@ -11,9 +11,7 @@ if ($_POST['next_JnPr']) {
     $username = $_SESSION['username'];
     $user_id = $_SESSION['user_id'];
     $ajoin = (int) $limit;
-    $bjoin = $ajoin + 3;
-    
-    
+    $bjoin = $ajoin + 3;    
     $project_created_display = mysqli_query($db_handle, "(SELECT a.project_id, a.project_title, a.stmt, a.creation_time, b.first_name, b.last_name, b.username FROM projects as a 
                                                             JOIN user_info as b WHERE a.project_id IN (SELECT teams.project_id from teams where teams.user_id = $profile_user_id) AND a.user_id != $profile_user_id and a.project_type = 1 AND a.blob_id = 0 AND a.user_id = b.user_id)
                                                         UNION 
@@ -35,14 +33,12 @@ if ($_POST['next_JnPr']) {
             
             $show_JP = $show_JP. "<div class='list-group'>
                                     <div class='list-group-item'>";
-            $show_JP = $show_JP. "<p style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
-                                    <a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
-                                    .ucfirst($project_title_table)."</a></b></p>
-                                <span style= 'color: #808080'>By: <a href ='profile.php?username=" . $username_project . "'>"
+            $show_JP = $show_JP. "<span style='font-family: Tenali Ramakrishna, sans-serif;'><b>
+                                    <a style='color:#3B5998;font-size: 26px;' href='project.php?project_id=".$project_id_table."' target='_blank'>" 
+                                    .ucfirst($project_title_table)."</a></b></span><br/>
+                                <span style= 'color: #808080;'>By: <a href ='profile.php?username=" . $username_project . "' style= 'color: #808080;'>"
                                     .ucfirst($fname)." ".ucfirst($lname)."</a> | ".$projectcreation."</span> 
-                                </div>
-                            <div class='list-group-item' style='font-size: 14px;'>
-                        <br/>".$project_stmt_table."</span><br/>";
+                                <hr/><span style='font-size: 14px;'>".$project_stmt_table."</span><br/>";
                                        
             $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$project_id_table' and a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -57,13 +53,10 @@ if ($_POST['next_JnPr']) {
         $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
         $comment_user_id = $displayrowc['user_id'];
 $show_JP = $show_JP.  "<div id='commentscontainer'>
-                <div class='comments clearfix'>
+                <div class='comments clearfix' id='comment_".$ida."'>
                     <div class='pull-left lh-fix'>
-                        <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
-                    </div>
-                    <div class='comment-text'>
-                        <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp</span> 
-                        <small>" . $projectres . "</small>";
+                        <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+                    </div>";
                 if (isset($_SESSION['user_id'])) {
 $show_JP = $show_JP. "<div class='list-group-item pull-right'>
                         <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
@@ -79,13 +72,16 @@ $show_JP = $show_JP. "<div class='list-group-item pull-right'>
         </div>";
                     
                 }
-            $show_JP = $show_JP. "</div>
+            $show_JP = $show_JP. "<div class='comment-text'>
+                        <span class='pull-left color strong'><a href ='profile.php?username=" . $username_pr_comment . "'>" . ucfirst($frstnam) . " " . ucfirst($lnam) . "</a>&nbsp;&nbsp;</span> 
+                        <small>" . $projectres . "</small>
+                        </div>
                 </div> 
             </div>";
     }
     $show_JP = $show_JP. "<div class='comments_".$project_id_table."'></div><div class='comments clearfix'>
             <div class='pull-left lh-fix'>
-                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
+                <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
             </div>";
     if (isset($_SESSION['user_id'])) {
     $show_JP = $show_JP. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$project_id_table."'

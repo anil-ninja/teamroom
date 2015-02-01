@@ -6,9 +6,8 @@ if(!isset($_SESSION['user_id']))
     header ('location: index.php');
 else {
     $user_id = $_SESSION['user_id'];
-    $pro_id = $_SESSION['project_id'];
+    $pro_id = $_GET['project_id'];
 } 
-    
 $team_name = 'Defaultteam';
 
 $teams_member_display = mysqli_query($db_handle, "select b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
@@ -58,7 +57,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                 while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                     $list_of_teams = $teams_name_displayRow['team_name'];
                     echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
-                                <a class='btn-link' onclick='loadteampanel(\"".$list_of_teams."\")'>"
+                                <a class='btn-link' onclick='loadteampanel(\"".$pro_id."\",\"".$list_of_teams."\")'>"
                                     .ucfirst($list_of_teams)."
                                 </a>
                             </div>";

@@ -5,7 +5,7 @@ include_once '../functions/collapMail.php';
 if($_POST['fname']){
 	$user_id = $_SESSION['user_id'] ;
 	$username = $_SESSION['username'];
-	$pro_id = $_SESSION['project_id'] ;
+	$pro_id = $_POST['project_id'] ;
 	$uname = mysqli_query($db_handle,"select * from user_info where user_id = '$user_id' ;") ;
 	$unamerow = mysqli_fetch_array($uname) ;
 	$name = $unamerow['username'] ;
@@ -19,15 +19,17 @@ if($_POST['fname']){
     mysqli_query($db_handle,"INSERT INTO user_info (first_name, last_name, email, username, password) 
                                     VALUES ('$fname', '$sname', '$email', '$password', '$password') ; ") ;
     $newuserid = mysqli_insert_id($db_handle);
-	$body2 = "Hi, ".$fname." ".$sname." \n \n ".$senderfname." ".$senderlname." added You in team n View at \n
+	$body2 = "Hi, ".$fname." ".$sname." \n \n ".$senderfname." ".$senderlname." added You in team \n
 To know details login to http://collap.com/. \n \n
             Username: ".$email." \n \n
             Password: ".$password ;
-	collapMail($email, " Invitation To Join ", $body2) ; 
-	mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
+	collapMail($email, " Invitation To Join ", $body2) ;
+	if($team != "") { 
+		mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
+	}
 	if(mysqli_error($db_handle)) { echo "An error occured Sorry try again!"; }
 	else { echo "Invitation Send Successfully !!!"; }	
 }	
-	else echo "Invalid parameters!";
-	mysqli_close($db_handle);
+else echo "Invalid parameters!";
+mysqli_close($db_handle);
 ?>

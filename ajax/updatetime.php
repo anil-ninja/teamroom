@@ -4,7 +4,7 @@ include_once "../lib/db_connect.php";
 if($_POST['update']){
 	$user_id = $_SESSION['user_id'];
 	$a = date("Y-m-d H:i:s") ;
-	$_SESSION['last_login'] = $a ;
+	//$_SESSION['last_login'] = $a ;
 	$case = $_POST['case'] ;
 	mysqli_query($db_handle, " UPDATE user_info SET last_login = '$a' WHERE user_id = '$user_id' ;") ;
 	if(mysqli_error($db_handle)) { echo "Failed"; }

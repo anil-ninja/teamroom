@@ -8,14 +8,14 @@ function insert($id, $user_ID,  $db_handle) {
 		mysqli_query($db_handle, " UPDATE notifications SET status = '1' WHERE user_id = '$id' ;") ;
 		}
 if ($_POST['notice']) {
-    $a = $_SESSION['last_login'] ;
+    $notificationTime = $_SESSION['last_login'] ;
 	$user_id = $_SESSION['user_id'] ;
 	$notice = "" ;
 	$data = "" ;
 	$data1 = "" ;
 	$y = 0 ;
 	$notice27 = mysqli_query($db_handle, "select Distinct b.first_name, b.username, a.project_id, a.project_title, a.creation_time from projects as a join user_info as b
-											where a.creation_time > '$a' and a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
+											where a.creation_time > '$notificationTime' and a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 		while($notice27row = mysqli_fetch_array($notice27)) {
 			$fname25 = ucfirst($notice27row['first_name']) ;
 			$project_id25 = $notice27row['project_id'] ;
@@ -32,10 +32,10 @@ if ($_POST['notice']) {
 			$y++ ;
 			}
 	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') 
-										 and timestamp > '$a' and event_creater != '$user_id' )
+										 and timestamp > '$notificationTime' and event_creater != '$user_id' )
 										 UNION
 										 (SELECT * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 ) 
-										 and p_c_id = '$user_id' and timestamp > '$a' and event_creater != '$user_id') order by timestamp DESC;") ;
+										 and p_c_id = '$user_id' and timestamp > '$notificationTime' and event_creater != '$user_id') order by timestamp DESC;") ;
 	while($notice1row = mysqli_fetch_array($notice1)) {
 		$eventid = $notice1row['id'] ;
 		$creater = $notice1row['event_creater'] ;
@@ -167,7 +167,7 @@ if ($_POST['notice']) {
 			
 			case 11:
 				$notice9 = mysqli_query($db_handle, "select a.project_id, a.project_title, b.team_name from projects as a join teams as b where
-													a.project_id = '$search_id' and b.project_id = a.project_id and b.team_creation > '$a';") ;
+													a.project_id = '$search_id' and b.project_id = a.project_id and b.team_creation > '$notificationTime';") ;
 				$notice9row = mysqli_fetch_array($notice9) ;
 				$pro_id7 = $notice9row['project_id'] ;
 				$team_name = $notice9row['team_name'] ;
@@ -187,7 +187,7 @@ if ($_POST['notice']) {
 			case 12:
 				$notice10 = mysqli_query($db_handle, "select a.challenge_id, a.project_id, a.challenge_title from challenges as a join challenge_ownership as b
 													  where a.user_id = '$creater' and b.user_id = '$user_id and a.challenge_type = '5' and a.challenge_status = '2'
-													  and a.creation_time > '$a' and a.challenge_id = b.challenge_id ;") ;
+													  and a.creation_time > '$notificationTime' and a.challenge_id = b.challenge_id ;") ;
 				$notice10row = mysqli_fetch_array($notice10) ;
 				$challenge_id8 = $notice10row['challenge_id'] ;
 				$pro_id8 = $notice10row['project_id'] ;
@@ -242,7 +242,7 @@ if ($_POST['notice']) {
 			
 			case 15:
 				$notice13 = mysqli_query($db_handle, "select a.project_id, a.project_title, b.team_name from projects as a join teams as b where
-													 a.project_id = '$search_id' and b.project_id = a.project_id and b.team_creation > '$a';") ;
+													 a.project_id = '$search_id' and b.project_id = a.project_id and b.team_creation > '$notificationTime';") ;
 				$notice13row = mysqli_fetch_array($notice13) ;
 				$pro_id11 = $notice13row['project_id'] ;
 				$team_name2 = $notice13row['team_name'] ;
@@ -390,7 +390,7 @@ if ($_POST['notice']) {
 				break;
 				
 			case 28:
-				$notice22 = mysqli_query($db_handle, " SELECT * FROM known_peoples where last_action_time > '$a' and status = '1' and knowning_id = '$user_id' and requesting_user_id = '$creater' ;") ;
+				$notice22 = mysqli_query($db_handle, " SELECT * FROM known_peoples where last_action_time > '$notificationTime' and status = '1' and knowning_id = '$user_id' and requesting_user_id = '$creater' ;") ;
 				$notice22row = mysqli_fetch_array($notice22) ;
 				$linkid = $notice22row['id'] ;
 				if(mysqli_num_rows($notice22) != 0) {
@@ -515,41 +515,13 @@ if ($_POST['notice']) {
 									</a></li>";
 				$y++ ;
 			}
-		}
-								
-	/* $notice16 = mysqli_query($db_handle, " select Distinct a.ownership_creation, a.comp_ch_ETA, b.challenge_id, b.challenge_title from challenge_ownership as a  
-											join challenges as b where b.challenge_id = a.challenge_id and a.status = '1' 
-											and a.user_id = '$user_id';") ;
-		while($notice16row = mysqli_fetch_array($notice16)) {
-			$comp_ch_ETA = strtotime($notice16row['comp_ch_ETA']*60) ;
-			$ownership_creation = strtotime($notice16row['ownership_creation']) ;
-			$challenge_id16 = $notice16row['challenge_id'] ;
-			$title16 = $notice16row['challenge_title'] ;
-			if (time() > ($comp_ch_ETA + $ownership_creation)) { 
-					//$dead_time = "Closed" ;
-					$y++ ;
-					$notice = $notice ."<span class='icon-time'></span><p style='font-size: 10px;'> Remaining Time Over</p><br/>
-										<a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "' >".$title16."</a><hr/>" ;
-				}
-			else {	
-					$remainingtime = (($comp_ch_ETA + $ownership_creation)-time()) ;
-				if ($remainingtime < ((24*60*60)-1)) {	
-						$hour = floor($remainingtime/(60*60)) ;
-						$hoursec = $remainingtime%(60*60) ;
-						$minute = floor($hoursec/60) ;
-						$notice = $notice ."<span class='icon-time'></span><p style='font-size: 10px;'> &nbsp; Deadline Reached (Remaining Time)
-											: ".$hour." Hours : ".$minute." Mins</p><br/><a href='challengesOpen.php?challenge_id=" . $challenge_id16 . "'>
-											".$title16."</a><hr/>" ;
-						$y++ ;
-					} 
-				} */
-			
+		}			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
-		$data .= "<a class='dropdown-toggle' data-toggle='dropdown' onclick='updatetime()'><i class='btn-success icon-bell'></i>" ;
+		$data .= "<a class='dropdown-toggle' data-toggle='dropdown' style='color: white; onclick='updatetime()'><i class='btn-success icon-bell'></i>" ;
 			if ($y != 0) {
 				$data = $data . "<span class='badge' style='padding: 0px; color: white;' id='countnotice'>".$y."</span>" ;
 				}
-	$data = $data . "</a>
+	$data = $data . "&nbsp;&nbsp; |</a>
 					<ul class='dropdown-menu pull-right'>
 							".$notice."
 							<span class='newnotices' ></span>

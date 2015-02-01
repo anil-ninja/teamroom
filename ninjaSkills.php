@@ -127,3 +127,4 @@ $user_id = $_SESSION['user_id'] ;
     </script>		  
 	</body>
 </html>	
+<?php mysqli_close($db_handle); ?>

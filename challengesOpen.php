@@ -57,7 +57,7 @@
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
                     <div class="list-group" style="margin: 20px 0px;">
-                        <div class="list-group-item">
+                        <div class="list-group-item" style="padding: 0px;">
 					<?php
 					$data = "" ;
 	   $userinfo = mysqli_query($db_handle, "SELECT * from user_info where user_id = '$challengeSearch_user_ID' ;") ;
@@ -81,7 +81,7 @@
 						<i>(&nbsp;".$usersRank."&nbsp;)</i>
 				</div>
 				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
-						<span class='icon-envelope' id='email' style='cursor: pointer;'>&nbsp;&nbsp;".$usersEmail."</span>" ;
+						<span class='icon-envelope' id='email_auth' style='cursor: pointer;'>&nbsp;&nbsp;".$usersEmail."</span>" ;
 	  if($usersPhone != 1) {    
 			  echo "&nbsp;&nbsp;&nbsp;&nbsp;<span class='icon-phone' id='phone' style='cursor: pointer'>&nbsp;&nbsp;&nbsp;".$usersPhone."</span>";
 	  }
@@ -192,11 +192,11 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                         <div role="tabpanel" class="row tab-pane active">
                 <?php 
                     $challenge_user = mysqli_query($db_handle, "(SELECT DISTINCT challenge_id, challenge_title, LEFT(stmt, 250) as stmt FROM challenges 
-                                                            WHERE challenge_type != '2' and challenge_type != '5' AND challenge_status !='3' AND challenge_status != '7' AND 
+                                                            WHERE challenge_type != '2' and challenge_type != '5' and challenge_type != '6' and challenge_type != '9' AND challenge_status !='3' AND challenge_status != '7' AND 
                                                             challenge_id != $challengeSearchID AND blob_id = '0')  
     														UNION 
     														(SELECT DISTINCT a.challenge_id, a.challenge_title, LEFT(b.stmt, 250) as stmt FROM challenges as a JOIN blobs as b 
-    														WHERE a.blob_id = b.blob_id  and challenge_type != '5' AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
+    														WHERE a.blob_id = b.blob_id  and challenge_type != '5' and challenge_type != '6' and challenge_type != '9' AND a.challenge_type != '2' AND a.challenge_status !='3' AND a.challenge_status != '7'
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
@@ -206,11 +206,11 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 							$ProjectPic = strstr($challenge_user_stmt, '<br/>' , true) ;
 							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
 							$ProjectPicLink =explode("\"",$ProjectPic)['1'] ; 				
-							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
+							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280, 2)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
 							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
 						}
 						else {
-							$ProjectStmt = $challenge_user_stmt ;
+							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_user_stmt))) ;
 						}
                         echo "
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
@@ -263,7 +263,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                         <p style='word-wrap: break-word;'>"
                                             .$project_title_stmt."....
                                         </p><br>
-                                    </div>
+                                    </div>`
                                 </a>
     					    </div>";
                     }

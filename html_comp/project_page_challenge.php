@@ -2,7 +2,7 @@
 include_once '../functions/delete_comment.php';
 include_once '../lib/db_connect.php';
 session_start();
-$pro_id = $_SESSION['project_id'];
+$pro_id = $_GET['project_id'];
 $totaltask = mysqli_query($db_handle, "select challenge_id from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status != '3' AND challenge_status != '7';") ;
 $totaltaskopen = mysqli_query($db_handle, "select challenge_id, creation_time, challenge_ETA from challenges WHERE project_id = '$pro_id' AND challenge_type = '5' AND challenge_status = '2';") ;
 $z = 0 ;

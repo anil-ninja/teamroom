@@ -55,18 +55,16 @@ if ($_POST['next']) {
                         $show = $show . "</ul>
                         </div>";
         }
-        $show = $show. "<p id='challenge_ti_".$challenge_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif; font-size: 24px; line-height: 42px;'><b>
-                <a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
-                    .ucfirst($challenge_title)."</a></b></p><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>                
-                <span class='icon-question-sign'></span><span style= 'color: #808080'> &nbsp; 
-                By: <a href ='profile.php?username=" . $chall_username . "'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span> | 
-                    <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'>
+        $show = $show. "<span id='challenge_ti_".$challenge_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif;'><b>
+                <a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
+                    .ucfirst($challenge_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>
+                <span class='icon-question-sign'></span><span style= 'color: #808080;'> &nbsp; 
+                By: <a href ='profile.php?username=" . $chall_username . "' style= 'color: #808080;'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation." | </span>
+                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$challenge_id ."\", 1)'>
                         <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'>
+                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$challenge_id ."\", 2)'>
                         <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
-                </div>
-                <div class='list-group-item'>
-            <br/><span id='challenge_".$challenge_id."' class='text' style='font-size: 14px;'>".$challenge_stmt."</span><br/>";
+                <hr/><span id='challenge_".$challenge_id."' class='text' style='font-size: 14px;'>".$challenge_stmt."</span><br/>";
 		$show = $show. editchallenge($challengestmt, $challenge_id) ;
         $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $challenge_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
@@ -79,13 +77,10 @@ if ($_POST['next']) {
         $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt']))));
         $comment_user_id = $commenterRow['user_id'];
         $show = $show. "<div id='commentscontainer'>
-				<div class='comments clearfix'>
+				<div class='comments clearfix' id='comment_".$comment_id."'>
 					<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>
-					</div>
-					<div class='comment-text'>
-						<span class='pull-left color strong'>&nbsp<a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
-						&nbsp&nbsp&nbsp" .$comment_all_ch ;
+					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+					</div>" ;
         if (isset($_SESSION['user_id'])) {
               $show = $show . "<div class='list-group-item pull-right'>
             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
@@ -100,11 +95,13 @@ if ($_POST['next']) {
              $show = $show . "</ul>
         </div>";
         }
-        $show = $show."</div></div></div>";
+        $show = $show."<div class='comment-text'>
+						<span class='pull-left color strong'><a href ='profile.php?username=" . $username_comment_ninjas . "'>" . ucfirst($commenterRow['first_name']) . " " . ucfirst($commenterRow['last_name']) . "</a></span>
+						&nbsp;&nbsp;" .$comment_all_ch."</div></div></div>";
     }
     $show = $show. "<div class='comments_".$challenge_id."'></div><div class='comments clearfix'>
                         <div class='pull-left lh-fix'>
-                            <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  onError=this.src='img/default.gif'>&nbsp
+                            <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
                         </div>";
                         if (isset($_SESSION['user_id'])) {
             $show = $show. "<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$challenge_id."'

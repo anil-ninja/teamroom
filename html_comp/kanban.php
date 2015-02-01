@@ -2,7 +2,6 @@
     include_once '../lib/db_connect.php';
     session_start();
     $user_id = $_SESSION['user_id'];
-    $pro_id = $_SESSION['project_id'];
     $team_name = 'Defaultteam';
 	$openChallenges = "";
 $open_chalange_of_project = mysqli_query($db_handle, "SELECT challenge_id, challenge_title, creation_time FROM challenges 

@@ -6,10 +6,9 @@ if(!isset($_SESSION['user_id']))
     header ('location: index.php');
 else {
     $user_id = $_SESSION['user_id'];
-    $pro_id = $_SESSION['project_id'];
 } 
 if ($_POST['team']) {
-
+	$pro_id = $_POST['project_id'];
     $data_display = "";
     $team_name = $_POST['team'];
     $teams_member_display = mysqli_query($db_handle, "SELECT b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
@@ -67,7 +66,7 @@ if ($_POST['team']) {
 
         $data_display = $data_display. "
                             <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
-                                <a class='btn-link' onclick='loadteampanel(\"".$list_of_teams."\"   )'>"
+                                <a class='btn-link' onclick='loadteampanel(\"".$pro_id."\",\"".$list_of_teams."\")'>"
                                     .ucfirst($list_of_teams)."
                                 </a>
                             </div>";
@@ -104,7 +103,7 @@ if ($_POST['team']) {
                             
                             <a href ='profile.php?username=" . $username . "'>
                                 <div class ='span2'>
-                                    <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
+                                    <img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif'>
                                 </div>
                                 <div class = 'span7' style='font-size:10px;'>
                                     <span class='color pull-left' id='new_added'>" 

@@ -107,7 +107,8 @@ $accessed_or_not = mysqli_num_rows($verify_check);
                 </div>
             </div>
         </form>
-            <?php   } ?>
+            <?php   }
+            mysqli_close($db_handle); ?>
         </div>
     <script>
 

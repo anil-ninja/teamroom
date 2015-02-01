@@ -78,7 +78,6 @@
 						<button type='submit' class='btn-link' name='projectphp' data-toggle='tooltip' 
 							data-placement='right' data-original-title='" . $tooltip . 
 							"'style='text-align: left;'>" . $chtitle ;
-							//. "<p style='font-size:8pt; color:rgba(161, 148, 148, 1); text-align: left;'>" . $remaining_time_own . "</p>
 				 echo "</button></a><br/>";
 			}
 		}
@@ -125,7 +124,6 @@
 						<button type='submit' class='btn-link' data-toggle='tooltip' 
 							data-placement='left' data-original-title='" . $tooltipas .
 							 "'style='text-align: right;'>" . $chtitleas ;
-							 //."<p style='font-size:8pt; color:rgba(161, 148, 148, 1);text-align: left;'>" . $remaining_time_ownas . "</p>
 					 echo "</button></a><br/>";
 			}
 		}
@@ -143,25 +141,25 @@
 		</div>
 		<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingFour">
 		<div class="panel-body" style="padding: 1px;">
-			<li><button class='btn-link' style='color: #000' id='allPanels' ><i class='icon-eye-open'></i> All</button></li>
-			<li><button class='btn-link' id='pencil' style='color: #000' ><i class='icon-question-sign'></i> <span>Open challenges</span></button></li>
-			<li><button class='btn-link' id='globe' style='color: #000'><span class='icon-book'></span> Articles</button></li>
-			<li><button class='btn-link' id='tree' style='color: #000'><span class='icon-lightbulb'></span> Ideas</button></li>
-			<li><button class='btn-link' id='okch' style='color: #000'><span class='icon-flag'></span> Completed challenges </button></li>
-			<li><button class='btn-link' id='filmnin' style='color: #000'><span class='icon-film'></span> Videos</button></li>
-			<li><button class='btn-link' id='picch' style='color: #000'><span class='icon-picture'></span> Pics</button></li>
+			<button class='btn-link' style='color: #000' id='allPanels' ><i class='icon-eye-open'></i> All</button><br/>
+			<button class='btn-link' id='pencil' style='color: #000' ><i class='icon-question-sign'></i> <span>Open challenges</span></button><br/>
+			<button class='btn-link' id='globe' style='color: #000'><span class='icon-book'></span> Articles</button><br/>
+			<button class='btn-link' id='tree' style='color: #000'><span class='icon-lightbulb'></span> Ideas</button><br/>
+			<button class='btn-link' id='okch' style='color: #000'><span class='icon-flag'></span> Completed challenges </button><br/>
+			<button class='btn-link' id='filmnin' style='color: #000'><span class='icon-film'></span> Videos</button><br/>
+			<button class='btn-link' id='picch' style='color: #000'><span class='icon-picture'></span> Pics</button>
 		</div>
 	</div>
     </div><br/>
 	<div class="panel panel-default">
 		<div class="panel-heading" style="padding: 5px;" role="tab" id="headingFour">
-			<i class='icon-user'></i>&nbsp;	Our Top Three Users
+			<i class='icon-user'></i>&nbsp; Top Users
 		</div>
 		<?php
 			$NoChal = 0 ;
 			$NoIdea = 0 ;
 			$NoArticle = 0 ;
-			$topusers = mysqli_query($db_handle, "select * from user_info order by rank DESC Limit 0, 3 ;") ;
+			$topusers = mysqli_query($db_handle, "select * from (select * from user_info order by rank DESC Limit 0, 5) as data ORDER BY rand() LIMIT 3 ;") ;
 			while($topusersrow = mysqli_fetch_array($topusers)) {
 				$FirstName = $topusersrow['first_name'] ;
 				$LastName = $topusersrow['last_name'] ;
@@ -186,7 +184,7 @@
                         <div class='list-group-item'>
 							<div class ='row-fluid' style='margin: 4px;'>
 								<div class='span3'>
-									<img src='".resize_image("uploads/profilePictures/$UserName.jpg", 30, 30)."' onError=this.src='img/default.gif' style='width:30px;height:30px;'>
+									<img src='".resize_image("uploads/profilePictures/$UserName.jpg", 30, 30, 2)."' onError=this.src='img/default.gif' style='width:30px;height:30px;'>
 								</div>
 								<div class='span8'>
 									<a href ='profile.php?username=".$UserName."'>".ucfirst($FirstName)." ".ucfirst($LastName)." &nbsp;  (&nbsp;".$Rank."&nbsp;)</a>

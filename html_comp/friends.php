@@ -1,6 +1,6 @@
 <?php if(isset($_SESSION['user_id'])) { 
     $user_id = $_SESSION['user_id'] ?> 	
-		<div id="nav">
+		<div id="nav" class='bs-component'>
             <div id='step16' class="nav-btn"><p class="icon-chevron-left"></p><p class="icon-comment"></p>
             </div>
             <div class="panel-body" style="padding: 1px;">
@@ -31,7 +31,7 @@
             echo "  <div class ='row-fluid' style=' margin:4px; background : rgb(240, 241, 242);'>
                         <a href=\"javascript:void(0)\" onclick=\"javascript:chatWith('".$usernameFriends."')\">
                             <div class ='span3'>
-                                    <img src='".resize_image("uploads/profilePictures/$usernameFriends.jpg", 30, 30)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+                                    <img src='".resize_image("uploads/profilePictures/$usernameFriends.jpg", 30, 30, 2)."'  style='width:30px; height:30px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
                             </div>
                             <div class = 'span7' style='font-size:10px;'>"
                             .ucfirst($friendFirstName)." ".ucfirst($friendLastName) ;
@@ -64,7 +64,7 @@
 			$friendRankr = $RecommendedRow['rank'];	     
 			echo "<div class ='row-fluid' style=' margin:1px; background : rgb(240, 241, 242);'>
 					<div class ='span3'>
-						<img src='".resize_image("uploads/profilePictures/$usernameFriendsr.jpg", 30, 30)."' style='height:30px;' onError=this.src='img/default.gif' class='img-responsive'>
+						<img src='".resize_image("uploads/profilePictures/$usernameFriendsr.jpg", 30, 30, 2)."' style='height:30px;' onError=this.src='img/default.gif' class='img-responsive'>
 					</div>
 					<div id='demo9' class = 'span6' style='font-size:10px;'>
 						<span class='color pull-left' id='new_added'>
