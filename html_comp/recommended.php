@@ -30,7 +30,7 @@
 				$usernameFriendsr = $RecommendedRow['username'];
 				$useridFriendsr = $RecommendedRow['user_id'];
 				$friendRankr = $RecommendedRow['rank'];	     
-				echo "<div class ='row-fluid' style='border-width: 1px; margin: 4px 0px 4px 0px; background : rgb(240, 241, 242);'>
+				echo "<div class ='row' style='margin: 4px 0px 4px 5px; background : rgb(240, 241, 242);'>
 						<div class ='span3' style='padding:1px;'>
 							<img src='".resize_image("uploads/profilePictures/$usernameFriendsr.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif' style='height:30px; width: 30px;' class='img-responsive'>
 						</div>
