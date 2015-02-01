@@ -23,7 +23,14 @@ function bootstrap_alert(elem, message, timeout,type) {
 			$(v).width(colWidth[i]);
 		});    
 	}).resize();
-
+function showpanel(){
+		$('#indexproject').show();
+		$('#aboutproject').hide();
+	}
+	function hidepanel(){
+		$('#indexproject').hide();
+		$('#aboutproject').show();
+	}
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 	}		

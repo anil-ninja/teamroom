@@ -51,7 +51,8 @@ $view = 1 ;
                                     <?php if($totalOutgoings != '0') { 
 										echo "<span class='badge'>".$totalOutgoings."</span>" ; 
 										echo "<input type='hidden' id='viewprchid' value='".$view."'/>";
-										}  ?>
+										}  
+									?>
                             </a>
                         </li>
                         <li>
@@ -86,8 +87,13 @@ $view = 1 ;
                  
             </div>      
             <div id='tab6' class="span2" style='width:260px'>
-                <br>
+				<br/>
+				<div id='aboutproject'>
                 <?php include_once 'html_comp/right_panel_project.php'; ?>
+                </div>
+                <div id='indexproject'>
+                <?php include_once 'html_comp/project_index.php'; ?>
+                </div>
             </div>	
         </div>
 		<?php 
@@ -110,14 +116,21 @@ $view = 1 ;
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
                  <script>
+					 hidepanel();
+    $('#project_data').click(function(){
+		hidepanel();       
+    });
     $('#home_project').click(function(){
-        $('#home_project_content').load('html_comp/project_page_project.php?project_id='+ <?= $pro_id ;?>);       
+        $('#home_project_content').load('html_comp/project_page_project.php?project_id='+ <?= $pro_id ;?>);
+        showpanel();       
     });
     $('#dashboard_project').click(function(){
-        $('#dashboard_project_content').load('html_comp/project_page_challenge.php?project_id='+ <?= $pro_id ;?>);       
+        $('#dashboard_project_content').load('html_comp/project_page_challenge.php?project_id='+ <?= $pro_id ;?>);
+        hidepanel();       
     });
     $('#teams_project').click(function(){
-        $('#teams_project_content').load('html_comp/teams_panel_project.php?project_id='+ <?= $pro_id ;?>);        
+        $('#teams_project_content').load('html_comp/teams_panel_project.php?project_id='+ <?= $pro_id ;?>);
+        hidepanel();        
     });
 
 $("#project_chat_form").hide();
