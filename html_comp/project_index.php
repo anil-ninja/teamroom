@@ -1,21 +1,3 @@
-<div id='step12' class="panel panel-default">
-	<div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
-		<a class="" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-			<i class='icon-zoom-in'></i>&nbsp;	Eagle Eye View <i class='icon-chevron-down pull-right'></i>
-		</a>
-	</div>
-	<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
-		<div class="panel-body" style="padding: 1px;">
-			<button class='btn-link' style='color: #000' id='eye_open' ><span class='icon-eye-open'></span> ALL</button><br/>
-			<button class='btn-link' style='color: #000' id='sign' ><span class='icon-question-sign'></span> Open challenges</button><br/>
-			<button class='btn-link' style='color: #000' id='deciduous' ><span class='icon-leaf'></span> Notes </button><br/>
-			<button class='btn-link' style='color: #000' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button><br/>
-			<button class='btn-link' style='color: #000' id='filmprj' ><span class='icon-film'></span> Videos</button><br/>
-			<button class='btn-link' style='color: #000' id='flag' ><span class='icon-flag'></span> Completed challenges </button><br/>
-			<button class='btn-link' style='color: #000' id='asterisk' ><span class='icon-asterisk'></span> Issues </button>
-		</div>
-	</div>
-</div><br/><br/>
 <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
     <ul class="nav nav-tabs">
         <li class="active" >
@@ -114,5 +96,22 @@
 	}
 	?>
 	</div>
+</div><br/><br/>
+<div id='step12' class="panel panel-default">
+	<div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
+		<a class="" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+			<i class='icon-zoom-in'></i>&nbsp;	Eagle Eye View <i class='icon-chevron-down pull-right'></i>
+		</a>
+	</div>
+	<div id="collapseFive" class="panel-collapse in collapse" role="tabpanel" aria-labelledby="headingThree">
+		<div class="panel-body" style="padding: 1px;">
+			<button class='btn-link' style='color: #000' id='eye_open' ><span class='icon-eye-open'></span> ALL</button><br/>
+			<button class='btn-link' style='color: #000' id='sign' ><span class='icon-question-sign'></span> Open challenges</button><br/>
+			<button class='btn-link' style='color: #000' id='deciduous' ><span class='icon-leaf'></span> Notes </button><br/>
+			<button class='btn-link' style='color: #000' id='pushpin' ><span class='icon-pushpin'></span> Tasks</button><br/>
+			<button class='btn-link' style='color: #000' id='filmprj' ><span class='icon-film'></span> Videos</button><br/>
+			<button class='btn-link' style='color: #000' id='flag' ><span class='icon-flag'></span> Completed challenges </button><br/>
+			<button class='btn-link' style='color: #000' id='asterisk' ><span class='icon-asterisk'></span> Issues </button>
+		</div>
+	</div>
 </div>
-
