@@ -78,7 +78,7 @@ class challenge{
             return $arrayStmt[3];
         }
         else {
-            return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF'])."uploads/profilePictures/$this->username.jpg";
+            //return 'http://'.$_SERVER['HTTP_HOST'].dirname($_SERVER['PHP_SELF']) ;."uploads/profilePictures/$this->username.jpg";
         }
     }
 }
