@@ -22,8 +22,7 @@
            <a style='padding-top: 4px; padding-bottom: 4px;'>  <span><b>Outlines </b></span></a>
         </li>
     </ul>
-    <div class="tab-content" >
-        <div role="tabpanel" class="row tab-pane active" id="tabCreatedProjects"></div>
+    <div class="panel-default">
 	<?php
 	$user_id = $_SESSION['user_id'] ;
 	$prshallenges = "";
@@ -43,40 +42,75 @@
 			$title = ucfirst($chTitle) ;
 		}
 		if($type == '1' || $type == '2') {
-			$prshallenges.= "<li><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$prshallenges.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else if ($type == '5') {
-			$tasks.= "<li><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$tasks.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else if ($type == '6') {
-			$notes.= "<li><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$notes.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else if ($type == '9') {
-			$issues.= "<li><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$issues.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else {
-			$videos.= "<li><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$videos.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 	}
-	if ($prshallenges != "") {
-		echo "<span style='font-size:16px;' >Challenges : </span><br/><br/>
-				<ul>".$prshallenges."</ul> " ;
+	if(mysqli_num_rows($shallenges) != '0') {
+		if ($prshallenges != "") {
+			echo "<nav class='sidebar light'>
+					<ul>
+						<div class='bs-component' style='max-height:150px;'>
+						<li class='title'>Challenges </li>
+						".$prshallenges."
+						</div>
+					</ul>
+				</nav> " ;
+		}
+		if ($tasks != "") {
+			echo "<nav class='sidebar light'>
+					<ul>
+						<div class='bs-component' style='max-height:150px;'>
+						<li class='title'>Tasks </li>
+						".$tasks."
+						</div>
+					</ul>
+				</nav> " ;
+		}
+		if ($notes != "") {
+			echo "<nav class='sidebar light'>
+					<ul>
+						<div class='bs-component' style='max-height:150px;'>
+						<li class='title'>Notes </li>
+						".$notes."
+						</div>
+					</ul>
+				</nav> " ;
+		}
+		if ($issues != "") {
+			echo "<nav class='sidebar light'>
+					<ul>
+						<div class='bs-component' style='max-height:150px;'>
+						<li class='title'>Issues </li>
+						".$issues."
+						</div>
+					</ul>
+				</nav> " ;
+		}
+		if ($videos != "") {
+			echo "<nav class='sidebar light'>
+					<ul>
+						<div class='bs-component' style='max-height:150px;'>
+						<li class='title'>Videos </li>
+						".$videos."
+						</div>
+					</ul>
+				</nav> " ;
+		}
 	}
-	if ($tasks != "") {
-		echo "<span style='font-size:16px;' >Tasks : </span><br/><br/>
-				<ul>".$tasks."</ul> " ;
-	}
-	if ($notes != "") {
-		echo "<span style='font-size:16px;' >Notes : </span><br/><br/>
-				<ul>".$notes."</ul> " ;
-	}
-	if ($issues != "") {
-		echo "<span style='font-size:16px;' >Issues : </span><br/><br/>
-				<ul>".$issues."</ul> " ;
-	}
-	if ($videos != "") {
-		echo "<span style='font-size:16px;' >Videos : </span><br/><br/>
-				<ul>".$videos."</ul> " ;
+	else {
+		echo "No Data Available";
 	}
 	?>
 	</div>
