@@ -1,4 +1,4 @@
-startTime();
+//startTime();
             function getDateTime() {
                 var now     = new Date(); 
                 var year    = now.getFullYear();

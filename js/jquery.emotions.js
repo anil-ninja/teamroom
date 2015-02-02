@@ -22,7 +22,7 @@
 				var repls = x.html();
 				if(repls.indexOf(o.s[j]) || repls.indexOf(encoded[j])){
 					var imgr = o.a+o.b[j]+"."+o.c;			
-					var rstr = "<img src='"+imgr+"' border='0' />";	
+					var rstr = "<img src='"+imgr+"' />";	
 					x.html(repls.replace(o.s[j],rstr));
 					x.html(repls.replace(encoded[j],rstr));
 				}

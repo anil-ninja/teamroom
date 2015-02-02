@@ -181,13 +181,6 @@ function replaceAll(find, replace, str) {
 }
 
     </script>
-    <script type="text/javascript">
-$(document).ready(function(){
-    $("#showHere").emotions();
-  
-   
-});
-</script>
 <script src="date.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/username_email_check.js"></script>
@@ -200,7 +193,7 @@ $(document).ready(function(){
 <script type="text/javascript" src="js/introduction.js"></script>
 <!--<script src="js/bootstrap.js"></script>-->
 <script src="scripts/bootstrap.min.js"></script>
-
+<script type="text/javascript" src="js/jquery.emotions.js"></script>
 <script src="js/bootbox.js"></script>
 <script src="js/bootswatch.js"></script>
 <script src="js/search.js" type="text/javascript"></script>
@@ -216,8 +209,9 @@ $(document).ready(function(){
 <script>
 	$('.bs-component').jScrollPane();
 </script>
-
-
+<script type="text/javascript">
+    $(".showHere").emotions(); 
+</script>
 <script src="//static.getclicky.com/js" type="text/javascript"></script>
 <script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>
 <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100809927ns.gif" /></p></noscript>
