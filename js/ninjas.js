@@ -31,7 +31,7 @@ function getnextchal (clas, int) {
 				success: function(result){
 					var notice = result.split("<") ;
 					if (notice['0'] == 'no data') {
-						$('#panel-cont').append("<p align='center' style='font-size:24px;'>No Data Available</p>");
+						bootstrap_alert(".alert_placeholder", "No Contents To Display", 5000,"alert-warning");
 						$('.loading').remove();
 					}
 					else {

@@ -101,9 +101,16 @@ $(".nav-btntab").bind("click", function(){
 				data: dataString,
 				cache: false,
 				success: function(result){
-					$('#panel-cont').append(result);
-					$('.loading').remove();
-					showclass(value) ;
+					var notice = result.split("<") ;
+					if (notice['0'] == 'no data') {
+						bootstrap_alert(".alert_placeholder", "No Contents To Display", 5000,"alert-warning");
+						$('.loading').remove();
+					}
+					else {
+						$('#panel-cont').append(result);
+						$('.loading').remove();
+						showclass(value) ;
+					}
 				}
 			});
 		}
