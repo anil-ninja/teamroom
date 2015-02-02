@@ -24,19 +24,19 @@
 			$title = ucfirst($chTitle) ;
 		}
 		if($type == '1' || $type == '2') {
-			$prshallenges.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$prshallenges.= "<li style='padding-left:10px;'><a href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else if ($type == '5') {
-			$tasks.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$tasks.= "<li style='padding-left:10px;'><a href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else if ($type == '6') {
-			$notes.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$notes.= "<li style='padding-left:10px;'><a href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else if ($type == '9') {
-			$issues.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$issues.= "<li style='padding-left:10px;'><a href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 		else {
-			$videos.= "<li style='padding-left:10px;'><a style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
+			$videos.= "<li style='padding-left:10px;'><a href='challengesOpen.php?challenge_id=".$chId."' target='_blank'>".$title."</a></li>" ;
 		}
 	}
 	if(mysqli_num_rows($shallenges) != '0') {
