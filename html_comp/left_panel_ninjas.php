@@ -61,8 +61,7 @@
 							<a href = 'project.php?project_id=".$idpro."' style='white-space:nowrap;'>".$ProjectPic ." ". $prtitle."</a>
 					  </li>";
             }
-        }
-	}  
+        }  
     ?> 
     </div>
     </ul>
@@ -72,7 +71,6 @@
 		<div class='bs-component' style='max-height:120px;'> 
 		<li class='title'>Public Projects</li>
         <?php
-        if (isset($_SESSION['user_id'])) {
             $project_public_title_display = mysqli_query($db_handle, "SELECT * FROM projects WHERE user_id = '$user_id' and project_type = '1' ;") ;
             
             if (mysqli_num_rows($project_public_title_display) == 0) {
@@ -111,7 +109,6 @@
 					  </li>";
                 }
             }
-		} 
         ?> 
         </div>
         </ul>
@@ -121,7 +118,6 @@
 		<div class='bs-component' style='max-height:120px;'>  
         <li class='title'>Joined Projects</li>
         <?php
-        if (isset($_SESSION['user_id'])) {
             $allJoinedProjects = mysqli_query($db_handle, "SELECT DISTINCT project_id FROM teams WHERE project_id NOT IN 
 																	  (SELECT project_id FROM projects WHERE user_id = '$user_id' and 
 																	  (project_type = '1' or project_type = '2')) and user_id = '$user_id' ;") ;
@@ -170,8 +166,11 @@
     </ul>
     </nav>
     <nav class='sidebar light'>
-    <ul>
-    <div class='bs-component' style='max-height:200px;'> " ;
+    <ul>" ;
+    if(isset($_SESSION['user_id'])) {
+		echo "<div class='bs-component' style='max-height:200px;'> " ;
+	}
+	else { echo "<div class='bs-component' style='max-height:350px;'> " ; }
             // recommended project function defined in functions/delete_comment for use in profile page joined project tab
                 recommended_project ($db_handle);
             // function call here ends
