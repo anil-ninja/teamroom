@@ -28,7 +28,7 @@ if(isset($_POST['id'])){
 		else { echo "Posted successfully"; }
 	}
 	else {
-		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
+		$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
 		if(mysqli_num_rows($member_project) != 0) {
 			$username = $_SESSION['username'];
 			$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;

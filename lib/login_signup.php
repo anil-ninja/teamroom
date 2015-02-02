@@ -129,8 +129,16 @@ function login(){
 					$usernameFriends = $userProjectsRow['username'];
 					$useridFriends = $userProjectsRow['user_id'];
 					events($db_handle,$id,"18",$useridFriends) ;
-					$body2 = "Hi, ".$usernameFriends." \n \n ".$username."'s rank has been Updated to ".$new_rank."  See more at \n
-http://collap.com/profile.php?username=".$username ;
+					$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
+<h2>Rank Updated</h2><p>Hi ".ucfirst($usernameFriends).",</p>
+<p>".$username."'s rank has been Updated to ".$new_rank.".</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$username."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
+<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
+<p>Thanks,</p><p>Collap Team</p>
+<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
+</div>
+</td><td></td></tr></table></body></html>" ;
 					collapMail($friendFirstName, "Rank Updated ", $body2);
 				}
 			}

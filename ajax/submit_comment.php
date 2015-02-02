@@ -31,7 +31,7 @@ if($_POST['id']){
 		}
 	}
 	else { 	
-		$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+		$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 		if(mysqli_num_rows($member_project) != 0) {
 			if($case == 2) { 
 				events($db_handle,$user_id,"14",$pro_id);
