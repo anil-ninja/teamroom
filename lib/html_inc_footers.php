@@ -185,7 +185,7 @@ function replaceAll(find, replace, str) {
 $(document).ready(function(){
     $("#showHere").emotions();
   
-    });
+   
 });
 </script>
 <script src="date.js"></script>
