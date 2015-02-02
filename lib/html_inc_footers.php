@@ -181,6 +181,13 @@ function replaceAll(find, replace, str) {
 }
 
     </script>
+    <script type="text/javascript">
+$(document).ready(function(){
+    $("#showHere").emotions();
+  
+    });
+});
+</script>
 <script src="date.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/username_email_check.js"></script>
