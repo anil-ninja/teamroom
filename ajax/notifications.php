@@ -489,7 +489,7 @@ if ($_POST['notice']) {
 				break;
 			}
 		}
-		$notice25 = mysqli_query($db_handle, "select Distinct a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
+		$notice25 = mysqli_query($db_handle, "select Distinct a.status, a.user_id, a.reminder, a.time, b.first_name from reminders as a join user_info
 											as b where a.person_id = '$user_id' and a.user_id = b.user_id ;") ;
 		while ($notice25row = mysqli_fetch_array($notice25)) { 
 			$reminders = $notice25row['reminder'] ;
@@ -508,7 +508,7 @@ if ($_POST['notice']) {
 			}
 			else {
 				$timeleft = $starttime ;
-			}
+			} 
 			if ($timeleft < 600 && $timeleft > 0) {
 				$notice = $notice . "<li><a style='white-space: normal ;'>
 										<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
