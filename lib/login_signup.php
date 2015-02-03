@@ -38,7 +38,7 @@ function signup(){
                 $id_access_id =  mysqli_insert_id($db_handle);
                 $hash_keyR = $hash_keyR.".".$id_access_id;
                 //echo $hash_keyR ;
-                $body = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+                $body = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'>
 <table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td><p>Hi ".ucfirst($username).",</p>
 <p>Welcome to Collap. We are building an engaged community of problem solvers in different domains of Science, Technology, Marketing, Economics, Electronics, Electrical, Mechanical, Computer Science, etc. We provide tools, technology and platform to manage projects, host and solve challenges, hosting articles, ideas, etc</p>
@@ -50,8 +50,8 @@ function signup(){
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p>
 </td></tr></table></div></td><td></td></tr></table></body></html>" ;
                 
-                collapMail($email, "Email Verification From Collap", $body, file_get_contents('../html_comp/mailheader.php'));
-                $body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+                collapMail($email, "Email Verification From Collap", $body);
+                $body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
 <h2>Thanks for joining Collap</h2><p>Hi ".ucfirst($username).",</p>
 <p>We’re thrilled to have you on board. Be sure to save your important account details for future reference:</p>
@@ -69,7 +69,7 @@ function signup(){
 </div>
 </td><td></td></tr></table></body></html>" ; 
 
-              collapMail($email, "complete your profile", $body2, file_get_contents('../html_comp/mailheader.php'));
+              collapMail($email, "complete your profile", $body2);
 		if(mysqli_error($db_handle)){
 			echo "Please Try Again";
 		} else {

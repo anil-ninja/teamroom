@@ -71,7 +71,7 @@ if($_POST['id']){
 						$mail = $memrow['username'] ;
 						$userFirstName = $memrow['first_name'] ;
 						$userLastName = $memrow['last_name'] ;
-						$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+						$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
 <h2>".ucfirst($challangeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>There is a new comment on one of your contributions on collap.</p>
@@ -82,7 +82,7 @@ if($_POST['id']){
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
 </div>
 </td><td></td></tr></table></body></html>" ;
-					collapMail($emails, "Comment on challenge", $body2, file_get_contents('../html_comp/mailheader.php'));
+					collapMail($emails, "Comment on challenge", $body2);
 					}
 				}
 				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;

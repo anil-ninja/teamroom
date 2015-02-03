@@ -52,7 +52,7 @@ if(isset($_POST['id'])){
 					$mail = $memrow['username'] ;
 					$userFirstName = $memrow['first_name'] ;
 					$userLastName = $memrow['last_name'] ;
-					$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+					$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
 <h2>Likes in project</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>You have a new like on your ".$challangeType.".</p>
@@ -63,7 +63,7 @@ if(isset($_POST['id'])){
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
 </div>
 </td><td></td></tr></table></body></html>" ;
-					collapMail($emails, "Likes in project", $body2, file_get_contents('../html_comp/mailheader.php'));
+					collapMail($emails, "Likes in project", $body2);
 				} 
 			}
 			if($case == 3) {

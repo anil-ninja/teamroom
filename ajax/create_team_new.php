@@ -35,7 +35,7 @@ if ($_POST['team']) {
 				$mail = $memrow['username'] ;
 				$userFirstName = $memrow['first_name'] ;
 				$userLastName = $memrow['last_name'] ;
-				$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+				$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
 <h2>Add Member in Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new member has been added in team ".$team.".</p>
@@ -46,7 +46,7 @@ if ($_POST['team']) {
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
 </div>
 </td><td></td></tr></table></body></html>" ;
-				collapMail($emails, "Member Added IN Team", $body2, file_get_contents('../html_comp/mailheader.php'));
+				collapMail($emails, "Member Added IN Team", $body2);
 				}
 			}
 		else {
@@ -61,7 +61,7 @@ if ($_POST['team']) {
 				$mail = $memrow['username'] ;
 				$userFirstName = $memrow['first_name'] ;
 				$userLastName = $memrow['last_name'] ;
-				$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+				$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
 <h2>Create Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new team has been created in A project you are involved in.</p>
@@ -72,7 +72,7 @@ if ($_POST['team']) {
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
 </div>
 </td><td></td></tr></table></body></html>" ;
-				collapMail($emails, "Team  Created", $body2, file_get_contents('../html_comp/mailheader.php'));
+				collapMail($emails, "Team  Created", $body2);
 			} 						
 		}
 	}
@@ -88,7 +88,7 @@ if ($_POST['team']) {
 			$mail = $memrow['username'] ;
 			$userFirstName = $memrow['first_name'] ;
 			$userLastName = $memrow['last_name'] ;
-			$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
+			$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
 <div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
 <h2>Create Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new team has been created in A project you are involved in.</p>
@@ -99,7 +99,7 @@ if ($_POST['team']) {
 <p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
 </div>
 </td><td></td></tr></table></body></html>" ;
-				collapMail($emails, "Team  Created", $body2, file_get_contents('../html_comp/mailheader.php'));
+				collapMail($emails, "Team  Created", $body2);
 		}
 	}
 	$data = "<div class='span5' style=' margin:4px; background : rgb(240, 241, 242);'>
