@@ -10,7 +10,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 $(document).ready(function(){
 	$("#addskills").click(function(){
 		$("#addskills").attr('disabled','disabled');
-		var insert = $("#insert").val() ;
+		var insert = convertSpecialChar($("#insert").val()) ;
 		var skills = $("#skills").val() ;
 		var dataString = "";
 		if ((skills == '0' && replaceAll('\\s', '',insert) =='')||(skills != '0' && replaceAll('\\s', '',insert) !='')) {
@@ -155,12 +155,12 @@ $(document).ready(function(){
 }) ;
 function editProfile(fname, lname, email, phone) {
 	//alert (fname + "," + lname + "," + email + "," + phone);
-	var newfname = $("#newfirstname").val() ;
-	var newlname = $("#newlastname").val() ;
-	var newphone = $("#newphoneno").val() ;
-	var about = $("#aboutuser").val() ;
-	var townname = $("#livingtown").val() ;
-	var comp = $("#companyname").val() ;
+	var newfname = convertSpecialChar($("#newfirstname").val()) ;
+	var newlname = convertSpecialChar($("#newlastname").val()) ;
+	var newphone = convertSpecialChar($("#newphoneno").val()) ;
+	var about = convertSpecialChar($("#aboutuser").val()) ;
+	var townname = convertSpecialChar($("#livingtown").val()) ;
+	var comp = convertSpecialChar($("#companyname").val()) ;
 	if (replaceAll('\\s', '',newfname) == "") {
 		bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
 		$("#newfirstname").val(fname) ;
