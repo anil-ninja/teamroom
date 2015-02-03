@@ -18,7 +18,7 @@ $view = 1 ;
   <body>
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
-   <div class='showHere' >
+   <div class='emotion' >
 		<div class="row-fluid" style='margin-top: 50px;'>  		
        		<div id='tab1' class="span2" style='margin-left:60px; width:280px;'>
    				<?php 

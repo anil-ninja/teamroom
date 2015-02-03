@@ -193,7 +193,6 @@ function replaceAll(find, replace, str) {
 <script type="text/javascript" src="js/introduction.js"></script>
 <!--<script src="js/bootstrap.js"></script>-->
 <script src="scripts/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/jquery.emotions.js"></script>
 <script src="js/bootbox.js"></script>
 <script src="js/bootswatch.js"></script>
 <script src="js/search.js" type="text/javascript"></script>
@@ -202,15 +201,12 @@ function replaceAll(find, replace, str) {
 <script type="text/javascript" src="js/chat_box.js"></script>
 <script src="js/add_remove_skill.js"></script>
 <script src="js/date_time.js"></script>    
-    <script src="scripts/tabs-addon.js"></script>
-   <script type="text/javascript" src="js/intro.js"></script>
-   <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-   <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script src="scripts/tabs-addon.js"></script>
+<script type="text/javascript" src="js/intro.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
 <script>
 	$('.bs-component').jScrollPane();
-</script>
-<script type="text/javascript">
-    $(".showHere").emotions(); 
 </script>
 <script src="//static.getclicky.com/js" type="text/javascript"></script>
 <script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>
