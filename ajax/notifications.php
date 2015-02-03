@@ -502,20 +502,21 @@ if ($_POST['notice']) {
 				$rname = ucfirst($notice25row['first_name']) ;
 			}
 			$reminder_time = $notice25row['time'] ;
-			//$starttime = strtotime($reminder_time) ;
-			//$endtime = time() ;
-			//if ($endtime <= $starttime) {
-				//$timeleft = $starttime - $endtime ;
-			//}
-			//else {
-				//$timeleft = $starttime ;
-			//}
+			$starttime = strtotime($reminder_time) ;
+			$endtime = time() ;
+			if ($endtime <= $starttime) {
+				$timeleft = $starttime - $endtime ;
+			}
+			else {
+				$timeleft = $starttime ;
+			}
 			if($reminderstatus == '0') {
-			//if ($timeleft < 600 && $timeleft > 0) {
-				$notice = $notice . "<li><a style='white-space: normal ;'>
-										<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
-									</a></li>";
-				$y++ ;
+				if ($timeleft < 600 && $timeleft > 0) {
+					$notice = $notice . "<li><a style='white-space: normal ;'>
+											<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
+										</a></li>";
+					$y++ ;
+				}
 			}
 		}			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
