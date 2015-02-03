@@ -56,22 +56,6 @@ time[i] = "0" + time[i];
 // Return the formatted string
 return date.join("/") + " " + time.join(":") ;
 }
-function updatetime() {
-	var dataString = 'update=true' + '&case=1' ;
-	//setTimeout(function(){
-			$.ajax({
-				type: "POST",
-				url: "ajax/updatetime.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					if(result == "updated") {
-						document.getElementById("countnotice").innerHTML = "" ;
-					}
-				}
-			}); 
-		//	} , 60000) ;
-		} ;
 setInterval(function(){
 	var eid = $("#lasteventid").val() ;
 	var time = timeStamp() ;

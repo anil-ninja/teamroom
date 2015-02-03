@@ -205,10 +205,9 @@ function replaceAll(find, replace, str) {
 <script type="text/javascript" src="js/intro.js"></script>
 <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
-<script type="text/javascript" src="js/jquery.emotions.js"></script>
 <script>
 	$('.bs-component').jScrollPane();
-	$('.emotion').emotions();
+	//$('.emotion').emotions();
 </script>
 <script src="//static.getclicky.com/js" type="text/javascript"></script>
 <script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>

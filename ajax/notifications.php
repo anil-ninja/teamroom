@@ -494,6 +494,7 @@ if ($_POST['notice']) {
 		while ($notice25row = mysqli_fetch_array($notice25)) { 
 			$reminders = $notice25row['reminder'] ;
 			$ruser_id = $notice25row['user_id'] ;
+			$reminderstatus = $notice25row['status'] ;
 			if ($ruser_id == $user_id) {
 				$rname = "You" ;
 			}
@@ -501,15 +502,16 @@ if ($_POST['notice']) {
 				$rname = ucfirst($notice25row['first_name']) ;
 			}
 			$reminder_time = $notice25row['time'] ;
-			$starttime = strtotime($reminder_time) ;
-			$endtime = time() ;
-			if ($endtime <= $starttime) {
-				$timeleft = $starttime - $endtime ;
-			}
-			else {
-				$timeleft = $starttime ;
-			} 
-			if ($timeleft < 600 && $timeleft > 0) {
+			//$starttime = strtotime($reminder_time) ;
+			//$endtime = time() ;
+			//if ($endtime <= $starttime) {
+				//$timeleft = $starttime - $endtime ;
+			//}
+			//else {
+				//$timeleft = $starttime ;
+			//}
+			if($reminderstatus == '0') {
+			//if ($timeleft < 600 && $timeleft > 0) {
 				$notice = $notice . "<li><a style='white-space: normal ;'>
 										<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
 									</a></li>";
@@ -517,7 +519,7 @@ if ($_POST['notice']) {
 			}
 		}			
 		$data1 .= "<input type='hidden' id='lasteventid' value='".$eventid."'/>";		
-		$data .= "<a class='dropdown-toggle' data-toggle='dropdown' style='color: white; onclick='updatetime()'><i class='btn-success icon-bell'></i>" ;
+		$data .= "<a class='dropdown-toggle' data-toggle='dropdown' style='color: white;' onclick='updatetime()'><i class='btn-success icon-bell'></i>" ;
 			if ($y != 0) {
 				$data = $data . "<span class='badge' style='padding: 0px; color: white;' id='countnotice'>".$y."</span>" ;
 				}
