@@ -392,4 +392,20 @@ function editproject($stmt, $pro_id) {
 		}
 	return $data ;
 }
+function share_challenge($ch_id) {
+	return "<div class='dropdown'>
+                <a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+                    Share <b class='caret'></b>
+                </a>
+                <ul class='dropdown-menu'>
+					<li>
+						<a href='https://twitter.com/share' class='twitter-share-button' data-url='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' data-size='medium' data-related='collapcom' data-count='none' data-hashtags='digitalcollaboration'>Tweet</a>
+					</li>
+					<li>
+						<div id='fb-root'></div>
+						<div class='fb-share-button' data-href='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' data-layout='button'></div>
+					</li>
+                </ul>
+			</div>";
+}
 ?>

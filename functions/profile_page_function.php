@@ -57,10 +57,11 @@ function user_articles ($db_handle, $user_IDF) {
                     ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> 
                     <hr/><span id='challenge_".$article_id."' class='text' style='font-size: 14px;'>".$article_stmt."</span><br/>";
 			echo editchallenge($articlestmt, $article_id) ;
-			echo "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'> Push
-                            <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'> Pull
-                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>";
+			echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($article_id)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+					<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'> <b>Push</b>
+                            <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'> <b>Pull</b>
+                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>";
             comments_all_type_challenges ($db_handle, $article_id);
             echo "</div>";
         }
@@ -124,10 +125,11 @@ function user_challenges ($db_handle, $user_IDF) {
                 ".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span>
                 <hr/><span id='challenge_".$challenge_id."' class='text' style='font-size: 14px;'>".$challenge_stmt."</span><br/>";
 			echo editchallenge($challengestmt, $challenge_id) ;
-			echo "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'> Push
-                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'> Pull
-                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>";
+			echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($challenge_id)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+					<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'> <b>Push</b>
+                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'> <b>Pull</b>
+                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>";
          comments_all_type_challenges ($db_handle, $challenge_id);
          echo "</div>";
         }
@@ -190,10 +192,11 @@ function user_idea ($db_handle, $user_IDF) {
                     ".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span>
                     <hr/><span id='challenge_".$idea_id."' class='text' style='font-size: 14px;'>".$idea_stmt."</span><br/>";
                 echo editchallenge($ideastmt, $idea_id) ;
-                echo "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'> Push
-                            <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'> Pull
-                            <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
+                echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($idea_id)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+                <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'> <b>Push</b>
+                            <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'> <b>Pull</b>
+                            <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>" ;
              comments_all_type_challenges ($db_handle, $idea_id);
              echo "</div>";
         }

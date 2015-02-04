@@ -62,10 +62,11 @@ if ($_POST['last_article']) {
                     ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span>
                     <hr/><span id='challenge_".$article_id."' class='text' style='font-size: 14px;'>".$article_stmt."</span><br/>";
 		$show_article = $show_article. editchallenge($articlestmt, $article_id) ;
-		$show_article = $show_article. "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'> Push
-                         <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'> Pull
-                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
+		$show_article = $show_article. "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($article_id)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+						<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'> <b>Push</b>
+                        <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'> <b>Pull</b>
+                        <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>" ;
     $commenter = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $article_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION

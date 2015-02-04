@@ -268,10 +268,11 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 				<p align='center'>Answer</p></span><br/>"
 				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))))."<br/><br/>" ;
 		}			
-		$show = $show . "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'> Push
-							<input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-						<span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'> Pull
-							<input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
+		$show = $show . "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($id_task)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+			<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 1)'> <b>Push</b>
+                        <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+               <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 2)'> <b>Pull</b>
+                       <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>" ;
 	$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 												JOIN user_info as b WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION

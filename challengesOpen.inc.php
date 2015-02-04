@@ -397,10 +397,11 @@ function challenge_display($db_handle, $challengeSearchID) {
                             echo $display_title."<span class='icon-film'></span>".$display_name_stmt;
                 }
             }
-            echo "<hr/><span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none;' onclick='like(\"".$chelangeid ."\", 1)'> Push
-                        <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'> Pull
-                        <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
+            echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($chelangeid)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+            <span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none;' onclick='like(\"".$chelangeid ."\", 1)'> <b>Push</b>
+                        <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                    <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'> <b>Pull</b>
+                        <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>" ;
             $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                     JOIN user_info as b WHERE a.challenge_id = $challengeSearchID AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                 UNION
