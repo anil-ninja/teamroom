@@ -81,12 +81,8 @@ if ($_POST['chal']) {
                 ".ucfirst($ch_title)."</a></b></span><br/>
                 <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/>";
             $get_display_fname_likes ="<span style= 'color: #808080;'>
-                &nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>
-                ".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction." | </span>
-                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$chelangeid ."\", 1)'>
-                        <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$chelangeid ."\", 2)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span>";
+                &nbsp;By : <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>
+                ".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
         $get_display_ch_stmt_content = "<hr/><span id='challenge_".$chelangeid."' class='text' style='font-size: 14px'>".$chelange."</span><br/>";
 		$get_display_ch_stmt_content = $get_display_ch_stmt_content. editchallenge($chelangestmt, $chelangeid) ;
@@ -367,9 +363,13 @@ if ($_POST['chal']) {
         while ($answerrow = mysqli_fetch_array($answer)) {
             $show = $show . "<span class='color strong' style= 'font-size: 14pt;'>
                     <p align='center'>Answer</p></span>"
-					. showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/><br/>";
+					. showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/>";
         }
     }
+    $show = $show ."<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$chelangeid ."\", 1)'> Push
+                        <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/></span> &nbsp
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'> Pull
+                        <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
     $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $chelangeid AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION

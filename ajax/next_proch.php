@@ -104,11 +104,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 					".ucfirst($title_task)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$tasktitle."'/>";
 
 			$get_dispaly_fname_likes = "<span style= 'color: #808080;'>
-					&nbspBy: <a href ='profile.php?username=" . $username_task . "' style= 'color: #808080;'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp | ".$timetask." | </span>
-						<span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$id_task ."\", 3)'>
-							<input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-						<span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$id_task ."\", 4)'>
-							<input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
+					&nbsp; By : <a href ='profile.php?username=" . $username_task . "' style= 'color: #808080;'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp | ".$timetask."</span>";
 			// list grp item stmt content for all type chall/article/idea/photo/video
 			$get_display_task_stmt .= "<hr/><span id='challenge_".$id_task."' class='text' style='font-size: 14px'>".$stmt_task."</span>
 									<input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$title_task."'/>";
@@ -124,11 +120,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                             &nbspBy: <a href ='profile.php?username=" . $username_task . "' style= 'color: #808080;'>
                             ".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp | 
                             Assigned To:<a href ='profile.php?username=" . $ownname ."' style= 'color: #808080;'>
-                            ".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct." |  
-                            </span><span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$id_task ."\", 3)'>
-                            <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                            <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$id_task ."\", 4)'>
-                              <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
+                            ".ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct."</span>";
                         //<br>ETA Given: " . $etaown . " <br/>" . $remaintimeown . "
                     $show = $show . $get_display_task_stmt;
                     $get_display_task_stmt = "" ;
@@ -276,7 +268,10 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 				<p align='center'>Answer</p></span><br/>"
 				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))))."<br/><br/>" ;
 		}			
-		
+		$show = $show . "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'> Push
+							<input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
+						<span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'> Pull
+							<input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
 	$displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 												JOIN user_info as b WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 												   UNION

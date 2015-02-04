@@ -44,7 +44,7 @@ if($projectType == 1) {
 		echo "<button class='btn btn-primary pull-right' onclick='test3()'>Join</button>" ;
 		}
 	}
-echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/><br/>
+echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/><hr/>
 	<ul class='inline'>
 	<li>
 		<a href='https://twitter.com/share' class='twitter-share-button' data-url='http://collap.com/project.php?project_id=".$pro_id."' data-size='medium' data-related='collapcom' data-count='none' data-hashtags='digitalcollaboration'>Tweet</a>
