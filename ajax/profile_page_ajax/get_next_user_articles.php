@@ -59,13 +59,13 @@ if ($_POST['last_article']) {
                         .ucfirst($article_title)."</a></b></span><br/>
                         <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$articletitle."'/>
                     <span class='icon-book'></span><span style= 'color: #808080;'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "' style= 'color: #808080;'>
-                    ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created." | </span>
-                        <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$article_id ."\", 1)'>
-                         <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$article_id ."\", 2)'>
-                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
+                    ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span>
                     <hr/><span id='challenge_".$article_id."' class='text' style='font-size: 14px;'>".$article_stmt."</span><br/>";
 		$show_article = $show_article. editchallenge($articlestmt, $article_id) ;
+		$show_article = $show_article. "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'> Push
+                         <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'> Pull
+                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
     $commenter = mysqli_query($db_handle, "(SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $article_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION

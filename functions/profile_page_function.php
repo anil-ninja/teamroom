@@ -54,13 +54,13 @@ function user_articles ($db_handle, $user_IDF) {
                     <a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$article_id."' target='_blank'>" 
                         .ucfirst($article_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$article_id."' value='".$articletitle."'/>
                     <span class='icon-book'></span><span style= 'color: #808080;'> &nbsp; By: <a href ='profile.php?username=" . $article_username . "' style= 'color: #808080'>
-                    ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created." | </span> 
-                        <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$article_id ."\", 1)'>
-                            <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$article_id ."\", 2)'>
-                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span>
+                    ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span> 
                     <hr/><span id='challenge_".$article_id."' class='text' style='font-size: 14px;'>".$article_stmt."</span><br/>";
 			echo editchallenge($articlestmt, $article_id) ;
+			echo "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'> Push
+                            <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/></span> &nbsp
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'> Pull
+                            <input type='submit' class='btn-link' id='dislikes_".$article_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>";
             comments_all_type_challenges ($db_handle, $article_id);
             echo "</div>";
         }
@@ -121,13 +121,13 @@ function user_challenges ($db_handle, $user_IDF) {
                     <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>                
                 <span class='icon-question-sign'></span><span style= 'color: #808080;'> &nbsp; 
                 By: <a href ='profile.php?username=" . $chall_username . "' style= 'color: #808080;'>
-                ".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation." | </span>
-                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$challenge_id ."\", 1)'>
-                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$challenge_id ."\", 2)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
+                ".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span>
                 <hr/><span id='challenge_".$challenge_id."' class='text' style='font-size: 14px;'>".$challenge_stmt."</span><br/>";
 			echo editchallenge($challengestmt, $challenge_id) ;
+			echo "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'> Push
+                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'> Pull
+                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>";
          comments_all_type_challenges ($db_handle, $challenge_id);
          echo "</div>";
         }
@@ -187,13 +187,13 @@ function user_idea ($db_handle, $user_IDF) {
                         <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idea_id."' value='".$ideatitle."'/>                    
                     <span class='icon-lightbulb'></span><span style= 'color: #808080;'>
                     By: <a href ='profile.php?username=" . $idea_username . "' style= 'color: #808080;'>
-                    ".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation." | </span>
-                        <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$idea_id ."\", 1)'>
-                            <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
-                        <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$idea_id ."\", 2)'>
-                            <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span>
+                    ".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span>
                     <hr/><span id='challenge_".$idea_id."' class='text' style='font-size: 14px;'>".$idea_stmt."</span><br/>";
                 echo editchallenge($ideastmt, $idea_id) ;
+                echo "<hr/><span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'> Push
+                            <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/></span> &nbsp
+                        <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'> Pull
+                            <input type='submit' class='btn-link' id='dislikes_".$idea_id ."' value='".$dislikes."'/>&nbsp;</span><hr/>" ;
              comments_all_type_challenges ($db_handle, $idea_id);
              echo "</div>";
         }
