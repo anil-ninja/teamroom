@@ -26,7 +26,7 @@ class challenge{
         
         $chalangerow = mysqli_fetch_array($chalange);
         
-        $this->challenge_title = $chalangerow['challenge_title'];
+        $this->challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", $chalangerow['challenge_title']))));
         if($chalangerow['blob_id']== 0)
 			$this->stmt = $chalangerow['stmt'];
 		else {
