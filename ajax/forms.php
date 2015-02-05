@@ -176,10 +176,10 @@ if($_POST['form_type']){
 			break ;
 		
 		case 6:
-			if(mysqli_num_rows($member_project) != 0) {
+			//if(mysqli_num_rows($member_project) != 0) {
 				echo "<div id='elfinder'></div>" ;
-			}
-			else  echo "Please Join Project First" ; 
+			//}
+			//else  echo "Please Join Project First" ; 
 			exit ;
 			break ;
 			

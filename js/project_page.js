@@ -176,7 +176,11 @@ function show_form_pro(type, title, ID) {
 			$("#selecttext").hide();
 			$("#invitation").show() ;
 			document.getElementById("invitation").innerHTML = result ;
-			elf(title, ID) ;
+			var temp = title + "_" + ID ;
+			var elf = $('#elfinder').elfinder({
+				url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
+			   // lang: 'ru',             // language (OPTIONAL)
+			}).elfinder('instance');
 		}
 	});
 }

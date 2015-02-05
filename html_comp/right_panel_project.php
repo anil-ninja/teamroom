@@ -39,7 +39,7 @@
 	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and member_status = '1' and user_id !='0' ;") ;
 	$collaboratorNo = mysqli_num_rows($collaborators) ;
 	echo $ProjectPic4."<br/><br/>
-		<div class ='row-fluid' style='margin: 4px;'><span class='color strong' style= 'font-family: Tenali Ramakrishna, sans-serif;font-size: 24px;'>
+		<div class ='row-fluid' style='margin: 4px;'><span class='color strong' id='projectTitle_".$pro_id."' style= 'font-family: Tenali Ramakrishna, sans-serif;font-size: 24px;'>
 			".ucfirst($title)."</span>
 		</div><br/>
 		<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>

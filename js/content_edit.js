@@ -146,6 +146,7 @@ function saveeditedproject(ID)  {
 				success: function(result){
 					$("#project_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',project)))));
 					$("#project_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
+					$("#projectTitle_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
 				}
 			});
 		}
@@ -251,6 +252,7 @@ function saveeditedpro(ID)  {
 					//alert (result) ;
 					$("#project_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',result)))));
 					$("#project_ti_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
+					$("#projectTitle_"+ID).html(replaceAll('<s>','  ',replaceAll('\n',' <br/> ',replaceAll('<r>',"'",replaceAll('<a>','&',title)))));
 					$("#project_url_video_"+ID).val('');
 				}
 			});
