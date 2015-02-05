@@ -279,7 +279,7 @@ function showLinks($stmt){
 	$returnStmtArray = explode("<br/>", $returnStmt);
 	$Stmtreturn = "";
 	foreach($returnStmtArray as $element){
-		if((substr($element, -2) == ": ") || (substr($element, -2) == " :") || (substr($element, -1) == ":") || (substr($element, -3) == ":  ") || (substr($element, -5) == ": <s>")){
+		if((substr($element, -2) == ": ") || (substr($element, -2) == " :") || (substr($element, -1) == ":") || (substr($element, -9) == ": &nbsp; ") || (substr($element, -8) == ": &nbsp;") || (substr($element, -3) == ":  ")){
 			$element = "<b> ".$element." </b>";
 		}
 		$Stmtreturn .= $element . " <br/> ";
