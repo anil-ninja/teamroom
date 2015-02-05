@@ -67,7 +67,7 @@ function dropDown_delete_comment_pr_ch($deleteid, $user_ID, $owner_id) {
 }
 function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
         echo "<div class='dropdown pull-right'>
-                <a href='#'' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
+                <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
                 <ul class='dropdown-menu'>";
                     if($owner_id == $user_ID) {
                         echo "<li>
@@ -101,7 +101,7 @@ function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $
 }
 function dropDown_challenge_pr($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
         echo "<div class='dropdown pull-right'>
-                <a href='#'' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
+                <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
                 <ul class='dropdown-menu'>";
                     if($owner_id == $user_ID) {
                         echo "<li>
@@ -137,7 +137,7 @@ function dropDown_challenge_pr($challenge_ID, $user_ID, $remaining_time_ETA_over
 function dropDown_delete_after_accept($challenge_ID, $user_ID, $owner_id) {
     if($owner_id == $user_ID) {
         echo "<div class='dropdown pull-right'>
-                <a href='#'' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
+                <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
                 <ul class='dropdown-menu'>
                     <li>
                         <a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 1)'>
@@ -156,7 +156,7 @@ function dropDown_delete_after_accept($challenge_ID, $user_ID, $owner_id) {
 function dropDown_delete_after_accept_pr($challenge_ID, $user_ID, $owner_id) {
     if($owner_id == $user_ID) {
         echo "<div class='dropdown pull-right'>
-                <a href='#'' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'> <span class='caret'></span></a>
+                <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'> <span class='caret'></span></a>
                 <ul class='dropdown-menu'>
                     <li><a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 2)'>Edit</a></li>
                     <li><a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</a></li>
@@ -279,7 +279,7 @@ function showLinks($stmt){
 	$returnStmtArray = explode("<br/>", $returnStmt);
 	$Stmtreturn = "";
 	foreach($returnStmtArray as $element){
-		if((substr($element, -2) == ": ") || (substr($element, -2) == " :") || (substr($element, -1) == ":")){
+		if((substr($element, -2) == ": ") || (substr($element, -2) == " :") || (substr($element, -1) == ":") || (substr($element, -3) == ":  ") || (substr($element, -5) == ": <s>")){
 			$element = "<b> ".$element." </b>";
 		}
 		$Stmtreturn .= $element . " <br/> ";
