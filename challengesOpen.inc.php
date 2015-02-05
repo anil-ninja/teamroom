@@ -118,7 +118,7 @@ function challenge_display($db_handle, $challengeSearchID) {
 							<a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>".ucfirst($ch_title)."</a></b>
 						</span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/><br/>";
 			$display_fname_likes = "<span style= 'color: #808080;'>
-							&nbspBy: <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>" ;
+							&nbspBy : <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>" ;
 			$display_name_stmt .= "<hr/><span id='challenge_".$chelangeid."' class='text' style='line-height: 25px; font-size: 14px;color: #444;'>".$chelange."</span><br/>";
 			$display_name_stmt = $display_name_stmt . editchallenge($chelangestmt, $chelangeid) ;
             if (isset ($_SESSION['user_id'])) {
@@ -368,33 +368,33 @@ function challenge_display($db_handle, $challengeSearchID) {
                                 <a data-toggle='modal' data-target='#SignIn'>
                                     <button class='btn btn-primary pull-right' >Accept</button>
                                 </a>";
-                    echo $display_title."<span class='icon-question-sign'></span>".$display_name_stmt;
+                    echo $display_title."<span class='icon-question-sign'></span>".$display_fname_likes.$display_name_stmt;
                           
                 }
                 else if ($ctype == 4) {
                     echo "<div class='list-group idea'>
                                 <div class='list-group-item'>";
-                                   echo $display_title."<span class='icon-lightbulb'></span>".$display_name_stmt;
+                                   echo $display_title."<span class='icon-lightbulb'></span>".$display_fname_likes.$display_name_stmt;
                 }
                 else if ($ctype == 6) {
                     echo "<div class='list-group deciduous'>
                                 <div class='list-group-item'>";
-                                    echo $display_title."<span class='icon-leaf'></span>".$display_name_stmt;
+                                    echo $display_title."<span class='icon-leaf'></span>".$display_fname_likes.$display_name_stmt;
                 }
                 else if ($ctype == 9) {
                     echo "<div class='list-group asterisk'>
                                 <div class='list-group-item'>";
-                                    echo $display_title."<span class='icon-asterisk'></span>".$display_name_stmt;
+                                    echo $display_title."<span class='icon-asterisk'></span>".$display_fname_likes.$display_name_stmt;
                 }
                 else if ($ctype == 7) {
                     echo "<div class='list-group articlesch'>
                             <div class='list-group-item'>";
-                        echo $display_title."<span class='icon-book'></span>".$display_name_stmt;
+                        echo $display_title."<span class='icon-book'></span>".$display_fname_likes.$display_name_stmt;
                 }
                 else if ($ctype == 8) {
                     echo "<div class='list-group film'>
                             <div class='list-group-item'>";
-                            echo $display_title."<span class='icon-film'></span>".$display_name_stmt;
+                            echo $display_title."<span class='icon-film'></span>".$display_fname_likes.$display_name_stmt;
                 }
             }
             echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($chelangeid)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
