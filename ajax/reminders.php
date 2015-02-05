@@ -33,7 +33,7 @@ if ($_POST['reminder']) {
 		echo $data."+".$reminderid ;
 	}
 	else {
-		echo "<br/> You have no Reminders";
+		echo "<br/> &nbsp;&nbsp;&nbsp;&nbsp;You have no Reminders <br/><br/>";
 	}
 	mysqli_close($db_handle);
 }

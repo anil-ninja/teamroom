@@ -7,8 +7,8 @@
         </div>
     </div>
     <div id='collapseOne' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingOne'>   
-       <div class="panel-body" style="padding: 1px; background : rgb(240, 241, 242);">     
-			To : <select class="btn-default btn-xs" style='width: 70%; margin-top: 5px;' id= "self_remind" >
+       <div class="panel-body" style="padding: 2px; background-color: #fff;">     
+			To : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<select class="btn-default btn-xs" style='width: 70%; margin-top: 5px;' id= "self_remind" >
 					<option value="<?= $user_id ; ?>" selected >Self</option>
 						<?php
 						  $friends = mysqli_query($db_handle, "SELECT * FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b where
@@ -32,7 +32,7 @@
 		</div>
 	</div>
     <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>   
-      <div id='allreminders' ></div>
+      <div class="panel-body" style="padding: 2px; background-color: #fff;" id='allreminders' ></div>
          <?php  echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>"; ?>
     </div><br/>
     <div id='step4' class="panel panel-default">
