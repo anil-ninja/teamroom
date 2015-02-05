@@ -276,10 +276,18 @@ function showLinks($stmt){
 		}
 		$returnStmt .= $element . " ";
 	}
-	return $returnStmt;
+	$returnStmtArray = explode("<br/>", $returnStmt);
+	$Stmtreturn = "";
+	foreach($returnStmtArray as $element){
+		if((substr($element, -2) == ": ") || (substr($element, -2) == " :") || (substr($element, -1) == ":")){
+			$element = "<b> ".$element." </b>";
+		}
+		$Stmtreturn .= $element . " <br/> ";
+	}
+	return $Stmtreturn ;
 }
 function removescript($stmt){
-	$stmtArray = explode("<script>", $stmt);
+	$stmtArray = explode(" ", $stmt);
 	$returnStmt = "";
 	foreach($stmtArray as $element){
 		
