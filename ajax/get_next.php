@@ -78,8 +78,8 @@ if ($_POST['chal']) {
         // list grp item header for all type chall/article/idea/photo/video
             $get_display_tilte = "<span style='font-family: Tenali Ramakrishna, sans-serif;' id='challenge_ti_".$chelangeid."' class='text'><b>
                 <a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$chelangeid."' target='_blank'>
-                ".ucfirst($ch_title)."</a></b></span><br/>
-                <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/>";
+                ".ucfirst($ch_title)."</a></b></span>
+                <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$chelangeid."' value='".$chal_title."'/><br/>";
             $get_display_fname_likes ="<span style= 'color: #808080;'>
                 &nbsp;By : <a href ='profile.php?username=" . $username_ch_ninjas . "' style= 'color: #808080;'>
                 ".ucfirst($frstname)." ".ucfirst($lstname)."</a> | ".$timefunction."</span>";
