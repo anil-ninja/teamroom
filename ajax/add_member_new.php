@@ -36,6 +36,7 @@ if ($_POST['team']) {
 			</div>" ;
 	$check = mysqli_query($db_handle, "select * from teams projects where project_id = '$pro_id' and team_name = '$team' and user_id = '$userid' ;") ;
 	if(mysqli_num_rows($check) == 0) {
+		mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
 		events($db_handle,$user_id,"15",$pro_id);
 		involve_in($db_handle,$user_id,"15",$pro_id); 
 		$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id'
@@ -51,7 +52,6 @@ if ($_POST['team']) {
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 			collapMail($emails, "Member Added IN Team", $body2);
 		}
-		mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
 		if(mysqli_error($db_handle)) { echo "Failed to Add member!"; }
 		else { echo "Added"."+".$data; }
 	}
@@ -59,6 +59,7 @@ if ($_POST['team']) {
 		$checkRow = mysqli_fetch_array($check) ;
 		$status = $checkRow['member_status'] ;
 		if($status == 2) {
+			mysqli_query($db_handle, "UPDATE teams SET member_status = '1' WHERE team_name = '$team' AND project_id = '$pro_id' AND user_id = '$newuserid' ;");
 			events($db_handle,$user_id,"15",$pro_id);
 			involve_in($db_handle,$user_id,"15",$pro_id); 
 			$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id'
@@ -74,7 +75,6 @@ if ($_POST['team']) {
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 				collapMail($emails, "Member Added IN Team", $body2);
 			}
-			mysqli_query($db_handle, "UPDATE teams SET member_status = '1' WHERE team_name = '$team' AND project_id = '$pro_id' AND user_id = '$newuserid' ;");
 			if(mysqli_error($db_handle)) { echo "Failed to Add member!"; }
 			else { echo "Added"."+".$data; }	
 		}
