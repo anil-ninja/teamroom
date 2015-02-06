@@ -14,7 +14,7 @@
 <br/><br/>
     <nav class="sidebar light">
     <ul>
-		<div class='bs-component' style='max-height:120px;'>       
+		<div class='bs-component' style='max-height:150px;'>       
 <?php 
     if (isset($_SESSION['user_id'])) {              
  		echo "<li class='title'>Classified Projects</li>";   
@@ -68,7 +68,7 @@
     </nav>
     <nav class="sidebar light">
     <ul>
-		<div class='bs-component' style='max-height:120px;'> 
+		<div class='bs-component' style='max-height:150px;'> 
 		<li class='title'>Public Projects</li>
         <?php
             $project_public_title_display = mysqli_query($db_handle, "SELECT * FROM projects WHERE user_id = '$user_id' and project_type = '1' ;") ;
@@ -115,7 +115,7 @@
     </nav>
     <nav class="sidebar light">
     <ul>
-		<div class='bs-component' style='max-height:120px;'>  
+		<div class='bs-component' style='max-height:150px;'>  
         <li class='title'>Joined Projects</li>
         <?php
             $allJoinedProjects = mysqli_query($db_handle, "SELECT DISTINCT project_id FROM teams WHERE project_id NOT IN 
