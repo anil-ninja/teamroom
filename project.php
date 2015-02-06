@@ -9,7 +9,7 @@ $view = 1 ;
     <head>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-            <title><?php echo str_replace("<br/>", "\n", $projttitle) ; ?></title>
+            <title><?php echo str_replace("<br/>", "", $projttitle) ; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="<?php echo $keywords;?>">
     <meta name="description" content="Challenge, Project, Problem solving, problem">
