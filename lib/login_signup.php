@@ -38,22 +38,14 @@ function signup(){
                 $id_access_id =  mysqli_insert_id($db_handle);
                 $hash_keyR = $hash_keyR.".".$id_access_id;
                 //echo $hash_keyR ;
-                $body = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'>
-<table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td><p>Hi ".ucfirst($username).",</p>
+                $body = "<p>Hi ".ucfirst($username).",</p>
 <p>Welcome to Collap. We are building an engaged community of problem solvers in different domains of Science, Technology, Marketing, Economics, Electronics, Electrical, Mechanical, Computer Science, etc. We provide tools, technology and platform to manage projects, host and solve challenges, hosting articles, ideas, etc</p>
 <p>We are excited to have you on-board and there’s just one step to verify if it’s actually your e-mail address:</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/verifyEmail.php?hash_key=".$hash_keyR."' class='btn-primary'>Click Here to Verify Your Email</a></p></td></tr></table>
-<p>Hugs or bugs, please let us know by replying to this e-mail. Welcome again!</p>
-<p>Thanks,</p>
-<p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p>
-</td></tr></table></div></td><td></td></tr></table></body></html>" ;
+<table><tr><td class='padding'><p>Hugs or bugs, please let us know by replying to this e-mail. Welcome again!</p>" ;
                 
                 collapMail($email, "Email Verification From Collap", $body);
-                $body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>Thanks for joining Collap</h2><p>Hi ".ucfirst($username).",</p>
+                $body2 = "<h2>Thanks for joining Collap</h2><p>Hi ".ucfirst($username).",</p>
 <p>We’re thrilled to have you on board. Be sure to save your important account details for future reference:</p>
 <p>Your username is: ".$username."</p>
 <p>You’ve joined a talented community of professionals dedicated to doing great work. The first step for building a successfull collaborative network is to update your profile</p>
@@ -63,11 +55,7 @@ function signup(){
 	<li>Complete:<p>With all information filled out, including your full name and picture</p></li>
 	<li>Accurate:<p>Featuring information that is true and verifiable</p></li>
 	<li>Contact:<p>Contact information will help you and other collapian to collaborate and do better. Give you Phone no and Email id	</p></li>
-<p>Thanks,</p>
-<p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ; 
+</ul>" ; 
 
               collapMail($email, "complete your profile", $body2);
 		if(mysqli_error($db_handle)){
@@ -129,16 +117,9 @@ function login(){
 					$usernameFriends = $userProjectsRow['username'];
 					$useridFriends = $userProjectsRow['user_id'];
 					events($db_handle,$id,"18",$useridFriends) ;
-					$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>Rank Updated</h2><p>Hi ".ucfirst($usernameFriends).",</p>
+					$body2 = "<h2>Rank Updated</h2><p>Hi ".ucfirst($usernameFriends).",</p>
 <p>".$username."'s rank has been Updated to ".$new_rank.".</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$username."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
+<table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$username."' class='btn-primary'>Click Here to View</a></p>" ;
 					collapMail($friendFirstName, "Rank Updated ", $body2);
 				}
 			}

@@ -28,15 +28,9 @@ if($_POST['answer']){
 	if($case == 1) {
 		involve_in($db_handle,$user_id,"5",$ch_id); 
 		events($db_handle,$user_id,"5",$ch_id);
-		$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".$challengeTtitle."</h2><p>Hi ".$userFirst." ".$userLast.",</p><p>Answer to a challange posted on collap in which you are involved has been submitted.</p>
+		$body2 = "<h2>".$challengeTtitle."</h2><p>Hi ".$userFirst." ".$userLast.",</p><p>Answer to a challange posted on collap in which you are involved has been submitted.</p>
 <p>".$username." has submitted a answer to the Challange, ".$challengeTtitle."</p><table><tr><td class='padding'>
-<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' class='btn-primary'>Click Here to View the answer</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' class='btn-primary'>Click Here to View the answer</a></p>" ;
 		collapMail($owneremail, "Challenge Accepted ", $body2);
 		mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4', last_update='$a' WHERE challenge_id = $ch_id ; ") ;
 		mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $ch_id and user_id = '$user_id'; ") ;
@@ -68,15 +62,9 @@ if($_POST['answer']){
 				$mail = $memrow['username'] ;
 				$userFirstName = $memrow['first_name'] ;
 				$userLastName = $memrow['last_name'] ;
-				$body2 = file_get_contents('../html_comp/mailheader.php')."<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".$challengeTtitle."</h2><p>Hi ".$userFirstName." ".$userLastName.",</p><p>Answer to a challange posted on collap in which you are involved has been submitted.</p>
+				$body2 = "<h2>".$challengeTtitle."</h2><p>Hi ".$userFirstName." ".$userLastName.",</p><p>Answer to a challange posted on collap in which you are involved has been submitted.</p>
 <p>".$username." has submitted a answer to the Challange, ".$challengeTtitle."</p><table><tr><td class='padding'>
-<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' class='btn-primary'>Click Here to View the answer</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' class='btn-primary'>Click Here to View the answer</a></p>" ;
 				collapMail($emails, "Challenge Accepted ", $body2);
 			} 
 			involve_in($db_handle,$user_id,"5",$ch_id); 
