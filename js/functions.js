@@ -73,11 +73,24 @@ function requestdelete(ID) {
 		}
 	});
 }
-function add_member(PID, name) {
+function add_member() {
+	$("#add_member").attr('disabled','disabled');
 	var email = $("#email_add_member").val() ;
+	var PID = $("#ProjectIDValue").val() ;
+	var name = document.getElementById("teamname").innerHTML ;
+	var data = document.getElementById("TeamMembers").innerHTML ;
     var dataString = 'email='+ email + '&id='+ PID + '&name='+ name + '&case=1';
     if (replaceAll('\\s', '',email) == "") {
-       bootstrap_alert(".alert_placeholder", "Email can't be empty", 5000,"alert-success");
+		if (data == ""){
+			bootstrap_alert(".alert_placeholder", "Email can't be empty", 5000,"alert-success");
+			$("#add_member").removeAttr('disabled');
+		}
+		else {
+			$("#add_member").removeAttr('disabled');
+			document.getElementById("TeamMembers").innerHTML = "" ;
+			$("#AddMember").modal("hide");
+			return false ;
+		}
     }
     else {
 		$.ajax({
@@ -98,21 +111,61 @@ function add_member(PID, name) {
 								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 								$('.team-member').append(notice['1']);
 								$("#email_add_member").val("") ;
+								$("#add_member").removeAttr('disabled');
+								document.getElementById("TeamMembers").innerHTML = "" ;
+								$("#AddMember").modal("hide");
 							}
 							else {
 								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-warning");
+								$("#add_member").removeAttr('disabled');
 							}
 						}
 					});
 				}
 				else {
 					bootstrap_alert(".alert_placeholder", "Please Enter Valid Email-ID", 5000,"alert-warning");
-					$("#invitemember").removeAttr('disabled');
+					$("#add_member").removeAttr('disabled');
 					return false ;							
 				}
 			}
 		});
 	}
+}
+function AddTeamMember(userid){
+	$("#add_member").attr('disabled','disabled');
+	var ID = $("#ProjectIDValue").val() ;
+	var newteam = document.getElementById("teamname").innerHTML ;
+	var dataString = 'team='+ newteam + '&userid='+ userid + '&project_id=' + ID ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/add_member_new.php",
+		data: dataString,
+		cache: false,
+		success: function(result){
+			var notice = result.split("+") ;
+			if(notice['0'] == "Added") {
+				bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
+				$("#member_"+userid).hide();
+				$(".TeamMembers").append(notice['1']);
+				$(".team-member").append(notice['1']);
+				$("#add_member").removeAttr('disabled');						
+			}
+			else if(notice['0'] == "Updated") {
+				bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
+				$("#member_"+userid).hide();
+				$(".TeamMembers").append(notice['1']);
+				$("#add_member").removeAttr('disabled');						
+			}
+			else {
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+				$("#add_member").removeAttr('disabled');
+			}
+		}				
+	});
+}
+function add_Team_Member(team) {
+	document.getElementById("teamname").innerHTML = team ;
+	$("#AddMember").modal("show");
 }
 function loadteampanel(ID, team) {
 	var dataString = 'team=' + team + '&project_id=' + ID ;

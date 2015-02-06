@@ -27,21 +27,7 @@ $total_members = mysqli_num_rows($teams_member_display);
             $team_ownerRow = mysqli_fetch_array($teams_owner_add);
             $team_owner_project = $team_ownerRow['team_owner'];
             if ($team_owner_project == $user_id) {
-                echo "
-                        <div class='dropdown pull-right'>
-                            <a href='#' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'>
-                                + Add New Teammate
-                                <b class='caret'></b>
-                            </a>
-                            <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1' style='padding: 5px 5px;'>
-                                <li>
-                                    <form>
-                                        <input type='email' class='input-block-level' id ='email_add_member' placeholder='Enter member Email'/><br/>
-                                        <input type='button' class='btn btn-success submit' onclick='add_member(\"".$pro_id."\",\"".$team_name."\")' value='Add' />
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>";
+                echo "<a href='#' class='btn btn-link pull-right' onclick='add_Team_Member(\"".$team_name."\")'> + Add New Teammate </a>";
             }
         ?>
                     </div>
@@ -68,7 +54,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                     <div class='list-group-item'>
 
 <?php
-    echo "              <div class='row-fluid team-member'>";
+    echo "<div class='row-fluid team-member'>";
     while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
         $firstname = $teams_member_displayRow['first_name'];
         $username = $teams_member_displayRow['username'];
@@ -79,9 +65,8 @@ $total_members = mysqli_num_rows($teams_member_display);
         echo "<div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>";
 
             if ($team_owner_project == $user_id && $user_id_member != $user_id) {
-                        echo "  <a type='submit' class='btn-link badge pull-right' id='remove_member' 
-        					onclick='remove_member(\"".$pro_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
-        					data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
+                        echo "  <a type='submit' class='btn-link badge pull-right' id='remove_member' onclick='remove_member(\"".$pro_id."\", \"".$team_name."\", \"".$user_id_member."\");' 
+										data-toggle='tooltip' data-placement='bottom' data-original-title='Delete Teammate'>
                                     <span class='icon-remove'></span>
                                 </a>";
             }

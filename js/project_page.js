@@ -310,7 +310,7 @@ function create_team(){
 				cache: false,
 				success: function(result){
 					var notice = result.split("+") ;
-					if(notice['0'] = "Team Created Successfully !!!") {
+					if(notice['0'] == "Team Created Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 						$("#team_name_A").val("") ;
 						$("#email_team").val("") ;
@@ -354,7 +354,7 @@ function submitTeam(team,email, ID) {
 					cache: false,
 					success: function(result){
 						var notice = result.split("+") ;
-						if(notice['0'] = "Team Created Successfully !!!") {
+						if(notice['0'] == "Team Created Successfully !!!") {
 							bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 							$("#team_name_A").val("") ;
 							$("#email_team").val("") ;
@@ -434,7 +434,7 @@ function submitTeam(team,email, ID) {
 							cache: false,
 							success: function(result){
 								bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-							if(result = "Invitation Send Successfully !!!") {
+							if(result == "Invitation Send Successfully !!!") {
 								$("#fnameteam").val("") ;
 								$("#snameteam").val("") ;
 								$("#teamemail").val("") ;
@@ -474,7 +474,7 @@ function CreateTeamMember(userid){
 				cache: false,
 				success: function(result){
 					var notice = result.split("+") ;
-					if(notice['0'] = "Team Created Successfully !!!") {
+					if(notice['0'] == "Team Created Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
 						$("#username_"+userid).hide();
 						$(".TeamMembers").append(notice['1']);
