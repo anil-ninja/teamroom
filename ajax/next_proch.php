@@ -5,6 +5,7 @@ include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
 if($_POST['proch']){
 	$user_id = $_SESSION['user_id'];
+	$username = $_SESSION['username'];
 	$p_id = $_POST['project_id'];
 	$limitpr = $_SESSION['lastpr'];
 	$a = (int)$limitpr ;
@@ -289,7 +290,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 		<div id='commentscontainer'>
 			<div class='comments clearfix' id='comment_".$idc."'>
 				<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username_commenter_pr_ch.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+					<img src='".resize_image("uploads/profilePictures/$username_commenter.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
 				</div>" ;
 		 $show = $show . "<div class='list-group-item pull-right'>
                             <a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
@@ -299,7 +300,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                                                   <li><button class='btn-link' cID='".$idc."' onclick='delcomment(".$idc.");'>Delete</button></li>";
                             } 
                             else {
-                                $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$idc."\", 5, \"".$pro_id."\")' class='btn-link' >Report Spam</button></li>";
+                                $show = $show . "<li><button type='submit' onclick='spemchpr(\"".$idc."\", 5, \"".$p_id."\")' class='btn-link' >Report Spam</button></li>";
                             }
              $show = $show . "</ul>
                             </div>";

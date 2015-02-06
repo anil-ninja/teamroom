@@ -11,6 +11,9 @@ if ($_POST['email']) {
     $email = $_POST['email'];
     $pro_id = $_POST['id'] ;
     $case = $_POST['case'] ;
+    $info =  mysqli_query($db_handle, "select * from projects where project_id = '$pro_id' ;") ;
+	$inforow = mysqli_fetch_array($info) ;
+	$title = $inforow['project_title'] ;
     if($case == 1) {
 		$respo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE email = '$email';");
 		if (mysqli_num_rows($respo) > 0) {
@@ -38,7 +41,7 @@ if ($_POST['email']) {
 					$body2 = "<h2>Add Member in Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new member has been added in team ".$team_name.".</p>
 <p>".$team_name." has a new member ".$uname." in project ".ucfirst($title)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a>" ;
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 					collapMail($emails, "Member Added IN Team", $body2);
 					}
 			}

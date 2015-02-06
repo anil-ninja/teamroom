@@ -62,7 +62,8 @@ $challengeSearch_first = $challengeSearch_user_IDRow['first_name'];
 $challengeSearch_last = $challengeSearch_user_IDRow['last_name'];
 
 function challenge_display($db_handle, $challengeSearchID) {
-    $username = $_SESSION['username'];    
+    $username = $_SESSION['username']; 
+    $display_name_stmt = "";   
     $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.challenge_id, a.challenge_open_time, a.challenge_title, a.challenge_status, a.user_id, 
                                                 a.challenge_ETA, a.challenge_type, a.stmt, a.creation_time, b.first_name, b.last_name, b.username from challenges
                                                 as a join user_info as b where a.challenge_id = '$challengeSearchID' AND a.challenge_status != '3' and a.challenge_status != '7' 

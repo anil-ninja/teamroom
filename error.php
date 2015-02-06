@@ -46,9 +46,7 @@ include_once 'functions/image_resize.php';
                             <span style= 'color: #808080'> &nbspBy: 
                                 <a href ='profile.php?username=" . $challenge_type_username . "' style= 'color: #808080'>"
                                     .ucfirst($challenge_type_first)." ".ucfirst($challenge_type_last)."
-                                </a> | ".$time_display." | </span>
-                            <span class='icon-hand-up'>".$likes."</span> &nbsp 
-                            <span class='icon-hand-down'>".$dislikes."</span>
+                                </a> | ".$time_display."</span>
                             <hr/><span style='font-size: 14px;'>".$challenge_type_stmt."</span><br/>
                         </div>";
         echo "  <div class='list-group'>";

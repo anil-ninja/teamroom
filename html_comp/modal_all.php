@@ -123,6 +123,7 @@
                             <table >
 								<tbody>
 							<?php
+							$user_id = $_SESSION['user_id'];
 							$userProjects = mysqli_query($db_handle, "(SELECT a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
 																		where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id')
 																		as b where a.user_id = b.user_id )
@@ -175,6 +176,7 @@
                             <table >
 								<tbody>
 							<?php
+							$user_id = $_SESSION['user_id'];
 							$userProjects = mysqli_query($db_handle, "(SELECT a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
 																		where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id')
 																		as b where a.user_id = b.user_id )
