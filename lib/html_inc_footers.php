@@ -101,17 +101,7 @@ function validateSignupFormOnSubmit() {
 	var password2 = $("#password2R").val() ;
     var term_n_cond = document.getElementById("agree_tc").checked;
 
-    /* reason += validateFirstname(theForm.firstname);
-	reason += validateEmail(theForm.email);
-	reason += validateUsername(theForm.username);
-	reason += validatePhone(theForm.phone);
-	reason += validatePassword(theForm.password);
-	reason += validatePassword2(theForm.password,theForm.password2);
-	if (reason != "") {
-	alert("Some fields need correction:\n" + reason);
-	return false;
-	}
-	return true;*/
+    
 	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username +
 	'&password='+ password + '&password2='+ password2 + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
 	if(password==password2){

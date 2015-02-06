@@ -52,6 +52,6 @@ $footer = "</td></tr><tr><td>
 </td><td></td></tr></table></body></html>";
 
 $newbody = $header.$body.$footer ;
-	mail($to, $subject, $newbody, implode("\r\n", $headers));
+	return mail($to, $subject, $newbody, implode("\r\n", $headers));
 }
 ?>
