@@ -1,6 +1,4 @@
 <?php 
-include_once '../functions/delete_comment.php';
-include_once '../lib/db_connect.php';
 session_start();
 $user_id = $_SESSION['user_id'] ;
 $pro_id = $_GET['project_id'] ;

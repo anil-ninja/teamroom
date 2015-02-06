@@ -55,7 +55,7 @@ function signup(){
 	<li>Complete:<p>With all information filled out, including your full name and picture</p></li>
 	<li>Accurate:<p>Featuring information that is true and verifiable</p></li>
 	<li>Contact:<p>Contact information will help you and other collapian to collaborate and do better. Give you Phone no and Email id	</p></li>
-</ul>" ; 
+</ul><table><tr><td>" ; 
 
               collapMail($email, "complete your profile", $body2);
 		if(mysqli_error($db_handle)){

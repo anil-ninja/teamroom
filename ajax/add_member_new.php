@@ -48,7 +48,7 @@ if ($_POST['team']) {
 			$userLastName = $memrow['last_name'] ;
 			$body2 = "<h2>Add Member in Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new member has been added in team ".$team.".</p>
-<p>".$team." has a new member ".$uname." in project ".ucfirst($title)."</p>
+<p>".$team." has a new member ".$newusername." in project ".ucfirst($title)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 			collapMail($emails, "Member Added IN Team", $body2);
 		}
@@ -71,7 +71,7 @@ if ($_POST['team']) {
 				$userLastName = $memrow['last_name'] ;
 				$body2 = "<h2>Add Member in Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new member has been added in team ".$team.".</p>
-<p>".$team." has a new member ".$uname." in project ".ucfirst($title)."</p>
+<p>".$team." has a new member ".$newusername." in project ".ucfirst($title)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 				collapMail($emails, "Member Added IN Team", $body2);
 			}
