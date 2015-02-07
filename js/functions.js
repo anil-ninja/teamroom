@@ -383,3 +383,31 @@ function set_remind() {
 		});
 	}	
 }
+function invest() {
+	$("#invest").attr('disabled','disabled');
+	var amount = convertSpecialChar($("#fund_amount").val()) ;
+	var IDPr = $("#ProjectIDValue").val() ;
+	if(replaceAll('\\s', '',amount)==''){
+		bootstrap_alert(".alert_placeholder", "Amount can not be empty", 5000,"alert-warning");
+		return false;
+	}
+	else {
+		var dataString = 'amount='+ amount + '&pro_id='+ IDPr ;
+		$.ajax({
+			type: "POST",
+			url: "ajax/fund_info.php",
+			data: dataString,
+			cache: false,
+			success: function(result){
+				if(result=='Sucessfull!'){
+					bootstrap_alert(".alert_placeholder", "We will follow up you soon", 5000,"alert-success");
+					setTimeout(function() { location.reload(); }, 3000);
+				}
+				else {
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					return false;
+				}
+			}
+		});
+	}
+}

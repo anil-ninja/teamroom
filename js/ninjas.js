@@ -523,12 +523,12 @@ function bootstrap_alert(elem, message, timeout,type) {
 				uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
 			}
 		});
-var specialKeys = new Array();
-specialKeys.push(8); //Backspace
 function IsNumeric(e) {
-     var keyCode = e.which ? e.which : e.keyCode
-     var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
-     return ret;
+	var specialKeys = new Array();
+	specialKeys.push(8); //Backspace
+    var keyCode = e.which ? e.which : e.keyCode
+    var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+    return ret;
 }
 		
 		$('.tree-toggle').click(function () {

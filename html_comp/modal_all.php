@@ -212,6 +212,30 @@
         </div>
     </div>
 </div>
+<!--- Invest In Project Modal --->
+<div id="Investment" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span5 offset4">
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Invest in Project</span></a></li>
+                    <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active">
+                        <div class="row-fluid">
+                            <h4>&nbsp;&nbsp;&nbsp;<i class="icon-user"></i>&nbsp;&nbsp;Invest in Project </h4>
+                            <label>&nbsp;&nbsp;&nbsp; Amount You want to Invest (In Dollers)</label>
+                            &nbsp;&nbsp;&nbsp; <input type="number" class="input-block-level" id="fund_amount" min="1" onkeypress="return IsNumeric(event);" ondrop="return false;" 
+                            onpaste="return false;" style="width:80%;" placeholder="Enter Amount in dollers"/><span style='font-size:28px;'>$</span><br/><br/>
+                            &nbsp;&nbsp; <a href="#" class=" btn btn-primary" id = "invest" onclick='invest()'>Invest &nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 
 <script>
 	$(".TeamName").hide();
 	$(".aboutfund").hide();
