@@ -118,7 +118,10 @@
 			$usertypeRow = mysqli_fetch_array($usertype) ;
 			$TypeUser = $usertypeRow['user_type'] ;
 			if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
-				echo "<a data-toggle='modal' class='btn btn-primary' data-target='#Investment'> Invest </a>" ;
+				$checkperm = mysqli_query($db_handle, "select * from investment_info where user_id = '$user_id' and project_id = '$pro_id' ;") ;
+				if (mysqli_num_rows($checkperm) == 0){
+					echo "<a data-toggle='modal' class='btn btn-primary' data-target='#Investment'> Invest </a>" ;
+				}
 			}
 		}
 	}	

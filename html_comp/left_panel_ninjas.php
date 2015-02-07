@@ -1,5 +1,8 @@
 <br/>
 <?php 
+	$usertype = mysqli_query($db_handle, "select * from user_info where user_id = '$user_id' ;") ;
+	$usertypeRow = mysqli_fetch_array($usertype) ;
+	$TypeUser = $usertypeRow['user_type'] ;
     if (isset($_SESSION['user_id'])) {
         echo "<a id='step6' class='btn btn-primary' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>  
                 <i class='icon-plus'></i>Create Projects
@@ -70,14 +73,20 @@
     <ul>
 		<div class='bs-component' style='max-height:150px;'>       
 <?php             
- 		echo "<li class='title'>Private Projects</li>";   
-        $private_project_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time, b.stmt 
-                                                            FROM teams as a join projects as b WHERE a.user_id = '$user_id' 
-                                                            AND a.project_id = b.project_id AND b.project_type = '4')  
-                                                            UNION 
-                                                            (SELECT DISTINCT project_id, project_title, project_ETA, creation_time, stmt 
-                                                            FROM projects WHERE user_id = '$user_id' AND project_type= '4');");
+ 		echo "<li class='title'>Private Projects</li>";
+ 		if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
         
+			$private_project_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time, stmt from projects
+																WHERE project_type = '4' ;");
+		}
+		else { 
+			$private_project_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time, b.stmt 
+																FROM teams as a join projects as b WHERE a.user_id = '$user_id' 
+																AND a.project_id = b.project_id AND b.project_type = '4')  
+																UNION 
+																(SELECT DISTINCT project_id, project_title, project_ETA, creation_time, stmt 
+																FROM projects WHERE user_id = '$user_id' AND project_type= '4');");
+		}
         if (mysqli_num_rows($private_project_display) == 0) {
 			echo " <li class='stick'>No any projects to display,<br>
 					<a class='active' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>
