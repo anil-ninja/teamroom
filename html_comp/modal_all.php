@@ -27,6 +27,7 @@
                             <select id= "type" >    
                                 <option value='2' selected >Classified</option>
                                 <option value='1' >Public</option>
+                                <option value='3' >Private</option>
                             </select>
                             <br/><br/>
                             <a href="#" class=" btn btn-primary" id = "create_project">Create Project&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
