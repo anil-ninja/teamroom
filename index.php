@@ -285,6 +285,10 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                             <input type="password" class="input-block-level" id="password2R"/>
                                         </div>
                                     </div>
+                                    <label>You are here for</label>
+                                    <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeCol' /> Collaboration &nbsp;&nbsp;&nbsp;
+                                    <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
+                                    <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeFun' /> Fund Searcher <br/><br/>
                                     <label>
                                         <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='agree_tc' />
 
@@ -495,20 +499,9 @@ function validateSignupFormOnSubmit() {
 	var password = $("#passwordR").val() ;
 	var password2 = $("#password2R").val() ;
     var term_n_cond = document.getElementById("agree_tc").checked;
-
-    /* reason += validateFirstname(theForm.firstname);
-	reason += validateEmail(theForm.email);
-	reason += validateUsername(theForm.username);
-	reason += validatePhone(theForm.phone);
-	reason += validatePassword(theForm.password);
-	reason += validatePassword2(theForm.password,theForm.password2);
-	if (reason != "") {
-	alert("Some fields need correction:\n" + reason);
-	return false;
-	}
-	return true;*/
-	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username +
-	'&password='+ password + '&password2='+ password2 + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
+	var typeA = document.getElementById("typeCol").checked;
+    var typeB = document.getElementById("typeInv").checked;
+    var typeC = document.getElementById("typeFun").checked;
 	if(password==password2){
 		if(replaceAll('\\s', '',firstname)==''){
 			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
@@ -551,8 +544,34 @@ function validateSignupFormOnSubmit() {
 		} 
         else if(term_n_cond==false){
             bootstrap_alert(".alert-placeholder", "You have not accepted term and conditions", 5000,"alert-warning");
+        }
+        else if((typeA==false) && (typeB==false) && (typeC==false)){
+            bootstrap_alert(".alert-placeholder", "You have not told why you are here", 5000,"alert-warning");
         } 
 		else {
+			if((typeA==false) && (typeB==false)){
+				var type = "fundsearcher";
+			}
+			else if((typeA==false) && (typeC==false)){
+				var type = "invester";
+			}
+			else if((typeB==false) && (typeC==false)){
+				var type = "collaborater";
+			}
+			else if(typeB==false){
+				var type = "collaboraterFundsearcher";
+			}
+			else if(typeA==false){
+				var type = "fundsearcherInvester";
+			}
+			else if(typeC==false){
+				var type = "collaboraterInvester";
+			}
+			else {
+				var type = "collaboraterinvesterfundsearcher";
+			}
+			var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username + '&password='+ password + 
+							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
 			$.ajax({
 				type: "POST",
 				url: "controllers/login_controller.php",
