@@ -106,6 +106,10 @@
                                                 <input type="password" class="input-block-level" id="password2R"/>
                                             </div>
                                         </div>
+                                        <label>You are here for</label>
+										<input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeCol' /> Collaboration &nbsp;&nbsp;&nbsp;
+										<input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
+										<input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeFun' /> Fund Searcher <br/><br/>
                                         <label>
                                             <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='agree_tc' />
 
