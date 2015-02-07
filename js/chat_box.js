@@ -69,25 +69,27 @@ function getOldChat(chatboxtitle){
 	$.ajax({
 	  url: "chat.php?action=getoldchat&chatuser="+chatboxtitle,
 	  cache: false,
+	  async: false ,
 	  dataType: "json",
 	  success: function(data) {
 		$.each(data.items, function(i,item){
 			if (item)	{ // fix strange ie bug	
 				if (item.s == 2) {
 					$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxinfo">'+item.m+'</span></div>');
-				} else {
+				} 
+				else {
 					if(item.f != chatboxtitle) { 
 						$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+item.f+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
-						}
-						else {
-							$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+chatboxtitle+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
-							}
+					}
+					else {
+						$("#chatbox_"+chatboxtitle+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+chatboxtitle+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+item.m+'</span></div>');
+					}
 				}
 			}
 		});
-	}});
-	
-	}
+	  }
+	});
+}
 function createChatBox(chatboxtitle,minimizeChatBox) {
 	
 	if ($("#chatbox_"+chatboxtitle).length > 0) {
@@ -208,6 +210,7 @@ function chatHeartbeat(){
 	$.ajax({
 	  url: "chat.php?action=chatheartbeat",
 	  cache: false,
+	  async: false ,
 	  dataType: "json",
 	  success: function(data) {
 
@@ -348,6 +351,7 @@ function startChatSession(){
 	$.ajax({
 	  url: "chat.php?action=startchatsession",
 	  cache: false,
+	  async: false ,
 	  dataType: "json",
 	  success: function(data) {
  
