@@ -576,6 +576,7 @@ function validateSignupFormOnSubmit() {
 				type: "POST",
 				url: "controllers/login_controller.php",
 				data: dataString,
+				async: false ,
 				cache: false,
 				success: function(result){
 					if(result){

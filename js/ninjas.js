@@ -26,6 +26,7 @@ function getnextchal (clas, int) {
 		$.ajax({
 				type: "POST",
 				url: "ajax/get_next.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -157,6 +158,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					$.ajax({
 						type: "POST",
 						url: "ajax/add_video.php",
+						async: false ,
 						data: dataString,
 						cache: false,
 						success: function(result){
@@ -221,6 +223,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					$.ajax({
 						type: "POST",
 						url: "ajax/add_video_pr.php",
+						async: false ,
 						data: dataString,
 						cache: false,
 						success: function(result){
@@ -678,6 +681,7 @@ function create_task(){
 		$.ajax({
 			type: "POST",
 			url: "ajax/email.php",
+			async: false ,
 			data: 'email='+ email,
 			cache: false,
 			success: function(result){

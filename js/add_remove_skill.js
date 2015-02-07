@@ -7,7 +7,6 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-$(document).ready(function(){
 	$("#addskills").click(function(){
 		$("#addskills").attr('disabled','disabled');
 		var insert = convertSpecialChar($("#insert").val()) ;
@@ -28,15 +27,16 @@ $(document).ready(function(){
 			type: "POST",
 			url: "ajax/change_profile.php",																																														
 			data: dataString,
+			async: false ,
 			cache: false,
 			success: function(result){
 				var notice = result.split("+") ;
 				if(notice['0']=='Skill added succesfully!') {
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					$("#skills").val("");
 					$("#insert").val("");
 					$("#appendskill").append(notice['1']) ;
 					$(".skillmodal").append(notice['1']) ;
+					$(".removeskl").remove() ;
 					bootstrap_alert(".alert_placeholder", "Add more skills", 10000,"alert-info");
 				}      
 				else {
@@ -47,9 +47,11 @@ $(document).ready(function(){
 	 $("#addskills").removeAttr('disabled');
 		 //return false;
 	});
-});
-$(document).ready(function(){
 	$("#addprofessions").click(function(){
+		//$("#addprofessions").prop('disabled', true);
+		//document.getElementById("addprofessions").disabled = true;
+		//document.getElementById("addprofessions").setAttribute('disabled', 'disabled');
+		//$("#addprofessions").disabled = true;
 		$("#addprofessions").attr('disabled','disabled');
 		var insert = convertSpecialChar($("#insertprofession").val()) ;
 		var skills = $("#Professions").val() ;
@@ -59,37 +61,38 @@ $(document).ready(function(){
 			 $("#addprofessions").removeAttr('disabled');
 			 return false;
 		}
-		if (skills != '0') {
-			var dataString = 'case=2' + '&skills='+ skills ;
-		}
 		else {
-			var dataString = 'case=1' + '&insert='+ insert  ;
+			if (skills != '0') {
+				var dataString = 'case=2' + '&skills='+ skills ;
 			}
-		$.ajax({
-			type: "POST",
-			url: "ajax/change_profession.php",																																														
-			data: dataString,
-			cache: false,
-			success: function(result){
-				var notice = result.split("+") ;
-				if(notice['0']=='Profession added succesfully!') {
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					$("#Professions").val("");
-					$("#insertprofession").val("");
-					$(".appendprofession").append(notice['1']) ;
-					$(".professionmodal").append(notice['1']) ;
-					$(".removepro").remove() ;
-					bootstrap_alert(".alert_placeholder", "Add more", 10000,"alert-info");
-				}      
-				else {
-				 	bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+			else {
+				var dataString = 'case=1' + '&insert='+ insert  ;
+			}
+			$.ajax({
+				type: "POST",
+				url: "ajax/change_profession.php",																																														
+				data: dataString,
+				async: false ,
+				cache: false,
+				success: function(result){
+					var notice = result.split("+") ;
+					if(notice['0']=='Profession added succesfully!') {
+						$("#Professions").val("");
+						$("#insertprofession").val("");
+						$("#appendprofession").append(notice['1']) ;
+						$(".professionmodal").append(notice['1']) ;
+						$(".removepro").remove() ;
+						bootstrap_alert(".alert_placeholder", "Add more", 10000,"alert-info");
+					}      
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					}
 				}
-			}
-		});
-	 $("#addprofessions").removeAttr('disabled');
+			});
+		}
+		$("#addprofessions").removeAttr('disabled');
 		 //return false;
-	});
-});
+	}) ;
 
 function remove_skill(skill_id){
 	bootbox.confirm("Do u really want to Remove this skill?", function(result) {
@@ -98,6 +101,7 @@ function remove_skill(skill_id){
 			$.ajax({
 				type: "POST",
 				url: "ajax/change_profile.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -121,6 +125,7 @@ function remove_profession(skill_id){
 			$.ajax({
 				type: "POST",
 				url: "ajax/change_profession.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){

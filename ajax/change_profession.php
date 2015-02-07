@@ -39,7 +39,6 @@ if  ($_POST['case']) {
 			break ;
 			
 		case 2:
-			mysqli_query($db_handle, "INSERT INTO user_profession (user_id, p_id) VALUES ('$user_id', '$skill_Name');");
 			while ($friendsrow = mysqli_fetch_array($friends)){
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
@@ -49,6 +48,7 @@ if  ($_POST['case']) {
 			$skill_display = mysqli_query($db_handle, "SELECT p_name from professsion_name WHERE p_id = '$skill_Name' ;");
 			$skill_displayrow = mysqli_fetch_array($skill_display) ;
 			$skill_id = $skill_displayrow['p_name'] ;
+			mysqli_query($db_handle, "INSERT INTO user_profession (user_id, p_id) VALUES ('$user_id', '$skill_Name');");
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!"; }
 			else { echo "Profession added succesfully!"."+"."<span class='btn-success' id='profession_".$skill_Name."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_id."&nbsp 
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' 

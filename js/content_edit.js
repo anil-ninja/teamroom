@@ -113,6 +113,7 @@ function saveedited(ID)  {
 			$.ajax({
 				type: "POST",
 				url: "ajax/edit_cha_stmt.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(html){
@@ -141,6 +142,7 @@ function saveeditedproject(ID)  {
 			$.ajax({
 				type: "POST",
 				url: "ajax/edit_pro_stmt.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -193,6 +195,7 @@ function saveeditedchallenge(ID)  {
 			$.ajax({
 				type: "POST",
 				url: "ajax/edit_cha_stmt.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -246,6 +249,7 @@ function saveeditedpro(ID)  {
 			$.ajax({
 				type: "POST",
 				url: "ajax/edit_pro_stmt.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -350,6 +354,7 @@ function uploadFile(_file,typeOfPic,data1,url1,ID){
 			$.ajax({
 				type: "POST",
 				url: url,
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){

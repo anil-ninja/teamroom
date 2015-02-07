@@ -5,6 +5,7 @@ function getnewtalk() {
 			$.ajax({
 				type: "POST",
 				url: "ajax/protalk.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -63,6 +64,7 @@ $("#changeremindervalue").click(function(){
 	$.ajax({
 		type: "POST",
 		url: "ajax/change_reminder.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
@@ -109,6 +111,7 @@ function Subscribe(){
 		$.ajax({
 			type: "POST",
 			url: "ajax/subscribe.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -136,6 +139,7 @@ function getallreminders() {
 			$.ajax({
 				type: "POST",
 				url: "ajax/reminders.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -164,6 +168,7 @@ function submittalk(event,chatboxtextarea) {
 		$.ajax({
 			type: "POST",
 			url: "ajax/project_talks.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -184,6 +189,7 @@ function projecttalk() {
 	$.ajax({
 		type: "POST",
 		url: "ajax/project_talk.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){

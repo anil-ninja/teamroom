@@ -160,17 +160,16 @@ $obj = new profile($UserName);
                                     . $profileViewPhone . "  
                                 </span>";
         			  }
-        				  echo " <br/><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
+        				  echo " <br/><div style ='text-align:justify;' id='appendskill'><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
 
                     $skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     
                     if (mysqli_num_rows($skill_display) == 0) {
-                            echo "      <span class='tags'>
+                            echo "      <span class='tags removeskl'>
                                             No Skill added
                                         </span>";
                     } 
                     else {
-                        echo "<div style ='text-align:justify;' id='appendskill'>";
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                             $skill_id = $skill_displayRow['skill_id'];
                             echo "      <span class='btn-success' id='skill_id_".$skill_id."'>
@@ -182,26 +181,23 @@ $obj = new profile($UserName);
                             }
                          echo "</span>&nbsp;";
                         }
-                        echo "</div>";
-                    }
+					}
+                        echo "</div><br/>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                        echo "     <br/> 
-                                    <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
-                                        <i class='icon-plus'></i> Skill
-                                    </a>
-                                    <br/>";
+                        echo " <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
+                                  <i class='icon-plus'></i> Skill
+                               </a><br/>";
         					}
-					echo " <br/><i class='icon-screenshot'></i>Professions &nbsp;:" ; 
+					echo " <br/><div style ='text-align:justify;' id='appendprofession'><i class='icon-screenshot'></i>Professions &nbsp;:" ; 
 
                     $profession_display = mysqli_query($db_handle, "SELECT b.p_name, a.p_id from user_profession as a join professsion_name as b WHERE a.user_id = '$profileViewUserID' AND a.p_id = b.p_id ;");
                     
                     if (mysqli_num_rows($profession_display) == 0) {
                             echo "      <span class='tags removepro'>
                                             No Profession
-                                        </span>";
+                                        </span> ";
                     } 
                     else {
-                        echo "<div style ='text-align:justify;' class='appendprofession'>";
                         while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
                             $profession_id = $profession_displayRow['p_id'];
                             echo "<span class='btn-success' id='profession_".$profession_id."'>
@@ -213,15 +209,13 @@ $obj = new profile($UserName);
                             }
                          echo "</span>&nbsp;";
                         }
-                        echo "</div>";
-                    }
+					}
+                        echo "</div><br/>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                        echo "     <br/> 
-                                    <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addprofession' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
-                                        <i class='icon-plus'></i> Profession
-                                    </a>
-                                    <br/>";
-        					}
+                        echo " <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addprofession' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
+                                 <i class='icon-plus'></i> Profession
+                               </a><br/>";
+        			}
                      $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
                      $aboutuserRow = mysqli_fetch_array($aboutuser);
                      if (mysqli_num_rows($aboutuser) != 0) {
@@ -392,8 +386,7 @@ $obj = new profile($UserName);
     ?>
 </div> 
 <?php
-	include_once 'html_comp/signup.php' ;
-	include_once 'lib/html_inc_footers.php'; 
+	include_once 'html_comp/signup.php' ; 
 			include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
 
@@ -513,7 +506,7 @@ $obj = new profile($UserName);
                             
                             <label>Enter your Profession</label>
                             <input type="text" class="input-block-level" id="insertprofession" placeholder="Enter your Profession"/>
-                            <a href="#" class=" btn btn-primary" id = "addprofessions">Add&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                            <a href="#" class=" btn btn-primary" id="addprofessions" >Add&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -597,7 +590,8 @@ $(".nav-btntab").bind("click", function(){
         }
     });
 </script>    
-        <?php 
+        <?php
+			include_once 'lib/html_inc_footers.php';
             include_once 'html_comp/login_signup_modal.php';
             include_once 'html_comp/insert_time.php'; 
         ?>

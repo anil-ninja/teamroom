@@ -28,6 +28,7 @@ function showUp() {
 	$.ajax({
 		type: "POST",
 		url: "ajax/notifications.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
@@ -68,6 +69,7 @@ function getnewnote(time, lid) {
 	$.ajax({
 		type: "POST",
 		url: "ajax/newnote.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){

@@ -37,6 +37,7 @@ setInterval(function updatelastlogin(){
 	$.ajax({
 		type: "POST",
 		url: "ajax/updatetime.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 	});
@@ -47,6 +48,7 @@ function updatetime() {
 	$.ajax({
 		type: "POST",
 		url: "ajax/updatetime.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){

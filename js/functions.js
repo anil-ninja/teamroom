@@ -96,6 +96,7 @@ function add_member() {
 		$.ajax({
 			type: "POST",
 			url: "ajax/email.php",
+			async: false ,
 			data: 'email='+ email,
 			cache: false,
 			success: function(result){
@@ -103,6 +104,7 @@ function add_member() {
 					$.ajax({
 						type: "POST",
 						url: "ajax/add_member_team.php",
+						async: false ,
 						data: dataString,
 						cache: false,
 						success: function(result){
@@ -139,6 +141,7 @@ function AddTeamMember(userid){
 	$.ajax({
 		type: "POST",
 		url: "ajax/add_member_new.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
@@ -214,6 +217,7 @@ function comment(ID, type) {
 		$.ajax({
 			type: "POST",
 			url: "ajax/submit_comment.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -301,6 +305,7 @@ function like(Id, type) {
 	$.ajax({
 		type: "POST",
 		url: "ajax/likes.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
@@ -330,6 +335,7 @@ function dislike(Id, type) {
 	$.ajax({
 		type: "POST",
 		url: "ajax/likes.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
@@ -365,6 +371,7 @@ function set_remind() {
 		$.ajax({
 			type: "POST",
 			url: "ajax/submit_reminder.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -396,6 +403,7 @@ function invest() {
 		$.ajax({
 			type: "POST",
 			url: "ajax/fund_info.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){

@@ -306,6 +306,7 @@ function create_team(){
 			$.ajax({
 				type: "POST",
 				url: "ajax/create_team_new.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -341,6 +342,7 @@ function submitTeam(team,email, ID) {
 	$.ajax({
 		type: "POST",
 		url: "ajax/email.php",
+		async: false ,
 		data: 'email='+ email,
 		cache: false,
 		success: function(result){
@@ -350,6 +352,7 @@ function submitTeam(team,email, ID) {
 				$.ajax({
 					type: "POST",
 					url: "ajax/create_team_new.php",
+					async: false ,
 					data: dataString,
 					cache: false,
 					success: function(result){
@@ -422,6 +425,7 @@ function submitTeam(team,email, ID) {
 			$.ajax({
 				type: "POST",
 				url: "ajax/email.php",
+				async: false ,
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
@@ -430,6 +434,7 @@ function submitTeam(team,email, ID) {
 						$.ajax({
 							type: "POST",
 							url: "ajax/send_invitation.php",
+							async: false ,
 							data: dataString,
 							cache: false,
 							success: function(result){
@@ -470,6 +475,7 @@ function CreateTeamMember(userid){
 			$.ajax({
 				type: "POST",
 				url: "ajax/create_team_new.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -493,6 +499,7 @@ function CreateTeamMember(userid){
 		$.ajax({
 			type: "POST",
 			url: "ajax/create_team_new.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -539,6 +546,7 @@ function invitememb(ID){
 			$.ajax({
 				type: "POST",
 				url: "ajax/email.php",
+				async: false ,
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
@@ -547,6 +555,7 @@ function invitememb(ID){
 						$.ajax({
 							type: "POST",
 							url: "ajax/send_invitation.php",
+							async: false ,
 							data: dataString,
 							cache: false,
 							success: function(result){
@@ -579,6 +588,7 @@ function getnextprchal(clas, int) {
 		$.ajax({
 				type: "POST",
 				url: "ajax/next_proch.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
