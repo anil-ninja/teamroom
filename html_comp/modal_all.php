@@ -30,6 +30,11 @@
                                 <option value='3' >Private</option>
                             </select>
                             <br/><br/>
+                            <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='fundProject' onclick='aboutfund()' /> Fund Needed <br/><br/>
+                            <div class='aboutfund'>
+                            <input type="number" class="input-block-level" id="project_value" min="1" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" style="width:30%;" placeholder="Enter Project Value in dollers"/> <strong>$ (Project Value)</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <input type="number" class="input-block-level" id="project_fundneed" min="1" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" style="width:30%;" placeholder="Enter Fund Needed in dollers"/> <strong>$ (Fund Needed)</strong><br/><br/>
+                            </div>
                             <a href="#" class=" btn btn-primary" id = "create_project">Create Project&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                         </div>
                     </div>
@@ -209,4 +214,8 @@
 </div>
 <script>
 	$(".TeamName").hide();
+	$(".aboutfund").hide();
+	function aboutfund() {
+		$(".aboutfund").toggle();
+	}
 </script>

@@ -34,6 +34,13 @@
 	else {
 		$ProjectPic4 = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
 	}
+	$aboutfund = mysqli_query($db_handle, "select * from project_funding_info where project_id = '$pro_id' ;") ;
+	if(mysqli_num_rows($aboutfund) == 0) {
+		$funded = "No" ;
+	}
+	else {
+		$funded = "Yes" ;
+	}
 	$ProjectPicLink4 =explode("\"",$ProjectPic4)['1'] ; 				
 	$ProjectPic4 = "<img src='".resize_image($ProjectPicLink4, 280, 280, 1)."' onError=this.src='img/default.gif' style='width:100%;'>" ;				
 	$collaborators = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and member_status = '1' and user_id !='0' ;") ;
@@ -81,9 +88,29 @@
 				<b>Funded</b> 
 			</div>
 			<div class='span7 offset1' >
-				: No
+				: ".$funded."
 			</div>
-		</div><br/>" ;
+		</div>";
+	if(mysqli_num_rows($aboutfund) != 0) {
+		$aboutfundRow = mysqli_fetch_array($aboutfund) ;
+		echo "<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
+				<div class='span5'>
+					<b>Project Value</b> 
+				</div>
+				<div class='span5 offset1' style='margin-left: 7px;' >
+					: ".$aboutfundRow['project_value']." $
+				</div>
+			</div>
+			<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
+				<div class='span5'>
+					<b>Fund Needed</b> 
+				</div>
+				<div class='span5 offset1'style='margin-left: 7px;' >
+					: ".$aboutfundRow['fund_neede']." $
+				</div>
+			</div>" ;
+	}	
+	echo "<br/>" ;
 	if($project_type == 1) {
 		if(isset($_SESSION['user_id'])){
 			$user_exist = mysqli_query($db_handle, "select DISTINCT user_id from teams where project_id = '$pro_id' and user_id = '$user_id' ;") ;

@@ -93,7 +93,6 @@ function validatePath(path) {
         function validatePhone(fld) {
         var error = "";
         var stripped = fld.value.replace(/[\(\)\.\-\ ]/g, '');    
-
         if (fld.value == "") {
                 fld.style.border = "2px solid OrangeRed";
                 error = "You didn't enter a phone number.\n";

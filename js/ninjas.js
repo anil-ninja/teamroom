@@ -478,15 +478,17 @@ function bootstrap_alert(elem, message, timeout,type) {
 			$("#create_project").attr('disabled','disabled');
 			var project_title = convertSpecialChar($("#project_title").val()) ;
 			var project_stmt = convertSpecialChar($("#project_stmt").val());
+			var value = convertSpecialChar($("#project_value").val());
+			var fund = convertSpecialChar($("#project_fundneed").val());
 			var type = $("#type").val();
+			var typeA = document.getElementById("fundProject").checked;
 			//var eta = parseInt($("#eta").val());
 			//var etab = parseInt($("#etab").val());
 			//var etac = parseInt($("#etac").val());
 			//var etad = parseInt($("#etad").val());
 			//var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
-			'&type='+ type ;//+ '&project_eta='+ (project_eta+='')  ;
+			//+ '&project_eta='+ (project_eta+='')  ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',project_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
@@ -496,12 +498,38 @@ function bootstrap_alert(elem, message, timeout,type) {
 				bootstrap_alert(".alert_placeholder", "Project can not be empty", 5000,"alert-warning");
 				$("#create_project").removeAttr('disabled');
 			}
+			else if(typeA != false){
+				if(replaceAll('\\s', '',value) == "") {
+					bootstrap_alert(".alert_placeholder", "Value can not be empty", 5000,"alert-warning");
+					$("#create_project").removeAttr('disabled');
+				}
+				else if(replaceAll('\\s', '',fund) == "") {
+					bootstrap_alert(".alert_placeholder", "Fund can not be empty", 5000,"alert-warning");
+					$("#create_project").removeAttr('disabled');
+				}
+				else {
+					var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
+					'&type='+ type + '&value='+ value + '&fund='+ fund ;
+					var _file = document.getElementById('_fileProject');
+					//alert(uploadFile(_file,"articlePic"));
+					uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
+				}
+			}
 			else {
+				var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
+					'&type='+ type + '&value='+ value + '&fund='+ fund ;
 				var _file = document.getElementById('_fileProject');
 				//alert(uploadFile(_file,"articlePic"));
 				uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
 			}
 		});
+var specialKeys = new Array();
+specialKeys.push(8); //Backspace
+function IsNumeric(e) {
+     var keyCode = e.which ? e.which : e.keyCode
+     var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+     return ret;
+}
 		
 		$('.tree-toggle').click(function () {
 		$(this).parent().children('ul.tree').toggle(200);
