@@ -27,7 +27,7 @@
                             <select id= "type" >    
                                 <option value='2' selected >Classified</option>
                                 <option value='1' >Public</option>
-                                <option value='3' >Private</option>
+                                <option value='4' >Private</option>
                             </select>
                             <br/><br/>
                             <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='fundProject' onclick='aboutfund()' /> Fund Needed <br/><br/>

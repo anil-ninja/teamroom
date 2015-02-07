@@ -68,6 +68,59 @@
     </nav>
     <nav class="sidebar light">
     <ul>
+		<div class='bs-component' style='max-height:150px;'>       
+<?php             
+ 		echo "<li class='title'>Private Projects</li>";   
+        $private_project_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time, b.stmt 
+                                                            FROM teams as a join projects as b WHERE a.user_id = '$user_id' 
+                                                            AND a.project_id = b.project_id AND b.project_type = '4')  
+                                                            UNION 
+                                                            (SELECT DISTINCT project_id, project_title, project_ETA, creation_time, stmt 
+                                                            FROM projects WHERE user_id = '$user_id' AND project_type= '4');");
+        
+        if (mysqli_num_rows($private_project_display) == 0) {
+			echo " <li class='stick'>No any projects to display,<br>
+					<a class='active' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>
+							<i class='icon-plus'>&nbsp; Create Project</i>
+					</a></li>";
+        } 
+        else {
+            while ($private_project_displayRow = mysqli_fetch_array($private_project_display)) {
+                $pp_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $private_project_displayRow['project_title']))) ;
+                $pidpro = $private_project_displayRow['project_id'] ;
+                $ProstmtPr =  $private_project_displayRow['stmt'] ;
+                //echo $Prostmt;
+                if(substr($ProstmtPr, 0, 4) == '<img') {
+					$PProjectPicFull = strstr($ProstmtPr, '<br/>' , true) ;
+				}
+				else {
+					$PProjectPicFull = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
+				}
+				$PProjectPicLink =explode("\"",$PProjectPicFull)[1] ; 			
+				$ProjectPicP = "<img src='".resize_image($PProjectPicLink, 15, 15, 1)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
+				
+                if (strlen($pp_title) > 35) {
+                    $pprtitle = substr(ucfirst($pp_title),0,35)."...";
+                } 
+                else {
+                    $pprtitle = ucfirst($pp_title) ;
+                }								   
+                $pp_eta = $private_project_displayRow['project_ETA'] ;
+                $pp_time = $private_project_displayRow['creation_time'] ;
+                $ptimefunc = date("j F, g:i a",strtotime($pp_time));
+                $ptitle =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$ptimefunc ;
+                // $remaining_time_own = remaining_time($p_time, $p_eta);
+                echo "<li class='stick'>
+							<a href = 'project.php?project_id=".$pidpro."' style='white-space:nowrap;'>".$ProjectPicP ." ". $pprtitle."</a>
+					  </li>";
+            }
+        }  
+    ?> 
+    </div>
+    </ul>
+    </nav>
+    <nav class="sidebar light">
+    <ul>
 		<div class='bs-component' style='max-height:150px;'> 
 		<li class='title'>Public Projects</li>
         <?php
