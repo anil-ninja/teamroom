@@ -114,13 +114,15 @@
 	echo "<br/>" ;
 	if(isset($_SESSION['user_id'])){
 		if ($owner != $user_id) {
-			$usertype = mysqli_query($db_handle, "select * from user_info where user_id = '$user_id' ;") ;
-			$usertypeRow = mysqli_fetch_array($usertype) ;
-			$TypeUser = $usertypeRow['user_type'] ;
-			if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
-				$checkperm = mysqli_query($db_handle, "select * from investment_info where user_id = '$user_id' and project_id = '$pro_id' ;") ;
-				if (mysqli_num_rows($checkperm) == 0){
-					echo "<a data-toggle='modal' class='btn btn-primary' data-target='#Investment'> Invest </a>" ;
+			if(mysqli_num_rows($aboutfund) != 0) {
+				$usertype = mysqli_query($db_handle, "select * from user_info where user_id = '$user_id' ;") ;
+				$usertypeRow = mysqli_fetch_array($usertype) ;
+				$TypeUser = $usertypeRow['user_type'] ;
+				if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
+					$checkperm = mysqli_query($db_handle, "select * from investment_info where user_id = '$user_id' and project_id = '$pro_id' ;") ;
+					if (mysqli_num_rows($checkperm) == 0){
+						echo "<a data-toggle='modal' class='btn btn-primary' data-target='#Investment'> Invest </a>" ;
+					}
 				}
 			}
 		}

@@ -100,6 +100,10 @@ function login(){
 		$rank = $responseRow['rank'];
 		$lastlogintime = $responseRow['last_login'];
 		$_SESSION['last_login'] = $lastlogintime ;
+		$_SESSION['user_id'] = $id ;
+		$_SESSION['first_name'] = $responseRow['first_name'] ;
+		$_SESSION['username'] = $responseRow['username'] ;
+		$_SESSION['email'] = $responseRow['email'];
 		$obj = new rank($id);
 		$new_rank = $obj->user_rank ;
 		if($new_rank != $rank) {
@@ -125,10 +129,6 @@ function login(){
 				}
 			}
 		}
-		$_SESSION['user_id'] = $id ;
-		$_SESSION['first_name'] = $responseRow['first_name'] ;
-		$_SESSION['username'] = $responseRow['username'] ;
-		$_SESSION['email'] = $responseRow['email'];
 		$logintime = date("y-m-d H:i:s") ;
 		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime', rank = '$new_rank' where user_id = '$id' ;" ) ;
 		//$obj = new rank($id);
