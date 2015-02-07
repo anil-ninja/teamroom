@@ -7,6 +7,7 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+$(document).ready(function() {
 	$("#addskills").click(function(){
 		$("#addskills").attr('disabled','disabled');
 		var insert = convertSpecialChar($("#insert").val()) ;
@@ -93,7 +94,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 		$("#addprofessions").removeAttr('disabled');
 		 //return false;
 	}) ;
-
+});
 function remove_skill(skill_id){
 	bootbox.confirm("Do u really want to Remove this skill?", function(result) {
 		if(result){
@@ -101,7 +102,6 @@ function remove_skill(skill_id){
 			$.ajax({
 				type: "POST",
 				url: "ajax/change_profile.php",
-				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
@@ -125,7 +125,6 @@ function remove_profession(skill_id){
 			$.ajax({
 				type: "POST",
 				url: "ajax/change_profession.php",
-				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){

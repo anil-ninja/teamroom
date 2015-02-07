@@ -387,9 +387,13 @@ $obj = new profile($UserName);
 </div> 
 <?php
 	include_once 'html_comp/signup.php' ; 
-			include_once 'html_comp/check.php'; ?> 
+	include_once 'lib/html_inc_footers.php';
+	include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
-
+<div class='footer'>
+		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+</div>
 <div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span4 offset2">
@@ -431,13 +435,18 @@ $obj = new profile($UserName);
 							<?php 
 							$skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
 							echo "<div class='skillmodal' style ='text-align:justify;'><label>Your Skills</label>";
-							while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-								$skill_id = $skill_displayRow['skill_id'];
-								echo "<span class='btn-success' id='skillmodal_".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."&nbsp
-										  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
-												<i class='icon-remove'></i>
-										  </a>
-									  </span>&nbsp;";
+							if (mysqli_num_rows($skill_display) == 0) {
+								echo "<span class='tags removeskl'> No Skill added </span>";
+							} 
+							else {
+								while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+									$skill_id = $skill_displayRow['skill_id'];
+									echo "<span class='btn-success' id='skillmodal_".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."&nbsp
+											  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+													<i class='icon-remove'></i>
+											  </a>
+										  </span>&nbsp;";
+								}
 							}
 							echo "</div>";
 							?>
@@ -480,13 +489,18 @@ $obj = new profile($UserName);
 							<?php 
 							$profession_display = mysqli_query($db_handle, "SELECT b.p_name, a.p_id from user_profession as a join professsion_name as b WHERE a.user_id = '$profileViewUserID' AND a.p_id = b.p_id ;");
 							echo "<div class='professionmodal' style ='text-align:justify;'><label>Your Professions</label>";
-							while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
-								$profession_id = $profession_displayRow['p_id'];
-								echo "<span class='btn-success' id='professionmodal_".$profession_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$profession_displayRow['p_name']."&nbsp
-										  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
-												<i class='icon-remove'></i>
-										  </a>
-									  </span>&nbsp;";
+							if (mysqli_num_rows($profession_display) == 0) {
+								echo "<span class='tags removepro'> No Profession Added </span> ";
+							}
+							else {
+								while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
+									$profession_id = $profession_displayRow['p_id'];
+									echo "<span class='btn-success' id='professionmodal_".$profession_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$profession_displayRow['p_name']."&nbsp
+											  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
+													<i class='icon-remove'></i>
+											  </a>
+										  </span>&nbsp;";
+								}
 							}
 							echo "</div>";
 							?>
@@ -513,10 +527,6 @@ $obj = new profile($UserName);
             </div>
         </div>
     </div>
-</div>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
 <script>
 var width = window.screen.availWidth;
@@ -591,7 +601,6 @@ $(".nav-btntab").bind("click", function(){
     });
 </script>    
         <?php
-			include_once 'lib/html_inc_footers.php';
             include_once 'html_comp/login_signup_modal.php';
             include_once 'html_comp/insert_time.php'; 
         ?>
