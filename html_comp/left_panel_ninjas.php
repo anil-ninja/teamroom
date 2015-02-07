@@ -117,7 +117,7 @@
                 $pp_eta = $private_project_displayRow['project_ETA'] ;
                 $pp_time = $private_project_displayRow['creation_time'] ;
                 $ptimefunc = date("j F, g:i a",strtotime($pp_time));
-                $ptitle =  strtoupper($p_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$ptimefunc ;
+                $ptitle =  strtoupper($pp_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$ptimefunc ;
                 // $remaining_time_own = remaining_time($p_time, $p_eta);
                 echo "<li class='stick'>
 							<a href = 'project.php?project_id=".$pidpro."' style='white-space:nowrap;'>".$ProjectPicP ." ". $pprtitle."</a>

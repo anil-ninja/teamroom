@@ -46,14 +46,15 @@
                     <li id='step11' class="dropdown">
                        <a href='#' class="dropdown-toggle" data-toggle="dropdown" style='color: #fff;'>
                            <?php
+                                $user = $_SESSION['username'];
                                 $username = $_SESSION['username'];
                                 $name = $_SESSION['first_name'];
-                                echo "<img style='width: 25px; height: 25px;' src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
+                                echo "<img style='width: 25px; height: 25px;' src='".resize_image("uploads/profilePictures/".$username.".jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
                             ?>
                             <b class="caret"></b>
                         </a>
                         <ul class='dropdown-menu'>
-                            <li><a class='btn-link' href="profile.php?username=<?=$username ?>"><i class='icon-user'></i> View Profile</a></li>
+                            <li><a class='btn-link' href="profile.php?username=<?php echo $user ; ?>"><i class='icon-user'></i> View Profile</a></li>
                             <li><a href="settings.php" class="btn-link" ><span class="icon-cog"></span> Settings </a></li>
                             <li><a type='submit' class="btn-link" onclick='confLogout()' name="logout" ><span class="icon-off"></span> Log out </a></li>
                         </ul>

@@ -121,6 +121,3 @@ getallreminders() ;
 <?php include_once 'html_comp/insert_time.php'   ?>	  
 </body>
 </html>
-<?php
-mysqli_close($db_handle);
-?>

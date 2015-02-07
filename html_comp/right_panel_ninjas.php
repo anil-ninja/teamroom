@@ -33,7 +33,7 @@
 	</div>
     <div id='collapseTwo' class='panel-collapse collapse' role='tabpanel' aria-labelledby='headingTwo'>   
       <div class="panel-body" style="padding: 2px; background-color: #fff;" id='allreminders' ></div>
-         <?php  echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>"; ?>
+         <?php $idb="" ; echo "<input type='hidden' id='lastreminderid' value='".$idb."'/>"; ?>
     </div><br/>
     <div id='step4' class="panel panel-default">
 		<div class="panel-heading" style="padding: 5px;" role="tab" id="headingThree">
