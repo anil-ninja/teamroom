@@ -107,8 +107,8 @@ function remove_skill(skill_id){
 				success: function(result){
 					if(result=='Skill Removed succesfully!') {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						document.getElementById("skill_id_"+skill_id).remove();
-						document.getElementById("skillmodal_"+skill_id).remove();
+						$(".skill_id_"+skill_id).remove();
+						//document.getElementById("skillmodal_"+skill_id).remove();
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -130,8 +130,8 @@ function remove_profession(skill_id){
 				success: function(result){
 					if(result=='Profession Removed succesfully!') {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						document.getElementById("profession_"+skill_id).remove();
-						document.getElementById("professionmodal_"+skill_id).remove();
+						//document.getElementById("professionmodal_"+skill_id).remove();
+						$(".profession_"+skill_id).remove();
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");

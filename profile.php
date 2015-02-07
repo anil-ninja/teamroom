@@ -172,14 +172,14 @@ $obj = new profile($UserName);
                     else {
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                             $skill_id = $skill_displayRow['skill_id'];
-                            echo "      <span class='btn-success' id='skill_id_".$skill_id."'>
+                            echo "<span class='skill_id_".$skill_id."'><span class='btn-success'>
                                             <a href='ninjaSkills.php?skill_id=".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."</a>&nbsp";
                             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                                 echo "      <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                                                 <i class='icon-remove'></i>
                                             </a>";
                             }
-                         echo "</span>&nbsp;";
+                         echo "</span></span>&nbsp;";
                         }
 					}
                         echo "</div><br/>";
@@ -200,14 +200,14 @@ $obj = new profile($UserName);
                     else {
                         while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
                             $profession_id = $profession_displayRow['p_id'];
-                            echo "<span class='btn-success' id='profession_".$profession_id."'>
+                            echo "<span class='profession_".$profession_id."'><span class='btn-success'>
                                             <a style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$profession_displayRow['p_name']."</a>&nbsp";
                             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                                 echo "      <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
                                                 <i class='icon-remove'></i>
                                             </a>";
                             }
-                         echo "</span>&nbsp;";
+                         echo "</span></span>&nbsp;";
                         }
 					}
                         echo "</div><br/>";
@@ -441,11 +441,11 @@ $obj = new profile($UserName);
 							else {
 								while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
 									$skill_id = $skill_displayRow['skill_id'];
-									echo "<span class='btn-success' id='skillmodal_".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."&nbsp
+									echo "<span class='skill_id_".$skill_id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."&nbsp
 											  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
 													<i class='icon-remove'></i>
 											  </a>
-										  </span>&nbsp;";
+										  </span></span>&nbsp;";
 								}
 							}
 							echo "</div>";
@@ -495,11 +495,11 @@ $obj = new profile($UserName);
 							else {
 								while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
 									$profession_id = $profession_displayRow['p_id'];
-									echo "<span class='btn-success' id='professionmodal_".$profession_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$profession_displayRow['p_name']."&nbsp
+									echo "<span class='profession_".$profession_id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$profession_displayRow['p_name']."&nbsp
 											  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
 													<i class='icon-remove'></i>
 											  </a>
-										  </span>&nbsp;";
+										  </span></span>&nbsp;";
 								}
 							}
 							echo "</div>";
