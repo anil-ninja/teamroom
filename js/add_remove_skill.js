@@ -48,7 +48,48 @@ $(document).ready(function(){
 		 //return false;
 	});
 });
-
+$(document).ready(function(){
+	$("#addprofessions").click(function(){
+		$("#addprofessions").attr('disabled','disabled');
+		var insert = convertSpecialChar($("#insertprofession").val()) ;
+		var skills = $("#Professions").val() ;
+		var dataString = "";
+		if ((skills == '0' && replaceAll('\\s', '',insert) =='')||(skills != '0' && replaceAll('\\s', '',insert) !='')) {
+			 bootstrap_alert(".alert_placeholder", "Please ,Enter one Value!!!!", 5000,"alert-warning");
+			 $("#addprofessions").removeAttr('disabled');
+			 return false;
+		}
+		if (skills != '0') {
+			var dataString = 'case=2' + '&skills='+ skills ;
+		}
+		else {
+			var dataString = 'case=1' + '&insert='+ insert  ;
+			}
+		$.ajax({
+			type: "POST",
+			url: "ajax/change_profession.php",																																														
+			data: dataString,
+			cache: false,
+			success: function(result){
+				var notice = result.split("+") ;
+				if(notice['0']=='Profession added succesfully!') {
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					$("#Professions").val("");
+					$("#insertprofession").val("");
+					$(".appendprofession").append(notice['1']) ;
+					$(".professionmodal").append(notice['1']) ;
+					$(".removepro").remove() ;
+					bootstrap_alert(".alert_placeholder", "Add more", 10000,"alert-info");
+				}      
+				else {
+				 	bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+				}
+			}
+		});
+	 $("#addprofessions").removeAttr('disabled');
+		 //return false;
+	});
+});
 
 function remove_skill(skill_id){
 	bootbox.confirm("Do u really want to Remove this skill?", function(result) {
@@ -62,7 +103,8 @@ function remove_skill(skill_id){
 				success: function(result){
 					if(result=='Skill Removed succesfully!') {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						location.reload();
+						document.getElementById("skill_id_"+skill_id).remove();
+						document.getElementById("skillmodal_"+skill_id).remove();
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -72,7 +114,29 @@ function remove_skill(skill_id){
 		 }
 	});
 }
-
+function remove_profession(skill_id){
+	bootbox.confirm("Do u really want to Remove this Profession?", function(result) {
+		if(result){
+			var dataString = 'case=3' + '&skill_id=' + skill_id;
+			$.ajax({
+				type: "POST",
+				url: "ajax/change_profession.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Profession Removed succesfully!') {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						document.getElementById("profession_"+skill_id).remove();
+						document.getElementById("professionmodal_"+skill_id).remove();
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					}
+				}
+			});
+		 }
+	});
+}
 
 $(document).ready(function(){
 	$('#joined_project').click(function(){

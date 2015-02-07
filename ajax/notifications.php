@@ -34,7 +34,7 @@ if ($_POST['notice']) {
 	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') 
 										 and timestamp > '$notificationTime' and event_creater != '$user_id' )
 										 UNION
-										 (SELECT * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36 ) 
+										 (SELECT * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36, 40 ) 
 										 and p_c_id = '$user_id' and timestamp > '$notificationTime' and event_creater != '$user_id') order by timestamp DESC;") ;
 	while($notice1row = mysqli_fetch_array($notice1)) {
 		$eventid = $notice1row['id'] ;
@@ -465,6 +465,17 @@ if ($_POST['notice']) {
 				$notice = $notice ."<li>
 										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
 											<i class='icon-plus'></i>	".$fname." Added Skills to his profile on  ".$eventtime."
+										</a>
+									</li>" ;
+				$y++ ;
+				insert($eventid, $user_id,  $db_handle) ;
+				
+				break;
+				
+			case 40:
+				$notice = $notice ."<li>
+										<a href ='profile.php?username=".$uname."' onclick=".update($user_id,$db_handle).">
+											<i class='icon-plus'></i>	".$fname." Added Profession to his profile on  ".$eventtime."
 										</a>
 									</li>" ;
 				$y++ ;

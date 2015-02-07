@@ -38,7 +38,7 @@ if  ($_POST['case']) {
 				events($db_handle,$user_id,"36",$idfr);
 				}
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!";  }
-			else { echo "Skill added succesfully!"."+"."<span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill."&nbsp 
+			else { echo "Skill added succesfully!"."+"."<span class='btn-success' id='skill_id_".$id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill."&nbsp 
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
 							onclick='remove_skill(\"".$id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                             <i class='icon-remove'></i></a></span>&nbsp;"; }
@@ -57,7 +57,7 @@ if  ($_POST['case']) {
 			$skill_displayrow = mysqli_fetch_array($skill_display) ;
 			$skill_id = $skill_displayrow['skill_name'] ;
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!"; }
-			else { echo "Skill added succesfully!"."+"."<span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_id."&nbsp 
+			else { echo "Skill added succesfully!"."+"."<span class='btn-success' id='skill_id_".$skill_Name."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_id."&nbsp 
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
 							onclick='remove_skill(\"".$skill_Name."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                             <i class='icon-remove'></i></a></span>&nbsp;"; }
