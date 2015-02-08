@@ -24,17 +24,19 @@
                             
                             <br />
                             <label>Project Type</label> 
-                            <select id= "type" >    
-                                <option value='2' selected >Classified</option>
+                            <select id= "type" onchange='projectinfo()' >    
+                                <option value='0' selected >Default</option>
+                                <option value='2' >Classified</option>
                                 <option value='1' >Public</option>
                                 <option value='4' >Private</option>
                             </select>
                             <br/><br/>
+                            <div class='aboutfunding'>
                             <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='fundProject' onclick='aboutfund()' /> Fund Needed <br/><br/>
                             <div class='aboutfund'>
                             <input type="number" class="input-block-level" id="project_value" min="1" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" style="width:30%;" placeholder="Enter Project Value in dollers"/> <strong>$ (Project Value)</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="number" class="input-block-level" id="project_fundneed" min="1" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" style="width:30%;" placeholder="Enter Fund Needed in dollers"/> <strong>$ (Fund Needed)</strong><br/><br/>
-                            </div>
+                            </div></div>
                             <a href="#" class=" btn btn-primary" id = "create_project">Create Project&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
                         </div>
                     </div>
@@ -239,6 +241,7 @@
 <script>
 	$(".TeamName").hide();
 	$(".aboutfund").hide();
+	$(".aboutfunding").hide();
 	function aboutfund() {
 		$(".aboutfund").toggle();
 	}

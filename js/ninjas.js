@@ -476,7 +476,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 				uploadFile1(_file,"articlePic",String(dataString),"ajax/submit_article.php");
 			}
 		}
-			
+	function projectinfo() {
+		var type = $("#type").val();
+		if (type == '2') {
+			bootstrap_alert(".alert_placeholder", "Classified Project will not be searchable by Investers", 10000,"alert-warning");
+			$(".aboutfunding").hide();
+		}
+		else {
+			$(".aboutfunding").show();
+		}
+	}		
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
 			var project_title = convertSpecialChar($("#project_title").val()) ;
@@ -499,6 +508,10 @@ function bootstrap_alert(elem, message, timeout,type) {
 			}
 			else if(replaceAll('\\s', '',project_stmt)==''){
 				bootstrap_alert(".alert_placeholder", "Project can not be empty", 5000,"alert-warning");
+				$("#create_project").removeAttr('disabled');
+			}
+			else if (type == '0') {
+				bootstrap_alert(".alert_placeholder", "Please select Project type", 5000,"alert-warning");
 				$("#create_project").removeAttr('disabled');
 			}
 			else if(typeA != false){
