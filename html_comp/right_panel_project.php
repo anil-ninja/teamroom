@@ -110,6 +110,21 @@
 					: ".$aboutfundRow['fund_neede']." $
 				</div>
 			</div>" ;
+		$fundraised = mysqli_query($db_handle, "select * from investment_info where project_id = '$pro_id' ;") ;
+		if (mysqli_num_rows($fundraised) > 0){
+			$total = 0 ;
+			while ($fundraisedRow = mysqli_fetch_array($fundraised)) {
+				$total += $fundraisedRow['investment'] ;
+			}
+			echo "<div class ='row-fluid' style='margin: 4px; background : rgb(240, 241, 242);'>
+					<div class='span5'>
+						<b>Fund Raised</b> 
+					</div>
+					<div class='span5 offset1' style='margin-left: 7px;' >
+						: ".$total." $
+					</div>
+				</div>" ;
+		}
 	}	
 	echo "<br/>" ;
 	if(isset($_SESSION['user_id'])){

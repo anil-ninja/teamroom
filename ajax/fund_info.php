@@ -7,7 +7,8 @@ if($_POST['amount']){
 	$user_id = $_SESSION['user_id'] ;
 	$amount = $_POST['amount'] ;
 	$pro_id = $_POST['pro_id'] ;
-	mysqli_query($db_handle, "INSERT INTO investment_info (user_id, project_id, investment) VALUES ('$user_id', '$pro_id', '$amount') ;") ; 
+	mysqli_query($db_handle, "INSERT INTO investment_info (user_id, project_id, investment) VALUES ('$user_id', '$pro_id', '$amount') ;") ;
+	mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$pro_id', 'defaultteam') ;" ) ; 
 	if(mysqli_error($db_handle)) { echo "Failed!!!!"; }
 	else { echo "Sucessfull!"; }
 	mysqli_close($db_handle);

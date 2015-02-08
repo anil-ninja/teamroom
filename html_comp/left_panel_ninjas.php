@@ -74,19 +74,12 @@
 		<div class='bs-component' style='max-height:150px;'>       
 <?php             
  		echo "<li class='title'>Private Projects</li>";
- 		if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
-        
-			$private_project_display = mysqli_query($db_handle, "SELECT DISTINCT project_id, project_title, project_ETA, creation_time, stmt from projects
-																WHERE project_type = '4' ;");
-		}
-		else { 
-			$private_project_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time, b.stmt 
-																FROM teams as a join projects as b WHERE a.user_id = '$user_id' 
-																AND a.project_id = b.project_id AND b.project_type = '4')  
-																UNION 
-																(SELECT DISTINCT project_id, project_title, project_ETA, creation_time, stmt 
-																FROM projects WHERE user_id = '$user_id' AND project_type= '4');");
-		}
+		$private_project_display = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, b.project_title,b.project_ETA,b.creation_time, b.stmt 
+															FROM teams as a join projects as b WHERE a.user_id = '$user_id' 
+															AND a.project_id = b.project_id AND b.project_type = '4')  
+															UNION 
+															(SELECT DISTINCT project_id, project_title, project_ETA, creation_time, stmt 
+															FROM projects WHERE user_id = '$user_id' AND project_type= '4');");
         if (mysqli_num_rows($private_project_display) == 0) {
 			echo " <li class='stick'>No any projects to display,<br>
 					<a class='active' data-toggle='modal' data-target='#createProject' style='cursor:pointer;'>
@@ -223,11 +216,52 @@
                      }
                 }
             } 
-    }
-    echo "</div>
-    </ul>
-    </nav>
-    <nav class='sidebar light'>
+		echo "</div></ul></nav>";
+	}
+    if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
+        
+			$invester_recommended = mysqli_query($db_handle, "SELECT  a.project_id, b.project_title, b.project_ETA, b.creation_time, b.stmt FROM 
+															  project_funding_info as a join projects as b where a.project_id NOT IN 
+															  (SELECT project_id FROM investment_info WHERE user_id = '$user_id') 
+															  and a.project_id = b.project_id AND (b.project_type != '3' OR b.project_type != '5')  ;");
+			
+			if(mysqli_num_rows($invester_recommended) != 0){
+				echo "<nav class='sidebar light'>
+						<ul>
+						<div class='bs-component' style='max-height:150px;'>
+							<li class='title'>Fund Needed Projects</li>" ;
+				while($invester_recommendedRow = mysqli_fetch_array($invester_recommended)) {
+					$invester_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $invester_recommendedRow['project_title']))) ;
+    				$idprojectIN = $invester_recommendedRow['project_id'] ;
+    				$ProstmtIN =  $invester_recommendedRow['stmt'] ;
+					if(substr($ProstmtIN, 0, 4) == '<img') {
+						$ProjectPicIN = strstr($ProstmtIN, '<br/>' , true) ;
+					}
+					else {
+						$ProjectPicIN = "<img src=\"fonts/project.jpg\"  onError=this.src='img/default.gif'>" ;
+					}
+					$ProjectPicLinkIN =explode("\"",$ProjectPicIN)[1] ; 				
+					$ProjectPicInvester = "<img src='".resize_image($ProjectPicLinkIN, 15, 15, 1)."' onError=this.src='img/default.gif' style='height:15px;width:15px;'>" ;
+
+    				if (strlen($invester_title) > 35) {
+    					   $prtitleIN = substr(ucfirst($invester_title),0,35)."...";
+    					} 
+                    else {
+    					$prtitleIN = ucfirst($invester_title) ;
+    				}								   
+    				$p_etapIN = $invester_recommendedRow['project_ETA'] ;
+    				$p_timepIN = $invester_recommendedRow['creation_time'] ;
+    				$timefuncIN = date("j F, g:i a",strtotime($p_timepIN));
+    				$titlep =  strtoupper($invester_title)."&nbsp;&nbsp;&nbsp;&nbsp;  Project Created ON : ".$timefuncIN ;
+    				// $remaining_time_ownp = remaining_time($p_timep, $p_etap);	
+					echo "<li class='stick'>
+								<a href = 'project.php?project_id=".$idprojectIN."' style='white-space:nowrap;'>".$ProjectPicInvester ." ". $prtitleIN."</a>
+						  </li>";
+				}
+				echo "</div></ul></nav>";
+			}
+	}
+    echo "<nav class='sidebar light'>
     <ul>" ;
     if(isset($_SESSION['user_id'])) {
 		echo "<div class='bs-component' style='max-height:200px;'> " ;
