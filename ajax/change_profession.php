@@ -28,7 +28,7 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				events($db_handle,$user_id,"40",$idfr);
+				events($db_handle,$user_id,"16",$idfr);
 				}
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!";  }
 			else { echo "Profession added succesfully!"."+"."<span class='profession_".$id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill."&nbsp 
@@ -43,7 +43,7 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				events($db_handle,$user_id,"40",$idfr);
+				events($db_handle,$user_id,"16",$idfr);
 				}
 			$skill_display = mysqli_query($db_handle, "SELECT p_name from professsion_name WHERE p_id = '$skill_Name' ;");
 			$skill_displayrow = mysqli_fetch_array($skill_display) ;

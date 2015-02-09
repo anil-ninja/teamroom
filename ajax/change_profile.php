@@ -35,7 +35,7 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				events($db_handle,$user_id,"36",$idfr);
+				events($db_handle,$user_id,"15",$idfr);
 				}
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!";  }
 			else { echo "Skill added succesfully!"."+"."<span class='skill_id_".$id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill."&nbsp 
@@ -51,7 +51,7 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				events($db_handle,$user_id,"36",$idfr);
+				events($db_handle,$user_id,"15",$idfr);
 				}
 			$skill_display = mysqli_query($db_handle, "SELECT skill_name from skill_names WHERE skill_id = '$skill_Name' ;");
 			$skill_displayrow = mysqli_fetch_array($skill_display) ;
@@ -88,9 +88,9 @@ if  ($_POST['case']) {
 					$emails = $friendsrow['email'] ;
 					$mail = $friendsrow['username'] ;
 					$idfr = $friendsrow['user_id'] ;
-					events($db_handle,$user_id,"19",$idfr);
-					}
+					events($db_handle,$user_id,"8",$idfr);
 				}
+			}
 			if ($new_last_name != "") {
 				if ($var2 != $new_last_name) {
 					mysqli_query($db_handle, "UPDATE user_info SET last_name='$new_last_name' WHERE user_id='$user_id' and email = '$email' ;");
@@ -98,10 +98,10 @@ if  ($_POST['case']) {
 						$emails = $friendsrow['email'] ;
 						$mail = $friendsrow['username'] ;
 						$idfr = $friendsrow['user_id'] ;
-						events($db_handle,$user_id,"20",$idfr);
-						}
+						events($db_handle,$user_id,"8",$idfr);
 					}
 				}
+			}
 			if ($new_phone != "") {
 				if ($var3 != $new_phone) {
 					mysqli_query($db_handle, "UPDATE user_info SET contact_no='$new_phone' WHERE user_id='$user_id' and email = '$email' ;");
@@ -109,10 +109,10 @@ if  ($_POST['case']) {
 						$emails = $friendsrow['email'] ;
 						$mail = $friendsrow['username'] ;
 						$idfr = $friendsrow['user_id'] ;
-						events($db_handle,$user_id,"21",$idfr);
-						}
+						events($db_handle,$user_id,"8",$idfr);
 					}
 				}
+			}
 			if (mysqli_num_rows($aboutuser) != 0) {
 				if ($comp != "") {
 					if ($var4 != $comp) {
@@ -121,10 +121,10 @@ if  ($_POST['case']) {
 							$emails = $friendsrow['email'] ;
 							$mail = $friendsrow['username'] ;
 							$idfr = $friendsrow['user_id'] ;
-							events($db_handle,$user_id,"22",$idfr);
-							}
+							events($db_handle,$user_id,"14",$idfr);
 						}
 					}
+				}
 				if ($town != "") {
 					if ($var5 != $town) {
 						mysqli_query($db_handle, "UPDATE about_users SET living_town='$town' WHERE user_id='$user_id' ;");
@@ -132,10 +132,10 @@ if  ($_POST['case']) {
 							$emails = $friendsrow['email'] ;
 							$mail = $friendsrow['username'] ;
 							$idfr = $friendsrow['user_id'] ;
-							events($db_handle,$user_id,"23",$idfr);
-							}
+							events($db_handle,$user_id,"14",$idfr);
 						}
 					}
+				}
 				if ($about != "") {
 					if ($var6 != $about) {
 						mysqli_query($db_handle, "UPDATE about_users SET about_user='$about' WHERE user_id='$user_id' ;");
@@ -143,21 +143,21 @@ if  ($_POST['case']) {
 							$emails = $friendsrow['email'] ;
 							$mail = $friendsrow['username'] ;
 							$idfr = $friendsrow['user_id'] ;
-							events($db_handle,$user_id,"24",$idfr);
-							}
-						}
-					}		
-				}
-				else {
-					mysqli_query($db_handle, "INSERT INTO about_users (user_id, organisation_name, living_town, about_user) 
-																			VALUES ('$user_id', '$comp', '$town', '$about');") ;
-					while ($friendsrow = mysqli_fetch_array($friends)){
-						$emails = $friendsrow['email'] ;
-						$mail = $friendsrow['username'] ;
-						$idfr = $friendsrow['user_id'] ;
-						events($db_handle,$user_id,"8",$idfr);
+							events($db_handle,$user_id,"14",$idfr);
 						}
 					}
+				}		
+			}
+			else {
+				mysqli_query($db_handle, "INSERT INTO about_users (user_id, organisation_name, living_town, about_user) 
+																		VALUES ('$user_id', '$comp', '$town', '$about');") ;
+				while ($friendsrow = mysqli_fetch_array($friends)){
+					$emails = $friendsrow['email'] ;
+					$mail = $friendsrow['username'] ;
+					$idfr = $friendsrow['user_id'] ;
+					events($db_handle,$user_id,"14",$idfr);
+				}
+			}
 			if (mysqli_error($db_handle)) { echo "Please try again"; }
 			else { echo "Updated successfuly"; }
 			exit ;
@@ -168,8 +168,8 @@ if  ($_POST['case']) {
 				$emails = $friendsrow['email'] ;
 				$mail = $friendsrow['username'] ;
 				$idfr = $friendsrow['user_id'] ;
-				events($db_handle,$user_id,"25",$idfr);
-				}
+				events($db_handle,$user_id,"8",$idfr);
+			}
 			echo "Posted succesfully!";
 			exit ;
 			break ;

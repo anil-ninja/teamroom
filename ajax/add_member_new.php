@@ -51,8 +51,8 @@ if ($_POST['team']) {
 			collapMail($emails, "Member Added IN Team", $body2);
 		}
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
-		events($db_handle,$user_id,"15",$pro_id);
-		involve_in($db_handle,$user_id,"15",$pro_id);
+		events($db_handle,$user_id,"7",$pro_id);
+		involve_in($db_handle,$user_id,"7",$pro_id);
 		$body2 = "<h2>Added as Member in Team</h2><p>Hi ".ucfirst($newuserfname)." ".ucfirst($newuserlname).",</p>
 <p>".$username." has added you as member in team ".$team." in project ".ucfirst($title)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
@@ -78,8 +78,8 @@ if ($_POST['team']) {
 				collapMail($emails, "Member Added IN Team", $body2);
 			}
 			mysqli_query($db_handle, "UPDATE teams SET member_status = '1' WHERE team_name = '$team' AND project_id = '$pro_id' AND user_id = '$newuserid' ;");
-			events($db_handle,$user_id,"15",$pro_id);
-			involve_in($db_handle,$user_id,"15",$pro_id);
+			events($db_handle,$user_id,"7",$pro_id);
+			involve_in($db_handle,$user_id,"7",$pro_id);
 			$body2 = "<h2>Added as Member in Team</h2><p>Hi ".ucfirst($newuserfname)." ".ucfirst($newuserlname).",</p>
 <p>".$username." has added you as member in team ".$team." in project ".ucfirst($title)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;

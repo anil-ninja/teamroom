@@ -16,8 +16,8 @@ if($_POST['id']){
 	$time = date("Y-m-d H:i:s") ;
 	$test = "" ;
 	if ($case == 1) {
-		events($db_handle,$user_id,"3",$id);
-		involve_in($db_handle,$user_id,"3",$id);
+		events($db_handle,$user_id,"5",$id);
+		involve_in($db_handle,$user_id,"5",$id);
 		mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
 		if (strlen($stmt)<1000) {	
 			mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
@@ -34,8 +34,8 @@ if($_POST['id']){
 		$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 		if(mysqli_num_rows($member_project) != 0) {
 			if($case == 2) { 
-				events($db_handle,$user_id,"14",$pro_id);
-				involve_in($db_handle,$user_id,"14",$pro_id);
+				events($db_handle,$user_id,"6",$pro_id);
+				involve_in($db_handle,$user_id,"6",$pro_id);
 				if (strlen($resp_stmt)<1000) {
 					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$pro_id', '$stmt');") ;
 					$comment_id = mysqli_insert_id($db_handle);
@@ -48,8 +48,8 @@ if($_POST['id']){
 				}
 			}
 			else {
-				events($db_handle,$user_id,"3",$id);
-				involve_in($db_handle,$user_id,"3",$id);
+				events($db_handle,$user_id,"5",$id);
+				involve_in($db_handle,$user_id,"5",$id);
 				$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
 				$inforowt = mysqli_fetch_array($infoet) ;
 				$title = $inforowt['project_title'] ;

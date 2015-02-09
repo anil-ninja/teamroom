@@ -20,10 +20,10 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
 	}
 	if (mysqli_num_rows($displayb) != 0) {
 			echo $data."+".$ida ;
-		}
-		else {
-			echo $data."+0" ;
-			}
+	}
+	else {
+		echo $data."+0" ;
+	}
 mysqli_close($db_handle);
 }
 ?>

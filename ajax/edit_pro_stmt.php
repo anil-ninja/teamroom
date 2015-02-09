@@ -14,8 +14,8 @@ if($_POST['id']){
 										(select b.stmt from projects as a join blobs as b where a.project_id='$id' and a.blob_id = b.blob_id);") ;
 	$myqueryRow = mysqli_fetch_array($myquery) ;
 	$stmt = $myqueryRow['stmt'] ;
-	events($db_handle,$user_id,"33",$id) ;
-	involve_in($db_handle,$user_id,"33",$id) ;
+	events($db_handle,$user_id,"11",$id) ;
+	involve_in($db_handle,$user_id,"11",$id) ;
 	if($video == '') {
 		if(substr($stmt, 0, 1) == '<') {
 			$newstmt = strstr($stmt, '<br/>' , true)." <br/> ".$projectsmt ;

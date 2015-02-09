@@ -41,8 +41,6 @@ if($_POST['notes']){
 		mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, project_id, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 
 									VALUES ('$user_id', '$notes_title', '$pro_id', '$notes', '1', '1', '9', '$time') ; ") ;
 		$idp = mysqli_insert_id($db_handle);
-		involve_in($db_handle,$user_id,"10",$idp); 
-		events($db_handle,$user_id,"10",$idp);
 	} 
 	else {
 		mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt)	VALUES (default, '$notes');");
@@ -53,6 +51,8 @@ if($_POST['notes']){
 		involve_in($db_handle,$user_id,"10",$idp); 
 		events($db_handle,$user_id,"10",$idp);
 	}
+	events($db_handle,$user_id,"1",$idp);
+	mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idp' and like_status = '1' ;");
 	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
 	else { $likes = '' ; }

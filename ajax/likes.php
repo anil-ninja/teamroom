@@ -14,16 +14,16 @@ if(isset($_POST['id'])){
     if($case == 1){
 		mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '1');") ;
 		mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
-		events($db_handle,$user_id,"16",$id);
-		involve_in($db_handle,$user_id,"16",$id);
+		events($db_handle,$user_id,"9",$id);
+		involve_in($db_handle,$user_id,"9",$id);
 		if(mysqli_error($db_handle)) { echo "Already Liked" ; }
 		else { echo "Posted successfully"; }
 	}
 	else if($case == 2){
 		mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '2');") ;
 		mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
-		events($db_handle,$user_id,"17",$id);
-		involve_in($db_handle,$user_id,"17",$id);
+		events($db_handle,$user_id,"9",$id);
+		involve_in($db_handle,$user_id,"9",$id);
 		if(mysqli_error($db_handle)) { echo "Already Disliked" ; }
 		else { echo "Posted successfully"; }
 	}
@@ -62,16 +62,16 @@ if(isset($_POST['id'])){
 			if($case == 3) {
 				mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '1');") ;
 				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
-				events($db_handle,$user_id,"16",$id);
-				involve_in($db_handle,$user_id,"16",$id);
+				events($db_handle,$user_id,"9",$id);
+				involve_in($db_handle,$user_id,"9",$id);
 				if(mysqli_error($db_handle)) { echo "Already Liked" ; }
 				else { echo "Posted successfully"; }
 			}
 			else {
 				mysqli_query($db_handle,"INSERT INTO likes (challenge_id, user_id, like_status) VALUES ('$id', '$user_id', '2');") ;
 				mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$challenge_id' ; ") ;
-				events($db_handle,$user_id,"17",$id);
-				involve_in($db_handle,$user_id,"17",$id);
+				events($db_handle,$user_id,"9",$id);
+				involve_in($db_handle,$user_id,"9",$id);
 				if(mysqli_error($db_handle)) { echo "Already Disliked" ; }
 				else { echo "Posted successfully"; }
 			}

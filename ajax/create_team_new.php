@@ -25,8 +25,8 @@ if ($_POST['team']) {
 	if($email == "") { 
 		$check = mysqli_query($db_handle, "select * from teams projects where project_id = '$pro_id' and team_name = '$team' ;") ;
 		if(mysqli_num_rows($check) != 0) {
-			events($db_handle,$user_id,"15",$pro_id);
-			involve_in($db_handle,$user_id,"15",$pro_id); 
+			events($db_handle,$user_id,"7",$pro_id);
+			involve_in($db_handle,$user_id,"7",$pro_id); 
 			mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
 			$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id'
 												and	a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
@@ -45,8 +45,8 @@ if ($_POST['team']) {
 		else {
 			mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, team_owner, project_id) VALUES ('$newuserid', '$team', '0', '$pro_id'), 
 																											('$user_id','$team', '$user_id', '$pro_id');");
-			events($db_handle,$user_id,"11",$pro_id) ;
-			involve_in($db_handle,$user_id,"11",$pro_id) ;
+			events($db_handle,$user_id,"7",$pro_id) ;
+			involve_in($db_handle,$user_id,"7",$pro_id) ;
 			$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id' and
 												a.user_id != '$user_id' and a.user_id = b.user_id and a.member_status = '1' ;") ;
 			while ($memrow = mysqli_fetch_array($members)){
@@ -65,8 +65,8 @@ if ($_POST['team']) {
 	else { 
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, team_owner, project_id) VALUES ('$newuserid', '$team', '0', '$pro_id'), 
 																										('$user_id','$team', '$user_id', '$pro_id');");
-		events($db_handle,$user_id,"11",$pro_id) ;
-		involve_in($db_handle,$user_id,"11",$pro_id) ;
+		events($db_handle,$user_id,"7",$pro_id) ;
+		involve_in($db_handle,$user_id,"7",$pro_id) ;
 		$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id' and
 											a.user_id != '$user_id' and a.user_id = b.user_id and a.member_status = '1' ;") ;
 		while ($memrow = mysqli_fetch_array($members)){

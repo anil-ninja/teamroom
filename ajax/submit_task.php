@@ -40,7 +40,6 @@ if($_POST['taskdetails']){
 <p>".ucfirst($username)." has assigned a new task ".$title." in project ".ucfirst($titlepro)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 		collapMail($mailto, "Task assigned IN Project", $body2);
-		events($db_handle,$user_id,"12",$owner) ;	
 		if (strlen($details) < 1000) {
 			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
                                     VALUES ('$user_id', '$pro_id', '$title', '$details', '1', '$challange_eta', '5', '2', '$time') ; ") ;
@@ -55,6 +54,8 @@ if($_POST['taskdetails']){
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
 		}
+		events($db_handle,$user_id,"10",$owner) ;
+		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	}
 	else if ($email != "") {
 		$owners = mysqli_query($db_handle,"select * from user_info where email = '$email' ;") ;
@@ -69,7 +70,6 @@ if($_POST['taskdetails']){
 <p>".ucfirst($username)." has assigned a new Task ".$title." in project ".ucfirst($titlepro)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 		collapMail($mailto, "Task assigned IN Project", $body2);
-		events($db_handle,$user_id,"12",$owner) ;
 		$insert =  mysqli_query($db_handle,"select user_id from teams where project_id = '$pro_id' and user_id = '$owner' ;") ;
 		if (mysqli_num_rows($insert) == 0){
 			mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$owner', '$pro_id', 'defaultteam') ;" ) ; 
@@ -88,30 +88,15 @@ if($_POST['taskdetails']){
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
 		}
+		events($db_handle,$user_id,"10",$owner) ;
+		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	}
 	else {		
 		if (strlen($details) < 1000) {
 			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
                                     VALUES ('$user_id', '$pro_id', '$title', '$details', '1', '$challange_eta', '5', '2', '$time') ; ") ;
 			$idp = mysqli_insert_id($db_handle);
-			mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$pro_id', '$team', '$idp');") ;
-			$owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
-			while ($ownersrow = mysqli_fetch_array($owners)) { 
-				$owner = $ownersrow['user_id'] ;
-				$info = mysqli_query($db_handle,"select * from user_info where user_id = '$owner';") ;
-				$inforow = mysqli_fetch_array($info);
-				$mailto = $inforow['email'];
-				$mail = $inforow['username'];
-				$userFirstName = $inforow['first_name'] ;
-				$userLastName = $inforow['last_name'] ;
-				$body2 = "<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
-<p>A new task has been asgined to you in a project you are involved in.</p>
-<p>".ucfirst($username)." has assigned a new task ".$title." in project ".ucfirst($titlepro)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
-				collapMail($mailto, "Task assigned IN Project", $body2);
-				events($db_handle,$user_id,"12",$owner) ;	
-				mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ; 
-			}                  
+			mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$pro_id', '$team', '$idp');") ;                  
 		}
 		else {
 			mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$details');");
@@ -120,23 +105,25 @@ if($_POST['taskdetails']){
 									VALUES ('$user_id', '$pro_id', '$title', '$idb', '1', '$challange_eta', '5', '2', '$time');");
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$pro_id', '$team', '$idp');") ;
-			$owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
-			while ($ownersrow = mysqli_fetch_array($owners)) { 
-				$owner = $ownersrow['user_id'] ;
-				$info = mysqli_query($db_handle,"select * from user_info where user_id = '$owner';") ;
-				$inforow = mysqli_fetch_array($info);
-				$mailto = $inforow['email'];
-				$mail = $inforow['username'];
-				$userFirstName = $inforow['first_name'] ;
-				$userLastName = $inforow['last_name'] ;
-				$body2 = "<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+		}
+		$owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
+		while ($ownersrow = mysqli_fetch_array($owners)) { 
+			$owner = $ownersrow['user_id'] ;
+			$info = mysqli_query($db_handle,"select * from user_info where user_id = '$owner';") ;
+			$inforow = mysqli_fetch_array($info);
+			$mailto = $inforow['email'];
+			$mail = $inforow['username'];
+			$userFirstName = $inforow['first_name'] ;
+			$userLastName = $inforow['last_name'] ;
+			$body2 = "<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new task has been asgined to you in a project you are involved in.</p>
 <p>".ucfirst($username)." has assigned a new task ".$title." in project ".ucfirst($titlepro)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
-				collapMail($mailto, "Task assigned IN Project", $body2);
-				mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
-			}
-		}	
+			collapMail($mailto, "Task assigned IN Project", $body2);
+			events($db_handle,$user_id,"10",$owner) ;
+			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
+		}
+		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;	
 	}
 	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idp' and like_status = '1' ;");
 	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}

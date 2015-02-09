@@ -47,8 +47,8 @@ if ($_POST['id']) {
 			
 		case 5:
 			mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '7' WHERE challenge_id = '$knownid' ;") ;
-			events($db_handle,$user_id,"38",$knownid) ;
-			involve_in($db_handle,$user_id,"38",$knownid) ;
+			events($db_handle,$user_id,"3",$knownid) ;
+			involve_in($db_handle,$user_id,"3",$knownid) ;
 			if(mysqli_error($db_handle)) { echo "Failed to Spam!"; }
 			else { echo "Spammed succesfully!"; }
 			 
@@ -84,8 +84,8 @@ if ($_POST['id']) {
 		case 9:
 			if(mysqli_num_rows($member_project) != 0) {	
 				mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '7' WHERE challenge_id = '$knownid' ;") ;
-				events($db_handle,$user_id,"7",$knownid) ;
-				involve_in($db_handle,$user_id,"7",$knownid) ;
+				events($db_handle,$user_id,"3",$knownid) ;
+				involve_in($db_handle,$user_id,"3",$knownid) ;
 				if(mysqli_error($db_handle)) { echo "Failed to Spam!"; }
 				else { echo "Spammed succesfully!"; }
 				}

@@ -26,8 +26,8 @@ if($_POST['answer']){
 	}
 	$a = date("Y-m-d H:i:s") ;
 	if($case == 1) {
-		involve_in($db_handle,$user_id,"5",$ch_id); 
-		events($db_handle,$user_id,"5",$ch_id);
+		involve_in($db_handle,$user_id,"3",$ch_id); 
+		events($db_handle,$user_id,"3",$ch_id);
 		$body2 = "<h2>".$challengeTtitle."</h2><p>Hi ".$userFirst." ".$userLast.",</p><p>Answer to a challange posted on collap in which you are involved has been submitted.</p>
 <p>".$username." has submitted a answer to the Challange, ".$challengeTtitle."</p><table><tr><td class='padding'>
 <p><a href='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' class='btn-primary'>Click Here to View the answer</a></p>" ;
@@ -67,8 +67,8 @@ if($_POST['answer']){
 <p><a href='http://collap.com/challengesOpen.php?challenge_id=".$ch_id."' class='btn-primary'>Click Here to View the answer</a></p>" ;
 				collapMail($emails, "Challenge Accepted ", $body2);
 			} 
-			involve_in($db_handle,$user_id,"5",$ch_id); 
-			events($db_handle,$user_id,"5",$ch_id);
+			involve_in($db_handle,$user_id,"3",$ch_id); 
+			events($db_handle,$user_id,"3",$ch_id);
 			mysqli_query($db_handle,"UPDATE challenges SET challenge_status='4', last_update='$a' WHERE challenge_id = $ch_id ; ") ;
 			mysqli_query($db_handle,"UPDATE challenge_ownership SET status='2', time='$a' WHERE challenge_id = $ch_id and user_id = '$user_id'; ") ;
 			if (strlen($notes) < 1000) {

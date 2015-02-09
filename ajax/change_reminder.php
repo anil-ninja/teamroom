@@ -14,7 +14,7 @@ if($_POST['value']){
 	$event = $_POST['case'] ;
 	$a = date("Y-m-d H:i") ;
 	$time = $eventtime.":00" ;
-	events($db_handle,$user_id,"37",$user);
+	events($db_handle,$user_id,"12",$user);
 	if($user_id != $user) {
 		if($reminder != "") {
 			$body2 = "Hi, \n \n ".$username." Add Reminder for you (".$reminder."). View at \n
@@ -36,13 +36,13 @@ switch($event){
 					} 
 					else {
 						echo "Max length 250 characters!";
-						}
+					}
 				}
 				else {
 					mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder' where id = '$self' and user_id = '$user_id' ;") ;
 					if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
 					else { echo "Changed Successfully !!!"; }
-					}
+				}
 			}
 	break;
 	exit ;
@@ -51,30 +51,30 @@ switch($event){
 	if (strlen($reminder) < 250) {
 		mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder' where id = '$self' and user_id = '$user_id' ;") ;
 		if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-			else { echo "Changed Successfully !!!"; }
-		} 
-		else {
-			echo "Max length 250 characters!";
-			}
+		else { echo "Changed Successfully !!!"; }
+	} 
+	else {
+		echo "Max length 250 characters!";
+	}
 	break;
 	exit ;
 	
 	case 3:
 	if ($eventtime == $a || $eventtime < $a) {
 		echo "Please Enter Valid Date and Time !";
-		}
-		else {
-			mysqli_query($db_handle,"UPDATE reminders SET time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
-			if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-				else { echo "Changed succesfully!"; }
-			} 
+	}
+	else {
+		mysqli_query($db_handle,"UPDATE reminders SET time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
+		if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+		else { echo "Changed succesfully!"; }
+	} 
 	break;
 	exit ;
 	
 	case 4:
 		mysqli_query($db_handle,"UPDATE reminders SET person_id = '$user' where id = '$self' and user_id = '$user_id' ;") ;
 		if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-			else { echo "Changed Successfully !!!"; }
+		else { echo "Changed Successfully !!!"; }
 	break;
 	exit ;
 	
@@ -82,40 +82,40 @@ switch($event){
 	if (strlen($reminder) < 250) {
 		mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder', person_id = '$user' where id = '$self' and user_id = '$user_id' ;") ;
 		if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-			else { echo "Changed Successfully !!!"; }
-		} 
-		else {
-			echo "Max length 250 characters!";
-			}
+		else { echo "Changed Successfully !!!"; }
+	} 
+	else {
+		echo "Max length 250 characters!";
+		}
 	break;
 	exit ;
 	
 	case 6:
 	if ($eventtime == $a || $eventtime < $a) {
 		echo "Please Enter Valid Date and Time !";
-		}
-		else {
-			mysqli_query($db_handle,"UPDATE reminders SET person_id = '$user', time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
-			if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-				else { echo "Changed Successfully !!!"; }
-			}
+	}
+	else {
+		mysqli_query($db_handle,"UPDATE reminders SET person_id = '$user', time = '$time' where id = '$self' and user_id = '$user_id' ;") ;
+		if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+			else { echo "Changed Successfully !!!"; }
+	}
 	break;
 	exit ;
 	
 	case 7:
 	if ($eventtime == $a || $eventtime < $a) {
 		echo "Please Enter Valid Date and Time !";
-		}
+	}
+	else {
+		if (strlen($reminder) < 250) {
+			mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder', time = '$time', person_id = '$user' where id = '$self' and user_id = '$user_id' ;") ;
+			if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+			else { echo "Changed Successfully !!!"; }
+		} 
 		else {
-			if (strlen($reminder) < 250) {
-				mysqli_query($db_handle,"UPDATE reminders SET reminder = '$reminder', time = '$time', person_id = '$user' where id = '$self' and user_id = '$user_id' ;") ;
-				if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-					else { echo "Changed Successfully !!!"; }
-				} 
-				else {
-					echo "Max length 250 characters!";
-					}
-			}
+			echo "Max length 250 characters!";
+		}
+	}
 	break;
 	exit ;	
 }
