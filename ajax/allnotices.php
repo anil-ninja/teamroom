@@ -7,23 +7,23 @@ include_once "../lib/db_connect.php";
 if ($_POST['all']) {
     $user_id = $_SESSION['user_id'];
     $notice = "" ;
-	$notice = "" ;
-	$notice27 = mysqli_query($db_handle, "select b.first_name, b.username, a.project_id, a.project_title, a.creation_time from projects as a join user_info as b
+	$notice1 = mysqli_query($db_handle, "select Distinct b.first_name, b.username, a.project_id, a.project_title, a.creation_time from projects as a join user_info as b
 											where a.project_type = '1' and a.user_id != '$user_id' and a.user_id = b.user_id order by creation_time DESC ;") ;
-		while($notice27row = mysqli_fetch_array($notice27)) {
-			$fname25 = ucfirst($notice27row['first_name']) ;
-			$project_id25 = $notice27row['project_id'] ;
-			$strtime = strtotime($notice27row['creation_time']) ;
-			$eventtimeN = date("j F, g:i a", $strtime) ;
-			$title25 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice27row['project_title']))) ;
-			$uname25 = $notice27row['username'] ;
-			$notice .= "<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);'>
-							<i class='icon-plus'></i>
-							<a href ='profile.php?username=".$uname25."'>".$fname25."</a> Created 
-							<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id25."' 
-							target='_blank'>". $title25."</a> on ".$eventtimeN."
-						</div>" ;
-			}
+	while($notice1row = mysqli_fetch_array($notice1)) {
+		$fname = ucfirst($notice1row['first_name']) ;
+		$project_id = $notice1row['project_id'] ;
+		$strtime = strtotime($notice1row['creation_time']) ;
+		$eventtime = date("j F, g:i a", $strtime) ;
+		$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice1row['project_title']))) ;
+		$uname = $notice1row['username'] ;
+		$notice .= "<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);'>
+						<i class='icon-plus'></i>
+						<a href ='profile.php?username=".$uname."'>".$fname."</a> Created 
+						<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id."' 
+						target='_blank'>". $title."</a> on ".$eventtime."
+					</div>" ;
+	}
+	
 	$notice1 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') and event_creater != '$user_id' )
 										 UNION
 										 (SELECT Distinct * FROM events WHERE event_type IN ( 8, 12, 18, 19, 20, 21, 22, 23, 24, 25, 28, 29, 30, 36, 40 ) 
