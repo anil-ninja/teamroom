@@ -213,7 +213,7 @@ if ($_POST['notice']) {
 				$notice = $notice ."<li><a class='btn-link' style='white-space: normal ;' href='project.php?project_id=".$pro_id3."' 
 										target='_blank' onclick=".update($user_id,$db_handle).">
 										<i class='icon-star'></i>
-										".$fname2."&nbsp;	Commented On ".$project_title10." on  ".$eventtime2."
+										".$fname2."&nbsp;	Commented On ".$project_title3." on  ".$eventtime2."
 									</a></li>" ;
 				$y++ ;
 				insert($eventid, $user_id,  $db_handle) ;
