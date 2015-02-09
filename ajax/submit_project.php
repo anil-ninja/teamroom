@@ -32,7 +32,7 @@ if($_POST['project_title']){
 		$idp = mysqli_insert_id($db_handle);
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name, team_owner) VALUES ('$user_id', '$idp', 'defaultteam', '$user_id') ;" ) ;
 	}
-	mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '2'),('$user_id', '$idp', '6'),('$user_id', '$idp', '7'),('$user_id', '$idp', '11'),('$user_id', '$idp', '13') ;") ; 
+	mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '2'),('$user_id', '$idp', '6'),('$user_id', '$idp', '7'),('$user_id', '$idp', '11'),('$user_id', '$idp', '13'),('$user_id', '$idp', '17') ;") ; 
 	if($value != ""){
 		mysqli_query($db_handle, "INSERT INTO project_funding_info (project_id, project_value, fund_neede) VALUES ('$idp', '$value', '$fund') ;") ;
 	}

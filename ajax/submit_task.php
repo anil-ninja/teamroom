@@ -54,7 +54,7 @@ if($_POST['taskdetails']){
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
 		}
-		events($db_handle,$user_id,"10",$owner) ;
+		events($db_handle,$user_id,"4",$owner) ;
 		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	}
 	else if ($email != "") {
@@ -88,7 +88,7 @@ if($_POST['taskdetails']){
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
 		}
-		events($db_handle,$user_id,"10",$owner) ;
+		events($db_handle,$user_id,"4",$owner) ;
 		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	}
 	else {		
@@ -120,7 +120,7 @@ if($_POST['taskdetails']){
 <p>".ucfirst($username)." has assigned a new task ".$title." in project ".ucfirst($titlepro)."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 			collapMail($mailto, "Task assigned IN Project", $body2);
-			events($db_handle,$user_id,"10",$owner) ;
+			events($db_handle,$user_id,"4",$owner) ;
 			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
 		}
 		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;	

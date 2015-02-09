@@ -140,7 +140,7 @@ http://collap.com/profile.php?username=".$mail ;
 				break ;
 			case 7:
 				mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ;
-				events($db_handle,$user_id,"10",$uid);
+				events($db_handle,$user_id,"18",$uid);
 				if(mysqli_error($db_handle)) { echo "Sorry Try again!"; }
 				else { echo "Request Accepted succesfully!"; }
 				mysqli_close($db_handle);
