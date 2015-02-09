@@ -32,11 +32,11 @@ if($_POST['project_title']){
 		$idp = mysqli_insert_id($db_handle);
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name, team_owner) VALUES ('$user_id', '$idp', 'defaultteam', '$user_id') ;" ) ;
 	}
-	if($type == 2) { 
-		involve_in($db_handle,$user_id,"2",$idp); 
+	if($type == 1) { 
+		involve_in($db_handle,$user_id,"9",$idp); 
 	}  
 	else {
- 	  involve_in($db_handle,$user_id,"9",$idp);
+ 	  involve_in($db_handle,$user_id,"2",$idp);
 	}
 	if($value != ""){
 		mysqli_query($db_handle, "INSERT INTO project_funding_info (project_id, project_value, fund_neede) VALUES ('$idp', '$value', '$fund') ;") ;
