@@ -16,6 +16,7 @@ function delcomment(ID, type) {
 		$.ajax({
 			type: "POST",
 			url: "ajax/delete_chalange.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){

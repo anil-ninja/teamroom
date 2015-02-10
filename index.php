@@ -348,12 +348,6 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                 <div class="span7">
                                     <h4><i class="icon-question"></i>&nbsp;&nbsp;Help</h4>
                                     <div class="box">
-                                        <p><a href="index.php#">Getting Error With Password Recovery</a></p>
-                                        <ul>
-                                            
-                                        </ul>
-                                    </div>
-                                    <div class="box">
                                         <ul>
                                             <li>Having repeated difficulty signing in?</li>
                                             <li>Clearing your browser's cache and cookies may help.</li>
@@ -534,13 +528,13 @@ function validateSignupFormOnSubmit() {
 			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		}
 		else if(validatePath(firstname) !== 'true'){
-			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "Special Characters and Spaces are not allowed <br/> Only Alphabets and Numbers are allowed in First Name", 5000,"alert-warning");
 		}
 		else if(validatePath(username) !== 'true'){
-			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "Special Characters and Spaces are not allowed <br/> Only Alphabets and Numbers are allowed in Username", 5000,"alert-warning");
 		}
 		else if(validatePath(lastname) !== 'true'){
-			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "Special Characters and Spaces are not allowed <br/> Only Alphabets and Numbers are allowed in Last Name", 5000,"alert-warning");
 		} 
         else if(term_n_cond==false){
             bootstrap_alert(".alert-placeholder", "You have not accepted term and conditions", 5000,"alert-warning");

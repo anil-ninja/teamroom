@@ -14,40 +14,85 @@ if($_POST['id']){
 	$stmt=$_POST['projectsmt'];
 	$case = $_POST['case'];
 	$time = date("Y-m-d H:i:s") ;
-	$test = "" ;
-	if ($case == 1) {
-		events($db_handle,$user_id,"5",$id);
-		involve_in($db_handle,$user_id,"5",$id);
-		mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
-		if (strlen($stmt)<1000) {	
-			mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
-			$comment_id = mysqli_insert_id($db_handle);
-		}
-		else {
-			mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
-			$ida = mysqli_insert_id($db_handle);
-			mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
-			$comment_id = mysqli_insert_id($db_handle);
-		}
-	}
-	else { 	
-		$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
-		if(mysqli_num_rows($member_project) != 0) {
-			if($case == 2) { 
+	$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+	switch ($case) {
+		case 1:
+			events($db_handle,$user_id,"5",$id);
+			involve_in($db_handle,$user_id,"5",$id);
+			mysqli_query($db_handle,"UPDATE challenges SET last_update='$time' WHERE challenge_id = '$id' ; ") ;
+			if (strlen($stmt)<1000) {	
+				mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
+				$comment_id = mysqli_insert_id($db_handle);
+			}
+			else {
+				mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
+				$ida = mysqli_insert_id($db_handle);
+				mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
+				$comment_id = mysqli_insert_id($db_handle);
+			}
+			$test = "<div class='commentscontainer' id='comment_".$comment_id."'>
+						<div class='comments clearfix'>
+							<div class='pull-left lh-fix'>
+							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+							</div>
+							<div class='dropdown pull-right'>
+								<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+								<ul class='dropdown-menu'>
+									<li><a class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</a></li>
+								</ul>
+							</div>
+							<div class='comment-text'>
+								<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
+								&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
+							</div>
+						</div>
+					</div>";
+			if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
+			else { echo $test."+"."Posted succesfully!"; }
+			
+			break ;
+			
+		case 2:	
+			$member_projects = mysqli_query($db_handle, "select * from teams where project_id = '$id' and user_id = '$user_id' and member_status = '1';");
+			if(mysqli_num_rows($member_projects) != 0) {
 				events($db_handle,$user_id,"6",$pro_id);
 				involve_in($db_handle,$user_id,"6",$pro_id);
 				if (strlen($resp_stmt)<1000) {
-					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$pro_id', '$stmt');") ;
+					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt) VALUES ('$user_id', '$id', '$stmt');") ;
 					$comment_id = mysqli_insert_id($db_handle);
 				}
 				else {
 					mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$stmt');");
 					$idb = mysqli_insert_id($db_handle);
-					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt, blob_id) VALUES ('$user_id', '$pro_id', ' ', '$idb');") ;
+					mysqli_query($db_handle,"INSERT INTO response_project (user_id, project_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$idb');") ;
 					$comment_id = mysqli_insert_id($db_handle);
 				}
+				$test = "<div class='commentscontainer' id='comment_".$comment_id."'>
+							<div class='comments clearfix'>
+								<div class='pull-left lh-fix'>
+								<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+								</div>
+								<div class='dropdown pull-right'>
+									<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+									<ul class='dropdown-menu'>
+										<li><a class='btn-link' onclick='delcomment(\"".$comment_id."\", 2);'>Delete</a></li>
+									</ul>
+								</div>
+								<div class='comment-text'>
+									<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
+									&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
+								</div>
+							</div>
+						</div>";
+				if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
+				else { echo $test."+"."Posted succesfully!"; }
 			}
-			else {
+			else { echo "Please Join Project First!"; }
+			
+			break ;
+			
+		case 3:
+			if(mysqli_num_rows($member_project) != 0) {
 				events($db_handle,$user_id,"5",$id);
 				involve_in($db_handle,$user_id,"5",$id);
 				$infoet =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
@@ -89,29 +134,30 @@ if($_POST['id']){
 					mysqli_query($db_handle,"INSERT INTO response_challenge (user_id, challenge_id, stmt, blob_id) VALUES ('$user_id', '$id', ' ', '$ida');") ;
 					$comment_id = mysqli_insert_id($db_handle);
 				}
+				$test = "<div class='commentscontainer' id='comment_".$comment_id."'>
+							<div class='comments clearfix'>
+								<div class='pull-left lh-fix'>
+								<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+								</div>
+								<div class='dropdown pull-right'>
+									<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
+									<ul class='dropdown-menu'>
+										<li><a class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</a></li>
+									</ul>
+								</div>
+								<div class='comment-text'>
+									<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
+									&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
+								</div>
+							</div>
+						</div>";
+				if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
+				else { echo $test."+"."Posted succesfully!"; }
 			}
-		}
-			//else { echo "Please Join Project First!"; }
+			else { echo "Please Join Project First!"; }
+			
+			break ;
 	}
-	$test .= "<div id='commentscontainer' id='comment_".$comment_id."'>
-				<div class='comments clearfix'>
-					<div class='pull-left lh-fix'>
-					<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
-					</div>
-					<div class='dropdown pull-right'>
-						<a class='dropdown-toggle' data-toggle='dropdown' href='#' id='themes'><span class='caret'></span></a>
-						<ul class='dropdown-menu'>
-							<li><a class='btn-link' onclick='delcomment(\"".$comment_id."\", 1);'>Delete</a></li>
-						</ul>
-					</div>
-					<div class='comment-text'>
-						<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
-						&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
-					</div>
-				</div>
-			</div>";
-	if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
-	else { echo $test."+"."Posted succesfully!"; }
 }
 else echo "Invalid parameters!";
 mysqli_close($db_handle);

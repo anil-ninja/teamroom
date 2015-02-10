@@ -300,6 +300,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 		}
 		else if (_file.files['0'].size > 2015000) {
 			bootstrap_alert(".alert_placeholder", "File size is too large", 5000,"alert-warning");
+			$("#create_issue").removeAttr('disabled');
+			$("#create_idea").removeAttr('disabled');
+			$("#create_picture").removeAttr('disabled');
+			$("#create_article").removeAttr('disabled');
+			$("#submit_ch").removeAttr('disabled');
+			$("#create_challange_pb_pr").removeAttr('disabled');
+			$("#create_notes").removeAttr('disabled');
+			$("#create_task").removeAttr('disabled');
+			$("#create_project").removeAttr('disabled');
+			$("#answerch").removeAttr('disabled');
 			//setTimeout(function(){ location.reload(); } , 10000) ;
 			return false ;
 		} 
@@ -348,6 +358,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 		}
 		if (ilink != "" && imgTx.length < 30) { 
 			bootstrap_alert(".alert_placeholder", imgTx, 5000,"alert-warning");
+			$("#create_issue").removeAttr('disabled');
+			$("#create_idea").removeAttr('disabled');
+			$("#create_picture").removeAttr('disabled');
+			$("#create_article").removeAttr('disabled');
+			$("#submit_ch").removeAttr('disabled');
+			$("#create_challange_pb_pr").removeAttr('disabled');
+			$("#create_notes").removeAttr('disabled');
+			$("#create_task").removeAttr('disabled');
+			$("#create_project").removeAttr('disabled');
+			$("#answerch").removeAttr('disabled');
 			//setTimeout(function(){ location.reload(); } , 10000) ;
 		}
 		else {

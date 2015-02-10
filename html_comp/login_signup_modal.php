@@ -186,12 +186,6 @@
                                     <div class="span7">
                                         <h4><i class="icon-question"></i>&nbsp;&nbsp;Help</h4>
                                         <div class="box">
-                                            <p>Getting Error With Password Recovery Click Here For <a href="index.php#">Support</a></p>
-                                            <ul>
-                                            
-                                            </ul>
-                                        </div>
-                                        <div class="box">
                                             <ul>
                                                 <li>Having repeated difficulty signing in?</li>
                                                 <li>Clearing your browser's cache and cookies may help.</li>    

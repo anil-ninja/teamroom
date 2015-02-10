@@ -170,7 +170,7 @@ if  ($_POST['case']) {
 				$idfr = $friendsrow['user_id'] ;
 				events($db_handle,$user_id,"8",$idfr);
 			}
-			echo "Posted succesfully!";
+			echo "Updated successfuly";
 			exit ;
 			break ;
 		   

@@ -450,7 +450,7 @@ $obj = new profile($UserName);
 							}
 							echo "</div>";
 							?>
-							<label>Add more Skills</label><br/>
+							<label>Add Skills</label><br/>
                             <label>Select Skill</label> 
                             <select class="inline-form" id = "skills" >
                                 <option value='0' selected>Default (none)</option>
@@ -504,7 +504,7 @@ $obj = new profile($UserName);
 							}
 							echo "</div>";
 							?>
-							<label>Add more Professions</label><br/>
+							<label>Add Professions</label><br/>
                             <label>Select Profession</label> 
                             <select class="inline-form" id = "Professions" >
                                 <option value='0' selected>Default (none)</option>
