@@ -52,7 +52,7 @@
 							UNION
 							(SELECT DISTINCT a.challenge_id, a.challenge_title, a.challenge_ETA, a.creation_time, c.user_id, b.first_name, b.last_name, 
 							b.username FROM challenges AS a JOIN user_info AS b JOIN challenge_ownership AS c WHERE c.user_id = '$user_id' AND 
-							(a.challenge_type = '1' OR a.challenge_type = '2') and a.challenge_status = '2' AND a.user_id = b.user_id AND
+							(a.challenge_type = '1' OR a.challenge_type = '2' OR a.challenge_type = '3') and a.challenge_status = '2' AND a.user_id = b.user_id AND
 							 a.challenge_id = c.challenge_id) ;");
 
 		if (mysqli_num_rows($titles) == 0) {

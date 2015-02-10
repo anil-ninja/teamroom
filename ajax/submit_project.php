@@ -37,7 +37,7 @@ if($_POST['project_title']){
 		mysqli_query($db_handle, "INSERT INTO project_funding_info (project_id, project_value, fund_neede) VALUES ('$idp', '$value', '$fund') ;") ;
 	}
 	if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
-	else { echo "Posted succesfully!"."+"."8"; }
+	else { echo "Project created succesfully!" ; }
 	mysqli_close($db_handle);
 	}
 ?>

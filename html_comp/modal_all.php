@@ -1,9 +1,8 @@
 <!--CReate Project Modal starts here -->
 
-<div id="createProject" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div id="createProject" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style='position:absolute;'>
     <div class="row-fluid">
         <div class="span8 offset2">
-
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Add Project</span></a></li>

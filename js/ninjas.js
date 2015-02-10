@@ -446,6 +446,10 @@ function bootstrap_alert(elem, message, timeout,type) {
 					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-success");
 					location.reload();
 				}
+				else if(notice['0'] == "Project created succesfully!"){
+					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-success");
+					location.reload();
+				}
 				else {
 					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-warning");
 					location.reload();
@@ -486,6 +490,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			$(".aboutfunding").show();
 		}
 	}		
+	$(document).ready(function() {
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
 			var project_title = convertSpecialChar($("#project_title").val()) ;
@@ -494,6 +499,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			var fund = convertSpecialChar($("#project_fundneed").val());
 			var type = $("#type").val();
 			var typeA = document.getElementById("fundProject").checked;
+			$("#project_title").val("");
 			//var eta = parseInt($("#eta").val());
 			//var etab = parseInt($("#etab").val());
 			//var etac = parseInt($("#etac").val());
@@ -539,6 +545,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
 			}
 		});
+	});
 function IsNumeric(e) {
 	var specialKeys = new Array();
 	specialKeys.push(8); //Backspace

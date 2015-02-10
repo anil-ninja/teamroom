@@ -178,7 +178,7 @@
 																	  (project_type = '1' or project_type = '2')) and user_id = '$user_id' ;") ;
             
             if (mysqli_num_rows($allJoinedProjects) == 0) {
-                echo "<li class='stick'>No any projects to display</li>";
+                echo "<li class='stick'> No any projects to display</li>";
             } 
             else {
                 while ($allJoinedProjectsRow = mysqli_fetch_array($allJoinedProjects)) {
@@ -218,7 +218,9 @@
             }
 		} 
             ?>
-		</div></ul></nav>
+		</div>
+		</ul>
+		</nav>
 		<?php
     if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
         

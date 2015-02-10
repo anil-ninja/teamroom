@@ -415,7 +415,7 @@ if ($_POST['notice']) {
 				$timeleft = $starttime ;
 			}
 			if($reminderstatus == '0') {
-				if ($timeleft < 0) {
+				if ($timeleft < 600) {
 					$notice = $notice . "<li><a style='white-space: normal ;'>
 											<i class='icon-bullhorn'></i> ". $reminders. " By : ".$rname."
 										</a></li>";
