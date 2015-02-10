@@ -16,7 +16,7 @@ if ($_POST['all']) {
 		$eventtime = date("j F, g:i a", $strtime) ;
 		$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice1row['project_title']))) ;
 		$uname = $notice1row['username'] ;
-		$notice .= "<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);'>
+		$notice .= "<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);'>
 						<i class='icon-plus'></i>
 						<a href ='profile.php?username=".$uname."'>".$fname."</a> Created 
 						<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id."' 
@@ -65,7 +65,7 @@ if ($_POST['all']) {
 				$projectinfo = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id';") ;
 				$projectinforow = mysqli_fetch_array($projectinfo) ;
 				$project_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow['project_title']))) ;
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-star'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Created ".$created." In Project
 										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id."' 
@@ -83,7 +83,7 @@ if ($_POST['all']) {
 				$challenge_id4 = $notice5row['challenge_id'] ;
 				$challenge_title4 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice5row['challenge_title']))) ;
 				if($challenge_status == '2') {	
-					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 											<i class='icon-star'></i>
 											<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Accepted Challenge 
 											<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
@@ -91,7 +91,7 @@ if ($_POST['all']) {
 										</div>" ;
 				}
 				else if($challenge_status == '4') {	
-					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 											<i class='icon-star'></i>
 											<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Submit Answer of 
 											<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
@@ -99,7 +99,7 @@ if ($_POST['all']) {
 										</div>" ;
 				}
 				else if($challenge_status == '5') {	
-					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 											<i class='icon-star'></i>
 											<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Closed Challenge 
 											<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
@@ -107,7 +107,7 @@ if ($_POST['all']) {
 										</div>" ;
 				}
 				else {	
-					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 											<i class='icon-star'></i>
 											<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Spammed Challenge 
 											<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
@@ -128,7 +128,7 @@ if ($_POST['all']) {
 				$projectinfo = mysqli_query($db_handle, " select * from projects where project_id = '$pro_id5';") ;
 				$projectinforow = mysqli_fetch_array($projectinfo) ;
 				$project_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectinforow['project_title']))) ;
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-star'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Assigned Task 
 										<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id5."' 
@@ -175,7 +175,7 @@ if ($_POST['all']) {
 					$commmented = "Issue";
 				}
 				$challenge_title6 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice7row['challenge_title']))) ;
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-star'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Commented On ".$commmented." 
 										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id6."' 
@@ -189,7 +189,7 @@ if ($_POST['all']) {
 				$notice8row = mysqli_fetch_array($notice8) ;
 				$pro_id3 = $notice8row['project_id'] ;
 				$project_title3 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice8row['project_title']))) ;	
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-share'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp;	Commented On 
 										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id3."' 
@@ -205,7 +205,7 @@ if ($_POST['all']) {
 				$pro_id3 = $notice9row['project_id'] ;
 				$team_name = $notice9row['team_name'] ;
 				$project_title3 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice9row['project_title']))) ;	
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-plus'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp;	Add member in Team ".$team_name."
 										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id3."' 
@@ -215,7 +215,7 @@ if ($_POST['all']) {
 				break;
 				
 			case 8:
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-star'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Updated His Profile on  ".$eventtime2."
 									</div>" ;
@@ -236,7 +236,7 @@ if ($_POST['all']) {
 					$like = "Pull" ;
 				}
 				$challenge_title9 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice10row['challenge_title']))) ;	
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-star'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; ".$like."  
 										<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id9."' 
@@ -250,7 +250,7 @@ if ($_POST['all']) {
 				$notice11row = mysqli_fetch_array($notice11) ;
 				$linkid = $notice11row['id'] ;
 				if(mysqli_num_rows($notice11) != 0) {
-					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 											<i class='icon-plus'></i> 
 											<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Send Link on  ".$eventtime2."<br/>
 											<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$linkid."\");' value='Accept'/>
@@ -265,7 +265,7 @@ if ($_POST['all']) {
 				$notice12row = mysqli_fetch_array($notice12) ;	
 				$pro_id4 = $notice12row['project_id'] ;
 				$project_title4 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice12row['project_title']))) ;	
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-share' ></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Edited Project 
 										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id4."' 
@@ -279,7 +279,7 @@ if ($_POST['all']) {
 				$notice13row = mysqli_fetch_array($notice13) ;
 				$pro_id5 = $notice13row['project_id'] ;
 				$project_title5 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice13row['project_title']))) ;	
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-share'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Joined in 
 										<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id5."' 
@@ -289,7 +289,7 @@ if ($_POST['all']) {
 				break;
 			
 			case 14:
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-star'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Changed His Organisation, Home Town and Informaton on ".$eventtime2."
 									</div>" ;
@@ -297,7 +297,7 @@ if ($_POST['all']) {
 				break;
 				
 			case 15:
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-plus'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Added Skills to his profile on  ".$eventtime2."
 									</div>" ;
@@ -305,7 +305,7 @@ if ($_POST['all']) {
 			break;
 				
 			case 16:
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-plus'></i>
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Added Profession to his profile on  ".$eventtime2."
 									</div>" ;
@@ -319,7 +319,7 @@ if ($_POST['all']) {
 				$owner = $notice14row['user_id'] ;
 				if ($owner == $user_id) {
 					$project_title6 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $notice14row['project_title']))) ;	
-					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+					$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 											<i class='icon-share'></i>
 											<a href ='profile.php?username=".$uname2."'>".$fname2."</a> wants to invest in your project 
 											<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id6."' 
@@ -330,7 +330,7 @@ if ($_POST['all']) {
 			break;
 				
 			case 18:
-				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
 										<i class='icon-plus'></i> 
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Accepted Link on  ".$eventtime2."
 									</div>" ;
@@ -352,7 +352,7 @@ if ($_POST['all']) {
 			else {
 				$rname = ucfirst($notice15row['first_name']) ;
 			}	
-			$notice = $notice . "<div class ='row-fluid' style='margin-top:10px; background : rgb(240, 241, 242);'>
+			$notice = $notice . "<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);'>
 									<i class='icon-bullhorn'> ". $reminders."</i> By : ".$rname." on " .$eventtime3."
 								</div>";
 		}
