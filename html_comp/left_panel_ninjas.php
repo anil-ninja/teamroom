@@ -215,9 +215,11 @@
 							  </li>";
                      }
                 }
-            } 
-		echo "</div></ul></nav>";
-	}
+            }
+		} 
+            ?>
+		</div></ul></nav>
+		<?php
     if($TypeUser == "invester" || $TypeUser == "collaboraterInvester" || $TypeUser == "fundsearcherInvester" || $TypeUser == "collaboraterinvesterfundsearcher"){
         
 			$invester_recommended = mysqli_query($db_handle, "SELECT  a.project_id, b.project_title, b.project_ETA, b.creation_time, b.stmt FROM 
@@ -270,7 +272,5 @@
             // recommended project function defined in functions/delete_comment for use in profile page joined project tab
                 recommended_project ($db_handle);
             // function call here ends
+      echo "</div></ul></nav>" ;
         ?>
-        </div>
-        </ul>
-    </nav>
