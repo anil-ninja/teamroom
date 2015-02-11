@@ -15,7 +15,21 @@ $(document).ready(function() {
          }
     });
 });
-           
+function nospaces(t){
+	if(t.value.match(/\s/g)){
+		bootstrap_alert(".alert_placeholder", 'Sorry, you are not allowed to enter any spaces', 5000,"alert-success");
+		t.value=t.value.replace(/\s/g,'');
+	}
+}
+function checkForm() {
+	if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
+		return true;
+	}
+	else {
+		alert("Passwords don't match");
+		return false;
+	}
+}
     function email_availability_check() {
 
         var xmlhttp;

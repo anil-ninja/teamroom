@@ -241,7 +241,7 @@
 
 <div id="joinProject" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style='position:absolute;'>
     <div class="row-fluid">
-        <div class="span8 offset2">
+        <div class="span10 offset1">
             <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-lock"></i>&nbsp;<span>Join Projects</span></a></li>
@@ -251,12 +251,7 @@
                     <div class="tab-pane active">
                         <div class="row-fluid">
                             <h4>&nbsp;&nbsp;<i class="icon-user"></i>&nbsp; Join New Projects </h4>
-                            <div class='span9 insertprojects' style=' margin:4px;'>
-                            </div>
-                            <div class='span3' style=' margin:4px;'>
-                            <label>Joined Projects</label>
-                            <div class='firstmessage'>Not Joined Any Project</div>
-                            <div class='insertjoinedpro'></div>
+                            <div class='span12 insertprojects' style=' margin:4px;'>
                             </div>
                         </div>
                     </div>

@@ -233,22 +233,3 @@
         </div>
 
 <!---- modal ends here -->
-        <script type="text/javascript">
-            function checkForm() {
-                if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
-                    return true;
-                }
-                else {
-                    alert("Passwords don't match");
-                    return false;
-                }
-            }
-        </script>
-        <script type="text/javascript">
-            function nospaces(t){
-                if(t.value.match(/\s/g)){
-                    alert('Sorry, you are not allowed to enter any spaces');
-                    t.value=t.value.replace(/\s/g,'');
-                }
-            }
-        </script>
