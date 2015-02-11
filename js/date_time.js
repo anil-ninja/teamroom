@@ -26,14 +26,15 @@
                 return dateTime;
             }
 
-            function startTime() {
-                document.getElementById('demo').innerHTML = String(getDateTime());
-                t = setTimeout(function () {
-                    startTime()
-                }, 500);
-            }
-setInterval(function updatelastlogin(){ 
+          //  function startTime() {
+            //    document.getElementById('demo').innerHTML = String(getDateTime());
+             //   t = setTimeout(function () {
+             //       startTime()
+              //  }, 500);
+           // }
+function updatelastlogin(){ 
 	var dataString = 'update=true' + '&case=2' ;
+	setInterval(function (){
 	$.ajax({
 		type: "POST",
 		url: "ajax/updatetime.php",
@@ -41,7 +42,8 @@ setInterval(function updatelastlogin(){
 		data: dataString,
 		cache: false,
 	});
-},600000)();
+	},600000);
+};
 
 function updatetime() {
 	var dataString = 'update=true' + '&case=1' ;

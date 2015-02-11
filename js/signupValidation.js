@@ -15,9 +15,8 @@ $(document).ready(function() {
          }
     });
 });
-
-function email_availability_check() {            
-    document.getElementById("email").onblur = function() {
+           
+    function email_availability_check() {
 
         var xmlhttp;
 
@@ -38,7 +37,6 @@ function email_availability_check() {
             xmlhttp.send();
         }
     };
-}
 
 function validatePath(path) {
         if (path.match("^[a-zA-Z0-9.]*$")) {

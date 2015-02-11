@@ -27,7 +27,7 @@ if(isset($_SESSION['user_id'])) {
 	else if ($url == "ninjas.php") {
 		if (mysqli_num_rows($check) == 0) {
 			?>
-			<script type="text/javascript">ninjas_intro() ;</script>
+			<script type="text/javascript"> ninjas_intro().done(projectToJoin); </script>
 			<?php
 		}
 	}

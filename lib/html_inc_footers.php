@@ -3,7 +3,46 @@
 ?>
  <br/><br/><br/><br/><br/><br/>
 <gcse:searchresults></gcse:searchresults>
-
+<script src="date.js"></script>
+<script src="js/delete_comment_challenge.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/username_email_check.js"></script>
+<script type="text/javascript" src="js/signupValidation.js"></script>
+<script type="text/javascript" src="js/loginValidation.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/ninjas.js" type="text/javascript"></script>
+<script src="js/project_page.js"></script>
+<script src="js/content_edit.js"></script>
+<script type="text/javascript" src="js/introduction.js"></script>
+<!--<script src="js/bootstrap.js"></script>-->
+<script src="scripts/bootstrap.min.js"></script>
+<script src="js/bootbox.js"></script>
+<script src="js/bootswatch.js"></script>
+<script src="js/search.js" type="text/javascript"></script>
+<script src="jquery.simple-dtpicker.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/add_remove_skill.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/chat_box.js"></script>
+<script src="js/date_time.js"></script>    
+<script src="scripts/tabs-addon.js"></script>
+<script type="text/javascript" src="js/intro.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script>
+	$('.bs-component').jScrollPane();
+	updatelastlogin();
+	//$('.emotion').emotions();
+</script>
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100809927ns.gif" /></p></noscript>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <script type="text/javascript">
         $(function ()
         {
@@ -72,7 +111,7 @@
         });
         
 //textarea autogrow script starts here
-        $(document)
+   /*     $(document)
             .one('focus.textarea', '.autoExpand', function(){
                 var savedValue = this.value;
                 this.value = '';
@@ -86,7 +125,7 @@
             console.log(this.scrollHeight , this.baseScrollHeight);
                 rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
                 this.rows = minRows + rows;
-            });
+            }); */
 //textarea autogrow script ends here
 
 
@@ -196,42 +235,3 @@ function replaceAll(find, replace, str) {
 }
 
     </script>
-<script src="date.js"></script>
-<script src="js/delete_comment_challenge.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/username_email_check.js"></script>
-<script type="text/javascript" src="js/signupValidation.js"></script>
-<script type="text/javascript" src="js/loginValidation.js"></script>
-<script src="js/functions.js"></script>
-<script src="js/ninjas.js" type="text/javascript"></script>
-<script src="js/project_page.js"></script>
-<script src="js/content_edit.js"></script>
-<script type="text/javascript" src="js/introduction.js"></script>
-<!--<script src="js/bootstrap.js"></script>-->
-<script src="scripts/bootstrap.min.js"></script>
-<script src="js/bootbox.js"></script>
-<script src="js/bootswatch.js"></script>
-<script src="js/search.js" type="text/javascript"></script>
-<script src="jquery.simple-dtpicker.js"></script>
-<script src="js/chat.js"></script>
-<script src="js/add_remove_skill.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/chat_box.js"></script>
-<script src="js/date_time.js"></script>    
-<script src="scripts/tabs-addon.js"></script>
-<script type="text/javascript" src="js/intro.js"></script>
-<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
-<script>
-	$('.bs-component').jScrollPane();
-	//$('.emotion').emotions();
-</script>
-<script src="//static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100809927ns.gif" /></p></noscript>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>

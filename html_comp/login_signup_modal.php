@@ -90,11 +90,11 @@
                                         </div>
 
                                         <label>Email</label>
-                                        <input type="email" class="input-block-level" id="email" onkeyup="nospaces(this)"/>
+                                        <input type="email" class="input-block-level" id="email" onkeyup="nospaces(this)" onblur="email_availability_check();"/>
                                         <span id="status_email"></span>
 
                                         <label>Username</label>
-                                        <input type="text" class="input-block-level" id="usernameR" onkeyup="nospaces(this)"/>
+                                        <input type="text" class="input-block-level" id="usernameR" onkeyup="nospaces(this)" onblur="usernameCheck();"/>
                                         
                                         <div>
                                             <div class='span6'>
@@ -159,7 +159,7 @@
                                         <form method="POST">
                                         <label>Email</label>
                                         <input type="text" class="input-block-level" name="email_forget_password" id="email_forget" onkeyup="nospaces(this)"
-                                        required data-bv-emailaddress-message="The input is not a valid email address" />
+                                        required data-bv-emailaddress-message="The input is not a valid email address" onblur="email_forget();" />
                                         <span id="status_email_forget_password"></span>
 
                                         <?php 

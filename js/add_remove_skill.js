@@ -163,7 +163,6 @@ $(document).ready(function(){
 	});
 	$('#user_articles').click(function(){
 		$('#user_articles_content').load('ajax/profile_page_ajax/user_articles.php');
-		
 		$(window).scroll(function(event) {
 			if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#user_articles')) {
 				event.preventDefault();
@@ -176,6 +175,7 @@ $(document).ready(function(){
 					success: function(result){
 						//alert(result) ;
 						$('#user_articles_content').append(result);
+						onLoaddata() ;
 					}
 				});	
 			}
@@ -195,6 +195,7 @@ $(document).ready(function(){
 					success: function(result){
 						//alert(result) ;
 						$('#next_user_chall').append(result);
+						onLoaddata() ;
 					}
 				});	
 			}
@@ -215,6 +216,7 @@ $(document).ready(function(){
 					cache: false,
 					success: function(result){
 						$('#user_next_idea').append(result);
+						onLoaddata() ;
 					}
 				});	
 			}

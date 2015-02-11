@@ -7,8 +7,8 @@ $view = 1 ;
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
             <title><?php echo str_replace("<br/>", "", $projttitle) ; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="<?php echo $keywords;?>">
@@ -93,26 +93,27 @@ $view = 1 ;
             </div>	
         </div>
 		<?php 
-                    if (isset($_SESSION['user_id'])) {
-                        include_once 'html_comp/project_talk.php'; 
-                        include_once 'html_comp/friends.php'; 
-                 ?>
-                        <script>
-                            $(document).ready(function(){
-                                projecttalk();
-                            }); 
-                        </script>
-                    <?php 
-                        }
-                ?>   
-        <?php include_once 'lib/html_inc_footers.php';
+			if (isset($_SESSION['user_id'])) {
+				include_once 'html_comp/project_talk.php'; 
+				include_once 'html_comp/friends.php'; 
+				}
+		include_once 'lib/html_inc_footers.php';
         include_once 'html_comp/check.php'; ?>  
 <div class='footer'>
 		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
-                 <script>
-					 hidepanel();
+<?php 
+			if (isset($_SESSION['user_id'])) { ?>
+  <script>
+	$(document).ready(function(){
+		projecttalk();
+	}); 
+</script>   
+<?php } ?>            
+<script>
+$(document).ready(function(){
+	 hidepanel();
     $('#project_data').click(function(){
 		hidepanel();       
     });
@@ -160,6 +161,7 @@ $('#scrollFriends').jScrollPane() ;
 		}
 	});	
 	chatBoxes.push('<?= $pro_id ?>');
+});
         </script>
 <script>
 var width = window.screen.availWidth;
@@ -171,7 +173,7 @@ if(width < 800) {
 } ;
 </script>
 <script>
-$(function() {
+(function() {
 	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
 
 function toggleDivs() {

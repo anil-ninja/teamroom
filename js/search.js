@@ -62,7 +62,7 @@ setInterval(function(){
 	var time = timeStamp() ;
 	//alert (time + "," + eid) ;
 	getnewnote(time, eid) ;
-},300000)();
+},300000);
 function getnewnote(time, lid) {	
 	var dataString = 'time='+ time + '&lid=' + lid ;
 	//alert(dataString) ;

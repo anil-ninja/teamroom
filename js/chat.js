@@ -2,24 +2,24 @@ function getnewtalk() {
 	var uid = parseInt($("#lastprchatid").val()) ;
 	var ID = $("#ProjectIDValue").val() ;
 	var dataString = 'talks='+ uid  + '&project_id=' + ID ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/protalk.php",
-				async: false ,
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					var notice = result.split("+") ;
-					var neid = parseInt(notice['1']) ;
-					//alert(neid) ;
-					$('.newtalkspr').append(notice['0']);
-					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid+='' != 0) {
-							$("#lastprchatid").val(neid+='') ;
-						}
-				}
-			});
+	$.ajax({
+		type: "POST",
+		url: "ajax/protalk.php",
+		async: false ,
+		data: dataString,
+		cache: false,
+		success: function(result){
+			//alert(result) ;
+			var notice = result.split("+") ;
+			var neid = parseInt(notice['1']) ;
+			//alert(neid) ;
+			$('.newtalkspr').append(notice['0']);
+			//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+			if (neid+='' != 0) {
+				$("#lastprchatid").val(neid+='') ;
+			}
+		}
+	});
 }
 function convertSpecialChar(str){
 		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
@@ -201,7 +201,7 @@ function projecttalk() {
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
-	setInterval(function(){ getnewtalk() },3000)();
+	setInterval(function(){ getnewtalk(); },3000);
 };	
 function toggle() {
 	$("#project_chat_form").toggle();

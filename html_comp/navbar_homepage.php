@@ -32,6 +32,7 @@
                     if (isset($_SESSION['user_id'])) {
                     ?>
                     <li><a class="btn-link" style='cursor: pointer;color: #fff;' href="index.php"><i class='icon-home'></i>Home</a></li> 
+                    <li><a class="btn-link" style='cursor: pointer;color: #fff;' onclick='projectToJoin()'><i class='icon-shopping-cart'></i> Join</a></li> 
                     <li>
                         <p id='step9' class="navbar-text" style='color: #fff;'><i class='icon-certificate'></i>
                             <b>  
@@ -49,7 +50,7 @@
                                 $user = $_SESSION['username'];
                                 $username = $_SESSION['username'];
                                 $name = $_SESSION['first_name'];
-                                echo "<img style='width: 25px; height: 25px;' src='".resize_image("uploads/profilePictures/".$username.".jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'/>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
+                                echo "<img style='width: 25px; height: 25px;' src='".resize_image("uploads/profilePictures/".$username.".jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'></img>&nbsp &nbsp".ucfirst($name)."&nbsp"; 
                             ?>
                             <b class="caret"></b>
                         </a>

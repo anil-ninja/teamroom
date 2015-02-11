@@ -1,5 +1,5 @@
 //check for username already exists or not starts
-document.getElementById("usernameR").onblur = function() {
+function usernameCheck() {
 
                 var xmlhttp;
 
@@ -52,7 +52,7 @@ document.getElementById("usernameR").onblur = function() {
             
             //check for email exist or not for forget password request starts
             
-            document.getElementById("email_forget").onblur = function() {
+          function email_forget() {
                 var xmlhttp;
                 var email_forget=document.getElementById("email_forget");
                 if (email_forget.value != ""){

@@ -416,7 +416,3 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
                 </div>";
 }
 ?>
-<script>
-$(".editbox").hide();
-$(".text").show();
-</script>

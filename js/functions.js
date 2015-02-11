@@ -10,6 +10,10 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
+function onLoaddata(){
+	$(".editbox").hide();
+	$(".text").show();
+}
 function knownperson(ID){
 	bootbox.confirm("Really Know this Person !!!", function(result) {
 	if(result){
@@ -418,4 +422,43 @@ function invest() {
 			}
 		});
 	}
+}
+function projectToJoin(){
+	$.ajax({
+		type: "POST",
+		url: "ajax/project_join.php",
+		async: false ,
+		data: "type=1",
+		cache: false,
+		success: function(result){
+			$(".insertprojects").append(result);
+		}
+	});
+	$("#joinProject").modal("show");
+}
+function projectjoin(ID){
+	bootbox.confirm("Really Join This Project !!!", function(result) {
+		if(result){
+			var dataString = 'type=2'+ '&pro_id='+ ID ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/project_join.php",
+				async: false ,
+				data: dataString,
+				cache: false,
+				success: function(result){
+					var notice = result.split("+") ;
+					if(notice['0']== 'Joined succesfully!'){
+						$('#poject_'+ID).remove();
+						$('.firstmessage').remove();
+						$('.insertjoinedpro').append(notice['1']);
+						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-warning");
+					}
+				}
+			});
+		}
+	});	
 }

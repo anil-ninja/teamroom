@@ -557,8 +557,8 @@ $(".nav-btntab").bind("click", function(){
 });
 
 });
-</script>       
-        <!--<div id="InfoBox"></div>-->
+</script>          
+ <!--<div id="InfoBox"></div>-->
 <script>
 	$(document).ready(function(){
 		$(".editbox").hide();
@@ -595,6 +595,7 @@ $(".nav-btntab").bind("click", function(){
                 cache: false,
                 success: function(result){
                     $('#next_CP').append(result);
+                    onLoaddata();
                     }
             });	
         }

@@ -1,4 +1,7 @@
-function ninjas_intro(){
+var ninjas_intro = function () {
+  // create a deferred object
+  var r = $.Deferred();
+  
         var intro = introJs();
           intro.setOptions({
               steps: [
@@ -84,9 +87,29 @@ function ninjas_intro(){
               }
             ]
           });
+   intro.start();
+   setTimeout(function () {
+    // and call `resolve` on the deferred object, once you're done
+		r.resolve();
+	}, 5000);
+  return r;
+};
 
-          intro.start();
-}
+// define FunctionTwo as needed
+var projectToJoin = function () {
+  $.ajax({
+		type: "POST",
+		url: "ajax/project_join.php",
+		async: false ,
+		data: "type=1",
+		cache: false,
+		success: function(result){
+			$(".insertprojects").append(result);
+		}
+	});
+	$("#joinProject").modal("show");
+};
+
 function profile_intro() {
 	var intro = introJs();
           intro.setOptions({
