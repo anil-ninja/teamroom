@@ -9,14 +9,15 @@ $username = $_SESSION['username'] ;
 $projectData = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
 $projectDataRow = mysqli_fetch_array($projectData) ;
 $projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $projectDataRow['project_title']))) ;
+$owner_id = $projectDataRow['user_id'] ;
 $member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
     ?>
     <div class='list-group'>
         <div id='demo1' class='list-group-item'>
           <i class="icon-pencil"></i><span onclick='show_form(1, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Challenge</span>
-            | 
+            | <?php if($owner_id == $user_id) { ?>
           <i class="icon-pushpin"></i><span onclick='show_form(2, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Assign Task</span>
-            | 
+            | <?php } ?>
           <i class="icon-leaf"></i><span onclick='show_form(5, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Notes</span>
             | <?php /* if(mysqli_num_rows($member_project) != 0) { ?>
           <i class="icon-hdd"></i><span onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Manage Files</span>

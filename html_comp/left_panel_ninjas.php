@@ -227,7 +227,7 @@
 			$invester_recommended = mysqli_query($db_handle, "SELECT  a.project_id, b.project_title, b.project_ETA, b.creation_time, b.stmt FROM 
 															  project_funding_info as a join projects as b where a.project_id NOT IN 
 															  (SELECT project_id FROM investment_info WHERE user_id = '$user_id') 
-															  and a.project_id = b.project_id AND (b.project_type != '3' OR b.project_type != '5')  ;");
+															  and a.project_id = b.project_id AND (b.project_type = '1' OR b.project_type = '4')  ;");
 			
 			if(mysqli_num_rows($invester_recommended) != 0){
 				echo "<nav class='sidebar light'>
