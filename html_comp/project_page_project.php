@@ -10,7 +10,6 @@ $projectData = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id
 $projectDataRow = mysqli_fetch_array($projectData) ;
 $projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $projectDataRow['project_title']))) ;
 $member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
- if (isset($_SESSION['user_id'])) {
     ?>
     <div class='list-group'>
         <div id='demo1' class='list-group-item'>
@@ -27,12 +26,9 @@ $member_project = mysqli_query($db_handle, "select * from teams where project_id
           <i class="icon-asterisk"></i><span onclick='show_form(13, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Issues</span>
         <hr/>
 			<div id='selecttext' ><p style="color: grey;">Please Select Post Type From Above ......</p></div> 
-			<div id='invitation'></div>
+			<div id='invitation' style='min-height:30px;'></div>
 		</div>           
     </div>
-    <?php
-	}
-?>
 <div class="panel-primary eye_open" id="prch">
     <p id='home-ch'></p>
     <div class='newPosts' ></div>

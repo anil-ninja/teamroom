@@ -112,7 +112,6 @@ $view = 1 ;
 </script>   
 <?php } ?>            
 <script>
-$(document).ready(function(){
 	 hidepanel();
     $('#project_data').click(function(){
 		hidepanel();       
@@ -161,7 +160,6 @@ $('#scrollFriends').jScrollPane() ;
 		}
 	});	
 	chatBoxes.push('<?= $pro_id ?>');
-});
         </script>
 <script>
 var width = window.screen.availWidth;
