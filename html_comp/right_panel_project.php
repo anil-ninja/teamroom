@@ -15,7 +15,7 @@
 											join blobs as b join user_info as c WHERE a.project_id = '$pro_id' and a.blob_id = b.blob_id and a.user_id = c.user_id ) ;");
 	$project_idrow = mysqli_fetch_array($project_id) ; 
 	$stmt =  $project_idrow['stmt'] ;
-	$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_idrow['project_title']))) ;
+	$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_idrow['project_title'])))) ;
 	$time = $project_idrow['creation_time'] ;
 	$ownerfname = $project_idrow['first_name'] ;
 	$owner = $project_idrow['user_id'] ;

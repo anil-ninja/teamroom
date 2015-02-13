@@ -323,6 +323,22 @@ if($_POST['form_type']){
 			}
 			exit ;
 			break ;
+			
+		case 14:
+			if(mysqli_num_rows($member_project) != 0) {
+				echo "<br/><input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
+				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_link()'/>" ;
+			} 
+			else { 
+				if(isset($_SESSION['user_id'])){
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				}
+				else {
+					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
+				}
+			}
+			exit ;
+			break ;
 	}
 	mysqli_close($db_handle) ;
 }

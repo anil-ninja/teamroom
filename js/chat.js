@@ -22,11 +22,11 @@ function getnewtalk() {
 	});
 }
 function convertSpecialChar(str){
-		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-	}
+	return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
 $("#changeremindervalue").click(function(){
 	//$("#create_video").attr('disabled','disabled');
-	var reminder = convertSpecialChar($("#newremindervalue").val()) ;
+	var reminder = convertSpecialChar($("#newremindervalue").val().replace(/[+]/g, "<an>")) ;
 	var date = $("#datepicker").val() ;
 	var value = $("#datepickervalue").val() ;
 	var userid = $("#valueuserid").val() ;
@@ -155,7 +155,7 @@ function getallreminders() {
 
 function submittalk(event,chatboxtextarea) {
 	if(event.keyCode == 13 && event.shiftKey == 0)  {
-		message = $(chatboxtextarea).val();
+		message = convertSpecialChar($(chatboxtextarea).val().replace(/[+]/g, "<an>"));
 		$(chatboxtextarea).val('');
 		$(chatboxtextarea).focus();
 	if(replaceAll('\\s', '',message)==''){

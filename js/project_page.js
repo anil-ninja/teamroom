@@ -32,13 +32,13 @@ function showpanel(){
 		$('#aboutproject').show();
 	}
 function convertSpecialChar(str){
-		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-	}		
+	return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}		
 		function create_challange_pb_pr(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			var ID = $("#ProjectIDValue").val() ;
-			var challenge = convertSpecialChar($("#challangepr").val()) ;
-			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
+			var challenge = convertSpecialChar($("#challangepr").val().replace(/[+]/g, "<an>")) ;
+			var challenge_title = convertSpecialChar($("#challange_title").val().replace(/[+]/g, "<an>")) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
@@ -66,8 +66,8 @@ function convertSpecialChar(str){
 		function create_notes(){
 			$("#create_notes").attr('disabled','disabled');
 			var ID = $("#ProjectIDValue").val() ;
-			var notes = convertSpecialChar($("#notestmt").val()) ;
-			var notes_title = convertSpecialChar($("#notes_title").val()) ;
+			var notes = convertSpecialChar($("#notestmt").val().replace(/[+]/g, "<an>")) ;
+			var notes_title = convertSpecialChar($("#notes_title").val().replace(/[+]/g, "<an>")) ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
 							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
@@ -92,8 +92,8 @@ function convertSpecialChar(str){
 		function create_issue(){
 			$("#create_issue").attr('disabled','disabled');
 			var ID = $("#ProjectIDValue").val() ;
-			var notes = convertSpecialChar($("#issuestmt").val()) ;
-			var notes_title = convertSpecialChar($("#issue_title").val()) ;
+			var notes = convertSpecialChar($("#issuestmt").val().replace(/[+]/g, "<an>")) ;
+			var notes_title = convertSpecialChar($("#issue_title").val().replace(/[+]/g, "<an>")) ;
 			// Returns successful data submission message when the entered information is stored in database.
 			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
 							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
@@ -118,7 +118,7 @@ function convertSpecialChar(str){
 	$(document).ready(function(){	
 		$("#answerch").click(function(){
 			$("#answerch").attr('disabled','disabled');
-			var answerchal = convertSpecialChar($("#answerchal").val()) ;
+			var answerchal = convertSpecialChar($("#answerchal").val().replace(/[+]/g, "<an>")) ;
 			var answercid = $("#answercid").val() ;
 			var pid = $("#prcid").val() ;
 			// Returns successful data submission message when the entered information is stored in database.

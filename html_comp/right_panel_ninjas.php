@@ -60,7 +60,7 @@
 		} 
 		else {
 			while ($titlesrow = mysqli_fetch_array($titles)) {
-				$title = $titlesrow['challenge_title'];
+				$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $titlesrow['challenge_title']))));
 				if (strlen($title) > 25) {
 					$chtitle = substr(ucfirst($title), 0, 26) . "....";
 				} else {
@@ -106,7 +106,7 @@
 		} 
 		else {
 			while ($titlesrowass = mysqli_fetch_array($titlesass)) {
-				$titleas = $titlesrowass['challenge_title'];
+				$titleas = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $titlesrowass['challenge_title']))));
 				if (strlen($titleas) > 25) {
 					$chtitleas = substr(ucfirst($titleas), 0, 26) . "....";
 				} else {

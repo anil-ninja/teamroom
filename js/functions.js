@@ -1,6 +1,6 @@
 function convertSpecialChar(str){
-		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-	}
+	return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
 function bootstrap_alert(elem, message, timeout,type) {
   $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
 
@@ -210,7 +210,7 @@ function remove_member(PID, name, Uid){
 	});
 }
 function comment(ID, type) {				
-	var project = convertSpecialChar($("#own_ch_response_"+ID).val());
+	var project = convertSpecialChar($("#own_ch_response_"+ID).val().replace(/[+]/g, "<an>"));
 	var IDPr = $("#ProjectIDValue").val() ;
 	var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
 					+ '&case=' + type + '&project_id=' + IDPr ;
@@ -355,7 +355,7 @@ function replaceAll(find, replace, str) {
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 function set_remind() {
-	var reminder = convertSpecialChar($("#reminder_message").val()) ;
+	var reminder = convertSpecialChar($("#reminder_message").val().replace(/[+]/g, "<an>")) ;
 	var self = $("#self_remind").val() ;
 	var eventtime = $("#datepick").val() ;
 	if(replaceAll('\\s', '',reminder)==''){
@@ -392,7 +392,7 @@ function set_remind() {
 }
 function invest() {
 	$("#invest").attr('disabled','disabled');
-	var amount = convertSpecialChar($("#fund_amount").val()) ;
+	var amount = $("#fund_amount").val() ;
 	var IDPr = $("#ProjectIDValue").val() ;
 	if(replaceAll('\\s', '',amount)==''){
 		bootstrap_alert(".alert_placeholder", "Amount can not be empty", 5000,"alert-warning");

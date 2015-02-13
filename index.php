@@ -395,8 +395,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 													WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 4 ;");
 			while($projectsRow = mysqli_fetch_array($projects)) {
 				$project_id = $projectsRow['project_id'];
-				$project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-				$project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+				$project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+				$project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+",  $projectsRow['stmt'])))); 
 			echo "<div class ='span3 box' style=' margin: 4px ;min-height: 200px;'>
 					<a href='project.php?project_id=".$project_id."'>
 						<div class='panel-heading'>

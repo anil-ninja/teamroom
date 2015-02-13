@@ -10,8 +10,8 @@
         <i class="icon-film"></i><span onclick='show_form_h(10)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
         | 
         <i class="icon-lightbulb"></i><span onclick='show_form_h(11)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Ideas</span>
-       <!-- | 
-        <span class="icon-link" onclick='show_form_h(12)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Share Links</span> -->
+        | 
+        <i class="icon-share"></i><span onclick='show_form_h(12)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Share Links</span> 
     <hr/>
 		<div id='textForm' ><p style="color: grey;">Please Select Post Type From Above ......</p></div>
 		<div id='remindervalue'></div>
@@ -40,11 +40,11 @@ $open_chalange = mysqli_query($db_handle, "(SELECT DISTINCT a.project_id, a.chal
 $_SESSION['lastpanel'] = '6';
 $display_ch_stmt_content = "";
 while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
-    $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
-    $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
+    $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt'])))));
+    $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt']))));
     $ETA = $open_chalangerow['challenge_ETA'];
-    $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title']))));
-    $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
+    $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", str_replace("<a>", "&",$open_chalangerow['challenge_title'])))));
+    $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<a>", "&", $open_chalangerow['challenge_title']))));
     $owner_id = $open_chalangerow['user_id'];
     $open_project_id = $open_chalangerow['project_id'];
     $ctype = $open_chalangerow['challenge_type'];
@@ -55,7 +55,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     $status = $open_chalangerow['challenge_status'];
     $times = $open_chalangerow['creation_time'];
     $timefunction = date("j F, g:i a", strtotime($times));
-    $timeopen = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_open_time']))));
+    $timeopen = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_open_time'])))));
     $sutime = eta($ETA);
     $remaintime = remaining_time($times, $ETA);
     $ownedby = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, a.time, b.first_name, b.last_name,b.username
@@ -296,7 +296,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         while ($answerrow = mysqli_fetch_array($answer)) {
             echo "<span class='color strong' style= 'font-size: 14pt;'>
                     <p align='center'>Answer</p></span>"
-					. showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/>";
+					. showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt']))))) . "<br/>";
         }
     }
     echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($chelangeid)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
@@ -314,7 +314,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         $challenge_ID = $commenterRow['challenge_id'];
         $creater_ID = $commenterRow['user_id'];
         $username_comment_ninjas = $commenterRow['username'];
-        $comment_of_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt']))));
+        $comment_of_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $commenterRow['stmt'])))));
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix emotion' id='comment_".$comment_id."'>
 					<div class='pull-left lh-fix'>

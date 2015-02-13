@@ -8,7 +8,7 @@ $user_id = $_SESSION['user_id'] ;
 $username = $_SESSION['username'] ;
 $projectData = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
 $projectDataRow = mysqli_fetch_array($projectData) ;
-$projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $projectDataRow['project_title']))) ;
+$projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $projectDataRow['project_title'])))) ;
 $owner_id = $projectDataRow['user_id'] ;
 $member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
     ?>
@@ -25,6 +25,8 @@ $member_project = mysqli_query($db_handle, "select * from teams where project_id
           <i class="icon-film"></i><span onclick='show_form(4, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
            | 
           <i class="icon-asterisk"></i><span onclick='show_form(13, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Issues</span>
+		   | 
+          <i class="icon-share"></i><span onclick='show_form(14,"<?php echo $pro_id ; ?>")' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Share Links</span>
         <hr/>
 			<div id='selecttext' ><p style="color: grey;">Please Select Post Type From Above ......</p></div> 
 			<div id='invitation' style='min-height:30px;'></div>
@@ -49,15 +51,15 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
     $id_create = $tasksrow['user_id'];
-    $title_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['challenge_title']))));
-    $tasktitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['challenge_title'])));
+    $title_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title'])))));
+    $tasktitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title']))));
     $type_task = $tasksrow['challenge_type'];
     $status_task = $tasksrow['challenge_status'];
     $eta_task = $tasksrow['challenge_ETA'];
     $creation_task = $tasksrow['creation_time'];
     $timetask = date("j F, g:i a", strtotime($creation_task));
-    $stmt_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt']))));
-    $taskstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt'])));
+    $stmt_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt'])))));
+    $taskstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt']))));
     $fname_task = $tasksrow['first_name'];
     $lname_task = $tasksrow['last_name'];
     $tasketa = eta($eta_task);
@@ -266,7 +268,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $answerrow = mysqli_fetch_array($answer);
         echo "<span class='color strong' style= 'font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-        . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/>";
+        . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt']))))) . "<br/>";
     }
 	echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($id_task)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'> <b>Push</b>
             <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
@@ -283,7 +285,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $username_commenter = $displayrowb['username'];
         $idc = $displayrowb['response_ch_id'];
         $idd = $displayrowb['user_id'];
-        $chalangeres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt']))));
+        $chalangeres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $displayrowb['stmt'])))));
         echo "
 		<div id='commentscontainer'>
 			<div class='comments clearfix' id='comment_".$idc."'>

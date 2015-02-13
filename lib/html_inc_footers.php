@@ -111,7 +111,7 @@
         });
         
 //textarea autogrow script starts here
-   /*     $(document)
+        $(document)
             .one('focus.textarea', '.autoExpand', function(){
                 var savedValue = this.value;
                 this.value = '';
@@ -125,7 +125,7 @@
             console.log(this.scrollHeight , this.baseScrollHeight);
                 rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
                 this.rows = minRows + rows;
-            }); */
+            }); 
 //textarea autogrow script ends here
 
 
