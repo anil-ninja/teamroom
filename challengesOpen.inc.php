@@ -345,6 +345,13 @@ function challenge_display($db_handle, $challengeSearchID) {
 					dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
 				    echo $display_title."<span class='icon-film'></span>".$display_fname_likes.$display_name_stmt; 
 				    $display_name_stmt = "";         
+				}
+				if ($ctype == 10) {
+					echo "<div class='list-group film'>
+							<div class='list-group-item'>";
+					dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
+				    echo $display_title."<span class='icon-globe'></span>".$display_fname_likes.$display_name_stmt; 
+				    $display_name_stmt = "";         
 				} 
                 if ($status == 4 || $status == 5 || $status == 2) {
 					$answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
@@ -392,6 +399,11 @@ function challenge_display($db_handle, $challengeSearchID) {
                     echo "<div class='list-group film'>
                             <div class='list-group-item'>";
                             echo $display_title."<span class='icon-film'></span>".$display_fname_likes.$display_name_stmt;
+                }
+                else if ($ctype == 10) {
+                    echo "<div class='list-group film'>
+                            <div class='list-group-item'>";
+                            echo $display_title."<span class='icon-globe'></span>".$display_fname_likes.$display_name_stmt;
                 }
             }
             echo "<ul class='inline'>

@@ -301,8 +301,8 @@ if($_POST['form_type']){
 			break ;
 			
 		case 12:
-			echo "<br/><input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
-				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_link()'/>" ;
+			echo "<input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
+				  <input type='submit' value='Post' class='btn btn-primary' id='create_link' onclick='create_link()'/>" ;
 			exit ;
 			break ;
 			
@@ -326,8 +326,8 @@ if($_POST['form_type']){
 			
 		case 14:
 			if(mysqli_num_rows($member_project) != 0) {
-				echo "<br/><input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
-				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_link()'/>" ;
+				echo "<input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
+				  <input type='submit' value='Post' class='btn btn-primary' id='create_link' onclick='create_link()'/>" ;
 			} 
 			else { 
 				if(isset($_SESSION['user_id'])){

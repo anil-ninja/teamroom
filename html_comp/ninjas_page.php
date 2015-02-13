@@ -10,9 +10,9 @@
         <i class="icon-film"></i><span onclick='show_form_h(10)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
         | 
         <i class="icon-lightbulb"></i><span onclick='show_form_h(11)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Ideas</span>
-     <!---   | 
+        | 
         <i class="icon-share"></i><span onclick='show_form_h(12)' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Share Links</span> 
-   ---> <hr/>
+    <hr/>
 		<div id='textForm' ><p style="color: grey;">Please Select Post Type From Above ......</p></div>
 		<div id='remindervalue'></div>
     </div>
@@ -175,6 +175,13 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
                 <div class='list-group-item'>";
                     dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
           echo $display_tilte_ch."<span class='icon-film'></span>".$display_fname_likes.$display_ch_stmt_content; 
+          $display_ch_stmt_content = "";         
+    }
+    if ($ctype == 10) {
+        echo "<div class='list-group idea'>
+                <div class='list-group-item'>";
+                    dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
+          echo $display_tilte_ch."<span class='icon-globe'></span>".$display_fname_likes.$display_ch_stmt_content; 
           $display_ch_stmt_content = "";         
     } 
      if ($ctype == 4) {

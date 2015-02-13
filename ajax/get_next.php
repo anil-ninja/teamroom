@@ -223,6 +223,15 @@ if ($_POST['chal']) {
 		$show = $show . $get_display_tilte."<span class='icon-film'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
 		$get_display_ch_stmt_content = "" ;
     } 
+    if ($ctype == 8) {
+        $show = $show . "<div class='list-group film'>
+				<div class='list-group-item'> ";
+                                   
+		$show = $show . $dropDown_challenge_get;
+		$dropDown_challenge_get = "";
+		$show = $show . $get_display_tilte."<span class='icon-globe'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+		$get_display_ch_stmt_content = "" ;
+    } 
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
                         <div class='list-group-item'>";

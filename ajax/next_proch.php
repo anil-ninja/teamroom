@@ -177,6 +177,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
         $get_display_task_stmt = "" ;
         
     }
+    if ($type_task == 10) {
+        $show = $show . "<div class='list-group deciduous'>
+                    <div class='list-group-item'>";
+        if (isset($_SESSION['user_id'])) {
+            $show = $show . $dropdown1 ;
+            $dropdown1 = "";
+        }
+        $show = $show . $get_display_tilte_task . "<span class='icon-globe'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $get_display_task_stmt = "" ;
+        
+    }
     if ($type_task == 9) {
         $show = $show . "<div class='list-group asterisk'>
                     <div class='list-group-item'>";

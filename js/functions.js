@@ -452,6 +452,9 @@ function projectjoin(ID){
 	});
 }
 function create_link() {
+	$("#create_link").attr('disabled','disabled');
 	var challenge = $("#sharedlink").val() ;
+	$('#remindervalue').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/></div>");
+	$('#invitation').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/></div>");
 	getUrlData(challenge);
 }
