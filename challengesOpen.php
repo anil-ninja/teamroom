@@ -159,8 +159,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 4 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['stmt'])))); 
                     echo "  
                             <div class ='span6 box' style=' margin: 4px ;min-height: 200px;'>
     						    <a href='project.php?project_id=".$project_id."'>
@@ -201,8 +201,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
-                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
-                        $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
+                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_userRow['challenge_title']))));
+                        $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_userRow['stmt']))));
                         if(substr($challenge_user_stmt, 0, 4) == '<img') {
 							$ProjectPic = strstr($challenge_user_stmt, '<br/>' , true) ;
 							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
@@ -211,7 +211,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
 						}
 						else {
-							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_user_stmt))) ;
+							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_user_stmt)))) ;
 						}
                         echo "
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
@@ -248,8 +248,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['stmt'])))); 
                     echo "  
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     						    <a href='project.php?project_id=".$project_id."'>

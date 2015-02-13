@@ -36,7 +36,7 @@ if ($_POST['users']) {
 	   $usersSkills = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE 
 											a.user_id = '$users_ids' AND a.skill_id = b.skill_id ;");
 	   while($usersSkillsRow = mysqli_fetch_array($usersSkills)) {
-		  $usersSkillname = str_replace("<an>", "+",$usersSkillsRow['skill_name']) ;
+		  $usersSkillname = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersSkillsRow['skill_name'])))) ;
 		  $usersSkillid = $usersSkillsRow['skill_id'] ;
 		  $skilldata .= "<span class='btn-success'>
                                     <a href='ninjaSkills.php?skill_id=".$usersSkillid."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$usersSkillname."</a>&nbsp
@@ -45,9 +45,9 @@ if ($_POST['users']) {
 	   $usersAbout = mysqli_query($db_handle, "SELECT * FROM about_users WHERE user_id = '$users_ids' ;") ;
 	   $usersAboutRow = mysqli_fetch_array($usersAbout);
 	   if (mysqli_num_rows($usersAbout) != 0) {
-			$skilldata = $skilldata . "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".str_replace("<an>", "+",$usersAboutRow['organisation_name'])."<br/>
-									   <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".str_replace("<an>", "+",$usersAboutRow['living_town']) ;
-			$aboutdata .= "<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".str_replace("<an>", "+",$usersAboutRow['about_user']) ;
+			$skilldata = $skilldata . "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['organisation_name']))))."<br/>
+									   <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['living_town'])))) ;
+			$aboutdata .= "<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['about_user'])))) ;
 		}
 		else {
 			$aboutdata = $aboutdata ."<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>

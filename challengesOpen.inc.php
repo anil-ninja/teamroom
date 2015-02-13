@@ -10,7 +10,7 @@ $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
 $open_chalange = mysqli_query($db_handle, "SELECT challenge_id, challenge_title from challenges WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id= '$challengeSearchID' ;");
 $open_chalangeRtitle = mysqli_fetch_array($open_chalange);
-$challenge_page_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangeRtitle['challenge_title'])));
+$challenge_page_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangeRtitle['challenge_title']))));
 $emptySearch = mysqli_num_rows($open_chalange);
 if ($emptySearch == 0) {
     include_once 'error.php';
@@ -74,11 +74,11 @@ function challenge_display($db_handle, $challengeSearchID) {
                                                 WHERE a.challenge_id = '$challengeSearchID' AND a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id );");
 
         while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
-            $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
-            $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
+            $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt'])))));
+            $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt']))));
             $ETA = $open_chalangerow['challenge_ETA'];
-            $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title']))));
-            $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
+            $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_title'])))));
+            $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_title']))));
             $owner_id = $open_chalangerow['user_id'];
             $ctype = $open_chalangerow['challenge_type'];
             $frstname = $open_chalangerow['first_name'];
@@ -355,7 +355,7 @@ function challenge_display($db_handle, $challengeSearchID) {
 														UNION
 														(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
 					while ($answerrow = mysqli_fetch_array($answer)) {
-						$answer_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))));
+						$answer_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", str_replace("<an>", "+",$answerrow['stmt'])))));
 						echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 								<p align='center'>Answer</p></span>"
 							. $answer_stmt. "<br/><br/>";
@@ -414,7 +414,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 $challenge_ID = $commenterRow['challenge_id'];
                 $creater_ID = $commenterRow['user_id'];
                 $username_comment_ninjas = $commenterRow['username'];
-                $comment_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt']))));
+                $comment_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", str_replace("<an>", "+",$commenterRow['stmt'])))));
                 echo "<div id='commentscontainer'>
                     <div class='comments clearfix' id='comment_".$comment_id."'>
                         <div class='pull-left lh-fix'>
