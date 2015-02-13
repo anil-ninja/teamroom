@@ -423,7 +423,7 @@ if ($_POST['time']) {
 			} 
 		if($y == 0) { echo "no new notification" ;}
 		else {
-			echo $notice."+".$y."+".$eventid ;
+			echo $notice."|+".$y."|+".$eventid ;
 		}
 	}
 }

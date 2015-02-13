@@ -443,7 +443,7 @@ if ($_POST['notice']) {
 								<span class='newnotices' ></span>
 								<li><a href='notifications.php'>See All</a></li>
 						</ul>" ;
-		echo $data."+".$data1 ;
+		echo $data."|+".$data1 ;
 	}
 mysqli_close($db_handle);
 }

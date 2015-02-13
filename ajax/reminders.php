@@ -30,7 +30,7 @@ if ($_POST['reminder']) {
 				".$notice."<div class='newreminders' ></div>
 			</div>" ;
 	if(mysqli_num_rows($notice1) != 0) {			
-		echo $data."+".$reminderid ;
+		echo $data."|+".$reminderid ;
 	}
 	else {
 		echo "<br/> &nbsp;&nbsp;&nbsp;&nbsp;You have no Reminders <br/><br/>";

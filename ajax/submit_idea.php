@@ -76,7 +76,7 @@ if($_POST['idea']){
 						<span class='icon-chevron-right'></span></button>
 					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post Idea!"; }
-	else { echo "Posted succesfully!"."+"."1"."+".$data ; }
+	else { echo "Posted succesfully!"."|+"."1"."|+".$data ; }
 	mysqli_close($db_handle);
 	} 
 	else echo "Invalid parameters!";

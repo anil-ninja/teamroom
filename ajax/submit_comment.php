@@ -48,7 +48,7 @@ if($_POST['id']){
 						</div>
 					</div>";
 			if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
-			else { echo $test."+"."Posted succesfully!"; }
+			else { echo $test."|+"."Posted succesfully!"; }
 			
 			break ;
 			
@@ -85,7 +85,7 @@ if($_POST['id']){
 							</div>
 						</div>";
 				if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
-				else { echo $test."+"."Posted succesfully!"; }
+				else { echo $test."|+"."Posted succesfully!"; }
 			}
 			else { echo "Please Join Project First!"; }
 			
@@ -152,7 +152,7 @@ if($_POST['id']){
 							</div>
 						</div>";
 				if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
-				else { echo $test."+"."Posted succesfully!"; }
+				else { echo $test."|+"."Posted succesfully!"; }
 			}
 			else { echo "Please Join Project First!"; }
 			

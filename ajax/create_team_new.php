@@ -96,7 +96,7 @@ if ($_POST['team']) {
 			   </a>
 			</div>" ;
     if(mysqli_error($db_handle)) { echo "Failed to Create Team!"; }
-	else { echo "Team Created Successfully !!!"."+".$data; }    
+	else { echo "Team Created Successfully !!!"."|+".$data; }    
  mysqli_close($db_handle);
 }
 else echo "Invalid parameters!";

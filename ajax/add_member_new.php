@@ -58,7 +58,7 @@ if ($_POST['team']) {
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 		collapMail($email, "Added IN Team", $body2);
 		if(mysqli_error($db_handle)) { echo "Failed to Add member!"; }
-		else { echo "Added"."+".$data; }
+		else { echo "Added"."|+".$data; }
 	}
 	else {
 		$checkRow = mysqli_fetch_array($check) ;
@@ -85,11 +85,11 @@ if ($_POST['team']) {
 <table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
 			collapMail($email, "Added IN Team", $body2);
 			if(mysqli_error($db_handle)) { echo "Failed to Add member!"; }
-			else { echo "Added"."+".$data; }	
+			else { echo "Added"."|+".$data; }	
 		}
 		else {
 			if(mysqli_error($db_handle)) { echo "Failed to Add member!"; }
-			else { echo "Updated"."+".$data; }
+			else { echo "Updated"."|+".$data; }
 		} 
 	}        
  mysqli_close($db_handle);

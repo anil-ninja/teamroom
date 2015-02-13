@@ -96,7 +96,7 @@ if($_POST['notes']){
 						<span class='icon-chevron-right'></span></button>
 					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
-	else { echo "Posted succesfully!"."+"."6"."+".$data ; }
+	else { echo "Posted succesfully!"."|+"."6"."|+".$data ; }
 	mysqli_close($db_handle);
 }
 	else echo "Invalid parameters!";

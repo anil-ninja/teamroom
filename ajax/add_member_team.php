@@ -64,7 +64,7 @@ if ($_POST['email']) {
                        </a>
                     </div>" ;
 			if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
-			else { echo "Member Added succesfully!"."+".$data ; }		
+			else { echo "Member Added succesfully!"."|+".$data ; }		
 		} 
 		else { 
 			echo "Member Not Registered Yet" ;

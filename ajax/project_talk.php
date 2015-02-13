@@ -19,7 +19,7 @@ if ($_POST['prtalk']) {
 	}
 	$data = $data ."<div class='newtalkspr'></div>" ;
 	$data2 = "<textarea class='chatboxtextarea' onkeydown='javascript:return submittalk(event,this);'></textarea>" ;
-	echo $data."+".$data2."+".$ida ;
+	echo $data."|+".$data2."|+".$ida ;
 mysqli_close($db_handle);
 }
 ?>

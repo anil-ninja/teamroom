@@ -19,10 +19,10 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
 		$data.= "<b>".$idb."</b>:	<small>" . $projectres . "</small><br/>";
 	}
 	if (mysqli_num_rows($displayb) != 0) {
-			echo $data."+".$ida ;
+			echo $data."|+".$ida ;
 	}
 	else {
-		echo $data."+0" ;
+		echo $data."|+0" ;
 	}
 mysqli_close($db_handle);
 }

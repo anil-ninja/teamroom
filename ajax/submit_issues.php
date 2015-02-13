@@ -98,7 +98,7 @@ if($_POST['notes']){
 						<span class='icon-chevron-right'></span></button>
 					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
-	else { echo "Posted succesfully!"."+"."9"."+".$data ; }
+	else { echo "Posted succesfully!"."|+"."9"."|+".$data ; }
 	mysqli_close($db_handle);
 }
 	else echo "Invalid parameters!";
