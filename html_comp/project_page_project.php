@@ -25,9 +25,9 @@ $member_project = mysqli_query($db_handle, "select * from teams where project_id
           <i class="icon-film"></i><span onclick='show_form(4, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
            | 
           <i class="icon-asterisk"></i><span onclick='show_form(13, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Issues</span>
-		   | 
+		<!--   | 
           <i class="icon-share"></i><span onclick='show_form(14,"<?php echo $pro_id ; ?>")' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Share Links</span>
-        <hr/>
+   -->     <hr/>
 			<div id='selecttext' ><p style="color: grey;">Please Select Post Type From Above ......</p></div> 
 			<div id='invitation' style='min-height:30px;'></div>
 		</div>           
