@@ -10,7 +10,7 @@ $pro_id = $_GET['project_id'] ;
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
 $projectType = $project_row['project_type'];
-$projectstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
+$projectstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $project_row['stmt']))));
 if(substr($projectstmt, 0, 4) == '<img'){
 	$projectstmt2 = substr(strstr($projectstmt, "<br/>" ), 5 ) ; 
 	$projectst =showLinks($projectstmt2) ;
@@ -70,7 +70,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
     $username_pr_comment = $displayrowc['username'];
     $ida = $displayrowc['response_pr_id'];
     $idb = $displayrowc['user_id'];
-    $projectres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowc['stmt']))));
+    $projectres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $displayrowc['stmt'])))));
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
                 <div class='pull-left lh-fix'>

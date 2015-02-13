@@ -38,7 +38,8 @@ if  ($_POST['case']) {
 				events($db_handle,$user_id,"15",$idfr);
 				}
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!";  }
-			else { echo "Skill added succesfully!"."+"."<span class='skill_id_".$id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill."&nbsp 
+			else { echo "Skill added succesfully!"."+"."<span class='skill_id_".$id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".
+							str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",$skill))))."&nbsp 
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
 							onclick='remove_skill(\"".$id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                             <i class='icon-remove'></i></a></span></span>&nbsp;"; }
@@ -55,7 +56,7 @@ if  ($_POST['case']) {
 				}
 			$skill_display = mysqli_query($db_handle, "SELECT skill_name from skill_names WHERE skill_id = '$skill_Name' ;");
 			$skill_displayrow = mysqli_fetch_array($skill_display) ;
-			$skill_id = $skill_displayrow['skill_name'] ;
+			$skill_id = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",$skill_displayrow['skill_name'])))) ;
 			if(mysqli_error($db_handle)) { echo "Duplicate Entry!"; }
 			else { echo "Skill added succesfully!"."+"."<span class='skill_id_".$skill_Name."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_id."&nbsp 
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 

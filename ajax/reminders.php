@@ -9,7 +9,7 @@ if ($_POST['reminder']) {
 	$notice1 = mysqli_query($db_handle, " select Distinct a.id, a.person_id, a.reminder, a.time, b.first_name from reminders as a join user_info
 										as b where a.user_id = '$user_id' and a.person_id = b.user_id and a.time > '$a' and a.time != '$a' ;") ;
 		while ($notice1row = mysqli_fetch_array($notice1)) {
-			$reminders = $notice1row['reminder'] ;
+			$reminders = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $notice1row['reminder'])))) ;
 			$reminderid = $notice1row['id'] ;
 			$ruser_id = $notice1row['person_id'] ;
 			if ($ruser_id == $user_id) {

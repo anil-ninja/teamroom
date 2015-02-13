@@ -61,10 +61,10 @@ if($_POST['notes']){
 	else { $dislikes = '' ; }
 	$data = "" ;
 	$timefunct = date("j F, g:i a") ;
-	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $notes)))) ;
-	$title = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $notes_title)))) ;
-	$ntitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $notes_title))) ;
-	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $notes))) ;
+	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $notes))))) ;
+	$title = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $notes_title))))) ;
+	$ntitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $notes_title)))) ;
+	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $notes)))) ;
 	$data .= "<div class='list-group asterisk'>
                 <div class='list-group-item'>
 					<div class='dropdown pull-right'>

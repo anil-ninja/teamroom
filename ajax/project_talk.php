@@ -14,7 +14,7 @@ if ($_POST['prtalk']) {
 	while ($displayrowc = mysqli_fetch_array($displayb)) {
 		$ida = $displayrowc['response_pr_id'];
 		$username = $displayrowc['username'];
-		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
+		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $displayrowc['stmt'])))));
 		$data .= "<b>".$username."</b>:	<small>" . $projectres . "</small><br/>";
 	}
 	$data = $data ."<div class='newtalkspr'></div>" ;

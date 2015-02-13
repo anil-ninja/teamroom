@@ -133,10 +133,10 @@ if($_POST['taskdetails']){
 	else { $dislikes = '' ; }
 	$data = "" ;
 	$timefunct = date("j F, g:i a") ;
-	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $details)))) ;
-	$titletask = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $title)))) ;
-	$newtitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $title))) ;
-	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $details))) ;
+	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $details))))) ;
+	$titletask = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $title))))) ;
+	$newtitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $title)))) ;
+	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $details)))) ;
 	if($team != "") {
 		$usersProjects = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
 		while ($usersProjectsRow = mysqli_fetch_array($usersProjects)) { 

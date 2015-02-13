@@ -40,7 +40,7 @@ if($_POST['id']){
 				mysqli_query($db_handle,"update projects set project_title='$project', blob_id = '$idb' where project_id='$id' ;") ;
 			}
 		}
-		echo showLinks($newstmt) ;
+		echo showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",$newstmt))))) ;
 	}
 	else {
 		$chaaa = $video."<br/> ".$projectsmt ;
@@ -61,7 +61,7 @@ if($_POST['id']){
 				mysqli_query($db_handle,"update projects set project_title='$project', blob_id = '$idb' where project_id='$id' ;") ;
 			}
 		}
-		echo showLinks($chaaa) ;
+		echo showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",$chaaa))))) ;
 	}
 	mysqli_query($db_handle,$sql);
 }

@@ -29,15 +29,15 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$username_task = $tasksrow['username'];
 			$id_task = $tasksrow['challenge_id'];
 			$id_create = $tasksrow['user_id'];
-			$title_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title']))));
-			$tasktitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title'])));
+			$title_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title'])))));
+			$tasktitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title']))));
 			$type_task = $tasksrow['challenge_type'];
 			$status_task = $tasksrow['challenge_status'];
 			$eta_task = $tasksrow['challenge_ETA'];
 			$creation_task = $tasksrow['creation_time'];
 			$timetask = date("j F, g:i a",strtotime($creation_task));
-			$stmt_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt']))));
-			$taskstmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt'])));
+			$stmt_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt'])))));
+			$taskstmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt']))));
 			$fname_task = $tasksrow['first_name'];
 			$lname_task = $tasksrow['last_name'];
 			$tasketa = eta($eta_task) ;
@@ -267,7 +267,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$answerrow = mysqli_fetch_array($answer) ;
 		$show = $show . "<span class='color strong' style= 'font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))))."<br/><br/>" ;
+				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt'])))))."<br/><br/>" ;
 		}			
 		$show = $show . "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($id_task)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
 			<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 1)'> <b>Push</b>
@@ -284,7 +284,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                 $lstname = $displayrowb['last_name'];
                 $username_commenter = $displayrowb['username'];
 				$idc = $displayrowb['response_ch_id'] ;
-				$chalangeres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowb['stmt'])))) ;
+				$chalangeres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $displayrowb['stmt']))))) ;
                 $comment_user_id = $displayrowb['user_id'];
 		$show = $show . "
 		<div id='commentscontainer'>

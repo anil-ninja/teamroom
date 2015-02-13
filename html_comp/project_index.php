@@ -16,7 +16,7 @@
 	while ($shallengesRow = mysqli_fetch_array($shallenges)) {
 		$type = $shallengesRow['challenge_type'] ;
 		$chId = $shallengesRow['challenge_id'] ;
-		$chTitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $shallengesRow['challenge_title']))) ;
+		$chTitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $shallengesRow['challenge_title'])))) ;
 		if (strlen($chTitle) > 55) {
 			$title = substr(ucfirst($chTitle),0,55)."...";
 		} 

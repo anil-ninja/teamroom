@@ -36,7 +36,7 @@
         } 
         else {
             while ($project_title_displayRow = mysqli_fetch_array($project_title_display)) {
-                $p_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_title_displayRow['project_title']))) ;
+                $p_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_title_displayRow['project_title'])))) ;
                 $idpro = $project_title_displayRow['project_id'] ;
                 $Prostmt =  $project_title_displayRow['stmt'] ;
                 //echo $Prostmt;
@@ -88,7 +88,7 @@
         } 
         else {
             while ($private_project_displayRow = mysqli_fetch_array($private_project_display)) {
-                $pp_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $private_project_displayRow['project_title']))) ;
+                $pp_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $private_project_displayRow['project_title'])))) ;
                 $pidpro = $private_project_displayRow['project_id'] ;
                 $ProstmtPr =  $private_project_displayRow['stmt'] ;
                 //echo $Prostmt;
@@ -136,7 +136,7 @@
             } 
             else {
                 while ($project_public_title_displayRow = mysqli_fetch_array($project_public_title_display)) {
-    				$public_pr_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow['project_title']))) ;
+    				$public_pr_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_public_title_displayRow['project_title'])))) ;
     				$idproject = $project_public_title_displayRow['project_id'] ;
     				$Prostmt2 =  $project_public_title_displayRow['stmt'] ;
 					if(substr($Prostmt2, 0, 4) == '<img') {
@@ -187,7 +187,7 @@
 					$joinedPublicProjectsRow = mysqli_fetch_array($joinedPublicProjects) ;
 					$typeProject = $joinedPublicProjectsRow['project_type'] ;
 					$publicID = $joinedPublicProjectsRow['project_id'] ;
-    				$public_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $joinedPublicProjectsRow['project_title']))) ;
+    				$public_titlep = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $joinedPublicProjectsRow['project_title'])))) ;
     				$Prostmt3 =  $joinedPublicProjectsRow['stmt'] ;
 					if(substr($Prostmt3, 0, 4) == '<img') {
 						$ProjectPicFull3 = strstr($Prostmt3, '<br/>' , true) ;
@@ -235,7 +235,7 @@
 						<div class='bs-component' style='max-height:150px;'>
 							<li class='title'>Fund Needed Projects</li>" ;
 				while($invester_recommendedRow = mysqli_fetch_array($invester_recommended)) {
-					$invester_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $invester_recommendedRow['project_title']))) ;
+					$invester_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $invester_recommendedRow['project_title'])))) ;
     				$idprojectIN = $invester_recommendedRow['project_id'] ;
     				$ProstmtIN =  $invester_recommendedRow['stmt'] ;
 					if(substr($ProstmtIN, 0, 4) == '<img') {

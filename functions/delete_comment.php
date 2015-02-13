@@ -237,7 +237,7 @@ function recommended_project ($db_handle) {
     if (mysqli_num_rows($project_public_title_display2) != 0) { 
         echo "<li class='title'>Recommended</li>";
     while ($project_public_title_displayRow2 = mysqli_fetch_array($project_public_title_display2)) {
-            $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_public_title_displayRow2['project_title']))) ;
+            $public_pr_titlep2 = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_public_title_displayRow2['project_title'])))) ;
             $idproject2 = $project_public_title_displayRow2['project_id'] ;
         if (strlen($public_pr_titlep2) > 35) {
             $prtitlep2 = substr(ucfirst($public_pr_titlep2),0,35)."...";

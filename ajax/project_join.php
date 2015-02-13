@@ -18,7 +18,7 @@ if($_POST['type']){
 		else {
 			$data .=  "<div class='row-fluid'>" ;
 			while($ProjectsRow = mysqli_fetch_array($Projects)) {
-				$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $ProjectsRow['project_title']))) ;
+				$title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $ProjectsRow['project_title'])))) ;
 				$stmt = $ProjectsRow['stmt'] ;
 				$blob_id = $ProjectsRow['blob_id'] ;
 				$proId = $ProjectsRow['project_id'] ;

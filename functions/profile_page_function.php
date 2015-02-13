@@ -28,11 +28,11 @@ function user_articles ($db_handle, $user_IDF) {
 
         while($user_articles_displayRow= mysqli_fetch_array($user_articles_display)) {
             $article_id=$user_articles_displayRow['challenge_id'];
-            $article_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_articles_displayRow['challenge_title']))));
-            $articletitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_articles_displayRow['challenge_title'])));
+            $article_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_articles_displayRow['challenge_title'])))));
+            $articletitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_articles_displayRow['challenge_title']))));
             $article_stmt1 = $user_articles_displayRow['stmt'];
-            $article_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1))));
-            $articlestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $article_stmt1)));
+            $article_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $article_stmt1)))));
+            $articlestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $article_stmt1))));
             $article_firstname = $user_articles_displayRow['first_name'];
             $article_lastname = $user_articles_displayRow['last_name'];
             $article_username = $user_articles_displayRow['username'];
@@ -93,11 +93,11 @@ function user_challenges ($db_handle, $user_IDF) {
     else {
         while($user_challenges_displayRow= mysqli_fetch_array($user_challenges_display)) {
         $challenge_id=$user_challenges_displayRow['challenge_id'];
-        $challenge_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title']))));
-        $challengetitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title'])));
+        $challenge_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_challenges_displayRow['challenge_title'])))));
+        $challengetitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_challenges_displayRow['challenge_title']))));
         $challenge_stmt1 = $user_challenges_displayRow['stmt'];
-        $challenge_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1))));
-        $challengestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1)));
+        $challenge_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_stmt1)))));
+        $challengestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_stmt1))));
         $you_owned_or_not = $user_challenges_displayRow['user_id'];
         $chall_firstname = $user_challenges_displayRow['first_name'];
         $chall_lastname = $user_challenges_displayRow['last_name'];
@@ -161,11 +161,11 @@ function user_idea ($db_handle, $user_IDF) {
     else {
         while($user_idea_displayRow= mysqli_fetch_array($user_idea_display)) {
             $idea_id= $user_idea_displayRow['challenge_id'];
-            $idea_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_idea_displayRow['challenge_title']))));
-            $ideatitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_idea_displayRow['challenge_title'])));
+            $idea_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_idea_displayRow['challenge_title'])))));
+            $ideatitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_idea_displayRow['challenge_title']))));
             $idea_stmt1 = $user_idea_displayRow['stmt'];
-            $idea_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1))));
-            $ideastmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $idea_stmt1)));
+            $idea_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $idea_stmt1)))));
+            $ideastmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $idea_stmt1))));
             $idea_creation1 = $user_idea_displayRow['creation_time'];
             $idea_creation = date("j F, g:i a", strtotime($idea_creation1));
             $idea_firstname = $user_idea_displayRow['first_name'];
@@ -227,11 +227,11 @@ $no_created_projects = mysqli_num_rows($project_created_display);
     }
     else {
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-            $project_title_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title']))));
-            $projecttitletable = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title'])));
+            $project_title_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_table_displayRow['project_title'])))));
+            $projecttitletable = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_table_displayRow['project_title']))));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
-            $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
-            $projectstmttable = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1)));
+            $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_stmt_table1)))));
+            $projectstmttable = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_stmt_table1))));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
             $projectcreation1 = $project_table_displayRow['creation_time'];
@@ -293,9 +293,9 @@ function joined_projects ($db_handle, $user_IDF) {
     }
     else {
         while($project_table_displayRow = mysqli_fetch_array($project_created_display)) {
-            $project_title_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_table_displayRow['project_title']))));
+            $project_title_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_table_displayRow['project_title'])))));
             $project_stmt_table1 = $project_table_displayRow['stmt'];
-            $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $project_stmt_table1))));
+            $project_stmt_table = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $project_stmt_table1)))));
             $project_id_table = $project_table_displayRow['project_id'];
             $fname = $project_table_displayRow['first_name'];
             $projectcreation1 = $project_table_displayRow['creation_time'];
@@ -329,7 +329,7 @@ function project_comments($db_handle, $project_id) {
         $username_pr_comment = $displayrowc['username'];
         $ida = $displayrowc['response_pr_id'];
         $idB = $displayrowc['user_id'];
-        $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
+        $projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $displayrowc['stmt'])))));
         echo "<div id='commentscontainer'>
                 <div class='comments clearfix' id='comment_".$ida."'>
                     <div class='pull-left lh-fix'>
@@ -379,7 +379,7 @@ function comments_all_type_challenges ($db_handle, $challenge_id) {
         $comment_id = $commenterRow['response_ch_id'];
         $creater_ID = $commenterRow['user_id'];
         $username_comment_ninjas = $commenterRow['username'];
-        $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt']))));
+        $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+",$commenterRow['stmt'])))));
         echo "<div id='commentscontainer'>
 				<div class='comments clearfix' id='comment_".$comment_id."'>
 					<div class='pull-left lh-fix'>

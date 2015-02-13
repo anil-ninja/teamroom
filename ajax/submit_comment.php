@@ -43,7 +43,7 @@ if($_POST['id']){
 							</div>
 							<div class='comment-text'>
 								<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
-								&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
+								&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $stmt)))))."
 							</div>
 						</div>
 					</div>";
@@ -80,7 +80,7 @@ if($_POST['id']){
 								</div>
 								<div class='comment-text'>
 									<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
-									&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
+									&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $stmt)))))."
 								</div>
 							</div>
 						</div>";
@@ -147,7 +147,7 @@ if($_POST['id']){
 								</div>
 								<div class='comment-text'>
 									<span class='pull-left color strong'>&nbsp;<a href ='profile.php?username=" . $username . "'>". ucfirst($inforow['first_name']) ." ". ucfirst($inforow['last_name']) . "</a></span>
-									&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $stmt))))."
+									&nbsp;&nbsp;" . showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $stmt)))))."
 								</div>
 							</div>
 						</div>";
