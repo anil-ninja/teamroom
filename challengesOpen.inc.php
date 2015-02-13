@@ -8,11 +8,10 @@ include_once 'models/challenge.php';
 $obj = new challenge($_GET['challenge_id']);
 $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
-$open_chalange = mysqli_query($db_handle, "SELECT challenge_id, challenge_title from challenges WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id= '$challengeSearchID' ;");
+$open_chalange = mysqli_query($db_handle, "SELECT challenge_title from challenges WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id= '$challengeSearchID' ;");
 $open_chalangeRtitle = mysqli_fetch_array($open_chalange);
 $challenge_page_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangeRtitle['challenge_title']))));
-$emptySearch = mysqli_num_rows($open_chalange);
-if ($emptySearch == 0) {
+if (mysqli_num_rows($open_chalange) == '0') {
     include_once 'error.php';
     exit;                       //echo "no longer exists";
 }
@@ -25,27 +24,26 @@ if($pro_id != '0') {
 	$typeProject = mysqli_query($db_handle, "SELECT project_type FROM projects WHERE project_id = '$pro_id' ;");
 	$typeProjectRow = mysqli_fetch_array($typeProject);
 	$projectType = $typeProjectRow['project_type'];
-	if($projectType == 2){
-		if(isset($_SESSION['user_id'])){
-			$checkAccess = mysqli_query($db_handle, "SELECT * FROM teams WHERE project_id = '$pro_id' and user_id = '$userID' and member_status = '1' ;");
-			$checkAccessRow = mysqli_fetch_array($checkAccess) ;
-			$AccessID = $checkAccessRow['user_id'] ;
-			if ($userID != $AccessID) { 
-				include_once 'error.php';
-				exit;
-			}
-		}
-		else {
+	if(isset($_SESSION['user_id'])){
+		$checkAccess = mysqli_query($db_handle, "SELECT * FROM teams WHERE project_id = '$pro_id' and user_id = '$userID' and member_status = '1' ;");
+		if (mysqli_num_rows($checkAccess) == '0') {
 			include_once 'error.php';
 			exit;
 		}
 	}
 	else {
-		if ($private_ch_type == '2' || $private_ch_type == '5') {
+		if($projectType == '2' || $projectType == '4') {
 			include_once 'error.php';
 			exit;
 		}
+		else {
+			if ($private_ch_type == '2' || $private_ch_type == '5') {
+				include_once 'error.php';
+				exit;
+			}
+		}
 	}
+	
 }
 function chOpen_title($title_length) {
     if (strlen($title_length) < 40) {
@@ -173,7 +171,7 @@ function challenge_display($db_handle, $challengeSearchID) {
 						$display_name_stmt = "";
 					}
 				} 
-				else if ($ctype == 3) {
+				if ($ctype == 3) {
 					if ($status == 1) {
 						echo "<div class='list-group challenge'>
 								<div class='list-group-item' >";
@@ -276,33 +274,31 @@ function challenge_display($db_handle, $challengeSearchID) {
 						$display_name_stmt = "";
 					}
 				}
-				else if ($ctype == 4) {
+				if ($ctype == 4) {
 					echo "<div class='list-group idea'>
 							<div class='list-group-item'>";
 				    dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
 					echo $display_title."<span class='icon-lightbulb'></span>".$display_fname_likes.$display_name_stmt;
 					$display_name_stmt = "";
 				}
-				else if ($ctype == 5) {
-				   if ($status_task == 2) {
+				if ($ctype == 5) {
+				   if ($status == 2) {
 						echo "<div class='list-group pushpin'>
 								<div class='list-group-item'>";
-						if (isset($_SESSION['user_id'])) {
-							dropDown_challenge_pr($chelangeid, $user_id, $remaintimeown, $id_create) ;
-						}
-						if (($ownuser == $user_id) && (isset($_SESSION['user_id']))) {
+							dropDown_challenge_pr($chelangeid, $user_id, $remaintimeown, $owner_id) ;
+						if ($ownuser == $user_id) {
 							echo "<input class='btn btn-primary pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 2)' value='Submit'/>";
 						}
-						echo $display_title."<span class='icon-pushpin'></span>".$dispaly_fname_likes."<span style= 'color: #808080'> Assigned To:&nbsp <a href ='profile.php?username=".$ownname."'>"
+						echo $display_title."<span class='icon-pushpin'></span>".$display_fname_likes."<hr/><span style= 'color: #808080'> Assigned To:&nbsp <a style= 'color: #808080' href ='profile.php?username=".$ownname."'>"
 										.ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct."</span>";
 						echo $display_name_stmt;
 						$display_name_stmt = "" ;
 						// " . $remaintimeown . "
 					}
-					if ($status_task == 4) {
+					if ($status == 4) {
 						echo "<div class='list-group pushpin'>
 								<div class='list-group-item'>";
-						if (($owner_id == $user_id) && (isset($_SESSION['user_id']))) {
+						if ($owner_id == $user_id) {
 							echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 6)'>Close</button>";
 						}
 						echo $display_title."<span class='icon-pushpin'></span>".$dispaly_fname_likes.
@@ -311,7 +307,7 @@ function challenge_display($db_handle, $challengeSearchID) {
 						echo $display_name_stmt;
 						$display_name_stmt = "" ;
 					}
-					if ($status_task == 5) {
+					if ($status == 5) {
 						echo "<div class='list-group flag'>
 								<div class='list-group-item'>";
 						echo "<span class='color strong pull-right' style= 'color: #808080'>Closed</span>";
@@ -398,7 +394,20 @@ function challenge_display($db_handle, $challengeSearchID) {
                             echo $display_title."<span class='icon-film'></span>".$display_fname_likes.$display_name_stmt;
                 }
             }
-            echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($chelangeid)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+            echo "<ul class='inline'>
+				<li>
+					<a href='https://twitter.com/share' class='twitter-share-button' data-url='http://collap.com/challengesOpen.php?challenge_id=".$chelangeid."' data-size='medium' data-related='collapcom' data-count='none' data-hashtags='digitalcollaboration'>Tweet</a>
+				</li>
+				<li>
+				<div id='fb-root'></div>
+				<div class='fb-share-button' data-href='http://collap.com/challengesOpen.php?challenge_id=".$chelangeid."' data-layout='button'></div>
+				</li><li>
+				<!-- Place this tag where you want the share button to render. -->
+				<div class='g-plus' data-action='share' data-annotation='none'></div>
+				</li><li>
+				<script type='IN/Share'></script>
+				</li>
+				</ul><hr/><div class='row-fluid'><div class='col-md-5'>
             <span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none;' onclick='like(\"".$chelangeid ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                     <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'> <b>Pull</b>

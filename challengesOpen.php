@@ -296,8 +296,14 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
             return false
             });
             </script>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a9978c1d02a7b3" async="async"></script>
+            <!-- Place this tag in your head or just before your close body tag. -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
+<script src="//platform.linkedin.com/in.js" type="text/javascript">
+  lang: en_US
+</script>
+            <!-- Go to www.addthis.com/dashboard to customize your tools 
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a9978c1d02a7b3" async="async"></script> -->
             <?php include_once 'html_comp/insert_time.php'; ?>
     </body>
 </html>
