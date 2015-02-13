@@ -112,7 +112,7 @@ function add_member() {
 						data: dataString,
 						cache: false,
 						success: function(result){
-							var notice = result.split("+") ;
+							var notice = result.split("|+") ;
 							if(notice['0'] == 'Member Added succesfully!'){
 								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 								$('.team-member').append(notice['1']);
@@ -149,7 +149,7 @@ function AddTeamMember(userid){
 		data: dataString,
 		cache: false,
 		success: function(result){
-			var notice = result.split("+") ;
+			var notice = result.split("|+") ;
 			if(notice['0'] == "Added") {
 				bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
 				$("#member_"+userid).hide();
@@ -210,9 +210,9 @@ function remove_member(PID, name, Uid){
 	});
 }
 function comment(ID, type) {				
-	var project = convertSpecialChar($("#own_ch_response_"+ID).val().replace(/[+]/g, "<an>"));
+	var project = convertSpecialChar($("#own_ch_response_"+ID).val());
 	var IDPr = $("#ProjectIDValue").val() ;
-	var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
+	var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
 					+ '&case=' + type + '&project_id=' + IDPr ;
 	if(replaceAll('\\s', '',project) == ""){
 		return false ;
@@ -225,7 +225,7 @@ function comment(ID, type) {
 			data: dataString,
 			cache: false,
 			success: function(result){
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				if(notice['1']== 'Posted succesfully!'){
 					$("#own_ch_response_"+ID).val('') ;
 					$('.comments_'+ID).append(notice['0']);
@@ -355,7 +355,7 @@ function replaceAll(find, replace, str) {
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 function set_remind() {
-	var reminder = convertSpecialChar($("#reminder_message").val().replace(/[+]/g, "<an>")) ;
+	var reminder = convertSpecialChar($("#reminder_message").val()) ;
 	var self = $("#self_remind").val() ;
 	var eventtime = $("#datepick").val() ;
 	if(replaceAll('\\s', '',reminder)==''){
@@ -367,7 +367,7 @@ function set_remind() {
 		return false;
 		}
 	else {
-		var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&eventtime='+ eventtime + '&self='+ self ;
+		var dataString = 'reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',reminder))))) + '&eventtime='+ eventtime + '&self='+ self ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/submit_reminder.php",

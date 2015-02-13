@@ -37,12 +37,12 @@ function convertSpecialChar(str){
 		function create_challange_pb_pr(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			var ID = $("#ProjectIDValue").val() ;
-			var challenge = convertSpecialChar($("#challangepr").val().replace(/[+]/g, "<an>")) ;
-			var challenge_title = convertSpecialChar($("#challange_title").val().replace(/[+]/g, "<an>")) ;
+			var challenge = convertSpecialChar($("#challangepr").val()) ;
+			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge))))) + 
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge_title)))))
 			 + '&type='+ type + '&project_id=' + ID ;//+ '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',challenge)==''){
@@ -66,11 +66,11 @@ function convertSpecialChar(str){
 		function create_notes(){
 			$("#create_notes").attr('disabled','disabled');
 			var ID = $("#ProjectIDValue").val() ;
-			var notes = convertSpecialChar($("#notestmt").val().replace(/[+]/g, "<an>")) ;
-			var notes_title = convertSpecialChar($("#notes_title").val().replace(/[+]/g, "<an>")) ;
+			var notes = convertSpecialChar($("#notestmt").val()) ;
+			var notes_title = convertSpecialChar($("#notes_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
-							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes))))) + 
+							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes_title))))) + '&project_id=' + ID ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',notes)==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
@@ -92,11 +92,11 @@ function convertSpecialChar(str){
 		function create_issue(){
 			$("#create_issue").attr('disabled','disabled');
 			var ID = $("#ProjectIDValue").val() ;
-			var notes = convertSpecialChar($("#issuestmt").val().replace(/[+]/g, "<an>")) ;
-			var notes_title = convertSpecialChar($("#issue_title").val().replace(/[+]/g, "<an>")) ;
+			var notes = convertSpecialChar($("#issuestmt").val()) ;
+			var notes_title = convertSpecialChar($("#issue_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
-							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes))))) + 
+							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes_title))))) + '&project_id=' + ID ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',notes)==''){
 				bootstrap_alert(".alert_placeholder", "Issue can not be empty", 5000,"alert-warning");
@@ -118,7 +118,7 @@ function convertSpecialChar(str){
 	$(document).ready(function(){	
 		$("#answerch").click(function(){
 			$("#answerch").attr('disabled','disabled');
-			var answerchal = convertSpecialChar($("#answerchal").val().replace(/[+]/g, "<an>")) ;
+			var answerchal = convertSpecialChar($("#answerchal").val()) ;
 			var answercid = $("#answercid").val() ;
 			var pid = $("#prcid").val() ;
 			// Returns successful data submission message when the entered information is stored in database.
@@ -128,7 +128,7 @@ function convertSpecialChar(str){
 				return false ;
 			}
 			else {
-				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal))))
+				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',answerchal)))))
 								+ '&cid='+ answercid + '&case=' + pid  ;
 				//alert(dataString);
 				var _file = document.getElementById('_fileanswer');
@@ -310,7 +310,7 @@ function create_team(){
 				data: dataString,
 				cache: false,
 				success: function(result){
-					var notice = result.split("+") ;
+					var notice = result.split("|+") ;
 					if(notice['0'] == "Team Created Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 						$("#team_name_A").val("") ;
@@ -356,7 +356,7 @@ function submitTeam(team,email, ID) {
 					data: dataString,
 					cache: false,
 					success: function(result){
-						var notice = result.split("+") ;
+						var notice = result.split("|+") ;
 						if(notice['0'] == "Team Created Successfully !!!") {
 							bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 							$("#team_name_A").val("") ;
@@ -479,7 +479,7 @@ function CreateTeamMember(userid){
 				data: dataString,
 				cache: false,
 				success: function(result){
-					var notice = result.split("+") ;
+					var notice = result.split("|+") ;
 					if(notice['0'] == "Team Created Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
 						$("#username_"+userid).hide();
@@ -503,7 +503,7 @@ function CreateTeamMember(userid){
 			data: dataString,
 			cache: false,
 			success: function(result){
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				if(notice['0'] = "Team Created Successfully !!!") {
 					bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
 					$("#username_"+userid).hide();

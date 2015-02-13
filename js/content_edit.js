@@ -96,10 +96,10 @@ function refineVedioId(str){
 		return str.split('&')[0];
 }
 function saveedited(ID)  {				
-		var title = convertSpecialChar($("#challenge_title_"+ID).val().replace(/[+]/g, "<an>"));
-		var project = convertSpecialChar($("#challenge_stmt_"+ID).val().replace(/[+]/g, "<an>"));
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+		var title = convertSpecialChar($("#challenge_title_"+ID).val());
+		var project = convertSpecialChar($("#challenge_stmt_"+ID).val());
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title)))));
 		$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
 		if(replaceAll('\\s', '',project) == ""){
 			bootstrap_alert(".alert_placeholder", "Statement can not be empty", 5000,"alert-warning");
@@ -126,10 +126,10 @@ function saveedited(ID)  {
 	$(".text").show(); 
 } ;
 function saveeditedproject(ID)  {				
-		var title = convertSpecialChar($("#project_title_"+ID).val().replace(/[+]/g, "<an>"));
-		var project = convertSpecialChar($("#project_stmt_"+ID).val().replace(/[+]/g, "<an>"));
-		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+		var title = convertSpecialChar($("#project_title_"+ID).val());
+		var project = convertSpecialChar($("#project_stmt_"+ID).val());
+		var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title)))));
 		if(replaceAll('\\s', '',project) == ""){
 			bootstrap_alert(".alert_placeholder", "Statement can not be empty", 5000,"alert-warning");
 			return false ;
@@ -156,8 +156,8 @@ function saveeditedproject(ID)  {
 	$(".text").show(); 
 } ;
 function saveeditedchallenge(ID)  {				
-		var title = convertSpecialChar($("#challenge_title_"+ID).val().replace(/[+]/g, "<an>"));
-		var project = convertSpecialChar($("#challenge_stmt_p_"+ID).val().replace(/[+]/g, "<an>"));
+		var title = convertSpecialChar($("#challenge_title_"+ID).val());
+		var project = convertSpecialChar($("#challenge_stmt_p_"+ID).val());
 		var challenge = $("#url_video_"+ID).val();
 		if (replaceAll('\\s', '',challenge) != "") {
 			var domain = url_domain(challenge);
@@ -168,19 +168,19 @@ function saveeditedchallenge(ID)  {
 				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
-				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&video='+ challenge ;
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) + '&video='+ challenge ;
 			}
 			else {
-				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title)))));
 				//bootstrap_alert(".alert_placeholder", "Add You-tube Url Only", 5000,"alert-warning");
 				//return false ;
 			}
 		}
 		else {
-			var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+			var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title)))));
 		}
 		$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
 		if(replaceAll('\\s', '',project) == ""){
@@ -210,8 +210,8 @@ function saveeditedchallenge(ID)  {
 	$(".text").show(); 
 } ;
 function saveeditedpro(ID)  {				
-		var title = convertSpecialChar($("#project_title_"+ID).val().replace(/[+]/g, "<an>"));
-		var project = convertSpecialChar($("#project_stmt_p_"+ID).val().replace(/[+]/g, "<an>"));
+		var title = convertSpecialChar($("#project_title_"+ID).val());
+		var project = convertSpecialChar($("#project_stmt_p_"+ID).val());
 		var challenge = $("#project_url_video_"+ID).val();
 		if (replaceAll('\\s', '',challenge) != "") {
 			var domain = url_domain(challenge);
@@ -222,19 +222,19 @@ function saveeditedpro(ID)  {
 				challenge = "<iframe class=\"youtube\" src=\"//www.youtube.com/embed/";
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
-				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&video='+ challenge ;
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) + '&video='+ challenge ;
 			}
 			else {
-				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+				var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title)))));
 				//bootstrap_alert(".alert_placeholder", "Add You-tube Url Only", 5000,"alert-warning");
 				//return false ;
 			}
 		}
 		else {
-			var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',project))))
-					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',title))));
+			var dataString = 'id='+ ID +'&projectsmt='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project)))))
+					+'&title='+replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title)))));
 		}
 		$("#project_"+ID).html('<img src="load.gif" />'); // Loading image
 		if(replaceAll('\\s', '',project) == ""){

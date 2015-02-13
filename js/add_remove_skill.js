@@ -10,7 +10,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 $(document).ready(function() {
 	$("#addskills").click(function(){
 		$("#addskills").attr('disabled','disabled');
-		var insert = convertSpecialChar($("#insert").val().replace(/[+]/g, "<an>")) ;
+		var insert = convertSpecialChar($("#insert").val()) ;
 		var skills = $("#skills").val() ;
 		var dataString = "";
 		if ((skills == '0' && replaceAll('\\s', '',insert) =='')||(skills != '0' && replaceAll('\\s', '',insert) !='')) {
@@ -22,7 +22,7 @@ $(document).ready(function() {
 			var dataString = 'case=2' + '&skills='+ skills ;
 		}
 		else {
-			var dataString = 'case=1' + '&insert='+ insert  ;
+			var dataString = 'case=1' + '&insert='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',insert)))))  ;
 			}
 		$.ajax({
 			type: "POST",
@@ -31,7 +31,7 @@ $(document).ready(function() {
 			async: false ,
 			cache: false,
 			success: function(result){
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				if(notice['0']=='Skill added succesfully!') {
 					$("#skills").val("");
 					$("#insert").val("");
@@ -54,7 +54,7 @@ $(document).ready(function() {
 		//document.getElementById("addprofessions").setAttribute('disabled', 'disabled');
 		//$("#addprofessions").disabled = true;
 		$("#addprofessions").attr('disabled','disabled');
-		var insert = convertSpecialChar($("#insertprofession").val().replace(/[+]/g, "<an>")) ;
+		var insert = convertSpecialChar($("#insertprofession").val()) ;
 		var skills = $("#Professions").val() ;
 		var dataString = "";
 		if ((skills == '0' && replaceAll('\\s', '',insert) =='')||(skills != '0' && replaceAll('\\s', '',insert) !='')) {
@@ -67,7 +67,7 @@ $(document).ready(function() {
 				var dataString = 'case=2' + '&skills='+ skills ;
 			}
 			else {
-				var dataString = 'case=1' + '&insert='+ insert  ;
+				var dataString = 'case=1' + '&insert='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',insert)))))  ;
 			}
 			$.ajax({
 				type: "POST",
@@ -76,7 +76,7 @@ $(document).ready(function() {
 				async: false ,
 				cache: false,
 				success: function(result){
-					var notice = result.split("+") ;
+					var notice = result.split("|+") ;
 					if(notice['0']=='Profession added succesfully!') {
 						$("#Professions").val("");
 						$("#insertprofession").val("");
@@ -228,9 +228,9 @@ function editProfile(fname, lname, email, phone) {
 	var newfname = convertSpecialChar($("#newfirstname").val()) ;
 	var newlname = convertSpecialChar($("#newlastname").val()) ;
 	var newphone = convertSpecialChar($("#newphoneno").val()) ;
-	var about = convertSpecialChar($("#aboutuser").val().replace(/[+]/g, "<an>")) ;
-	var townname = convertSpecialChar($("#livingtown").val().replace(/[+]/g, "<an>")) ;
-	var comp = convertSpecialChar($("#companyname").val().replace(/[+]/g, "<an>")) ;
+	var about = convertSpecialChar($("#aboutuser").val()) ;
+	var townname = convertSpecialChar($("#livingtown").val()) ;
+	var comp = convertSpecialChar($("#companyname").val()) ;
 	if (replaceAll('\\s', '',newfname) == "") {
 		bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
 		$("#newfirstname").val(fname) ;
@@ -245,8 +245,8 @@ function editProfile(fname, lname, email, phone) {
 		return false ;
 	}
 	else {
-		var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ email + '&phone='+ newphone + '&about='+ about 
-						+ '&townname='+ townname + '&comp='+ comp ;
+		var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ email + '&phone='+ newphone + '&about='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',about))))) 
+						+ '&townname='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',townname))))) + '&comp='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',comp))))) ;
 		$.ajax ({ 
 			type: "POST",
 			url: "ajax/change_profile.php",

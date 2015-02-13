@@ -45,7 +45,7 @@ if($_POST['challange']){
 	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $challange))))) ;
 	$title = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $challenge_title))))) ;
 	$ntitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $challenge_title)))) ;
-	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",v $challange)))) ;
+	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",  $challange)))) ;
 	$data .= "<div class='list-group challenge'>
                 <div class='list-group-item'>
 					<div class='dropdown pull-right'>
@@ -80,7 +80,7 @@ if($_POST['challange']){
 						<span class='icon-chevron-right'></span></button>
 					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
-	else { echo "Posted succesfully!"."+"."4"."+".$data ; }
+	else { echo "Posted succesfully!"."|+"."4"."|+".$data ; }
 	mysqli_close($db_handle);
 } 
 else echo "Invalid parameters!";

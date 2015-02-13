@@ -10,7 +10,7 @@ function getnewtalk() {
 		cache: false,
 		success: function(result){
 			//alert(result) ;
-			var notice = result.split("+") ;
+			var notice = result.split("|+") ;
 			var neid = parseInt(notice['1']) ;
 			//alert(neid) ;
 			$('.newtalkspr').append(notice['0']);
@@ -26,7 +26,7 @@ function convertSpecialChar(str){
 }
 $("#changeremindervalue").click(function(){
 	//$("#create_video").attr('disabled','disabled');
-	var reminder = convertSpecialChar($("#newremindervalue").val().replace(/[+]/g, "<an>")) ;
+	var reminder = convertSpecialChar($("#newremindervalue").val()) ;
 	var date = $("#datepicker").val() ;
 	var value = $("#datepickervalue").val() ;
 	var userid = $("#valueuserid").val() ;
@@ -44,7 +44,7 @@ $("#changeremindervalue").click(function(){
 			return false ;
 		}
 		else {
-			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
+			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',reminder))))) + '&case=1' ;
 		}
 	}
 	else {
@@ -58,7 +58,7 @@ $("#changeremindervalue").click(function(){
 			var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
 		}
 		else {
-			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
+			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',reminder))))) + '&case=7' + '&user='+ newuserid ;
 		}
 	}
 	$.ajax({
@@ -143,7 +143,7 @@ function getallreminders() {
 				data: dataString,
 				cache: false,
 				success: function(result){
-					var notice = result.split("+") ;
+					var notice = result.split("|+") ;
 					var neid = parseInt(notice['1']) ;
 					document.getElementById("allreminders").innerHTML = notice['0'];
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
@@ -155,7 +155,7 @@ function getallreminders() {
 
 function submittalk(event,chatboxtextarea) {
 	if(event.keyCode == 13 && event.shiftKey == 0)  {
-		message = convertSpecialChar($(chatboxtextarea).val().replace(/[+]/g, "<an>"));
+		message = convertSpecialChar($(chatboxtextarea).val());
 		$(chatboxtextarea).val('');
 		$(chatboxtextarea).focus();
 	if(replaceAll('\\s', '',message)==''){
@@ -164,7 +164,7 @@ function submittalk(event,chatboxtextarea) {
 	}
 	 else {
 		 var ID = $("#ProjectIDValue").val() ;
-		var dataString = 'talk='+ message + '&project_id=' + ID ;
+		var dataString = 'talk='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',message))))) + '&project_id=' + ID ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/project_talks.php",
@@ -193,7 +193,7 @@ function projecttalk() {
 		data: dataString,
 		cache: false,
 		success: function(result){
-			var notice = result.split("+") ;
+			var notice = result.split("|+") ;
 			var neid = parseInt(notice['2']) ;
 			document.getElementById("newtalks").innerHTML = notice['0'];
 			document.getElementById("showtalkingform").innerHTML = notice['1'];

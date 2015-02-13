@@ -127,8 +127,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 		function create_video(){
 			$("#create_video").attr('disabled','disabled');
 			var challenge = $("#videosub").val() ;
-			var video_title = convertSpecialChar($("#video_title").val().replace(/[+]/g, "<an>")) ;
-			var videodes = convertSpecialChar($("#videodes").val().replace(/[+]/g, "<an>")) ;
+			var video_title = convertSpecialChar($("#video_title").val()) ;
+			var videodes = convertSpecialChar($("#videodes").val()) ;
 			var domain = url_domain(challenge);
 			//alert(domain);
 			if (domain == "www.youtube.com"){
@@ -153,8 +153,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 					return false ;
 				}
 				else {
-					var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
+					var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',video_title)))))
+					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',videodes))))) ;
 					$.ajax({
 						type: "POST",
 						url: "ajax/add_video.php",
@@ -162,7 +162,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 						data: dataString,
 						cache: false,
 						success: function(result){
-							var notice = result.split("+") ;
+							var notice = result.split("|+") ;
 							if(notice['0'] = "Video Posted Successfully !!!") {
 								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 								$("#video_title").val("") ;
@@ -192,8 +192,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 		function create_videopr(ID){
 			$("#create_videopr").attr('disabled','disabled');
 			var challenge = $("#videoprjt").val() ;
-			var video_title = convertSpecialChar($("#video_titlepr").val().replace(/[+]/g, "<an>")) ;
-			var videodes = convertSpecialChar($("#videodespr").val().replace(/[+]/g, "<an>")) ;
+			var video_title = convertSpecialChar($("#video_titlepr").val()) ;
+			var videodes = convertSpecialChar($("#videodespr").val()) ;
 			var domain = url_domain(challenge);
 			//alert(domain);
 			if (domain == "www.youtube.com"){
@@ -218,8 +218,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 					return false ;
 				}
 				else {
-					var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) + '&project_id=' + ID ;
+					var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',video_title)))))
+					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',videodes))))) + '&project_id=' + ID ;
 					$.ajax({
 						type: "POST",
 						url: "ajax/add_video_pr.php",
@@ -227,7 +227,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 						data: dataString,
 						cache: false,
 						success: function(result){
-							var notice = result.split("+") ;
+							var notice = result.split("|+") ;
 							if(notice['0'] = "Video Posted Successfully !!!") {
 								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 								$("#video_titlepr").val("") ;
@@ -258,8 +258,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 	}
 		function submit_ch(){
 			$("#submit_ch").attr('disabled','disabled');
-			var challenge = convertSpecialChar($("#challange").val().replace(/[+]/g, "<an>")) ;
-			alert(challenge);
+			var challenge = convertSpecialChar($("#challange").val()) ;
 			var ID = $("#ProjectIDValue").val() ;
 			var domain = url_domain(challenge);
 			if (domain == "www.youtube.com"){
@@ -269,9 +268,9 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(linkId);
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
-			var challenge_title = convertSpecialChar($("#challange_title").val().replace(/[+]/g, "<an>")) ;			
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))  + '&project_id=' + ID ;
+			var challenge_title = convertSpecialChar($("#challange_title").val()) ;			
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge))))) + 
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge_title)))))  + '&project_id=' + ID ;
 			if(replaceAll('\\s', '',challenge)==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 				$("#submit_ch").removeAttr('disabled');
@@ -379,7 +378,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			data: dataString,
 			cache: false,
 			success: function(result){
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				if(notice['0'] == "Posted succesfully!") {
 					bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 					switch (parseInt(notice['1'])) {
@@ -482,8 +481,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 	}
 		function create_article(){
 			$("#create_article").attr('disabled','disabled');
-			var article = convertSpecialChar($("#articlech").val().replace(/[+]/g, "<an>")) ;
-			var article_title = convertSpecialChar($("#article_title").val().replace(/[+]/g, "<an>")) ;
+			var article = convertSpecialChar($("#articlech").val()) ;
+			var article_title = convertSpecialChar($("#article_title").val()) ;
 			if(replaceAll('\\s', '',article)==''){
 				bootstrap_alert(".alert_placeholder", "Article can not be empty", 5000,"alert-warning");
 				$("#create_article").removeAttr('disabled');
@@ -495,8 +494,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false;
 			} 
 			else {
-				var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article)))) + 
-				'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article_title))))  ;
+				var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',article))))) + 
+				'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',article_title)))))  ;
 				var _file = document.getElementById('_fileArticle');
 				uploadFile1(_file,"articlePic",String(dataString),"ajax/submit_article.php");
 			}
@@ -514,8 +513,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 	$(document).ready(function() {
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
-			var project_title = convertSpecialChar($("#project_title").val().replace(/[+]/g, "<an>")) ;
-			var project_stmt = convertSpecialChar($("#project_stmt").val().replace(/[+]/g, "<an>"));
+			var project_title = convertSpecialChar($("#project_title").val()) ;
+			var project_stmt = convertSpecialChar($("#project_stmt").val());
 			var value = convertSpecialChar($("#project_value").val());
 			var fund = convertSpecialChar($("#project_fundneed").val());
 			var type = $("#type").val();
@@ -551,7 +550,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 					$("#create_project").removeAttr('disabled');
 				}
 				else {
-					var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
+					var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_title))))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_stmt))))) + 
 					'&type='+ type + '&value='+ value + '&fund='+ fund ;
 					var _file = document.getElementById('_fileProject');
 					//alert(uploadFile(_file,"articlePic"));
@@ -559,7 +558,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 				}
 			}
 			else {
-				var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
+				var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_title))))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_stmt))))) + 
 					'&type='+ type + '&value='+ value + '&fund='+ fund ;
 				var _file = document.getElementById('_fileProject');
 				//alert(uploadFile(_file,"articlePic"));
@@ -656,11 +655,11 @@ $("#pencil").click(function(){
 	
 		function create_idea(){
 			$("#create_idea").attr('disabled','disabled');
-			var idea = convertSpecialChar($("#ideaA").val().replace(/[+]/g, "<an>")) ;
-			var idea_title = convertSpecialChar($("#idea_titleA").val().replace(/[+]/g, "<an>")) ;		
+			var idea = convertSpecialChar($("#ideaA").val()) ;
+			var idea_title = convertSpecialChar($("#idea_titleA").val()) ;		
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',idea)))) + '&idea_title='+ 
-			replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',idea_title))))  ;
+			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',idea))))) + '&idea_title='+ 
+			replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',idea_title)))))  ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',idea) == ''){
 				bootstrap_alert(".alert_placeholder", "Idea can not be empty", 5000,"alert-warning");
@@ -679,11 +678,11 @@ $("#pencil").click(function(){
 	
 		function create_picture(){
 			$("#create_picture").attr('disabled','disabled');
-			var picturech = convertSpecialChar($("#picturech").val().replace(/[+]/g, "<an>")) ;
-			var picture_title = convertSpecialChar($("#picture_title").val().replace(/[+]/g, "<an>")) ;			
+			var picturech = convertSpecialChar($("#picturech").val()) ;
+			var picture_title = convertSpecialChar($("#picture_title").val()) ;			
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',picturech)))) 
-			+ '&picture_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',picture_title))))  ;
+			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',picturech))))) 
+			+ '&picture_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',picture_title)))))  ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',picturech) == ''){
 				bootstrap_alert(".alert_placeholder", "Details can not be empty", 5000,"alert-warning");
@@ -728,16 +727,16 @@ function create_task(){
 			success: function(result){
 			//alert(result);
 				if (result == 'true') {
-					var title = convertSpecialChar($("#titletask").val().replace(/[+]/g, "<an>")) ;
-					var taskdetails = convertSpecialChar($("#taskdetails").val().replace(/[+]/g, "<an>")) ;
+					var title = convertSpecialChar($("#titletask").val()) ;
+					var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
 					//var eta = parseInt($("#c_eta").val());
 					//var etab = parseInt($("#c_etab").val());
 					//var etac = parseInt($("#c_etac").val());
 					//var etad = parseInt($("#c_etad").val());
 					//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 					// Returns successful data submission message when the entered information is stored in database.
-					var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-									 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) 
+					var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',taskdetails)))))
+									 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) 
 									 + '&team='+ team + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
 					//alert(dataString);
 					if(replaceAll('\\s', '',title)==''){
@@ -777,10 +776,10 @@ function create_task(){
 	  });
 	}
 	else {
-		var title = convertSpecialChar($("#titletask").val().replace(/[+]/g, "<an>")) ;
-		var taskdetails = convertSpecialChar($("#taskdetails").val().replace(/[+]/g, "<an>")) ;
-		var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-						 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team 
+		var title = convertSpecialChar($("#titletask").val()) ;
+		var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
+		var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',taskdetails)))))
+						 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) + '&team='+ team 
 						 + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
 		//alert(dataString);
 		if(replaceAll('\\s', '',title)==''){

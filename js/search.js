@@ -32,7 +32,7 @@ function showUp() {
 		data: dataString,
 		cache: false,
 		success: function(result){
-			var notice = result.split("+") ;
+			var notice = result.split("|+") ;
 			document.getElementById("notifications").innerHTML = notice['0'];
 			document.getElementById("notificationlastid").innerHTML = notice['1'];
 		}
@@ -76,7 +76,7 @@ function getnewnote(time, lid) {
 			if(result == "no new notification") { 
 			}
 			else {
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				$('.newnotices').append(notice['0']);
 				var num = document.getElementById("countnotice").innerHTML ;
 				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;
