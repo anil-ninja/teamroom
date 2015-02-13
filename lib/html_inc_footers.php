@@ -3,6 +3,7 @@
 ?>
  <br/><br/><br/><br/><br/><br/>
 <gcse:searchresults></gcse:searchresults>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="date.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/username_email_check.js"></script>
@@ -22,6 +23,7 @@
 <script src="js/chat.js"></script>
 <script src="js/add_remove_skill.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/chat_box.js"></script>
+<script type="text/javascript" src="js/getMeta.js"></script>
 <script src="js/date_time.js"></script>    
 <script src="scripts/tabs-addon.js"></script>
 <script type="text/javascript" src="js/intro.js"></script>

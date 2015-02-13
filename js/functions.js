@@ -451,3 +451,7 @@ function projectjoin(ID){
 		}
 	});
 }
+function create_link() {
+	var challenge = $("#sharedlink").val() ;
+	getUrlData(challenge);
+}
