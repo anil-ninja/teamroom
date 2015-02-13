@@ -116,15 +116,15 @@ function getUrlData(url_get){
 	document.getElementById("imgD").innerHTML = "<img src=\'"+metaImg+"\' height= \'200px\'/>";
     */
     
-		url_data.title = title;
-		url_data.description = description;
-		url_data.domain = url_domain(url_get);
-		url_data.author = url_data.author?author:url_data.domain.split(".")[1];
+		url_data.title = convertSpecialChar(title);
+		url_data.description = convertSpecialChar(description);
+		url_data.domain = convertSpecialChar(url_domain(url_get));
+		url_data.author = convertSpecialChar(url_data.author?author:url_data.domain.split(".")[1]);
 		url_data.metaImg = metaImg;
 		var Image = "<img src=\""+url_data.metaImg+"\" style=\"max-width: 100%;\" onError=\"this.src=\"img/default.gif\"\" />";
 		var IDPr = parseInt($("#ProjectIDValue").val()) ;
-		var dataString = 'title='+ title + '&description=' + description + '&url=' + url_data.domain 
-						+ '&author=' + url_data.author + '&img=' + Image + '&id=' + IDPr ;
+		var dataString = 'title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) + '&description=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',description))))) 
+						+ '&url=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',url_data.domain))))) + '&author=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',url_data.author))))) + '&img=' + Image + '&id=' + IDPr ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/submit_link.php",

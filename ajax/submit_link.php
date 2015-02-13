@@ -15,7 +15,7 @@ if($_POST['title']){
 		$pro_id = 0;
 	}
 	else { $pro_id = $post_id ; }
-	$article = $image." <br/>".$text." <br/> <a href=\'http://".$url."\' target=\'_blank\'> .. more </a> <br/> By : ".ucfirst($author) ;
+	$article = $image." <br/>".$text." <a href=\"http://".$url."\" target=\"_blank\"> .. more </a> <br/> By : ".ucfirst($author) ;
 	$time = date("Y-m-d H:i:s") ;
 	$remaintime = 99 ;
 	$firstname = $_SESSION['first_name'] ;
