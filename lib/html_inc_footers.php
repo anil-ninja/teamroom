@@ -4,7 +4,6 @@
  <br/><br/><br/><br/><br/><br/>
 <gcse:searchresults></gcse:searchresults>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="date.js"></script>
 <script src="js/delete_comment_challenge.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/username_email_check.js"></script>
 <script type="text/javascript" src="js/signupValidation.js"></script>

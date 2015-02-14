@@ -147,8 +147,11 @@ $('#scrollFriends').jScrollPane() ;
 				success: function(result){
 					var notice = result.split("<") ;
 					if (notice['0'] == 'no data') {
-						bootstrap_alert(".alert_placeholder", "No Contents To Display", 5000,"alert-warning");
 						$('.loading').remove();
+						var data = document.getElementById("appendloading") ;
+						if(data == null) {
+							$('#prch').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");
+						}
 					}
 					else {
 						$('#prch').append(result);

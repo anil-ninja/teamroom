@@ -156,7 +156,8 @@ function getUrlData(url_get){
 		//return  url_data ;
 
 		}).fail(function (jqXHR, textStatus, errorThrown) {
-			console.log("AJAX ERROR:", textStatus, errorThrown);		
+			console.log("AJAX ERROR:", textStatus, errorThrown);
+			bootstrap_alert(".alert_placeholder", "Please, Refresh and Try Again", 5000,"alert-warning");		
 	});
    
 }

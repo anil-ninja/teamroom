@@ -46,6 +46,7 @@ $view = 1 ;
 			?>
 		</div>
 	</div>	
+	<script src="date.js"></script>
 	<?php
  	include_once 'lib/html_inc_footers.php';
 	include_once 'html_comp/check.php';  
@@ -54,6 +55,7 @@ $view = 1 ;
 		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
+
 <script>
 var width = window.screen.availWidth;
 if(width < 800) {
@@ -102,9 +104,12 @@ $(".nav-btntab").bind("click", function(){
 				cache: false,
 				success: function(result){
 					var notice = result.split("<") ;
-					if (notice['0'] == 'no data') {
-						bootstrap_alert(".alert_placeholder", "No Contents To Display", 5000,"alert-warning");
-						$('.loading').remove();
+						if (notice['0'] == 'no data') {
+							$('.loading').remove();
+						var data = document.getElementById("appendloading") ;
+						if(data == null) {
+							$('#panel-cont').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");
+						}
 					}
 					else {
 						$('#panel-cont').append(result);

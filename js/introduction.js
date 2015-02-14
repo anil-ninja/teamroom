@@ -1,7 +1,4 @@
-var ninjas_intro = function () {
-  // create a deferred object
-  var r = $.Deferred();
-  
+var ninjas_intro = function (  ) {
         var intro = introJs();
           intro.setOptions({
               steps: [
@@ -82,21 +79,25 @@ var ninjas_intro = function () {
               },
               {
                 element: '#step16',
-                intro: "<b> Collap Chat and link suggestions </b><br/> Create your network by Linking people or talk to friends by clicking here",
-                position: 'left'
-              }
-            ]
+					intro: "<b> Collap Chat and link suggestions </b><br/> Create your network by Linking people or talk to friends by clicking here",
+					position: 'left'
+				  }
+				]
           });
    intro.start();
-   setTimeout(function () {
-    // and call `resolve` on the deferred object, once you're done
-		r.resolve();
-	}, 5000);
-  return r;
-};
+   intro.oncomplete(function(){
+	   intro.exit();
+	   projectToJoin  ();
+	});
+	intro.onexit(function(){
+		intro.exit();
+	 projectToJoin  ();
+	});
 
-// define FunctionTwo as needed
-var projectToJoin = function () {
+   console.log(intro);
+}
+function projectToJoin  () {
+	console.log("i m in");
   $.ajax({
 		type: "POST",
 		url: "ajax/project_join.php",
@@ -105,7 +106,6 @@ var projectToJoin = function () {
 		cache: false,
 		success: function(result){
 			var data = $(".insertprojects").html() ;
-			//alert(data);
 			if(replaceAll('\\s', '',data) == "") {
 				$(".insertprojects").append(result);
 			}
