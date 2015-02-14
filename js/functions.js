@@ -271,15 +271,18 @@ function closechal(ID, type){
 	});
 } ;
 function joinproject(ID){
+	$("#joinproject").attr('disabled','disabled');
 	var dataString = 'id='+ ID + '&case=4';
 	$.ajax({
 		type: "POST",
 		url: "ajax/knownperson.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
 			bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-			location.reload() ;
+			$(".joinproject").remove();
+			//location.reload() ;
 		}
 	});
 }

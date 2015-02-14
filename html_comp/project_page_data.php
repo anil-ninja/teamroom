@@ -35,7 +35,7 @@ if($projectType == 1) {
 		$user_exist = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status='1' ;") ;
 		$user_existNo = mysqli_num_rows($user_exist) ;
 		if($user_existNo == 0) {
-				echo "<button class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</button>" ;
+				echo "<button class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</button>" ;
 		}
 	}
 	else {

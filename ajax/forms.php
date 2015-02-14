@@ -76,7 +76,7 @@ if($_POST['form_type']){
 			} 
 			else { 
 				if(isset($_SESSION['user_id'])){
-				    echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
 				}
 				else {
 					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
@@ -169,7 +169,7 @@ if($_POST['form_type']){
 			} 
 			else { 
 				if(isset($_SESSION['user_id'])){
-				    echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
 				}
 				else {
 					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
@@ -187,7 +187,7 @@ if($_POST['form_type']){
 			} 
 			else { 
 				if(isset($_SESSION['user_id'])){
-				    echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
 				}
 				else {
 					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
@@ -315,7 +315,7 @@ if($_POST['form_type']){
 			} 
 			else { 
 				if(isset($_SESSION['user_id'])){
-				    echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
 				}
 				else {
 					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
@@ -331,7 +331,7 @@ if($_POST['form_type']){
 			} 
 			else { 
 				if(isset($_SESSION['user_id'])){
-				    echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
 				}
 				else {
 					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
