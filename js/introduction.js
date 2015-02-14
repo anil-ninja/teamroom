@@ -104,7 +104,11 @@ var projectToJoin = function () {
 		data: "type=1",
 		cache: false,
 		success: function(result){
-			$(".insertprojects").append(result);
+			var data = $(".insertprojects").html() ;
+			//alert(data);
+			if(replaceAll('\\s', '',data) == "") {
+				$(".insertprojects").append(result);
+			}
 		}
 	});
 	$("#joinProject").modal("show");
