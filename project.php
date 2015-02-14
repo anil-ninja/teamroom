@@ -145,7 +145,7 @@ $('#scrollFriends').jScrollPane() ;
 				data: dataString,
 				cache: false,
 				success: function(result){
-					var notice = result.split("|+") ;
+					var notice = result.split("<") ;
 					if (notice['0'] == 'no data') {
 						bootstrap_alert(".alert_placeholder", "No Contents To Display", 5000,"alert-warning");
 						$('.loading').remove();
