@@ -454,7 +454,14 @@ function projectjoin(ID){
 function create_link() {
 	$("#create_link").attr('disabled','disabled');
 	var challenge = $("#sharedlink").val() ;
-	$('#remindervalue').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/></div>");
-	$('#invitation').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/></div>");
-	getUrlData(challenge);
+	if(replaceAll('\\s', '',challenge) == ""){
+		bootstrap_alert(".alert_placeholder", "Link can not be empty", 5000,"alert-warning");
+		$("#create_link").removeAttr('disabled');
+		return false;
+	}
+	else {
+		$('#remindervalue').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/></div>");
+		$('#invitation').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/></div>");
+		getUrlData(challenge);
+	}
 }
