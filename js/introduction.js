@@ -94,10 +94,9 @@ var ninjas_intro = function (  ) {
 	 projectToJoin  ();
 	});
 
-   console.log(intro);
+   //console.log(intro);
 }
 function projectToJoin  () {
-	console.log("i m in");
   $.ajax({
 		type: "POST",
 		url: "ajax/project_join.php",

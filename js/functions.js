@@ -172,9 +172,47 @@ function AddTeamMember(userid){
 }
 function add_Team_Member(team) {
 	document.getElementById("teamname").innerHTML = team ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/project_join.php",
+		async: false ,
+		data: "type=3",
+		cache: false,
+		success: function(result){
+			var data = $(".membersAddModal").html() ;
+			if(replaceAll('\\s', '',data) == "") {
+				$(".membersAddModal").append(result);
+			}
+			else {
+				$(".membersAddModal")[0].innerHTML = "" ;
+				$(".membersAddModal").append(result);
+			}
+		}
+	});
 	$("#AddMember").modal("show");
 }
-function loadteampanel(ID, team) {
+function add_New_Team() {
+	$.ajax({
+		type: "POST",
+		url: "ajax/project_join.php",
+		async: false ,
+		data: "type=4",
+		cache: false,
+		success: function(result){
+			var data = $(".teamAddModal").html() ;
+			if(replaceAll('\\s', '',data) == "") {
+				$(".teamAddModal").append(result);
+			}
+			else {
+				//data[0].innerHTML = '';
+				$(".teamAddModal")[0].innerHTML = "" ;
+				$(".teamAddModal").append(result);
+			}
+		}
+	});
+	$("#AddTeam").modal("show");
+}
+function loadteampanel(ID, team) { add_New_Team
 	var dataString = 'team=' + team + '&project_id=' + ID ;
 	$.ajax({
 		type: "POST",
@@ -200,12 +238,12 @@ function remove_member(PID, name, Uid){
 					if(result=='Member Removed succesfully!') {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 						location.reload();
-						}
-						else {
-							bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						}
 					}
-				});
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					}
+				}
+			});
 		 }
 	});
 }
@@ -457,7 +495,7 @@ function projectjoin(ID){
 			}
 		}
 	});
-}
+} 
 function create_link() {
 	$("#create_link").attr('disabled','disabled');
 	var challenge = $("#sharedlink").val() ;
@@ -471,4 +509,4 @@ function create_link() {
 		$('#invitation').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/></div>");
 		getUrlData(challenge);
 	}
-}
+};

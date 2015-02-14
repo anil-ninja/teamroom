@@ -88,11 +88,10 @@ if ($_POST['team']) {
 			else { echo "Added"."|+".$data; }	
 		}
 		else {
-			if(mysqli_error($db_handle)) { echo "Failed to Add member!"; }
-			else { echo "Updated"."|+".$data; }
+			echo "Updated"."|+".$data; 
 		} 
 	}        
- mysqli_close($db_handle);
 }
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

@@ -62,13 +62,71 @@ if($_POST['type']){
 		}
 	echo $data ;
 	}
-	else {
+	if($type == '2') {
 		events($db_handle,$user_id,"13",$knownid);
 		involve_in($db_handle,$user_id,"13",$knownid);
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$user_id', '$knownid', 'defaultteam') ;") ;
 		if(mysqli_error($db_handle)) { echo "Failed to Joined !"; }
 		else { echo "Joined succesfully!"; 	}
-	} 
+	}
+	if($type == '3') {                  
+		$member = "" ;                       
+		$userProjects = mysqli_query($db_handle, "(SELECT a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
+													where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id')
+													as b where a.user_id = b.user_id )
+													UNION
+													(select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
+													where b.requesting_user_id = '$user_id' and a.user_id = b.knowning_id and b.status != '4')
+													UNION
+													(select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
+													where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
+		$member .= "<table>
+					 <tbody>";
+		if (mysqli_num_rows($userProjects) != 0 ) {
+			while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
+				$friendFirstName = $userProjectsRow['first_name'];
+				$friendLastName = $userProjectsRow['last_name'];
+				$usernameFriends = $userProjectsRow['username'];
+				$useridFriends = $userProjectsRow['user_id'];
+				$member = $member ."<tr id='member_".$useridFriends."'>
+										<td>".$friendFirstName." ".$friendLastName."</td>
+										<td style='padding-left:20px;'><button class='btn btn-primary' onclick='AddTeamMember(\"".$useridFriends."\")'>Add</button></td>
+									</tr>" ;
+			}
+		} 
+		$member = $member ."</tbody>
+								</table>";
+		echo $member ; 						
+	}
+	if($type == '4') {                  
+		$member = "" ;                       
+		$userProjects = mysqli_query($db_handle, "(SELECT a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join (SELECT DISTINCT b.user_id FROM teams as a join teams as b 
+													where a.user_id = '$user_id' and a.team_name = b.team_name and b.user_id != '$user_id')
+													as b where a.user_id = b.user_id )
+													UNION
+													(select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
+													where b.requesting_user_id = '$user_id' and a.user_id = b.knowning_id and b.status != '4')
+													UNION
+													(select a.first_name, a.last_name, a.username, a.user_id FROM user_info as a join known_peoples as b
+													where b.knowning_id = '$user_id' and a.user_id = b.requesting_user_id and b.status = '2') ;");
+		$member .= "<table>
+					 <tbody>";
+		if (mysqli_num_rows($userProjects) != 0 ) {
+			while ($userProjectsRow = mysqli_fetch_array($userProjects)) {
+				$friendFirstName = $userProjectsRow['first_name'];
+				$friendLastName = $userProjectsRow['last_name'];
+				$usernameFriends = $userProjectsRow['username'];
+				$useridFriends = $userProjectsRow['user_id'];
+				$member = $member ."<tr id='username_".$useridFriends."'>
+										<td>".$friendFirstName." ".$friendLastName."</td>
+										<td style='padding-left:20px;'><button class='btn btn-primary' onclick='CreateTeamMember(\"".$useridFriends."\")'>Add</button></td>
+									</tr>" ;
+			}
+		} 
+		$member = $member ."</tbody>
+								</table>";
+		echo $member ; 						
+	}
 }
 else {echo "Invalid parameters!"; }
 mysqli_close($db_handle);	

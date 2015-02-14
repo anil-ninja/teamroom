@@ -35,7 +35,7 @@ $total_members = mysqli_num_rows($teams_member_display);
             <?php
             $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 			if(mysqli_num_rows($member_project) != 0) {
-				echo "<a class='btn-link pull-right' data-toggle='modal' data-target='#AddTeam'>Create Team</a>" ;
+				echo "<a class='btn-link pull-right' onclick='add_New_Team()'>Create Team</a>" ;
 			}
                 echo "<p style='color :#3B5998;' class='color strong'> Teams </p>
                         <div class ='row-fluid' id='ProjectTeams'>";

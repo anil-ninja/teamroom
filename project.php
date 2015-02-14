@@ -203,19 +203,19 @@ $(".nav-btntab").bind("click", function(){
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="js/graph.js"></script>
-        <!-- jQuery and jQuery UI (REQUIRED) -->
+        <!-- jQuery and jQuery UI (REQUIRED) 
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
        
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-        <!-- elFinder CSS (REQUIRED) -->
+        <!-- elFinder CSS (REQUIRED) 
         <link rel="stylesheet" type="text/css" media="screen" href="css/elfinder.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="css/theme.css">
 
-        <!-- elFinder JS (REQUIRED) -->
+        <!-- elFinder JS (REQUIRED) 
         <script type="text/javascript" src="js/elfinder.min.js"></script>
 
-        <!-- elFinder translation (OPTIONAL) -->
+        <!-- elFinder translation (OPTIONAL) 
         <script type="text/javascript" src="js/i18n/elfinder.LANG.js"></script>
 
         <!-- elFinder initialization (REQUIRED) -->
