@@ -8,6 +8,7 @@ if($_POST['title']){
 	$text = $_POST['description'] ;
 	$title = $_POST['title'] ;
 	$url = $_POST['url'] ;
+	$domain = $_POST['domain'] ;
 	$author = $_POST['author'] ;
 	$image = $_POST['img'] ;
 	$post_id = $_POST['id'] ;
@@ -15,7 +16,8 @@ if($_POST['title']){
 		$pro_id = 0;
 	}
 	else { $pro_id = $post_id ; }
-	$article = $image." <br/>".$text." <a href=\"http://".$url."\" target=\"_blank\"> .. more </a> <br/> By : ".ucfirst($author) ;
+	$article = "<a href=\"".$url."\" target=\"_blank\">".$image." <br/>".$text."  .. more  
+				<p style=\"text-align:right;\"> By : ".ucfirst($author)." <br/> At : ".$domain."</p></a>" ;
 	$time = date("Y-m-d H:i:s") ;
 	$remaintime = 99 ;
 	$firstname = $_SESSION['first_name'] ;

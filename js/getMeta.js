@@ -123,8 +123,12 @@ function getUrlData(url_get){
 		url_data.metaImg = metaImg;
 		var Image = "<img src=\""+url_data.metaImg+"\" style=\"max-width: 100%;\" onError=\"this.src=\"img/default.gif\"\" />";
 		var IDPr = parseInt($("#ProjectIDValue").val()) ;
-		var dataString = 'title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) + '&description=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',description))))) 
-						+ '&url=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',url_data.domain))))) + '&author=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',url_data.author))))) + '&img=' + Image + '&id=' + IDPr ;
+		var dataString = 'title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) 
+						+ '&description=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',description))))) 
+						+ '&url=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',url_get))))) 
+						+ '&author=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',url_data.author))))) 
+						+ '&domain=' + replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',url_data.domain))))) 
+						+ '&img=' + Image + '&id=' + IDPr ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/submit_link.php",
