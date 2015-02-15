@@ -17,8 +17,8 @@ if($_POST['title']){
 		$pro_id = 0;
 	}
 	else { $pro_id = $post_id ; }
-	$article = "<a href=\"".$url."\" target=\"_blank\">".$image." <br/>".$text."  .. more  
-				<p style=\"text-align:right;\"> By : ".ucfirst($author)." <br/> At : ".$domain."</p></a>" ;
+	$article = "<span><a href=\"".$url."\" target=\"_blank\">".$image." <br/>".$text."  .. more  
+				<p style=\"text-align:right;\"> By : ".ucfirst($author)." <br/> At : ".$domain."</p></a></span>" ;
 	$time = date("Y-m-d H:i:s") ;
 	$remaintime = 99 ;
 	$firstname = $_SESSION['first_name'] ;
