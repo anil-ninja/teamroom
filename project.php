@@ -131,7 +131,6 @@ $view = 1 ;
 
 $("#project_chat_form").hide();
 $("#project_chat_data").hide();
-$('#scrollFriends').jScrollPane() ;
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();

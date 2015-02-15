@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include_once 'functions/sharepage.php';
 $user_id = $_SESSION['user_id'] ;
 $pro_id = $_GET['project_id'] ;
 	$project = mysqli_query($db_handle, "(SELECT a.user_id, a.stmt, a.project_type FROM projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' 
@@ -45,7 +46,7 @@ if($projectType == 1) {
 echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/>" ;
 	
    echo editproject($projectstmt, $pro_id) ;
-   echo "<hr/>".sharepage("http://www.collap.com/project.php?challenge_id", $pro_id) ;
+   echo "<hr/>".sharepage("http://www.collap.com/project.php?project_id", $pro_id) ;
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
                                         UNION
