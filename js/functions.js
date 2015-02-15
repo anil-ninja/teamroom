@@ -477,6 +477,54 @@ function projectToJoin(){
 	});
 	$("#joinProject").modal("show");
 }
+function TypeProject() {
+	$("#TypeProject").attr('disabled','disabled');
+	var value = convertSpecialChar($("#newproject_value").val());
+	var fund = convertSpecialChar($("#newproject_fundneed").val());
+	var type = $("#newtype").val();
+	var typeA = document.getElementById("newfundProject").checked;
+	var IDPr = $("#ProjectIDValue").val() ;
+	if (type == '0') {
+		bootstrap_alert(".alert_placeholder", "Please select Project type", 5000,"alert-warning");
+		$("#TypeProject").removeAttr('disabled');
+	}
+	else if(typeA != false){
+		if(replaceAll('\\s', '',value) == "") {
+			bootstrap_alert(".alert_placeholder", "Value can not be empty", 5000,"alert-warning");
+			$("#TypeProject").removeAttr('disabled');
+		}
+		else if(replaceAll('\\s', '',fund) == "") {
+			bootstrap_alert(".alert_placeholder", "Fund can not be empty", 5000,"alert-warning");
+			$("#TypeProject").removeAttr('disabled');
+		}
+		else {
+			var dataString = 'type=5' + '&pro_id=' + IDPr + '&prjtype='+ type + '&value='+ value + '&fund='+ fund ;
+			changetype(dataString);
+		}
+	}
+	else {
+		var dataString = 'type=5' + '&pro_id=' + IDPr + '&prjtype='+ type + '&value='+ value + '&fund='+ fund ;
+		changetype(dataString);
+	}
+}
+function changetype(dataString) {
+	$.ajax({
+		type: "POST",
+		url: "ajax/project_join.php",
+		async: false ,
+		data: dataString,
+		cache: false,
+		success: function(result){
+			if(result == 'Changed successfully') {
+				bootstrap_alert(".alert_placeholder",result, 3000,"alert-success");
+				location.reload();
+			}
+			else {
+				bootstrap_alert(".alert_placeholder",result, 3000,"alert-warning");
+			}
+		}
+	});
+}
 function projectjoin(ID){
 	var dataString = 'type=2'+ '&pro_id='+ ID ;
 	$.ajax({

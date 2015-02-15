@@ -26,7 +26,7 @@ if ($p_uid == $user_id) {
 			  <ul class='dropdown-menu'>
 				<li><a class='btn-link' href='#' onclick='editproject(".$pro_id.")'>Edit Project</a></li>
 				<li><a class='btn-link' href='#' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</a></li>
-				<li><a data-toggle='modal' class='btn-link' data-target='#project_order'>Sort Order</a></li>
+				<li><a class='btn-link' data-toggle='modal' data-target='#project_type'>Change Project Type</a></li>
 			  </ul>
          </div>";
 }
