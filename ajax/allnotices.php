@@ -25,7 +25,7 @@ if ($_POST['all']) {
 	}
 	$notice2 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') and event_creater != '$user_id' )
 										 UNION
-										 (SELECT * FROM events WHERE event_type IN ( 4, 8, 10, 14, 15, 16 ) 
+										 (SELECT * FROM events WHERE event_type IN ( 4, 8, 10, 14, 15, 16, 19 ) 
 										 and p_c_id = '$user_id' and event_creater != '$user_id') order by timestamp DESC;") ;
 	while($notice2row = mysqli_fetch_array($notice2)) {
 		$eventid = $notice2row['id'] ;
@@ -302,7 +302,7 @@ if ($_POST['all']) {
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Added Skills to his profile on  ".$eventtime2."
 									</div>" ;
 			
-			break;
+				break;
 				
 			case 16:
 				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
@@ -310,7 +310,7 @@ if ($_POST['all']) {
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Added Profession to his profile on  ".$eventtime2."
 									</div>" ;
 			
-			break;
+				break;
 				
 			case 17:
 				$notice14 = mysqli_query($db_handle, " select * from projects where project_id = '$search_id' and project_type != '3' and project_type != '5' ;") ;
@@ -327,7 +327,7 @@ if ($_POST['all']) {
 										</div>" ;
 				}
 			
-			break;
+				break;
 				
 			case 18:
 				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
@@ -335,6 +335,14 @@ if ($_POST['all']) {
 										<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Accepted Link on  ".$eventtime2."
 									</div>" ;
 				 
+				break;
+				
+			case 19:
+				$notice = $notice ."<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+										<i class='icon-plus'></i>
+										<a href ='profile.php?username=".$uname2."'>".$fname2."`s </a> Rank has been updated on ".$eventtime2."
+									</div>" ;
+			
 				break;
 			}
 		}

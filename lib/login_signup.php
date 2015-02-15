@@ -117,7 +117,7 @@ function login(){
 					$friendFirstName = $userProjectsRow['email'];
 					$usernameFriends = $userProjectsRow['username'];
 					$useridFriends = $userProjectsRow['user_id'];
-					events($db_handle,$id,"8",$useridFriends) ;
+					events($db_handle,$id,"19",$useridFriends) ;
 					$body2 = "<h2>Rank Updated</h2><p>Hi ".ucfirst($usernameFriends).",</p>
 <p>".$username."'s rank has been Updated to ".$new_rank.".</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$username."' class='btn-primary'>Click Here to View</a></p>" ;

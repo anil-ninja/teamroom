@@ -35,7 +35,7 @@ if ($_POST['notice']) {
 		$notice2 = mysqli_query($db_handle, "(SELECT * FROM events WHERE (p_c_id, event_type) IN (SELECT p_c_id, p_c_type FROM involve_in WHERE user_id = '$user_id') 
 											 and timestamp > '$notificationTime' and event_creater != '$user_id' )
 											 UNION
-											 (SELECT * FROM events WHERE event_type IN ( 4, 8, 10, 14, 15, 16 ) 
+											 (SELECT * FROM events WHERE event_type IN ( 4, 8, 10, 14, 15, 16, 19 ) 
 											 and p_c_id = '$user_id' and timestamp > '$notificationTime' and event_creater != '$user_id') order by timestamp DESC;") ;
 		while($notice2row = mysqli_fetch_array($notice2)) {
 			$eventid = $notice2row['id'] ;
@@ -387,6 +387,17 @@ if ($_POST['notice']) {
 											<a href ='profile.php?username=".$uname2."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 												<i class='icon-plus'></i> ".$fname2." Accepted Link on  ".$eventtime2."
 											<a/>
+										</li>" ;
+					$y++ ;
+					insert($eventid, $user_id,  $db_handle) ;
+					
+					break;
+					
+				case 19:
+					$notice = $notice ."<li>
+											<a href ='profile.php?username=".$uname2."' onclick=".update($user_id,$db_handle).">
+												<i class='icon-plus'></i>	".$fname2."`s Rank has been updated on  ".$eventtime2."
+											</a>
 										</li>" ;
 					$y++ ;
 					insert($eventid, $user_id,  $db_handle) ;
