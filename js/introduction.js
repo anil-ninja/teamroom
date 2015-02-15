@@ -4,7 +4,7 @@ var ninjas_intro = function (  ) {
               steps: [
 			        {
                 element: '#step0',
-                intro: '<b> Welcome To Collap </b> <br/> We will take you through a tour of this page. Press ESC to exit any time. ',
+                intro: '<b> Welcome To Collap </b> <br/> We will take you through a tour of this page and help you figure out what collap offers. Click Next to continue or Press ESC to exit any time. ',
                 position: 'bottom'
               },
               {

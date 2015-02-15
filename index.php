@@ -280,7 +280,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
                                     <label>Username</label>
                                     <input type="text" class="input-block-level" id="usernameR" onkeyup="nospaces(this)" onblur="usernameCheck();"/>
-                                    
+                                    <span id="status"></span>
                                     <div>
                                         <div class='span6'>
                                             <label>Password </label>
@@ -293,9 +293,14 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </div>
                                     <label>You are here for</label>
                                     <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeCol' /> Collaboration &nbsp;&nbsp;&nbsp;
-                                    <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
+                                    <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" onclick='aboutinvest()' id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
                                     <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeFun' /> Fund Searcher <br/><br/>
                                     <label>
+                                    <div class='totalcapital'>
+                                    <label>How much amount you want to invest (in dollars)</label>
+                                    <input type="num" class="input-group" id="investment" onkeyup="nospaces(this)" min='10' onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Enter amount"/>
+                                    <span class="input-group-addon" style='font-size:20px;'>.00 $</span>
+                                    </div><br/>
                                         <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='agree_tc' />
 
                                         &nbsp;&nbsp;&nbsp;I Aggree With 
@@ -303,7 +308,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </label>
                                     <br />
 
-                                    <a class=" btn " id = "request_reg" onclick="validateSignupFormOnSubmit()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                                    <a class=" btn " id = "request_reg" onclick="validateSignupForm()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
 
                                 </div>
                                 <div class="span3">
@@ -421,10 +426,9 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
     <script src="scripts/jquery-1.9.1.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/tabs-addon.js"></script>
-
     <script type="text/javascript">
-        $(function ()
-        {
+		$(".totalcapital").hide();
+        $(function ()        {
             $("a[href^='#demo']").click(function (evt)
             {
                 evt.preventDefault();
@@ -489,7 +493,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
             });
         });
 
-function validateSignupFormOnSubmit() {
+function validateSignupForm() {
 	var reason = "";
 	var firstname = $("#firstname").val() ;
 	var lastname = $("#lastname").val() ;
@@ -502,6 +506,7 @@ function validateSignupFormOnSubmit() {
 	var typeA = document.getElementById("typeCol").checked;
     var typeB = document.getElementById("typeInv").checked;
     var typeC = document.getElementById("typeFun").checked;
+    var amount = $("#investment").val() ;
 	if(password==password2){
 		if(replaceAll('\\s', '',firstname)==''){
 			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
@@ -547,7 +552,11 @@ function validateSignupFormOnSubmit() {
         }
         else if((typeA==false) && (typeB==false) && (typeC==false)){
             bootstrap_alert(".alert-placeholder", "You have not told why you are here", 5000,"alert-warning");
-        } 
+        }
+        else if((typeB==true)&& (replaceAll('\\s', '',amount)=='')) {
+			bootstrap_alert(".alert_placeholder", "Amount can not be empty", 5000,"alert-warning");
+			return false;
+		} 
 		else {
 			if((typeA==false) && (typeB==false)){
 				var type = "fundsearcher";
@@ -571,7 +580,7 @@ function validateSignupFormOnSubmit() {
 				var type = "collaboraterinvesterfundsearcher";
 			}
 			var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username + '&password='+ password + 
-							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
+							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&amount=' + amount + '&request=Signup' ;
 			$.ajax({
 				type: "POST",
 				url: "controllers/login_controller.php",

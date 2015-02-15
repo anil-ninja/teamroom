@@ -95,7 +95,7 @@
 
                                         <label>Username</label>
                                         <input type="text" class="input-block-level" id="usernameR" onkeyup="nospaces(this)" onblur="usernameCheck();"/>
-                                        
+                                        <span id="status"></span>
                                         <div>
                                             <div class='span6'>
                                                 <label>Password </label>
@@ -108,9 +108,14 @@
                                         </div>
                                         <label>You are here for</label>
 										<input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeCol' /> Collaboration &nbsp;&nbsp;&nbsp;
-										<input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
+										<input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" onclick='aboutinvest()' id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
 										<input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeFun' /> Fund Searcher <br/><br/>
                                         <label>
+										<div class='totalcapital'>
+										<label>How much amount you want to invest (in dollars)</label>
+										<input type="num" class="input-group" id="investment" onkeyup="nospaces(this)" min='10' onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Enter amount"/>
+										<span class="input-group-addon" style='font-size:20px;'>.00 $</span>
+										</div><br/>
                                             <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='agree_tc' />
 
                                             &nbsp;&nbsp;&nbsp;I Aggree With 
@@ -201,7 +206,9 @@
             </div>
         </div>    
         <!--end modle-->
- 
+ <script>
+	$(".totalcapital").hide();
+ </script>
 <!---- Projecct content order modal -->
         <div id="project_order" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="row-fluid" id="demo-1">

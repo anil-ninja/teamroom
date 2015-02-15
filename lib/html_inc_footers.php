@@ -28,6 +28,7 @@
 <script type="text/javascript" src="js/intro.js"></script>
 <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
 <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/rrssb.min.js"></script>
 <script>
 	$('.bs-component').jScrollPane();
 	updatelastlogin();
@@ -143,6 +144,7 @@ function validateSignupFormOnSubmit() {
     var typeA = document.getElementById("typeCol").checked;
     var typeB = document.getElementById("typeInv").checked;
     var typeC = document.getElementById("typeFun").checked;
+    var amount = $("#investment").val() ;
 	if(password==password2){
 		if(replaceAll('\\s', '',firstname)==''){
 			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
@@ -188,7 +190,11 @@ function validateSignupFormOnSubmit() {
         }
         else if((typeA==false) && (typeB==false) && (typeC==false)){
             bootstrap_alert(".alert-placeholder", "You have not told why you are here", 5000,"alert-warning");
-        } 
+        }
+        else if((typeB==true)&& (replaceAll('\\s', '',amount)=='')) {
+			bootstrap_alert(".alert_placeholder", "Amount can not be empty", 5000,"alert-warning");
+			return false;
+		} 
 		else {
 			if((typeA==false) && (typeB==false)){
 				var type = "fundsearcher";
@@ -212,7 +218,7 @@ function validateSignupFormOnSubmit() {
 				var type = "collaboraterinvesterfundsearcher";
 			}
 			var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username + '&password='+ password + 
-							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
+							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&amount=' + amount + '&request=Signup' ;
 			$.ajax({
 				type: "POST",
 				url: "controllers/login_controller.php",

@@ -12,6 +12,7 @@ function signup(){
 	$pas = mysqli_real_escape_string($db_handle, $_POST['password']) ;
 	$awe = mysqli_real_escape_string($db_handle, $_POST['password2']) ;
 	$type = mysqli_real_escape_string($db_handle, $_POST['type']) ;
+	$amount = mysqli_real_escape_string($db_handle, $_POST['amount']) ;
 	
 	if ( $pas == $awe ) {
 		$email_already_registered = mysqli_query($db_handle, "SELECT email FROM user_info WHERE email = '$email';");
@@ -31,7 +32,8 @@ function signup(){
 		else {
 			$pas = md5($pas);
 			$logintime = date("y-m-d H:i:s") ;
-			mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password, last_login, registeration_time, user_type) VALUES ('$firstname', '$lastname', '$email', '$username', '$pas', '$logintime', '$logintime', '$type') ; ") ;		
+			mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password, last_login, registeration_time, user_type, amount) 
+										VALUES ('$firstname', '$lastname', '$email', '$username', '$pas', '$logintime', '$logintime', '$type', '$amount') ; ") ;		
 			$user_create_id = mysqli_insert_id($db_handle);
 			$hash_keyR = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
 			mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_create_id', '$hash_keyR');");
