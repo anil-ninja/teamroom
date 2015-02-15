@@ -280,7 +280,8 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 				<p align='center'>Answer</p></span><br/>"
 				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt'])))))."<br/><br/>" ;
 		}			
-		$show = $show . "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($id_task)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+		$show = $show ."<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $id_task) ;
+      $show = $show ."<hr/><div class='row-fluid'><div class='col-md-5'>
 			<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 2)'> <b>Pull</b>

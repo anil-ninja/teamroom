@@ -1,6 +1,7 @@
 <?php
 include_once 'ninjas.inc.php';  
 include_once 'functions/delete_comment.php';
+include_once 'functions/sharepage.php';
 if(!isset($_SESSION['user_id'])){
 	header("location: index.php") ;
 }

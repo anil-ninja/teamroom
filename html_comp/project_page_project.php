@@ -1,6 +1,7 @@
 <?php 
 include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
+include_once '../functions/sharepage.php';
 include_once '../lib/db_connect.php';
 session_start();
 $pro_id = $_GET['project_id'];
@@ -281,7 +282,9 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
 				<p align='center'>Answer</p></span><br/>"
         . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt']))))) . "<br/>";
     }
-	echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($id_task)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'> <b>Push</b>
+    echo "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $id_task) ;
+    echo "<hr/><div class='row-fluid'><div class='col-md-5'>
+		<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'> <b>Push</b>
             <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
           <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'> <b>Pull</b>
            <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>";

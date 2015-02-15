@@ -3,6 +3,7 @@ session_start();
 include_once 'html_comp/start_time.php';
 include_once 'functions/delete_comment.php';
 include_once 'functions/image_resize.php';
+include_once 'functions/sharepage.php';
 include_once 'lib/db_connect.php';
 include_once 'models/challenge.php';
 $obj = new challenge($_GET['challenge_id']);
@@ -406,20 +407,8 @@ function challenge_display($db_handle, $challengeSearchID) {
                             echo $display_title."<span class='icon-globe'></span>".$display_fname_likes.$display_name_stmt;
                 }
             }
-            echo "<ul class='inline'>
-				<li>
-					<a href='https://twitter.com/share' class='twitter-share-button' data-url='http://collap.com/challengesOpen.php?challenge_id=".$chelangeid."' data-size='medium' data-related='collapcom' data-count='none' data-hashtags='digitalcollaboration'>Tweet</a>
-				</li>
-				<li>
-				<div id='fb-root'></div>
-				<div class='fb-share-button' data-href='http://collap.com/challengesOpen.php?challenge_id=".$chelangeid."' data-layout='button'></div>
-				</li><li>
-				<!-- Place this tag where you want the share button to render. -->
-				<div class='g-plus' data-action='share' data-annotation='none'></div>
-				</li><li>
-				<script type='IN/Share'></script>
-				</li>
-				</ul><hr/><div class='row-fluid'><div class='col-md-5'>
+            echo "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $chelangeid) ;
+            echo "<hr/><div class='row-fluid'><div class='col-md-5'>
             <span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none;' onclick='like(\"".$chelangeid ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                     <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'> <b>Pull</b>

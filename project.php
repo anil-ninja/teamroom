@@ -194,12 +194,6 @@ $(".nav-btntab").bind("click", function(){
 
 });
 </script>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<script src="//platform.linkedin.com/in.js" type="text/javascript">
-  lang: en_US
-</script>
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="js/graph.js"></script>

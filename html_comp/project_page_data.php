@@ -42,23 +42,10 @@ if($projectType == 1) {
 		echo "<button class='btn btn-primary pull-right' onclick='test3()'>Join</button>" ;
 		}
 	}
-echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/><hr/>
-	<ul class='inline'>
-	<li>
-		<a href='https://twitter.com/share' class='twitter-share-button' data-url='http://collap.com/project.php?project_id=".$pro_id."' data-size='medium' data-related='collapcom' data-count='none' data-hashtags='digitalcollaboration'>Tweet</a>
-	</li>
-	<li>
-	<div id='fb-root'></div>
-	<div class='fb-share-button' data-href='http://collap.com/project.php?project_id=".$pro_id."' data-layout='button'></div>
-	</li><li>
-	<!-- Place this tag where you want the share button to render. -->
-	<div class='g-plus' data-action='share' data-annotation='none'></div>
-	</li><li>
-	<script type='IN/Share'></script>
-	</li>
-	</ul>";
+echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/>" ;
 	
    echo editproject($projectstmt, $pro_id) ;
+   echo "<hr/>".sharepage("http://www.collap.com/project.php?challenge_id", $pro_id) ;
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
                                         UNION

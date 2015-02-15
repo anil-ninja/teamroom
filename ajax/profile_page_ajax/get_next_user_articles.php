@@ -3,6 +3,7 @@ session_start();
 include_once '../../lib/db_connect.php';
 include_once '../../functions/profile_page_function.php';
 include_once '../../functions/image_resize.php';
+include_once '../../functions/sharepage.php';
 if ($_POST['last_article']) {
     $user_id = $_SESSION['profile_view_userID'];
     $limit = $_SESSION['last_article'];
@@ -62,7 +63,8 @@ if ($_POST['last_article']) {
                     ".ucfirst($article_firstname)." ".ucfirst($article_lastname)."</a> | ".$article_created."</span>
                     <hr/><span id='challenge_".$article_id."' class='text' style='font-size: 14px;'>".$article_stmt."</span><br/>";
 		$show_article = $show_article. editchallenge($articlestmt, $article_id) ;
-		$show_article = $show_article. "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($article_id)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+		$show_article = $show_article. "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $article_id) ;
+		$show_article = $show_article. "<hr/><div class='row-fluid'><div class='col-md-5'>
 						<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$article_id ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$article_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                     <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$article_id ."\", 2)'> <b>Pull</b>

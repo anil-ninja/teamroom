@@ -4,6 +4,7 @@ include_once '../../lib/db_connect.php';
 include_once '../../functions/profile_page_function.php';
 include_once '../../functions/delete_comment.php';
 include_once '../../functions/image_resize.php';
+include_once '../../functions/sharepage.php';
 
 if ($_POST['user_next_idea']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
@@ -62,7 +63,8 @@ if ($_POST['user_next_idea']) {
                     By: <a href ='profile.php?username=" . $idea_username . "' style= 'color: #808080;'>".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span>
                     <hr/><span id='challenge_".$idea_id."' class='text' style='font-size: 14px;'>".$idea_stmt."</span><br/>";
 	$show_idea = $show_idea. editchallenge($ideastmt, $idea_id) ;
-	$show_idea = $show_idea. "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($idea_id)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+	$show_idea = $show_idea. "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $idea_id) ;
+    $show_idea = $show_idea. "<hr/><div class='row-fluid'><div class='col-md-5'>
 			<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idea_id ."\", 2)'> <b>Pull</b>
