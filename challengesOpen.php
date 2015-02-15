@@ -52,15 +52,15 @@
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
         
         <div class="row-fluid" style='margin-top: 50px;'>
-            <div class="share-container col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1 col-xs-offset-0"><!--//Soical media buttons: https://github.com/kni-labs/rrssb (More examples) -->
-                                 <span class="label">share this:</span>
+         <!--    <div class="share-container col-md-8 col-sm-10 col-xs-12 col-md-offset-2 col-sm-offset-1 col-xs-offset-0"><!--//Soical media buttons: https://github.com/kni-labs/rrssb (More examples) -->
+                          <!--        <span class="label">share this:</span>
                  
                                  <!-- Buttons start here. Copy this ul to your document. -->
-                                 <ul class="rrssb-buttons clearfix">
+                              <!--    <ul class="rrssb-buttons clearfix">
                                      <li class="rrssb-facebook">
                                          <!-- Replace with your URL. For best results, make sure you page has the proper FB Open Graph tags in header:
                                          https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content/ -->
-                                         <a href="https://www.facebook.com/sharer/sharer.php?u=http://kurtnoble.com/labs/rrssb/index.html" class="popup">
+                                 <!--         <a href="https://www.facebook.com/sharer/sharer.php?u=http://kurtnoble.com/labs/rrssb/index.html" class="popup">
                                              <span class="rrssb-icon">
                                                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                                                      <path d="M27.825,4.783c0-2.427-2.182-4.608-4.608-4.608H4.783c-2.422,0-4.608,2.182-4.608,4.608v18.434
@@ -73,7 +73,7 @@
                                      </li>
                                      <li class="rrssb-twitter">
                                          <!-- Replace href with your Meta and URL information  -->
-                                         <a href="http://twitter.com/home?status=Ridiculously Responsive Social Sharing Buttons by @joshuatuscan and @dbox http://kurtnoble.com/labs/rrssb" class="popup">
+                              <!--            <a href="http://twitter.com/home?status=Ridiculously Responsive Social Sharing Buttons by @joshuatuscan and @dbox http://kurtnoble.com/labs/rrssb" class="popup">
                                              <span class="rrssb-icon">
                                                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                       width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
@@ -98,7 +98,7 @@
                                      </li>
                                      <li class="rrssb-googleplus">
                                          <!-- Replace href with your meta and URL information.  -->
-                                         <a href="https://plus.google.com/share?url=Check out how ridiculously responsive these social buttons are http://kurtnoble.com/labs/rrssb/index.html" class="popup">
+                                <!--          <a href="https://plus.google.com/share?url=Check out how ridiculously responsive these social buttons are http://kurtnoble.com/labs/rrssb/index.html" class="popup">
                                              <span class="rrssb-icon">
                                                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                                                      <g>
@@ -124,7 +124,7 @@
                                      </li>
                                      <li class="rrssb-linkedin">
                                          <!-- Replace href with your meta and URL information -->
-                                         <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://kurtnoble.com/labs/rrssb/index.html&amp;title=Ridiculously Responsive Social Sharing Buttons&amp;summary=Responsive social icons by KNI Labs" class="popup">
+                         <!--                 <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://kurtnoble.com/labs/rrssb/index.html&amp;title=Ridiculously Responsive Social Sharing Buttons&amp;summary=Responsive social icons by KNI Labs" class="popup">
                                              <span class="rrssb-icon">
                                                  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="28px" height="28px" viewBox="0 0 28 28" enable-background="new 0 0 28 28" xml:space="preserve">
                                                      <path d="M25.424,15.887v8.447h-4.896v-7.882c0-1.979-0.709-3.331-2.48-3.331c-1.354,0-2.158,0.911-2.514,1.803
@@ -169,7 +169,7 @@
                                          </a>
                                      </li>
                                  </ul><!-- Buttons end here -->
-                             </div><!--//share-container--> 
+                    <!--          </div><!--//share-container--> 
             <div class="span7 offset1">
                 <?php                
                     challenge_display($db_handle, $challengeSearchID);
