@@ -29,19 +29,28 @@ if ($_POST['id']) {
 			break ;
 			
 		case 4:
-			mysqli_query($db_handle, "UPDATE projects SET project_type = '3' WHERE project_id = '$knownid' and user_id = '$user_id';") ;
-			if(mysqli_error($db_handle)) { echo "Failed to delete Project!"; }
-			else { 
-				echo "Deleted succesfully!"; 
-				unset($_SESSION['project_id']);
-				}
+			$owner = mysqli_query($db_handle, "select user_id from projects WHERE project_id = '$knownid' ;") ;
+			$ownerRow = mysqli_fetch_array($owner) ;
+			$ownerid = $ownerRow['user_id'] ;
+			if ($ownerid == $user_id) {
+				mysqli_query($db_handle, "UPDATE projects SET project_type = '3' WHERE project_id = '$knownid' and user_id = '$user_id';") ;
+				if(mysqli_error($db_handle)) { echo "Failed to delete Project!"; }
+				else { 	echo "Deleted succesfully!"; }
+			}
+			else { echo "Not valid Request"; }
 			 
 			break ;
 		
 		case 3:
-			mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '3' WHERE challenge_id = '$knownid' and user_id = '$user_id';") ;
-			if(mysqli_error($db_handle)) { echo "Failed to delete!"; }
-			else { echo "Deleted succesfully!"; }
+			$owner = mysqli_query($db_handle, "select user_id from challenges WHERE challenge_id = '$knownid' ;") ;
+			$ownerRow = mysqli_fetch_array($owner) ;
+			$ownerid = $ownerRow['user_id'] ;
+			if ($ownerid == $user_id) {
+				mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '3' WHERE challenge_id = '$knownid' and user_id = '$user_id';") ;
+				if(mysqli_error($db_handle)) { echo "Failed to delete!"; }
+				else { echo "Deleted succesfully!"; }
+			}
+			else { echo "Not valid Request"; }
 			 
 			break ;
 			
