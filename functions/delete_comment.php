@@ -23,7 +23,7 @@ function dropDown_delete_comment_pr($deleteid, $user_ID, $owner_id) {
             else {
                echo "<li><a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 8);'>Report Spam</a></li>";
             }
-      cho "</ul>
+      echo "</ul>
         </div>";
 }
 function dropDown_delete_comment_pr_ch($deleteid, $user_ID, $owner_id) {
