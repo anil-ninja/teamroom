@@ -228,8 +228,17 @@ if ($_POST['chal']) {
         $show = $show . "<div class='list-group film'>
 				<div class='list-group-item'> ";
                                    
-		$show = $show . $dropDown_challenge_get;
-		$dropDown_challenge_get = "";
+		$show = $show . "<div class='list-group-item pull-right'>
+							<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+								<ul class='dropdown-menu' aria-labelledby='dropdown'>";
+		if($owner_id == $user_id) {
+			$show = $show . "<li><a class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</a></li>";                    
+        }
+        else {
+			$show = $show ."<li><a class='btn-link' onclick='spem(\"".$chelangeid."\", 5);'>Report Spam</a></li>";
+        } 
+        $show = $show ."</ul>
+              </div>";
 		$show = $show . $get_display_tilte."<span class='icon-globe'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
 		$get_display_ch_stmt_content = "" ;
     } 

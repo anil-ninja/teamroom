@@ -180,7 +180,7 @@ while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
     if ($ctype == 10) {
         echo "<div class='list-group idea'>
                 <div class='list-group-item'>";
-                    dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
+                    dropDown_link($chelangeid, $user_id, $remaintime, $owner_id) ;
           echo $display_tilte_ch."<span class='icon-globe'></span>".$display_fname_likes.$display_ch_stmt_content; 
           $display_ch_stmt_content = "";         
     } 

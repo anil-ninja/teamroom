@@ -182,8 +182,17 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
         $show = $show . "<div class='list-group deciduous'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
-            $show = $show . $dropdown1 ;
-            $dropdown1 = "";
+           $show = $show . "<div class='list-group-item pull-right'>
+								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+									<ul class='dropdown-menu' aria-labelledby='dropdown'>";
+			if($owner_id == $user_id) {
+				$show = $show . "<li><a class='btn-link' onclick='delChallenge(\"".$id_task."\", 3);'>Delete</a></li>";                    
+			}
+			else {
+				$show = $show ."<li><a class='btn-link' onclick='spem(\"".$id_task."\", 9);'>Report Spam</a></li>";
+			} 
+			$show = $show ."</ul>
+				  </div>";
         }
         $show = $show . $get_display_tilte_task . "<span class='icon-globe'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
         $get_display_task_stmt = "" ;

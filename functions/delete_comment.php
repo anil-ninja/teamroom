@@ -99,6 +99,32 @@ function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $
                echo "</ul>
               </div>";
 }
+function dropDown_link($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
+        echo "<div class='dropdown pull-right'>
+                <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
+                <ul class='dropdown-menu'>";
+                    if($owner_id == $user_ID) {
+                        echo "<li><a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</a></li>";                                                      
+                     }
+                    else {
+                       echo "<li><a class='btn-link' href='#' onclick='spem(\"".$challenge_ID."\", 5);'>Report Spam</a></li>";
+                    } 
+               echo "</ul>
+              </div>";
+}
+function dropDown_link_pr($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
+        echo "<div class='dropdown pull-right'>
+                <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
+                <ul class='dropdown-menu'>";
+                    if($owner_id == $user_ID) {
+                        echo "<li><a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</a></li>";                                                      
+                     }
+                    else {
+                       echo "<li><a class='btn-link' href='#' onclick='spem(\"".$challenge_ID."\", 9);'>Report Spam</a></li>";
+                    } 
+               echo "</ul>
+              </div>";
+}
 function dropDown_challenge_pr($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
         echo "<div class='dropdown pull-right'>
                 <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>

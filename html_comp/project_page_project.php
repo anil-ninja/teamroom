@@ -188,7 +188,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         echo "<div class='list-group deciduous'>
                     <div class='list-group-item'>";
         if (isset($_SESSION['user_id'])) {
-           dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
+           dropDown_link_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
          echo $display_tilte_task."<i class='icon-globe'></i>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
