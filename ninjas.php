@@ -93,11 +93,11 @@ $(".nav-btntab").bind("click", function(){
 </script>
 	<script>
 	$(window).scroll(function(event) {
-    if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-         event.preventDefault();
-         $('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
-         var dataString = 'chal=6' ;
-         var value = parseInt($("#viewchid").val()) ;
+		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+			event.preventDefault();
+			$('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
+			var dataString = 'chal=6' ;
+			var value = parseInt($("#viewchid").val()) ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/get_next.php",
@@ -105,8 +105,8 @@ $(".nav-btntab").bind("click", function(){
 				cache: false,
 				success: function(result){
 					var notice = result.split("<") ;
-						if (notice['0'] == 'no data') {
-							$('.loading').remove();
+					if (notice['0'] == 'no data') {
+						$('.loading').remove();
 						var data = document.getElementById("appendloading") ;
 						if(data == null) {
 							$('#panel-cont').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");

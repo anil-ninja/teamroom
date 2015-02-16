@@ -160,7 +160,7 @@ $obj = new profile($UserName);
                                     . $profileViewPhone . "  
                                 </span>";
         			  }
-        				  echo " <br/><div style ='text-align:justify;' id='appendskill'><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
+        				  echo " <br/><div style ='word-wrap: break-word;' id='appendskill'><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
 
                     $skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     
@@ -173,7 +173,9 @@ $obj = new profile($UserName);
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                             $skill_id = $skill_displayRow['skill_id'];
                             echo "<span class='skill_id_".$skill_id."'><span class='btn-success'>
-                                            <a href='ninjaSkills.php?skill_id=".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $skill_displayRow['skill_name']))))."</a>&nbsp";
+                                            <a href='ninjaSkills.php?skill_id=".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>
+                                            &nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $skill_displayRow['skill_name']))))."
+                                            </a>&nbsp";
                             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                                 echo "      <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                                                 <i class='icon-remove'></i>
@@ -188,7 +190,7 @@ $obj = new profile($UserName);
                                   <i class='icon-plus'></i> Skill
                                </a><br/>";
         					}
-					echo " <br/><div style ='text-align:justify;' id='appendprofession'><i class='icon-screenshot'></i>Professions &nbsp;:" ; 
+					echo " <br/><div style ='word-wrap: break-word;' id='appendprofession'><i class='icon-screenshot'></i>Professions &nbsp;:" ; 
 
                     $profession_display = mysqli_query($db_handle, "SELECT b.p_name, a.p_id from user_profession as a join professsion_name as b WHERE a.user_id = '$profileViewUserID' AND a.p_id = b.p_id ;");
                     
@@ -201,7 +203,9 @@ $obj = new profile($UserName);
                         while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
                             $profession_id = $profession_displayRow['p_id'];
                             echo "<span class='profession_".$profession_id."'><span class='btn-success'>
-                                            <a style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $profession_displayRow['p_name']))))."</a>&nbsp";
+                                            <a style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;
+                                            ".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $profession_displayRow['p_name']))))."
+                                            </a>&nbsp";
                             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                                 echo "      <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
                                                 <i class='icon-remove'></i>
@@ -495,7 +499,7 @@ $obj = new profile($UserName);
 							else {
 								while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
 									$profession_id = $profession_displayRow['p_id'];
-									echo "<span class='profession_".$profession_id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $profession_displayRow['p_name']))))."&nbsp
+										echo "<span class='profession_".$profession_id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $profession_displayRow['p_name']))))."&nbsp
 											  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
 													<i class='icon-remove'></i>
 											  </a>

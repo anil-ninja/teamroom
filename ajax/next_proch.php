@@ -3,6 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
+include_once '../functions/sharepage.php';
 if($_POST['proch']){
 	$user_id = $_SESSION['user_id'];
 	$username = $_SESSION['username'];

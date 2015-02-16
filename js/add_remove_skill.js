@@ -33,7 +33,7 @@ $(document).ready(function() {
 			success: function(result){
 				var notice = result.split("|+") ;
 				if(notice['0']=='Skill added succesfully!') {
-					$("#skills").val("");
+					$("#skills").val("0");
 					$("#insert").val("");
 					$("#appendskill").append(notice['1']) ;
 					$(".skillmodal").append(notice['1']) ;
@@ -78,7 +78,7 @@ $(document).ready(function() {
 				success: function(result){
 					var notice = result.split("|+") ;
 					if(notice['0']=='Profession added succesfully!') {
-						$("#Professions").val("");
+						$("#Professions").val("0");
 						$("#insertprofession").val("");
 						$("#appendprofession").append(notice['1']) ;
 						$(".professionmodal").append(notice['1']) ;

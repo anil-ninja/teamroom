@@ -103,14 +103,7 @@ $view = 1 ;
 		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
-<?php 
-			if (isset($_SESSION['user_id'])) { ?>
-  <script>
-	$(document).ready(function(){
-		projecttalk();
-	}); 
-</script>   
-<?php } ?>            
+<script src="date.js"></script>
 <script>
 	 hidepanel();
     $('#project_data').click(function(){
@@ -131,6 +124,8 @@ $view = 1 ;
 
 $("#project_chat_form").hide();
 $("#project_chat_data").hide();
+</script>
+<script>
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
@@ -215,8 +210,15 @@ $(".nav-btntab").bind("click", function(){
         <script type="text/javascript" charset="utf-8">
       	$(".text").show();
 		$(".editbox").hide();
-        </script>     
-<?php
+        </script>
+<?php 
+	if (isset($_SESSION['user_id'])) { ?>
+  <script>
+	$(document).ready(function(){
+		projecttalk();
+	}); 
+</script>   
+<?php } 
     include_once 'html_comp/login_signup_modal.php';
     include_once 'html_comp/insert_time.php';
 ?>
