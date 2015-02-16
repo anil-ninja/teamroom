@@ -2,25 +2,15 @@
 
 function dropDown_delete_comment_ch($deleteid, $user_ID, $owner_id) {
     echo  "<div class='dropdown pull-right'>
-                <a href='#' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'>
-                    <b class='caret'></b>
-                </a>
+                <a href='#' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><b class='caret'></b></a>
                 <ul class='dropdown-menu'>";
             if($owner_id == $user_ID) {
-                echo "<li>
-                        <a class='btn-link' href='#' onclick='delcomment(\"".$deleteid."\", 1);'><strong>
-                            Delete</strong>
-                        </a>
-                    </li>";
+                echo "<li><a class='btn-link' href='#' onclick='delcomment(\"".$deleteid."\", 1);'><strong>Delete</strong></a></li>";
             } 
             else {
-               echo "<li>
-                        <a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 6);'>
-                            Report Spam
-                        </a>
-                    </li>";
+               echo "<li><a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 6);'>Report Spam</a></li>";
             }
-                echo "</ul>
+        echo "</ul>
         </div>";
 }
 function dropDown_delete_comment_pr($deleteid, $user_ID, $owner_id) {
@@ -28,20 +18,12 @@ function dropDown_delete_comment_pr($deleteid, $user_ID, $owner_id) {
             <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
             <ul class='dropdown-menu'>";
             if($owner_id == $user_ID) {
-                echo "<li>
-                        <a class='btn-link' href='#' onclick='delcomment(\"".$deleteid."\", 2);'>
-                            Delete
-                        </a>
-                    </li>";
+                echo "<li><a class='btn-link' href='#' onclick='delcomment(\"".$deleteid."\", 2);'>Delete</a></li>";
             }
             else {
-               echo "<li>
-                        <a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 8);'>
-                            Report Spam
-                        </a>
-                    </li>";
+               echo "<li><a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 8);'>Report Spam</a></li>";
             }
-                echo "</ul>
+      cho "</ul>
         </div>";
 }
 function dropDown_delete_comment_pr_ch($deleteid, $user_ID, $owner_id) {
@@ -49,20 +31,12 @@ function dropDown_delete_comment_pr_ch($deleteid, $user_ID, $owner_id) {
             <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
             <ul class='dropdown-menu'>";
             if($owner_id == $user_ID) {
-                echo "<li>
-                        <a class='btn-link' href='#' onclick='delcomment(\"".$deleteid."\", 1);'>
-                            Delete
-                        </a>
-                    </li>";
+                echo "<li><a class='btn-link' href='#' onclick='delcomment(\"".$deleteid."\", 1);'>Delete</a></li>";
             }
             else {
-               echo "<li>
-                        <a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 10);'>
-                            Report Spam
-                        </a>
-                    </li>";
+               echo "<li><a class='btn-link' href='#' onclick='spem(\"".$deleteid."\", 10);'>Report Spam</a></li>";
             }
-                echo "</ul>
+     echo "</ul>
         </div>";
 }
 function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
@@ -70,16 +44,8 @@ function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $
                 <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
                 <ul class='dropdown-menu'>";
                     if($owner_id == $user_ID) {
-                        echo "<li>
-                                <a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 1)'>
-                                    Edit
-                                </a>
-                            </li>
-                            <li>
-                                <a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>
-                                    Delete
-                                </a>
-                            </li>";                    
+                        echo "<li><a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 1)'>Edit</a></li>
+                            <li><a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</a></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
                                     <form method='POST' class='inline-form'>
@@ -90,13 +56,9 @@ function dropDown_challenge($challenge_ID, $user_ID, $remaining_time_ETA_over, $
                         } */                                   
                      }
                     else {
-                       echo "<li>
-                                <a class='btn-link' href='#' onclick='spem(\"".$challenge_ID."\", 5);'>
-                                    Report Spam
-                                </a>
-                            </li>";
+                       echo "<li><a class='btn-link' href='#' onclick='spem(\"".$challenge_ID."\", 5);'>Report Spam</a></li>";
                     } 
-               echo "</ul>
+           echo "</ul>
               </div>";
 }
 function dropDown_link($challenge_ID, $user_ID, $remaining_time_ETA_over, $owner_id) {
@@ -130,16 +92,8 @@ function dropDown_challenge_pr($challenge_ID, $user_ID, $remaining_time_ETA_over
                 <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
                 <ul class='dropdown-menu'>";
                     if($owner_id == $user_ID) {
-                        echo "<li>
-                                <a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 2)'>
-                                    Edit
-                                </a>
-                            </li>
-                            <li>
-                                <a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>
-                                    Delete
-                                </a>
-                            </li>";                    
+                        echo "<li>a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 2)'>Edit</a></li>
+                            <li><a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</a></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>
                                     <form method='POST' class='inline-form'>
@@ -150,13 +104,9 @@ function dropDown_challenge_pr($challenge_ID, $user_ID, $remaining_time_ETA_over
                         } */                                   
                      }
                     else {
-                       echo "<li>
-                                <a class='btn-link' href='#' onclick='spem(\"".$challenge_ID."\", 9);'>
-                                    Report Spam
-                                </a>
-                            </li>";
+                       echo "<li><a class='btn-link' href='#' onclick='spem(\"".$challenge_ID."\", 9);'>Report Spam</a></li>";
                     } 
-               echo "</ul>
+         echo "</ul>
               </div>";
 }
 
@@ -165,16 +115,8 @@ function dropDown_delete_after_accept($challenge_ID, $user_ID, $owner_id) {
         echo "<div class='dropdown pull-right'>
                 <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
                 <ul class='dropdown-menu'>
-                    <li>
-                        <a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 1)'>
-                            Edit
-                        </a>
-                    </li>
-                    <li>
-                        <a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>
-                            Delete
-                        </a>
-                    </li>
+                    <li><a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 1)'>Edit</a></li>
+                    <li><a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</a></li>
                 </ul>
             </div>";                    
     }
@@ -311,22 +253,6 @@ function showLinks($stmt){
 		$Stmtreturn .= $element . " <br/> ";
 	}
 	return $Stmtreturn ;
-}
-function removescript($stmt){
-	$stmtArray = explode(" ", $stmt);
-	$returnStmt = "";
-	foreach($stmtArray as $element){
-		
-		if(substr($element, 0, 4) == "<scr"){
-			$element = "<code>";
-		}
-		else if (substr($element, 0, 4) == "</sc") {
-			$element = "</code>";
-		}
-		
-		$returnStmt .= $element . " ";
-	}
-	return $returnStmt;
 }
 function editchallenge($stmt, $ch_id) {
 	$data = "" ;
