@@ -21,6 +21,9 @@ function nospaces(t){
 		t.value=t.value.replace(/\s/g,'');
 	}
 }
+function trim(s){
+	return s.replace(/^\s+|\s+$/, '');
+}
 function checkForm() {
 	if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
 		return true;

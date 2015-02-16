@@ -224,7 +224,7 @@ if ($_POST['chal']) {
 		$show = $show . $get_display_tilte."<span class='icon-film'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
 		$get_display_ch_stmt_content = "" ;
     } 
-    if ($ctype == 8) {
+    if ($ctype == 10) {
         $show = $show . "<div class='list-group film'>
 				<div class='list-group-item'> ";
                                    
