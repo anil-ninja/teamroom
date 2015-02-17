@@ -1,9 +1,23 @@
 function url_domain(data) {
   var    a      = document.createElement('a');
          a.href = data;
+  //console.log(a);
   return a.hostname;
 }
-    jQuery.ajax=function(e){function o(e){return!r.test(e)&&/:\/\//.test(e)}var t=location.protocol,n=location.hostname,r=RegExp(t+"//"+n),i="http"+(/^https/.test(t)?"s":"")+"://query.yahooapis.com/v1/public/yql?callback=?",s='select * from html where url="{URL}" and xpath="*"';return function(t){var n=t.url;if(/get/i.test(t.type)&&!/json/i.test(t.dataType)&&o(n)){t.url=i;t.dataType="json";t.data={q:s.replace("{URL}",n+(t.data?(/\?/.test(n)?"&":"?")+jQuery.param(t.data):"")),format:"xml"};if(!t.success&&t.complete){t.success=t.complete;delete t.complete}t.success=function(e){return function(t){if(e){e.call(this,{responseText:(t.results[0]||"").replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi,"")},"success")}}}(t.success)}return e.apply(this,arguments)}}(jQuery.ajax);
+
+jQuery.ajax=function(e){function o(e){return!r.test(e)&&/:\/\//.test(e)}var t=location.protocol,n=location.hostname,r=RegExp(t+"//"+n),i="http"+(/^https/.test(t)?"s":"")+"://query.yahooapis.com/v1/public/yql?callback=?",s='select * from html where url="{URL}" and xpath="*"';return function(t){var n=t.url;if(/get/i.test(t.type)&&!/json/i.test(t.dataType)&&o(n)){t.url=i;t.dataType="json";t.data={q:s.replace("{URL}",n+(t.data?(/\?/.test(n)?"&":"?")+jQuery.param(t.data):"")),format:"xml"};if(!t.success&&t.complete){t.success=t.complete;delete t.complete}t.success=function(e){return function(t){if(e){e.call(this,{responseText:(t.results[0]||"").replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi,"")},"success")}}}(t.success)}return e.apply(this,arguments)}}(jQuery.ajax);
+
+function getImageMeta(url){
+  var img = new Image();
+  img.src = url;
+  return  {w:img.width, h:img.height};
+  
+  //console.log(url);	
+  //$("<img/>").attr("src", url).load(function(){
+    // return  {w:this.width, h:this.height};
+     //alert(s.w+' '+s.h);      
+ // }); 
+}
 
 function getUrlData(url_get){
 	var url_data = {};
@@ -94,12 +108,37 @@ function getUrlData(url_get){
 			}
 
 		}
+		
+		url_data.domain = convertSpecialChar(url_domain(url_get));
+		
 		if (metaImg == undefined){
 		
 			imgs = div.getElementsByTagName("img");
-			for (var i=0, n=imgs.length;i<n;i++) 
-			allImg = '<img src="'+imgs[i].src+'" width="60%">';
-			metaImg = imgs[0].src;
+			var maxResolution = 0, resolution = {}, targetImg = 0;
+			for (var i=0, n=imgs.length;i<n;i++){ 
+				//allImg = '<img src="'+imgs[i].src+'" width="60%">';
+				//console.log('http://' + url_data.domain + '/' + imgs[i].src.split(url_data.domain)[1]);
+				uri = imgs[i].src;
+				if (uri.split('collap.com')[1] != undefined)
+					uri = 'http://' + url_data.domain + uri.split('collap.com')[1];
+				
+				if ( uri != undefined){
+					resolution = getImageMeta(uri);
+					console.log(resolution);
+					if (resolution != undefined){
+						resolutionProduct  = resolution.w*resolution.h;
+						if(maxResolution <  resolutionProduct ){
+						 maxResolution = resolutionProduct;
+						 targetImg = i;
+						}
+					}
+				}
+			}
+			metaImg = imgs[targetImg].src;
+			if (metaImg.split('collap.com')[1] != undefined)
+				metaImg = 'http://' + url_data.domain + uri.split('collap.com')[1];
+					
+			//metaImg = 'http://' + url_data.domain + '/' + imgs[targetImg].src.split('.com')[1];
 			  
 		}
     //console.log("Title:", title);
