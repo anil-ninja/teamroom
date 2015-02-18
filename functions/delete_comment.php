@@ -92,7 +92,7 @@ function dropDown_challenge_pr($challenge_ID, $user_ID, $remaining_time_ETA_over
                 <a href='#' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
                 <ul class='dropdown-menu'>";
                     if($owner_id == $user_ID) {
-                        echo "<li>a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 2)'>Edit</a></li>
+                        echo "<li><a class='btn-link' href='#' onclick='edit_content(\"".$challenge_ID."\", 2)'>Edit</a></li>
                             <li><a class='btn-link' href='#' onclick='delChallenge(\"".$challenge_ID."\", 3);'>Delete</a></li>";                    
                       /*  if($remaining_time_ETA_over == 'Time over') {        
                             echo "<li>

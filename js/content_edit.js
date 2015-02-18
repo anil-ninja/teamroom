@@ -88,7 +88,11 @@ function url_domain(data) {
 function getVedioId(str) {
     return str.split('v=')[1];
 }
-
+function replaceAll(find, replace, str) {
+	if(str == null)
+		str = "";
+	return str.replace(new RegExp(find, 'g'), replace);
+}
 function refineVedioId(str){
 	if(str.indexOf('&') === -1){
 		return str;

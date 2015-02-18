@@ -142,13 +142,14 @@ function convertSpecialChar(str){
 });	
             $('#example')
             .removeClass( 'display' )
-            .addClass('table table-striped table-bordered');
-            
-    function replaceAll(find, replace, str) {
-return str.replace(new RegExp(find, 'g'), replace);
-}
-	
+            .addClass('table table-striped table-bordered');	
 	});
+function replaceAll(find, replace, str) {
+	if(str == null){
+		str = "";
+	}
+	return str.replace(new RegExp(find, 'g'), replace);
+}
 function show_form(type, ID){
 	var dataString = 'form_type=' + type + '&project_id=' + ID ;
 	$.ajax({

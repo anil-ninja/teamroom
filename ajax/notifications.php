@@ -256,10 +256,10 @@ if ($_POST['notice']) {
 					$notice10 = mysqli_query($db_handle, " select * from challenges where challenge_id = '$search_id' and challenge_status != '3' and challenge_status != '7' ;") ;
 					$notice10row = mysqli_fetch_array($notice10) ;
 					$challenge_id9 = $notice10row['challenge_id'] ;
-					$likes = mysqli_query($db_handle, " select * from likes where challenge_id = $search_id' and user_id = '$creater' ;") ;
-					$likesrow = mysqli_fetch_array($likes) ;
-					$statusl = $likesrow['like_status'] ;
-					if ($statusl == '1'){
+					$likesstatus = mysqli_query($db_handle, " select * from likes where challenge_id = '$challenge_id9' and user_id = '$creater' ;") ;
+					$likesstatusrow = mysqli_fetch_array($likesstatus) ;
+					$statusl = $likesstatusrow['like_status'] ;
+					if ($statusl == 1){
 						$like = "Push" ;
 					}
 					else {

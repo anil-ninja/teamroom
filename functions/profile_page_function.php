@@ -195,7 +195,7 @@ function user_idea ($db_handle, $user_IDF) {
                     ".ucfirst($idea_firstname)." ".ucfirst($idea_lastname)."</a> | ".$idea_creation."</span>
                     <hr/><span id='challenge_".$idea_id."' class='text' style='font-size: 14px;'>".$idea_stmt."</span><br/>";
                 echo editchallenge($ideastmt, $idea_id) ;
-            echo "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $article_id) ;
+            echo "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $idea_id) ;
 			echo "<hr/><div class='row-fluid'><div class='col-md-5'>
                 <span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idea_id ."\", 1)'> <b>Push</b>
                             <input type='submit' class='btn-link' id='likes_".$idea_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;

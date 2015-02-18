@@ -15,7 +15,6 @@
 <!--<script src="js/bootstrap.js"></script>-->
 <script src="scripts/bootstrap.min.js"></script>
 <script src="js/bootbox.js"></script>
-<script src="js/bootswatch.js"></script>
 <script src="js/search.js" type="text/javascript"></script>
 <script src="jquery.simple-dtpicker.js"></script>
 <script src="js/chat.js"></script>
@@ -98,9 +97,6 @@
 
             });
 
-            $("a[data-toggle='popover']").popover({
-                trigger:"hover",html:true,placement:"top"
-            });
         });
         
 //textarea autogrow script starts here
@@ -229,6 +225,9 @@ function validateSignupFormOnSubmit() {
 	else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
 }
 function replaceAll(find, replace, str) {
+	if(str == null) {
+		str = "";
+	}
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 

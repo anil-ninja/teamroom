@@ -58,20 +58,20 @@ function requestaccept(ID) {
 }
 function requestdelete(ID) {
 	bootbox.confirm("Delete Request !!!", function(result) {
-	if(result){
-		var dataString = 'id=' + ID + '&case=8';
-		$.ajax({
-			type: "POST",
-			url: "ajax/knownperson.php",
-			data: dataString,
-			cache: false,
-			success: function(result){
-				if(result=='Request Deleted succesfully!'){
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+		if(result){
+			var dataString = 'id=' + ID + '&case=8';
+			$.ajax({
+				type: "POST",
+				url: "ajax/knownperson.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Request Deleted succesfully!'){
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
-						}
+					}
 				}
 			});
 		}
@@ -393,6 +393,9 @@ function dislike(Id, type) {
 	});
 }
 function replaceAll(find, replace, str) {
+	if(str == null) {
+		str = "";
+	}
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 function set_remind() {
