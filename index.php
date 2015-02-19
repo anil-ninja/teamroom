@@ -10,7 +10,11 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     include_once 'functions/collapMail.php';
     $email_req = $_POST['email_forget_password'];
     if($email_req == "" || preg_replace("/\s+/", "", $email_req) == "") {
-		header('location: #');
+		header('Location: #');
+		return false;
+	}
+	elseif  (! preg_match("/^[^@]+@[^@.]+\.[^@]*\w\w$/", $email_req)){
+		header('Location: #');
 		return false;
 	}
 	else {

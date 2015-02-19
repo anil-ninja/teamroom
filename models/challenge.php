@@ -53,6 +53,29 @@ class challenge{
             
             return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "",str_replace("<an>", "+", substr($this->stmt,strlen($arrayStmt[0])+4,255))))));
         }
+        if (substr($this->stmt, 0, 4) == "<spa") {
+            $arrayStmt = explode('" />', $this->stmt);
+            $arraySt = explode("..", $arrayStmt['1']);
+            return str_replace(
+						"<s>", "&nbsp;",
+						str_replace(
+									"<r>", 
+									"'",
+									str_replace(
+											"<a>", 
+											"&",
+											str_replace(
+													"<br/>", 
+													"",
+													str_replace(
+																"<an>", 
+																"+", 
+																$arraySt[0]
+														)
+														)
+												)
+										));
+        }
         if (substr($this->stmt, 0, 4) == "<ifr") {
             $arrayStmt = explode("</iframe>", $this->stmt);
             $this->video = 1;
