@@ -23,11 +23,11 @@
         <meta name="p:domain_verify" content="c336f4706953c5ce54aa851d2d3da4b5"/>
         <?php
 			if($obj->video == 0) {
-				echo "<meta property=\"og:image\" content='".$obj->url."' />" ;
+				echo "<meta property=\"og:image\" content='".$obj->url."' />\n" ;
 			}	
 			else{
-				echo "<meta property=\"og:image\" content=\"http://img.youtube.com/vi/".str_replace(' ', '',explode("/embed/", $obj->url)[1])."/hqdefault.jpg\" />" ;
-				echo "<meta property=\"og:video\" content=\"http://www.youtube.com/v/".explode("/embed/", $obj->url)[1]."\" />" ;
+				echo "<meta property=\"og:image\" content=\"http://img.youtube.com/vi/".str_replace(' ', '',explode("/embed/", $obj->url)[1])."/hqdefault.jpg\" />\n" ;
+				echo "<meta property=\"og:video\" content=\"http://www.youtube.com/v/".explode("/embed/", $obj->url)[1]."\" />\n" ;
             }
         ?>
         <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
