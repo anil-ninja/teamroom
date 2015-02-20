@@ -18,7 +18,7 @@ $(document).ready(function() {
 
 function validateLoginFormOnSubmit() {
     var reason = "";
-    var username = $("#username").val() ;
+    var username = replaceAll('.', '', $("#username").val()) ;
     var password = $("#passwordlogin").val() ;
     var dataString = 'username='+ username + '&password='+ password + '&request=login' ;
     // AJAX Code To Submit Form.
