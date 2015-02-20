@@ -600,7 +600,7 @@ $(".nav-btntab").bind("click", function(){
                 success: function(result){
                     $('#next_CP').append(result);
                     onLoaddata();
-                    }
+                }
             });	
         }
     });

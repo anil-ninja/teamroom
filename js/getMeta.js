@@ -27,7 +27,7 @@ function getUrlData(url_get){
 		async: false
 	}).done(function (response) {
 		var div = document.createElement("div"),
-			responseText = response.results[0],
+			responseText = response.results,
 			title, metas, meta, name, description, metaImg, property, i, author;
 		//console.log(response.results[0]);
 		div.innerHTML = responseText;
