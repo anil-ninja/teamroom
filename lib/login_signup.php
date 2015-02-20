@@ -90,7 +90,7 @@ function login(){
 	//echo $password ;
 	$response = mysqli_query($db_handle,"select * from user_info where (username = '$username' OR email = '$username') AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
-	if ( $num_rows){
+	if ( $num_rows > 0){
 		$responseRow = mysqli_fetch_array($response);
 		$id = $responseRow['user_id'];
 		$rank = $responseRow['rank'];

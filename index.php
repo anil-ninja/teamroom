@@ -503,7 +503,7 @@ function validateSignupForm() {
 	var lastname = $("#lastname").val() ;
 	var email = $("#email").val() ;
 	//var phone = $("#phone").val() ;
-	var username = replaceAll('.', '', $("#usernameR").val()) ;
+	var username = replaceAll('[.]', '', $("#usernameR").val()) ;
 	var password = $("#passwordR").val() ;
 	var password2 = $("#password2R").val() ;
     var term_n_cond = document.getElementById("agree_tc").checked;
