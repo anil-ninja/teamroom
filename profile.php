@@ -545,20 +545,20 @@ if(width < 800) {
 $(function() {
 	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
 
-function toggleDivs() {
-    var $inner = $("#navtab");
-    if ($inner.css("margin-left") == "-170px") {
-        $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
-    }
-    else {
-        $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
-    }
-}
-$(".nav-btntab").bind("click", function(){
-    toggleDivs();
-});
+	function toggleDivs() {
+		var $inner = $("#navtab");
+		if ($inner.css("margin-left") == "-170px") {
+			$inner.animate({'margin-left': '0'});
+			$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
+		}
+		else {
+			$inner.animate({'margin-left': "-170px"}); 
+			$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
+		}
+	}
+	$(".nav-btntab").bind("click", function(){
+		toggleDivs();
+	});
 
 });
 </script>          

@@ -71,7 +71,7 @@ $('#challange').on('keyup', function(){
 });
 </script>
 <script>
-(function() {
+$(function() {
 	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
 
 function toggleDivs() {

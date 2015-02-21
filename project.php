@@ -168,7 +168,7 @@ if(width < 800) {
 } ;
 </script>
 <script>
-(function() {
+$(function() {
 	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
 
 function toggleDivs() {
