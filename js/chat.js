@@ -201,7 +201,7 @@ function projecttalk() {
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
-	setInterval(function(){ getnewtalk(); },3000);
+	setInterval(function(){ getnewtalk(); },5000);
 };	
 function toggle() {
 	$("#project_chat_form").toggle();
