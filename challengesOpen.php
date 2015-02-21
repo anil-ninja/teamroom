@@ -87,7 +87,7 @@
 	   $usersSkills = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE 
 											a.user_id = '$challengeSearch_user_ID' AND a.skill_id = b.skill_id ;");
 	   while($usersSkillsRow = mysqli_fetch_array($usersSkills)) {
-		  $usersSkillname = $usersSkillsRow['skill_name'] ;
+		  $usersSkillname = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersSkillsRow['skill_name'])))) ;
 		  $usersSkillid = $usersSkillsRow['skill_id'] ;
 			$data .= "<span class='btn-success'>
 						<a href='ninjaSkills.php?skill_id=".$usersSkillid."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$usersSkillname."</a>&nbsp
@@ -98,14 +98,14 @@
 	   if (mysqli_num_rows($usersAbout) != 0) {
 		echo "</div>
 			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
-					<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['organisation_name']."&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['living_town']."
+					<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['organisation_name']))))."&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['living_town']))))."
 			</div><br/>
 			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
 				<i class='icon-screenshot'></i>Skills &nbsp;: &nbsp; ".$data."
 			</div><br/>
 			<div class='row-fluid' style ='text-align:justify;font-size: 14px;word-wrap: break-word;'>
-				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user']."
+				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['about_user']))))."
 			</div>" ;
 		}
 		else {
@@ -206,7 +206,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
 							$ProjectPicLink =explode("\"",$ProjectPic)['1'] ; 				
 							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280, 2)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
-							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
+							$ProjectStmt = $ProjectPic2." ".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $ProjectLink)))) ;
 						}
 						else {
 							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_user_stmt)))) ;

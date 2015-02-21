@@ -52,7 +52,7 @@ if ($_POST['team']) {
 
         $data_display = $data_display. "
                             <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
-                                <a class='btn-link' onclick='loadteampanel(\"".$pro_id."\",\"".$list_of_teams."\")'>"
+                                <a class='btn-link' onclick='loadteampanel(\"".$pro_id."\",\"".$list_of_teams."\")' style='font-size: 12pt;'>"
                                     .ucfirst($list_of_teams)."
                                 </a>
                             </div>";
@@ -61,6 +61,7 @@ if ($_POST['team']) {
                         </div>
                     </div>
                     <div class='list-group-item'>
+						<p style='color :#3B5998;' class='color strong'> Team Members </p>
                         <div class='row-fluid team-member'>";
 
     while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
