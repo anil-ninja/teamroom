@@ -1,6 +1,7 @@
 <?php 
 include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
+include_once '../functions/sharepage.php';
 include_once '../lib/db_connect.php';
 session_start();
 $pro_id = $_GET['project_id'];
@@ -8,31 +9,30 @@ $user_id = $_SESSION['user_id'] ;
 $username = $_SESSION['username'] ;
 $projectData = mysqli_query($db_handle, "SELECT * FROM projects WHERE project_id = '$pro_id' ;");
 $projectDataRow = mysqli_fetch_array($projectData) ;
-$projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $projectDataRow['project_title']))) ;
- if (isset($_SESSION['user_id'])) {
+$projectttitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $projectDataRow['project_title'])))) ;
+$owner_id = $projectDataRow['user_id'] ;
+$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
     ?>
     <div class='list-group'>
         <div id='demo1' class='list-group-item'>
           <i class="icon-pencil"></i><span onclick='show_form(1, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Challenge</span>
-            | 
+            | <?php if($owner_id == $user_id) { ?>
           <i class="icon-pushpin"></i><span onclick='show_form(2, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Assign Task</span>
-            | 
+            | <?php } ?>
           <i class="icon-leaf"></i><span onclick='show_form(5, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Notes</span>
-            | 
+            | <?php /* if(mysqli_num_rows($member_project) != 0) { ?>
           <i class="icon-hdd"></i><span onclick='show_form_pro(6, "<?php echo ucfirst($projectttitle) ; ?>", "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Manage Files</span>
-            | 
+            | <?php }  */?>
           <i class="icon-film"></i><span onclick='show_form(4, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Videos</span>
            | 
           <i class="icon-asterisk"></i><span onclick='show_form(13, "<?php echo $pro_id ; ?>")' style="cursor: pointer; color:#000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Issues</span>
-        </div>
-        <div class='list-group-item'>
+		   | 
+          <i class="icon-share"></i><span onclick='show_form(14,"<?php echo $pro_id ; ?>")' style="cursor: pointer;color: #000;font-family: Tenali Ramakrishna, sans-serif;font-size:20px;"> Share Links</span>
+        <hr/>
 			<div id='selecttext' ><p style="color: grey;">Please Select Post Type From Above ......</p></div> 
-			<div id='invitation'></div>
+			<div id='invitation' style='min-height:30px;'></div>
 		</div>           
     </div>
-    <?php
-	}
-?>
 <div class="panel-primary eye_open" id="prch">
     <p id='home-ch'></p>
     <div class='newPosts' ></div>
@@ -52,15 +52,15 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     $username_task = $tasksrow['username'];
     $id_task = $tasksrow['challenge_id'];
     $id_create = $tasksrow['user_id'];
-    $title_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['challenge_title']))));
-    $tasktitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['challenge_title'])));
+    $title_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title'])))));
+    $tasktitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title']))));
     $type_task = $tasksrow['challenge_type'];
     $status_task = $tasksrow['challenge_status'];
     $eta_task = $tasksrow['challenge_ETA'];
     $creation_task = $tasksrow['creation_time'];
     $timetask = date("j F, g:i a", strtotime($creation_task));
-    $stmt_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt']))));
-    $taskstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $tasksrow['stmt'])));
+    $stmt_task = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt'])))));
+    $taskstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt']))));
     $fname_task = $tasksrow['first_name'];
     $lname_task = $tasksrow['last_name'];
     $tasketa = eta($eta_task);
@@ -105,15 +105,11 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                               </span>
                               <input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$id_task."' value='".$tasktitle."'/><br/>";
         
-        $dispaly_fname_likes ="<span style= 'color: #808080'>
-                &nbspBy: <a style= 'color: #808080' href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp; |
-                 ".$timetask." | </span><span class='icon-hand-up' style='cursor: pointer;color: #808080' onclick='like(\"".$id_task ."\", 3)'>
-                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;color: #808080' onclick='dislike(\"".$id_task ."\", 4)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
+        $dispaly_fname_likes ="&nbsp; <span style= 'color: #808080;'>By : <a style= 'color: #808080' href ='profile.php?username=" . $username_task . "'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp; |
+                 ".$timetask."</span>";
         // list grp item stmt content for all type chall/article/idea/photo/video
         $display_task_stmt_content .= "<hr/>
-                        <span id='challenge_".$id_task."' class='text' style='line-height:22px;font-size: 14px;'>".$stmt_task."</span><br/>";
+                        <span id='challenge_".$id_task."' class='text' style='line-height:22px;font-size: 14px;'>".$stmt_task."</span>";
         $display_task_stmt_content = $display_task_stmt_content. editchallenge($taskstmt, $id_task) ;
     
     if ($type_task == 5) {
@@ -129,13 +125,9 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             }
             
             echo $display_tilte_task."<span class='icon-pushpin'></span><span style= 'color: #808080'>
-                &nbspBy: <a href ='profile.php?username=" . $username_task . "' style= 'color: #808080'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>&nbsp
-                     | Assigned To:&nbsp <a href ='profile.php?username=".$ownname."'>"
-                .ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct." |  </span> 
-                    <span class='icon-hand-up' style='cursor: pointer;color: #808080' onclick='like(\"".$id_task ."\", 3)'>
-                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;color: #808080' onclick='dislike(\"".$id_task ."\", 4)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span>";
+                &nbsp; By: <a href ='profile.php?username=" . $username_task . "' style= 'color: #808080'>".ucfirst($fname_task)." ".ucfirst($lname_task)."</a>
+                  | Assigned To:&nbsp <a href ='profile.php?username=".$ownname."'>"
+                .ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct."</span>";
              
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
@@ -149,7 +141,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             }
             //	. "<br/> ETA Given:" .$etaown."
             echo $display_tilte_task."<span class='icon-pushpin'></span>".$dispaly_fname_likes.
-            "<hr>Assigned To: <span class='color strong' style= 'color: #808080'>" . ucfirst($ownfname)." ".ucfirst($ownlname)."</a>
+            "<hr><span style= 'color: #808080'>Assigned To: " . ucfirst($ownfname)." ".ucfirst($ownlname)."</a>
                 | Submitted On: ".$timecom."</span>";
             // . " ETA Taken : " . $timetaken . "
             
@@ -161,7 +153,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                     <div class='list-group-item'>";
             echo "<span class='color strong pull-right' style= 'color: #808080'>Closed</span>";
             echo $display_tilte_task."<span class='icon-flag'></span>".$dispaly_fname_likes.
-                "<hr>Assigned To: <span class='color strong' style= 'color: #808080'>"
+                "<hr><span style= 'color: #808080'>Assigned To: "
                     .ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | Submitted: " . $timecom."</span>";
             echo $display_task_stmt_content;
             $display_task_stmt_content = "" ;
@@ -188,6 +180,17 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
            dropDown_challenge_pr($id_task, $user_id, $remaintimeown, $id_create) ;
         }
          echo $display_tilte_task."<i class='icon-leaf'></i>".$dispaly_fname_likes;
+         echo $display_task_stmt_content;
+         $display_task_stmt_content = "" ;
+        
+    }
+    if ($type_task == 10) {
+        echo "<div class='list-group deciduous'>
+                    <div class='list-group-item'>";
+        if (isset($_SESSION['user_id'])) {
+           dropDown_link_pr($id_task, $user_id, $remaintimeown, $id_create) ;
+        }
+         echo $display_tilte_task."<i class='icon-globe'></i>".$dispaly_fname_likes;
          echo $display_task_stmt_content;
          $display_task_stmt_content = "" ;
         
@@ -228,7 +231,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                 }
             }
             echo $display_tilte_task."<i class='icon-question-sign'></i>".$dispaly_fname_likes;
-            echo "<hr>Owned By: <span class='color strong' style= 'color: #808080'><a href ='profile.php?username=".$ownname."' style= 'color: #808080'>"
+            echo "<hr><span style= 'color: #808080'>Owned By: <a href ='profile.php?username=".$ownname."' style= 'color: #808080'>"
             .ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | ".$timefunct."</span>";
             //. "<br>ETA Taken: ". $etaown." <br/> Time Remaining : " . $remaintimeown . "
             echo $display_task_stmt_content;
@@ -242,7 +245,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                dropDown_delete_after_accept_pr($id_task, $user_id, $id_create) ;
             }          
             echo $display_tilte_task."<span class='icon-question-sign'></span>".$dispaly_fname_likes."
-            <hr>Owned By: <span class='color strong' style= 'color: #808080'><a href ='profile.php?username=" . $ownname . "' style= 'color: #808080'>"
+            <hr><span style= 'color: #808080'>Owned By: <a href ='profile.php?username=" . $ownname . "' style= 'color: #808080'>"
             . ucfirst($ownfname) . '&nbsp' . ucfirst($ownlname) . " </a> | Submitted: ".$timecom."</span>";
             //. "<br>    ETA Taken: " . $timetaken . "
             echo $display_task_stmt_content;
@@ -257,7 +260,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
             }        
             //. "<br/>ETA Given: " . $etaown."
             echo $display_tilte_task."<span class='icon-flag'></span>".$dispaly_fname_likes."
-                <hr>Owned By: <span class='color strong' style= 'color: #808080'><a href ='profile.php?username=" . $ownname . "' style= 'color: #808080'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> 
+                <hr><span style= 'color: #808080'>Owned By: <a href ='profile.php?username=" . $ownname . "' style= 'color: #808080'>" . ucfirst($ownfname) . " " . ucfirst($ownlname) . "</a> 
                      | Submitted On: " . $timecom."</span>";
             //. "<br>ETA Taken: ".$timetaken."
             echo $display_task_stmt_content;
@@ -275,11 +278,16 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
                                             UNION
                                             (select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$id_task' and a.status = '2' and a.blob_id = b.blob_id);");
         $answerrow = mysqli_fetch_array($answer);
-        echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
+        echo "<span class='color strong' style= 'font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-        . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/><br/>";
+        . showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt']))))) . "<br/>";
     }
-
+    echo "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $id_task) ;
+    echo "<hr/><div class='row-fluid'><div class='col-md-5'>
+		<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 3)'> <b>Push</b>
+            <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+          <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 4)'> <b>Pull</b>
+           <input type='submit' class='btn-link' id='dislikes_".$id_task ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>";
     $displaya = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.challenge_id, a.response_ch_id, a.user_id, a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
 										JOIN user_info as b WHERE a.challenge_id = '$id_task' AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
 										 UNION
@@ -291,7 +299,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
         $username_commenter = $displayrowb['username'];
         $idc = $displayrowb['response_ch_id'];
         $idd = $displayrowb['user_id'];
-        $chalangeres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowb['stmt']))));
+        $chalangeres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $displayrowb['stmt'])))));
         echo "
 		<div id='commentscontainer'>
 			<div class='comments clearfix' id='comment_".$idc."'>

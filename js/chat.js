@@ -2,27 +2,28 @@ function getnewtalk() {
 	var uid = parseInt($("#lastprchatid").val()) ;
 	var ID = $("#ProjectIDValue").val() ;
 	var dataString = 'talks='+ uid  + '&project_id=' + ID ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/protalk.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					//alert(result) ;
-					var notice = result.split("+") ;
-					var neid = parseInt(notice['1']) ;
-					//alert(neid) ;
-					$('.newtalkspr').append(notice['0']);
-					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					if (neid+='' != 0) {
-							$("#lastprchatid").val(neid+='') ;
-						}
-				}
-			});
+	$.ajax({
+		type: "POST",
+		url: "ajax/protalk.php",
+		async: false ,
+		data: dataString,
+		cache: false,
+		success: function(result){
+			//alert(result) ;
+			var notice = result.split("|+") ;
+			var neid = parseInt(notice['1']) ;
+			//alert(neid) ;
+			$('.newtalkspr').append(notice['0']);
+			//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+			if (neid+='' != 0) {
+				$("#lastprchatid").val(neid+='') ;
+			}
+		}
+	});
 }
 function convertSpecialChar(str){
-		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-	}
+	return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}
 $("#changeremindervalue").click(function(){
 	//$("#create_video").attr('disabled','disabled');
 	var reminder = convertSpecialChar($("#newremindervalue").val()) ;
@@ -43,7 +44,7 @@ $("#changeremindervalue").click(function(){
 			return false ;
 		}
 		else {
-			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=1' ;
+			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',reminder))))) + '&case=1' ;
 		}
 	}
 	else {
@@ -57,12 +58,13 @@ $("#changeremindervalue").click(function(){
 			var dataString = 'value='+ value + '&case=4' + '&user='+ newuserid ;
 		}
 		else {
-			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/> ',replaceAll("'",'<r>',replaceAll('&','<a>',reminder)))) + '&case=7' + '&user='+ newuserid ;
+			var dataString = 'value='+ value + '&date='+ date + '&reminder='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',reminder))))) + '&case=7' + '&user='+ newuserid ;
 		}
 	}
 	$.ajax({
 		type: "POST",
 		url: "ajax/change_reminder.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
@@ -109,6 +111,7 @@ function Subscribe(){
 		$.ajax({
 			type: "POST",
 			url: "ajax/subscribe.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -136,10 +139,11 @@ function getallreminders() {
 			$.ajax({
 				type: "POST",
 				url: "ajax/reminders.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
-					var notice = result.split("+") ;
+					var notice = result.split("|+") ;
 					var neid = parseInt(notice['1']) ;
 					document.getElementById("allreminders").innerHTML = notice['0'];
 					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
@@ -151,7 +155,7 @@ function getallreminders() {
 
 function submittalk(event,chatboxtextarea) {
 	if(event.keyCode == 13 && event.shiftKey == 0)  {
-		message = $(chatboxtextarea).val();
+		message = convertSpecialChar($(chatboxtextarea).val());
 		$(chatboxtextarea).val('');
 		$(chatboxtextarea).focus();
 	if(replaceAll('\\s', '',message)==''){
@@ -160,10 +164,11 @@ function submittalk(event,chatboxtextarea) {
 	}
 	 else {
 		 var ID = $("#ProjectIDValue").val() ;
-		var dataString = 'talk='+ message + '&project_id=' + ID ;
+		var dataString = 'talk='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',message))))) + '&project_id=' + ID ;
 		$.ajax({
 			type: "POST",
 			url: "ajax/project_talks.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
@@ -184,10 +189,11 @@ function projecttalk() {
 	$.ajax({
 		type: "POST",
 		url: "ajax/project_talk.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
-			var notice = result.split("+") ;
+			var notice = result.split("|+") ;
 			var neid = parseInt(notice['2']) ;
 			document.getElementById("newtalks").innerHTML = notice['0'];
 			document.getElementById("showtalkingform").innerHTML = notice['1'];
@@ -195,7 +201,7 @@ function projecttalk() {
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
-	setInterval(function(){ getnewtalk() },3000)();
+	setInterval(function(){ getnewtalk(); },3000);
 };	
 function toggle() {
 	$("#project_chat_form").toggle();

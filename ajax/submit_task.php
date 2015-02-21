@@ -3,6 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/collapMail.php';
 include_once '../functions/delete_comment.php';
+include_once '../functions/sharepage.php';
 include_once '../functions/image_resize.php';
 if($_POST['taskdetails']){
 	$user_id = $_SESSION['user_id'];
@@ -35,19 +36,11 @@ if($_POST['taskdetails']){
 		$mail = $inforow['username'];
 		$userFirstName = $inforow['first_name'] ;
 		$userLastName = $inforow['last_name'] ;
-		$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+		$body2 = "<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new task has been asgined to you in a project you are involved in.</p>
 <p>".ucfirst($username)." has assigned a new task ".$title." in project ".ucfirst($titlepro)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-		collapMail($mailto, "Task assigned IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
-		events($db_handle,$user_id,"12",$owner) ;	
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
+		collapMail($mailto, "Task assigned IN Project", $body2);
 		if (strlen($details) < 1000) {
 			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
                                     VALUES ('$user_id', '$pro_id', '$title', '$details', '1', '$challange_eta', '5', '2', '$time') ; ") ;
@@ -62,6 +55,8 @@ if($_POST['taskdetails']){
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
 		}
+		events($db_handle,$user_id,"4",$owner) ;
+		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	}
 	else if ($email != "") {
 		$owners = mysqli_query($db_handle,"select * from user_info where email = '$email' ;") ;
@@ -71,19 +66,11 @@ if($_POST['taskdetails']){
 		$mail = $ownersrow['username'] ;
 		$userFirstName = $ownersrow['first_name'] ;
 		$userLastName = $ownersrow['last_name'] ;
-		$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+		$body2 = "<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new task has been asgined to you in a project you are involved in.</p>
 <p>".ucfirst($username)." has assigned a new Task ".$title." in project ".ucfirst($titlepro)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-		collapMail($mailto, "Task assigned IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
-		events($db_handle,$user_id,"12",$owner) ;
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
+		collapMail($mailto, "Task assigned IN Project", $body2);
 		$insert =  mysqli_query($db_handle,"select user_id from teams where project_id = '$pro_id' and user_id = '$owner' ;") ;
 		if (mysqli_num_rows($insert) == 0){
 			mysqli_query($db_handle, "INSERT INTO teams (user_id, project_id, team_name) VALUES ('$owner', '$pro_id', 'defaultteam') ;" ) ; 
@@ -102,37 +89,15 @@ if($_POST['taskdetails']){
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
 		}
+		events($db_handle,$user_id,"4",$owner) ;
+		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	}
 	else {		
 		if (strlen($details) < 1000) {
 			mysqli_query($db_handle,"INSERT INTO challenges (user_id, project_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, challenge_status, last_update) 
                                     VALUES ('$user_id', '$pro_id', '$title', '$details', '1', '$challange_eta', '5', '2', '$time') ; ") ;
 			$idp = mysqli_insert_id($db_handle);
-			mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$pro_id', '$team', '$idp');") ;
-			$owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
-			while ($ownersrow = mysqli_fetch_array($owners)) { 
-				$owner = $ownersrow['user_id'] ;
-				$info = mysqli_query($db_handle,"select * from user_info where user_id = '$owner';") ;
-				$inforow = mysqli_fetch_array($info);
-				$mailto = $inforow['email'];
-				$mail = $inforow['username'];
-				$userFirstName = $inforow['first_name'] ;
-				$userLastName = $inforow['last_name'] ;
-				$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
-<p>A new task has been asgined to you in a project you are involved in.</p>
-<p>".ucfirst($username)." has assigned a new task ".$title." in project ".ucfirst($titlepro)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-				collapMail($mailto, "Task assigned IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
-				events($db_handle,$user_id,"12",$owner) ;	
-				mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ; 
-			}                  
+			mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$pro_id', '$team', '$idp');") ;                  
 		}
 		else {
 			mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) VALUES (default, '$details');");
@@ -141,30 +106,25 @@ if($_POST['taskdetails']){
 									VALUES ('$user_id', '$pro_id', '$title', '$idb', '1', '$challange_eta', '5', '2', '$time');");
 			$idp = mysqli_insert_id($db_handle);
 			mysqli_query($db_handle," insert into team_tasks (project_id, team_name, challenge_id) VALUES ('$pro_id', '$team', '$idp');") ;
-			$owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
-			while ($ownersrow = mysqli_fetch_array($owners)) { 
-				$owner = $ownersrow['user_id'] ;
-				$info = mysqli_query($db_handle,"select * from user_info where user_id = '$owner';") ;
-				$inforow = mysqli_fetch_array($info);
-				$mailto = $inforow['email'];
-				$mail = $inforow['username'];
-				$userFirstName = $inforow['first_name'] ;
-				$userLastName = $inforow['last_name'] ;
-				$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+		}
+		$owners = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
+		while ($ownersrow = mysqli_fetch_array($owners)) { 
+			$owner = $ownersrow['user_id'] ;
+			$info = mysqli_query($db_handle,"select * from user_info where user_id = '$owner';") ;
+			$inforow = mysqli_fetch_array($info);
+			$mailto = $inforow['email'];
+			$mail = $inforow['username'];
+			$userFirstName = $inforow['first_name'] ;
+			$userLastName = $inforow['last_name'] ;
+			$body2 = "<h2>".ucfirst($titlepro)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new task has been asgined to you in a project you are involved in.</p>
 <p>".ucfirst($username)." has assigned a new task ".$title." in project ".ucfirst($titlepro)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-				collapMail($mailto, "Task assigned IN Project", $body2, file_get_contents('../html_comp/mailheader.php'));
-				mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
-			}
-		}	
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
+			collapMail($mailto, "Task assigned IN Project", $body2);
+			events($db_handle,$user_id,"4",$owner) ;
+			mysqli_query($db_handle," insert into challenge_ownership (user_id, challenge_id, comp_ch_ETA, status) VALUES ('$owner', '$idp', '$challange_eta', '1');") ;
+		}
+		mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;	
 	}
 	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idp' and like_status = '1' ;");
 	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
@@ -174,10 +134,10 @@ if($_POST['taskdetails']){
 	else { $dislikes = '' ; }
 	$data = "" ;
 	$timefunct = date("j F, g:i a") ;
-	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $details)))) ;
-	$titletask = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $title)))) ;
-	$newtitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $title))) ;
-	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $details))) ;
+	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $details))))) ;
+	$titletask = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $title))))) ;
+	$newtitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $title)))) ;
+	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $details)))) ;
 	if($team != "") {
 		$usersProjects = mysqli_query($db_handle,"select DISTINCT user_id from teams where project_id = '$pro_id' and team_name = '$team' and user_id != '$user_id' and member_status = '1' ;") ;
 		while ($usersProjectsRow = mysqli_fetch_array($usersProjects)) { 
@@ -197,18 +157,20 @@ if($_POST['taskdetails']){
 					</div>
 					<span style='font-family: Tenali Ramakrishna, sans-serif;' id='challenge_ti_".$idp."' class='text'><b>
 					<a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
-					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
+					</b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/><br/>
 					<span class='icon-pushpin'></span><span style= 'color: #808080;'>
                 &nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a>&nbsp;
                      | Assigned To:&nbsp <a href ='profile.php?username=".$usersName."' style= 'color: #808080;'>"
-                .ucfirst($usersFirstName)."</a> | ".$timefunct." | </span>
-                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$idp ."\", 3)'>
-                         <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$idp ."\", 4)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span>
+                .ucfirst($usersFirstName)."</a> | ".$timefunct."</span>
                     <hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
             $data = $data .editchallenge($nchallange, $idp) ;
-            $data = $data ."<div class='comments_".$idp."'></div>
+            $data = $data ."<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $idp) ;
+            $data = $data ."<hr/><div class='row-fluid'><div class='col-md-5'>
+						<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 1)'> <b>Push</b>
+                        <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 2)'> <b>Pull</b>
+                        <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>
+                        <div class='comments_".$idp."'></div>
 					<div id='step15' class='comments clearfix'>
 						<div class='pull-left lh-fix'>
 							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
@@ -236,18 +198,20 @@ if($_POST['taskdetails']){
 					</div>
 					<span style='font-family: Tenali Ramakrishna, sans-serif;'	id='challenge_ti_".$idp."' class='text'><b>
 					<a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$idp."' target='_blank'>".ucfirst($titletask)."</a>
-					</b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/>
+					</b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$idp."' value='".$newtitle."'/><br/>
 					<span class='icon-pushpin'></span><span style= 'color: #808080;'>
                 &nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a>&nbsp;
                      | Assigned To:&nbsp <a href ='profile.php?username=".$usersName."' style= 'color: #808080;'>"
-                .ucfirst($usersFirstName)."</a> | ".$timefunct." | </span>
-                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$idp ."\", 3)'>
-                         <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/></span>
-                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$idp ."\", 4)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span>
+                .ucfirst($usersFirstName)."</a> | ".$timefunct."</span>
                     <hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
             $data = $data .editchallenge($nchallange, $idp) ;
-            $data = $data ."<div class='comments_".$idp."'></div>
+            $data = $data ."<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $idp) ;
+            $data = $data ."<hr/><div class='row-fluid'><div class='col-md-5'>
+						<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 1)'> <b>Push</b>
+                        <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 2)'> <b>Pull</b>
+                        <input type='submit' class='btn-link' id='dislikes_".$idp ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>
+                        <div class='comments_".$idp."'></div>
 					<div id='step15' class='comments clearfix'>
 						<div class='pull-left lh-fix'>
 							<img src='".resize_image("uploads/profilePictures/$username.jpg", 30, 30, 2)."'  onError=this.src='img/default.gif'>&nbsp
@@ -259,7 +223,7 @@ if($_POST['taskdetails']){
 					</div></div> </div>" ;
 		}
 	if(mysqli_error($db_handle)) { echo "Failed to Assign Task !"; }
-	else { echo "Posted succesfully!"."+"."7"."+".$data ; }
+	else { echo "Posted succesfully!"."|+"."7"."|+".$data ; }
 	mysqli_close($db_handle);
 } 
 else echo "Invalid parameters!";

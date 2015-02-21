@@ -3,7 +3,38 @@
 ?>
  <br/><br/><br/><br/><br/><br/>
 <gcse:searchresults></gcse:searchresults>
-
+<script src="js/delete_comment_challenge.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/username_email_check.js"></script>
+<script type="text/javascript" src="js/signupValidation.js"></script>
+<script type="text/javascript" src="js/loginValidation.js"></script>
+<script src="js/functions.js"></script>
+<script src="js/ninjas.js" type="text/javascript"></script>
+<script src="js/project_page.js"></script>
+<script src="js/content_edit.js"></script>
+<script type="text/javascript" src="js/introduction.js"></script>
+<!--<script src="js/bootstrap.js"></script>-->
+<script src="scripts/bootstrap.min.js"></script>
+<script src="js/bootbox.js"></script>
+<script src="js/search.js" type="text/javascript"></script>
+<script src="jquery.simple-dtpicker.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/add_remove_skill.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/chat_box.js"></script>
+<script type="text/javascript" src="js/getMeta.js"></script>
+<script src="js/date_time.js"></script>    
+<script src="scripts/tabs-addon.js"></script>
+<script type="text/javascript" src="js/intro.js"></script>
+<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+<script type="text/javascript" src="js/rrssb.min.js"></script>
+<script>
+	$('.bs-component').jScrollPane();
+	updatelastlogin();
+	//$('.emotion').emotions();
+</script>
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100809927ns.gif" /></p></noscript>
 <script type="text/javascript">
         $(function ()
         {
@@ -66,9 +97,6 @@
 
             });
 
-            $("a[data-toggle='popover']").popover({
-                trigger:"hover",html:true,placement:"top"
-            });
         });
         
 //textarea autogrow script starts here
@@ -86,7 +114,7 @@
             console.log(this.scrollHeight , this.baseScrollHeight);
                 rows = Math.ceil((this.scrollHeight - this.baseScrollHeight) / 17);
                 this.rows = minRows + rows;
-            });
+            }); 
 //textarea autogrow script ends here
 
 
@@ -96,24 +124,14 @@ function validateSignupFormOnSubmit() {
 	var lastname = $("#lastname").val() ;
 	var email = $("#email").val() ;
 	//var phone = $("#phone").val() ;
-	var username = $("#usernameR").val() ;
+	var username = replaceAll('[.]', '', $("#usernameR").val()) ;
 	var password = $("#passwordR").val() ;
 	var password2 = $("#password2R").val() ;
     var term_n_cond = document.getElementById("agree_tc").checked;
-
-    /* reason += validateFirstname(theForm.firstname);
-	reason += validateEmail(theForm.email);
-	reason += validateUsername(theForm.username);
-	reason += validatePhone(theForm.phone);
-	reason += validatePassword(theForm.password);
-	reason += validatePassword2(theForm.password,theForm.password2);
-	if (reason != "") {
-	alert("Some fields need correction:\n" + reason);
-	return false;
-	}
-	return true;*/
-	var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username +
-	'&password='+ password + '&password2='+ password2 + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
+    var typeA = document.getElementById("typeCol").checked;
+    var typeB = document.getElementById("typeInv").checked;
+    var typeC = document.getElementById("typeFun").checked;
+    var amount = $("#investment").val() ;
 	if(password==password2){
 		if(replaceAll('\\s', '',firstname)==''){
 			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
@@ -156,8 +174,38 @@ function validateSignupFormOnSubmit() {
 		} 
         else if(term_n_cond==false){
             bootstrap_alert(".alert-placeholder", "You have not accepted term and conditions", 5000,"alert-warning");
-        } 
+        }
+        else if((typeA==false) && (typeB==false) && (typeC==false)){
+            bootstrap_alert(".alert-placeholder", "You have not told why you are here", 5000,"alert-warning");
+        }
+        else if((typeB==true)&& (replaceAll('\\s', '',amount)=='')) {
+			bootstrap_alert(".alert_placeholder", "Amount can not be empty", 5000,"alert-warning");
+			return false;
+		} 
 		else {
+			if((typeA==false) && (typeB==false)){
+				var type = "fundsearcher";
+			}
+			else if((typeA==false) && (typeC==false)){
+				var type = "invester";
+			}
+			else if((typeB==false) && (typeC==false)){
+				var type = "collaborater";
+			}
+			else if(typeB==false){
+				var type = "collaboraterFundsearcher";
+			}
+			else if(typeA==false){
+				var type = "fundsearcherInvester";
+			}
+			else if(typeC==false){
+				var type = "collaboraterInvester";
+			}
+			else {
+				var type = "collaboraterinvesterfundsearcher";
+			}
+			var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username + '&password='+ password + 
+							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&amount=' + amount + '&request=Signup' ;
 			$.ajax({
 				type: "POST",
 				url: "controllers/login_controller.php",
@@ -177,40 +225,10 @@ function validateSignupFormOnSubmit() {
 	else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
 }
 function replaceAll(find, replace, str) {
+	if(str == null) {
+		str = "";
+	}
 	return str.replace(new RegExp(find, 'g'), replace);
 }
 
     </script>
-<script src="date.js"></script>
-<script src="js/delete_comment_challenge.js" type="text/javascript"></script>
-<script type="text/javascript" src="js/username_email_check.js"></script>
-<script type="text/javascript" src="js/signupValidation.js"></script>
-<script type="text/javascript" src="js/loginValidation.js"></script>
-<script src="js/functions.js"></script>
-<script src="js/ninjas.js" type="text/javascript"></script>
-<script src="js/project_page.js"></script>
-<script src="js/content_edit.js"></script>
-<script type="text/javascript" src="js/introduction.js"></script>
-<!--<script src="js/bootstrap.js"></script>-->
-<script src="scripts/bootstrap.min.js"></script>
-
-<script src="js/bootbox.js"></script>
-<script src="js/bootswatch.js"></script>
-<script src="js/search.js" type="text/javascript"></script>
-<script src="jquery.simple-dtpicker.js"></script>
-<script src="js/chat.js"></script>
-<script type="text/javascript" src="js/chat_box.js"></script>
-<script src="js/add_remove_skill.js"></script>
-<script src="js/date_time.js"></script>    
-    <script src="scripts/tabs-addon.js"></script>
-   <script type="text/javascript" src="js/intro.js"></script>
-   <script type="text/javascript" src="js/jquery.mousewheel.js"></script>
-   <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
-<script>
-	$('.bs-component').jScrollPane();
-</script>
-
-
-<script src="//static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>
-<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100809927ns.gif" /></p></noscript>

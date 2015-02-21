@@ -222,7 +222,7 @@ if(isset($_SESSION['username']) && isset($_GET['typeOfPic'])){
             ||  ($_FILES["file"]["type"] == "application/x-rar")
             ||  ($_FILES["file"]["type"] == "application/x-zip")
             ||  ($_FILES["file"]["type"] == "application/vnd.ms-excel")
-            ||  ($_FILES["file"]["type"] == "application/plain")){
+            ||  ($_FILES["file"]["type"] == "text/plain")){
 				$pictu = explode(".", $_FILES["file"]["name"]) ;
 				$picture = $pictu['1'] ;
 				$link = "<img src= \"img/".$picture.".jpg\" style= \"max-width: 100%;\" />" ;

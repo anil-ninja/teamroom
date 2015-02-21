@@ -7,10 +7,10 @@ function bootstrap_alert(elem, message, timeout,type) {
     }, timeout);    
   }
 };
-$(document).ready(function(){
+$(document).ready(function() {
 	$("#addskills").click(function(){
 		$("#addskills").attr('disabled','disabled');
-		var insert = $("#insert").val() ;
+		var insert = convertSpecialChar($("#insert").val()) ;
 		var skills = $("#skills").val() ;
 		var dataString = "";
 		if ((skills == '0' && replaceAll('\\s', '',insert) =='')||(skills != '0' && replaceAll('\\s', '',insert) !='')) {
@@ -22,21 +22,22 @@ $(document).ready(function(){
 			var dataString = 'case=2' + '&skills='+ skills ;
 		}
 		else {
-			var dataString = 'case=1' + '&insert='+ insert  ;
+			var dataString = 'case=1' + '&insert='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',insert)))))  ;
 			}
 		$.ajax({
 			type: "POST",
 			url: "ajax/change_profile.php",																																														
 			data: dataString,
+			async: false ,
 			cache: false,
 			success: function(result){
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				if(notice['0']=='Skill added succesfully!') {
-					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-					$("#skills").val("");
+					$("#skills").val("0");
 					$("#insert").val("");
 					$("#appendskill").append(notice['1']) ;
 					$(".skillmodal").append(notice['1']) ;
+					$(".removeskl").remove() ;
 					bootstrap_alert(".alert_placeholder", "Add more skills", 10000,"alert-info");
 				}      
 				else {
@@ -47,9 +48,53 @@ $(document).ready(function(){
 	 $("#addskills").removeAttr('disabled');
 		 //return false;
 	});
+	$("#addprofessions").click(function(){
+		//$("#addprofessions").prop('disabled', true);
+		//document.getElementById("addprofessions").disabled = true;
+		//document.getElementById("addprofessions").setAttribute('disabled', 'disabled');
+		//$("#addprofessions").disabled = true;
+		$("#addprofessions").attr('disabled','disabled');
+		var insert = convertSpecialChar($("#insertprofession").val()) ;
+		var skills = $("#Professions").val() ;
+		var dataString = "";
+		if ((skills == '0' && replaceAll('\\s', '',insert) =='')||(skills != '0' && replaceAll('\\s', '',insert) !='')) {
+			 bootstrap_alert(".alert_placeholder", "Please ,Enter one Value!!!!", 5000,"alert-warning");
+			 $("#addprofessions").removeAttr('disabled');
+			 return false;
+		}
+		else {
+			if (skills != '0') {
+				var dataString = 'case=2' + '&skills='+ skills ;
+			}
+			else {
+				var dataString = 'case=1' + '&insert='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',insert)))))  ;
+			}
+			$.ajax({
+				type: "POST",
+				url: "ajax/change_profession.php",																																														
+				data: dataString,
+				async: false ,
+				cache: false,
+				success: function(result){
+					var notice = result.split("|+") ;
+					if(notice['0']=='Profession added succesfully!') {
+						$("#Professions").val("0");
+						$("#insertprofession").val("");
+						$("#appendprofession").append(notice['1']) ;
+						$(".professionmodal").append(notice['1']) ;
+						$(".removepro").remove() ;
+						bootstrap_alert(".alert_placeholder", "Add more", 10000,"alert-info");
+					}      
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					}
+				}
+			});
+		}
+		$("#addprofessions").removeAttr('disabled');
+		 //return false;
+	}) ;
 });
-
-
 function remove_skill(skill_id){
 	bootbox.confirm("Do u really want to Remove this skill?", function(result) {
 		if(result){
@@ -62,7 +107,8 @@ function remove_skill(skill_id){
 				success: function(result){
 					if(result=='Skill Removed succesfully!') {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-						location.reload();
+						$(".skill_id_"+skill_id).remove();
+						//document.getElementById("skillmodal_"+skill_id).remove();
 					}
 					else {
 						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
@@ -72,7 +118,29 @@ function remove_skill(skill_id){
 		 }
 	});
 }
-
+function remove_profession(skill_id){
+	bootbox.confirm("Do u really want to Remove this Profession?", function(result) {
+		if(result){
+			var dataString = 'case=3' + '&skill_id=' + skill_id;
+			$.ajax({
+				type: "POST",
+				url: "ajax/change_profession.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Profession Removed succesfully!') {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+						//document.getElementById("professionmodal_"+skill_id).remove();
+						$(".profession_"+skill_id).remove();
+					}
+					else {
+						bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
+					}
+				}
+			});
+		 }
+	});
+}
 
 $(document).ready(function(){
 	$('#joined_project').click(function(){
@@ -95,7 +163,6 @@ $(document).ready(function(){
 	});
 	$('#user_articles').click(function(){
 		$('#user_articles_content').load('ajax/profile_page_ajax/user_articles.php');
-		
 		$(window).scroll(function(event) {
 			if (($(window).scrollTop() == ($(document).height() - $(window).height())) && $('#user_articles')) {
 				event.preventDefault();
@@ -108,6 +175,7 @@ $(document).ready(function(){
 					success: function(result){
 						//alert(result) ;
 						$('#user_articles_content').append(result);
+						onLoaddata() ;
 					}
 				});	
 			}
@@ -127,6 +195,7 @@ $(document).ready(function(){
 					success: function(result){
 						//alert(result) ;
 						$('#next_user_chall').append(result);
+						onLoaddata() ;
 					}
 				});	
 			}
@@ -147,6 +216,7 @@ $(document).ready(function(){
 					cache: false,
 					success: function(result){
 						$('#user_next_idea').append(result);
+						onLoaddata() ;
 					}
 				});	
 			}
@@ -155,12 +225,12 @@ $(document).ready(function(){
 }) ;
 function editProfile(fname, lname, email, phone) {
 	//alert (fname + "," + lname + "," + email + "," + phone);
-	var newfname = $("#newfirstname").val() ;
-	var newlname = $("#newlastname").val() ;
-	var newphone = $("#newphoneno").val() ;
-	var about = $("#aboutuser").val() ;
-	var townname = $("#livingtown").val() ;
-	var comp = $("#companyname").val() ;
+	var newfname = convertSpecialChar($("#newfirstname").val()) ;
+	var newlname = convertSpecialChar($("#newlastname").val()) ;
+	var newphone = convertSpecialChar($("#newphoneno").val()) ;
+	var about = convertSpecialChar($("#aboutuser").val()) ;
+	var townname = convertSpecialChar($("#livingtown").val()) ;
+	var comp = convertSpecialChar($("#companyname").val()) ;
 	if (replaceAll('\\s', '',newfname) == "") {
 		bootstrap_alert(".alert_placeholder", "Invalid Request", 5000,"alert-warning");
 		$("#newfirstname").val(fname) ;
@@ -175,8 +245,8 @@ function editProfile(fname, lname, email, phone) {
 		return false ;
 	}
 	else {
-		var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ email + '&phone='+ newphone + '&about='+ about 
-						+ '&townname='+ townname + '&comp='+ comp ;
+		var dataString = 'case=4' + '&fname='+ newfname + '&lname='+ newlname + '&email='+ email + '&phone='+ newphone + '&about='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',about))))) 
+						+ '&townname='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',townname))))) + '&comp='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',comp))))) ;
 		$.ajax ({ 
 			type: "POST",
 			url: "ajax/change_profile.php",

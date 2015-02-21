@@ -4,6 +4,7 @@ include_once '../../lib/db_connect.php';
 include_once '../../functions/profile_page_function.php';
 include_once '../../functions/delete_comment.php';
 include_once '../../functions/image_resize.php';
+include_once '../../functions/sharepage.php';
 
 if ($_POST['next']) {
     $profile_user_id = $_SESSION['profile_view_userID'];
@@ -21,11 +22,11 @@ if ($_POST['next']) {
     while($user_challenges_displayRow= mysqli_fetch_array($user_challenges_display)) {
     $i++;
         $challenge_id=$user_challenges_displayRow['challenge_id'];
-        $challenge_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title']))));
-        $challengetitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $user_challenges_displayRow['challenge_title'])));
+        $challenge_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_challenges_displayRow['challenge_title'])))));
+        $challengetitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $user_challenges_displayRow['challenge_title']))));
         $challenge_stmt1 = $user_challenges_displayRow['stmt'];
-        $challenge_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1))));
-        $challengestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_stmt1)));
+        $challenge_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_stmt1)))));
+        $challengestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_stmt1))));
         //$you_owned_or_not = $user_challenges_displayRow['user_id'];
         $chall_firstname = $user_challenges_displayRow['first_name'];
         $chall_lastname = $user_challenges_displayRow['last_name'];
@@ -57,15 +58,17 @@ if ($_POST['next']) {
         }
         $show = $show. "<span id='challenge_ti_".$challenge_id."' class='text' style='font-family: Tenali Ramakrishna, sans-serif;'><b>
                 <a style='color:#3B5998;font-size: 26px;' href='challengesOpen.php?challenge_id=".$challenge_id."' target='_blank'>" 
-                    .ucfirst($challenge_title)."</a></b></span><br/><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/>
+                    .ucfirst($challenge_title)."</a></b></span><input type='text' class='editbox' style='width : 90%;' id='challenge_title_".$challenge_id."' value='".$challengetitle."'/><br/>
                 <span class='icon-question-sign'></span><span style= 'color: #808080;'> &nbsp; 
-                By: <a href ='profile.php?username=" . $chall_username . "' style= 'color: #808080;'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation." | </span>
-                    <span class='icon-hand-up' style='cursor: pointer;color: #808080;' onclick='like(\"".$challenge_id ."\", 1)'>
-                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/></span> &nbsp
-                    <span class='icon-hand-down' style='cursor: pointer;color: #808080;' onclick='dislike(\"".$challenge_id ."\", 2)'>
-                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span>
+                By: <a href ='profile.php?username=" . $chall_username . "' style= 'color: #808080;'>".ucfirst($chall_firstname)." ".ucfirst($chall_lastname)."</a> | ".$chall_creation."</span>
                 <hr/><span id='challenge_".$challenge_id."' class='text' style='font-size: 14px;'>".$challenge_stmt."</span><br/>";
 		$show = $show. editchallenge($challengestmt, $challenge_id) ;
+		$show = $show. "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $challenge_id) ;
+		$show = $show. "<hr/><div class='row-fluid'><div class='col-md-5'>
+						<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$challenge_id ."\", 1)'> <b>Push</b>
+                        <input type='submit' class='btn-link' id='likes_".$challenge_id ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
+                    <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$challenge_id ."\", 2)'> <b>Pull</b>
+                        <input type='submit' class='btn-link' id='dislikes_".$challenge_id ."' value='".$dislikes."'/>&nbsp;</span></div></div><hr/>" ;
         $commenter = mysqli_query($db_handle, " (SELECT DISTINCT a.user_id, a.stmt, a.challenge_id, a.response_ch_id, a.user_id,a.response_ch_creation, b.first_name, b.last_name, b.username FROM response_challenge as a
                                             JOIN user_info as b WHERE a.challenge_id = $challenge_id AND a.user_id = b.user_id and a.blob_id = '0' and a.status = '1')
                                         UNION
@@ -74,7 +77,7 @@ if ($_POST['next']) {
     while ($commenterRow = mysqli_fetch_array($commenter)) {
         $comment_id = $commenterRow['response_ch_id'];
         $username_comment_ninjas = $commenterRow['username'];
-        $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",$commenterRow['stmt']))));
+        $comment_all_ch = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+",$commenterRow['stmt'])))));
         $comment_user_id = $commenterRow['user_id'];
         $show = $show. "<div id='commentscontainer'>
 				<div class='comments clearfix' id='comment_".$comment_id."'>

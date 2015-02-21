@@ -1,26 +1,28 @@
 //check for username already exists or not starts
-document.getElementById("usernameR").onblur = function() {
+function usernameCheck() {
 
-                var xmlhttp;
+	var xmlhttp;
 
-                var username=document.getElementById("usernameR");
-                if (username.value != ""){
-                    if (window.XMLHttpRequest){
-                        xmlhttp=new XMLHttpRequest();
+	var username=document.getElementById("usernameR");
+	if (username.value != ""){
+		if (window.XMLHttpRequest){
+			xmlhttp=new XMLHttpRequest();
 
-                    } else {
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-                    xmlhttp.onreadystatechange=function(){
-                        if (xmlhttp.readyState==4 && xmlhttp.status==200){
-                            document.getElementById("status").innerHTML=xmlhttp.responseText;
-                        }
-                    };
-                    xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
-                    xmlhttp.send();
-                }
-            };
-            //check for username already exists or not ends
+		} else {
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				document.getElementById("status").innerHTML=xmlhttp.responseText;
+			}
+		};
+		xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
+		xmlhttp.send();
+	}
+};
+function aboutinvest(){
+	$(".totalcapital").toggle();
+}            //check for username already exists or not ends
             
             //check for email already exists or not starts
         /*
@@ -52,7 +54,7 @@ document.getElementById("usernameR").onblur = function() {
             
             //check for email exist or not for forget password request starts
             
-            document.getElementById("email_forget").onblur = function() {
+          function email_forget() {
                 var xmlhttp;
                 var email_forget=document.getElementById("email_forget");
                 if (email_forget.value != ""){

@@ -1,5 +1,6 @@
 <?php 
     include_once 'challengesOpen.inc.php'; 
+    include_once 'functions/extract_keywords.php';
 ?>
 <html lang="en">
     <head>
@@ -9,7 +10,7 @@
         
         <!-- for Google -->
         <meta name="description" content="<?= $obj->getDiscription(); ?>" />
-        <meta name="keywords" content="Challenges, Projects, Problem solving, problems" />
+        <meta name="keywords" content="<?php echo extract_keywords($obj->stmt); ?>" />
         <meta name="author" content="<?= $obj->first_name.$obj->last_name; ?>" />
         <meta name="copyright" content="true" />
         <meta name="application-name" content="Article" />
@@ -21,15 +22,12 @@
         
         <meta name="p:domain_verify" content="c336f4706953c5ce54aa851d2d3da4b5"/>
         <?php
-			if($obj->video == 0)
-				echo "<meta property=\"og:image\" content=\"$obj->url\" />\n";
+			if($obj->video == 0) {
+				echo "<meta property=\"og:image\" content='".$obj->url."' />\n" ;
+			}	
 			else{
-				echo "<meta property=\"og:image\" content=\"http://img.youtube.com/vi/".str_replace(' ', '',explode("/embed/", $obj->url)[1])."/hqdefault.jpg\" />";
-                echo "<meta property=\"og:video\" 
-                                    content=\"http://www.youtube.com/v/"
-                                        .explode("/embed/", $obj->url)[1]
-                                        ."\" />\n";
-
+				echo "<meta property=\"og:image\" content=\"http://img.youtube.com/vi/".str_replace(' ', '',explode("/embed/", $obj->url)[1])."/hqdefault.jpg\" />\n" ;
+				echo "<meta property=\"og:video\" content=\"http://www.youtube.com/v/".explode("/embed/", $obj->url)[1]."\" />\n" ;
             }
         ?>
         <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
@@ -51,11 +49,12 @@
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
         
         <div class="row-fluid" style='margin-top: 50px;'>
-            
             <div class="span7 offset1">
                 <?php                
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
+           <!--//Soical media buttons: https://github.com/kni-labs/rrssb (More examples) -->
+                             
                     <div class="list-group" style="margin: 20px 0px;">
                         <div class="list-group-item" style="padding: 0px;">
 					<?php
@@ -158,8 +157,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 4 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['stmt'])))); 
                     echo "  
                             <div class ='span6 box' style=' margin: 4px ;min-height: 200px;'>
     						    <a href='project.php?project_id=".$project_id."'>
@@ -200,8 +199,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
-                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
-                        $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
+                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_userRow['challenge_title']))));
+                        $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_userRow['stmt']))));
                         if(substr($challenge_user_stmt, 0, 4) == '<img') {
 							$ProjectPic = strstr($challenge_user_stmt, '<br/>' , true) ;
 							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
@@ -210,7 +209,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
 						}
 						else {
-							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_user_stmt))) ;
+							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_user_stmt)))) ;
 						}
                         echo "
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
@@ -247,8 +246,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['stmt'])))); 
                     echo "  
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     						    <a href='project.php?project_id=".$project_id."'>
@@ -295,7 +294,7 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
             return false
             });
             </script>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <!-- Go to www.addthis.com/dashboard to customize your tools  -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a9978c1d02a7b3" async="async"></script>
             <?php include_once 'html_comp/insert_time.php'; ?>
     </body>

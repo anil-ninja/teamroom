@@ -58,10 +58,10 @@ if (!isset($_SESSION['first_name'])) {
                             </div>
                         </div>
                         <br/>	
-                        <input type="text" class="form-control" value="<?= $_GET['email']; ?>" style="width: 100%" id="email" placeholder="Email" onkeyup="nospaces(this)"/>
+                        <input type="text" class="form-control" value="<?= $_GET['email']; ?>" style="width: 100%" id="email" onblur="email_availability_check();" placeholder="Email" onkeyup="nospaces(this)"/>
                             <span id="status_email"></span>
                         <br/>					
-                        <input type="text" class="form-control" style="width: 100%" id="usernameR" placeholder="user name" onkeyup="nospaces(this)"/> 
+                        <input type="text" class="form-control" style="width: 100%" id="usernameR" onblur="usernameCheck();" placeholder="user name" onkeyup="nospaces(this)"/> 
                             <span id="status"></span>
                         <br/>
                         <div class="inline-form">
@@ -84,31 +84,10 @@ if (!isset($_SESSION['first_name'])) {
             <!--end modle-->
         <script src="js/jquery-1.js"></script>
         <script src="js/bootstrap.js"></script>
-        <script type="text/javascript">
-            function checkForm() {
-                if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
-                    return true;
-                }
-                else {
-                    alert("Passwords don't match");
-                    return false;
-                }
-            }
-        </script>
-
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
-
         <script type="text/javascript" src="js/signupValidation.js"></script>
         <script type="text/javascript" src="js/loginValidation.js"></script>
-
-        <script type="text/javascript">
-            function nospaces(t){
-                if(t.value.match(/\s/g)){
-                    alert('Sorry, you are not allowed to enter any spaces');
-                    t.value=t.value.replace(/\s/g,'');
-                }
-            }
         </script>
         <script type="text/javascript" src="js/username_email_check.js"></script>
     </body>

@@ -15,9 +15,25 @@ $(document).ready(function() {
          }
     });
 });
-
-function email_availability_check() {            
-    document.getElementById("email").onblur = function() {
+function nospaces(t){
+	if(t.value.match(/\s/g)){
+		bootstrap_alert(".alert_placeholder", 'Sorry, you are not allowed to enter any spaces', 5000,"alert-success");
+		t.value=t.value.replace(/\s/g,'');
+	}
+}
+function trim(s){
+	return s.replace(/^\s+|\s+$/, '');
+}
+function checkForm() {
+	if (document.getElementById('password_1').value == document.getElementById('password_2').value) {
+		return true;
+	}
+	else {
+		alert("Passwords don't match");
+		return false;
+	}
+}
+    function email_availability_check() {
 
         var xmlhttp;
 
@@ -38,7 +54,6 @@ function email_availability_check() {
             xmlhttp.send();
         }
     };
-}
 
 function validatePath(path) {
         if (path.match("^[a-zA-Z0-9.]*$")) {
@@ -93,7 +108,6 @@ function validatePath(path) {
         function validatePhone(fld) {
         var error = "";
         var stripped = fld.value.replace(/[\(\)\.\-\ ]/g, '');    
-
         if (fld.value == "") {
                 fld.style.border = "2px solid OrangeRed";
                 error = "You didn't enter a phone number.\n";

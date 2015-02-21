@@ -1,21 +1,17 @@
 <?php
 include_once 'project.inc.php';
-include_once 'functions/delete_comment.php';
 $pro_id = $_GET['project_id'] ;
  echo "<input type='hidden' id='ProjectIDValue' value='".$pro_id ."'/>" ;
-$Outgoings = mysqli_query($db_handle, "select challenge_id from challenges where project_id ='$pro_id' and challenge_status != '3' AND challenge_status != '7' ;");
-$totalOutgoings = mysqli_num_rows($Outgoings) ;
-$teamsCount = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id';") ;
-$totalTeams = mysqli_num_rows($teamsCount) ;
 $view = 1 ;
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
-            <title><?= $projttitle ?></title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+            <title><?php echo str_replace("<br/>", "", $projttitle) ; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="keywords" content="<?php echo $keywords;?>">
     <meta name="description" content="Challenge, Project, Problem solving, problem">
     <?php include_once 'lib/htmt_inc_headers.php'; ?>
   </head>
@@ -97,26 +93,19 @@ $view = 1 ;
             </div>	
         </div>
 		<?php 
-                    if (isset($_SESSION['user_id'])) {
-                        include_once 'html_comp/project_talk.php'; 
-                        include_once 'html_comp/friends.php'; 
-                 ?>
-                        <script>
-                            $(document).ready(function(){
-                                projecttalk();
-                            }); 
-                        </script>
-                    <?php 
-                        }
-                ?>   
-        <?php include_once 'lib/html_inc_footers.php';
+			if (isset($_SESSION['user_id'])) {
+				include_once 'html_comp/project_talk.php'; 
+				include_once 'html_comp/friends.php'; 
+				}
+		include_once 'lib/html_inc_footers.php';
         include_once 'html_comp/check.php'; ?>  
 <div class='footer'>
 		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
-                 <script>
-					 hidepanel();
+<script src="date.js"></script>
+<script>
+	 hidepanel();
     $('#project_data').click(function(){
 		hidepanel();       
     });
@@ -135,7 +124,8 @@ $view = 1 ;
 
 $("#project_chat_form").hide();
 $("#project_chat_data").hide();
-$('#scrollFriends').jScrollPane() ;
+</script>
+<script>
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
@@ -149,9 +139,19 @@ $('#scrollFriends').jScrollPane() ;
 				data: dataString,
 				cache: false,
 				success: function(result){
-					$('#prch').append(result);
-					$('.loading').remove();
-					showprclass(value) ;
+					var notice = result.split("<") ;
+					if (notice['0'] == 'no data') {
+						$('.loading').remove();
+						var data = document.getElementById("appendloading") ;
+						if(data == null) {
+							$('#prch').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");
+						}
+					}
+					else {
+						$('#prch').append(result);
+						$('.loading').remove();
+						showprclass(value) ;
+					}
 				}
 			});
 		}
@@ -168,7 +168,7 @@ if(width < 800) {
 } ;
 </script>
 <script>
-$(function() {
+(function() {
 	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
 
 function toggleDivs() {
@@ -188,48 +188,39 @@ $(".nav-btntab").bind("click", function(){
 
 });
 </script>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<script src="//platform.linkedin.com/in.js" type="text/javascript">
-  lang: en_US
-</script>
-
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="js/graph.js"></script>
-        <!-- jQuery and jQuery UI (REQUIRED) -->
+        <!-- jQuery and jQuery UI (REQUIRED) 
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
        
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-        <!-- elFinder CSS (REQUIRED) -->
+        <!-- elFinder CSS (REQUIRED) 
         <link rel="stylesheet" type="text/css" media="screen" href="css/elfinder.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="css/theme.css">
 
-        <!-- elFinder JS (REQUIRED) -->
+        <!-- elFinder JS (REQUIRED) 
         <script type="text/javascript" src="js/elfinder.min.js"></script>
 
-        <!-- elFinder translation (OPTIONAL) -->
+        <!-- elFinder translation (OPTIONAL) 
         <script type="text/javascript" src="js/i18n/elfinder.LANG.js"></script>
 
         <!-- elFinder initialization (REQUIRED) -->
         <script type="text/javascript" charset="utf-8">
       	$(".text").show();
 		$(".editbox").hide();
-        </script>     
-<?php
+        </script>
+<?php 
+	if (isset($_SESSION['user_id'])) { ?>
+  <script>
+	$(document).ready(function(){
+		projecttalk();
+	}); 
+</script>   
+<?php } 
     include_once 'html_comp/login_signup_modal.php';
     include_once 'html_comp/insert_time.php';
-mysqli_close($db_handle);
 ?>
         </body>
     </html>

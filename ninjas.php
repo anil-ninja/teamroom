@@ -1,6 +1,7 @@
 <?php
 include_once 'ninjas.inc.php';  
 include_once 'functions/delete_comment.php';
+include_once 'functions/sharepage.php';
 if(!isset($_SESSION['user_id'])){
 	header("location: index.php") ;
 }
@@ -18,7 +19,7 @@ $view = 1 ;
   <body>
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
-   <div class="" >
+   <div class='emotion' >
 		<div class="row-fluid" style='margin-top: 50px;'>  		
        		<div id='tab1' class="span2" style='margin-left:60px; width:280px;'>
    				<?php 
@@ -46,6 +47,7 @@ $view = 1 ;
 			?>
 		</div>
 	</div>	
+	<script src="date.js"></script>
 	<?php
  	include_once 'lib/html_inc_footers.php';
 	include_once 'html_comp/check.php';  
@@ -54,6 +56,7 @@ $view = 1 ;
 		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
 		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>
+
 <script>
 var width = window.screen.availWidth;
 if(width < 800) {
@@ -68,7 +71,7 @@ $('#challange').on('keyup', function(){
 });
 </script>
 <script>
-$(function() {
+(function() {
 	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
 
 function toggleDivs() {
@@ -90,20 +93,30 @@ $(".nav-btntab").bind("click", function(){
 </script>
 	<script>
 	$(window).scroll(function(event) {
-    if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
-         event.preventDefault();
-         $('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
-         var dataString = 'chal=6' ;
-         var value = parseInt($("#viewchid").val()) ;
+		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
+			event.preventDefault();
+			$('#panel-cont').append("<div class='loading'><center><img src='img/loading.gif' /></center><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/></div>");
+			var dataString = 'chal=6' ;
+			var value = parseInt($("#viewchid").val()) ;
 			$.ajax({
 				type: "POST",
 				url: "ajax/get_next.php",
 				data: dataString,
 				cache: false,
 				success: function(result){
-					$('#panel-cont').append(result);
-					$('.loading').remove();
-					showclass(value) ;
+					var notice = result.split("<") ;
+					if (notice['0'] == 'no data') {
+						$('.loading').remove();
+						var data = document.getElementById("appendloading") ;
+						if(data == null) {
+							$('#panel-cont').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");
+						}
+					}
+					else {
+						$('#panel-cont').append(result);
+						$('.loading').remove();
+						showclass(value) ;
+					}
 				}
 			});
 		}
@@ -114,6 +127,3 @@ getallreminders() ;
 <?php include_once 'html_comp/insert_time.php'   ?>	  
 </body>
 </html>
-<?php
-mysqli_close($db_handle);
-?>

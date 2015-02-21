@@ -15,15 +15,17 @@ if($_POST['fname']){
 	$sname = $_POST['sname'] ;
 	$email = $_POST['email'] ;
 	$team = $_POST['team'] ;
-	$password = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6);;
+	$password = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 6);
     mysqli_query($db_handle,"INSERT INTO user_info (first_name, last_name, email, username, password) 
                                     VALUES ('$fname', '$sname', '$email', '$password', '$password') ; ") ;
     $newuserid = mysqli_insert_id($db_handle);
-	$body2 = "Hi, ".$fname." ".$sname." \n \n ".$senderfname." ".$senderlname." added You in team \n
-To know details login to http://collap.com/. \n \n
-            Username: ".$email." \n \n
-            Password: ".$password ;
-	collapMail($email, " Invitation To Join ", $body2) ;
+    $body2 = "<h2>Invitation To Join</h2><p>Hi ".ucfirst($fname)." ".ucfirst($sname).",</p>
+<p>".ucfirst($senderfname)." ".ucfirst($senderlname)." added You in team.</p>
+<p>To know details login to http://collap.com/ </p>
+<p>Your Username is: ".$email."</p>
+<p>Your Password is: ".$password."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$senderlname."' class='btn-primary'>Click Here to View</a></p>" ;
+	collapMail($friendFirstName, "Invitation To Join ", $body2);
 	if($team != "") { 
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
 	}

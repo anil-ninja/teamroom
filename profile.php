@@ -160,52 +160,80 @@ $obj = new profile($UserName);
                                     . $profileViewPhone . "  
                                 </span>";
         			  }
-        				  echo " <br/><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
+        				  echo " <br/><div style ='word-wrap: break-word;' id='appendskill'><i class='icon-screenshot'></i>Skills &nbsp;:" ; 
 
                     $skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
                     
                     if (mysqli_num_rows($skill_display) == 0) {
-                            echo "      <span class='tags'>
+                            echo "      <span class='tags removeskl'>
                                             No Skill added
                                         </span>";
                     } 
                     else {
-                        echo "<div style ='text-align:justify;' id='appendskill'>";
                         while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
                             $skill_id = $skill_displayRow['skill_id'];
-                            echo "      <span class='btn-success'>
-                                            <a href='ninjaSkills.php?skill_id=".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."</a>&nbsp";
+                            echo "<span class='skill_id_".$skill_id."'><span class='btn-success'>
+                                            <a href='ninjaSkills.php?skill_id=".$skill_id."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>
+                                            &nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $skill_displayRow['skill_name']))))."
+                                            </a>&nbsp";
                             if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
                                 echo "      <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                                                 <i class='icon-remove'></i>
                                             </a>";
                             }
-                         echo "</span>&nbsp;";
+                         echo "</span></span>&nbsp;";
                         }
-                        echo "</div>";
-                    }
-
+					}
+                        echo "</div><br/>";
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                        echo "     <br/> 
-                                    <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
-                                        <i class='icon-plus'></i> Skill
-                                    </a>
-                                    <br/>";
+                        echo " <a id='demo5' data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
+                                  <i class='icon-plus'></i> Skill
+                               </a><br/>";
         					}
+					echo " <br/><div style ='word-wrap: break-word;' id='appendprofession'><i class='icon-screenshot'></i>Professions &nbsp;:" ; 
+
+                    $profession_display = mysqli_query($db_handle, "SELECT b.p_name, a.p_id from user_profession as a join professsion_name as b WHERE a.user_id = '$profileViewUserID' AND a.p_id = b.p_id ;");
+                    
+                    if (mysqli_num_rows($profession_display) == 0) {
+                            echo "      <span class='tags removepro'>
+                                            No Profession
+                                        </span> ";
+                    } 
+                    else {
+                        while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
+                            $profession_id = $profession_displayRow['p_id'];
+                            echo "<span class='profession_".$profession_id."'><span class='btn-success'>
+                                            <a style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;
+                                            ".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $profession_displayRow['p_name']))))."
+                                            </a>&nbsp";
+                            if ((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
+                                echo "      <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
+                                                <i class='icon-remove'></i>
+                                            </a>";
+                            }
+                         echo "</span></span>&nbsp;";
+                        }
+					}
+                        echo "</div><br/>";
+                    if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
+                        echo " <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addprofession' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
+                                 <i class='icon-plus'></i> Profession
+                               </a><br/>";
+        			}
                      $aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$profileViewUserID' ;") ;
                      $aboutuserRow = mysqli_fetch_array($aboutuser);
                      if (mysqli_num_rows($aboutuser) != 0) {
         				 echo "     <br/>
                                     <span class='icon-briefcase'>
                                     </span>&nbsp;&nbsp;&nbsp;"
-        							.$aboutuserRow['organisation_name']."<br/>
+        							.str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $aboutuserRow['organisation_name']))))."<br/>
         							<span class='icon-home'>
                                     </span>&nbsp;&nbsp;&nbsp;"
-        							.$aboutuserRow['living_town']."
+        							.str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $aboutuserRow['living_town']))))."
                                     <br/>
                                     <span class='icon-comment'>
                                     </span>&nbsp;&nbsp;&nbsp;"
-        							.$aboutuserRow['about_user'];
+        							.str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $aboutuserRow['about_user']))));
         			}
         			else {
         				if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) {
@@ -248,6 +276,11 @@ $obj = new profile($UserName);
                         echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
                                 <i class='icon-plus'></i> Skill
                                 </a><br/>";
+                        echo "     <br/> 
+                                    <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addprofession' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
+                                        <i class='icon-plus'></i> Profession
+                                    </a>
+                                    <br/>";
                         echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
     							<input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
     							<input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>" ;
@@ -357,11 +390,14 @@ $obj = new profile($UserName);
     ?>
 </div> 
 <?php
-	include_once 'html_comp/signup.php' ;
-	include_once 'lib/html_inc_footers.php'; 
-			include_once 'html_comp/check.php'; ?> 
+	include_once 'html_comp/signup.php' ; 
+	include_once 'lib/html_inc_footers.php';
+	include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
-
+<div class='footer'>
+		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+</div>
 <div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span4 offset2">
@@ -403,17 +439,22 @@ $obj = new profile($UserName);
 							<?php 
 							$skill_display = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE a.user_id = '$profileViewUserID' AND a.skill_id = b.skill_id ;");
 							echo "<div class='skillmodal' style ='text-align:justify;'><label>Your Skills</label>";
-							while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
-								$skill_id = $skill_displayRow['skill_id'];
-								echo "<span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$skill_displayRow['skill_name']."&nbsp
-										  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
-												<i class='icon-remove'></i>
-										  </a>
-									  </span>&nbsp;";
+							if (mysqli_num_rows($skill_display) == 0) {
+								echo "<span class='tags removeskl'> No Skill added </span>";
+							} 
+							else {
+								while ($skill_displayRow = mysqli_fetch_array($skill_display)) {
+									$skill_id = $skill_displayRow['skill_id'];
+									echo "<span class='skill_id_".$skill_id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $skill_displayRow['skill_name']))))."&nbsp
+											  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' onclick='remove_skill(\"".$skill_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
+													<i class='icon-remove'></i>
+											  </a>
+										  </span></span>&nbsp;";
+								}
 							}
 							echo "</div>";
 							?>
-							<label>Add more Skills</label><br/>
+							<label>Add Skills</label><br/>
                             <label>Select Skill</label> 
                             <select class="inline-form" id = "skills" >
                                 <option value='0' selected>Default (none)</option>
@@ -421,7 +462,7 @@ $obj = new profile($UserName);
                                     $m = mysqli_query($db_handle, "select * from skill_names where 1 = 1 ;") ;
                                     while ($n = mysqli_fetch_array($m)) {
                                         $id = $n['skill_id'] ;
-                                        $sn = $n['skill_name'] ;
+                                        $sn = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $n['skill_name'])))) ;
                                         echo "<option value='" . $id . "' >" . $sn . "</option>";
                                     }
                                 ?>
@@ -437,9 +478,59 @@ $obj = new profile($UserName);
         </div>
     </div>
 </div>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+<div id="addprofession" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="row-fluid">
+        <div class="span4 offset2">
+            <div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#" data-toggle="tab" class="active "><i class="icon-plus"></i>&nbsp;<span>Add Professions</span></a></li>
+                    <li><a href="#" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i>&nbsp;<span></span></a></li>
+                </ul>
+                <div class="tab-content ">
+                    <div class="tab-pane active">
+                        <div class="row-fluid">
+                            <h4>Select Profession or add new </h4>
+							<?php 
+							$profession_display = mysqli_query($db_handle, "SELECT b.p_name, a.p_id from user_profession as a join professsion_name as b WHERE a.user_id = '$profileViewUserID' AND a.p_id = b.p_id ;");
+							echo "<div class='professionmodal' style ='text-align:justify;'><label>Your Professions</label>";
+							if (mysqli_num_rows($profession_display) == 0) {
+								echo "<span class='tags removepro'> No Profession Added </span> ";
+							}
+							else {
+								while ($profession_displayRow = mysqli_fetch_array($profession_display)) {
+									$profession_id = $profession_displayRow['p_id'];
+										echo "<span class='profession_".$profession_id."'><span class='btn-success' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $profession_displayRow['p_name']))))."&nbsp
+											  <a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' onclick='remove_profession(\"".$profession_id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
+													<i class='icon-remove'></i>
+											  </a>
+										  </span></span>&nbsp;";
+								}
+							}
+							echo "</div>";
+							?>
+							<label>Add Professions</label><br/>
+                            <label>Select Profession</label> 
+                            <select class="inline-form" id = "Professions" >
+                                <option value='0' selected>Default (none)</option>
+                                <?php
+                                    $Professions = mysqli_query($db_handle, "select * from professsion_name where 1 = 1 ;") ;
+                                    while ($ProfessionsRow = mysqli_fetch_array($Professions)) {
+                                        $Pid = $ProfessionsRow['p_id'] ;
+                                        $Pname = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $ProfessionsRow['p_name'])))) ;
+                                        echo "<option value='" . $Pid . "' >" . $Pname . "</option>";
+                                    }
+                                ?>
+                            </select>
+                            
+                            <label>Enter your Profession</label>
+                            <input type="text" class="input-block-level" id="insertprofession" placeholder="Enter your Profession"/>
+                            <a href="#" class=" btn btn-primary" id="addprofessions" >Add&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <script>
 var width = window.screen.availWidth;
@@ -470,8 +561,8 @@ $(".nav-btntab").bind("click", function(){
 });
 
 });
-</script>       
-        <!--<div id="InfoBox"></div>-->
+</script>          
+ <!--<div id="InfoBox"></div>-->
 <script>
 	$(document).ready(function(){
 		$(".editbox").hide();
@@ -508,12 +599,13 @@ $(".nav-btntab").bind("click", function(){
                 cache: false,
                 success: function(result){
                     $('#next_CP').append(result);
-                    }
+                    onLoaddata();
+                }
             });	
         }
     });
 </script>    
-        <?php 
+        <?php
             include_once 'html_comp/login_signup_modal.php';
             include_once 'html_comp/insert_time.php'; 
         ?>

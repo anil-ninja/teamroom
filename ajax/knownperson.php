@@ -38,24 +38,18 @@ else {
 http://collap.com/profile.php?username=".$mail ;
 					collapMail($emails, " Link Received ", $body2);
 				}
-				events($db_handle,$user_id,"28",$knownid);
-				involve_in($db_handle,$user_id,"28",$knownid);
+				events($db_handle,$user_id,"10",$knownid);
+				involve_in($db_handle,$user_id,"10",$knownid);
 				mysqli_close($db_handle);
 				exit ;
 				break ;
 			case 2:
-				events($db_handle,$user_id,"4",$knownid);
-				involve_in($db_handle,$user_id,"4",$knownid);
-				$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirst)." ".ucfirst($userLast).",</p><p>One of the challanges posted by you on collap has been accepted.</p>
+				events($db_handle,$user_id,"3",$knownid);
+				involve_in($db_handle,$user_id,"3",$knownid);
+				$body2 = "<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirst)." ".ucfirst($userLast).",</p><p>One of the challanges posted by you on collap has been accepted.</p>
 <p>".ucfirst($username)." has accepted your challenge ".$challengeTtitle."</p><table><tr><td class='padding'>
-<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-				collapMail($owneremail, "Challenge Accepted ", $body2, file_get_contents('../html_comp/mailheader.php'));
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p>" ;
+				collapMail($owneremail, "Challenge Accepted ", $body2);
 				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;
 				mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 										VALUES ('$user_id', '$knownid', '1');") ;
@@ -63,24 +57,18 @@ http://collap.com/profile.php?username=".$mail ;
 				exit ;
 				break ;
 			case 3:
-				events($db_handle,$user_id,"6",$knownid);
-				involve_in($db_handle,$user_id,"6",$knownid);
+				events($db_handle,$user_id,"3",$knownid);
+				involve_in($db_handle,$user_id,"3",$knownid);
 				$mailid = mysqli_query($db_handle,"select b.email, b.firat_name, b.last_name from challenge_ownership as a join user_info as 
 													b where a.challenge_id = '$knownid' and a.user_id = b.user_id ;") ;
 				while ($mailidrow = mysqli_fetch_array($mailid)) {
 					$ownerMail = $mailidrow['email'] ;
 					$userFirstN = $mailidrow['first_name'] ;
 					$userLastN = $mailidrow['last_name'] ;
-					$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstN)." ".ucfirst($userLastN).",</p><p>A challange posted on collap in which you are involved has been closed.</p>
+					$body2 = "<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstN)." ".ucfirst($userLastN).",</p><p>A challange posted on collap in which you are involved has been closed.</p>
 <p>".ucfirst($username)." has, accepted an answer and closed the Challange, ".$challengeTtitle."</p><table><tr><td class='padding'>
-<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-					collapMail($ownerMail, "Close challenge ", $body2, file_get_contents('../html_comp/mailheader.php'));
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p>" ;
+					collapMail($ownerMail, "Close challenge ", $body2);
 				}
 				mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = '$knownid' ; ") ;
 				echo "Challenge Closed succesfully";
@@ -94,7 +82,7 @@ http://collap.com/profile.php?username=".$mail ;
 				exit ;
 				break ;
 			case 5:
-				$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
+				$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
 				if(mysqli_num_rows($member_project) != 0) {
 					$username = $_SESSION['username'];
 					$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
@@ -108,19 +96,13 @@ http://collap.com/profile.php?username=".$mail ;
 						$mail = $memrow['username'] ;
 						$userFirstName = $memrow['first_name'] ;
 						$userLastName = $memrow['last_name'] ;
-						$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p><p>One of the challanges posted by you on collap has been accepted.</p>
+						$body2 = "<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p><p>One of the challanges posted by you on collap has been accepted.</p>
 <p>".ucfirst($username)." has accepted your challenge ".$challengeTtitle."</p><table><tr><td class='padding'>
-<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-				collapMail($emails, "Challenge Accepted ", $body2, file_get_contents('../html_comp/mailheader.php'));
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p>" ;
+				collapMail($emails, "Challenge Accepted ", $body);
 					} 
-					events($db_handle,$user_id,"4",$knownid);
-					involve_in($db_handle,$user_id,"4",$knownid);
+					events($db_handle,$user_id,"3",$knownid);
+					involve_in($db_handle,$user_id,"3",$knownid);
 					mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;
 					mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 											VALUES ('$user_id', '$knownid', '1');") ;
@@ -130,7 +112,7 @@ http://collap.com/profile.php?username=".$mail ;
 				exit ;
 				break ;
 			case 6:
-				$member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
+				$member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1' ;");
 				if(mysqli_num_rows($member_project) != 0) {
 					$username = $_SESSION['username'];
 					$info =  mysqli_query($db_handle, "select project_title, project_type from projects where project_id = '$pro_id' ;") ;
@@ -143,19 +125,13 @@ http://collap.com/profile.php?username=".$mail ;
 						$mail = $memrow['username'] ;
 						$userFirstName = $memrow['first_name'] ;
 						$userLastName = $memrow['last_name'] ;
-						$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p><p>A challange posted on collap in which you are involved has been closed.</p>
+						$body2 = "<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p><p>A challange posted on collap in which you are involved has been closed.</p>
 <p>".ucfirst($username)." has, accepted an answer and closed the Challange, ".$challengeTtitle."</p><table><tr><td class='padding'>
-<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p><p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-					collapMail($emails, "Close challenge ", $body2, file_get_contents('../html_comp/mailheader.php'));
+<p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p>" ;
+					collapMail($emails, "Close challenge ", $body2);
 						} 
-					events($db_handle,$user_id,"6",$knownid);
-					involve_in($db_handle,$user_id,"6",$knownid);
+					events($db_handle,$user_id,"3",$knownid);
+					involve_in($db_handle,$user_id,"3",$knownid);
 					mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = '$knownid' ; ") ;
 					echo "Challenge Closed succesfully";
 					}
@@ -164,15 +140,14 @@ http://collap.com/profile.php?username=".$mail ;
 				break ;
 			case 7:
 				mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ;
-				events($db_handle,$user_id,"29",$uid);
+				events($db_handle,$user_id,"18",$uid);
 				if(mysqli_error($db_handle)) { echo "Sorry Try again!"; }
 				else { echo "Request Accepted succesfully!"; }
 				mysqli_close($db_handle);
 				exit ;
 				break ;
 			case 8:
-				mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ;
-				events($db_handle,$user_id,"30",$uid); 
+				mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ; 
 				if(mysqli_error($db_handle)) { echo "Sorry Try again!" ; }
 				else { echo "Request Deleted succesfully!"; }
 				mysqli_close($db_handle);

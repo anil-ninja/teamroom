@@ -28,10 +28,11 @@ function showUp() {
 	$.ajax({
 		type: "POST",
 		url: "ajax/notifications.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
-			var notice = result.split("+") ;
+			var notice = result.split("|+") ;
 			document.getElementById("notifications").innerHTML = notice['0'];
 			document.getElementById("notificationlastid").innerHTML = notice['1'];
 		}
@@ -56,41 +57,26 @@ time[i] = "0" + time[i];
 // Return the formatted string
 return date.join("/") + " " + time.join(":") ;
 }
-function updatetime() {
-	var dataString = 'update=true' + '&case=1' ;
-	//setTimeout(function(){
-			$.ajax({
-				type: "POST",
-				url: "ajax/updatetime.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					if(result == "updated") {
-						document.getElementById("countnotice").innerHTML = "" ;
-					}
-				}
-			}); 
-		//	} , 60000) ;
-		} ;
 setInterval(function(){
 	var eid = $("#lasteventid").val() ;
 	var time = timeStamp() ;
 	//alert (time + "," + eid) ;
 	getnewnote(time, eid) ;
-},300000)();
+},300000);
 function getnewnote(time, lid) {	
 	var dataString = 'time='+ time + '&lid=' + lid ;
 	//alert(dataString) ;
 	$.ajax({
 		type: "POST",
 		url: "ajax/newnote.php",
+		async: false ,
 		data: dataString,
 		cache: false,
 		success: function(result){
 			if(result == "no new notification") { 
 			}
 			else {
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				$('.newnotices').append(notice['0']);
 				var num = document.getElementById("countnotice").innerHTML ;
 				var newnum = parseInt(parseInt(num)+parseInt(notice['1'])) ;

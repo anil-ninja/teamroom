@@ -32,26 +32,12 @@ if ($_POST['team']) {
     $team_ownerRow = mysqli_fetch_array($teams_owner_add);
     $team_owner_project = $team_ownerRow['team_owner'];
     if ($team_owner_project == $user_id) {
-        $data_display = $data_display. "
-                        <div class='dropdown pull-right'>
-                            <a href='#' class='dropdown-toggle' id='dropdownMenu1' data-toggle='dropdown'>
-                                + Add New Teammate
-                                <b class='caret'></b>
-                            </a>
-                            <ul class='dropdown-menu' role='menu' aria-labelledby='dropdownMenu1' style='padding: 5px 5px;'>
-                                <li>
-                                    <form>
-                                        <input type='email' class='input-block-level' id ='email_add_member' placeholder='Enter member Email'/><br/>
-                                        <input type='button' class='btn btn-success submit' onclick='add_member(\"".$pro_id."\",\"".$team_name."\")' value='Add' />
-                                    </form>
-                                </li>
-                            </ul>
-                        </div>";
+        $data_display = $data_display. "<a href='#' class='btn btn-link pull-right' onclick='add_Team_Member(\"".$team_name."\")'> + Add New Teammate </a>";
     }
     $data_display = $data_display. "
                     </div>
                     <div class='list-group-item'>" ;
-    $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
+    $member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
 	if(mysqli_num_rows($member_project) != 0) {
 		$data_display = $data_display."<a class='btn-link pull-right' data-toggle='modal' data-target='#AddTeam'>Create Team</a>" ;
 	}

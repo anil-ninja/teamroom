@@ -13,22 +13,22 @@ if($_POST['reminder']){
 	$a = date("Y-m-d H:i") ;
 	if ($eventtime == $a || $eventtime < $a) {
 		echo "Please Enter Valid Date and Time !";
-		}
-		else {
-			if (strlen($reminder) < 250) {
-				if($user_id != $self) {
-					$body2 = "Hi, \n \n ".$username." Add Reminder for you (".$reminder."). View at \n
+	}
+	else {
+		if (strlen($reminder) < 250) {
+			if($user_id != $self) {
+				$body2 = "Hi, \n \n ".$username." Add Reminder for you (".$reminder."). View at \n
 http://collap.com/profile.php?username=".$username ;
-					collapMail($emails, "Reminder Added", $body2);
-					}
-				mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time)	VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;
-				if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
-				else { echo "Reminder Set succesfully!"; }
-				} 
-				else {
-					 echo "Max length 250 characters!"; 
-					}
+				collapMail($emails, "Reminder Added", $body2);
 			}
+			mysqli_query($db_handle,"INSERT INTO reminders (user_id, person_id, reminder, time)	VALUES ('$user_id', '$self', '$reminder', '$time') ; ") ;
+			if(mysqli_error($db_handle)) { echo "Failed to Set !!!!"; }
+			else { echo "Reminder Set succesfully!"; }
+		} 
+		else {
+			echo "Max length 250 characters!"; 
+		}
+	}
 	mysqli_close($db_handle);
 } 
 else echo "Invalid parameters!";

@@ -1,10 +1,10 @@
-function ninjas_intro(){
+var ninjas_intro = function (  ) {
         var intro = introJs();
           intro.setOptions({
               steps: [
 			        {
                 element: '#step0',
-                intro: '<b> Welcome To Collap </b> <br/> We will take you through a tour of this page. Press ESC to exit any time. ',
+                intro: '<b> Welcome To Collap </b> <br/> We will take you through a tour of this page and help you figure out what collap offers. Click Next to continue or Press ESC to exit any time. ',
                 position: 'bottom'
               },
               {
@@ -79,14 +79,40 @@ function ninjas_intro(){
               },
               {
                 element: '#step16',
-                intro: "<b> Collap Chat and link suggestions </b><br/> Create your network by Linking people or talk to friends by clicking here",
-                position: 'left'
-              }
-            ]
+					intro: "<b> Collap Chat and link suggestions </b><br/> Create your network by Linking people or talk to friends by clicking here",
+					position: 'left'
+				  }
+				]
           });
+   intro.start();
+   intro.oncomplete(function(){
+	   intro.exit();
+	   projectToJoin  ();
+	});
+	intro.onexit(function(){
+		intro.exit();
+	 projectToJoin  ();
+	});
 
-          intro.start();
+   //console.log(intro);
 }
+function projectToJoin  () {
+  $.ajax({
+		type: "POST",
+		url: "ajax/project_join.php",
+		async: false ,
+		data: "type=1",
+		cache: false,
+		success: function(result){
+			var data = $(".insertprojects").html() ;
+			if(replaceAll('\\s', '',data) == "") {
+				$(".insertprojects").append(result);
+			}
+		}
+	});
+	$("#joinProject").modal("show");
+};
+
 function profile_intro() {
 	var intro = introJs();
           intro.setOptions({

@@ -24,29 +24,33 @@ function getnextchal (clas, int) {
 	if (numItems < 3) {
 	var dataString = 'chal=6' ;
 		$.ajax({
-				type: "POST",
-				url: "ajax/get_next.php",
-				data: dataString,
-				cache: false,
-				success: function(result){
-					var notice = result.split("<") ;
-					if (notice['0'] == 'no data') {
-						$('#panel-cont').append("<p align='center' style='font-size:24px;'>No Data Available</p>");
-						$('.loading').remove();
-					}
-					else {
-						$('#panel-cont').append(result);
-						$('.loading').remove();
-						showclass(int) ;
-						var numItem = $('div.'+clas).length;
-						if (numItem < 3) {
-							getnextchal(clas, int) ;
-						}
+			type: "POST",
+			url: "ajax/get_next.php",
+			async: false ,
+			data: dataString,
+			cache: false,
+			success: function(result){
+				var notice = result.split("<") ;
+				if (notice['0'] == 'no data') {
+					$('.loading').remove();
+					var data = document.getElementById("appendloading") ;
+					if(data == null) {
+						$('#panel-cont').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");
 					}
 				}
-			});
-		}
+				else {
+					$('#panel-cont').append(result);
+					$('.loading').remove();
+					showclass(int) ;
+					var numItem = $('div.'+clas).length;
+					if (numItem < 3) {
+						getnextchal(clas, int) ;
+					}
+				}
+			}
+		});
 	}
+}
 function showclass(int) {
 	switch(int){
 		case 1:
@@ -152,15 +156,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 					return false ;
 				}
 				else {
-					var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) ;
+					var dataString = 'video='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',video_title)))))
+					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',videodes))))) ;
 					$.ajax({
 						type: "POST",
 						url: "ajax/add_video.php",
+						async: false ,
 						data: dataString,
 						cache: false,
 						success: function(result){
-							var notice = result.split("+") ;
+							var notice = result.split("|+") ;
 							if(notice['0'] = "Video Posted Successfully !!!") {
 								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 								$("#video_title").val("") ;
@@ -216,15 +221,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 					return false ;
 				}
 				else {
-					var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',video_title))))
-					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',videodes)))) + '&project_id=' + ID ;
+					var dataString = 'videos='+ challenge + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',video_title)))))
+					 + '&videodes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',videodes))))) + '&project_id=' + ID ;
 					$.ajax({
 						type: "POST",
 						url: "ajax/add_video_pr.php",
+						async: false ,
 						data: dataString,
 						cache: false,
 						success: function(result){
-							var notice = result.split("+") ;
+							var notice = result.split("|+") ;
 							if(notice['0'] = "Video Posted Successfully !!!") {
 								bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 								$("#video_titlepr").val("") ;
@@ -266,8 +272,8 @@ function bootstrap_alert(elem, message, timeout,type) {
 				challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 			}
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;			
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))  + '&project_id=' + ID ;
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge))))) + 
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge_title)))))  + '&project_id=' + ID ;
 			if(replaceAll('\\s', '',challenge)==''){
 				bootstrap_alert(".alert_placeholder", "Challenge can not be empty", 5000,"alert-warning");
 				$("#submit_ch").removeAttr('disabled');
@@ -297,6 +303,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 		}
 		else if (_file.files['0'].size > 2015000) {
 			bootstrap_alert(".alert_placeholder", "File size is too large", 5000,"alert-warning");
+			$("#create_issue").removeAttr('disabled');
+			$("#create_idea").removeAttr('disabled');
+			$("#create_picture").removeAttr('disabled');
+			$("#create_article").removeAttr('disabled');
+			$("#submit_ch").removeAttr('disabled');
+			$("#create_challange_pb_pr").removeAttr('disabled');
+			$("#create_notes").removeAttr('disabled');
+			$("#create_task").removeAttr('disabled');
+			$("#create_project").removeAttr('disabled');
+			$("#answerch").removeAttr('disabled');
 			//setTimeout(function(){ location.reload(); } , 10000) ;
 			return false ;
 		} 
@@ -345,6 +361,16 @@ function bootstrap_alert(elem, message, timeout,type) {
 		}
 		if (ilink != "" && imgTx.length < 30) { 
 			bootstrap_alert(".alert_placeholder", imgTx, 5000,"alert-warning");
+			$("#create_issue").removeAttr('disabled');
+			$("#create_idea").removeAttr('disabled');
+			$("#create_picture").removeAttr('disabled');
+			$("#create_article").removeAttr('disabled');
+			$("#submit_ch").removeAttr('disabled');
+			$("#create_challange_pb_pr").removeAttr('disabled');
+			$("#create_notes").removeAttr('disabled');
+			$("#create_task").removeAttr('disabled');
+			$("#create_project").removeAttr('disabled');
+			$("#answerch").removeAttr('disabled');
 			//setTimeout(function(){ location.reload(); } , 10000) ;
 		}
 		else {
@@ -355,7 +381,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			data: dataString,
 			cache: false,
 			success: function(result){
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				if(notice['0'] == "Posted succesfully!") {
 					bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 					switch (parseInt(notice['1'])) {
@@ -443,6 +469,10 @@ function bootstrap_alert(elem, message, timeout,type) {
 					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-success");
 					location.reload();
 				}
+				else if(notice['0'] == "Project created succesfully!"){
+					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-success");
+					location.reload();
+				}
 				else {
 					bootstrap_alert(".alert_placeholder", notice['0'], 55000,"alert-warning");
 					location.reload();
@@ -467,26 +497,39 @@ function bootstrap_alert(elem, message, timeout,type) {
 				return false;
 			} 
 			else {
-				var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article)))) + 
-				'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',article_title))))  ;
+				var dataString = 'article='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',article))))) + 
+				'&article_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',article_title)))))  ;
 				var _file = document.getElementById('_fileArticle');
 				uploadFile1(_file,"articlePic",String(dataString),"ajax/submit_article.php");
 			}
 		}
-			
+	function projectinfo() {
+		var type = $("#type").val();
+		if (type == '2') {
+			bootstrap_alert(".alert_placeholder", "Classified Project will not be searchable by Investers", 10000,"alert-warning");
+			$(".aboutfunding").hide();
+		}
+		else {
+			$(".aboutfunding").show();
+		}
+	}		
+	$(document).ready(function() {
 		$("#create_project").click(function(){
 			$("#create_project").attr('disabled','disabled');
 			var project_title = convertSpecialChar($("#project_title").val()) ;
 			var project_stmt = convertSpecialChar($("#project_stmt").val());
+			var value = convertSpecialChar($("#project_value").val());
+			var fund = convertSpecialChar($("#project_fundneed").val());
 			var type = $("#type").val();
+			var typeA = document.getElementById("fundProject").checked;
+			$("#project_title").val("");
 			//var eta = parseInt($("#eta").val());
 			//var etab = parseInt($("#etab").val());
 			//var etac = parseInt($("#etac").val());
 			//var etad = parseInt($("#etad").val());
 			//var project_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_title)))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',project_stmt)))) + 
-			'&type='+ type ;//+ '&project_eta='+ (project_eta+='')  ;
+			//+ '&project_eta='+ (project_eta+='')  ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',project_title)==''){
 				bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
@@ -496,12 +539,43 @@ function bootstrap_alert(elem, message, timeout,type) {
 				bootstrap_alert(".alert_placeholder", "Project can not be empty", 5000,"alert-warning");
 				$("#create_project").removeAttr('disabled');
 			}
+			else if (type == '0') {
+				bootstrap_alert(".alert_placeholder", "Please select Project type", 5000,"alert-warning");
+				$("#create_project").removeAttr('disabled');
+			}
+			else if(typeA != false){
+				if(replaceAll('\\s', '',value) == "") {
+					bootstrap_alert(".alert_placeholder", "Value can not be empty", 5000,"alert-warning");
+					$("#create_project").removeAttr('disabled');
+				}
+				else if(replaceAll('\\s', '',fund) == "") {
+					bootstrap_alert(".alert_placeholder", "Fund can not be empty", 5000,"alert-warning");
+					$("#create_project").removeAttr('disabled');
+				}
+				else {
+					var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_title))))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_stmt))))) + 
+					'&type='+ type + '&value='+ value + '&fund='+ fund ;
+					var _file = document.getElementById('_fileProject');
+					//alert(uploadFile(_file,"articlePic"));
+					uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
+				}
+			}
 			else {
+				var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_title))))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_stmt))))) + 
+					'&type='+ type + '&value='+ value + '&fund='+ fund ;
 				var _file = document.getElementById('_fileProject');
 				//alert(uploadFile(_file,"articlePic"));
 				uploadFile1(_file,"projectPic",String(dataString),"ajax/submit_project.php");
 			}
 		});
+	});
+function IsNumeric(e) {
+	var specialKeys = new Array();
+	specialKeys.push(8); //Backspace
+    var keyCode = e.which ? e.which : e.keyCode
+    var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+    return ret;
+}
 		
 		$('.tree-toggle').click(function () {
 		$(this).parent().children('ul.tree').toggle(200);
@@ -587,8 +661,8 @@ $("#pencil").click(function(){
 			var idea = convertSpecialChar($("#ideaA").val()) ;
 			var idea_title = convertSpecialChar($("#idea_titleA").val()) ;		
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',idea)))) + '&idea_title='+ 
-			replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',idea_title))))  ;
+			var dataString = 'idea='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',idea))))) + '&idea_title='+ 
+			replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',idea_title)))))  ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',idea) == ''){
 				bootstrap_alert(".alert_placeholder", "Idea can not be empty", 5000,"alert-warning");
@@ -610,8 +684,8 @@ $("#pencil").click(function(){
 			var picturech = convertSpecialChar($("#picturech").val()) ;
 			var picture_title = convertSpecialChar($("#picture_title").val()) ;			
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',picturech)))) 
-			+ '&picture_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',picture_title))))  ;
+			var dataString = 'picturech='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',picturech))))) 
+			+ '&picture_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',picture_title)))))  ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',picturech) == ''){
 				bootstrap_alert(".alert_placeholder", "Details can not be empty", 5000,"alert-warning");
@@ -650,6 +724,7 @@ function create_task(){
 		$.ajax({
 			type: "POST",
 			url: "ajax/email.php",
+			async: false ,
 			data: 'email='+ email,
 			cache: false,
 			success: function(result){
@@ -663,8 +738,8 @@ function create_task(){
 					//var etad = parseInt($("#c_etad").val());
 					//var challange_eta = parseInt(((eta*30+etab)*24+etac)*60+etad) ;
 					// Returns successful data submission message when the entered information is stored in database.
-					var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-									 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) 
+					var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',taskdetails)))))
+									 + '&email='+ email + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) 
 									 + '&team='+ team + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
 					//alert(dataString);
 					if(replaceAll('\\s', '',title)==''){
@@ -706,8 +781,8 @@ function create_task(){
 	else {
 		var title = convertSpecialChar($("#titletask").val()) ;
 		var taskdetails = convertSpecialChar($("#taskdetails").val()) ;
-		var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',taskdetails))))
-						 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',title)))) + '&team='+ team 
+		var dataString = 'taskdetails='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>   ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',taskdetails)))))
+						 + '&title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',title))))) + '&team='+ team 
 						 + '&users='+ users + '&project_id=' + ID ;//+ '&challange_eta='+ (challange_eta+='') ;
 		//alert(dataString);
 		if(replaceAll('\\s', '',title)==''){

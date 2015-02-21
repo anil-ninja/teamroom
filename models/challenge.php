@@ -26,7 +26,7 @@ class challenge{
         
         $chalangerow = mysqli_fetch_array($chalange);
         
-        $this->challenge_title = $chalangerow['challenge_title'];
+        $this->challenge_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "",str_replace("<an>", "+", $chalangerow['challenge_title'])))));
         if($chalangerow['blob_id']== 0)
 			$this->stmt = $chalangerow['stmt'];
 		else {
@@ -46,19 +46,42 @@ class challenge{
         if (substr($this->stmt, 0, 4) == "<img") {
             $arrayStmt = explode(">", $this->stmt);
             
-            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt,strlen($arrayStmt[0])+1,255)))));
+            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "",str_replace("<an>", "+", substr($this->stmt,strlen($arrayStmt[0])+1,255))))));
         }
         if (substr($this->stmt, 0, 2) == "<a") {
             $arrayStmt = explode("</a>", $this->stmt);
             
-            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt,strlen($arrayStmt[0])+4,255)))));
+            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "",str_replace("<an>", "+", substr($this->stmt,strlen($arrayStmt[0])+4,255))))));
+        }
+        if (substr($this->stmt, 0, 4) == "<spa") {
+            $arrayStmt = explode('" />', $this->stmt);
+            $arraySt = explode("..", $arrayStmt['1']);
+            return str_replace(
+						"<s>", "&nbsp;",
+						str_replace(
+									"<r>", 
+									"'",
+									str_replace(
+											"<a>", 
+											"&",
+											str_replace(
+													"<br/>", 
+													"",
+													str_replace(
+																"<an>", 
+																"+", 
+																$arraySt[0]
+														)
+														)
+												)
+										));
         }
         if (substr($this->stmt, 0, 4) == "<ifr") {
             $arrayStmt = explode("</iframe>", $this->stmt);
             $this->video = 1;
-            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt,strlen($arrayStmt[0])+9,255)))));
+            return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "",str_replace("<an>", "+", substr($this->stmt,strlen($arrayStmt[0])+9,255))))));
         }
-        return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "", substr($this->stmt, 0, 200)))));
+        return str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<br/>", "",str_replace("<an>", "+", substr($this->stmt, 0, 200))))));
     }
     function getUrl($stmt){
         if (substr($stmt, 0, 4) == "<img") {

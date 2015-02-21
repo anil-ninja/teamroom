@@ -11,88 +11,73 @@ function signup(){
 	$username = mysqli_real_escape_string($db_handle, $_POST['username']);
 	$pas = mysqli_real_escape_string($db_handle, $_POST['password']) ;
 	$awe = mysqli_real_escape_string($db_handle, $_POST['password2']) ;
+	$type = mysqli_real_escape_string($db_handle, $_POST['type']) ;
+	$amount = mysqli_real_escape_string($db_handle, $_POST['amount']) ;
 	
 	if ( $pas == $awe ) {
-            $email_already_registered = mysqli_query($db_handle, "SELECT email FROM user_info WHERE email = '$email';");
-            $email_exists = mysqli_num_rows($email_already_registered) ;
-            $username_already_registered = mysqli_query($db_handle, "SELECT username FROM user_info WHERE username = '$username';");
-            $username_registered = mysqli_num_rows($username_already_registered);
-            if ($email_exists != 0) {
-                //header('Location: ./index.php?status=3');
-                echo "User is reistered with this Email,<br>
-                      Try different email or Please Sign In";
-            }
-            elseif ($username_registered != 0) {
-                //header('Location: ./index.php?status=4');
-                echo "User is registered with this username,<br>
-                    Try different username or Please Sign In";
-            }
-            else {
-				$pas = md5($pas);
-				$logintime = date("y-m-d H:i:s") ;
-		mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password, last_login, registeration_time) VALUES ('$firstname', '$lastname', '$email', '$username', '$pas', '$logintime', '$logintime') ; ") ;		
-                $user_create_id = mysqli_insert_id($db_handle);
-               // echo $user_create_id ;
-                $hash_keyR = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
-                mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_create_id', '$hash_keyR');");
-                $id_access_id =  mysqli_insert_id($db_handle);
-                $hash_keyR = $hash_keyR.".".$id_access_id;
-                //echo $hash_keyR ;
-                $body = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'>
-<table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td><p>Hi ".ucfirst($username).",</p>
+		$email_already_registered = mysqli_query($db_handle, "SELECT email FROM user_info WHERE email = '$email';");
+		$email_exists = mysqli_num_rows($email_already_registered) ;
+		$username_already_registered = mysqli_query($db_handle, "SELECT username FROM user_info WHERE username = '$username';");
+		$username_registered = mysqli_num_rows($username_already_registered);
+		if ($email_exists != 0) {
+			//header('Location: ./index.php?status=3');
+			echo "User is reistered with this Email,<br>
+				  Try different email or Please Sign In";
+		}
+		elseif ($username_registered != 0) {
+			//header('Location: ./index.php?status=4');
+			echo "User is registered with this username,<br>
+				Try different username or Please Sign In";
+		}
+		else {
+			$pas = md5($pas);
+			$logintime = date("y-m-d H:i:s") ;
+			mysqli_query($db_handle,"INSERT INTO user_info(first_name, last_name, email, username, password, last_login, registeration_time, user_type, amount) 
+										VALUES ('$firstname', '$lastname', '$email', '$username', '$pas', '$logintime', '$logintime', '$type', '$amount') ; ") ;		
+			$user_create_id = mysqli_insert_id($db_handle);
+			$hash_keyR = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
+			mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_create_id', '$hash_keyR');");
+			$id_access_id =  mysqli_insert_id($db_handle);
+			$hash_keyR = $hash_keyR.".".$id_access_id;
+			//echo $hash_keyR ;
+			$body = "<p>Hi ".ucfirst($username).",</p>
 <p>Welcome to Collap. We are building an engaged community of problem solvers in different domains of Science, Technology, Marketing, Economics, Electronics, Electrical, Mechanical, Computer Science, etc. We provide tools, technology and platform to manage projects, host and solve challenges, hosting articles, ideas, etc</p>
 <p>We are excited to have you on-board and there’s just one step to verify if it’s actually your e-mail address:</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/verifyEmail.php?hash_key=".$hash_keyR."' class='btn-primary'>Click Here to Verify Your Email</a></p></td></tr></table>
-<p>Hugs or bugs, please let us know by replying to this e-mail. Welcome again!</p>
-<p>Thanks,</p>
-<p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p>
-</td></tr></table></div></td><td></td></tr></table></body></html>" ;
-                
-                collapMail($email, "Email Verification From Collap", $body, file_get_contents('../html_comp/mailheader.php'));
-                $body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>Thanks for joining Collap</h2><p>Hi ".ucfirst($username).",</p>
+<table><tr><td class='padding'><p>Hugs or bugs, please let us know by replying to this e-mail. Welcome again!</p>" ;
+			
+			collapMail($email, "Email Verification From Collap", $body);
+			$body2 = "<h2>Thanks for joining Collap</h2><p>Hi ".ucfirst($username).",</p>
 <p>We’re thrilled to have you on board. Be sure to save your important account details for future reference:</p>
 <p>Your username is: ".$username."</p>
 <p>You’ve joined a talented community of professionals dedicated to doing great work. The first step for building a successfull collaborative network is to update your profile</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$username."' class='btn-primary'>Click Here to Update Your Profile</a></p></td></tr></table>
 <p>Remember the following for your profile</p>
 <ul>
-	<li>Complete:<p>With all information filled out, including your full name and picture</p></li>
-	<li>Accurate:<p>Featuring information that is true and verifiable</p></li>
-	<li>Contact:<p>Contact information will help you and other collapian to collaborate and do better. Give you Phone no and Email id	</p></li>
-<p>Thanks,</p>
-<p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ; 
+<li>Complete:<p>With all information filled out, including your full name and picture</p></li>
+<li>Accurate:<p>Featuring information that is true and verifiable</p></li>
+<li>Contact:<p>Contact information will help you and other collapian to collaborate and do better. Give you Phone no and Email id	</p></li>
+</ul><table><tr><td>" ; 
 
-              collapMail($email, "complete your profile", $body2, file_get_contents('../html_comp/mailheader.php'));
-		if(mysqli_error($db_handle)){
-			echo "Please Try Again";
-		} else {
-
-		$_SESSION['user_id'] = $user_create_id;
-		$_SESSION['first_name'] = $firstname ;
-		$_SESSION['username'] = $username ;
-		$_SESSION['email'] = $email;
-		$_SESSION['last_login'] = $logintime ;
-		$newid = mysqli_insert_id($db_handle) ;
-		$obj = new rank($newid);
-    	//echo $obj->user_rank;
-		$_SESSION['rank'] = $obj->user_rank;
-		//header('Location: ../profile.php') ;
-		exit;
+			collapMail($email, "complete your profile", $body2);
+			if(mysqli_error($db_handle)){ echo "Please Try Again"; } 
+			else {
+				$_SESSION['username'] = $username ;
+				$_SESSION['user_id'] = $user_create_id;
+				$_SESSION['first_name'] = $firstname ;
+				$_SESSION['email'] = $email;
+				$_SESSION['last_login'] = $logintime ;
+				$newid = mysqli_insert_id($db_handle) ;
+				$obj = new rank($newid);
+				$_SESSION['rank'] = $obj->user_rank;
+				exit;
+			}
 		}
-		//header('Location: ./index.php?status=0');
-	    }
-        }
+	}
 	else {  
 		//header('Location: ./index.php?status=1');
 		echo "Password do not match, Try again";
-        }
+    }
 	mysqli_close($db_handle);
 }
 
@@ -105,12 +90,16 @@ function login(){
 	//echo $password ;
 	$response = mysqli_query($db_handle,"select * from user_info where (username = '$username' OR email = '$username') AND password = '$password';") ;
 	$num_rows = mysqli_num_rows($response);
-	if ( $num_rows){
+	if ( $num_rows > 0){
 		$responseRow = mysqli_fetch_array($response);
 		$id = $responseRow['user_id'];
 		$rank = $responseRow['rank'];
 		$lastlogintime = $responseRow['last_login'];
 		$_SESSION['last_login'] = $lastlogintime ;
+		$_SESSION['user_id'] = $id ;
+		$_SESSION['first_name'] = $responseRow['first_name'] ;
+		$_SESSION['username'] = $responseRow['username'] ;
+		$_SESSION['email'] = $responseRow['email'];
 		$obj = new rank($id);
 		$new_rank = $obj->user_rank ;
 		if($new_rank != $rank) {
@@ -128,17 +117,14 @@ function login(){
 					$friendFirstName = $userProjectsRow['email'];
 					$usernameFriends = $userProjectsRow['username'];
 					$useridFriends = $userProjectsRow['user_id'];
-					events($db_handle,$id,"18",$useridFriends) ;
-					$body2 = "Hi, ".$usernameFriends." \n \n ".$username."'s rank has been Updated to ".$new_rank."  See more at \n
-http://collap.com/profile.php?username=".$username ;
+					events($db_handle,$id,"19",$useridFriends) ;
+					$body2 = "<h2>Rank Updated</h2><p>Hi ".ucfirst($usernameFriends).",</p>
+<p>".$username."'s rank has been Updated to ".$new_rank.".</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$username."' class='btn-primary'>Click Here to View</a></p>" ;
 					collapMail($friendFirstName, "Rank Updated ", $body2);
 				}
 			}
 		}
-		$_SESSION['user_id'] = $id ;
-		$_SESSION['first_name'] = $responseRow['first_name'] ;
-		$_SESSION['username'] = $responseRow['username'] ;
-		$_SESSION['email'] = $responseRow['email'];
 		$logintime = date("y-m-d H:i:s") ;
 		mysqli_query($db_handle,"UPDATE user_info SET last_login = '$logintime', rank = '$new_rank' where user_id = '$id' ;" ) ;
 		//$obj = new rank($id);

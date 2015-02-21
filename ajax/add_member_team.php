@@ -11,6 +11,9 @@ if ($_POST['email']) {
     $email = $_POST['email'];
     $pro_id = $_POST['id'] ;
     $case = $_POST['case'] ;
+    $info =  mysqli_query($db_handle, "select * from projects where project_id = '$pro_id' ;") ;
+	$inforow = mysqli_fetch_array($info) ;
+	$title = $inforow['project_title'] ;
     if($case == 1) {
 		$respo = mysqli_query($db_handle, "SELECT * FROM user_info WHERE email = '$email';");
 		if (mysqli_num_rows($respo) > 0) {
@@ -24,10 +27,7 @@ if ($_POST['email']) {
 			if (mysqli_num_rows($already_member) > 0) {
 				mysqli_query($db_handle, "UPDATE teams SET member_status = '1' where user_id = '$uid' AND project_id = '$pro_id' AND team_name = '$team_name' ;") ;
 			} 
-			else {
-				events($db_handle,$user_id,"15",$pro_id);
-				involve_in($db_handle,$user_id,"15",$pro_id); 
-				mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
+			else { 
 				$members = mysqli_query($db_handle, "select DISTINCT a.user_id, b.email, b.username, b.first_name, b.last_name from teams as a join user_info as b where a.project_id = '$pro_id' and
 										a.user_id != '$user_id' and a.user_id = b.user_id ;") ;
 				while ($memrow = mysqli_fetch_array($members)){
@@ -35,19 +35,19 @@ if ($_POST['email']) {
 					$mail = $memrow['username'] ;
 					$userFirstName = $memrow['first_name'] ;
 					$userLastName = $memrow['last_name'] ;
-					$body2 = "<body bgcolor='#f6f6f6'><table class='body-wrap'><tr><td></td><td class='container' bgcolor='#FFFFFF'>
-<div class='content'><table><tr><td><img style='width:108px' src = 'http://collap.com/img/collap.gif'/><i style='font-size:58px;'>collap.com</i></td></tr><tr><td>
-<h2>Add Member in Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
+					$body2 = "<h2>Add Member in Team</h2><p>Hi ".ucfirst($userFirstName)." ".ucfirst($userLastName).",</p>
 <p>A new member has been added in team ".$team_name.".</p>
 <p>".$team_name." has a new member ".$uname." in project ".ucfirst($title)."</p>
-<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p></td></tr><tr><td>
-<p> Lets Collaborate!!! Because Heritage is what we pass on to the Next Generation.</p></td></tr></table>
-<p>Thanks,</p><p>Collap Team</p>
-<p><a href='http://twitter.com/collapcom'>Follow @collapcom on Twitter</a></p></td></tr></table>
-</div>
-</td><td></td></tr></table></body></html>" ;
-					collapMail($emails, "Member Added IN Team", $body2, file_get_contents('../html_comp/mailheader.php'));
-					}
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
+					collapMail($emails, "Member Added IN Team", $body2);
+				}
+				mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$uid', '$team_name', '$pro_id');");
+				events($db_handle,$user_id,"7",$pro_id);
+				involve_in($db_handle,$user_id,"7",$pro_id);
+				$body2 = "<h2>Added as Member in Team</h2><p>Hi ".ucfirst($firstname)." ".ucfirst($lastname).",</p>
+<p>".$username." has added you as member in team ".$team_name." in project ".ucfirst($title)."</p>
+<table><tr><td class='padding'><p><a href='http://collap.com/project.php?project_id=".$pro_id."' class='btn-primary'>Click Here to View</a></p>" ;
+				collapMail($email, "Added IN Team", $body2);	
 			}
 			$data = "<div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
 						<a type='submit' class='btn-link badge pull-right' id='remove_member' onclick='remove_member(\"".$pro_id."\", \"".$team_name."\", \"".$uid."\");' 
@@ -64,7 +64,7 @@ if ($_POST['email']) {
                        </a>
                     </div>" ;
 			if(mysqli_error($db_handle)) { echo "Failed to Add Member!"; }
-			else { echo "Member Added succesfully!"."+".$data ; }		
+			else { echo "Member Added succesfully!"."|+".$data ; }		
 		} 
 		else { 
 			echo "Member Not Registered Yet" ;

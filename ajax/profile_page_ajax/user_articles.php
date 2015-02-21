@@ -6,3 +6,6 @@ include_once '../../functions/delete_comment.php';
 $user_id_joined = $_SESSION['profile_view_userID'];
 user_articles ($db_handle, $user_id_joined);
 ?>
+<script>
+	onLoaddata() ;
+</script>

@@ -32,8 +32,8 @@ function showpanel(){
 		$('#aboutproject').show();
 	}
 function convertSpecialChar(str){
-		return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
-	}		
+	return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
+}		
 		function create_challange_pb_pr(){
 			$("#create_challange_pb_pr").attr('disabled','disabled');
 			var ID = $("#ProjectIDValue").val() ;
@@ -41,8 +41,8 @@ function convertSpecialChar(str){
 			var challenge_title = convertSpecialChar($("#challange_title").val()) ;
 			var type = $("#type").val();
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge)))) + 
-			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',challenge_title))))
+			var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge))))) + 
+			'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge_title)))))
 			 + '&type='+ type + '&project_id=' + ID ;//+ '&opentime='+ (opentime+='') + '&challange_eta='+ (challange_eta+='') ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',challenge)==''){
@@ -69,8 +69,8 @@ function convertSpecialChar(str){
 			var notes = convertSpecialChar($("#notestmt").val()) ;
 			var notes_title = convertSpecialChar($("#notes_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
-							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes))))) + 
+							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes_title))))) + '&project_id=' + ID ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',notes)==''){
 				bootstrap_alert(".alert_placeholder", "Notes can not be empty", 5000,"alert-warning");
@@ -95,8 +95,8 @@ function convertSpecialChar(str){
 			var notes = convertSpecialChar($("#issuestmt").val()) ;
 			var notes_title = convertSpecialChar($("#issue_title").val()) ;
 			// Returns successful data submission message when the entered information is stored in database.
-			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes)))) + 
-							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',notes_title)))) + '&project_id=' + ID ;
+			var dataString = 'notes='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes))))) + 
+							'&notes_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',notes_title))))) + '&project_id=' + ID ;
 			//alert(dataString);
 			if(replaceAll('\\s', '',notes)==''){
 				bootstrap_alert(".alert_placeholder", "Issue can not be empty", 5000,"alert-warning");
@@ -128,7 +128,7 @@ function convertSpecialChar(str){
 				return false ;
 			}
 			else {
-				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',answerchal))))
+				var dataString = 'answer='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',answerchal)))))
 								+ '&cid='+ answercid + '&case=' + pid  ;
 				//alert(dataString);
 				var _file = document.getElementById('_fileanswer');
@@ -142,13 +142,14 @@ function convertSpecialChar(str){
 });	
             $('#example')
             .removeClass( 'display' )
-            .addClass('table table-striped table-bordered');
-            
-    function replaceAll(find, replace, str) {
-return str.replace(new RegExp(find, 'g'), replace);
-}
-	
+            .addClass('table table-striped table-bordered');	
 	});
+function replaceAll(find, replace, str) {
+	if(str == null){
+		str = "";
+	}
+	return str.replace(new RegExp(find, 'g'), replace);
+}
 function show_form(type, ID){
 	var dataString = 'form_type=' + type + '&project_id=' + ID ;
 	$.ajax({
@@ -176,7 +177,11 @@ function show_form_pro(type, title, ID) {
 			$("#selecttext").hide();
 			$("#invitation").show() ;
 			document.getElementById("invitation").innerHTML = result ;
-			elf(title, ID) ;
+			var temp = title + "_" + ID ;
+			var elf = $('#elfinder').elfinder({
+				url : 'php/connector.php?project_fd='+temp  // connector URL (REQUIRED)
+			   // lang: 'ru',             // language (OPTIONAL)
+			}).elfinder('instance');
 		}
 	});
 }
@@ -302,11 +307,12 @@ function create_team(){
 			$.ajax({
 				type: "POST",
 				url: "ajax/create_team_new.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
-					var notice = result.split("+") ;
-					if(notice['0'] = "Team Created Successfully !!!") {
+					var notice = result.split("|+") ;
+					if(notice['0'] == "Team Created Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 						$("#team_name_A").val("") ;
 						$("#email_team").val("") ;
@@ -337,6 +343,7 @@ function submitTeam(team,email, ID) {
 	$.ajax({
 		type: "POST",
 		url: "ajax/email.php",
+		async: false ,
 		data: 'email='+ email,
 		cache: false,
 		success: function(result){
@@ -346,11 +353,12 @@ function submitTeam(team,email, ID) {
 				$.ajax({
 					type: "POST",
 					url: "ajax/create_team_new.php",
+					async: false ,
 					data: dataString,
 					cache: false,
 					success: function(result){
-						var notice = result.split("+") ;
-						if(notice['0'] = "Team Created Successfully !!!") {
+						var notice = result.split("|+") ;
+						if(notice['0'] == "Team Created Successfully !!!") {
 							bootstrap_alert(".alert_placeholder", notice['0'], 5000,"alert-success");
 							$("#team_name_A").val("") ;
 							$("#email_team").val("") ;
@@ -418,6 +426,7 @@ function submitTeam(team,email, ID) {
 			$.ajax({
 				type: "POST",
 				url: "ajax/email.php",
+				async: false ,
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
@@ -426,11 +435,12 @@ function submitTeam(team,email, ID) {
 						$.ajax({
 							type: "POST",
 							url: "ajax/send_invitation.php",
+							async: false ,
 							data: dataString,
 							cache: false,
 							success: function(result){
 								bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-							if(result = "Invitation Send Successfully !!!") {
+							if(result == "Invitation Send Successfully !!!") {
 								$("#fnameteam").val("") ;
 								$("#snameteam").val("") ;
 								$("#teamemail").val("") ;
@@ -466,11 +476,12 @@ function CreateTeamMember(userid){
 			$.ajax({
 				type: "POST",
 				url: "ajax/create_team_new.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
-					var notice = result.split("+") ;
-					if(notice['0'] = "Team Created Successfully !!!") {
+					var notice = result.split("|+") ;
+					if(notice['0'] == "Team Created Successfully !!!") {
 						bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
 						$("#username_"+userid).hide();
 						$(".TeamMembers").append(notice['1']);
@@ -489,10 +500,11 @@ function CreateTeamMember(userid){
 		$.ajax({
 			type: "POST",
 			url: "ajax/create_team_new.php",
+			async: false ,
 			data: dataString,
 			cache: false,
 			success: function(result){
-				var notice = result.split("+") ;
+				var notice = result.split("|+") ;
 				if(notice['0'] = "Team Created Successfully !!!") {
 					bootstrap_alert(".alert_placeholder", "Member Addad", 5000,"alert-success");
 					$("#username_"+userid).hide();
@@ -535,6 +547,7 @@ function invitememb(ID){
 			$.ajax({
 				type: "POST",
 				url: "ajax/email.php",
+				async: false ,
 				data: 'email='+ email,
 				cache: false,
 				success: function(result){
@@ -543,6 +556,7 @@ function invitememb(ID){
 						$.ajax({
 							type: "POST",
 							url: "ajax/send_invitation.php",
+							async: false ,
 							data: dataString,
 							cache: false,
 							success: function(result){
@@ -575,13 +589,17 @@ function getnextprchal(clas, int) {
 		$.ajax({
 				type: "POST",
 				url: "ajax/next_proch.php",
+				async: false ,
 				data: dataString,
 				cache: false,
 				success: function(result){
 					var notice = result.split("<") ;
 					if (notice['0'] == 'no data') {
-						$('#prch').append("<p align='center' style='font-size:24px;'>No Data Available</p>");
 						$('.loading').remove();
+						var data = document.getElementById("appendloading") ;
+						if(data == null) {
+							$('#prch').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");
+						}
 					}
 					else {
 						$('#prch').append(result);
