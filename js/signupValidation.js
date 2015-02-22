@@ -121,6 +121,120 @@ function validatePath(path) {
             }
             return error;
     }
+    
+function validateSignupFormOnSubmit() {
+	var reason = "";
+	var firstname = $("#firstname").val() ;
+	var lastname = $("#lastname").val() ;
+	var email = $("#email").val() ;
+	//var phone = $("#phone").val() ;
+	var username = replaceAll('[.]', '', $("#usernameR").val()) ;
+	var password = $("#passwordR").val() ;
+	var password2 = $("#password2R").val() ;
+    var term_n_cond = document.getElementById("agree_tc").checked;
+    var typeA = document.getElementById("typeCol").checked;
+    var typeB = document.getElementById("typeInv").checked;
+    var typeC = document.getElementById("typeFun").checked;
+    var amount = $("#investment").val() ;
+	if(password==password2){
+		if(replaceAll('\\s', '',firstname)==''){
+			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
+		}
+		else if(replaceAll('\\s', '',email)==''){
+			bootstrap_alert(".alert-placeholder", "email can not be empty", 5000,"alert-warning");
+		}
+        else if (validateEmail(email)==false) {
+            
+                bootstrap_alert(".alert-placeholder", "Enter a valid email id", 5000,"alert-warning");       
+            
+            //email_availability_check();
+        } 
+		/*else if(replaceAll('\\s', '',phone)==''){
+			bootstrap_alert(".alert-placeholder", "phone can not be empty", 5000,"alert-warning");
+		} */
+		else if(replaceAll('\\s', '',username)==''){
+			bootstrap_alert(".alert-placeholder", "username can not be empty", 5000,"alert-warning");
+		}
+        else if(username.length <'6'){
+            bootstrap_alert(".alert-placeholder", "username length be atleast 6", 5000,"alert-warning");
+        } 
+		else if(replaceAll('\\s', '',password)==''){
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
+		} 
+		else if(password.length <'6'){
+			bootstrap_alert(".alert-placeholder", "password length should be atleast 6", 5000,"alert-warning");
+		}
+		else if(replaceAll('\\s', '',password2)==''){
+			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
+		}
+		else if(validatePath(firstname) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		}
+		else if(validatePath(username) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		}
+		else if(validatePath(lastname) !== 'true'){
+			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+		} 
+        else if(term_n_cond==false){
+            bootstrap_alert(".alert-placeholder", "You have not accepted term and conditions", 5000,"alert-warning");
+        }
+        else if((typeA==false) && (typeB==false) && (typeC==false)){
+            bootstrap_alert(".alert-placeholder", "You have not told why you are here", 5000,"alert-warning");
+        }
+        else if((typeB==true)&& (replaceAll('\\s', '',amount)=='')) {
+			bootstrap_alert(".alert_placeholder", "Amount can not be empty", 5000,"alert-warning");
+			return false;
+		} 
+		else {
+			if((typeA==false) && (typeB==false)){
+				var type = "fundsearcher";
+			}
+			else if((typeA==false) && (typeC==false)){
+				var type = "invester";
+			}
+			else if((typeB==false) && (typeC==false)){
+				var type = "collaborater";
+			}
+			else if(typeB==false){
+				var type = "collaboraterFundsearcher";
+			}
+			else if(typeA==false){
+				var type = "fundsearcherInvester";
+			}
+			else if(typeC==false){
+				var type = "collaboraterInvester";
+			}
+			else {
+				var type = "collaboraterinvesterfundsearcher";
+			}
+			var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username + '&password='+ password + 
+							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&amount=' + amount + '&request=Signup' ;
+			$.ajax({
+				type: "POST",
+				url: "controllers/login_controller.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result){
+						bootstrap_alert(".alert-placeholder", result, 5000,"alert-warning");
+					} 
+					else {
+						location.reload();
+					}		
+				} 
+			});
+		}
+	}		
+	else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
+}
+function replaceAll(find, replace, str) {
+	if(str == null) {
+		str = "";
+	}
+	return str.replace(new RegExp(find, 'g'), replace);
+}
+
     function validateUsername(fld) {
         var error = "";
         var illegalChars = /\W/; // allow letters, numbers, and underscores
