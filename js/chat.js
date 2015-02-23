@@ -9,29 +9,26 @@ function getnewtalk() {
 		data: dataString,
 		cache: false,
 		success: function(result){
-			//alert(result) ;
 			var notice = result.split("|+") ;
 			var neid = parseInt(notice['1']) ;
-			//alert(neid) ;
 			$('.newtalkspr').append(notice['0']);
-			//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
 			if (neid+='' != 0) {
 				$("#lastprchatid").val(neid+='') ;
 			}
 		}
 	});
 }
+
 function convertSpecialChar(str){
 	return str.replace(/&/g, "&amp;").replace(/>/g, "&gt;").replace(/</g, "&lt;").replace(/"/g, "&quot;");
 }
+
 $("#changeremindervalue").click(function(){
-	//$("#create_video").attr('disabled','disabled');
 	var reminder = convertSpecialChar($("#newremindervalue").val()) ;
 	var date = $("#datepicker").val() ;
 	var value = $("#datepickervalue").val() ;
 	var userid = $("#valueuserid").val() ;
 	var newuserid = $("#selfremind").val() ;
-	//alert(newuserid + "," + userid) ;
 	if(newuserid == userid) {
 		if(replaceAll('\\s', '',reminder) == "" && replaceAll('\\s', '',date) != "") {
 			var dataString = 'value='+ value + '&date='+ date + '&case=3' ;
@@ -79,16 +76,20 @@ $("#changeremindervalue").click(function(){
 		}
 	});	
 });
+
 function test() {
   $("#signupwithoutlogin").modal("show");
 };
+
 function test2() {
   $("#signupwithoutlogin").modal("hide");
   $("#SignIn").modal("show");
 };
+
 function test3() {
   $("#SignIn").modal("show");
 };
+
 $(document).ready(function() {
     $('#subscriptionid').keydown(function(event) {
         if (event.keyCode == 13) {
@@ -97,6 +98,7 @@ $(document).ready(function() {
          }
     });
 });
+
 function Subscribe(){
 	var reminder = $("#subscriptionid").val() ;
 	var dataString = 'id=' + reminder ;
@@ -120,37 +122,29 @@ function Subscribe(){
 		});
 	}
 }
-function bootstrap_alert(elem, message, timeout,type) {
-  $(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; left: 50%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
 
-  if (timeout || timeout === 0) {
-    setTimeout(function() { 
-      $(elem).show().html('');
-    }, timeout);    
-  }
-};
 function editreminder(id, uid) {
 	$("#datepickervalue").val(id) ;
 	$("#valueuserid").val(uid) ;	
 	$("#changeremindervalues").modal("show");
 }
+
 function getallreminders() {	
 	var dataString = 'reminder=true'  ;
-			$.ajax({
-				type: "POST",
-				url: "ajax/reminders.php",
-				async: false ,
-				data: dataString,
-				cache: false,
-				success: function(result){
-					var notice = result.split("|+") ;
-					var neid = parseInt(notice['1']) ;
-					document.getElementById("allreminders").innerHTML = notice['0'];
-					//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
-					$("#lastreminderid").val(neid+='') ;
-				}
-			});
-	//setInterval(function(){ getnewreminder() },400000)();
+	$.ajax({
+		type: "POST",
+		url: "ajax/reminders.php",
+		async: false ,
+		data: dataString,
+		cache: false,
+		success: function(result){
+			var notice = result.split("|+") ;
+			var neid = parseInt(notice['1']) ;
+			document.getElementById("allreminders").innerHTML = notice['0'];
+			//$("#chatformdata").scrollTop($('#chatformdata').height()) ;
+			$("#lastreminderid").val(neid+='') ;
+		}
+	});
 }
 
 function submittalk(event,chatboxtextarea) {
@@ -158,31 +152,29 @@ function submittalk(event,chatboxtextarea) {
 		message = convertSpecialChar($(chatboxtextarea).val());
 		$(chatboxtextarea).val('');
 		$(chatboxtextarea).focus();
-	if(replaceAll('\\s', '',message)==''){
-		//bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
-		return false;
-	}
-	 else {
-		 var ID = $("#ProjectIDValue").val() ;
-		var dataString = 'talk='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',message))))) + '&project_id=' + ID ;
-		$.ajax({
-			type: "POST",
-			url: "ajax/project_talks.php",
-			async: false ,
-			data: dataString,
-			cache: false,
-			success: function(result){
-				//alert(result);
-				//bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				if(result=='Posted succesfully!'){
-					$(chatboxtextarea).val('');
-					//getnewtalk() ;
+		if(replaceAll('\\s', '',message)==''){
+			//bootstrap_alert(".alert_placeholder", "Enter Something", 5000,"alert-warning");
+			return false;
+		}
+		else {
+			var ID = $("#ProjectIDValue").val() ;
+			var dataString = 'talk='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',message))))) + '&project_id=' + ID ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/project_talks.php",
+				async: false ,
+				data: dataString,
+				cache: false,
+				success: function(result){
+					if(result=='Posted succesfully!'){
+						$(chatboxtextarea).val('');
+					}
 				}
-			}
-		 });
-	}	
-}
+			});
+		}	
+	}
 };
+
 function projecttalk() {
 	var ID = $("#ProjectIDValue").val() ;
 	var dataString = 'prtalk=username' + '&project_id=' + ID ;
@@ -197,13 +189,13 @@ function projecttalk() {
 			var neid = parseInt(notice['2']) ;
 			document.getElementById("newtalks").innerHTML = notice['0'];
 			document.getElementById("showtalkingform").innerHTML = notice['1'];
-			//document.getElementById("lastchatid").innerHTML = neid+='';
 			$("#lastprchatid").val(neid+='') ;
 		}
 	});
 	setInterval(function(){ getnewtalk(); },5000);
-};	
+};
+	
 function toggle() {
 	$("#project_chat_form").toggle();
 	$("#project_chat_data").toggle();
-	}
+}
