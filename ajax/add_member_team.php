@@ -77,5 +77,6 @@ if ($_POST['email']) {
 		else { echo "Member Removed succesfully!"; }			
 	}
 }
-    else echo "Invalid" ;
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

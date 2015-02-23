@@ -109,5 +109,5 @@ $show_JP = $show_JP. "</div>
         echo $show_JP;
     }
 }
-    
+ mysqli_close($db_handle);    
 ?>

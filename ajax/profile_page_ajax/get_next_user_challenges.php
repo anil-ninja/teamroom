@@ -131,5 +131,5 @@ if ($_POST['next']) {
         echo $show;
     }
 }
-    
+mysqli_close($db_handle);  
 ?>

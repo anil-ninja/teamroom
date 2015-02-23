@@ -13,7 +13,7 @@ if($_POST['amount']){
 	involve_in($db_handle,$user_id,"17",$pro_id); 
 	if(mysqli_error($db_handle)) { echo "Failed!!!!"; }
 	else { echo "Sucessfull!"; }
-	mysqli_close($db_handle);
 } 
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

@@ -224,4 +224,4 @@ $(".nav-btntab").bind("click", function(){
 ?>
         </body>
     </html>
-
+<?php mysqli_close($db_handle); ?>

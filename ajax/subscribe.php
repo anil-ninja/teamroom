@@ -6,7 +6,7 @@ if($_POST['id']){
 	$myquery = mysqli_query($db_handle, "INSERT INTO targets (email) VALUES ('$project') ;") ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post!"; }
 	else { echo "Subscribed succesfully!"; }
-	mysqli_close($db_handle);
 }
-else echo "Invalid";	
+else { echo "Invalid";}	
+mysqli_close($db_handle);
 ?>

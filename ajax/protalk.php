@@ -24,6 +24,6 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
 	else {
 		echo $data."|+0" ;
 	}
-mysqli_close($db_handle);
 }
+mysqli_close($db_handle);
 ?>

@@ -277,6 +277,5 @@ if ($_POST['team']) {
                 </div>";
     echo $data_display;
 }
-
+mysqli_close($db_handle);
 ?>
-

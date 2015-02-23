@@ -336,6 +336,7 @@ while ($tasksrow = mysqli_fetch_array($tasks)) {
     }
     echo "</div></div></div>";
 }
+mysqli_close($db_handle); 
 ?>
 </div>
 <script>

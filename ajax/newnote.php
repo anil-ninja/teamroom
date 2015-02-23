@@ -438,5 +438,6 @@ if ($_POST['time']) {
 		}
 	}
 }
-else echo "invalid" ;						
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);						
 ?>

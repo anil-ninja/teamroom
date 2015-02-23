@@ -131,4 +131,5 @@ if ($_POST['user_next_idea']) {
         echo $show_idea;
     }
 }
+mysqli_close($db_handle);
 ?>

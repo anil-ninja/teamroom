@@ -36,7 +36,6 @@ if  ($_POST['case']) {
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' 
 							onclick='remove_profession(\"".$id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
                             <i class='icon-remove'></i></a></span></span>&nbsp;"; }
-			exit ;
 			break ;
 			
 		case 2:
@@ -55,14 +54,12 @@ if  ($_POST['case']) {
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_profession' 
 							onclick='remove_profession(\"".$skill_Name."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Profession'>
                             <i class='icon-remove'></i></a></span></span>&nbsp;"; }
-			exit ;
 			break ;
 			
 		case 3:
 			mysqli_query($db_handle, "DELETE FROM user_profession WHERE user_id='$user_id' AND p_id='$skillID';");
 			if(mysqli_error($db_handle)) { echo "Failed to Remove!"; }
 			else { echo "Profession Removed succesfully!"; }
-			exit ;
 			break ;
 		   
    }

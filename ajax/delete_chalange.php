@@ -113,6 +113,6 @@ if ($_POST['id']) {
 			break ;
 		}
 	}
-	else echo "Access Denied";
+else { echo "Access Denied"; }
 mysqli_close($db_handle);
 ?>

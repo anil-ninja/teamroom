@@ -92,3 +92,4 @@ if (!isset($_SESSION['first_name'])) {
         <script type="text/javascript" src="js/username_email_check.js"></script>
     </body>
 </html>
+<?php mysqli_close($db_handle); ?>

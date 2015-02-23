@@ -43,8 +43,7 @@ if  ($_POST['case']) {
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
 							onclick='remove_skill(\"".$id."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                             <i class='icon-remove'></i></a></span></span>&nbsp;"; }
-			exit ;
-			break ;
+			 break ;
 			
 		case 2:
 			mysqli_query($db_handle, "INSERT INTO user_skills (user_id, skill_id) VALUES ('$user_id', '$skill_Name');");
@@ -62,15 +61,13 @@ if  ($_POST['case']) {
 							<a type='submit' class='btn-success' style='padding-left: 0px; padding-right: 0px;' id='remove_skill' 
 							onclick='remove_skill(\"".$skill_Name."\");' data-toggle='tooltip' data-placement='bottom' data-original-title='Remove Skill'>
                             <i class='icon-remove'></i></a></span></span>&nbsp;"; }
-			exit ;
-			break ;
+			 break ;
 			
 		case 3:
 			mysqli_query($db_handle, "DELETE FROM user_skills WHERE user_id='$user_id' AND skill_id='$skillID';");
 			if(mysqli_error($db_handle)) { echo "Failed to Remove!"; }
 			else { echo "Skill Removed succesfully!"; }
-			exit ;
-			break ;
+			 break ;
 			
 		case 4:
 			$aboutuser = mysqli_query($db_handle, "SELECT organisation_name, living_town, about_user FROM about_users WHERE user_id = '$user_id' ;") ;
@@ -161,8 +158,7 @@ if  ($_POST['case']) {
 			}
 			if (mysqli_error($db_handle)) { echo "Please try again"; }
 			else { echo "Updated successfuly"; }
-			exit ;
-			break ;
+			 break ;
 			
 		case 5:
 			while ($friendsrow = mysqli_fetch_array($friends)){
@@ -172,8 +168,7 @@ if  ($_POST['case']) {
 				events($db_handle,$user_id,"8",$idfr);
 			}
 			echo "Updated successfuly";
-			exit ;
-			break ;
+			 break ;
 		   
    }
  }

@@ -81,7 +81,7 @@ if($_POST['picturech']){
 					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
 	else { echo "Posted succesfully!"."|+"."2"."|+".$data ; }
-	mysqli_close($db_handle);
 } 
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

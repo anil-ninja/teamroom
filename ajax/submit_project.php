@@ -38,6 +38,6 @@ if($_POST['project_title']){
 	}
 	if(mysqli_error($db_handle)) { echo "Failed to Post Project!"; }
 	else { echo "Project created succesfully!" ; }
-	mysqli_close($db_handle);
-	}
+}
+mysqli_close($db_handle);
 ?>

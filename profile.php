@@ -611,3 +611,4 @@ $(function() {
         ?>
     </body>
 </html>
+<?php mysqli_close($db_handle); ?>

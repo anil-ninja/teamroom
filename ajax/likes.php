@@ -78,8 +78,8 @@ if(isset($_POST['id'])){
 		}	
 		else {echo "Please Join Project First!"; }
 	}
-	mysqli_close($db_handle);
 } 
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
 }
+mysqli_close($db_handle);
 ?>

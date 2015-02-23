@@ -61,3 +61,4 @@ if(width < 800) {
 </script>     
     </body>
 </html>
+<?php mysqli_close($db_handle); ?>

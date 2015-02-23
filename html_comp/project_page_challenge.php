@@ -337,5 +337,6 @@ echo  "<div class='list-group-item'style='font-size:10px;'>
 		}
 	}
 	echo "</tbody>
-            </table></div></div>" ;           
+            </table></div></div>" ;  
+mysqli_close($db_handle);          
 ?>

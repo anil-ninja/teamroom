@@ -132,4 +132,5 @@ if ($_POST['last_article']) {
         echo $show_article;
     }
 }
+mysqli_close($db_handle); 
 ?>

@@ -27,5 +27,6 @@ if ($_POST['talk']) {
 	}
 	else echo "Please Join Project First!";
 } 
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

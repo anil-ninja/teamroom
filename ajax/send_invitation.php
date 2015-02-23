@@ -32,6 +32,6 @@ if($_POST['fname']){
 	if(mysqli_error($db_handle)) { echo "An error occured Sorry try again!"; }
 	else { echo "Invitation Send Successfully !!!"; }	
 }	
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
 mysqli_close($db_handle);
 ?>

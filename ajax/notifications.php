@@ -456,6 +456,6 @@ if ($_POST['notice']) {
 						</ul>" ;
 		echo $data."|+".$data1 ;
 	}
-mysqli_close($db_handle);
 }
+mysqli_close($db_handle);
 ?>

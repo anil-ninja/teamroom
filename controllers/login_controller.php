@@ -13,8 +13,5 @@ switch($request){
 	case "Signup":
 			signup();   
 			break;
-	
-	
-	}
+	}	
 ?>
-	
