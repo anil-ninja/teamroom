@@ -1,6 +1,6 @@
 function url_domain(data) {
   var    a      = document.createElement('a');
-         a.href = data;
+  a.href = data;
   //console.log(a);
   return a.hostname;
 }

@@ -5,7 +5,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 			$(elem).show().html('');
 		}, timeout);    
 	}
-};
+}
 
 $(document).ready(function() {
     $('#password2R').keydown(function(event) {
@@ -64,7 +64,8 @@ function validatePath(path) {
 	else {
 		return false;
 	}
-} 
+}
+ 
 function validateEmpty(fld) {
 	var error = "";
 	if (fld.value.length == 0) {
@@ -108,6 +109,7 @@ function validateEmail(fld) {
 	}
 	return false;
 }
+
 function validatePhone(fld) {
 	var error = "";
 	var stripped = fld.value.replace(/[\(\)\.\-\ ]/g, '');    
@@ -226,6 +228,7 @@ function validateSignupFormOnSubmit() {
 	}		
 	else bootstrap_alert(".alert-placeholder", "Password Not Match! Try Again", 5000,"alert-warning");
 }
+
 function replaceAll(find, replace, str) {
 	if(str == null) {
 		str = "";

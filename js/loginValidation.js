@@ -2,7 +2,7 @@ function bootstrap_alert(elem, message, timeout,type) {
 	$(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; right: 20%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
 	if (timeout || timeout === 0) {
 		setTimeout(function() { 
-		$(elem).show().html('');
+			$(elem).show().html('');
 		}, timeout);    
 	}
 };
@@ -28,17 +28,14 @@ function validateLoginFormOnSubmit() {
 		data: dataString,
 		cache: false,
 		success: function(result){
-		// bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 			if(result){
 				bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
 			} 
 			else {
-			//$("#accept_challenge").click() ;
 				location.reload();   
 			}
 		}
 	});
-//return true;
 }
 
 function getCookie(cname) {
@@ -61,42 +58,6 @@ if(getCookie("loginRrq")=="true"){
 function validateLogin1(){
 	document.cookie="loginRrq=true;";
 	validateLoginFormOnSubmit();
-}
-
-function validateEmpty(fld) {
-	var error = "";
-	if (fld.value.length == 0) {
-		$("#username").style.background = 'Yellow'; 
-		error = "The required field has not been filled in.\n"
-	} 
-	else {
-		$("#username").style.background = 'White';
-	}
-	return error;  
-}
-
-function validateUsername(fld) {
-	var error = "";
-	if (fld.value == "") {
-		$("#username").style.border = "2px solid OrangeRed"; 
-		error = "You didn't enter a username.\n";
-	} 
-	else {
-		$("#username").style.background = 'White';
-	}
-	return error;
-}
-
-function validatePassword(fld) {
-	var error = "";
-	if (fld.value == "") {
-		fld.style.border = "2px solid OrangeRed";
-		error = "You didn't enter a password.\n";
-	} 
-	else {
-		fld.style.background = 'White';
-	}
-	return error;
 }
 
 function updatelastlogin(){ 
