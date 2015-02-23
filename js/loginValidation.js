@@ -52,9 +52,6 @@ function getCookie(cname) {
     }
     return "";
 }
-//$("#accept_challenge").click() ;
-//alert(document.cookie);
-//alert(getCookie("loginRrq"));
 if(getCookie("loginRrq")=="true"){
     //alert(document.cookie);
     document.cookie="loginRrq=;";
@@ -99,3 +96,31 @@ function validatePassword(fld) {
     }
     return error;
 }
+function updatelastlogin(){ 
+	var dataString = 'update=true' + '&case=2' ;
+	setInterval(function (){
+	$.ajax({
+		type: "POST",
+		url: "ajax/updatetime.php",
+		async: false ,
+		data: dataString,
+		cache: false,
+	});
+	},600000);
+};
+
+function updatetime() {
+	var dataString = 'update=true' + '&case=1' ;
+	$.ajax({
+		type: "POST",
+		url: "ajax/updatetime.php",
+		async: false ,
+		data: dataString,
+		cache: false,
+		success: function(result){
+			if(result == "updated") {
+				document.getElementById("countnotice").innerHTML = "" ;
+			}
+		}
+	}); 
+} ;

@@ -102,8 +102,7 @@
 <script src="js/chat.js"></script>
 <script src="js/add_remove_skill.js" type="text/javascript"></script>
 <script type="text/javascript" src="js/chat_box.js"></script>
-<script type="text/javascript" src="js/getMeta.js"></script>
-<script src="js/date_time.js"></script>    
+<script type="text/javascript" src="js/getMeta.js"></script> 
 <script src="scripts/tabs-addon.js"></script>
 <script type="text/javascript" src="js/intro.js"></script>
 <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
