@@ -26,13 +26,18 @@
 <script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
 <script type="text/javascript" src="js/rrssb.min.js"></script>
 <script>
-	$('.bs-component').jScrollPane();
+	$(document).ready(function() {
+	//var width = window.screen.availWidth;
+	//if(width > 900) {
+		$('.bs-component').niceScroll({ autohidemode: true })
+	//}
+});
 	updatelastlogin();
 </script>
 <script src="//static.getclicky.com/js" type="text/javascript"></script>
 <script type="text/javascript">try{ clicky.init(100809927); }catch(e){}</script>
 <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/100809927ns.gif" /></p></noscript>
 <div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a> 
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
+	<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
+	<p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
 </div>

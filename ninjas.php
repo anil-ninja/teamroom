@@ -54,33 +54,27 @@ $view = 1 ;
 	?>	
 <script>
 var width = window.screen.availWidth;
-if(width < 800) {
+if(width < 980) {
 	$('#tab1').hide();
 	$('#tab3').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
-	$("#new").html($("#tab1").html() + $("#tab3").html());
+	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
+	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab1").html() + "<br/><br/><br/><br/>" + $("#tab3").html() + "</ul></div></div>");
+	$("#tab2").attr('class','span12') ;
+	$("#nav").attr('style', 'position:absolute;') ;
+	$("#step16").attr('style', 'position:relative;top:0px;') ;
+	//$("#user1project").attr('style', 'max-height:150px;overflow-y:scroll;') ;
+	//$("#user2project").attr('style', 'max-height:150px;overflow-y:scroll;') ;
+	//$("#user3project").attr('style', 'max-height:150px;overflow-y:scroll;') ;
+	//$("#user4project").attr('style', 'max-height:150px;overflow-y:scroll;') ;
+	//$("#user5project").attr('style', 'max-height:150px;overflow-y:scroll;') ;
+	//$("#user6project").attr('style', 'max-height:150px;overflow-y:scroll;') ;
 } ;
 </script>
 <script>
-$(function() {
-	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
-
-function toggleDivs() {
-    var $inner = $("#navtab");
-    if ($inner.css("margin-left") == "-170px") {
-        $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
-    }
-    else {
-        $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
-    }
-}
-$(".nav-btntab").bind("click", function(){
-    toggleDivs();
-});
-
-});
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 </script>
 <script>
 	$(window).scroll(function(event) {

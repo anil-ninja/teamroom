@@ -64,14 +64,17 @@ $("#changeremindervalue").click(function(){
 		async: false ,
 		data: dataString,
 		cache: false,
-		success: function(result){
-			bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-			if(result = "Changed Successfully !!!") {
+		success: function(result){		
+			if(result == "Changed Successfully !!!") {
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
 				location.reload() ;
 				$("#datepicker").val("") ;
 				$("#datepickervalue").val("") ;
 				$("#newremindervalue").val("") ;
 				$("#valueuserid").val("") ;
+			}
+			else {
+				bootstrap_alert(".alert_placeholder", result, 5000,"alert-warning");
 			}
 		}
 	});	

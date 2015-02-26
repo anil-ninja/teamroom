@@ -94,6 +94,7 @@ var ninjas_intro = function (  ) {
 	 projectToJoin  ();
 	});
 }
+
 function projectToJoin  () {
   $.ajax({
 		type: "POST",
@@ -258,6 +259,7 @@ function project_intro() {
     });
    intro.start();
 }
+
 function challengesOpen_intro() {
 	var intro = introJs();
     intro.setOptions({
@@ -325,15 +327,22 @@ function assitant(id) {
 	}
 	else {
 		$.ajax({
-		type: "POST",
-		url: "ajax/assistant.php",
-		async: false ,
-		data: "chat=true",
-		cache: false,
-		success: function(result){
-			chatBoxes.push(result);
-			chatWith(result) ;
-		}
-	});
+			type: "POST",
+			url: "ajax/assistant.php",
+			async: false ,
+			data: "chat=true",
+			cache: false,
+			success: function(result){
+				if (result == "Assitant") {
+					bootstrap_alert(".alert_placeholder", "Sorry, currently no assistant available. <br/> We will reach you soon.", 5000,"alert-warning");
+					chatWith("rahul") ;
+					$("#chatbox_"+"rahul"+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+result+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+ 'Hi, How can i help You ?' +'</span></div>');
+				}
+				else {
+					chatWith(result) ;
+					$("#chatbox_"+result+" .chatboxcontent").append('<div class="chatboxmessage"><span class="chatboxmessagefrom">'+result+':&nbsp;&nbsp;</span><span class="chatboxmessagecontent">'+'Hi, How can i help You ?'+'</span></div>');
+				}
+			}
+		});
 	}
 }
