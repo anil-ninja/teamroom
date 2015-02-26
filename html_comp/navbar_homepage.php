@@ -6,6 +6,7 @@
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-inner" >
         <div class="container" >
+			<a id='phoneOPt'></a>
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -14,7 +15,7 @@
             <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: Courgette, cursive;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"/><i>collap</i>
             </a>
-            <div id='step8' class="nav-collapse collapse navbar-responsive-collapse navbar-search span4">
+            <div id='step8' class="nav-collapse collapse navbar-responsive-collapse navbar-search span4" style="width:30%;">
                <script> 
 					(function() { 
 						var cx = '007811515162108704212:nlk9cflmqvg'; 

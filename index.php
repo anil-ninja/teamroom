@@ -616,5 +616,4 @@ function replaceAll(find, replace, str) {
 <?php include_once 'html_comp/terms_and_condition_modal.php' ;
 		include_once 'html_comp/insert_time.php' ; ?>
 </body>
-<?php mysqli_close($db_handle); ?>
 </html>

@@ -42,10 +42,6 @@ if(!isset($_SESSION['user_id'])) {
         </div>
         
         <?php include_once 'lib/html_inc_footers.php'; ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
 <script>
 var width = window.screen.availWidth;
 if(width < 800) {

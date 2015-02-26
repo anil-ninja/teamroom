@@ -394,10 +394,6 @@ $obj = new profile($UserName);
 	include_once 'lib/html_inc_footers.php';
 	include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
 <div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span4 offset2">
@@ -611,4 +607,3 @@ $(function() {
         ?>
     </body>
 </html>
-<?php mysqli_close($db_handle); ?>

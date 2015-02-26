@@ -19,7 +19,7 @@ $view = 1 ;
   <body>
    <?php include_once 'html_comp/navbar_homepage.php'; ?>
    <div class='alert_placeholder'></div>
-   <div class='emotion' >
+   <div class='' >
 		<div class="row-fluid" style='margin-top: 50px;'>  		
        		<div id='tab1' class="span2" style='margin-left:60px; width:280px;'>
    				<?php 
@@ -47,51 +47,13 @@ $view = 1 ;
 			?>
 		</div>
 	</div>	
-	<script src="date.js"></script>
+	
 	<?php
  	include_once 'lib/html_inc_footers.php';
 	include_once 'html_comp/check.php';  
 	?>	
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
 
 <script>
-var width = window.screen.availWidth;
-if(width < 800) {
-	$('#tab1').hide();
-	$('#tab3').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
-	$("#new").html($("#tab1").html() + $("#tab3").html());
-} ;
-
-$('#challange').on('keyup', function(){
-    $(this).css('height', '50px');
-});
-</script>
-<script>
-$(function() {
-	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
-
-function toggleDivs() {
-    var $inner = $("#navtab");
-    if ($inner.css("margin-left") == "-170px") {
-        $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
-    }
-    else {
-        $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
-    }
-}
-$(".nav-btntab").bind("click", function(){
-    toggleDivs();
-});
-
-});
-</script>
-	<script>
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
@@ -120,11 +82,10 @@ $(".nav-btntab").bind("click", function(){
 				}
 			});
 		}
-	}); 
-getallreminders() ; 
-
-	</script>
+	});
+	 
+	getallreminders() ; 
+</script>
 <?php include_once 'html_comp/insert_time.php'   ?>	  
 </body>
 </html>
-<?php mysqli_close($db_handle); ?>

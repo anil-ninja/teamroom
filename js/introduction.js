@@ -316,3 +316,24 @@ function challengesOpen_intro() {
     });
    intro.start();
 }
+
+function assitant(id) {
+	if (id == ""){
+		test3();
+	}
+	else if (id == 7 || id == 8 || id == 11 || id == 12) {
+	}
+	else {
+		$.ajax({
+		type: "POST",
+		url: "ajax/assistant.php",
+		async: false ,
+		data: "chat=true",
+		cache: false,
+		success: function(result){
+			chatBoxes.push(result);
+			chatWith(result) ;
+		}
+	});
+	}
+}

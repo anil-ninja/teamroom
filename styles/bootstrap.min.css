@@ -2789,6 +2789,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 .collapse.in
 {
   height: auto;
+  background-color: #E5E6E9;
 }
 .close
 {
@@ -3490,7 +3491,6 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 }
 .navbar-default
 {
-  background-color: #4EC67F;
   border-color: #e7e7e7;
   max-height: 40px;
 }
@@ -3895,6 +3895,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
   webkit-border-radius: 4px;
   webkit-box-shadow: 0 1px 4px rgba(0,0,0,0.065);
   zoom: 1;
+  
 }
 .navbar-inner:before,.navbar-inner:after
 {
@@ -3914,6 +3915,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 {
   height: auto;
   overflow: visible;
+  z-index: 100;
 }
 .navbar .brand
 {
@@ -4131,7 +4133,7 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
   border-color: #e5e5e5 #e5e5e5 #bfbfbf;
   border-color: rgba(0,0,0,0.1) rgba(0,0,0,0.1) rgba(0,0,0,0.25);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.1),0 1px 0 rgba(255,255,255,0.075);
-  color: #fff;
+  color: #E5E6E9;
   display: none;
   filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f2',endColorstr='#ffe5e5e5',GradientType=0);
@@ -4147,11 +4149,11 @@ button.btn.btn-mini,input[type="submit"].btn.btn-mini
 {
   background-color: #d9d9d9;
   background-color: #e5e5e5;
-  color: #fff;
+  color: #E5E6E9;
 }
 .navbar .btn-navbar:active,.navbar .btn-navbar.active
 {
-  background-color: #ccc \9;
+  background-color: #E5E6E9 \9;
 }
 .navbar .btn-navbar .icon-bar
 {

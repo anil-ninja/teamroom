@@ -149,9 +149,5 @@ include_once 'functions/image_resize.php';
  include_once 'lib/html_inc_footers.php'; 
  include_once 'html_comp/login_signup_modal.php';
  mysqli_close($db_handle); ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
     </body>
 </html>

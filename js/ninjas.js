@@ -292,6 +292,7 @@ function submit_ch(){
 			//file upload
 		var _filech = document.getElementById('_fileChallenge');
 		uploadFile1(_filech,"challengePic",String(dataString),"ajax/submit_chalange.php");
+		console.log(submit_ch());
 	}
 }
     

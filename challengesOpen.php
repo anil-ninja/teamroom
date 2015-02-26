@@ -283,10 +283,6 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
          include_once 'lib/html_inc_footers.php'; 
          include_once 'html_comp/check.php';
          include_once 'html_comp/login_signup_modal.php'; ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
         <script>
             $(".text").show();
             $(".editbox").hide();
@@ -296,7 +292,6 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
             </script>
             <!-- Go to www.addthis.com/dashboard to customize your tools  -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a9978c1d02a7b3" async="async"></script>
-            <?php include_once 'html_comp/insert_time.php'; 
-             mysqli_close($db_handle); ?>
+            <?php include_once 'html_comp/insert_time.php';  ?>
     </body>
 </html>
