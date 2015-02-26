@@ -32,7 +32,6 @@
 <link href="styles/bootstrap.min.css" rel="stylesheet" />
 <link href="styles/bootstrap-responsive.min.css" rel="stylesheet" />
 <link href="styles/collap-custom.css" rel="stylesheet" />
-<link href="styles/simple-sidebar.css" rel="stylesheet" />
 <link href="css/preview.min.css" rel="stylesheet" />
 <link href="styles/font-awesome.min.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>

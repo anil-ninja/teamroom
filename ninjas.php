@@ -52,7 +52,36 @@ $view = 1 ;
  	include_once 'lib/html_inc_footers.php';
 	include_once 'html_comp/check.php';  
 	?>	
+<script>
+var width = window.screen.availWidth;
+if(width < 800) {
+	$('#tab1').hide();
+	$('#tab3').hide();
+	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
+	$("#new").html($("#tab1").html() + $("#tab3").html());
+} ;
+</script>
+<script>
+$(function() {
+	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
 
+function toggleDivs() {
+    var $inner = $("#navtab");
+    if ($inner.css("margin-left") == "-170px") {
+        $inner.animate({'margin-left': '0'});
+		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
+    }
+    else {
+        $inner.animate({'margin-left': "-170px"}); 
+		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
+    }
+}
+$(".nav-btntab").bind("click", function(){
+    toggleDivs();
+});
+
+});
+</script>
 <script>
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
