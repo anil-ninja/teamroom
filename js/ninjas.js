@@ -521,7 +521,6 @@ $(document).ready(function() {
 		var fund = convertSpecialChar($("#project_fundneed").val());
 		var type = $("#type").val();
 		var typeA = document.getElementById("fundProject").checked;
-		$("#project_title").val("");
 		if(replaceAll('\\s', '',project_title)==''){
 			bootstrap_alert(".alert_placeholder", "Title can not be empty", 5000,"alert-warning");
 			$("#create_project").removeAttr('disabled');
@@ -544,6 +543,7 @@ $(document).ready(function() {
 				$("#create_project").removeAttr('disabled');
 			}
 			else {
+				$("#project_title").val("");
 				var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_title))))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_stmt))))) + 
 				'&type='+ type + '&value='+ value + '&fund='+ fund ;
 				var _file = document.getElementById('_fileProject');
@@ -552,6 +552,7 @@ $(document).ready(function() {
 			}
 		}
 		else {
+			$("#project_title").val("");
 			var dataString = 'project_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_title))))) + '&project_stmt='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',project_stmt))))) + 
 				'&type='+ type + '&value='+ value + '&fund='+ fund ;
 			var _file = document.getElementById('_fileProject');
@@ -753,11 +754,11 @@ function create_task(){
 				else {
 					var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4>" + "<table><tbody>" +
 							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span></td>" +
-							"<td><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div></td></tr> " +
+							"<td><input type='text' class='input-block-level' id='fnameteam' placeholder='His First Name'></div></td></tr> " +
 							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span></td>" +
-							"<td><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div></td></tr> " + 
+							"<td><input type='text' class='input-block-level' id='snameteam' placeholder='His Second Name'></div></td></tr> " + 
 							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span></td>" +
-							"<td><input type='text' class\='form-control' id='teamemail' value=\'" + email + "\' /></div></td></tr></tbody></table>" +
+							"<td><input type='text' class='input-block-level' id='teamemail' value=\'" + email + "\' /></div></td></tr></tbody></table>" +
 							"<input type='submit' class\='btn btn-success' id='invitememb' onclick ='invitememb("+ ID +")' value='Invite Him/Her' /> <br/> ";
 					$("#invitation").show().html(modal);
 					return false ;

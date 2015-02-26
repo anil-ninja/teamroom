@@ -126,6 +126,7 @@ input[type="search"]::-webkit-search-decoration,input[type="search"]::-webkit-se
 textarea
 {
   overflow: auto;
+  height: auto;
   vertical-align: top;
 }
 @media print

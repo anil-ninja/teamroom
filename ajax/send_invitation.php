@@ -25,7 +25,7 @@ if($_POST['fname']){
 <p>Your Username is: ".$email."</p>
 <p>Your Password is: ".$password."</p>
 <table><tr><td class='padding'><p><a href='http://collap.com/profile.php?username=".$senderlname."' class='btn-primary'>Click Here to View</a></p>" ;
-	collapMail($friendFirstName, "Invitation To Join ", $body2);
+	collapMail($email, "Invitation To Join ", $body2);
 	if($team != "") { 
 		mysqli_query($db_handle, "INSERT INTO teams (user_id, team_name, project_id) VALUES ('$newuserid', '$team', '$pro_id');");
 	}

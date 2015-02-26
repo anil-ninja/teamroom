@@ -400,11 +400,11 @@ function submitTeam(team,email, ID) {
 			else {
 				var modal = "<h4>Hi, It looks like s/he is not here Lets intivite her/him</h4>" + "<table><tbody>" +
 							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her First Name</span></td>" +
-							"<td><input type='text' class\='form-control' id='fnameteam' placeholder='His First Name'></div></td></tr> " +
+							"<td><input type='text' class='input-block-level' id='fnameteam' placeholder='His First Name'></div></td></tr> " +
 							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Second Name</span></td>" +
-							"<td><input type='text' class\='form-control' id='snameteam' placeholder='His Second Name'></div></td></tr> " + 
+							"<td><input type='text' class='input-block-level' id='snameteam' placeholder='His Second Name'></div></td></tr> " + 
 							"<tr><td><div class\='input-group'><span class\='input-group-addon'>His/Her Email ID</span></td>" +
-							"<td><input type='text' class\='form-control' id='teamemail' value=\'" + email + "\' /></div></td></tr></tbody></table>" +
+							"<td><input type='text' class='input-block-level' id='teamemail' value=\'" + email + "\' /></div></td></tr></tbody></table>" +
 							"<input type='submit' class\='btn btn-success' id='invitememberpr' onclick ='invitememberpr("+ team +","+ ID +")' value='Invite Him/Her' /> <br/> ";
 					//bootstrap_alert(".alert_placeholder", modal, 600000,"alert-info");
 				document.getElementById("create_team_modal").innerHTML =  modal;
@@ -565,7 +565,7 @@ function invitememb(ID){
 			cache: false,
 			success: function(result){
 				if (result == 'false') {
-					var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email + '&team=' + team + '&project_id=' + ID ;
+					var dataString = 'fname='+ fname + '&sname='+ sname + '&email='+ email + '&project_id=' + ID ;
 					$.ajax({
 						type: "POST",
 						url: "ajax/send_invitation.php",
