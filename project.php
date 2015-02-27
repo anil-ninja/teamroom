@@ -92,6 +92,7 @@ $view = 1 ;
                 </div>
             </div>	
         </div>
+        <script src="date.js"></script>
 		<?php 
 			if (isset($_SESSION['user_id'])) {
 				include_once 'html_comp/project_talk.php'; 
@@ -99,11 +100,6 @@ $view = 1 ;
 				}
 		include_once 'lib/html_inc_footers.php';
         include_once 'html_comp/check.php'; ?>  
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
-<script src="date.js"></script>
 <script>
 	 hidepanel();
     $('#project_data').click(function(){
@@ -160,33 +156,21 @@ $("#project_chat_data").hide();
         </script>
 <script>
 var width = window.screen.availWidth;
-if(width < 800) {
-	$('#tab4').hide();
-	$('#tab6').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
-	$("#new").html($("#tab4").html() + $("#tab6").html());
+if(width < 980) {
+	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
+	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab4").html() + "<br/><br/><br/><br/>" + $("#tab6").html() + "</ul></div></div>");
+	$('#tab4').remove();
+	$('#tab6').remove();
+	$("#tab5").attr('class','span12') ;
+	$("#nav").attr('style', 'position:absolute;') ;
+	$("#step16").attr('style', 'position:relative;top:0px;') ;
 } ;
 </script>
 <script>
-(function() {
-	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
-
-function toggleDivs() {
-    var $inner = $("#navtab");
-    if ($inner.css("margin-left") == "-170px") {
-        $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
-    }
-    else {
-        $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
-    }
-}
-$(".nav-btntab").bind("click", function(){
-    toggleDivs();
-});
-
-});
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 </script>
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -224,4 +208,3 @@ $(".nav-btntab").bind("click", function(){
 ?>
         </body>
     </html>
-

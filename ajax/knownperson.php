@@ -155,8 +155,7 @@ http://collap.com/profile.php?username=".$mail ;
 				break ;
 		}
 	} 
-	else {
-		echo "Invalid parameters!";
-	}
+	else { echo "Invalid parameters!"; }
 }
+mysqli_close($db_handle);
 ?>

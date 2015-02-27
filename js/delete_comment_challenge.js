@@ -10,35 +10,35 @@ function bootstrap_alert(elem, message, timeout,type) {
 
 function delcomment(ID, type) {
 	bootbox.confirm("Do u really want to delete this comment?", function(result) {
-	if(result){
-		var IDPr = $("#ProjectIDValue").val() ;
-		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr;
-		$.ajax({
-			type: "POST",
-			url: "ajax/delete_chalange.php",
-			data: dataString,
-			cache: false,
-			success: function(result){
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				$("#comment_"+ID).remove();
+		if(result){
+			var IDPr = $("#ProjectIDValue").val() ;
+			var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr;
+			$.ajax({
+				type: "POST",
+				url: "ajax/delete_chalange.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					$("#comment_"+ID).remove();
 				}
 			});
-       }
-   });
- }
+	   }
+    });
+}
 function delChallenge(ID, type) {
     bootbox.confirm("Do u really want to delete?", function(result) {
-	if(result){ 
-		var IDPr = $("#ProjectIDValue").val() ;
-		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr ;
-		$.ajax({
-			type: "POST",
-			url: "ajax/delete_chalange.php",
-			data: dataString,
-			cache: false,
-			success: function(result){
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				location.reload();
+		if(result){ 
+			var IDPr = $("#ProjectIDValue").val() ;
+			var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/delete_chalange.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					location.reload();
 				}
 			});
 		}
@@ -47,17 +47,17 @@ function delChallenge(ID, type) {
 
 function spem(ID, type) {
 	bootbox.confirm("Sure To Spam?", function(result) {
-	if(result){
-		var IDPr = $("#ProjectIDValue").val() ;
-		var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr ;
-		$.ajax({
-			type: "POST",
-			url: "ajax/delete_chalange.php",
-			data: dataString,
-			cache: false,
-			success: function(result){
-				bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
-				location.reload();
+		if(result){
+			var IDPr = $("#ProjectIDValue").val() ;
+			var dataString = 'id='+ ID + '&type=' + type + '&project_id=' + IDPr ;
+			$.ajax({
+				type: "POST",
+				url: "ajax/delete_chalange.php",
+				data: dataString,
+				cache: false,
+				success: function(result){
+					bootstrap_alert(".alert_placeholder", result, 5000,"alert-success");
+					location.reload();
 				}
 			});
 		}

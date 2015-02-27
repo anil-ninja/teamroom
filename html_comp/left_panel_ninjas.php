@@ -15,7 +15,7 @@
     }
 ?>
 <br/><br/>
-    <nav class="sidebar light">
+    <nav class="sidebar light" id='user1project'>
     <ul>
 		<div class='bs-component' style='max-height:150px;'>       
 <?php 
@@ -69,7 +69,7 @@
     </div>
     </ul>
     </nav>
-    <nav class="sidebar light">
+    <nav class="sidebar light" id='user2project'>
     <ul>
 		<div class='bs-component' style='max-height:150px;'>       
 <?php             
@@ -121,7 +121,7 @@
     </div>
     </ul>
     </nav>
-    <nav class="sidebar light">
+    <nav class="sidebar light" id='user3project'>
     <ul>
 		<div class='bs-component' style='max-height:150px;'> 
 		<li class='title'>Public Projects</li>
@@ -168,7 +168,7 @@
         </div>
         </ul>
     </nav>
-    <nav class="sidebar light">
+    <nav class="sidebar light" id='user4project'>
     <ul>
 		<div class='bs-component' style='max-height:150px;'>  
         <li class='title'>Joined Projects</li>
@@ -230,7 +230,7 @@
 															  and a.project_id = b.project_id AND (b.project_type = '1' OR b.project_type = '4')  ;");
 			
 			if(mysqli_num_rows($invester_recommended) != 0){
-				echo "<nav class='sidebar light'>
+				echo "<nav class='sidebar light' id='user5project'>
 						<ul>
 						<div class='bs-component' style='max-height:150px;'>
 							<li class='title'>Fund Needed Projects</li>" ;
@@ -265,7 +265,7 @@
 				echo "</div></ul></nav>";
 			}
 	}
-    echo "<nav class='sidebar light'>
+    echo "<nav id='user6project' class='sidebar light'>
     <ul>" ;
     if(isset($_SESSION['user_id'])) {
 		echo "<div class='bs-component' style='max-height:200px;'> " ;

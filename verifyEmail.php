@@ -85,5 +85,6 @@ else {
             ?>
             
         </div>
+<?php mysqli_close($db_handle); ?>
     </body>
 </html>

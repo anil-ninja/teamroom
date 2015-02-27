@@ -197,4 +197,5 @@ while ($kanban3row = mysqli_fetch_array($kanban3)) {
           " . $completedChallenges . "
         </div>
       </div>" ;
+mysqli_close($db_handle); 
 ?>

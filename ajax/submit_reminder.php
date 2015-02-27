@@ -29,7 +29,7 @@ http://collap.com/profile.php?username=".$username ;
 			echo "Max length 250 characters!"; 
 		}
 	}
-	mysqli_close($db_handle);
 } 
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

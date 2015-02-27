@@ -79,7 +79,7 @@ if($_POST['idea']){
 					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post Idea!"; }
 	else { echo "Posted succesfully!"."|+"."1"."|+".$data ; }
-	mysqli_close($db_handle);
-	} 
-	else echo "Invalid parameters!";
+} 
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

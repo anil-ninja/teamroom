@@ -123,5 +123,5 @@ $show_CP = $show_CP. "</div>
         echo $show_CP;
     }
 }
-    
+ mysqli_close($db_handle);    
 ?>

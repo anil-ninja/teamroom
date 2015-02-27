@@ -35,7 +35,7 @@ if ($_POST['reminder']) {
 	else {
 		echo "<br/> &nbsp;&nbsp;&nbsp;&nbsp;You have no Reminders <br/><br/>";
 	}
-	mysqli_close($db_handle);
 }
-else echo "invalid" ;
+else { echo "invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

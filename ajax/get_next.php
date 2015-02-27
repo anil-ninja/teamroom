@@ -447,7 +447,7 @@ if ($_POST['chal']) {
     }
     $iR = 0;
 }
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
 mysqli_close($db_handle);
 ?>
 <script>

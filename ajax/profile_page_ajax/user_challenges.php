@@ -9,3 +9,6 @@ user_challenges ($db_handle, $user_id_joined);
 <script>
 	onLoaddata() ;
 </script>
+<?php 
+	mysqli_close($db_handle);
+?>

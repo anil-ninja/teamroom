@@ -46,6 +46,4 @@ function resize_image($file, $w, $h, $type, $crop=FALSE) {
 		return $url ;
 	}
 }
-
-//echo resize_image("fonts/project.jpg", 280, 280);
 ?>

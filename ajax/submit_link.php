@@ -54,7 +54,6 @@ if($_POST['title']){
 						<div class='dropdown pull-right'>
 							<a href='#'' id='themes' class='dropdown-toggle' data-toggle='dropdown' style='color: #fff'><span class='caret'></span></a>
 							<ul class='dropdown-menu'>
-								<li><a class='btn-link' href='#' onclick='edit_content(\"".$idp."\", 1)'>Edit</a></li>
 								<li><a class='btn-link' href='#' onclick='delChallenge(\"".$idp."\", 3);'>Delete</a></li>
 							</ul>
 						</div>" ;
@@ -65,7 +64,7 @@ if($_POST['title']){
 						<span style= 'color: #808080;'>
 						&nbspBy: <a href ='profile.php?username=" . $username . "' style= 'color: #808080;'>".ucfirst($firstname)."</a> | ".$timefunct."</span>
 						<hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
-		   $data = $data .editchallenge($nchallange, $idp) ;
+		  
 		  $data = $data ."<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $idp) ;
 		  $data = $data ."<hr/><div class='row-fluid'><div class='col-md-5'>
 							<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 1)'> <b>Push</b>

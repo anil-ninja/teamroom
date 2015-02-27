@@ -1,5 +1,5 @@
 //startTime();
-            function getDateTime() {
+     /*       function getDateTime() {
                 var now     = new Date(); 
                 var year    = now.getFullYear();
                 var month   = now.getMonth()+1; 
@@ -24,7 +24,7 @@
                 }   
                 var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
                 return dateTime;
-            }
+            } */
 
           //  function startTime() {
             //    document.getElementById('demo').innerHTML = String(getDateTime());
@@ -32,31 +32,3 @@
              //       startTime()
               //  }, 500);
            // }
-function updatelastlogin(){ 
-	var dataString = 'update=true' + '&case=2' ;
-	setInterval(function (){
-	$.ajax({
-		type: "POST",
-		url: "ajax/updatetime.php",
-		async: false ,
-		data: dataString,
-		cache: false,
-	});
-	},600000);
-};
-
-function updatetime() {
-	var dataString = 'update=true' + '&case=1' ;
-	$.ajax({
-		type: "POST",
-		url: "ajax/updatetime.php",
-		async: false ,
-		data: dataString,
-		cache: false,
-		success: function(result){
-			if(result == "updated") {
-				document.getElementById("countnotice").innerHTML = "" ;
-			}
-		}
-	}); 
-} ;

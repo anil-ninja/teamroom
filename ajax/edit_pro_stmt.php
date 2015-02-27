@@ -63,6 +63,7 @@ if($_POST['id']){
 		}
 		echo showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",$chaaa))))) ;
 	}
-	mysqli_query($db_handle,$sql);
 }
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

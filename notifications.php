@@ -42,18 +42,23 @@ if(!isset($_SESSION['user_id'])) {
         </div>
         
         <?php include_once 'lib/html_inc_footers.php'; ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
 <script>
 var width = window.screen.availWidth;
-if(width < 800) {
-	$('#tab1').hide();
-	$('#tab3').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
-	$("#new").html($("#tab1").html() + $("#tab3").html());
+if(width < 980) {
+	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
+	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab1").html() + "<br/><br/><br/><br/>" + $("#tab3").html() + "</ul></div></div>");
+	$('#tab1').remove();
+	$('#tab3').remove();
+	$("#tab2").attr('class','span12') ;
+	$("#nav").attr('style', 'position:absolute;') ;
+	$("#step16").attr('style', 'position:relative;top:0px;') ;
 } ;
+</script>
+<script>
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 </script>
 <script>
 	getallnotices();	
@@ -61,3 +66,4 @@ if(width < 800) {
 </script>     
     </body>
 </html>
+<?php mysqli_close($db_handle); ?>

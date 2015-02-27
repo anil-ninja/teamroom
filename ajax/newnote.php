@@ -341,7 +341,7 @@ if ($_POST['time']) {
 					
 				case 15:
 					$notice = $notice ."<li>
-											<a href ='profile.php?username=".$uname2."' onclick=".update($user_id,$db_handle).">
+											<a href ='profile.php?username=".$uname2."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 												<i class='icon-plus'></i>	".$fname2." Added Skills to his profile on  ".$eventtime2."
 											</a>
 										</li>" ;
@@ -352,7 +352,7 @@ if ($_POST['time']) {
 					
 				case 16:
 					$notice = $notice ."<li>
-											<a href ='profile.php?username=".$uname2."' onclick=".update($user_id,$db_handle).">
+											<a href ='profile.php?username=".$uname2."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 												<i class='icon-plus'></i>	".$fname2." Added Profession to his profile on  ".$eventtime2."
 											</a>
 										</li>" ;
@@ -394,7 +394,7 @@ if ($_POST['time']) {
 					
 				case 19:
 					$notice = $notice ."<li>
-											<a href ='profile.php?username=".$uname2."' onclick=".update($user_id,$db_handle).">
+											<a href ='profile.php?username=".$uname2."' style='white-space: normal ;' onclick=".update($user_id,$db_handle).">
 												<i class='icon-plus'></i>	".$fname2."`s Rank has been updated on  ".$eventtime2."
 											</a>
 										</li>" ;
@@ -438,5 +438,6 @@ if ($_POST['time']) {
 		}
 	}
 }
-else echo "invalid" ;						
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);						
 ?>

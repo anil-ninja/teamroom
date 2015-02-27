@@ -364,10 +364,8 @@ if ($_POST['all']) {
 									<i class='icon-bullhorn'> ". $reminders."</i> By : ".$rname." on " .$eventtime3."
 								</div>";
 		}
-echo $notice ;
+	echo $notice ;
 }
-else {
-	echo "invalid" ;
-	}
-						
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);					
 ?>

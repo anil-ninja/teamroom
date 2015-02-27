@@ -5,16 +5,16 @@
 ?>
 <div class="navbar navbar-default navbar-fixed-top">
     <div class="navbar-inner" >
-        <div class="container" >
+			<a id='phoneOPt'></a>
             <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </a>
-            <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: Courgette, cursive;" href="index.php">
+            <a class="brand" style="font-size:16pt; color: #fff; font-weight: bold; font-family: Courgette, cursive;margin-left:10px;" href="index.php">
                  <img src ='img/collap.gif' style="width:35px;"/><i>collap</i>
             </a>
-            <div id='step8' class="nav-collapse collapse navbar-responsive-collapse navbar-search span4">
+            <div id='step8' class="nav-collapse collapse navbar-responsive-collapse navbar-search span4" style="width:20%;">
                <script> 
 					(function() { 
 						var cx = '007811515162108704212:nlk9cflmqvg'; 
@@ -30,9 +30,11 @@
                 <ul class="nav">
                     <?php
                     if (isset($_SESSION['user_id'])) {
+						$user_id = $_SESSION['user_id'];
                     ?>
                     <li><a class="btn-link" style='cursor: pointer;color: #fff;' href="index.php"><i class='icon-home'></i>Home</a></li> 
                     <li><a class="btn-link" style='cursor: pointer;color: #fff;' onclick='projectToJoin()'><i class='icon-shopping-cart'></i> Join</a></li> 
+                    <li><a class="btn-link" style='cursor: pointer;color: #fff;' onclick='assitant("<?= $user_id ; ?>")'><i class='icon-info-sign' > Assistant </i></a></li> 
                     <li>
                         <p id='step9' class="navbar-text" style='color: #fff;'><i class='icon-certificate'></i>
                             <b>  
@@ -71,7 +73,6 @@
     ?>
                 </ul>
             </div>
-        </div>
     </div>
 </div>
   <script>

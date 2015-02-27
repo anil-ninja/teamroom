@@ -159,6 +159,6 @@ if($_POST['id']){
 			break ;
 	}
 }
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
 mysqli_close($db_handle);
 ?>

@@ -366,9 +366,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 		else echo "no data" ;
 	}
 }
-	
-
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
 mysqli_close($db_handle);
 ?>
 <script>

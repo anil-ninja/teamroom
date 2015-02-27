@@ -101,10 +101,6 @@ $user_id = $_SESSION['user_id'] ;
 	include_once 'html_comp/login_signup_modal.php';
     include_once 'html_comp/insert_time.php';
     ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
     <script>
     $(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
@@ -127,4 +123,3 @@ $user_id = $_SESSION['user_id'] ;
     </script>		  
 	</body>
 </html>	
-<?php mysqli_close($db_handle); ?>

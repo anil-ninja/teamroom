@@ -303,7 +303,7 @@ $obj = new profile($UserName);
                 </div>
             </div>
 
-            <div class="span6">
+            <div id='tab8' class="span6">
                     <ul class="nav nav-tabs" style="padding: 0;">
                         <li class="active">
                             <a href="#tabCreatedProjects" data-toggle="tab" class="active " id="created_project" style="padding: 10px 5px;">
@@ -394,10 +394,6 @@ $obj = new profile($UserName);
 	include_once 'lib/html_inc_footers.php';
 	include_once 'html_comp/check.php'; ?> 
 <!--Upload image Modal starts here -->
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
 <div id="uploadPicture" class="modal hide fade modal-form" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="row-fluid">
         <div class="span4 offset2">
@@ -534,33 +530,21 @@ $obj = new profile($UserName);
 </div>
 <script>
 var width = window.screen.availWidth;
-if(width < 800) {
-	$('#tab7').hide();
-	$('#tab9').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
-	$("#new").html($("#tab7").html() + $("#tab9").html());
+if(width < 980) {
+	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
+	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab7").html() + "<br/><br/><br/><br/>" + $("#tab9").html() + "</ul></div></div>");
+	$('#tab7').remove();
+	$('#tab9').remove();
+	$("#tab8").attr('class','span12') ;
+	$("#nav").attr('style', 'position:absolute;') ;
+	$("#step16").attr('style', 'position:relative;top:0px;') ;
 } ;
 </script>
 <script>
-$(function() {
-	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
-
-function toggleDivs() {
-    var $inner = $("#navtab");
-    if ($inner.css("margin-left") == "-170px") {
-        $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
-    }
-    else {
-        $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
-    }
-}
-$(".nav-btntab").bind("click", function(){
-    toggleDivs();
-});
-
-});
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 </script>          
  <!--<div id="InfoBox"></div>-->
 <script>

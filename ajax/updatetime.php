@@ -12,7 +12,7 @@ if($_POST['update']){
 	}
 	if(mysqli_error($db_handle)) { echo "Failed"; }
 	else { echo "updated"; }
-	mysqli_close($db_handle);
 }	
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

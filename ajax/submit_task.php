@@ -224,7 +224,7 @@ if($_POST['taskdetails']){
 		}
 	if(mysqli_error($db_handle)) { echo "Failed to Assign Task !"; }
 	else { echo "Posted succesfully!"."|+"."7"."|+".$data ; }
-	mysqli_close($db_handle);
 } 
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>
