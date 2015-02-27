@@ -531,10 +531,10 @@ $obj = new profile($UserName);
 <script>
 var width = window.screen.availWidth;
 if(width < 980) {
-	$('#tab7').hide();
-	$('#tab9').hide();
 	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
 	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab7").html() + "<br/><br/><br/><br/>" + $("#tab9").html() + "</ul></div></div>");
+	$('#tab7').remove();
+	$('#tab9').remove();
 	$("#tab8").attr('class','span12') ;
 	$("#nav").attr('style', 'position:absolute;') ;
 	$("#step16").attr('style', 'position:relative;top:0px;') ;

@@ -55,10 +55,10 @@ $view = 1 ;
 <script>
 var width = window.screen.availWidth;
 if(width < 980) {
-	$('#tab1').hide();
-	$('#tab3').hide();
 	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
 	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab1").html() + "<br/><br/><br/><br/>" + $("#tab3").html() + "</ul></div></div>");
+	$('#tab1').remove();
+	$('#tab3').remove();
 	$("#tab2").attr('class','span12') ;
 	$("#nav").attr('style', 'position:absolute;') ;
 	$("#step16").attr('style', 'position:relative;top:0px;') ;

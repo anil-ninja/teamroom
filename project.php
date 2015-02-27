@@ -157,10 +157,10 @@ $("#project_chat_data").hide();
 <script>
 var width = window.screen.availWidth;
 if(width < 980) {
-	$('#tab4').hide();
-	$('#tab6').hide();
 	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
 	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab4").html() + "<br/><br/><br/><br/>" + $("#tab6").html() + "</ul></div></div>");
+	$('#tab4').remove();
+	$('#tab6').remove();
 	$("#tab5").attr('class','span12') ;
 	$("#nav").attr('style', 'position:absolute;') ;
 	$("#step16").attr('style', 'position:relative;top:0px;') ;
