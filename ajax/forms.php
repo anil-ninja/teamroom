@@ -205,9 +205,9 @@ if($_POST['form_type']){
 			break ;
 			
 		case 7:
-			echo "<input type='text' class='input-block-level' id='challange_title' placeholder='Challenge Tilte ..'/><br/>
+			echo "<input type='text' class='input-block-level' id='challange_titlenin' placeholder='Challenge Tilte ..'/><br/>
                   <input id='_fileChallenge' type='file' title='Upload Photo' label='Add photos to your post'/><label></label>
-                  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' placeholder='Description .. ' id='challange'></textarea><br>
+                  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' placeholder='Description .. ' id='challangenin'></textarea><br>
                   <input type='hidden' id='Chall_type' value='on' /><br/>                    
                   <input onclick='submit_ch()' class='btn btn-primary' type='button' id='submit_ch' value='Create Challange'/>" ;
             /*	 <div class="inline-form">

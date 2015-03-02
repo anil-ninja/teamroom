@@ -267,7 +267,7 @@ function convertSpecialChar(str){
 
 function submit_ch(){
 	$("#submit_ch").attr('disabled','disabled');
-	var challenge = convertSpecialChar($("#challange").val()) ;
+	var challenge = convertSpecialChar($("#challangenin").val()) ;
 	var ID = $("#ProjectIDValue").val() ;
 	var domain = url_domain(challenge);
 	if (domain == "www.youtube.com"){
@@ -277,7 +277,7 @@ function submit_ch(){
 		challenge = challenge.concat(linkId);
 		challenge = challenge.concat(" \"frameborder=\"0\" allowfullscreen ></iframe>");
 	}
-	var challenge_title = convertSpecialChar($("#challange_title").val()) ;			
+	var challenge_title = convertSpecialChar($("#challange_titlenin").val()) ;			
 	var dataString = 'challange='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge))))) + 
 	'&challenge_title='+ replaceAll('  ',' <s>',replaceAll('\n',' <br/>  ',replaceAll("'",'<r>',replaceAll('&','<a>',replaceAll('[+]','<an>',challenge_title)))))  + '&project_id=' + ID ;
 	if(replaceAll('\\s', '',challenge)==''){
