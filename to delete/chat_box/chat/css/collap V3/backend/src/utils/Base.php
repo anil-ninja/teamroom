@@ -1,4 +1,5 @@
 <?php
+require_once 'utils/Table.php';
 class Base {
 
 	private $id;

@@ -5,7 +5,8 @@
 	 * @author Rahul Lahoria (rahul_lahoria@yahoo.com)
 	 */
 
-	require_once 'common.php'; // From /var/www/capillary/cheetah/
+	require_once 'utils/Util.php';
+	require_once 'utils/Timer.php';
 	require_once 'utils/ShopbookLogger.php';
 	require_once 'cache/AppCacheRegistry.class.php';
 	require_once 'exceptions/ApiException.class.php';

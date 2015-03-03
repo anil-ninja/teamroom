@@ -1,6 +1,7 @@
 <?php
 
 require_once "utils/XML/Serializer.php";
+require_once "Base.php";
 
 class Xml extends Base {
 	private $logger;

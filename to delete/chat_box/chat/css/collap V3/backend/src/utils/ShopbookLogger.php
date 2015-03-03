@@ -3,7 +3,7 @@
  * @package Logger
  * Used as a logger, can turn on or off file level and view level logging.
  */
-define('LOG4PHP_DIR', "log4php");
+define('LOG4PHP_DIR', "utils/log4php");
 if (!defined('LOG4PHP_CONFIGURATION')) {
     define('LOG4PHP_CONFIGURATION', "log4php.properties");
 }
