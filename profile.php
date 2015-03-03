@@ -273,14 +273,14 @@ $obj = new profile($UserName);
                 <div class="editprofile">
                     <?php    
                     if((isset($_SESSION['user_id'])) && ($_SESSION['user_id'] == $profileViewUserID)) { 
-                        echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;'>
+                        echo "<br/><hr/><a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addskill' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
                                 <i class='icon-plus'></i> Skill
                                 </a><br/>";
                         echo "     <br/> 
                                     <a data-toggle='modal' class='btn-xs btn-primary ' data-target='#addprofession' style='cursor:pointer;padding:3px 10px; margin-top: 5px;'>
                                         <i class='icon-plus'></i> Profession
                                     </a>
-                                    <br/>";
+                                    <br/><br/>";
                         echo "<input type='text' id='newfirstname' class='form-control' value='".$profileViewFirstName."'/>
     							<input type='text' id='newlastname' class='form-control' value='".$profileViewLastName."'/>
     							<input type='text' id='newphoneno' class='form-control' value='".$profileViewPhone."'/>" ;
