@@ -3,6 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
+include_once '../functions/sharepage.php';
 //echo "hi";
 if($_POST['article']){
 	$user_id = $_SESSION['user_id'];
@@ -12,10 +13,10 @@ if($_POST['article']){
 	//echo $image ;
 	if (strlen($image) < 30 ) {
 		$article = $articletext ;
-		}
-		else {
-			$article = $image."<br/> ".$articletext ;
-			}
+	}
+	else {
+		$article = $image."<br/> ".$articletext ;
+	}
 	$remaintime = 99 ;
 	$firstname = $_SESSION['first_name'] ;
 	$username = $_SESSION['username'] ;
@@ -24,7 +25,6 @@ if($_POST['article']){
         mysqli_query($db_handle,"INSERT INTO challenges (user_id, challenge_title, stmt, challenge_open_time, challenge_ETA, challenge_type, last_update) 
                                     VALUES ('$user_id', '$article_title', '$article', '1', '999999', '7', '$time') ; ") ;
 		$idp = mysqli_insert_id($db_handle);
-		involve_in($db_handle,$user_id,"1",$idp);
 	} 
 	else {
 		mysqli_query($db_handle, "INSERT INTO blobs (blob_id, stmt) 
@@ -33,8 +33,8 @@ if($_POST['article']){
 		mysqli_query($db_handle, "INSERT INTO challenges (user_id, challenge_title, blob_id, challenge_open_time, challenge_ETA, stmt, challenge_type, last_update) 
 								VALUES ('$user_id', '$article_title', '$id', '1', '999999', ' ', '7', '$time');");
 		$idp = mysqli_insert_id($db_handle);
-		involve_in($db_handle,$user_id,"1",$idp);
 	}
+	mysqli_query($db_handle,"insert into involve_in (user_id, p_c_id, p_c_type) VALUES ('$user_id', '$idp', '1'),('$user_id', '$idp', '3'),('$user_id', '$idp', '5'),('$user_id', '$idp', '9') ;") ;
 	$totallikes = mysqli_query($db_handle, "SELECT * from likes where challenge_id = '$idp' and like_status = '1' ;");
 	if (mysqli_num_rows($totallikes) > 0) { $likes = mysqli_num_rows($totallikes) ;}
 	else { $likes = '' ; }
@@ -43,10 +43,10 @@ if($_POST['article']){
 	else { $dislikes = '' ; }
 	$data = "" ;
 	$timefunct = date("j F, g:i a") ;
-	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $article)))) ;
-	$title = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $article_title)))) ;
-	$ntitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $article_title))) ;
-	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $article))) ;
+	$chelange = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $article))))) ;
+	$title = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $article_title))))) ;
+	$ntitle = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $article_title)))) ;
+	$nchallange = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $article)))) ;
 	$data .= "<div class='list-group articlesch'>
                 <div class='list-group-item'>
 					<div class='dropdown pull-right'>
@@ -63,8 +63,9 @@ if($_POST['article']){
 					<span style= 'color: #808080;'>
 					&nbspBy: <a href ='profile.php?username=" . $username . "' style='color: #808080;'>".ucfirst($firstname)."</a> | ".$timefunct."</span>
                     <hr/><span id='challenge_".$idp."' class='text' style='line-height: 25px; font-size: 14px; color: #444;'>".$chelange."</span><br/>" ;
-       $data = $data .editchallenge($nchallange, $idp) ;
-      $data = $data ."<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($idp)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+      $data = $data .editchallenge($nchallange, $idp) ;
+      $data = $data ."<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $idp) ;
+      $data = $data ."<hr/><div class='row-fluid'><div class='col-md-5'>
 						<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$idp ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$idp ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                     <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$idp ."\", 2)'> <b>Pull</b>
@@ -80,8 +81,8 @@ if($_POST['article']){
 						<span class='icon-chevron-right'></span></button>
 					</div></div> </div> " ;
 	if(mysqli_error($db_handle)) { echo "Failed to Post Video!"; }
-	else { echo "Posted succesfully!"."+"."3"."+".$data ; }
-	mysqli_close($db_handle);
+	else { echo "Posted succesfully!"."|+"."3"."|+".$data ; }
 } 
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

@@ -74,7 +74,14 @@ if($_POST['form_type']){
                 </div><br/><br/>
 				*/
 			} 
-			else echo "Please Join Project First";
+			else { 
+				if(isset($_SESSION['user_id'])){
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				}
+				else {
+					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
+				}
+			}
 			exit ;
 			break ;
 			
@@ -106,8 +113,8 @@ if($_POST['form_type']){
 						$task = $task . "<option value='" . $u_id . "' >" . $users_username_task . "</option>";
 					}
 					$task = $task . "</select>
-                                <label></label> Or Enter : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<input type='email' id='emailtask' placeholder='Enter email-id'/>
+                                <label></label> Or Enter : &nbsp;&nbsp;&nbsp;&nbsp;
+								<input type='email' id='emailtask' class='input-block-level' style='width:50%;' placeholder='Enter email-id'/>
 							  </div><br/>
 							  <input type='text' class='input-block-level' id='titletask' placeholder='Tilte ..'/><br/>
 						      <input type='file' id='_fileTask' style ='width: auto;'><label></label>
@@ -160,7 +167,14 @@ if($_POST['form_type']){
 					  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='videodespr' placeholder='Description ..'></textarea><br>
 					  <input type='button' value='Post' class='btn btn-primary' id='create_videopr' onclick='create_videopr(\"".$pro_id."\")'/>" ;
 			} 
-			else echo "Please Join Project First";
+			else { 
+				if(isset($_SESSION['user_id'])){
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				}
+				else {
+					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
+				}
+			}
 			exit ;
 			break ;
 			
@@ -171,7 +185,14 @@ if($_POST['form_type']){
 					  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='notestmt' placeholder='Notes about Project or Importent Things about Project'></textarea><br>
 					  <input type='button' value='Post' class='btn btn-primary' id='create_notes' onclick='create_notes()'/>" ;
 			} 
-			else echo "Please Join Project First";
+			else { 
+				if(isset($_SESSION['user_id'])){
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				}
+				else {
+					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
+				}
+			}
 			exit ;
 			break ;
 		
@@ -184,9 +205,9 @@ if($_POST['form_type']){
 			break ;
 			
 		case 7:
-			echo "<input type='text' class='input-block-level' id='challange_title' placeholder='Challenge Tilte ..'/><br/>
+			echo "<input type='text' class='input-block-level' id='challange_titlenin' placeholder='Challenge Tilte ..'/><br/>
                   <input id='_fileChallenge' type='file' title='Upload Photo' label='Add photos to your post'/><label></label>
-                  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' placeholder='Description .. ' id='challange'></textarea><br>
+                  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' placeholder='Description .. ' id='challangenin'></textarea><br>
                   <input type='hidden' id='Chall_type' value='on' /><br/>                    
                   <input onclick='submit_ch()' class='btn btn-primary' type='button' id='submit_ch' value='Create Challange'/>" ;
             /*	 <div class="inline-form">
@@ -280,8 +301,8 @@ if($_POST['form_type']){
 			break ;
 			
 		case 12:
-			echo "<br/><input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
-				  <input type='submit' value='Post' class='btn btn-primary' onclick='create_link()'/>" ;
+			echo "<input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
+				  <input type='submit' value='Post' class='btn btn-primary' id='create_link' onclick='create_link()'/>" ;
 			exit ;
 			break ;
 			
@@ -292,10 +313,33 @@ if($_POST['form_type']){
 					  <textarea class='input-block-level autoExpand' rows='3' data-min-rows='3' id='issuestmt' placeholder='Issue related to Project'></textarea><br>
 					  <input type='button' value='Post' class='btn btn-primary' id='create_issue' onclick='create_issue()'/>" ;
 			} 
-			else echo "Please Join Project First";
+			else { 
+				if(isset($_SESSION['user_id'])){
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				}
+				else {
+					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
+				}
+			}
+			exit ;
+			break ;
+			
+		case 14:
+			if(mysqli_num_rows($member_project) != 0) {
+				echo "<input type='text' class='input-block-level' id='sharedlink' placeholder='Share link here ..'/><br>
+				  <input type='submit' value='Post' class='btn btn-primary' id='create_link' onclick='create_link()'/>" ;
+			} 
+			else { 
+				if(isset($_SESSION['user_id'])){
+				    echo "Please Join Project First"."<a class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</a>"; 
+				}
+				else {
+					echo "Please Join Project First"."<a class='btn btn-primary pull-right' onclick='test3()'>Join</a>"; 
+				}
+			}
 			exit ;
 			break ;
 	}
-	mysqli_close($db_handle) ;
 }
+mysqli_close($db_handle);
 ?>

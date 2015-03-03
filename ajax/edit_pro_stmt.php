@@ -14,8 +14,8 @@ if($_POST['id']){
 										(select b.stmt from projects as a join blobs as b where a.project_id='$id' and a.blob_id = b.blob_id);") ;
 	$myqueryRow = mysqli_fetch_array($myquery) ;
 	$stmt = $myqueryRow['stmt'] ;
-	events($db_handle,$user_id,"33",$id) ;
-	involve_in($db_handle,$user_id,"33",$id) ;
+	events($db_handle,$user_id,"11",$id) ;
+	involve_in($db_handle,$user_id,"11",$id) ;
 	if($video == '') {
 		if(substr($stmt, 0, 1) == '<') {
 			$newstmt = strstr($stmt, '<br/>' , true)." <br/> ".$projectsmt ;
@@ -40,7 +40,7 @@ if($_POST['id']){
 				mysqli_query($db_handle,"update projects set project_title='$project', blob_id = '$idb' where project_id='$id' ;") ;
 			}
 		}
-		echo showLinks($newstmt) ;
+		echo showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",$newstmt))))) ;
 	}
 	else {
 		$chaaa = $video."<br/> ".$projectsmt ;
@@ -61,8 +61,9 @@ if($_POST['id']){
 				mysqli_query($db_handle,"update projects set project_title='$project', blob_id = '$idb' where project_id='$id' ;") ;
 			}
 		}
-		echo showLinks($chaaa) ;
+		echo showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+",$chaaa))))) ;
 	}
-	mysqli_query($db_handle,$sql);
 }
+else { echo "Invalid parameters!"; }
+mysqli_close($db_handle);
 ?>

@@ -29,26 +29,35 @@ if ($_POST['id']) {
 			break ;
 			
 		case 4:
-			mysqli_query($db_handle, "UPDATE projects SET project_type = '3' WHERE project_id = '$knownid' and user_id = '$user_id';") ;
-			if(mysqli_error($db_handle)) { echo "Failed to delete Project!"; }
-			else { 
-				echo "Deleted succesfully!"; 
-				unset($_SESSION['project_id']);
-				}
+			$owner = mysqli_query($db_handle, "select user_id from projects WHERE project_id = '$knownid' ;") ;
+			$ownerRow = mysqli_fetch_array($owner) ;
+			$ownerid = $ownerRow['user_id'] ;
+			if ($ownerid == $user_id) {
+				mysqli_query($db_handle, "UPDATE projects SET project_type = '3' WHERE project_id = '$knownid' and user_id = '$user_id';") ;
+				if(mysqli_error($db_handle)) { echo "Failed to delete Project!"; }
+				else { 	echo "Deleted succesfully!"; }
+			}
+			else { echo "Not valid Request"; }
 			 
 			break ;
 		
 		case 3:
-			mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '3' WHERE challenge_id = '$knownid' and user_id = '$user_id';") ;
-			if(mysqli_error($db_handle)) { echo "Failed to delete!"; }
-			else { echo "Deleted succesfully!"; }
+			$owner = mysqli_query($db_handle, "select user_id from challenges WHERE challenge_id = '$knownid' ;") ;
+			$ownerRow = mysqli_fetch_array($owner) ;
+			$ownerid = $ownerRow['user_id'] ;
+			if ($ownerid == $user_id) {
+				mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '3' WHERE challenge_id = '$knownid' and user_id = '$user_id';") ;
+				if(mysqli_error($db_handle)) { echo "Failed to delete!"; }
+				else { echo "Deleted succesfully!"; }
+			}
+			else { echo "Not valid Request"; }
 			 
 			break ;
 			
 		case 5:
 			mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '7' WHERE challenge_id = '$knownid' ;") ;
-			events($db_handle,$user_id,"38",$knownid) ;
-			involve_in($db_handle,$user_id,"38",$knownid) ;
+			events($db_handle,$user_id,"3",$knownid) ;
+			involve_in($db_handle,$user_id,"3",$knownid) ;
 			if(mysqli_error($db_handle)) { echo "Failed to Spam!"; }
 			else { echo "Spammed succesfully!"; }
 			 
@@ -84,8 +93,8 @@ if ($_POST['id']) {
 		case 9:
 			if(mysqli_num_rows($member_project) != 0) {	
 				mysqli_query($db_handle, "UPDATE challenges SET challenge_status = '7' WHERE challenge_id = '$knownid' ;") ;
-				events($db_handle,$user_id,"7",$knownid) ;
-				involve_in($db_handle,$user_id,"7",$knownid) ;
+				events($db_handle,$user_id,"3",$knownid) ;
+				involve_in($db_handle,$user_id,"3",$knownid) ;
 				if(mysqli_error($db_handle)) { echo "Failed to Spam!"; }
 				else { echo "Spammed succesfully!"; }
 				}
@@ -104,6 +113,6 @@ if ($_POST['id']) {
 			break ;
 		}
 	}
-	else echo "Access Denied";
+else { echo "Access Denied"; }
 mysqli_close($db_handle);
 ?>

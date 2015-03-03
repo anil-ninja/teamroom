@@ -3,16 +3,16 @@ session_start();
 include_once 'html_comp/start_time.php';
 include_once 'functions/delete_comment.php';
 include_once 'functions/image_resize.php';
+include_once 'functions/sharepage.php';
 include_once 'lib/db_connect.php';
 include_once 'models/challenge.php';
 $obj = new challenge($_GET['challenge_id']);
 $challengeSearchID = $_GET['challenge_id'];
 $challengeSearchIDR = $_GET['challenge_id'];
-$open_chalange = mysqli_query($db_handle, "SELECT challenge_id, challenge_title from challenges WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id= '$challengeSearchID' ;");
+$open_chalange = mysqli_query($db_handle, "SELECT challenge_title from challenges WHERE challenge_status != 3 AND challenge_status != 7 AND challenge_id= '$challengeSearchID' ;");
 $open_chalangeRtitle = mysqli_fetch_array($open_chalange);
-$challenge_page_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangeRtitle['challenge_title'])));
-$emptySearch = mysqli_num_rows($open_chalange);
-if ($emptySearch == 0) {
+$challenge_page_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangeRtitle['challenge_title']))));
+if (mysqli_num_rows($open_chalange) == '0') {
     include_once 'error.php';
     exit;                       //echo "no longer exists";
 }
@@ -25,27 +25,26 @@ if($pro_id != '0') {
 	$typeProject = mysqli_query($db_handle, "SELECT project_type FROM projects WHERE project_id = '$pro_id' ;");
 	$typeProjectRow = mysqli_fetch_array($typeProject);
 	$projectType = $typeProjectRow['project_type'];
-	if($projectType == 2){
-		if(isset($_SESSION['user_id'])){
-			$checkAccess = mysqli_query($db_handle, "SELECT * FROM teams WHERE project_id = '$pro_id' and user_id = '$userID' and member_status = '1' ;");
-			$checkAccessRow = mysqli_fetch_array($checkAccess) ;
-			$AccessID = $checkAccessRow['user_id'] ;
-			if ($userID != $AccessID) { 
-				include_once 'error.php';
-				exit;
-			}
-		}
-		else {
+	if(isset($_SESSION['user_id'])){
+		$checkAccess = mysqli_query($db_handle, "SELECT * FROM teams WHERE project_id = '$pro_id' and user_id = '$userID' and member_status = '1' ;");
+		if (mysqli_num_rows($checkAccess) == '0') {
 			include_once 'error.php';
 			exit;
 		}
 	}
 	else {
-		if ($private_ch_type == '2' || $private_ch_type == '5') {
+		if($projectType == '2' || $projectType == '4') {
 			include_once 'error.php';
 			exit;
 		}
+		else {
+			if ($private_ch_type == '2' || $private_ch_type == '5') {
+				include_once 'error.php';
+				exit;
+			}
+		}
 	}
+	
 }
 function chOpen_title($title_length) {
     if (strlen($title_length) < 40) {
@@ -74,11 +73,11 @@ function challenge_display($db_handle, $challengeSearchID) {
                                                 WHERE a.challenge_id = '$challengeSearchID' AND a.challenge_status != '3' and a.challenge_status != '7' and a.blob_id = c.blob_id and a.user_id = b.user_id );");
 
         while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
-            $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
-            $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
+            $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt'])))));
+            $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt']))));
             $ETA = $open_chalangerow['challenge_ETA'];
-            $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title']))));
-            $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
+            $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_title'])))));
+            $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_title']))));
             $owner_id = $open_chalangerow['user_id'];
             $ctype = $open_chalangerow['challenge_type'];
             $frstname = $open_chalangerow['first_name'];
@@ -173,7 +172,7 @@ function challenge_display($db_handle, $challengeSearchID) {
 						$display_name_stmt = "";
 					}
 				} 
-				else if ($ctype == 3) {
+				if ($ctype == 3) {
 					if ($status == 1) {
 						echo "<div class='list-group challenge'>
 								<div class='list-group-item' >";
@@ -276,33 +275,31 @@ function challenge_display($db_handle, $challengeSearchID) {
 						$display_name_stmt = "";
 					}
 				}
-				else if ($ctype == 4) {
+				if ($ctype == 4) {
 					echo "<div class='list-group idea'>
 							<div class='list-group-item'>";
 				    dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
 					echo $display_title."<span class='icon-lightbulb'></span>".$display_fname_likes.$display_name_stmt;
 					$display_name_stmt = "";
 				}
-				else if ($ctype == 5) {
-				   if ($status_task == 2) {
+				if ($ctype == 5) {
+				   if ($status == 2) {
 						echo "<div class='list-group pushpin'>
 								<div class='list-group-item'>";
-						if (isset($_SESSION['user_id'])) {
-							dropDown_challenge_pr($chelangeid, $user_id, $remaintimeown, $id_create) ;
-						}
-						if (($ownuser == $user_id) && (isset($_SESSION['user_id']))) {
+							dropDown_challenge_pr($chelangeid, $user_id, $remaintimeown, $owner_id) ;
+						if ($ownuser == $user_id) {
 							echo "<input class='btn btn-primary pull-right' type='submit' onclick='answersubmit(\"".$chelangeid."\", 2)' value='Submit'/>";
 						}
-						echo $display_title."<span class='icon-pushpin'></span>".$dispaly_fname_likes."<span style= 'color: #808080'> Assigned To:&nbsp <a href ='profile.php?username=".$ownname."'>"
+						echo $display_title."<span class='icon-pushpin'></span>".$display_fname_likes."<hr/><span style= 'color: #808080'> Assigned To:&nbsp <a style= 'color: #808080' href ='profile.php?username=".$ownname."'>"
 										.ucfirst($ownfname)." ".ucfirst($ownlname)."</a> | ".$timefunct."</span>";
 						echo $display_name_stmt;
 						$display_name_stmt = "" ;
 						// " . $remaintimeown . "
 					}
-					if ($status_task == 4) {
+					if ($status == 4) {
 						echo "<div class='list-group pushpin'>
 								<div class='list-group-item'>";
-						if (($owner_id == $user_id) && (isset($_SESSION['user_id']))) {
+						if ($owner_id == $user_id) {
 							echo "<button type='submit' class='btn btn-primary pull-right' onclick='closechal(\"".$chelangeid."\", 6)'>Close</button>";
 						}
 						echo $display_title."<span class='icon-pushpin'></span>".$dispaly_fname_likes.
@@ -311,7 +308,7 @@ function challenge_display($db_handle, $challengeSearchID) {
 						echo $display_name_stmt;
 						$display_name_stmt = "" ;
 					}
-					if ($status_task == 5) {
+					if ($status == 5) {
 						echo "<div class='list-group flag'>
 								<div class='list-group-item'>";
 						echo "<span class='color strong pull-right' style= 'color: #808080'>Closed</span>";
@@ -349,13 +346,20 @@ function challenge_display($db_handle, $challengeSearchID) {
 					dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
 				    echo $display_title."<span class='icon-film'></span>".$display_fname_likes.$display_name_stmt; 
 				    $display_name_stmt = "";         
+				}
+				if ($ctype == 10) {
+					echo "<div class='list-group film'>
+							<div class='list-group-item'>";
+					dropDown_challenge($chelangeid, $user_id, $remaintime, $owner_id) ;
+				    echo $display_title."<span class='icon-globe'></span>".$display_fname_likes.$display_name_stmt; 
+				    $display_name_stmt = "";         
 				} 
                 if ($status == 4 || $status == 5 || $status == 2) {
 					$answer = mysqli_query($db_handle, "(select stmt from response_challenge where challenge_id = '$chelangeid' and blob_id = '0' and status = '2')
 														UNION
 														(select b.stmt from response_challenge as a join blobs as b	where a.challenge_id = '$chelangeid' and a.status = '2' and a.blob_id = b.blob_id);");
 					while ($answerrow = mysqli_fetch_array($answer)) {
-						$answer_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))));
+						$answer_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", str_replace("<an>", "+",$answerrow['stmt'])))));
 						echo "<span class='color strong' style= 'color :#3B5998;font-size: 14pt;'>
 								<p align='center'>Answer</p></span>"
 							. $answer_stmt. "<br/><br/>";
@@ -397,8 +401,14 @@ function challenge_display($db_handle, $challengeSearchID) {
                             <div class='list-group-item'>";
                             echo $display_title."<span class='icon-film'></span>".$display_fname_likes.$display_name_stmt;
                 }
+                else if ($ctype == 10) {
+                    echo "<div class='list-group film'>
+                            <div class='list-group-item'>";
+                            echo $display_title."<span class='icon-globe'></span>".$display_fname_likes.$display_name_stmt;
+                }
             }
-            echo "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($chelangeid)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+            echo "<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $chelangeid) ;
+            echo "<hr/><div class='row-fluid'><div class='col-md-5'>
             <span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none;' onclick='like(\"".$chelangeid ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                     <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;' onclick='dislike(\"".$chelangeid ."\", 2)'> <b>Pull</b>
@@ -414,7 +424,7 @@ function challenge_display($db_handle, $challengeSearchID) {
                 $challenge_ID = $commenterRow['challenge_id'];
                 $creater_ID = $commenterRow['user_id'];
                 $username_comment_ninjas = $commenterRow['username'];
-                $comment_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt']))));
+                $comment_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", str_replace("<an>", "+",$commenterRow['stmt'])))));
                 echo "<div id='commentscontainer'>
                     <div class='comments clearfix' id='comment_".$comment_id."'>
                         <div class='pull-left lh-fix'>

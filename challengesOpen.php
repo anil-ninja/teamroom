@@ -22,15 +22,12 @@
         
         <meta name="p:domain_verify" content="c336f4706953c5ce54aa851d2d3da4b5"/>
         <?php
-			if($obj->video == 0)
-				echo "<meta property=\"og:image\" content=\"$obj->url\" />\n";
+			if($obj->video == 0) {
+				echo "<meta property=\"og:image\" content='".$obj->url."' />\n" ;
+			}	
 			else{
-				echo "<meta property=\"og:image\" content=\"http://img.youtube.com/vi/".str_replace(' ', '',explode("/embed/", $obj->url)[1])."/hqdefault.jpg\" />";
-                echo "<meta property=\"og:video\" 
-                                    content=\"http://www.youtube.com/v/"
-                                        .explode("/embed/", $obj->url)[1]
-                                        ."\" />\n";
-
+				echo "<meta property=\"og:image\" content=\"http://img.youtube.com/vi/".str_replace(' ', '',explode("/embed/", $obj->url)[1])."/hqdefault.jpg\" />\n" ;
+				echo "<meta property=\"og:video\" content=\"http://www.youtube.com/v/".explode("/embed/", $obj->url)[1]."\" />\n" ;
             }
         ?>
         <meta property="og:url" content="<?= "http://".$_SERVER["SERVER_NAME"].$_SERVER["REQUEST_URI"] ?>" />
@@ -52,11 +49,12 @@
       <?php include_once 'html_comp/navbar_homepage.php'; ?>
         
         <div class="row-fluid" style='margin-top: 50px;'>
-            
             <div class="span7 offset1">
                 <?php                
                     challenge_display($db_handle, $challengeSearchID);
                 ?>
+           <!--//Soical media buttons: https://github.com/kni-labs/rrssb (More examples) -->
+                             
                     <div class="list-group" style="margin: 20px 0px;">
                         <div class="list-group-item" style="padding: 0px;">
 					<?php
@@ -89,7 +87,7 @@
 	   $usersSkills = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE 
 											a.user_id = '$challengeSearch_user_ID' AND a.skill_id = b.skill_id ;");
 	   while($usersSkillsRow = mysqli_fetch_array($usersSkills)) {
-		  $usersSkillname = $usersSkillsRow['skill_name'] ;
+		  $usersSkillname = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersSkillsRow['skill_name'])))) ;
 		  $usersSkillid = $usersSkillsRow['skill_id'] ;
 			$data .= "<span class='btn-success'>
 						<a href='ninjaSkills.php?skill_id=".$usersSkillid."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$usersSkillname."</a>&nbsp
@@ -100,14 +98,14 @@
 	   if (mysqli_num_rows($usersAbout) != 0) {
 		echo "</div>
 			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
-					<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['organisation_name']."&nbsp;&nbsp;&nbsp;&nbsp;
-					<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['living_town']."
+					<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['organisation_name']))))."&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['living_town']))))."
 			</div><br/>
 			<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
 				<i class='icon-screenshot'></i>Skills &nbsp;: &nbsp; ".$data."
 			</div><br/>
 			<div class='row-fluid' style ='text-align:justify;font-size: 14px;word-wrap: break-word;'>
-				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user']."
+				<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['about_user']))))."
 			</div>" ;
 		}
 		else {
@@ -159,8 +157,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 4 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['stmt'])))); 
                     echo "  
                             <div class ='span6 box' style=' margin: 4px ;min-height: 200px;'>
     						    <a href='project.php?project_id=".$project_id."'>
@@ -201,17 +199,17 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
     														AND a.challenge_id != $challengeSearchID) ORDER BY rand() LIMIT 10 ;");
                     while($challenge_userRow = mysqli_fetch_array($challenge_user)) {
                         $challenge_user_chID = $challenge_userRow['challenge_id'];
-                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['challenge_title'])));
-                        $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_userRow['stmt'])));
+                        $challenge_user_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_userRow['challenge_title']))));
+                        $challenge_user_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_userRow['stmt']))));
                         if(substr($challenge_user_stmt, 0, 4) == '<img') {
 							$ProjectPic = strstr($challenge_user_stmt, '<br/>' , true) ;
 							$ProjectLink = strstr($challenge_user_stmt, '<br/>') ;
 							$ProjectPicLink =explode("\"",$ProjectPic)['1'] ; 				
 							$ProjectPic2 = "<img src='".resize_image($ProjectPicLink, 280, 280, 2)."' onError=this.src='img/default.gif' style='width:100%;height:280px;'>" ;
-							$ProjectStmt = $ProjectPic2." ".$ProjectLink ;
+							$ProjectStmt = $ProjectPic2." ".str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $ProjectLink)))) ;
 						}
 						else {
-							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $challenge_user_stmt))) ;
+							$ProjectStmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $challenge_user_stmt)))) ;
 						}
                         echo "
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
@@ -248,8 +246,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
                                                             WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 3 ;");
                     while($projectsRow = mysqli_fetch_array($projects)) {
                         $project_id = $projectsRow['project_id'];
-                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+                        $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+                        $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['stmt'])))); 
                     echo "  
                             <div class ='row' style='border-width: 1px; border-style: solid;margin: 10px 0px 10px 0px;background : rgb(240, 241, 242); color:rgba(69, 69, 69, 0);'>
     						    <a href='project.php?project_id=".$project_id."'>
@@ -285,10 +283,6 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
          include_once 'lib/html_inc_footers.php'; 
          include_once 'html_comp/check.php';
          include_once 'html_comp/login_signup_modal.php'; ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
         <script>
             $(".text").show();
             $(".editbox").hide();
@@ -296,8 +290,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
             return false
             });
             </script>
-            <!-- Go to www.addthis.com/dashboard to customize your tools -->
+            <!-- Go to www.addthis.com/dashboard to customize your tools  -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54a9978c1d02a7b3" async="async"></script>
-            <?php include_once 'html_comp/insert_time.php'; ?>
+            <?php include_once 'html_comp/insert_time.php';  ?>
     </body>
 </html>

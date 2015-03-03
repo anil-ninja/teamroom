@@ -3,6 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
+include_once '../functions/sharepage.php';
 if($_POST['proch']){
 	$user_id = $_SESSION['user_id'];
 	$username = $_SESSION['username'];
@@ -29,15 +30,15 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$username_task = $tasksrow['username'];
 			$id_task = $tasksrow['challenge_id'];
 			$id_create = $tasksrow['user_id'];
-			$title_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title']))));
-			$tasktitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['challenge_title'])));
+			$title_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title'])))));
+			$tasktitle = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['challenge_title']))));
 			$type_task = $tasksrow['challenge_type'];
 			$status_task = $tasksrow['challenge_status'];
 			$eta_task = $tasksrow['challenge_ETA'];
 			$creation_task = $tasksrow['creation_time'];
 			$timetask = date("j F, g:i a",strtotime($creation_task));
-			$stmt_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt']))));
-			$taskstmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $tasksrow['stmt'])));
+			$stmt_task = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt'])))));
+			$taskstmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $tasksrow['stmt']))));
 			$fname_task = $tasksrow['first_name'];
 			$lname_task = $tasksrow['last_name'];
 			$tasketa = eta($eta_task) ;
@@ -177,6 +178,26 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
         $get_display_task_stmt = "" ;
         
     }
+    if ($type_task == 10) {
+        $show = $show . "<div class='list-group deciduous'>
+                    <div class='list-group-item'>";
+        if (isset($_SESSION['user_id'])) {
+           $show = $show . "<div class='list-group-item pull-right'>
+								<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+									<ul class='dropdown-menu' aria-labelledby='dropdown'>";
+			if($owner_id == $user_id) {
+				$show = $show . "<li><a class='btn-link' onclick='delChallenge(\"".$id_task."\", 3);'>Delete</a></li>";                    
+			}
+			else {
+				$show = $show ."<li><a class='btn-link' onclick='spem(\"".$id_task."\", 9);'>Report Spam</a></li>";
+			} 
+			$show = $show ."</ul>
+				  </div>";
+        }
+        $show = $show . $get_display_tilte_task . "<span class='icon-globe'></span>" . $get_dispaly_fname_likes . $get_display_task_stmt;
+        $get_display_task_stmt = "" ;
+        
+    }
     if ($type_task == 9) {
         $show = $show . "<div class='list-group asterisk'>
                     <div class='list-group-item'>";
@@ -267,9 +288,10 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 			$answerrow = mysqli_fetch_array($answer) ;
 		$show = $show . "<span class='color strong' style= 'font-size: 14pt;'>
 				<p align='center'>Answer</p></span><br/>"
-				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt']))))."<br/><br/>" ;
+				.showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt'])))))."<br/><br/>" ;
 		}			
-		$show = $show . "<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($id_task)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+		$show = $show ."<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $id_task) ;
+      $show = $show ."<hr/><div class='row-fluid'><div class='col-md-5'>
 			<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$id_task ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$id_task ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$id_task ."\", 2)'> <b>Pull</b>
@@ -284,7 +306,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
                 $lstname = $displayrowb['last_name'];
                 $username_commenter = $displayrowb['username'];
 				$idc = $displayrowb['response_ch_id'] ;
-				$chalangeres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowb['stmt'])))) ;
+				$chalangeres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $displayrowb['stmt']))))) ;
                 $comment_user_id = $displayrowb['user_id'];
 		$show = $show . "
 		<div id='commentscontainer'>
@@ -344,9 +366,7 @@ $tasks = mysqli_query($db_handle, "(SELECT DISTINCT a.last_update, a.challenge_i
 		else echo "no data" ;
 	}
 }
-	
-
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
 mysqli_close($db_handle);
 ?>
 <script>

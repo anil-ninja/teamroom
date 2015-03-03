@@ -9,46 +9,56 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     include_once 'lib/db_connect.php';
     include_once 'functions/collapMail.php';
     $email_req = $_POST['email_forget_password'];
-    $user_id_access_aid = mysqli_query($db_handle, "SELECT user_id FROM user_info WHERE email= '$email_req' ;");
-    
-    $user_id_access_aidRow = mysqli_fetch_array($user_id_access_aid);
-    $user_id_access = $user_id_access_aidRow['user_id'];
-    
-    $already_sent_mail = mysqli_query($db_handle, "SELECT id, status, hash_key FROM user_access_aid WHERE user_id= '$user_id_access' AND status = '0';");
-    $already_hash_set = mysqli_num_rows($already_sent_mail);
-    if ($already_hash_set == 1) {
-        $already_sent_mailRow = mysqli_fetch_array($already_sent_mail);
-        $already_hash = $already_sent_mailRow['hash_key'];
-        $already_id = $already_sent_mailRow['id'];
-        $already_hash_key = $already_hash.".".$already_id;
-        $body = "http://collap.com/forgetPassword.php?hash_key=$already_hash_key";
-        collapMail($email_req, "Update password", $body);
-        echo "<div class='jumbotron' style='margin-top: 60px; color: #2E1313;'>
-                <p align='center'> Please check your Email, shortly you get an email, Go through your email and change your password<br>
-                <br><a class='btn' href='index.php'>Go Back</a></p>
-            </div>";
-            //exit;
-    }
-    else {
-        $hash_key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
-        mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_id_access', '$hash_key');");
+    if($email_req == "" || preg_replace("/\s+/", "", $email_req) == "") {
+		header('Location: #');
+		return false;
+	}
+	elseif  (! preg_match("/^[^@]+@[^@.]+\.[^@]*\w\w$/", $email_req)){
+		header('Location: #');
+		return false;
+	}
+	else {
+		$user_id_access_aid = mysqli_query($db_handle, "SELECT user_id FROM user_info WHERE email= '$email_req' ;");
+		
+		$user_id_access_aidRow = mysqli_fetch_array($user_id_access_aid);
+		$user_id_access = $user_id_access_aidRow['user_id'];
+		
+		$already_sent_mail = mysqli_query($db_handle, "SELECT id, status, hash_key FROM user_access_aid WHERE user_id= '$user_id_access' AND status = '0';");
+		$already_hash_set = mysqli_num_rows($already_sent_mail);
+		if ($already_hash_set == 1) {
+			$already_sent_mailRow = mysqli_fetch_array($already_sent_mail);
+			$already_hash = $already_sent_mailRow['hash_key'];
+			$already_id = $already_sent_mailRow['id'];
+			$already_hash_key = $already_hash.".".$already_id;
+			$body = "http://collap.com/forgetPassword.php?hash_key=$already_hash_key";
+			collapMail($email_req, "Update password", $body);
+			echo "<div class='jumbotron' style='margin-top: 60px; color: #2E1313;'>
+					<p align='center'> Please check your Email, shortly you get an email, Go through your email and change your password<br>
+					<br><a class='btn' href='index.php'>Go Back</a></p>
+				</div>";
+				//exit;
+		}
+		else {
+			$hash_key = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 32);
+			mysqli_query($db_handle, "INSERT INTO user_access_aid (user_id, hash_key) VALUES ('$user_id_access', '$hash_key');");
 
-        $id_access_id = mysqli_insert_id($db_handle);
-        $hash_key = $hash_key.".".$id_access_id;
-        $body = "http://collap.com/forgetPassword.php?hash_key=$hash_key";
+			$id_access_id = mysqli_insert_id($db_handle);
+			$hash_key = $hash_key.".".$id_access_id;
+			$body = "http://collap.com/forgetPassword.php?hash_key=$hash_key";
 
-        collapMail($email_req, "Update password", $body);
-        if(mysqli_error($db_handle)){
-            header('location: #');
-        } 
-        else {
-        echo "<div class='jumbotron' style='margin-top: 60px; color: #2E1313;'>
-                <p align='center'> Please check your Email, shortly you get an email, Go through your email and change your password<br>
-                <br><a class='btn' href='index.php'>Go Back</a></p>
-            </div>";
-            //exit;
-        }
-    }
+			collapMail($email_req, "Update password", $body);
+			if(mysqli_error($db_handle)){
+				header('location: #');
+			} 
+			else {
+			echo "<div class='jumbotron' style='margin-top: 60px; color: #2E1313;'>
+					<p align='center'> Please check your Email, shortly you get an email, Go through your email and change your password<br>
+					<br><a class='btn' href='index.php'>Go Back</a></p>
+				</div>";
+				//exit;
+			}
+		}
+	}
 }
 ?>
 
@@ -269,12 +279,12 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </div>
 
 									<label>Email</label>
-									<input type="email" class="input-block-level" id="email" onkeyup="nospaces(this)"/>
+									<input type="email" class="input-block-level" id="email" onkeyup="nospaces(this)" onblur="email_availability_check();"/>
 									<span id="status_email"></span>
 
                                     <label>Username</label>
-                                    <input type="text" class="input-block-level" id="usernameR" onkeyup="nospaces(this)"/>
-                                    
+                                    <input type="text" class="input-block-level" id="usernameR" onkeyup="nospaces(this)" onblur="usernameCheck();"/>
+                                    <span id="status"></span>
                                     <div>
                                         <div class='span6'>
                                             <label>Password </label>
@@ -287,9 +297,14 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </div>
                                     <label>You are here for</label>
                                     <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeCol' /> Collaboration &nbsp;&nbsp;&nbsp;
-                                    <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
+                                    <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" onclick='aboutinvest()' id ='typeInv' /> Invester &nbsp;&nbsp;&nbsp;
                                     <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='typeFun' /> Fund Searcher <br/><br/>
                                     <label>
+                                    <div class='totalcapital'>
+                                    <label>How much amount you want to invest (in dollars)</label>
+                                    <input type="num" class="input-group" id="investment" onkeyup="nospaces(this)" min='10' onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Enter amount"/>
+                                    <span class="input-group-addon" style='font-size:20px;'>.00 $</span>
+                                    </div><br/>
                                         <input type="checkbox" data-toggle="button" class="btn btn-mini custom-checkbox" id ='agree_tc' />
 
                                         &nbsp;&nbsp;&nbsp;I Aggree With 
@@ -297,7 +312,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     </label>
                                     <br />
 
-                                    <a class=" btn " id = "request_reg" onclick="validateSignupFormOnSubmit()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
+                                    <a class=" btn " id = "request_reg" onclick="validateSignupForm()">Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
 
                                 </div>
                                 <div class="span3">
@@ -338,7 +353,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                     <form method="POST">
                                     <label>Email</label>
                                     <input type="text" class="input-block-level" name="email_forget_password" id="email_forget" onkeyup="nospaces(this)"
-                                    required data-bv-emailaddress-message="The input is not a valid email address" />
+                                    required data-bv-emailaddress-message="The input is not a valid email address" onblur="email_forget();" />
                                     <span id="status_email_forget_password"></span>
                                 <br />
                                     <br />
@@ -347,12 +362,6 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
                                 </div>
                                 <div class="span7">
                                     <h4><i class="icon-question"></i>&nbsp;&nbsp;Help</h4>
-                                    <div class="box">
-                                        <p><a href="index.php#">Getting Error With Password Recovery</a></p>
-                                        <ul>
-                                            
-                                        </ul>
-                                    </div>
                                     <div class="box">
                                         <ul>
                                             <li>Having repeated difficulty signing in?</li>
@@ -401,8 +410,8 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
 													WHERE a.blob_id = b.blob_id AND project_type= '1' ) ORDER BY rand() LIMIT 4 ;");
 			while($projectsRow = mysqli_fetch_array($projects)) {
 				$project_id = $projectsRow['project_id'];
-				$project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-				$project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt']))); 
+				$project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['project_title']))));
+				$project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+",  $projectsRow['stmt'])))); 
 			echo "<div class ='span3 box' style=' margin: 4px ;min-height: 200px;'>
 					<a href='project.php?project_id=".$project_id."'>
 						<div class='panel-heading'>
@@ -421,10 +430,9 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
     <script src="scripts/jquery-1.9.1.min.js"></script>
     <script src="scripts/bootstrap.min.js"></script>
     <script src="scripts/tabs-addon.js"></script>
-
     <script type="text/javascript">
-        $(function ()
-        {
+		$(".totalcapital").hide();
+        $(function ()        {
             $("a[href^='#demo']").click(function (evt)
             {
                 evt.preventDefault();
@@ -489,19 +497,20 @@ Participate in projects and upgrade your Level. Earn a special place in Collap f
             });
         });
 
-function validateSignupFormOnSubmit() {
+function validateSignupForm() {
 	var reason = "";
 	var firstname = $("#firstname").val() ;
 	var lastname = $("#lastname").val() ;
 	var email = $("#email").val() ;
 	//var phone = $("#phone").val() ;
-	var username = $("#usernameR").val() ;
+	var username = replaceAll('[.]', '', $("#usernameR").val()) ;
 	var password = $("#passwordR").val() ;
 	var password2 = $("#password2R").val() ;
     var term_n_cond = document.getElementById("agree_tc").checked;
 	var typeA = document.getElementById("typeCol").checked;
     var typeB = document.getElementById("typeInv").checked;
     var typeC = document.getElementById("typeFun").checked;
+    var amount = $("#investment").val() ;
 	if(password==password2){
 		if(replaceAll('\\s', '',firstname)==''){
 			bootstrap_alert(".alert-placeholder", "firstname can not be empty", 5000,"alert-warning");
@@ -534,20 +543,24 @@ function validateSignupFormOnSubmit() {
 			bootstrap_alert(".alert-placeholder", "password can not be empty", 5000,"alert-warning");
 		}
 		else if(validatePath(firstname) !== 'true'){
-			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "Special Characters and Spaces are not allowed <br/> Only Alphabets and Numbers are allowed in First Name", 5000,"alert-warning");
 		}
 		else if(validatePath(username) !== 'true'){
-			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "Special Characters and Spaces are not allowed <br/> Only Alphabets and Numbers are allowed in Username", 5000,"alert-warning");
 		}
 		else if(validatePath(lastname) !== 'true'){
-			bootstrap_alert(".alert-placeholder", "Special Characters are not allowed <br/> Only Alphabets and Numbers are allowed", 5000,"alert-warning");
+			bootstrap_alert(".alert-placeholder", "Special Characters and Spaces are not allowed <br/> Only Alphabets and Numbers are allowed in Last Name", 5000,"alert-warning");
 		} 
         else if(term_n_cond==false){
             bootstrap_alert(".alert-placeholder", "You have not accepted term and conditions", 5000,"alert-warning");
         }
         else if((typeA==false) && (typeB==false) && (typeC==false)){
             bootstrap_alert(".alert-placeholder", "You have not told why you are here", 5000,"alert-warning");
-        } 
+        }
+        else if((typeB==true)&& (replaceAll('\\s', '',amount)=='')) {
+			bootstrap_alert(".alert_placeholder", "Amount can not be empty", 5000,"alert-warning");
+			return false;
+		} 
 		else {
 			if((typeA==false) && (typeB==false)){
 				var type = "fundsearcher";
@@ -571,7 +584,7 @@ function validateSignupFormOnSubmit() {
 				var type = "collaboraterinvesterfundsearcher";
 			}
 			var dataString = 'firstname='+ firstname + '&lastname='+ lastname + '&email='+ email  + '&username='+ username + '&password='+ password + 
-							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&request=Signup' ;
+							'&password2='+ password2 + '&type=' + type + '&term_n_cond=' + term_n_cond + '&amount=' + amount + '&request=Signup' ;
 			$.ajax({
 				type: "POST",
 				url: "controllers/login_controller.php",

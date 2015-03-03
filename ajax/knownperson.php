@@ -38,14 +38,14 @@ else {
 http://collap.com/profile.php?username=".$mail ;
 					collapMail($emails, " Link Received ", $body2);
 				}
-				events($db_handle,$user_id,"28",$knownid);
-				involve_in($db_handle,$user_id,"28",$knownid);
+				events($db_handle,$user_id,"10",$knownid);
+				involve_in($db_handle,$user_id,"10",$knownid);
 				mysqli_close($db_handle);
 				exit ;
 				break ;
 			case 2:
-				events($db_handle,$user_id,"4",$knownid);
-				involve_in($db_handle,$user_id,"4",$knownid);
+				events($db_handle,$user_id,"3",$knownid);
+				involve_in($db_handle,$user_id,"3",$knownid);
 				$body2 = "<h2>".ucfirst($challengeTtitle)."</h2><p>Hi ".ucfirst($userFirst)." ".ucfirst($userLast).",</p><p>One of the challanges posted by you on collap has been accepted.</p>
 <p>".ucfirst($username)." has accepted your challenge ".$challengeTtitle."</p><table><tr><td class='padding'>
 <p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p>" ;
@@ -57,8 +57,8 @@ http://collap.com/profile.php?username=".$mail ;
 				exit ;
 				break ;
 			case 3:
-				events($db_handle,$user_id,"6",$knownid);
-				involve_in($db_handle,$user_id,"6",$knownid);
+				events($db_handle,$user_id,"3",$knownid);
+				involve_in($db_handle,$user_id,"3",$knownid);
 				$mailid = mysqli_query($db_handle,"select b.email, b.firat_name, b.last_name from challenge_ownership as a join user_info as 
 													b where a.challenge_id = '$knownid' and a.user_id = b.user_id ;") ;
 				while ($mailidrow = mysqli_fetch_array($mailid)) {
@@ -101,8 +101,8 @@ http://collap.com/profile.php?username=".$mail ;
 <p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p>" ;
 				collapMail($emails, "Challenge Accepted ", $body);
 					} 
-					events($db_handle,$user_id,"4",$knownid);
-					involve_in($db_handle,$user_id,"4",$knownid);
+					events($db_handle,$user_id,"3",$knownid);
+					involve_in($db_handle,$user_id,"3",$knownid);
 					mysqli_query($db_handle,"UPDATE challenges SET challenge_status='2', last_update='$time' WHERE challenge_id = '$knownid' ; ") ;
 					mysqli_query($db_handle,"INSERT INTO challenge_ownership (user_id, challenge_id, comp_ch_ETA)
 											VALUES ('$user_id', '$knownid', '1');") ;
@@ -130,8 +130,8 @@ http://collap.com/profile.php?username=".$mail ;
 <p><a href='http://collap.com/challengesOpen.php?challenge_id=".$knownid."' class='btn-primary'>Click Here to View</a></p>" ;
 					collapMail($emails, "Close challenge ", $body2);
 						} 
-					events($db_handle,$user_id,"6",$knownid);
-					involve_in($db_handle,$user_id,"6",$knownid);
+					events($db_handle,$user_id,"3",$knownid);
+					involve_in($db_handle,$user_id,"3",$knownid);
 					mysqli_query($db_handle,"UPDATE challenges SET challenge_status='5' WHERE challenge_id = '$knownid' ; ") ;
 					echo "Challenge Closed succesfully";
 					}
@@ -140,15 +140,14 @@ http://collap.com/profile.php?username=".$mail ;
 				break ;
 			case 7:
 				mysqli_query($db_handle, "update known_peoples set status='2', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ;
-				events($db_handle,$user_id,"29",$uid);
+				events($db_handle,$user_id,"18",$uid);
 				if(mysqli_error($db_handle)) { echo "Sorry Try again!"; }
 				else { echo "Request Accepted succesfully!"; }
 				mysqli_close($db_handle);
 				exit ;
 				break ;
 			case 8:
-				mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ;
-				events($db_handle,$user_id,"30",$uid); 
+				mysqli_query($db_handle, "update known_peoples set status='3', last_action_time='$time' where id='$knownid' and knowning_id='$user_id' ;") ; 
 				if(mysqli_error($db_handle)) { echo "Sorry Try again!" ; }
 				else { echo "Request Deleted succesfully!"; }
 				mysqli_close($db_handle);
@@ -156,8 +155,7 @@ http://collap.com/profile.php?username=".$mail ;
 				break ;
 		}
 	} 
-	else {
-		echo "Invalid parameters!";
-	}
+	else { echo "Invalid parameters!"; }
 }
+mysqli_close($db_handle);
 ?>

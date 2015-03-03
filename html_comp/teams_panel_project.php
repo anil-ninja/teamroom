@@ -1,13 +1,9 @@
 <?php
+session_start() ;
 include_once '../lib/db_connect.php';
 
-session_start();
-if(!isset($_SESSION['user_id'])) 
-    header ('location: index.php');
-else {
-    $user_id = $_SESSION['user_id'];
-    $pro_id = $_GET['project_id'];
-} 
+$user_id = $_SESSION['user_id'];
+$pro_id = $_GET['project_id']; 
 $team_name = 'Defaultteam';
 
 $teams_member_display = mysqli_query($db_handle, "select b.user_id, b.first_name, b.username, b.last_name, a.team_name, a.team_owner, b.email,b.contact_no,b.rank 
@@ -23,7 +19,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                         </a>
                    
         <?php
-            $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_owner = '$user_id' AND team_name = '$team_name' AND member_status = '1' and project_id='$pro_id';");
+            $teams_owner_add= mysqli_query($db_handle, "SELECT team_owner FROM teams WHERE team_name = '$team_name' AND member_status = '1' and project_id='$pro_id';");
             $team_ownerRow = mysqli_fetch_array($teams_owner_add);
             $team_owner_project = $team_ownerRow['team_owner'];
             if ($team_owner_project == $user_id) {
@@ -33,20 +29,45 @@ $total_members = mysqli_num_rows($teams_member_display);
                     </div>
                     <div class='list-group-item'>
             <?php
-            $member_project = mysqli_query($db_handle, "select user_id from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status = '1';");
-			if(mysqli_num_rows($member_project) != 0) {
-				echo "<a class='btn-link pull-right' data-toggle='modal' data-target='#AddTeam'>Create Team</a>" ;
-			}
+            $member_project = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status='1';");
+				if(mysqli_num_rows($member_project) != 0) {
+					echo "<a class='btn-link pull-right' onclick='add_New_Team()'>Create Team</a>" ;
+				}
+				else  { 
+					if(!isset($_SESSION['user_id'])){
+						echo  "<a class='btn-link pull-right' onclick='test3()'>Create Team</a>" ;
+						 
+					}
+					else { echo "<button class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</button>" ; }
+				}
                 echo "<p style='color :#3B5998;' class='color strong'> Teams </p>
                         <div class ='row-fluid' id='ProjectTeams'>";
                 $teams_name_display = mysqli_query($db_handle, "SELECT DISTINCT team_name FROM teams WHERE project_id = '$pro_id' ;") ;
                 while ($teams_name_displayRow = mysqli_fetch_array($teams_name_display)) {
                     $list_of_teams = $teams_name_displayRow['team_name'];
-                    echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
-                                <a class='btn-link' onclick='loadteampanel(\"".$pro_id."\",\"".$list_of_teams."\")'>"
-                                    .ucfirst($list_of_teams)."
-                                </a>
-                            </div>";
+                    if(isset($_SESSION['user_id'])) {
+						if(mysqli_num_rows($member_project) != 0) {
+							echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
+										<a class='btn-link' onclick='loadteampanel(\"".$pro_id."\",\"".$list_of_teams."\")' style='font-size: 12pt;'>"
+											.ucfirst($list_of_teams)."
+										</a>
+									</div>";
+						}
+						else {
+							echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
+										<a class='btn-link' onclick='joinproject(".$pro_id.")' style='font-size: 12pt;'>"
+											.ucfirst($list_of_teams)."
+										</a>
+									</div>";
+						}
+					}
+					else {
+						echo "  <div class='span4' style=' margin:4px; background : rgb(240, 241, 242);'>
+									<a class='btn-link' onclick='test3()' style='font-size: 12pt;'>"
+										.ucfirst($list_of_teams)."
+									</a>
+								</div>";
+					}
                 }
                 echo "  </div>";
         ?>
@@ -54,7 +75,7 @@ $total_members = mysqli_num_rows($teams_member_display);
                     <div class='list-group-item'>
 
 <?php
-    echo "<div class='row-fluid team-member'>";
+    echo "<p style='color :#3B5998;' class='color strong'> Team Members </p><div class='row-fluid team-member'>";
     while ($teams_member_displayRow = mysqli_fetch_array($teams_member_display)) {
         $firstname = $teams_member_displayRow['first_name'];
         $username = $teams_member_displayRow['username'];
@@ -95,4 +116,4 @@ $total_members = mysqli_num_rows($teams_member_display);
         ?>
         </div>
    </div>    
-   <?php include_once 'kanban.php'; ?>
+   <?php include_once 'kanban.php'; ?> 

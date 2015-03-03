@@ -7,8 +7,8 @@ $view = 1 ;
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
             <title><?php echo str_replace("<br/>", "", $projttitle) ; ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="<?php echo $keywords;?>">
@@ -92,27 +92,16 @@ $view = 1 ;
                 </div>
             </div>	
         </div>
+        <script src="date.js"></script>
 		<?php 
-                    if (isset($_SESSION['user_id'])) {
-                        include_once 'html_comp/project_talk.php'; 
-                        include_once 'html_comp/friends.php'; 
-                 ?>
-                        <script>
-                            $(document).ready(function(){
-                                projecttalk();
-                            }); 
-                        </script>
-                    <?php 
-                        }
-                ?>   
-        <?php include_once 'lib/html_inc_footers.php';
+			if (isset($_SESSION['user_id'])) {
+				include_once 'html_comp/project_talk.php'; 
+				include_once 'html_comp/friends.php'; 
+				}
+		include_once 'lib/html_inc_footers.php';
         include_once 'html_comp/check.php'; ?>  
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
-                 <script>
-					 hidepanel();
+<script>
+	 hidepanel();
     $('#project_data').click(function(){
 		hidepanel();       
     });
@@ -131,7 +120,8 @@ $view = 1 ;
 
 $("#project_chat_form").hide();
 $("#project_chat_data").hide();
-$('#scrollFriends').jScrollPane() ;
+</script>
+<script>
 	$(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
 			event.preventDefault();
@@ -147,8 +137,11 @@ $('#scrollFriends').jScrollPane() ;
 				success: function(result){
 					var notice = result.split("<") ;
 					if (notice['0'] == 'no data') {
-						bootstrap_alert(".alert_placeholder", "No Contents To Display", 5000,"alert-warning");
 						$('.loading').remove();
+						var data = document.getElementById("appendloading") ;
+						if(data == null) {
+							$('#prch').append("<div id='appendloading'><br/><br/><center style='font-size:24px;'> Whooo... You have read all Posts </center></div>");
+						}
 					}
 					else {
 						$('#prch').append(result);
@@ -163,67 +156,55 @@ $('#scrollFriends').jScrollPane() ;
         </script>
 <script>
 var width = window.screen.availWidth;
-if(width < 800) {
-	$('#tab4').hide();
-	$('#tab6').hide();
-	$("body").append("<div id='navtab'><div class='nav-btntab'><p class='icon-chevron-right'></p></div><div id='new'></div></div>");
-	$("#new").html($("#tab4").html() + $("#tab6").html());
+if(width < 980) {
+	$("#phoneOPt").append("<a href='#menu-toggle' class='btn btn-default pull-right' id='menu-toggle'><i class='icon-tasks'></i></a>") ;
+	$("body").prepend("<div id='wrapper'><div id='sidebar-wrapper'><ul class='sidebar-nav'>" + $("#tab4").html() + "<br/><br/><br/><br/>" + $("#tab6").html() + "</ul></div></div>");
+	$('#tab4').remove();
+	$('#tab6').remove();
+	$("#tab5").attr('class','span12') ;
+	$("#nav").attr('style', 'position:absolute;') ;
+	$("#step16").attr('style', 'position:relative;top:0px;') ;
 } ;
 </script>
 <script>
-$(function() {
-	$('#navtab').stop().animate({'margin-left':'-170px'},1000);
-
-function toggleDivs() {
-    var $inner = $("#navtab");
-    if ($inner.css("margin-left") == "-170px") {
-        $inner.animate({'margin-left': '0'});
-		$(".nav-btntab").html('<p class="icon-chevron-left"></p><p class="icon-comment"></p>')
-    }
-    else {
-        $inner.animate({'margin-left': "-170px"}); 
-		$(".nav-btntab").html('<p class="icon-chevron-right"></p><p class="icon-comment"></p>')
-    }
-}
-$(".nav-btntab").bind("click", function(){
-    toggleDivs();
-});
-
-});
-</script>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script src="https://apis.google.com/js/platform.js" async defer></script>
-
-<script src="//platform.linkedin.com/in.js" type="text/javascript">
-  lang: en_US
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
 </script>
 <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script src="js/graph.js"></script>
-        <!-- jQuery and jQuery UI (REQUIRED) -->
+        <!-- jQuery and jQuery UI (REQUIRED) 
         <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/smoothness/jquery-ui.css">
        
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
 
-        <!-- elFinder CSS (REQUIRED) -->
+        <!-- elFinder CSS (REQUIRED) 
         <link rel="stylesheet" type="text/css" media="screen" href="css/elfinder.min.css">
         <link rel="stylesheet" type="text/css" media="screen" href="css/theme.css">
 
-        <!-- elFinder JS (REQUIRED) -->
+        <!-- elFinder JS (REQUIRED) 
         <script type="text/javascript" src="js/elfinder.min.js"></script>
 
-        <!-- elFinder translation (OPTIONAL) -->
+        <!-- elFinder translation (OPTIONAL) 
         <script type="text/javascript" src="js/i18n/elfinder.LANG.js"></script>
 
         <!-- elFinder initialization (REQUIRED) -->
         <script type="text/javascript" charset="utf-8">
       	$(".text").show();
 		$(".editbox").hide();
-        </script>     
-<?php
+        </script>
+<?php 
+	if (isset($_SESSION['user_id'])) { ?>
+  <script>
+	$(document).ready(function(){
+		projecttalk();
+	}); 
+</script>   
+<?php } 
     include_once 'html_comp/login_signup_modal.php';
     include_once 'html_comp/insert_time.php';
 ?>
         </body>
     </html>
-

@@ -15,15 +15,15 @@ $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.response_pr_id,
 while ($displayrowc = mysqli_fetch_array($displayb)) {
 		$ida = $displayrowc['response_pr_id'];
 		$idb = $displayrowc['username'];
-		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
+		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $displayrowc['stmt'])))));
 		$data.= "<b>".$idb."</b>:	<small>" . $projectres . "</small><br/>";
 	}
 	if (mysqli_num_rows($displayb) != 0) {
-			echo $data."+".$ida ;
-		}
-		else {
-			echo $data."+0" ;
-			}
-mysqli_close($db_handle);
+			echo $data."|+".$ida ;
+	}
+	else {
+		echo $data."|+0" ;
+	}
 }
+mysqli_close($db_handle);
 ?>

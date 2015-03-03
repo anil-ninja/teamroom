@@ -3,6 +3,7 @@ session_start();
 include_once "../lib/db_connect.php";
 include_once '../functions/delete_comment.php';
 include_once '../functions/image_resize.php';
+include_once '../functions/sharepage.php';
 if ($_POST['chal']) {
     $user_id = $_SESSION['user_id'];
     $limit = $_SESSION['lastpanel'];
@@ -32,11 +33,11 @@ if ($_POST['chal']) {
     $iR = 0;
     while ($open_chalangerow = mysqli_fetch_array($open_chalange)) {
         $iR++;
-       $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt']))));
-       $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['stmt'])));
+       $chelange = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt'])))));
+       $chelangestmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['stmt']))));
     $ETA = $open_chalangerow['challenge_ETA'];
-    $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title']))));
-    $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_title'])));
+    $ch_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_title'])))));
+    $chal_title = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_title']))));
     $owner_id = $open_chalangerow['user_id'];
     $public_project_id = $open_chalangerow['project_id'];
     $ctype = $open_chalangerow['challenge_type'];
@@ -47,7 +48,7 @@ if ($_POST['chal']) {
     $status = $open_chalangerow['challenge_status'];
     $times = $open_chalangerow['creation_time'];
     $timefunction = date("j F, g:i a", strtotime($times));
-    $timeopen = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $open_chalangerow['challenge_open_time']))));
+    $timeopen = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $open_chalangerow['challenge_open_time'])))));
     $sutime = eta($ETA);
     $remaintime = remaining_time($times, $ETA);
     $ownedby = mysqli_query($db_handle, "SELECT DISTINCT a.user_id, a.comp_ch_ETA ,a.ownership_creation, a.time, b.first_name, b.last_name,b.username
@@ -223,6 +224,24 @@ if ($_POST['chal']) {
 		$show = $show . $get_display_tilte."<span class='icon-film'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
 		$get_display_ch_stmt_content = "" ;
     } 
+    if ($ctype == 10) {
+        $show = $show . "<div class='list-group film'>
+				<div class='list-group-item'> ";
+                                   
+		$show = $show . "<div class='list-group-item pull-right'>
+							<a class='dropdown-toggle' data-toggle='dropdown' href='#'' id='themes'><span class='caret'></span></a>
+								<ul class='dropdown-menu' aria-labelledby='dropdown'>";
+		if($owner_id == $user_id) {
+			$show = $show . "<li><a class='btn-link' onclick='delChallenge(\"".$chelangeid."\", 3);'>Delete</a></li>";                    
+        }
+        else {
+			$show = $show ."<li><a class='btn-link' onclick='spem(\"".$chelangeid."\", 5);'>Report Spam</a></li>";
+        } 
+        $show = $show ."</ul>
+              </div>";
+		$show = $show . $get_display_tilte."<span class='icon-globe'></span>".$get_display_fname_likes.$get_display_ch_stmt_content;
+		$get_display_ch_stmt_content = "" ;
+    } 
      if ($ctype == 4) {
         $show = $show . "<div class='list-group idea'>
                         <div class='list-group-item'>";
@@ -363,10 +382,11 @@ if ($_POST['chal']) {
         while ($answerrow = mysqli_fetch_array($answer)) {
             $show = $show . "<span class='color strong' style= 'font-size: 14pt;'>
                     <p align='center'>Answer</p></span>"
-					. showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $answerrow['stmt'])))) . "<br/>";
+					. showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $answerrow['stmt']))))) . "<br/>";
         }
     }
-    $show = $show ."<hr/><div class='row-fluid'><div class='col-md-1'>".share_challenge($chelangeid)."</div><div class='col-md-5'>| &nbsp;&nbsp;&nbsp;
+      $show = $show ."<hr/>".sharepage("http://www.collap.com/challengesOpen.php?challenge_id", $chelangeid) ;
+      $show = $show ."<hr/><div class='row-fluid'><div class='col-md-5'>
 					<span class='icon-hand-up' style='cursor: pointer;' onclick='like(\"".$chelangeid ."\", 1)'> <b>Push</b>
                         <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/> |</span> &nbsp;&nbsp;&nbsp;
                     <span class='icon-hand-down' style='cursor: pointer;' onclick='dislike(\"".$chelangeid ."\", 2)'> <b>Pull</b>
@@ -381,7 +401,7 @@ if ($_POST['chal']) {
         $comment_id = $commenterRow['response_ch_id'];
         $challenge_ID = $commenterRow['challenge_id'];
         $username_comment_ninjas = $commenterRow['username'];
-        $comment_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $commenterRow['stmt']))));
+        $comment_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $commenterRow['stmt'])))));
         $show = $show . "<div id='commentscontainer'>
 				<div class='comments clearfix' id='comment_".$comment_id."'>
 					<div class='pull-left lh-fix'>
@@ -427,7 +447,7 @@ if ($_POST['chal']) {
     }
     $iR = 0;
 }
-else echo "Invalid parameters!";
+else { echo "Invalid parameters!"; }
 mysqli_close($db_handle);
 ?>
 <script>

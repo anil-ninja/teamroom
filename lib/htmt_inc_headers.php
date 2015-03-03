@@ -32,8 +32,8 @@
 <link href="styles/bootstrap.min.css" rel="stylesheet" />
 <link href="styles/bootstrap-responsive.min.css" rel="stylesheet" />
 <link href="styles/collap-custom.css" rel="stylesheet" />
+<link href="styles/simple-sidebar.css" rel="stylesheet" />
 <link href="css/preview.min.css" rel="stylesheet" />
-<link href='../../fonts.googleapis.com/css%3Ffamily=PT+Sans:400,700.css' rel='stylesheet' type='text/css'>
 <link href="styles/font-awesome.min.css" rel="stylesheet" />
 <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Tenali+Ramakrishna' rel='stylesheet' type='text/css'>
@@ -56,4 +56,4 @@
 <link type="text/css" rel="stylesheet" media="all" href="css/chat.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/screen.css" />
 <link type="text/css" rel="stylesheet" media="all" href="css/introjs.css" />
-<link type="text/css" rel="stylesheet" media="all" href="css/jquery.jscrollpane.css" />
+<link type="text/css" rel="stylesheet" media="all" href="css/rrssb.css" />

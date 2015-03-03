@@ -14,12 +14,12 @@ if ($_POST['prtalk']) {
 	while ($displayrowc = mysqli_fetch_array($displayb)) {
 		$ida = $displayrowc['response_pr_id'];
 		$username = $displayrowc['username'];
-		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $displayrowc['stmt']))));
+		$projectres = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $displayrowc['stmt'])))));
 		$data .= "<b>".$username."</b>:	<small>" . $projectres . "</small><br/>";
 	}
 	$data = $data ."<div class='newtalkspr'></div>" ;
 	$data2 = "<textarea class='chatboxtextarea' onkeydown='javascript:return submittalk(event,this);'></textarea>" ;
-	echo $data."+".$data2."+".$ida ;
-mysqli_close($db_handle);
+	echo $data."|+".$data2."|+".$ida ;
 }
+mysqli_close($db_handle);
 ?>

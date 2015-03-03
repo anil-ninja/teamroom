@@ -1,5 +1,6 @@
 <?php 
 session_start();
+include_once 'functions/sharepage.php';
 $user_id = $_SESSION['user_id'] ;
 $pro_id = $_GET['project_id'] ;
 	$project = mysqli_query($db_handle, "(SELECT a.user_id, a.stmt, a.project_type FROM projects as a join user_info as b WHERE a.project_id = '$pro_id' and a.blob_id = '0' 
@@ -10,7 +11,7 @@ $pro_id = $_GET['project_id'] ;
 $project_row = mysqli_fetch_array($project);
 $p_uid = $project_row['user_id'];
 $projectType = $project_row['project_type'];
-$projectstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $project_row['stmt'])));
+$projectstmt = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $project_row['stmt']))));
 if(substr($projectstmt, 0, 4) == '<img'){
 	$projectstmt2 = substr(strstr($projectstmt, "<br/>" ), 5 ) ; 
 	$projectst =showLinks($projectstmt2) ;
@@ -26,7 +27,7 @@ if ($p_uid == $user_id) {
 			  <ul class='dropdown-menu'>
 				<li><a class='btn-link' href='#' onclick='editproject(".$pro_id.")'>Edit Project</a></li>
 				<li><a class='btn-link' href='#' onclick='delChallenge(\"".$pro_id."\", 4)'>Delete Project</a></li>
-				<li><a data-toggle='modal' class='btn-link' data-target='#project_order'>Sort Order</a></li>
+				<li><a class='btn-link' data-toggle='modal' data-target='#project_type'>Change Project Type</a></li>
 			  </ul>
          </div>";
 }
@@ -35,30 +36,17 @@ if($projectType == 1) {
 		$user_exist = mysqli_query($db_handle, "select * from teams where project_id = '$pro_id' and user_id = '$user_id' and member_status='1' ;") ;
 		$user_existNo = mysqli_num_rows($user_exist) ;
 		if($user_existNo == 0) {
-				echo "<button class='btn btn-primary pull-right' onclick='joinproject(".$pro_id.")'>Join</button>" ;
+				echo "<button class='btn btn-primary pull-right joinproject' id='joinproject' onclick='joinproject(".$pro_id.")'>Join</button>" ;
 		}
 	}
 	else {
 		echo "<button class='btn btn-primary pull-right' onclick='test3()'>Join</button>" ;
 		}
 	}
-echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/><hr/>
-	<ul class='inline'>
-	<li>
-		<a href='https://twitter.com/share' class='twitter-share-button' data-url='http://collap.com/project.php?project_id=".$pro_id."' data-size='medium' data-related='collapcom' data-count='none' data-hashtags='digitalcollaboration'>Tweet</a>
-	</li>
-	<li>
-	<div id='fb-root'></div>
-	<div class='fb-share-button' data-href='http://collap.com/project.php?project_id=".$pro_id."' data-layout='button'></div>
-	</li><li>
-	<!-- Place this tag where you want the share button to render. -->
-	<div class='g-plus' data-action='share' data-annotation='none'></div>
-	</li><li>
-	<script type='IN/Share'></script>
-	</li>
-	</ul>";
+echo "<span id='project_".$pro_id."' class='text' style='line-height:22px; font-size: 14px;'>".$projectst."</span><br/>" ;
 	
    echo editproject($projectstmt, $pro_id) ;
+   echo "<hr/>".sharepage("http://www.collap.com/project.php?project_id", $pro_id) ;
 $displayb = mysqli_query($db_handle, "(SELECT DISTINCT a.stmt, a.user_id, a.response_pr_id,a.response_pr_creation, b.first_name, b.last_name, b.username from response_project as a join user_info as b 
                                         where a.project_id = '$pro_id' and a.user_id = b.user_id and a.blob_id = '0' and	a.status = '1')
                                         UNION
@@ -70,7 +58,7 @@ while ($displayrowc = mysqli_fetch_array($displayb)) {
     $username_pr_comment = $displayrowc['username'];
     $ida = $displayrowc['response_pr_id'];
     $idb = $displayrowc['user_id'];
-    $projectres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&", $displayrowc['stmt']))));
+    $projectres = showLinks(str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $displayrowc['stmt'])))));
     echo "<div id='commentscontainer'>
             <div class='comments clearfix'>
                 <div class='pull-left lh-fix'>

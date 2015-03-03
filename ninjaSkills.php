@@ -57,7 +57,7 @@ $user_id = $_SESSION['user_id'] ;
 			   $usersSkills = mysqli_query($db_handle, "SELECT b.skill_name, a.skill_id from user_skills as a join skill_names as b WHERE 
 													a.user_id = '$users_ids' AND a.skill_id = b.skill_id ;");
 			   while($usersSkillsRow = mysqli_fetch_array($usersSkills)) {
-				  $usersSkillname = $usersSkillsRow['skill_name'] ;
+				  $usersSkillname = str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersSkillsRow['skill_name'])))) ;
 				  $usersSkillid = $usersSkillsRow['skill_id'] ;
 				  $skilldata .= "<span class='btn-success'>
                                     <a href='ninjaSkills.php?skill_id=".$usersSkillid."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;".$usersSkillname."</a>&nbsp
@@ -66,9 +66,9 @@ $user_id = $_SESSION['user_id'] ;
 			   $usersAbout = mysqli_query($db_handle, "SELECT * FROM about_users WHERE user_id = '$users_ids' ;") ;
                $usersAboutRow = mysqli_fetch_array($usersAbout);
                if (mysqli_num_rows($usersAbout) != 0) {
-					$skilldata = $skilldata . "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['organisation_name']."<br/>
-											   <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['living_town'] ;
-					$aboutdata .= "<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".$usersAboutRow['about_user'] ;
+					$skilldata = $skilldata . "<br/><span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['organisation_name']))))."<br/>
+											   <span class='icon-home'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['living_town'])))) ;
+					$aboutdata .= "<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;".str_replace("<s>", "&nbsp;", str_replace("<r>", "'", str_replace("<a>", "&",str_replace("<an>", "+", $usersAboutRow['about_user'])))) ;
 				}
         		else {
         			$aboutdata = $aboutdata ."<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;No Information Available<br/>
@@ -101,10 +101,6 @@ $user_id = $_SESSION['user_id'] ;
 	include_once 'html_comp/login_signup_modal.php';
     include_once 'html_comp/insert_time.php';
     ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
     <script>
     $(window).scroll(function(event) {
 		if ($(window).scrollTop() == ($(document).height() - $(window).height())) {
@@ -127,4 +123,3 @@ $user_id = $_SESSION['user_id'] ;
     </script>		  
 	</body>
 </html>	
-<?php mysqli_close($db_handle); ?>

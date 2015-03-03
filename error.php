@@ -26,8 +26,8 @@ include_once 'functions/image_resize.php';
                                         WHERE a.project_id = 0 AND a.challenge_type != 2 AND challenge_type != 5 AND  challenge_status ='1' AND a.blob_id = c.blob_id and a.user_id=b.user_id ) ORDER BY creation_time DESC LIMIT 10;");
                    while ($top_challengesRow = mysqli_fetch_array($top_challenges)) {
                        $challenge_type_id = $top_challengesRow['challenge_id'];
-                       $challenge_type_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['challenge_title']))));
-                       $challenge_type_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $top_challengesRow['stmt'])))) ;
+                       $challenge_type_title = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $top_challengesRow['challenge_title'])))));
+                       $challenge_type_stmt = showLinks(str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $top_challengesRow['stmt']))))) ;
                        $challenge_type_first = $top_challengesRow['first_name'];
                        $challenge_type_last = $top_challengesRow['last_name'];
                        $challenge_type_username = $top_challengesRow['username'];
@@ -93,8 +93,8 @@ include_once 'functions/image_resize.php';
                                                         WHERE a.blob_id = b.blob_id AND project_type= '1') ORDER BY rand() LIMIT 10 ;");
                 while($projectsRow = mysqli_fetch_array($projects)) {
                     $project_id_display = $projectsRow['project_id'];
-                    $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['project_title'])));
-                    $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", $projectsRow['stmt'])));
+                    $project_title_display = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&", str_replace("<an>", "+",$projectsRow['project_title']))));
+                    $project_title_stmt = str_replace("<s>", "&nbsp;",str_replace("<r>", "'",str_replace("<a>", "&",str_replace("<an>", "+", $projectsRow['stmt']))));
                         echo " 
                             <div class ='row' style='margin: 4px 0px 4px 0px;background : rgb(240, 241, 242);'>
                                 <a href='project.php?project_id=$project_id_display'>
@@ -149,9 +149,5 @@ include_once 'functions/image_resize.php';
  include_once 'lib/html_inc_footers.php'; 
  include_once 'html_comp/login_signup_modal.php';
  mysqli_close($db_handle); ?>
-<div class='footer'>
-		<a href='www.dpower4.com' target = '_blank' ><b>Powered By: </b> Dpower4</a>
-		 <p>Making World a Better Place, because Heritage is what we pass on to the Next Generation.</p>
-</div>
     </body>
 </html>
