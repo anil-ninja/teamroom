@@ -1,0 +1,39 @@
+/organizations/<org_id>
+
+	PUT "http://cap.app:123@nucleus.capillary.in/v0/organizations/29/channels/facebook/fields/fb_languages"
+
+	PUT Data:
+	{
+	  	"root": {
+	  		"typed": false,
+        	"priority": "25",
+        	"validators": ["is-boolean"]
+	  	}
+	}
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "6202",
+	        "message": "Organization-Channel-Field Updated"
+	    },
+	    "data": {
+	        "data-fields": [
+	            {
+	                "id": "44",
+	                "name": "fb_languages",
+	                "org": "Peter England",
+	                "channel": "facebook",
+	                "data_field": "language",
+	                "typed": false,
+	                "required": true,
+	                "priority": "25",
+	                "added_on": "2014-12-30 15:46:10",
+	                "last_update": "2014-12-30 16:28:11",
+	                "validators": [
+	                    "is-boolean"
+	                ]
+	            }
+	        ]
+	    }
+	}

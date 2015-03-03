@@ -1,0 +1,73 @@
+<br/>
+  <table class="table table-striped table-hover" id='organizationChannelFbDatafieldTable' width="100%" cellspacing="0">
+    <thead>
+      <tr>
+        
+        <th>Name</th>
+        <th>Datafield</th>
+        <th>Typed</th>
+        <th>Priority</th>
+        <th>Required</th>
+        <th>Validators</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(organizationChannelDatafields, function(organizationChannelDatafield) { %>
+        <tr>
+          
+          <td><%= organizationChannelDatafield.name %></td>
+          <td><%= organizationChannelDatafield.data_field %></td>
+          <td><%= organizationChannelDatafield.typed %></td>
+          <td><%= organizationChannelDatafield.priority %></td>
+          <td><%= organizationChannelDatafield.required %></td>
+          <td>
+            <% if(organizationChannelDatafield.validators){
+                  _.each(organizationChannelDatafield.validators, function(validator){%>
+                      <%= validator+"<br/>" %>
+                  <%});
+              }else {%>
+                  <%= 'null' %>
+              <%} %>
+
+          </td>
+          <td>
+          <% flag = 0 %>
+          <% _.each(oldDF, function(olddf) { %>
+                  <% if (organizationChannelDatafield.name  == olddf.name) flag = 1 %>
+
+          <% }); %>
+          <% if (flag == 1) %>
+                  Active
+          <% else {%>  
+
+              <div id="<%= organizationChannelDatafield.name %>">
+                <form class="edit-organizationChannelDatafield-form">
+                  <input name="name" class="input-block-level" type="hidden" value="<%= organizationChannelDatafield.name %>">
+                  <input name="channel" class="input-block-level" type="hidden" value="facebook">
+                  <input name="data_field" class="input-block-level" type="hidden" value="<%= organizationChannelDatafield.data_field %>">
+                  <input name="orgName" class="input-block-level" type="hidden" value="<%= orgName %>">
+                  <input name="orgId" class="input-block-level" type="hidden" value="<%= org_id %>">
+                  <input name="typed" class="input-block-level" type="hidden" value="<%= organizationChannelDatafield.typed  %>">
+                  <input name="priority" type="hidden" class="input-block-level"value="<%= organizationChannelDatafield.priority %>">
+                  <% if(organizationChannelDatafield.validators){
+                        _.each(organizationChannelDatafield.validators, function(validator){%>
+                            <input name="validators" type="hidden" class="input-block-level" value="<%= validator %>">
+                        <%});
+                    }%>
+                  <button type="submit"  class="btn-primary ">
+                    Add
+                  </button>
+                </form>
+             </div>
+             <% } %>
+            <% flag = 0 %>
+
+            <!-- <a class="btn" href="#/organization/<%= org_id %>/<%= orgName %>/channel/<%= channel_name %>/fields/<%= organizationChannelDatafield.name %>">
+              Add
+            </a> -->
+          </td>
+        </tr>
+      <% }); %>
+    </tbody>
+</table>

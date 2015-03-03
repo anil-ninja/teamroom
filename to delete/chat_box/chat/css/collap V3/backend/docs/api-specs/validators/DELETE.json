@@ -1,0 +1,10 @@
+/validators/<validator_name>
+    DELETE "http://cap.app:123@nucleus.capillary.in/v0/validators/email"
+
+    Response:
+    {
+	    "internal_status": {
+	        "code": "3003",
+	        "message": "Validator Deleted"
+	    }
+	}

@@ -1,0 +1,125 @@
+<table class="display" id='organizationChannelDatafieldTable' width="100%" cellspacing="0">
+    <!--    <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Datafield</th>
+                <th>Typed</th>
+                <th>Priority</th>
+                <th>Required</th>
+                <th>Validators</th>
+            </tr>
+            <tr><td>&nbsp;</td></tr>
+        </thead>-->
+    <tbody>
+        <% 
+        var cntr=0; 
+        _.each(organizationChannelPriorityDatafields, function(commonDataFields) { 
+        cntr++;
+        %>
+        <tr>
+            <td colspan="6" style="height: 30px;">DataField: <%= commonDataFields[0].data_field %></td>
+            <td style="text-align:right;" ><button type="button" class="saveButton" value="<%= cntr %>">Save</button></td>
+        </tr>
+        <tr><td colspan="7">
+                <table class="display2" id="tableData_<%= cntr %>"  width="100%" cellspacing="1" border="1">
+                    <thead>
+                        <tr>
+                            <th style="width:5%;">ID</th>
+                            <th style="width:15%;">Name</th>
+                            <th style="width:15%;">Channel</th>
+                            <th style="width:7%;">Typed</th>
+                            <th style="width:10%;">Priority</th>
+                            <th style="width:10%;">Required</th>
+                            <th>Validators</th>
+                        </tr>
+                        <tr><td colspan="7">&nbsp;</td></tr>
+                    </thead>
+                    <tbody>
+                        <% _.each(commonDataFields, function(organizationChannelDatafield){ %>
+                        <tr>
+                            <td class="idTD"><%= organizationChannelDatafield.id %></td>
+                            <td><%= organizationChannelDatafield.name %></td>
+                            <td><%= organizationChannelDatafield.channel %></td>
+                            <td><%= organizationChannelDatafield.typed %></td>
+                            <td class="priority"><%= organizationChannelDatafield.priority %></td>
+                            <td><%= organizationChannelDatafield.required %></td>
+                            <td>
+                                <% if(organizationChannelDatafield.validators){
+                                _.each(organizationChannelDatafield.validators, function(validator){%>
+                                <%= validator+"&nbsp;" %>
+                                <%});
+                                } else {%>
+                                --
+                                <% } %>
+                                <input type="hidden" name="orgFieldID" class="orgFieldID" value="<%= organizationChannelDatafield.id %>"
+                            </td>          
+                        </tr>
+                        <% });%>
+
+                    </tbody>
+                    <tfoot>
+                        <tr><td colspan="7">&nbsp;</td></tr>
+                    </tfoot>
+                </table>
+            </td></tr>
+        <tr><td colspan="7">&nbsp;</td></tr>
+        <% }); %>
+    </tbody>
+</table>
+<style>
+    table.dragging, table.dragging * {
+        cursor: move !important;
+    }
+    .highlight{
+        background-color: lavender;
+    }
+    .enableSave{
+        background-color: darkkhaki;
+    }
+    .dragged {
+        position: absolute;
+        opacity: 0.5;
+        z-index: 2000;
+    }
+    table.display2 tr td {
+        border-bottom:1pt solid black;
+    }
+    .fontFace{
+        font-weight: bold;
+        color: darkkhaki;
+    }
+    
+
+</style>
+<script>
+    $(".display2 tbody").sortable({
+        placeholder: "highlight",
+        start: function (event, ui) {
+            //console.log(event, ui)
+            ui.item.toggleClass("highlight");
+        },
+        stop: function (event, ui) {
+            ui.item.toggleClass("highlight");
+            //console.log($(event.target))
+            //console.log($(event.target).parent("table"))
+            var tableIDStr = $(event.target).parent("table").attr("id").match(/_(\d+)$/);
+            var tableID = tableIDStr[1];
+            //console.log(tableIDStr, tableID);
+            $("button[type=button][value=" + tableID + "]").addClass("enableSave");
+            $(event.target).find("tr").each(function (index, item) {
+                $(item).find("td.priority").html(index + 1)
+                $(item).find("td.idTD").addClass("fontFace")
+            });
+
+
+
+        }
+    }).disableSelection();
+
+    function setOrder(event, ui) {
+        console.log(event, ui);
+    }
+
+
+</script>

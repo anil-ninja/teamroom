@@ -1,0 +1,45 @@
+/data-fields
+
+	POST "https://cap.app:123@nucleus.capillary.in/v0/data-fields"
+
+	POST Data:
+	{
+		"root": {
+			"name": "qualification.school.id", 
+			"is_array": false,
+			"base_type": "number", 
+			"parent_type": "qualification.school", 
+			"default_value": "-",
+			"description": "Contains the ID of the school", 
+			"validators": ["number", "no_space", "not_negative"]
+		}
+	}
+
+	Response:
+	{
+	    "internal_status": {
+	        "code": "5001",
+	        "message": "Data-Field Created"
+	    },
+	    "data": {
+	        "data-fields": [
+	            {
+	                "id": "172",
+	                "name": "qualification.school.id",
+	                "is_array": false,
+	                "base_type": "number",
+	                "complex_type": null,
+	                "parent_type": "qualification.school",
+	                "default_value": "-",
+	                "added_on": "2015-01-06 09:10:06",
+	                "last_update": "2015-01-06 09:10:06",
+	                "description": "Contains the ID of the school",
+	                "validators": [
+	                    "number",
+	                    "no_space",
+	                    "not_negative"
+	                ]
+	            }
+	        ]
+	    }
+	}
