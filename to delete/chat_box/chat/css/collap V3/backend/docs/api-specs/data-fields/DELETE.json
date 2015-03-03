@@ -1,0 +1,11 @@
+/data-fields/<data_field_name>
+	
+	DELETE "https://nucleus.capillary.in/v0/data-fields/birthday"
+
+	Response:
+	{
+	    "internal_status": {
+	        "code": "5003",
+	        "message": "Data-Field Deleted"
+	    }
+	}

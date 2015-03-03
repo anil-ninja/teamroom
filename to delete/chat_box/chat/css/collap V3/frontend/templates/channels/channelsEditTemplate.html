@@ -1,0 +1,35 @@
+<h4>Edit Channel</h4> <hr />
+<form class="edit-channel-form" role="form">
+
+      <legend><%= channel ? 'Edit' : 'New' %> Channel</legend>
+      <table>
+      <% if (channel){ %>
+          <tr>
+            <td>ID</td>
+            <td>
+              <%= channel.id  %>
+            </td>
+          </tr>
+          <% }%>
+
+       
+       <tr>
+        <td> Name:</td>
+        <td>  <input name="name" class="input-block-level" type="text" value="<%= channel ? channel.name : '' %>">
+        </td>
+        <tr>
+        <td> Description:
+        </td>
+        <td>
+          <input name="description" class="input-block-level" type="text" value="<%= channel ? channel.description : '' %>">
+          </td>
+      </table>
+        <hr />
+       <button type="submit" class="btn"><%= channel ? 'Update' : 'Create' %></button>
+       <% if(channel) { %>
+        <input type="hidden" name="id" value="<%= channel.name %>" />
+       <button data-channel-id="<%= channel.name %>" class="btn btn-danger" id="deleteCha">Delete</button>
+       <% }; %>
+    </form>
+
+   

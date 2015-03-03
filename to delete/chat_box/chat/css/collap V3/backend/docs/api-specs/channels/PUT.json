@@ -1,0 +1,31 @@
+/channels/<channel_name>
+
+	POST "https://cap.app:123@nucleus.capillary.in/v0/channels/facebook"
+
+	PUT Data: 
+	{
+	  "root": {
+        "description": "Facebook APIs"
+	   }
+	}
+
+	Response:
+	{
+	    "internal_status": {
+	        "code": "2002",
+	        "message": "Channel Updated"
+	    },
+	    "data": {
+	        "channels": [
+	            {
+	                "id": "2",
+	                "name": "facebook",
+	                "description": "Facebook APIs", 
+	                "sources": [
+	                    "microsite",
+	                    "ecommerce"
+	                ]
+	            }
+	        ]
+	    }
+	}

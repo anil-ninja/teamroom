@@ -1,0 +1,31 @@
+/validators
+    POST "http://cap.app:123@nucleus.capillary.in/v0/validators"
+
+    POST Data: 
+    {
+	  "root": {
+            "name": "email",
+            "namespace": "string.emails",
+            "is_active": true,
+            "description": "Ensure adherence to standard email format"
+	   }
+    }
+
+    Response:
+    {
+	    "internal_status": {
+	        "code": "3001",
+	        "message": "Validator Created"
+	    },
+	    "data": {
+	        "validators": [
+	            {
+	                "id": "12",
+	                "name": "email",
+	                "namespace": "0",
+	                "is_active": true,
+	                "description": "Ensure adherence to standard email format"
+	            }
+	        ]
+	    }
+	}

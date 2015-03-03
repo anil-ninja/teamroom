@@ -1,0 +1,37 @@
+{
+    "mysql": {
+        "host": "localhost", 
+        "user": "root", 
+        "password": "redhat11111p", 
+        "database": "NinjaTeamRoom2",
+    	"social": {
+    		"host": "localhost", 
+    		"user": "root", 
+    		"password": "redhat11111p", 
+    		"database": "social3" 
+        	}  
+        }, 
+    "mongo": {    
+        "server": "127.0.0.1", 
+        "port": 27017, 
+        "options": {
+            "connect": true
+        }, 
+        "db_name": "nucleus", 
+        "username": "",  
+        "password": "" 
+    }, 
+    "redis": {
+        "client": {
+            "scheme": "tcp",
+            "host": "127.0.0.1",
+            "port": 6379
+        }, 
+        "expiry": 86400
+    },
+    "nucleus_backend" : "/var/www/capillary/nucleus/backend/src/",
+    "INTOUCH_BASE_URL" : "http://api.capillary.co.in/v1.1/",
+    "NUCLEUS_BASE_URL" : "http://nucleus.capillary.in/v0/",
+    "NUCLEUS_VERSION"  : "v0",
+    "NUCLEUS_DOMAIN" : "nucleus.capillary.in"
+}

@@ -1,0 +1,40 @@
+
+/data-field-types
+
+	GET "https://cap.app:123@nucleus.capillary.in/v0/data-field-types"
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "4000",
+	        "message": "Data-Field-Type Fetched"
+	    },
+	    "data": [
+	        {
+	            "id": "10",
+	            "type": "date"
+	        },
+	        {
+	            "id": "11",
+	            "type": "number"
+	        }
+	    ]
+	}
+
+/data-field-types/<type>
+
+	GET "https://cap.app:123@nucleus.capillary.in/v0/data-field-types/date"
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "4000",
+	        "message": "Data-Field-Type Fetched"
+	    },
+	    "data": [
+	        {
+	            "id": "10",
+	            "type": "date"
+	        }
+	    ]
+	}

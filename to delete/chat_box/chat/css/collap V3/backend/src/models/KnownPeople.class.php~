@@ -1,0 +1,18 @@
+<?php
+	/**
+	 * Object represents table 'known_peoples'
+	 *
+     	 * @author: http://phpdao.com
+     	 * @date: 2015-03-03 14:48	 
+	 */
+	class KnownPeople{
+		
+		var $id;
+		var $requestingId;
+		var $knowingId;
+		var $status;
+		var $requestingTime;
+		var $lastActionTime;
+		
+	}
+?>

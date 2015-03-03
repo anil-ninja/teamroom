@@ -1,0 +1,37 @@
+GET "https://cap.app:123@nucleus.capillary.in/v0/conflicts"
+
+Response: 
+{
+    "internal_status": {
+        "code": "7800",
+        "message": "Conflict Fetched"
+    },
+    "data": {
+        "conflicts": [
+            {
+                "conflictUuid": "54b4b7285eb030207218c3c0",
+                "cases": [
+                    {
+                        "mapping_id": "10",
+                        "uuid": "54b3d85e5eb0302d1794c340",
+                        "idType": "facebook_id",
+                        "idValue": "100003005385927"
+                    },
+                    {
+                        "mapping_id": "11",
+                        "uuid": "54b4929d5eb030227218c3bc",
+                        "idType": "email",
+                        "idValue": "random@facebook.com"
+                    },
+                    {
+                        "mapping_id": "12",
+                        "uuid": "54b4a1db5eb030237218c3bd",
+                        "idType": "external_id",
+                        "idValue": "1234567890"
+                    }
+                ],
+                "id": "54b4b7285eb030207218c3c1"
+            }
+        ]
+    }
+}

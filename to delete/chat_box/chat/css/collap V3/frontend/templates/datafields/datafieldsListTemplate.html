@@ -1,0 +1,45 @@
+<h4>List of Datafields</h4> 
+<a href="#/newDf" class="btn btn-primary">New</a>
+  <br/><br/>
+  <table class="display" id='datafieldTable' width="100%" cellspacing="0" style="font-size:12px;">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>is_array</th>
+        <th>base_type</th>
+        <th>complex_type</th>
+        <th>parent_type</th>
+        <th>type</th>
+        <th>default_value</th>
+     
+        <th>Validators</th>
+        <th>Edit/Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(datafields, function(datafield) { %>
+        <tr>
+          <td><%= datafield.id %></td>
+          <td><%= datafield.name %></td>
+          <td><%= datafield.is_array %></td>
+          <td><%= datafield.base_type %></td>
+          <td><%= (datafield.complex_type) ? datafield.complex_type : "n/a" %></td>
+          <td><%= (datafield.parent_type) ? datafield.parent_type : "n/a" %></td>
+          <td><%= datafield.typed ? datafield.typed : 'n/a' %></td>
+          <td><%= datafield.default_value ? datafield.default_value : 'n/a' %></td>
+     
+          <td><% if(datafield.validators){
+              _.each(datafield.validators, function(validator){%>
+                <%= validator+"<br/>" %>
+              <%});
+              }
+              else {%>
+              <%= 'null' %>
+              <%} %>
+          </td>
+          <td><a class="btn" href="#/editDf/<%= datafield.name %>">Edit</a></td>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>

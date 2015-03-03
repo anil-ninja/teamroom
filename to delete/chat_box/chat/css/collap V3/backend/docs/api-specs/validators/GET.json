@@ -1,0 +1,108 @@
+
+/validators/<validator_name>
+    GET "http://cap.app:123@nucleus.capillary.in/v0/validators/alphabetic"
+
+    Response:
+    {
+        "internal_status": {
+            "code": "3000",
+            "message": "Validator Fetched"
+        },
+        "data": {
+            "validators": [
+                {
+                    "id": "7",
+                    "name": "alphabetic",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Must contain only alphabets"
+                }
+            ]
+        }
+    }
+
+
+/validators
+    GET "http://cap.app:123@nucleus.capillary.in/v0/validators"
+
+    Response:
+    {
+        "internal_status": {
+            "code": "3000",
+            "message": "Validator Fetched"
+        },
+        "data": {
+            "validators": [
+                {
+                    "id": "10",
+                    "name": "alphabetic",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Must contain only alphabets"
+                },
+                {
+                    "id": "11",
+                    "name": "alphanumeric",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Includes only characters [A-Z][a-z][0-9]"
+                },
+                {
+                    "id": "15",
+                    "name": "alphanumeric_special_char",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Ensure each character is either an alphabet, number or a special character"
+                },
+                {
+                    "id": "16",
+                    "name": "array_of_string",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Ensure if array of string values"
+                },
+                {
+                    "id": "17",
+                    "name": "boolean",
+                    "namespace": "boolean",
+                    "is_active": true,
+                    "description": "Ensure value is boolean"
+                },
+                {
+                    "id": "18",
+                    "name": "country_list",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Ensure value lies in the list of countries"
+                },
+                {
+                    "id": "19",
+                    "name": "date_format",
+                    "namespace": "date",
+                    "is_active": true,
+                    "description": "Ensure value is specified in the correct date format"
+                },
+                {
+                    "id": "20",
+                    "name": "domain",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Ensure adherence to standard domain format"
+                },
+                {
+                    "id": "21",
+                    "name": "email",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Ensure value adheres to a valid email address pattern"
+                },
+                {
+                    "id": "22",
+                    "name": "enum",
+                    "namespace": "string",
+                    "is_active": true,
+                    "description": "Ensure value belong to a predefined ENUM?"
+                }
+            ]
+        }
+    }
