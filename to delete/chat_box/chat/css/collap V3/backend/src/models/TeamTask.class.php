@@ -12,10 +12,10 @@
 		private $teamName;
 		private $challengeId;
 		private $time;
-		function __construct( $projectId,$challengeId,$teamNamename,$id = null)
+		function __construct( $projectId,$challengeId,$teamName,$time,$id = null)
 		{$this->id = $id;
 			
-			$this->projectIdId = $projectIdId;
+			$this->projectId = $projectId;
 			$this->challengeId = $challengeId;
 			$this->time = $time;
 			$this->teamName=$teamName;
