@@ -2,7 +2,7 @@
 /**
  * Intreface DAO
  *
- * @author: http://phpdao.com
+ * @author: http://rahul lahoria.com
  * @date: 2015-03-03 14:48
  */
 interface BlobsDAO{
