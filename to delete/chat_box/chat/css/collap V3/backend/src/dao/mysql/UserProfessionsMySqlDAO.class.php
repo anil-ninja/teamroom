@@ -130,11 +130,10 @@ class UserProfessionsMySqlDAO implements UserProfessionsDAO{
 	 * @return UserProfessionsMySql 
 	 */
 	protected function readRow($row){
-		$userProfession = new UserProfession();
+		$userProfession = new UserProfession($row['user_id'],$row['profession_id'],$row['id']);
 		
-		$userProfession->id = $row['id'];
-		$userProfession->userId = $row['user_id'];
-		$userProfession->professionId = $row['profession_id'];
+		
+		
 
 		return $userProfession;
 	}

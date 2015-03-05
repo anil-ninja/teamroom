@@ -114,10 +114,8 @@ class BlobsMySqlDAO implements BlobsDAO{
 	 * @return BlobsMySql 
 	 */
 	protected function readRow($row){
-		$blob = new Blob();
+		$blob = new Blob($row['stmt'], $row['id'] );
 		
-		$blob->id = $row['id'];
-		$blob->stmt = $row['stmt'];
 
 		return $blob;
 	}

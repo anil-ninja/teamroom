@@ -354,25 +354,10 @@ class UserInfoMySqlDAO implements UserInfoDAO{
 	 * @return UserInfoMySql 
 	 */
 	protected function readRow($row){
-		$userInfo = new UserInfo();
+		$userInfo = new UserInfo($row['first_name'],$row['last_name'],$row['email'],$row['phone'],$row['username'],$row['password'],$row['rank'],$row['user_type'],$row['org_id'],$row['capital'],$row['page_access'],$row['working_org_name'],$row['living_town'],$row['about_user'],$row['reg_time'],$row['last_login_time'],$row['id']);
 		
-		$userInfo->id = $row['id'];
-		$userInfo->firstName = $row['first_name'];
-		$userInfo->lastName = $row['last_name'];
-		$userInfo->email = $row['email'];
-		$userInfo->phone = $row['phone'];
-		$userInfo->username = $row['username'];
-		$userInfo->password = $row['password'];
-		$userInfo->rank = $row['rank'];
-		$userInfo->userType = $row['user_type'];
-		$userInfo->orgId = $row['org_id'];
-		$userInfo->capital = $row['capital'];
-		$userInfo->pageAccess = $row['page_access'];
-		$userInfo->workingOrgName = $row['working_org_name'];
-		$userInfo->livingTown = $row['living_town'];
-		$userInfo->aboutUser = $row['about_user'];
-		$userInfo->regTime = $row['reg_time'];
-		$userInfo->lastLoginTime = $row['last_login_time'];
+		
+		
 
 		return $userInfo;
 	}

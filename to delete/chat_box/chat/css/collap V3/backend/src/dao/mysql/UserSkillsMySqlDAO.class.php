@@ -130,11 +130,10 @@ class UserSkillsMySqlDAO implements UserSkillsDAO{
 	 * @return UserSkillsMySql 
 	 */
 	protected function readRow($row){
-		$userSkill = new UserSkill();
+		$userSkill = new UserSkill($row['user_id'],$row['skill_id'],$row['id']);
 		
-		$userSkill->id = $row['id'];
-		$userSkill->userId = $row['user_id'];
-		$userSkill->skillId = $row['skill_id'];
+		
+		
 
 		return $userSkill;
 	}

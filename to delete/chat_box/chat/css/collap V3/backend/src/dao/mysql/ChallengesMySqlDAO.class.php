@@ -290,21 +290,11 @@ class ChallengesMySqlDAO implements ChallengesDAO{
 	 * @return ChallengesMySql 
 	 */
 	protected function readRow($row){
-		$challenge = new Challenge();
+		$challenge = new Challenge($row['user_id'],$row['project_id'], $row['blob_id'],$row['org_id'],
+		$row['title'], $row['stmt'],$row['type'],$row['status'],$row['likes'],$row['dislikes'],$row['creation_time']
+		,$row['last_update_time'],$row(id));
 		
-		$challenge->id = $row['id'];
-		$challenge->userId = $row['user_id'];
-		$challenge->projectId = $row['project_id'];
-		$challenge->blobId = $row['blob_id'];
-		$challenge->orgId = $row['org_id'];
-		$challenge->title = $row['title'];
-		$challenge->stmt = $row['stmt'];
-		$challenge->type = $row['type'];
-		$challenge->status = $row['status'];
-		$challenge->likes = $row['likes'];
-		$challenge->dislikes = $row['dislikes'];
-		$challenge->creationTime = $row['creation_time'];
-		$challenge->lastUpdateTime = $row['last_update_time'];
+	
 
 		return $challenge;
 	}

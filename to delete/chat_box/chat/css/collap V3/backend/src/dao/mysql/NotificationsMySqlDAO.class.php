@@ -146,12 +146,9 @@ class NotificationsMySqlDAO implements NotificationsDAO{
 	 * @return NotificationsMySql 
 	 */
 	protected function readRow($row){
-		$notification = new Notification();
+		$notification = new Notification($row['notice_url'],$row['user_id'],$row['time'],$row['id']);
 		
-		$notification->id = $row['id'];
-		$notification->noticeUrl = $row['notice_url'];
-		$notification->userId = $row['user_id'];
-		$notification->time = $row['time'];
+		
 
 		return $notification;
 	}

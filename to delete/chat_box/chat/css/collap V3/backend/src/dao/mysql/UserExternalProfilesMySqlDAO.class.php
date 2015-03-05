@@ -162,13 +162,10 @@ class UserExternalProfilesMySqlDAO implements UserExternalProfilesDAO{
 	 * @return UserExternalProfilesMySql 
 	 */
 	protected function readRow($row){
-		$userExternalProfile = new UserExternalProfile();
+		$userExternalProfile = new UserExternalProfile($row['user_id'],$row['ext_url'],$row['ext_username'],$row['ext_email'],$row['id']);
 		
-		$userExternalProfile->id = $row['id'];
-		$userExternalProfile->userId = $row['user_id'];
-		$userExternalProfile->extUrl = $row['ext_url'];
-		$userExternalProfile->extUsername = $row['ext_username'];
-		$userExternalProfile->extEmail = $row['ext_email'];
+		
+		
 
 		return $userExternalProfile;
 	}

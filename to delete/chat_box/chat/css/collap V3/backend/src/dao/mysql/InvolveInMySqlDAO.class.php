@@ -146,12 +146,9 @@ class InvolveInMySqlDAO implements InvolveInDAO{
 	 * @return InvolveInMySql 
 	 */
 	protected function readRow($row){
-		$involveIn = new InvolveIn();
+		$involveIn = new InvolveIn($row['user_id'],$row['p_c_id'],$row['event_type'],$row['id']);
 		
-		$involveIn->id = $row['id'];
-		$involveIn->userId = $row['user_id'];
-		$involveIn->pCId = $row['p_c_id'];
-		$involveIn->eventType = $row['event_type'];
+		
 
 		return $involveIn;
 	}

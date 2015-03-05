@@ -162,13 +162,10 @@ class SpamsMySqlDAO implements SpamsDAO{
 	 * @return SpamsMySql 
 	 */
 	protected function readRow($row){
-		$spam = new Spam();
+		$spam = new Spam($spam,$row['user_id'],$row['spammed_id'],$row['type'],$row['time'],$row['id']);
 		
-		$spam->id = $row['id'];
-		$spam->userId = $row['user_id'];
-		$spam->spammedId = $row['spammed_id'];
-		$spam->type = $row['type'];
-		$spam->time = $row['time'];
+
+		
 
 		return $spam;
 	}

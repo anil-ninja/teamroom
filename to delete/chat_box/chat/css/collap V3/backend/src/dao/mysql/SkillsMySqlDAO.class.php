@@ -114,10 +114,9 @@ class SkillsMySqlDAO implements SkillsDAO{
 	 * @return SkillsMySql 
 	 */
 	protected function readRow($row){
-		$skill = new Skill();
+		$skill = new Skill($row['name'],$row['id']);
 		
-		$skill->id = $row['id'];
-		$skill->name = $row['name'];
+	
 
 		return $skill;
 	}

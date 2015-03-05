@@ -274,20 +274,10 @@ class ProjectsMySqlDAO implements ProjectsDAO{
 	 * @return ProjectsMySql 
 	 */
 	protected function readRow($row){
-		$project = new Project();
+		$project = new Project($project->userId = $row['user_id'], $row['blob_id'],$row['project_title'], $row['stmt'],$row['type'],$row['org_id'],$row['order'],$row['creation_time'],$row['project_value'], $row['fund_needed'], $row['last_update_time'],
+		$row['id']);
 		
-		$project->id = $row['id'];
-		$project->userId = $row['user_id'];
-		$project->blobId = $row['blob_id'];
-		$project->projectTitle = $row['project_title'];
-		$project->stmt = $row['stmt'];
-		$project->type = $row['type'];
-		$project->orgId = $row['org_id'];
-		$project->order = $row['order'];
-		$project->creationTime = $row['creation_time'];
-		$project->projectValue = $row['project_value'];
-		$project->fundNeeded = $row['fund_needed'];
-		$project->lastUpdateTime = $row['last_update_time'];
+		
 
 		return $project;
 	}

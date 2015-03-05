@@ -146,12 +146,11 @@ class OrganisationsMySqlDAO implements OrganisationsDAO{
 	 * @return OrganisationsMySql 
 	 */
 	protected function readRow($row){
-		$organisation = new Organisation();
+		$organisation = new Organisation($row['name'],$row['plan_id'],
+		$row['time'],$row['id']);
 		
-		$organisation->id = $row['id'];
-		$organisation->name = $row['name'];
-		$organisation->planId = $row['plan_id'];
-		$organisation->time = $row['time'];
+		
+		
 
 		return $organisation;
 	}

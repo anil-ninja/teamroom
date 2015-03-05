@@ -162,13 +162,10 @@ class TargetsMySqlDAO implements TargetsDAO{
 	 * @return TargetsMySql 
 	 */
 	protected function readRow($row){
-		$target = new Target();
+		$target = new Target($row['email'],$row['status'],$row['type'],$row['time'],$row['id']);
 		
-		$target->id = $row['id'];
-		$target->email = $row['email'];
-		$target->status = $row['status'];
-		$target->type = $row['type'];
-		$target->time = $row['time'];
+		
+		
 
 		return $target;
 	}

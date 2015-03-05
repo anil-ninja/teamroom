@@ -114,10 +114,9 @@ class ProfessionsMySqlDAO implements ProfessionsDAO{
 	 * @return ProfessionsMySql 
 	 */
 	protected function readRow($row){
-		$profession = new Profession();
+		$profession = new Profession($row['name'],$row['id']);
 		
-		$profession->id = $row['id'];
-		$profession->name = $row['name'];
+		
 
 		return $profession;
 	}

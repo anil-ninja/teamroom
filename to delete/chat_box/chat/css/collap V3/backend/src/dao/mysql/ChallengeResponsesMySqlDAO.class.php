@@ -194,15 +194,11 @@ class ChallengeResponsesMySqlDAO implements ChallengeResponsesDAO{
 	 * @return ChallengeResponsesMySql 
 	 */
 	protected function readRow($row){
-		$challengeResponse = new ChallengeResponse();
+		$challengeResponse = new ChallengeResponse($row['user_id'],$row['challenge_id'],$row['blob_id'],
+		$row['stmt'],$row['status'],$row['creation_time'],$row['id']);
 		
-		$challengeResponse->id = $row['id'];
-		$challengeResponse->userId = $row['user_id'];
-		$challengeResponse->challengeId = $row['challenge_id'];
-		$challengeResponse->blobId = $row['blob_id'];
-		$challengeResponse->stmt = $row['stmt'];
-		$challengeResponse->status = $row['status'];
-		$challengeResponse->creationTime = $row['creation_time'];
+		
+		
 
 		return $challengeResponse;
 	}

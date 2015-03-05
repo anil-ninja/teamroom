@@ -226,17 +226,10 @@ class TeamsMySqlDAO implements TeamsDAO{
 	 * @return TeamsMySql 
 	 */
 	protected function readRow($row){
-		$team = new Team();
+		$team = new Team($row['user_id'],$row['project_id'],$row['team_name'],$row['team_owner'],$row['team_creation'],$row['member_status'],$row['leave_team'],$row['status'],$row['id']);
 		
-		$team->id = $row['id'];
-		$team->userId = $row['user_id'];
-		$team->projectId = $row['project_id'];
-		$team->teamName = $row['team_name'];
-		$team->teamOwner = $row['team_owner'];
-		$team->teamCreation = $row['team_creation'];
-		$team->memberStatus = $row['member_status'];
-		$team->leaveTeam = $row['leave_team'];
-		$team->status = $row['status'];
+		
+		
 
 		return $team;
 	}

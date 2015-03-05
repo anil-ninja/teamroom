@@ -177,15 +177,11 @@ class ChallengeOwnershipMySqlDAO implements ChallengeOwnershipDAO{
 	 *
 	 * @return ChallengeOwnershipMySql 
 	 */
-	protected function readRow($row){
-		$challengeOwnership = new ChallengeOwnership();
+	protected function readRow( $row){
+		$challengeOwnership = new ChallengeOwnership($row['user_id'],$row['challenge_id'],$row['ownership_creation'],$row['status']
+		,$row['submission_time'], $row['id']);
 		
-		$challengeOwnership->id = $row['id'];
-		$challengeOwnership->userId = $row['user_id'];
-		$challengeOwnership->challengeId = $row['challenge_id'];
-		$challengeOwnership->ownershipCreation = $row['ownership_creation'];
-		$challengeOwnership->status = $row['status'];
-		$challengeOwnership->submissionTime = $row['submission_time'];
+		
 
 		return $challengeOwnership;
 	}

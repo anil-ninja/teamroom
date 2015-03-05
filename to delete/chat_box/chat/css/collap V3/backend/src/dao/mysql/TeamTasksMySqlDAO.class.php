@@ -162,13 +162,10 @@ class TeamTasksMySqlDAO implements TeamTasksDAO{
 	 * @return TeamTasksMySql 
 	 */
 	protected function readRow($row){
-		$teamTask = new TeamTask();
+		$teamTask = new TeamTask($row['project_id'], $row['team_name'],$row['challenge_id'],$row['time'],$row['id']);
 		
-		$teamTask->id = $row['id'];
-		$teamTask->projectId = $row['project_id'];
-		$teamTask->teamName = $row['team_name'];
-		$teamTask->challengeId = $row['challenge_id'];
-		$teamTask->time = $row['time'];
+		
+		
 
 		return $teamTask;
 	}

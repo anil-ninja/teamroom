@@ -175,14 +175,10 @@ class KnownPeoplesMySqlDAO implements KnownPeoplesDAO{
 	 * @return KnownPeoplesMySql 
 	 */
 	protected function readRow($row){
-		$knownPeople = new KnownPeople();
+		$knownPeople = new KnownPeople($row['requesting_id'],$row['knowing_id'],$row['status'],$row['requesting_time'],
+		$row['last_action_time'],$row['id']);
 		
-		$knownPeople->id = $row['id'];
-		$knownPeople->requestingId = $row['requesting_id'];
-		$knownPeople->knowingId = $row['knowing_id'];
-		$knownPeople->status = $row['status'];
-		$knownPeople->requestingTime = $row['requesting_time'];
-		$knownPeople->lastActionTime = $row['last_action_time'];
+		
 
 		return $knownPeople;
 	}

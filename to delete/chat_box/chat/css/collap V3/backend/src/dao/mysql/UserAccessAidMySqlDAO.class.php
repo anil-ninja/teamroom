@@ -162,13 +162,10 @@ class UserAccessAidMySqlDAO implements UserAccessAidDAO{
 	 * @return UserAccessAidMySql 
 	 */
 	protected function readRow($row){
-		$userAccessAid = new UserAccessAid();
+		$userAccessAid = new UserAccessAid($row['user_id'],$row['hash_key'],$row['status'],$row['time'],$row['id']);
 		
-		$userAccessAid->id = $row['id'];
-		$userAccessAid->userId = $row['user_id'];
-		$userAccessAid->hashKey = $row['hash_key'];
-		$userAccessAid->status = $row['status'];
-		$userAccessAid->time = $row['time'];
+		
+		
 
 		return $userAccessAid;
 	}

@@ -178,14 +178,10 @@ class KeywordsMySqlDAO implements KeywordsDAO{
 	 * @return KeywordsMySql 
 	 */
 	protected function readRow($row){
-		$keyword = new Keyword();
+		$keyword = new Keyword($row['u_p_c_id'],$row['type'],$row['words'],$row['relevence'],$row['time'],
+		$row['id']);
 		
-		$keyword->id = $row['id'];
-		$keyword->uPCId = $row['u_p_c_id'];
-		$keyword->type = $row['type'];
-		$keyword->words = $row['words'];
-		$keyword->relevence = $row['relevence'];
-		$keyword->time = $row['time'];
+		
 
 		return $keyword;
 	}

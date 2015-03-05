@@ -194,15 +194,10 @@ class InvestmentInfoMySqlDAO implements InvestmentInfoDAO{
 	 * @return InvestmentInfoMySql 
 	 */
 	protected function readRow($row){
-		$investmentInfo = new InvestmentInfo();
+		$investmentInfo = new InvestmentInfo($row['user_id'],$row['project_id'],$row['investment'],$row['status'],
+		$row['time'],$row['last_update_time'],$row['id']);
 		
-		$investmentInfo->id = $row['id'];
-		$investmentInfo->userId = $row['user_id'];
-		$investmentInfo->projectId = $row['project_id'];
-		$investmentInfo->investment = $row['investment'];
-		$investmentInfo->status = $row['status'];
-		$investmentInfo->time = $row['time'];
-		$investmentInfo->lastUpdateTime = $row['last_update_time'];
+		
 
 		return $investmentInfo;
 	}
