@@ -50,40 +50,63 @@
                 break;
             	
                 case '/user/recommendation': 
-            		require_once 'resources/ChannelResource.class.php';
-            		$this -> resource = new ChannelResource();
+            		require_once 'resources/UserRecommendationResource.class.php';
+            		$this -> resource = new UserRecommendationResource();
                 break;
                 
-            	case '/data-field-types': 
-            		require_once 'resources/DataFieldTypeResource.class.php';
-            		$this -> resource = new DataFieldTypeResource();
+                // Resorce for challenge endpoint 
+
+            	case '/challenge': 
+                    require_once 'resources/ChallengeResource.class.php';
+                    $this -> resource = new ChallengeResource();
                 break;
-                case '/data-fields': 
-                    require_once 'resources/DataFieldResource.class.php';
-                    $this -> resource = new DataFieldResource();
+
+                case '/challenge/responses': 
+                    require_once 'resources/ChallengeResponsesResource.class.php';
+                    $this -> resource = new ChallengeResponsesResource();
                 break;
-            	case '/validators': 
-            		require_once 'resources/ValidatorResource.class.php';
-            		$this -> resource = new ValidatorResource();
+
+                //response can be Answer to challenge or comment to any chall post
+
+                case '/challenge/keywords': 
+                    require_once 'resources/ChallengeKeywordsResource.class.php';
+                    $this -> resource = new ChallengeKeywordsResource();
                 break;
-                case '/intouch-organizations': 
-                    require_once 'resources/IntouchOrganizationResource.class.php';
-                    $this -> resource = new IntouchOrganizationResource();
+
+
+                // Resorce for project endpoint 
+
+                case '/project': 
+                    require_once 'resources/ProjectResource.class.php';
+                    $this -> resource = new ProjectResource();
                 break;
-                case '/intouch-customfields': 
-                    require_once 'resources/IntouchCustomfieldsResource.class.php';
-                    $this -> resource = new IntouchCustomfieldsResource();
+
+                case '/project/teams': 
+                    require_once 'resources/ProjectTeamsResource.class.php';
+                    $this -> resource = new ProjectTeamsResource();
                 break;
-                //migrationRequestsResource
-                case '/migration-requests': 
-                    require_once 'resources/MigrationRequestsResource.class.php';
-                    $this -> resource = new MigrationRequestsResource();
+
+                case '/project/conversations': 
+                    require_once 'resources/ProjectConversationsResource.class.php';
+                    $this -> resource = new ProjectConversationsResource();
                 break;
-                case '/facebook-fields': 
-                    require_once 'resources/FacebookFieldsResource.class.php';
-                    $this -> resource = new FacebookFieldsResource();
+
+                case '/project/responses': 
+                    require_once 'resources/ProjectResponsesResource.class.php';
+                    $this -> resource = new ProjectResponsesResource();
                 break;
-            	default:
+
+                case '/project/keywords': 
+                    require_once 'resources/ProjectKeywordsResource.class.php';
+                    $this -> resource = new ProjectKeywordsResource();
+                break;
+
+                case '/project/challenges': 
+                    require_once 'resources/ProjectChallengesResource.class.php';
+                    $this -> resource = new ProjectChallegesResource();
+                break;
+            	
+                default:
                     require_once 'exceptions/UnsupportedResourceTypeException.class.php';
             		throw new UnsupportedResourceTypeException();
                 break;
@@ -95,3 +118,4 @@
             return "Resource: " . $this -> resource;
         }
     }
+?>
