@@ -191,7 +191,7 @@
 						rank => $this-> rank,
 						userType => $this-> userType,
 						orgId => $this -> orgId,
-						capital=> $this-> capitial,
+						capital=> $this-> capital,
 						pageAccess=> $this-> pageAccess,
 						workingOrgName => $this-> workingOrgName,
 						livingTown => $this-> livingTown,
