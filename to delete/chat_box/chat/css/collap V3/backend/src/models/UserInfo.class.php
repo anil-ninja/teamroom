@@ -187,7 +187,7 @@
 						email => $this -> email,
 						phone => $this-> phone,
 						username => $this-> username,
-						password => $this-> password,
+						password => "******",
 						rank => $this-> rank,
 						userType => $this-> userType,
 						orgId => $this -> orgId,
