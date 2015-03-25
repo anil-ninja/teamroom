@@ -33,7 +33,7 @@
 			$this->lastName = $lastName;
 			$this->email = $email;
 			$this->phone = $phone;
-			$this->usernameName = $username;
+			$this->username = $username;
 			$this->password = $password;
 			$this->rank = $rank;
 			$this->userType= $userType;
@@ -182,7 +182,7 @@
 		function toArray() {
 			return array (
 						id => $this-> id,
-						firstName => $this-> fristname,
+						firstName => $this-> firstName,
 						lastName => $this-> lastName,
 						email => $this -> email,
 						phone => $this-> phone,
