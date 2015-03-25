@@ -60,25 +60,25 @@ class UserInfoMySqlDAO implements UserInfoDAO{
 		$sql = 'INSERT INTO user_info (first_name, last_name, email, phone, username, password, rank, user_type, org_id, capital, page_access, working_org_name, living_town, about_user, reg_time, last_login_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($userInfo->firstName);
-		$sqlQuery->set($userInfo->lastName);
-		$sqlQuery->set($userInfo->email);
-		$sqlQuery->set($userInfo->phone);
-		$sqlQuery->set($userInfo->username);
-		$sqlQuery->set($userInfo->password);
-		$sqlQuery->set($userInfo->rank);
-		$sqlQuery->set($userInfo->userType);
-		$sqlQuery->setNumber($userInfo->orgId);
-		$sqlQuery->setNumber($userInfo->capital);
-		$sqlQuery->setNumber($userInfo->pageAccess);
-		$sqlQuery->set($userInfo->workingOrgName);
-		$sqlQuery->set($userInfo->livingTown);
-		$sqlQuery->set($userInfo->aboutUser);
-		$sqlQuery->set($userInfo->regTime);
-		$sqlQuery->set($userInfo->lastLoginTime);
+		$sqlQuery->set($userInfo->getFirstName());
+		$sqlQuery->set($userInfo->getLastName());
+		$sqlQuery->set($userInfo->getEmail());
+		$sqlQuery->set($userInfo->getPhone());
+		$sqlQuery->set($userInfo->getUsername());
+		$sqlQuery->set($userInfo->getPassword());
+		$sqlQuery->set($userInfo->getRank());
+		$sqlQuery->set($userInfo->getUserType());
+		$sqlQuery->setNumber($userInfo->getOrgId());
+		$sqlQuery->setNumber($userInfo->getCapital());
+		$sqlQuery->setNumber($userInfo->getPageAccess());
+		$sqlQuery->set($userInfo->getWorkingOrgName());
+		$sqlQuery->set($userInfo->getLivingTown());
+		$sqlQuery->set($userInfo->getAboutUser());
+		$sqlQuery->set($userInfo->getRegTime());
+		$sqlQuery->set($userInfo->getLastlogintime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$userInfo->id = $id;
+		$userInfo -> setId($id);
 		return $id;
 	}
 	

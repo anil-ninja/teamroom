@@ -1,18 +1,18 @@
 <?php
 
 	/**
-     * @author Jessy James
+     * @author rajnish
      */
 
     interface Resource {
         
         public function checkIfRequestMethodValid ($requestMethod);
 
-        public function delete ($resourceVals, $data);
+        public function delete ($resourceVals, $data, $userId);
 
-        public function put ($resourceVals, $data);
+        public function put ($resourceVals, $data, $userId);
 
-        public function post ($resourceVals, $data);
+        public function post ($resourceVals, $data, $userId);
 
-        public function get ($resourceVals, $data);
+        public function get ($resourceVals, $data, $userId);
     }

@@ -38,7 +38,7 @@
 				throw new UnsupportedResourceMethodException();
 			}
 
-			$result = $resource -> $method($resourceVals, $data);
+			$result = $resource -> $method($resourceVals, $data, $userId);
 			$code = $result ['code'];
 			$message = $result ['message'];
 			$message = (isset($message) ? "; $message" : '');
