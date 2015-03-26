@@ -13,12 +13,12 @@ interface ChatDAO{
 	 * @param String $id primary key
 	 * @Return Chat 
 	 */
-	public function load($id);
+	public function load($id, $userID);
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll();
+	public function queryAll($userID);
 	
 	/**
 	 * Get all records from table ordered by field

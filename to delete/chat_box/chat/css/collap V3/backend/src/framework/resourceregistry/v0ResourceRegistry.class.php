@@ -24,7 +24,7 @@
                     $this -> resource = new UserNotificationsResource();
                 break;
 
-                case '/user/messages': 
+                case '/messages': 
                     require_once 'resources/UserMessagesResource.class.php';
                     $this -> resource = new UserMessagesResource();
                 break;

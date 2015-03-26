@@ -47,6 +47,12 @@ class DAOFactory{
 	 * @return ChatDAO
 	 */
 	public static function getChatDAO(){
+
+		require_once('ChatDAO.class.php');
+		require_once('models/Chat.class.php');
+		require_once('mysql/ChatMySqlDAO.class.php');
+		require_once('mysql/ext/ChatMySqlExtDAO.class.php');
+
 		return new ChatMySqlExtDAO();
 	}
 

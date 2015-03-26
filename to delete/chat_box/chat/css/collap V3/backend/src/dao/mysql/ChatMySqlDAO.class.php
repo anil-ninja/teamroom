@@ -13,19 +13,21 @@ class ChatMySqlDAO implements ChatDAO{
 	 * @param String $id primary key
 	 * @return ChatMySql 
 	 */
-	public function load($id){
-		$sql = 'SELECT * FROM chat WHERE id = ?';
+	public function load($id, $userId){
+		$sql = 'SELECT * FROM chat WHERE id = ? AND `to` = ?';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($id);
+		$sqlQuery -> setNumber($id);
+		$sqlQuery -> setNumber($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll(){
-		$sql = 'SELECT * FROM chat';
+	public function queryAll($userId){
+		$sql = 'SELECT * FROM chat WHERE `to` = ?';
 		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery -> setNumber($userId);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -57,17 +59,17 @@ class ChatMySqlDAO implements ChatDAO{
  	 * @param ChatMySql chat
  	 */
 	public function insert($chat){
-		$sql = 'INSERT INTO chat (from, to, message, time, status) VALUES (?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO chat (`from`, `to`, `message`) VALUES (?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
-		
-		$sqlQuery->setNumber($chat->from);
-		$sqlQuery->setNumber($chat->to);
-		$sqlQuery->set($chat->message);
-		$sqlQuery->set($chat->time);
-		$sqlQuery->setNumber($chat->status);
+		//print_r($chat); exit;
+		$sqlQuery -> set($chat-> getFrom());
+		$sqlQuery -> set($chat-> getTo());
+		$sqlQuery -> set($chat-> getMessage());
+		//$sqlQuery->set($chat->getTime());
+		//$sqlQuery->set($chat->getStatus());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$chat->id = $id;
+		$chat -> setId($id);
 		return $id;
 	}
 	
