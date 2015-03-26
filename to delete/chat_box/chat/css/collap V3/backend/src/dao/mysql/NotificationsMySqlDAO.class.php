@@ -13,19 +13,21 @@ class NotificationsMySqlDAO implements NotificationsDAO{
 	 * @param String $id primary key
 	 * @return NotificationsMySql 
 	 */
-	public function load($id){
-		$sql = 'SELECT * FROM notifications WHERE id = ?';
+	public function load($id, $userId){
+		$sql = 'SELECT * FROM notifications WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
+		$sqlQuery->setNumber($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll(){
-		$sql = 'SELECT * FROM notifications';
+	public function queryAll($userId){
+		$sql = 'SELECT * FROM notifications WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($userId);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -57,15 +59,14 @@ class NotificationsMySqlDAO implements NotificationsDAO{
  	 * @param NotificationsMySql notification
  	 */
 	public function insert($notification){
-		$sql = 'INSERT INTO notifications (notice_url, user_id, time) VALUES (?, ?, ?)';
+		$sql = 'INSERT INTO notifications (notice_url, user_id) VALUES (?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($notification->noticeUrl);
-		$sqlQuery->setNumber($notification->userId);
-		$sqlQuery->set($notification->time);
+		$sqlQuery->set($notification->getNoticelUrl());
+		$sqlQuery->setNumber($notification->getUserId());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$notification->id = $id;
+		$notification -> getId($id);
 		return $id;
 	}
 	

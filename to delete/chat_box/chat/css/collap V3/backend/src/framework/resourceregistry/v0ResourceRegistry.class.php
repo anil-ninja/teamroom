@@ -19,11 +19,11 @@
             		$this -> resource = new UserResource();
                 break;
 
-                case '/user/notifications': 
+                case '/notifications': 
                     require_once 'resources/UserNotificationsResource.class.php';
                     $this -> resource = new UserNotificationsResource();
                 break;
-
+//update /messages to user/messages
                 case '/messages': 
                     require_once 'resources/UserMessagesResource.class.php';
                     $this -> resource = new UserMessagesResource();

@@ -95,6 +95,12 @@ class DAOFactory{
 	 * @return NotificationsDAO
 	 */
 	public static function getNotificationsDAO(){
+		
+		require_once('NotificationsDAO.class.php');
+		require_once('models/Notification.class.php');
+		require_once('mysql/NotificationsMySqlDAO.class.php');
+		require_once('mysql/ext/NotificationsMySqlExtDAO.class.php');
+
 		return new NotificationsMySqlExtDAO();
 	}
 
