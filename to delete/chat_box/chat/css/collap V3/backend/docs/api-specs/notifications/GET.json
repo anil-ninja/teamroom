@@ -1,0 +1,57 @@
+/notifications
+
+	GET "api.loc.collap.com/v0/notifications"
+
+	Response:
+
+		{
+		    "internal_status": {
+		        "code": "4000",
+		        "message": "Notification Fetched"
+		    },
+		    "data": {
+		        "notifications": [
+		            {
+		                "id": "2",
+		                "userId": "2",
+		                "time": "2015-03-26 20:06:30",
+		                "noticeUrl": "this is notice url"
+		            },
+		            {
+		                "id": "11",
+		                "userId": "2",
+		                "time": "2015-03-26 20:50:38",
+		                "noticeUrl": "this is notice url"
+		            },
+		            {
+		                "id": "12",
+		                "userId": "2",
+		                "time": "2015-03-26 20:51:01",
+		                "noticeUrl": "this is notice url"
+		            },
+		        ]
+		    }
+		}
+
+/notifications/<notification_ID>
+
+	GET "api.loc.collap.com/v0/notifications/14"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "4000",
+	        "message": "Notification Fetched"
+	    },
+	    "data": {
+	        "notifications": [
+	            {
+	                "id": "14",
+	                "userId": "2",
+	                "time": "2015-03-26 20:54:54",
+	                "noticeUrl": "this is notice url"
+	            }
+	        ]
+	    }
+	}

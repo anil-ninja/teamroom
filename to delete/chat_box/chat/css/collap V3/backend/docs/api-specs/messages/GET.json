@@ -1,0 +1,56 @@
+/messages
+
+	GET "api.loc.collap.com/v0/messages"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "3000",
+	        "message": "Message Fetched"
+	    },
+	    "data": {
+	        "messages": [
+	            {
+	                "id": "17",
+	                "from": "2",
+	                "to": "3",
+	                "message": "this is first test message",
+	                "time": "2015-03-27 19:33:33",
+	                "status": "0"
+	            },
+	            {
+	                "id": "18",
+	                "from": "2",
+	                "to": "3",
+	                "message": "this is first message",
+	                "time": "2015-03-27 19:34:00",
+	                "status": "0"
+	            }
+	        ]
+	    }
+	}
+
+/messages/<message_ID>
+
+	GET "api.loc.collap.com/v0/messages/18"
+
+	Response:
+		{
+		    "internal_status": {
+		        "code": "3000",
+		        "message": "Message Fetched"
+		    },
+		    "data": {
+		        "messages": [
+		            {
+		                "id": "18",
+		                "from": "2",
+		                "to": "3",
+		                "message": "this is first message",
+		                "time": "2015-03-27 19:34:00",
+		                "status": "0"
+		            }
+		        ]
+		    }
+		}

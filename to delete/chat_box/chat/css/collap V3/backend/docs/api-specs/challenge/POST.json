@@ -1,0 +1,47 @@
+/challenge
+
+	POST "api.loc.collap.com/v0/challenge"
+
+	Post Data: 
+
+	{
+		"root":{
+	    	"project_id": 0,
+			"blob_id" : 0,
+			"title" : "title for challenge",
+	        "stmt" : "statment of challenge , this challenge is a type of post. It can be of any type like article, idea, video etc",
+			"type" : 1,
+	        "likes" : 1,
+			"dislikes" : 1,
+	        "creation_time" : ""
+		}
+	}
+
+	Response:
+
+	{
+		"internal_status": {
+		    "code": "2001",
+		    "message": "Challenge Created"
+		},
+		"data": {
+		    "challengeDetail": [
+		        {
+		            "id": 9,
+		            "userId": 2,
+		            "projectId": 0,
+		            "blobId": 0,
+		            "orgId": 1,
+		            "title": "title for challenge",
+		            "stmt": "statment of challenge , this challenge is a type of post. It can be of any type like article, idea, video etc",
+		            "type": 1,
+		            "status": 1,
+		            "likes": 1,
+		            "dislikes": 1,
+		            "creationTime": "2015-03-27 19:01:55",
+		            "lastUpdateTime": 0
+		        }
+		    ]
+		}
+	}
+

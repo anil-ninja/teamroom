@@ -1,0 +1,31 @@
+/notifications
+
+	POST "api.loc.collap.com/v0/notifications/"
+
+	Post Data:
+
+		{
+			"root":{
+				"notice_url" : "this is notice url test debug",
+		        "time" : ""
+			}
+		}
+
+	Response:
+
+		{
+		    "internal_status": {
+		        "code": "4001",
+		        "message": "Notification Created"
+		    },
+		    "data": {
+		        "notifications": [
+		            {
+		                "id": 19,
+		                "userId": 2,
+		                "time": "2015-03-27 20:09:07",
+		                "noticeUrl": "this is notice url test debug"
+		            }
+		        ]
+		    }
+	}

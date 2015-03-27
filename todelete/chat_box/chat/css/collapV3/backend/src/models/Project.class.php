@@ -120,10 +120,36 @@
 		}
 
 		function toString() {
-			
+			return $this -> id . ", " . 
+					$this -> userId.",".
+					$this -> blobId.",".
+					$this -> projectTitle.",".
+					$this -> stmt.",".
+					$this -> type . ", " . 
+					$this -> orgId.",".
+					$this -> order.",".
+					$this -> creationTime.".".
+					$this -> projectValue. ", " . 
+					$this -> fundNeeded.",".
+					$this -> lastUpdateTime;
 		}
 
-
+		function toArray() {
+			return array (			
+							id => $this-> id,
+							userId => $this-> userId,
+							blobId => $this-> blobId,
+							projectTitle => $this-> projectTitle,
+							stmt => $this-> stmt,
+							type => $this-> type,
+							orgId => $this-> orgId,
+							order => $this-> order,
+							creationTime => $this-> creationTime,
+							projectValue => $this-> projectValue,
+							fundNeeded => $this-> fundNeeded,
+							lastUpdateTime => $this-> lastUpdateTime
+						);
+		}
 
 	}
 ?>

@@ -1,0 +1,36 @@
+/user
+
+	GET "api.loc.collap.com/v0/user"
+
+	Response:
+
+
+	{
+    "internal_status": {
+        "code": "5000",
+        "message": "User-Detail Fetched"
+    },
+    "data": {
+        "user": [
+            {
+                "id": "1",
+                "firstName": "rajnish",
+                "lastName": "pawar",
+                "email": "rajnish_pawar90@yahoo.com21",
+                "phone": "",
+                "username": "rajnish1",
+                "password": "******",
+                "rank": "",
+                "userType": "collaborator",
+                "orgId": "0",
+                "capital": "10000",
+                "pageAccess": "0",
+                "workingOrgName": "",
+                "livingTown": "",
+                "aboutUser": "",
+                "regTime": "0000-00-00 00:00:00",
+                "lastLoginTime": "0000-00-00 00:00:00"
+            }
+        ]
+    }
+
