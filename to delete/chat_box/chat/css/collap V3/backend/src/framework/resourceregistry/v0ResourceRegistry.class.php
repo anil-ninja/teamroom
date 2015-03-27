@@ -18,7 +18,7 @@
             		require_once 'resources/UserResource.class.php';
             		$this -> resource = new UserResource();
                 break;
-
+//update /notifications to user/notifications
                 case '/notifications': 
                     require_once 'resources/UserNotificationsResource.class.php';
                     $this -> resource = new UserNotificationsResource();

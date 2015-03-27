@@ -5,67 +5,77 @@
      	 * @author: http://rahullahoria.com
      	 * @date: 2015-03-03 14:48	 
 	 */
-	class Challenge{
+	class Challenge {
 		
 		private $id;
-		private $userId;
-		private $projectId;
-		private $blobId;
-		private $orgId;
-		private $title;
-		private $stmt;
-		private $type;
-		private $status;
-		private $likes;
-		private $dislikes;
-		private $creationTime;
-		private $lastUpdateTime;
+		private $userId;
+		private $projectId;
+		private $blobId;
+		private $orgId;
+		private $title;
+		private $stmt;
+		private $type;
+		private $status;
+		private $likes;
+		private $dislikes;
+		private $creationTime;
+		private $lastUpdateTime;
 		
-		function function__construct( $userId,$projectId,$blogId,$orgId,$title,$stmt,$type,$status,$likes
-		,$dislikes,$creationTime,$lastUpdateTime,$id = null)
+		function __construct( $userId, $projectId, $blobId, $orgId, $title, $stmt, $type, $status, $likes
+		,$dislikes, $creationTime, $lastUpdateTime, $id = null)
 		{
-			$this->id = $id;
-			$this->userId= $userId;
-			$this->projectId = $projectId;
-			$this->blogId = $blogId;
-			$this->orgId = $orgId;
-			$this->title = $title;
-			$this->stmt = $stmt;
-			$this->type= $type;
-			$this->status = $status;
-			$this->likes = $likes;
-			$this->dislikes = $dislikes;
-			$this->creationTime = $creationTime;
-			$this->lastUpdateTime=$lastUpdateTime;
+			$this -> id = $id;
+			$this -> userId= $userId;
+			$this -> projectId = $projectId;
+			$this -> blobId = $blobId;
+			$this -> orgId = $orgId;
+			$this -> title = $title;
+			$this -> stmt = $stmt;
+			$this -> type= $type;
+			$this -> status = $status;
+			$this -> likes = $likes;
+			$this -> dislikes = $dislikes;
+			$this -> creationTime = $creationTime;
+			$this -> lastUpdateTime=$lastUpdateTime;
 			
-			}
-			function setId($id){
+		}
+	
+		function setId($id){
 			$this -> id = $id;
 		}
 		function getId(){
-				return $this->id;
+			return $this-> id;
 		}
 
 		function setUserID($userId){
 			$this -> userId = $userId;
 		}
 		function getUserId(){
-				return $this-> userId;
-				}
-				
-				function setProjectId($projectId){
+			return $this-> userId;
+		}
+			
+		function setProjectId($projectId){
 			$this -> projectId = $projectId;
-			function getProjectId(){
-				return $this->projectId;
 		}
-			function setBlogId($blogId){
-			$this -> $blogId = $blogId;
+		function getProjectId(){
+			return $this-> projectId;
 		}
-		function getBlogId(){
-				return $this-> $blogId;
-				}
-				
-				function setStmt($stmt){
+
+		function setBlobId($blobId){
+			$this -> blobId = $blobId;
+		}
+		function getBlobId(){
+			return $this-> blobId;
+		}
+			
+		function setTitle ($title) {
+			$this -> title = $title;
+		}
+		function getTitle () {
+			return $this -> title;
+		}
+
+		function setStmt($stmt){
 			$this -> stmt = $stmt;
 		}
 		function getStmt(){
@@ -75,7 +85,7 @@
 			$this -> likes = $likes;
 		}
 		function getLikes(){
-				return $this->likes;
+				return $this-> likes;
 		}
 
 		function setDislikes($dislikes){
@@ -83,63 +93,75 @@
 		}
 		function getDislikes(){
 				return $this-> dislikes;
-				}
-				
-				function setStatus($status){
-			$this -> status = $status;
-			function getStatus(){
-				return $this->status;
 		}
-			function setCreationtime($creationTime){
+			
+		function setStatus($status){
+			$this -> status = $status;
+		}
+		function getStatus(){
+			return $this->status;
+		}
+		
+		function setCreationtime($creationTime){
 			$this -> $creationTime = $creationTime;
 		}
 		function getCreationtime(){
-				return $this-> $creationTime;
-				}
+			return $this-> creationTime;
+		}
 				
-				function setOrgId(orgId){
+		function setOrgId($orgId){
 			$this -> orgId =$orgId;
 		}
 		function getOrgId(){
-				return $this-> orgId;
-					function setLastUpdateTime(lastUpdateTime){
+			return $this-> orgId;
+		}
+		
+		function setLastUpdateTime($lastUpdateTime){
 			$this -> lastUpdateTime = $lastUpdateTime;
 		}
 		function getLastUpdateTime(){
 				return $this-> lastUpdateTime;
-				
-				function setType(type){
+		}
+
+		function setType($type){
 			$this -> type= $type;
 		}
 		function getType(){
-				return $this-> Type;
-				
+			return $this-> type;		
 		}
-			function toString (){
-			return $this -> id . ", " . $this ->userId.",".$this->projectId.",".$this->blogIdId.".".$this->OrgId
-			$this -> title . ", " . $this ->likes.",".$this->dislikes.",".$this->status.".".$this->creationTime
-			 . ", " . $this ->stmt.",".$this->lastUpdateTime.",".$this->type}
-			function toArray() {
-			return array (
-						
-						
-						
-						
-			id => $this->id,
-			userId= >$this->userId,
-			projectId => $this->projectId,
-			blogId => $this->blogId,
-			orgId = >$this->orgId,
-			title = >$this->title,
-			stmt => $this->stmt,
-			type=> $this->type,
-			status => $this->status,
-			likes = >$this->likes,
-			dislikes => $this->dislikes,
-			creationTime => $this->creationTime,
-			lastUpdateTime=>$this->lastUpdateTime
+
+		function toString (){
+			return $this -> id . ", " . 
+					$this -> userId.",".
+					$this -> projectId.",".
+					$this -> blobId.",".
+					$this -> orgId.",".
+					$this -> title . ", " . 
+					$this -> likes.",".
+					$this -> dislikes.",".
+					$this -> status.".".
+					$this -> creationTime. ", " . 
+					$this -> stmt.",".
+					$this -> lastUpdateTime.",".
+					$this -> type;
+		}
+
+		function toArray() {
+			return array (			
+							id => $this-> id,
+							userId => $this-> userId,
+							projectId => $this-> projectId,
+							blobId => $this-> blobId,
+							orgId => $this-> orgId,
+							title => $this-> title,
+							stmt => $this-> stmt,
+							type => $this-> type,
+							status => $this-> status,
+							likes => $this-> likes,
+							dislikes => $this-> dislikes,
+							creationTime => $this-> creationTime,
+							lastUpdateTime => $this-> lastUpdateTime
 						);
-					}
-		
+		}		
 	}
 ?>

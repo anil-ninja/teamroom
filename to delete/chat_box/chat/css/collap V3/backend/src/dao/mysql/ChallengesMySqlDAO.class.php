@@ -13,19 +13,21 @@ class ChallengesMySqlDAO implements ChallengesDAO{
 	 * @param String $id primary key
 	 * @return ChallengesMySql 
 	 */
-	public function load($id){
-		$sql = 'SELECT * FROM challenges WHERE id = ?';
+	public function load($id, $userId){
+		$sql = 'SELECT * FROM challenges WHERE id = ? AND user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
+		$sqlQuery->setNumber($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll(){
-		$sql = 'SELECT * FROM challenges';
+	public function queryAll($userId){
+		$sql = 'SELECT * FROM challenges WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($userId);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -60,21 +62,21 @@ class ChallengesMySqlDAO implements ChallengesDAO{
 		$sql = 'INSERT INTO challenges (user_id, project_id, blob_id, org_id, title, stmt, type, status, likes, dislikes, creation_time, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($challenge->userId);
-		$sqlQuery->setNumber($challenge->projectId);
-		$sqlQuery->setNumber($challenge->blobId);
-		$sqlQuery->setNumber($challenge->orgId);
-		$sqlQuery->set($challenge->title);
-		$sqlQuery->set($challenge->stmt);
-		$sqlQuery->setNumber($challenge->type);
-		$sqlQuery->setNumber($challenge->status);
-		$sqlQuery->setNumber($challenge->likes);
-		$sqlQuery->setNumber($challenge->dislikes);
-		$sqlQuery->set($challenge->creationTime);
-		$sqlQuery->set($challenge->lastUpdateTime);
+		$sqlQuery->set($challenge->getUserId());
+		$sqlQuery->set($challenge->getProjectId());
+		$sqlQuery->set($challenge->getBlobId());
+		$sqlQuery->set($challenge->getOrgId());
+		$sqlQuery->set($challenge->getTitle());
+		$sqlQuery->set($challenge->getStmt());
+		$sqlQuery->set($challenge->getType());
+		$sqlQuery->set($challenge->getStatus());
+		$sqlQuery->set($challenge->getLikes());
+		$sqlQuery->set($challenge->getDislikes());
+		$sqlQuery->set($challenge->getCreationTime());
+		$sqlQuery->set($challenge->getLastUpdateTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$challenge->id = $id;
+		$challenge -> setId($id);
 		return $id;
 	}
 	
@@ -292,13 +294,11 @@ class ChallengesMySqlDAO implements ChallengesDAO{
 	protected function readRow($row){
 		$challenge = new Challenge($row['user_id'],$row['project_id'], $row['blob_id'],$row['org_id'],
 		$row['title'], $row['stmt'],$row['type'],$row['status'],$row['likes'],$row['dislikes'],$row['creation_time']
-		,$row['last_update_time'],$row(id));
-		
+		,$row['last_update_time'],$row['id']);
 	
-
 		return $challenge;
 	}
-	
+
 	protected function getList($sqlQuery){
 		$tab = QueryExecutor::execute($sqlQuery);
 		$ret = array();
