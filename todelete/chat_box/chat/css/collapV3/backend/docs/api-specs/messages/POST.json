@@ -1,0 +1,37 @@
+/messages
+
+	POST "api.loc.collap.com/v0/messages"
+
+	Post Data:
+
+		{
+			"root":{
+		    	"from": 2,
+				"to" : 3,
+				"message" : "this is first message",
+		        "time": "",
+		        "status" : ""
+			}
+		}
+
+	Response:
+
+		{
+			"internal_status": {
+			    "code": "3001",
+			    "message": "Message Sent"
+			},
+
+			"data": {
+			    "messageDetail": [
+			        {
+			            "id": 18,
+			            "from": 2,
+			            "to": 3,
+			            "message": "this is first message",
+			            "time": "2015-03-27 19:34:00",
+			            "status": 0
+			        }
+			    ]
+			}
+		}

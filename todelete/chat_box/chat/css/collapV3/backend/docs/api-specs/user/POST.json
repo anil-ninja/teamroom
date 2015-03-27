@@ -1,0 +1,49 @@
+/user
+
+	POST: "http://api.loc.collap.com/v0/user"
+
+	POST Data: 
+	{
+		"root":{
+	    	"first_name": "rajnish",
+			"last_name" : "pawar",
+			"username" : "rajnish",
+	        "email" : "rajnish_pawar90@yahoo.com",
+			"password" : "redhat",
+	        "user_type" : "collaborator",
+	        "capital" : "10000"
+		}
+	}
+
+	Response:
+
+	{
+		"internal_status":{
+			"code": "5001",
+			"message": "User Created"
+		},
+		
+		"data":{
+			"userDetail":[
+				{
+					"id": 1,
+					"firstName": "rajnish",
+					"lastName": "pawar",
+					"email": "rajnish_pawar90@yahoo.com",
+					"phone": null,
+					"username": "rajnish",
+					"password": "******",
+					"rank": null,
+					"userType": "collaborator",
+					"orgId": null,
+					"capital": "10000",
+					"pageAccess": null,
+					"workingOrgName": null,
+					"livingTown": null,
+					"aboutUser": null,
+					"regTime": null,
+					"lastLoginTime": null
+				}
+			]
+		}
+	}
