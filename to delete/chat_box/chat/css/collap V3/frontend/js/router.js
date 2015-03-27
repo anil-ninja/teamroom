@@ -4,7 +4,7 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'views/organizations/OrganizationsListView',
+    'views/login/loginView',
     'views/organizations/OrganizationEditView',
     'views/channels/ChannelsListView',
     'views/channels/ChannelsEditView',
@@ -22,7 +22,7 @@ define([
     'views/customers/CustomersInConflictListView',
     'views/organizations/OrganizationPriorityView',
 ], function ($, _, Backbone,
-        OrganizationsListView,
+        LoginView,
         OrganizationEditView,
         ChannelsListView,
         ChannelsEditView,
@@ -74,6 +74,12 @@ define([
     window.app_router = new AppRouter;
     //console.log("new router request");
     var initialize = function () {
+
+        app_router.on('route:defaultAction', function (actions) {
+            console.log("defaultAction");
+            var login = new LoginView();
+            login.render();
+        });
 
         app_router.on('route:showConflicts', function () {
             console.log("inside showConflicts route");
@@ -159,14 +165,6 @@ define([
             // handle loading and displaying data from the GitHub API  
             var contributorsListView = new ValidatorsListView();
             contributorsListView.render();
-        });
-
-        app_router.on('route:defaultAction', function (actions) {
-
-            // We have no matching route, lets display the home page
-            console.log("defaultAction");
-            var organizationsListView = new OrganizationsListView();
-            organizationsListView.render();
         });
 
         var organizationEditView = new OrganizationEditView();

@@ -1,10 +1,5 @@
 <?php 
-session_start();
-$user_id = $_SESSION['user_id'];
-if ($user_id != "admin") {
-    header('Location: login.php');
-    exit;
-}
+
 ?>
 <!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
@@ -14,12 +9,13 @@ if ($user_id != "admin") {
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Nucleus Admin</title>
+	<title>Welcome to Collap</title>
 	<meta name="description" content="">
 	<meta name="author" content="rahul lahoria">
 
 	<meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="css/bootstrap.css" media="screen">
+<link rel="stylesheet" href="css/bootstrap.css" >
+<link rel="stylesheet" href="css/collap-custom.css" media="screen">
 <link rel="stylesheet" href="css/bootswatch.css">
 	
   <link rel="stylesheet" href="css/jquery-dataTables.css">
@@ -29,19 +25,6 @@ if ($user_id != "admin") {
 
 
 	<script data-main="js/main" src="js/libs/require/require.js"></script>
-  <style>
-      .renderjson a { text-decoration: none; }
-      .renderjson .disclosure { color: crimson;
-      font-size: 150%; }
-      .renderjson .syntax { color: grey; }
-      .renderjson .string { color: darkred; }
-      .renderjson .number { color: darkcyan; }
-      .renderjson .boolean { color: blueviolet; }
-      .renderjson .key { color: darkblue; }
-      .renderjson .keyword { color: blue; }
-      .renderjson .object.syntax { color: lightseagreen; }
-      .renderjson .array.syntax { color: orange; }
-  </style>
 </head>
 <body>
 
@@ -52,11 +35,10 @@ if ($user_id != "admin") {
       <div class="container">
         <div class="navbar-header">
           <a href="index.php" class="navbar-brand">
-          	<img src ='imgs/c-logo-common.png' style="width:100px;"/>
-          		
+          	<img src ='imgs/collap.gif' style="width:50px;"/>
           </a>
           <a href="index.php" class="navbar-brand">
-          		Nucleus Admin
+          		Collap
           </a>
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
             <span class="icon-bar"></span>
@@ -94,18 +76,6 @@ if ($user_id != "admin") {
         </div>
       </div> 
   </div>
-
-  <div class='row'>
-      <div class='col-md-1'>
-        
-      </div>
-      <div class='col-md-8' >
-        <div id="page2">
-          
-        </div>
-      </div> 
-  </div>
-
   <div id="footer"></div>
 </div>
 
