@@ -1,9 +1,0 @@
-DELETE "http://cap.app:123@nucleus.capillary.in/v0/customers?facebook_id=100003005385926"
-
-Response: 
-{
-    "internal_status": {
-        "code": "7003",
-        "message": "Customer Deleted"
-    }
-}
