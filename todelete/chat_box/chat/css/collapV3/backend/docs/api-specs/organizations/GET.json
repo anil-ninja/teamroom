@@ -1,0 +1,47 @@
+/organizations
+
+	GET "http://cap.app:123@nucleus.capillary.in/v0/organizations"
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "6000",
+	        "message": "Organization Fetched"
+	    },
+	    "data": {
+	        "organizations": [
+	            {
+	                "id": "6",
+	                "org_id": "29",
+	                "name": "Peter England"
+	            },
+	            {
+	                "id": "7",
+	                "org_id": "0",
+	                "name": "Capillary Technologies"
+	            }
+	        ]
+	    }
+	}
+
+
+/organizations/<org_id>
+
+	GET "http://cap.app:123@nucleus.capillary.in/v0/organizations/29"
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "6000",
+	        "message": "Organization Fetched"
+	    },
+	    "data": {
+	        "organizations": [
+	            {
+	                "id": "6",
+	                "org_id": "29",
+	                "name": "Peter England"
+	            }
+	        ]
+	    }
+	}

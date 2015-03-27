@@ -1,0 +1,60 @@
+/channels
+
+	GET "https://cap.app:123@nucleus.capillary.in/v0/channels"
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "2000",
+	        "message": "Channel Fetched"
+	    },
+	    "data": {
+	        "channels": [
+	            {
+	                "id": "1",
+	                "name": "intouch",
+	                "description": "Capillary Intouch APIs", 
+	                "sources": [
+	                    "microsite",
+	                    "ecommerce", 
+	                    "instore"
+	                ]
+	            },
+	            {
+	                "id": "2",
+	                "name": "facebook",
+	                "description": "Facebook APIs", 
+	                "sources": [
+	                    "microsite",
+	                    "ecommerce"
+	                ]
+	            }
+	        ]
+	    }
+	}
+
+
+/channels/<channel_name>
+
+	GET "https://cap.app:123@nucleus.capillary.in/v0/channels/facebook"
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "2000",
+	        "message": "Channel Fetched"
+	    },
+	    "data": {
+	        "channels": [
+	            {
+	                "id": "2",
+	                "name": "facebook",
+	                "description": "Facebook APIs", 
+	                "sources": [
+	                    "microsite",
+	                    "ecommerce"
+	                ]
+	            }
+	        ]
+	    }
+	}

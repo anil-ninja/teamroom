@@ -1,0 +1,181 @@
+<h4>Edit Datafield</h4> <hr />
+<div class='row'>
+      <div class='col-md-8'>    
+<form class="edit-datafield-form">
+      <legend><%= datafield ? 'Edit' : 'New' %> DataField</legend>
+        <table>
+         <% if (datafield){ %>
+          <tr>
+            <td>ID</td>
+            <td>
+              <%= datafield.id  %>
+            </td>
+          </tr>
+          <% }%>
+
+          
+            <tr>
+                <td>Name</td>
+                <td>
+                    <% if (datafield){ %>
+                        <%=   datafield.name  %>
+                    
+                    <% } else { %>
+                        <input name="name" class="input-block-level" type="text" value="">
+                    <% } %>
+                    
+                </td>
+            </tr>
+            <tr>
+                <td>is_array</td>
+                <td>
+                    <input name="is_array"  class="input-block-level" type="checkbox" <% if(datafield) { if (datafield.is_array) { %>checked="on"<% }} %> />
+                </td>
+            </tr>
+            <tr>
+                <td>base_type</td>
+                <td>
+                    <input name="base_type" class="input-block-level" type="text" value="<%= datafield ? datafield.base_type : '' %>">
+                </td>
+            </tr>
+            <tr>
+                <td>complex_type</td>
+                <td>
+                    <input name="complex_type" class="input-block-level" type="text" <% if(datafield) { if (datafield.complex_type) { %>value="<%= datafield.complex_type %>"<% } } %> />
+                </td>
+            </tr>
+            <tr>
+                <td>parent_type</td>
+                <td>
+                    <input name="parent_type" class="input-block-level" type="text" value="<%= datafield ? datafield.parent_type : '' %>">
+                </td>
+            </tr>
+            <tr>
+                <td>typed</td>
+                <td>
+                    <input name="typed" class="input-block-level" type="checkbox" <% if(datafield) { if (datafield.typed) { %>checked="on"<% }} %> />
+                </td>
+            </tr>
+            <% if(datafield) { if (!datafield.complex_type) { %>
+            <tr>
+                <td>default_value</td>
+                <td>
+                    
+                        <input name="default_value" class="input-block-level" type="text" value="<%= datafield ? datafield.default_value : '' %>">
+                     
+                    
+                </td>
+            </tr>
+            <% } } else { %>
+            <tr>
+                <td>default_value</td>
+                <td>
+                    
+                        <input name="default_value" class="input-block-level" type="text" value="<%= datafield ? datafield.default_value : '' %>">
+                     
+                    
+                </td>
+            </tr>
+             <% }  %>
+            <tr>
+                <td>description</td>
+                <td>
+                    <input name="description" class="input-block-level" type="text" value="<%= datafield ? datafield.description : '' %>">
+                </td>
+            </tr>
+            <% if(datafield) { if (!datafield.complex_type) { %>
+            <tr>
+                <td>validators</td>
+                <td>
+                   
+                    <select name="validators" multiple>
+                         <% _.each(validators, function(validator) { %>
+                             
+                            <option value="<%= validator.name %>" 
+                            <% if (datafield) { %>
+                            <% _.each(datafield.validators, function(dValidator) { %>
+                                    <%= (dValidator == validator.name ) ? 'selected': '' %>
+                                <% }); %>
+                                 <% }; %>
+                                 > <%= validator.name %></option>
+                         <% }); %>
+                        
+                    </select>
+                </td>
+            </tr>
+            <% } } else{ %>
+             <tr>
+                <td>validators</td>
+                <td>
+                   
+                  
+                <ul id="sortable3" class="droptrue">
+             
+            </ul>
+        
+                </td>
+            </tr>
+
+            <% }  %>
+        </table>    
+        <hr />
+       <button type="submit" class="btn"><%= datafield ? 'Update' : 'Create' %></button>
+       <% if(datafield) { %>
+        <input type="hidden" name="id" value="<%= datafield.id %>" />
+       <button data-datafield-id="<%= datafield.id %>" class="btn btn-danger" id="deleteDf">Delete</button>
+       <% }; %>
+    </form>
+
+    </div>
+    <div class = 'col-md-4'>
+      <h4>Drag and drop back validators.</h4>
+          <ul id="sortable2" class="list-group dropfalse">
+            <% _.each(validators, function(validator) { %>
+              <li class="list-group-item ui-state-default"><%= validator.name %></li>
+
+            <% }); %>
+          </ul>
+    </div>
+  </div>
+    <style>
+#sortable1, #sortable2, #sortable3 { 
+  list-style-type: none; 
+  margin: 0; 
+  float: left; 
+  margin-right: 2px; 
+  background: #eee; 
+  padding: 2px; 
+  min-width: 150px;
+  min-height: 50px;
+  max-height: 400px;
+  overflow: scroll;
+}
+#sortable1 li, #sortable2 li, #sortable3 li { 
+  margin: 2px; 
+  padding: 2px; 
+  font-size: 1em; 
+  min-width: 120px; 
+}
+#sortable1 ul, #sortable2 ul, #sortable3 ul { 
+  margin: 2px; 
+  padding: 2px; 
+  font-size: 1em; 
+  min-width: 143px;
+  min-height: 50px;
+}
+</style>
+<script>
+
+$(function() {
+  $( "ul.droptrue" ).sortable({
+    connectWith: "ul"
+  });
+
+  $( "ul.dropfalse" ).sortable({
+    connectWith: "ul",
+    dropOnEmpty: true
+  });
+$( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+});
+
+</script>
