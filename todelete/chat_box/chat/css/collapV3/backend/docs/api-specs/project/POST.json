@@ -1,0 +1,41 @@
+/project
+
+	POST ""
+
+	Post Data:
+		{
+			"root":{
+		    	"blob_id": 0,
+				"project_title" : "title of project",
+				"stmt" : "This is statement of project",
+		        "type" : 1,
+		        "project_value" : 10000,
+				"fund_needed" : 5000
+			}
+		}
+	
+	Response:
+		{
+		    "internal_status": {
+		        "code": "2001",
+		        "message": "Channel Created"
+		    },
+		    "data": {
+		        "projectDetail": [
+		            {
+		                "id": 2,
+		                "userId": 2,
+		                "blobId": 0,
+		                "projectTitle": "title of project",
+		                "stmt": "This is statement of project",
+		                "type": 1,
+		                "orgId": 1,
+		                "order": 0,
+		                "creationTime": "2015-03-28 00:02:14",
+		                "projectValue": 10000,
+		                "fundNeeded": 5000,
+		                "lastUpdateTime": "0000-00-00 00:00:00"
+		            }
+		        ]
+		    }
+		}

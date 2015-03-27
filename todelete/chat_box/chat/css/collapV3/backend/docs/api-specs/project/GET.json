@@ -1,0 +1,89 @@
+/project/<project_ID>
+
+	GET "api.loc.collap.com/v0/project/1"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "5000",
+	        "message": "Project Fetched"
+	    },
+	    "data": {
+	        "projectDetail": [
+	            {
+	                "id": "1",
+	                "userId": "2",
+	                "blobId": "0",
+	                "projectTitle": "title of project",
+	                "stmt": "This is satatement of project",
+	                "type": "1",
+	                "orgId": "1",
+	                "order": "0",
+	                "creationTime": "2015-03-28 00:01:49",
+	                "projectValue": "10000",
+	                "fundNeeded": "5000",
+	                "lastUpdateTime": "0000-00-00 00:00:00"
+	            }
+	        ]
+	    }
+	}
+
+/project 
+
+	GET "api.loc.collap.com/v0/project/"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2000",
+	        "message": "Channel Fetched"
+	    },
+	    "data": {
+	        "projects": [
+	            {
+	                "id": "1",
+	                "userId": "2",
+	                "blobId": "0",
+	                "projectTitle": "title of project",
+	                "stmt": "This is satatement of project",
+	                "type": "1",
+	                "orgId": "1",
+	                "order": "0",
+	                "creationTime": "2015-03-28 00:01:49",
+	                "projectValue": "10000",
+	                "fundNeeded": "5000",
+	                "lastUpdateTime": "0000-00-00 00:00:00"
+	            },
+	            {
+	                "id": "2",
+	                "userId": "2",
+	                "blobId": "0",
+	                "projectTitle": "title of project",
+	                "stmt": "This is satatement of project",
+	                "type": "1",
+	                "orgId": "1",
+	                "order": "0",
+	                "creationTime": "2015-03-28 00:02:14",
+	                "projectValue": "10000",
+	                "fundNeeded": "5000",
+	                "lastUpdateTime": "0000-00-00 00:00:00"
+	            },
+	            {
+	                "id": "3",
+	                "userId": "2",
+	                "blobId": "0",
+	                "projectTitle": "Memory/Brain Power",
+	                "stmt": "Memory is one of the most important parts of our life. With our memories, we can re-experience relationships, emotions, and experiences with loved ones. As we get older, if we don't train our brains through exercises, our power to remember things begins to decrease.",
+	                "type": "1",
+	                "orgId": "1",
+	                "order": "0",
+	                "creationTime": "2015-03-28 00:34:01",
+	                "projectValue": "0",
+	                "fundNeeded": "0",
+	                "lastUpdateTime": "0000-00-00 00:00:00"
+	            }
+	        ]
+	    }
+	}
