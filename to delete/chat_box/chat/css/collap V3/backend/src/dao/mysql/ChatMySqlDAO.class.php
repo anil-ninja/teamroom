@@ -59,14 +59,14 @@ class ChatMySqlDAO implements ChatDAO{
  	 * @param ChatMySql chat
  	 */
 	public function insert($chat){
-		$sql = 'INSERT INTO chat (`from`, `to`, `message`) VALUES (?, ?, ?)';
+		$sql = 'INSERT INTO chat (`from`, `to`, `message`, time, status) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		//print_r($chat); exit;
 		$sqlQuery -> set($chat-> getFrom());
 		$sqlQuery -> set($chat-> getTo());
 		$sqlQuery -> set($chat-> getMessage());
-		//$sqlQuery->set($chat->getTime());
-		//$sqlQuery->set($chat->getStatus());
+		$sqlQuery->set($chat->getTime());
+		$sqlQuery->set($chat->getStatus());
 
 		$id = $this->executeInsert($sqlQuery);	
 		$chat -> setId($id);

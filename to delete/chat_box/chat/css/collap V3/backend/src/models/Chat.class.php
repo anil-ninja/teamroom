@@ -14,14 +14,14 @@
 		private  $time;
 		private  $status;
 		
-		function function__construct( $from,$to,$message,$time,$status,$id = null)
+		function __construct( $from,$to,$message,$time,$status,$id = null)
 		{
-			$this-> id = id;
-			$this-> from= from;
-			$this-> to = to;
-			$this-> message = message;
-			$this-> time = time;
-			$this-> status = status;
+			$this-> id = $id;
+			$this-> from= $from;
+			$this-> to = $to;
+			$this-> message = $message;
+			$this-> time = $time;
+			$this-> status = $status;
 		}
 
 		function setId($id){

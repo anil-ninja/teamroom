@@ -59,14 +59,15 @@ class NotificationsMySqlDAO implements NotificationsDAO{
  	 * @param NotificationsMySql notification
  	 */
 	public function insert($notification){
-		$sql = 'INSERT INTO notifications (notice_url, user_id) VALUES (?, ?)';
+		$sql = 'INSERT INTO notifications (notice_url, user_id, time) VALUES (?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
 		$sqlQuery->set($notification->getNoticelUrl());
-		$sqlQuery->setNumber($notification->getUserId());
+		$sqlQuery->set($notification->getUserId());
+		$sqlQuery->set($notification->getTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$notification -> getId($id);
+		$notification -> setId($id);
 		return $id;
 	}
 	
