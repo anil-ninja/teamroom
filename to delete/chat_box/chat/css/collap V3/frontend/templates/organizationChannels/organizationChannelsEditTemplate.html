@@ -1,0 +1,122 @@
+<h4>Add first Datafield to Organization Channel</h4> <hr />
+
+<div class='row'>
+      <div class='col-md-8'>    
+<form class="edit-organizationChannel-form">
+ 
+        <table>
+        <tr>
+          <td>Name</td>
+          <td>
+              <input name="name" class="input-block-level" type="text" value="">
+          </td>
+        </tr>
+        <tr>
+          <td>Datafield</td>
+          <td>
+             <select name="data_field" id="org-datafield-selector" >
+                          <option value="">Select</option>
+                         <% _.each(datafields, function(datafield) { %>
+                            <option value="<%= datafield.name %>"> <%= datafield.name %></option>
+                         <% }); %>
+              </select>
+          </td>
+        </tr>
+        <tr>
+          <td>typed</td>
+          <td>
+            <input name="typed" class="input-block-level"  type="checkbox">
+          </td>
+        </tr>
+        <tr>
+          <td>Priority</td>
+          <td>
+             <input name="priority" class="input-block-level" type="text" value="">
+          </td>
+        </tr>
+        <tr>
+          <td>Validators</td>
+          <td>
+          <div id="validatorSelectPlace">
+                <ul id="sortable3" class="droptrue">
+             
+            </ul>
+          </div>
+          </td>
+        </tr>
+        <tr>
+          <td>Channel</td>
+          <td>
+            
+            <select name="channel" class="input-block-level">
+                         <% _.each(channels, function(channel) { %>
+                            <option value="<%= channel.name %>">
+                          <%= channel.name %>
+                            </option>
+                         <% }); %>
+                          
+                </select>
+
+               
+          </td>
+        </tr>
+        </table>
+        <input name="orgId" type="hidden" value="<%= orgId %>">
+        <hr />
+       <button type="submit" class="btn"><%= organizationChannel ? 'Update' : 'Create' %></button>
+       
+</form>
+
+</div>
+    <div class = 'col-md-4'>
+      <h4>Drag and drop back validators.</h4>
+          <ul id="sortable2" class="list-group dropfalse">
+            <% _.each(validators, function(validator) { %>
+              <li class="list-group-item ui-state-default"><%= validator.name %></li>
+
+            <% }); %>
+          </ul>
+    </div>
+  </div>
+    <style>
+#sortable1, #sortable2, #sortable3 { 
+  list-style-type: none; 
+  margin: 0; 
+  float: left; 
+  margin-right: 2px; 
+  background: #eee; 
+  padding: 2px; 
+  min-width: 150px;
+  min-height: 50px;
+  max-height: 400px;
+  overflow: scroll;
+}
+#sortable1 li, #sortable2 li, #sortable3 li { 
+  margin: 2px; 
+  padding: 2px; 
+  font-size: 1em; 
+  min-width: 120px; 
+}
+#sortable1 ul, #sortable2 ul, #sortable3 ul { 
+  margin: 2px; 
+  padding: 2px; 
+  font-size: 1em; 
+  min-width: 143px;
+  min-height: 50px;
+}
+</style>
+<script>
+
+$(function() {
+  $( "ul.droptrue" ).sortable({
+    connectWith: "ul"
+  });
+
+  $( "ul.dropfalse" ).sortable({
+    connectWith: "ul",
+    dropOnEmpty: true
+  });
+$( "#sortable1, #sortable2, #sortable3" ).disableSelection();
+});
+
+</script>

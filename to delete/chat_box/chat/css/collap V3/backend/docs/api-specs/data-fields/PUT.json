@@ -1,0 +1,75 @@
+/data-fields/<data_field_name>
+
+	1. PUT "https://cap.app:123@nucleus.capillary.in/v0/data-fields/birthday"
+
+	PUT Data:
+	{
+	  "root": {
+		"description":"Captures the birthday of the user", 
+		"validators": ["alphabetic", "is-boolean"]
+	  }
+	}
+
+	Response:
+	{
+	    "internal_status": {
+	        "code": "5000",
+	        "message": "Data-Field Fetched"
+	    },
+	    "data": {
+	        "data-fields": [
+	            {
+	                "id": "143",
+	                "name": "birthday",
+	                "is_array": false,
+	                "base_type": "date",
+	                "complex_type": null,
+	                "parent_type": null,
+	                "default_value": "-",
+	                "added_on": "2014-12-31 15:11:48",
+	                "last_update": "2014-12-31 15:11:48",
+	                "description": "Captures the birthday of the user",
+	                "validators": [
+	                    "date_format"
+	                ]
+	            }
+	        ]
+	    }
+	}
+
+	2. PUT "https://cap.app:123@nucleus.capillary.in/v0/data-fields/birthday"
+
+	PUT Data:
+	{
+	  "root": {
+	    "base_type": "string", 
+		"default_value": "1st Jan, 1970"
+	  }
+	}
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "5000",
+	        "message": "Data-Field Fetched"
+	    },
+	    "data": {
+	        "data-fields": [
+	            {
+	                "id": "143",
+	                "name": "birthday",
+	                "is_array": false,
+	                "base_type": "string",
+	                "complex_type": null,
+	                "parent_type": null,
+	                "default_value": "1st Jan, 1970",
+	                "added_on": "2014-12-31 15:11:48",
+	                "last_update": "2014-12-31 15:11:48",
+	                "description": "Captures the birthday of the user",
+	                "validators": [
+	                    "date_format"
+	                ]
+	            }
+	        ]
+	    }
+	}

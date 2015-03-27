@@ -1,0 +1,11 @@
+/organizations/<org_id>
+
+	DELETE "http://cap.app:123@nucleus.capillary.in/v0/organizations/29/channels/facebook/fields/fb_languages"
+
+	Response: 
+	{
+	    "internal_status": {
+	        "code": "6203",
+	        "message": "Organization-Channel-Field Deleted"
+	    }
+	}

@@ -1,0 +1,31 @@
+<h4>List of Customer Conflictss on Nucleus</h4> <hr />
+
+  <hr />
+  <table class="table striped">
+    <thead>
+      <tr>
+        <th>ID</th><th>Conflict UUID</th><th>Description</th><th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% _.each(conflicts, function(conflict) { %>
+        <tr>
+          <td><%= conflict.id %></td>
+          <td><a class="btn-link" href="#/customers-in-conflict/<%= conflict.conflictUuid %>">
+                <%= conflict.conflictUuid %>
+          </td>
+          <td>
+
+                <% _.each(conflict.cases, function(caset) { %>
+                  Mapping Id:  <%= caset.mapping_id  %> <br/>
+                  UUID:  <%= caset.uuid  %> <br/>
+                  Id Type:  <%= caset.idType  %> <br/>
+                  Id Value:  <%= caset.idValue  %> <br/><br/>    
+                <% }); %>
+          </td>
+          <td><%= conflict.description %></td>
+          
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>

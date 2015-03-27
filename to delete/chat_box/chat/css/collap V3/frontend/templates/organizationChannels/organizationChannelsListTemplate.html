@@ -1,0 +1,83 @@
+<h4><a href="#">
+            Home
+          </a> >
+          <%= orgName.replace(/%20/g, " ") %> > Channels</h4> 
+<a href="#/organization/<%= org_id %>/<%= orgName %>/addchannel" class="btn btn-primary">Add New Channel</a>
+<br/><br/>
+<table class="display" id='organizationChannelTable' width="100%" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Channel ID</th>
+      <th>Channel Name</th>
+      <th>Description</th>
+      <th>Migration</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% _.each(organizationChannels, function(organizationChannel) { %>
+      <tr>
+        <td><%= organizationChannel.id %></td>
+        <td><a href="#/organization/<%= org_id %>/<%= orgName %>/channel/<%= organizationChannel.name %>"><%= organizationChannel.name %></a></td>
+        <td><%= organizationChannel.description %></td>
+        <td>
+        <% if( organizationChannel.name  != 'intouch' ){ %>
+          <% statusStr = "" %>
+          <% if(channelStatuss) { %>
+          <% _.each(channelStatuss, function(channelStatus) { %>
+            <% if (channelStatus.channel == organizationChannel.name){ %> 
+                
+               <% if(channelStatus.status === "0") { %>
+                    <% statusStr = "Added to queue" %>
+              <% } else if(channelStatus.status === "1") { %>
+                    <% statusStr = "In process" %>
+              <% } else if(channelStatus.status === "2") { %>
+                    <% statusStr = "Migration Done" %>
+              
+              <% } else if(channelStatus.status === "3") { %>
+                    <% statusStr = "Error occured in migration" %>
+              <% } %>
+
+            <% } %> 
+           <% }); %>
+           <% } %> 
+          <% if (statusStr != "" ){ %> 
+                <%= statusStr %>
+                <% statusStr = "" %>
+            <%  }  else { %>
+                <form class="startMigration">
+                        <input name="channel" class="input-block-level" type="hidden" value="<%= organizationChannel.name %>">
+                        <input name="orgId" class="input-block-level" type="hidden" value="<%= org_id %>">
+                        <button type="submit"  class="btn btn-primary ">
+                          Start Migration
+                        </button>
+                </form>
+            <% } %>
+        <% } %>
+         <!--  <a class="btn" href="#/organization/<%= org_id %>/<%= orgName %>/channel/<%= organizationChannel.name %>">
+            Edit
+          </a> -->
+        </td>
+      </tr>
+    <% }); %>
+  </tbody>
+</table>
+
+<% console.log ( org_id )%>
+
+<h5>List of Preconfigured Channels</h5>
+
+<form class="edit-organizationChannel-form">
+ Facebook  
+ <input name="name" class="input-block-level" type="hidden" value="id">
+  <input name="data_field" class="input-block-level" type="hidden" value="facebook_id">
+  <input name="typed" type="hidden" value="on">
+  <input name="required" type="hidden" value="on">
+  <input name="priority" class="input-block-level" type="hidden" value="1">
+  <input name="validators" class="input-block-level" type="hidden" value="alphanumeric_special_char">
+  <input name="channel" class="input-block-level" type="hidden" value="facebook">
+
+  <input name="orgId" type="hidden" value="<%= org_id %>">
+  <input name="orgName" type="hidden" value="<%= orgName %>">
+  <button type="submit" class="btn btn-danger">Add it</button>
+       
+</form>

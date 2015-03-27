@@ -1,0 +1,45 @@
+/organizations/<org_id>/channels/<channel_name>/fields
+
+	POST "http://cap.app:123@nucleus.capillary.in/v0/organizations/29/channels/facebook/fields"
+
+	POST Data:
+    {
+        "root": {
+            "name": "fb_languages", 
+            "typed": true, 
+            "data_field": "language", 
+            "required": true,
+            "priority": "5", 
+            "validators": ["enum", "alphabetic", "alphanumeric"]
+        }
+    }
+
+
+	Response: 
+	{
+        "internal_status": {
+            "code": "6201",
+            "message": "Organization-Channel-Field Created"
+        },
+        "data": {
+            "data-fields": [
+                {
+                    "id": 44,
+                    "name": "fb_languages",
+                    "org": "Peter England",
+                    "channel": "facebook",
+                    "data_field": "language",
+                    "typed": true,
+                    "required": true,
+                    "priority": "5",
+                    "added_on": "2014-12-30 15:46:10",
+                    "last_update": "2014-12-30 15:46:10",
+                    "validators": [
+                        "enum",
+                        "alphabetic",
+                        "alphanumeric"
+                    ]
+                }
+            ]
+        }
+    }
