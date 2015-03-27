@@ -70,7 +70,7 @@ define([
         }
     });
 
-    window.BASE_URL = 'http://nucleus.capillary.in/v0';
+    window.BASE_URL = 'http://api.loc.collap.com/v0';
     window.app_router = new AppRouter;
     //console.log("new router request");
     var initialize = function () {
