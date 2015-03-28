@@ -60,14 +60,14 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
 		$sql = 'INSERT INTO project_responses (user_id, project_id, status, stmt, creation_time) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($projectResponse->userId);
-		$sqlQuery->setNumber($projectResponse->projectId);
-		$sqlQuery->setNumber($projectResponse->status);
-		$sqlQuery->set($projectResponse->stmt);
-		$sqlQuery->set($projectResponse->creationTime);
+		$sqlQuery->setNumber($projectResponse->getUserId());
+		$sqlQuery->setNumber($projectResponse->getProjectId());
+		$sqlQuery->setNumber($projectResponse->getStatus());
+		$sqlQuery->set($projectResponse->getStmt());
+		$sqlQuery->set($projectResponse->getCreationTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$projectResponse->id = $id;
+		$projectResponse-> setId($id);
 		return $id;
 	}
 	

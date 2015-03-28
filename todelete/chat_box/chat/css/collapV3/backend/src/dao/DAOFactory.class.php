@@ -134,6 +134,12 @@ class DAOFactory{
 	 * @return ProjectResponsesDAO
 	 */
 	public static function getProjectResponsesDAO(){
+
+		require_once('ProjectResponsesDAO.class.php');
+		require_once('models/ProjectResponse.class.php');
+		require_once('mysql/ProjectResponsesMySqlDAO.class.php');
+		require_once('mysql/ext/ProjectResponsesMySqlExtDAO.class.php');
+
 		return new ProjectResponsesMySqlExtDAO();
 	}
 

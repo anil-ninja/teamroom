@@ -48,6 +48,7 @@
             		$this -> resource = new UserProjectsResource();
                 break;
 //update /user-challenges to user/challenges
+                //done
                 case '/user-challenges': 
                     require_once 'resources/UserChallengesResource.class.php';
                     $this -> resource = new UserChallengesResource();
@@ -95,8 +96,8 @@
                     require_once 'resources/ProjectConversationsResource.class.php';
                     $this -> resource = new ProjectConversationsResource();
                 break;
-
-                case '/project/responses': 
+//update /project-responses to project/responses
+                case '/project-responses': 
                     require_once 'resources/ProjectResponsesResource.class.php';
                     $this -> resource = new ProjectResponsesResource();
                 break;

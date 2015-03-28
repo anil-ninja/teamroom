@@ -1,0 +1,54 @@
+/project/responses
+
+	GET "api.loc.collap.com/v0/project-responses/"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "9000",
+	        "message": "Project Responses Fetched"
+	    },
+	    "data": {
+	        "responses": [
+	            {
+	                "id": "1",
+	                "userId": "3",
+	                "projectId": "3",
+	                "status": "1",
+	                "stmt": "This is my first project response",
+	                "creationTime": "2015-03-29 01:10:42"
+	            },
+	            {
+	                "id": "3",
+	                "userId": "2",
+	                "projectId": "3",
+	                "status": "1",
+	                "stmt": "This is my third project response",
+	                "creationTime": "2015-03-29 01:15:51"
+	            }
+	        ]
+	    }
+	}
+
+	
+	GET "api.loc.collap.com/v0/project-responses/3"
+
+	{
+	    "internal_status": {
+	        "code": "9000",
+	        "message": "Project REsponse Fetched"
+	    },
+	    "data": {
+	        "projectResponseDetail": [
+	            {
+	                "id": "3",
+	                "userId": "2",
+	                "projectId": "3",
+	                "status": "1",
+	                "stmt": "This is my third project response",
+	                "creationTime": "2015-03-29 01:15:51"
+	            }
+	        ]
+	    }
+	}
