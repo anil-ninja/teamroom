@@ -91,12 +91,14 @@
                     require_once 'resources/ProjectTeamsResource.class.php';
                     $this -> resource = new ProjectTeamsResource();
                 break;
-
-                case '/project/conversations': 
+//update /project-conversations to project/conversations
+                //done
+                case '/project-conversations': 
                     require_once 'resources/ProjectConversationsResource.class.php';
                     $this -> resource = new ProjectConversationsResource();
                 break;
 //update /project-responses to project/responses
+                //done
                 case '/project-responses': 
                     require_once 'resources/ProjectResponsesResource.class.php';
                     $this -> resource = new ProjectResponsesResource();
