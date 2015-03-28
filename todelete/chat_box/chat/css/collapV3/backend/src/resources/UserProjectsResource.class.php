@@ -9,14 +9,14 @@ require_once 'models/Project.class.php';
 require_once 'exceptions/MissingParametersException.class.php';
 require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 
-class ProjectResource implements Resource {
+class UserProjectsResource implements Resource {
 
     private $collapDAO;
-    private $project;
+    private $userProject;
 
     public function __construct() {
         $DAOFactory = new DAOFactory();
-        $this -> collapDAO = $DAOFactory -> getUserProjectsDAO();
+        $this -> collapDAO = $DAOFactory -> getProjectsDAO();
     }
 
     public function checkIfRequestMethodValid($requestMethod) {
@@ -30,61 +30,19 @@ class ProjectResource implements Resource {
 
     public function put ($resourceVals, $data, $userId) {    }
 
-    public function post ($resourceVals, $data, $userId) {
-        global $logger, $warnings_payload;
-
-        $userId = 2;
-
-        $projectId = $resourceVals ['project'];
-        if (isset($projectId)) {
-            $warnings_payload [] = 'POST call to /project must not have ' . 
-                                        '/projectID appended i.e. POST /project';
-            throw new UnsupportedResourceMethodException();
-        }
-
-        $timeStamp = date('Y-m-d H:i:s');
-        $nowUpdateTimeStamp = date('0000-00-00 00:00:00');
-        $projectObj = new Project(
-                            $userId,
-                            $data ['blob_id'], 
-                            $data['project_title'],
-                            $data ['stmt'], 
-                            $data ['type'],
-                            1,
-                            0,
-                            $timeStamp,
-                            $data ['project_value'], 
-                            $data ['fund_needed'],          
-                            $nowUpdateTimeStamp
-                        );
-
-        $logger -> debug ("POSTed project Detail: " . $projectObj -> toString());
-
-        $this -> collapDAO -> insert($projectObj);
-
-        $projectDetail = $projectObj -> toArray();
-        
-        if(! isset($projectDetail ['id'])) 
-            return array('code' => '2011');
-
-        $this -> projectDetail[] = $projectDetail;
-        return array ('code' => '2001', 
-                        'data' => array(
-                            'projectDetail' => $this -> projectDetail
-                        )
-        );
-    }
+    public function post ($resourceVals, $data, $userId) {    }
 
     public function get($resourceVals, $data, $userId) {
         
-    //$userId : to in table as userId
+    //$userId : is to be updated
         $userId = 2;
 
-        $projectId = $resourceVals ['project'];
+        $projectId = $resourceVals ['user-projects'];
+        
         if (isset($projectId))
-            $result = $this->getproject($projectId);
+            $result = $this->getUserProject($projectId, $userId);
         else
-            $result = $this -> getListOfAllprojects();
+            $result = $this -> getListOfAllUserProjects($userId);
 
         if (!is_array($result)) {
             return array('code' => '2004');
@@ -93,14 +51,14 @@ class ProjectResource implements Resource {
         return $result;
     }
 
-    private function getproject($projectId) {
+    private function getUserProject($projectId, $userId) {
     
         global $logger;
-        $logger->debug('Fetch message...');
+        $logger->debug('Fetch project...');
 
         $userId = 2;
 
-        $projectObj = $this -> collapDAO -> load($projectId);
+        $projectObj = $this -> collapDAO -> loadProject($projectId, $userId);
 
         if(empty($projectObj)) 
                 return array('code' => '2004');        
@@ -116,14 +74,14 @@ class ProjectResource implements Resource {
             );
     }
 
-    private function getListOfAllprojects() {
+    private function getListOfAllUserProjects($userId) {
     
         global $logger;
-        $logger->debug('Fetch list of all messages...');
+        $logger->debug('Fetch list of all projects...');
 
         $userId = 2;
 
-        $listOfprojectObj = $this -> collapDAO -> queryAll();
+        $listOfprojectObj = $this -> collapDAO -> queryAllProjects($userId);
         
         if(empty($listOfprojectObj)) 
                 return array('code' => '2004');

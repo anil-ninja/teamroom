@@ -96,9 +96,7 @@ class ProjectResource implements Resource {
     private function getproject($projectId) {
     
         global $logger;
-        $logger->debug('Fetch message...');
-
-        $userId = 2;
+        $logger->debug('Fetch project...');
 
         $projectObj = $this -> collapDAO -> load($projectId);
 
@@ -119,9 +117,8 @@ class ProjectResource implements Resource {
     private function getListOfAllprojects() {
     
         global $logger;
-        $logger->debug('Fetch list of all messages...');
+        $logger->debug('Fetch list of all projects...');
 
-        $userId = 2;
 
         $listOfprojectObj = $this -> collapDAO -> queryAll();
         
