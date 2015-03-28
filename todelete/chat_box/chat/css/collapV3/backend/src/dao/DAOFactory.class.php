@@ -33,6 +33,12 @@ class DAOFactory{
 	 * @return ChallengeResponsesDAO
 	 */
 	public static function getChallengeResponsesDAO(){
+		
+		require_once('ChallengeResponsesDAO.class.php');
+		require_once('models/ChallengeResponse.class.php');
+		require_once('mysql/ChallengeResponsesMySqlDAO.class.php');
+		require_once('mysql/ext/ChallengeResponsesMySqlExtDAO.class.php');
+
 		return new ChallengeResponsesMySqlExtDAO();
 	}
 

@@ -13,17 +13,19 @@
         public function lookupResource ($resourceType) {
 
             switch($resourceType) {
-
+                //done
             	case '/user': 
             		require_once 'resources/UserResource.class.php';
             		$this -> resource = new UserResource();
                 break;
 //update /notifications to user/notifications
+                //done
                 case '/notifications': 
                     require_once 'resources/UserNotificationsResource.class.php';
                     $this -> resource = new UserNotificationsResource();
                 break;
 //update /messages to user/messages
+                //done
                 case '/messages': 
                     require_once 'resources/UserMessagesResource.class.php';
                     $this -> resource = new UserMessagesResource();
@@ -55,13 +57,13 @@
                 break;
                 
                 // Resorce for challenge endpoint 
-
+                //done
             	case '/challenge': 
                     require_once 'resources/ChallengeResource.class.php';
                     $this -> resource = new ChallengeResource();
                 break;
-
-                case '/challenge/responses': 
+//update /responses to challenge/responses
+                case '/responses': 
                     require_once 'resources/ChallengeResponsesResource.class.php';
                     $this -> resource = new ChallengeResponsesResource();
                 break;
@@ -75,7 +77,7 @@
 
 
                 // Resorce for project endpoint 
-
+                //done
                 case '/project': 
                     require_once 'resources/ProjectResource.class.php';
                     $this -> resource = new ProjectResource();
