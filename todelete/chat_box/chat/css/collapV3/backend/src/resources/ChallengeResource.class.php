@@ -79,13 +79,13 @@ class ChallengeResource implements Resource {
     public function get($resourceVals, $data, $userId) {
         
     //$userId : to in table as userId
-        $userId = 2;
+        //$userId = 2;
 
         $challengeId = $resourceVals ['challenge'];
         if (isset($challengeId))
-            $result = $this->getchallenge($challengeId, $userId);
+            $result = $this->getchallenge($challengeId);
         else
-            $result = $this -> getListOfAllchallenges($userId);
+            $result = $this -> getListOfAllchallenges();
 
         if (!is_array($result)) {
             return array('code' => '2004');
@@ -94,14 +94,13 @@ class ChallengeResource implements Resource {
         return $result;
     }
 
-    private function getchallenge($challengeID, $userId) {
+    private function getchallenge($challengeID) {
     
         global $logger;
-        $logger->debug('Fetch message...');
+        $logger->debug('Fetch challenge...');
 
-        $userId = 2;
 
-        $challengeObj = $this -> collapDAO -> load($challengeID, $userId);
+        $challengeObj = $this -> collapDAO -> load($challengeID);
 
         if(empty($challengeObj)) 
                 return array('code' => '2004');        
@@ -117,14 +116,13 @@ class ChallengeResource implements Resource {
             );
     }
 
-    private function getListOfAllchallenges($userId) {
+    private function getListOfAllchallenges() {
     
         global $logger;
-        $logger->debug('Fetch list of all messages...');
+        $logger->debug('Fetch list of all challenges...');
 
-        $userId = 2;
 
-        $listOfchallengeObjs = $this -> collapDAO -> queryAll($userId);
+        $listOfchallengeObjs = $this -> collapDAO -> queryAll();
         
         if(empty($listOfchallengeObjs)) 
                 return array('code' => '2004');

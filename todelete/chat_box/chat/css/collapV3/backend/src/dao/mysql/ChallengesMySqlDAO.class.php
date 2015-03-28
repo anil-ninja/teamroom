@@ -13,21 +13,19 @@ class ChallengesMySqlDAO implements ChallengesDAO{
 	 * @param String $id primary key
 	 * @return ChallengesMySql 
 	 */
-	public function load($id, $userId){
-		$sql = 'SELECT * FROM challenges WHERE id = ? AND user_id = ?';
+	public function load($id){
+		$sql = 'SELECT * FROM challenges WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
-		$sqlQuery->setNumber($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll($userId){
-		$sql = 'SELECT * FROM challenges WHERE user_id = ?';
+	public function queryAll(){
+		$sql = 'SELECT * FROM challenges';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($userId);
 		return $this->getList($sqlQuery);
 	}
 	

@@ -1,0 +1,36 @@
+/challenge/responses
+
+	POST ""
+
+	Post Data :
+
+		{
+			"root":{
+				"challenge_id" : 3,
+				"blob_id": 0,
+				"stmt" : "Comment/response to challenge",
+			    "type" : "1",
+				"time" : ""
+			}
+		}
+
+	response:
+
+	{
+	    "internal_status": {
+	        "code": "6001",
+	        "message": "Response Created"
+	    },
+	    "data": {
+	        "challengeResponseDetail": [
+	            {
+	                "id": 1,
+	                "challengeId": 3,
+	                "blobId": 0,
+	                "stmt": "Comment/response to challenge",
+	                "creationTime": "2015-03-28 15:13:27",
+	                "status": 1
+	            }
+	        ]
+	    }
+	}

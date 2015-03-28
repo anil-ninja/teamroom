@@ -13,12 +13,12 @@ interface ChallengesDAO{
 	 * @param String $id primary key
 	 * @Return Challenges 
 	 */
-	public function load($id, $userId);
+	public function load($id);
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll($userId);
+	public function queryAll();
 	
 	/**
 	 * Get all records from table ordered by field

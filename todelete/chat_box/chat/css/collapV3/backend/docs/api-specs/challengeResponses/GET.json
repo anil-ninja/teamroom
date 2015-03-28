@@ -1,0 +1,65 @@
+/challenge/responses/<response_ID>
+
+	GET "api.loc.collap.com/v0/responses/1"
+
+		{
+		    "internal_status": {
+		        "code": "2000",
+		        "message": "Response Fetched"
+		    },
+		    "data": {
+		        "challengeResponseDetail": [
+		            {
+		                "id": "1",
+		                "challengeId": "3",
+		                "blobId": "0",
+		                "stmt": "Comment/response to challenge",
+		                "creationTime": "2015-03-28 15:13:27",
+		                "status": "1"
+		            }
+		        ]
+		    }
+		}
+
+
+
+/challenge/responses/
+
+	GET "api.loc.collap.com/v0/responses/"
+
+	Response:
+
+	{
+    "internal_status": {
+        "code": "2000",
+        "message": "Response Fetched"
+    },
+    "data": {
+        "responses": [
+            {
+                "id": "1",
+                "challengeId": "3",
+                "blobId": "0",
+                "stmt": "Comment/response to challenge",
+                "creationTime": "2015-03-28 15:13:27",
+                "status": "1"
+            },
+            {
+                "id": "2",
+                "challengeId": "3",
+                "blobId": "0",
+                "stmt": "This is my first response to this post",
+                "creationTime": "2015-03-28 15:55:26",
+                "status": "1"
+            },
+            {
+                "id": "3",
+                "challengeId": "3",
+                "blobId": "0",
+                "stmt": "This is my SECOND response to this post",
+                "creationTime": "2015-03-28 15:56:31",
+                "status": "1"
+            }
+        ]
+    }
+}

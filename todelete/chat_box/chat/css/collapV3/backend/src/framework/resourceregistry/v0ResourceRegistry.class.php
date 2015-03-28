@@ -42,6 +42,7 @@
                 break;
 
 //update /user-projects to user/projects
+                //done
             	case '/user-projects': 
             		require_once 'resources/UserProjectsResource.class.php';
             		$this -> resource = new UserProjectsResource();

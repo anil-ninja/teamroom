@@ -1,0 +1,93 @@
+/user/challenges
+
+	GET "api.loc.collap.com/v0/user-challenges/"
+
+	Response:
+
+	{
+    "internal_status": {
+        "code": "2000",
+        "message": "Challenges Fetched"
+    },
+    "data": {
+        "challenges": [
+           	{
+                "id": "3",
+                "userId": "2",
+                "projectId": "0",
+                "blobId": "0",
+                "orgId": "0",
+                "title": "title od challenge with user id 2",
+                "stmt": "statemetn od challenge with user id 2",
+                "type": "1",
+                "status": "0",
+                "likes": "0",
+                "dislikes": "0",
+                "creationTime": "2015-03-27 05:21:02",
+                "lastUpdateTime": "0000-00-00 00:00:00"
+            },
+            {
+                "id": "8",
+                "userId": "2",
+                "projectId": "0",
+                "blobId": "0",
+                "orgId": "1",
+                "title": "title for statement",
+                "stmt": "statment of challenge",
+                "type": "1",
+                "status": "1",
+                "likes": "1",
+                "dislikes": "1",
+                "creationTime": "2015-03-27 18:55:47",
+                "lastUpdateTime": "0000-00-00 00:00:00"
+            },
+            {
+                "id": "9",
+                "userId": "2",
+                "projectId": "0",
+                "blobId": "0",
+                "orgId": "1",
+                "title": "title for challenge",
+                "stmt": "statment of challenge , this challenge is a type of post. It can be of any type like article, idea, video etc",
+                "type": "1",
+                "status": "1",
+                "likes": "1",
+                "dislikes": "1",
+                "creationTime": "2015-03-27 19:01:55",
+                "lastUpdateTime": "0000-00-00 00:00:00"
+            }
+        ]
+    }
+}
+
+
+/user/challenges/<challenge_Id>
+	GET "api.loc.collap.com/v0/user-challenges/9"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2000",
+	        "message": "Channel Fetched"
+	    },
+	    "data": {
+	        "challengeDetail": [
+	            {
+	                "id": "9",
+	                "userId": "2",
+	                "projectId": "0",
+	                "blobId": "0",
+	                "orgId": "1",
+	                "title": "title for challenge",
+	                "stmt": "statment of challenge , this challenge is a type of post. It can be of any type like article, idea, video etc",
+	                "type": "1",
+	                "status": "1",
+	                "likes": "1",
+	                "dislikes": "1",
+	                "creationTime": "2015-03-27 19:01:55",
+	                "lastUpdateTime": "0000-00-00 00:00:00"
+	            }
+	        ]
+	    }
+	}

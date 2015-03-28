@@ -7,6 +7,22 @@
  */
 class ChallengesMySqlExtDAO extends ChallengesMySqlDAO{
 
-	
+	public function loadUserChallenge($id, $userId){
+		$sql = 'SELECT * FROM challenges WHERE id = ? AND user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($id);
+		$sqlQuery->setNumber($userId);
+		return $this->getRow($sqlQuery);
+	}
+
+	/**
+	 * Get all records from table
+	 */
+	public function queryAllUserChallenges($userId){
+		$sql = 'SELECT * FROM challenges WHERE user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($userId);
+		return $this->getList($sqlQuery);
+	}
 }
 ?>
