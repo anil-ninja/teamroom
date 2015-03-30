@@ -110,8 +110,9 @@
                     require_once 'resources/ProjectKeywordsResource.class.php';
                     $this -> resource = new ProjectKeywordsResource();
                 break;
-
-                case '/project/challenges': 
+//update /project-challenges to project/challenges
+                //done
+                case '/project-challenges': 
                     require_once 'resources/ProjectChallengesResource.class.php';
                     $this -> resource = new ProjectChallegesResource();
                 break;

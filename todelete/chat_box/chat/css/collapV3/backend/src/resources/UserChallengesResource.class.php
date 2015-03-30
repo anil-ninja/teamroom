@@ -26,7 +26,30 @@ class UserChallengesResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data, $userId) {    }
+    public function delete ($resourceVals, $data, $userId) {
+        global $logger, $warnings_payload; 
+        
+        $userId = 2;
+        
+        $challengeId = $resourceVals ['user-challenges'];
+
+        if (! isset($challengeId)) {
+            $warnings_payload [] = 'DELETE call to /user-challenges must be succeeded ' .  
+                                        'by /challengeId i.e. DELETE /user-challenges/challengeId';
+            throw new UnsupportedResourceMethodException();
+        }
+        $logger -> debug ("Delete challenge with Id: " . $challengeId);-
+        
+        $result = $this -> collapDAO -> deleteChallenge($challengeId);
+        $logger -> debug ("Challenge Deleted? " . $result);
+
+        if ($result) 
+            $result = array('code' => '2003');
+        else 
+            $result = array('code' => '2004');
+
+        return $result;
+    }
 
     public function put ($resourceVals, $data, $userId) {    }
 
