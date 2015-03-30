@@ -1,0 +1,72 @@
+/user/reminders
+
+    PUT "api.loc.collap.com/v0/user-reminders/3"
+
+    PUT Data:
+
+    {
+        "root": {
+            "remind_to" : "4",
+            "message": "Reminder message updated for Aprail Fool",
+            "display_on_time" : "2015-4-01 00:01:32"
+        }
+    }
+
+    Response:
+
+    {
+        "internal_status": {
+            "code": "2002",
+            "message": "Reminder Updated"
+        },
+        "data": {
+            "reminder": [
+                {
+                    "id": "3",
+                    "userId": "2",
+                    "remindTo": "4",
+                    "message": "Reminder message updated for Aprail Fool",
+                    "displayOnTime": "2015-4-01 00:01:32",
+                    "status": "0",
+                    "creationTime": "2015-03-30 15:56:01"
+                }
+            ]
+        }
+    }
+
+
+
+/user/reminders
+
+    PUT "api.loc.collap.com/v0/user-reminders/3"
+
+    PUT Data: 
+
+    {
+        "root": {
+            "display_on_time" : "2015-3-01 00:01:32",
+            "message" : "update test for time also less than now time"
+        }
+    }
+
+    Response:
+
+    {
+        "internal_status": {
+            "code": "2002",
+            "message": "Reminder Updated"
+        },
+        "data": {
+            "reminder": [
+                {
+                    "id": "3",
+                    "userId": "2",
+                    "remindTo": "4",
+                    "message": "update test for time also less than now time",
+                    "displayOnTime": "2015-04-01 00:01:32",
+                    "status": "0",
+                    "creationTime": "2015-03-30 15:56:01"
+                }
+            ]
+        }
+    }

@@ -81,14 +81,14 @@ class RemindersMySqlDAO implements RemindersDAO{
 		$sql = 'UPDATE reminders SET user_id = ?, remind_to = ?, message = ?, display_on_time = ?, status = ?, creation_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($reminder->userId);
-		$sqlQuery->setNumber($reminder->remindTo);
-		$sqlQuery->set($reminder->message);
-		$sqlQuery->set($reminder->displayOnTime);
-		$sqlQuery->setNumber($reminder->status);
-		$sqlQuery->set($reminder->creationTime);
+		$sqlQuery->setNumber($reminder->getUserId());
+		$sqlQuery->setNumber($reminder->getRemindTo());
+		$sqlQuery->set($reminder->getMessage());
+		$sqlQuery->set($reminder->getDisplayOnTime());
+		$sqlQuery->setNumber($reminder->getStatus());
+		$sqlQuery->set($reminder->getCreationTime());
 
-		$sqlQuery->setNumber($reminder->id);
+		$sqlQuery->setNumber($reminder->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 

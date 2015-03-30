@@ -24,5 +24,12 @@ class RemindersMySqlExtDAO extends RemindersMySqlDAO{
 		$sqlQuery->setNumber($userId);	
 		return $this->getList($sqlQuery);
 	}
+
+	public function deleteReminder($id){
+		$sql = 'UPDATE reminders SET status = 2 WHERE id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($id);
+		return $this->executeUpdate($sqlQuery);
+	}
 }
 ?>
