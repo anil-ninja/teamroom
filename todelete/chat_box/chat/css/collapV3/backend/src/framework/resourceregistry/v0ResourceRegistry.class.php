@@ -31,7 +31,9 @@
                     $this -> resource = new UserMessagesResource();
                 break;
 
-    			case '/user/reminders': 
+//update /user-reminders to user/reminders
+                //done
+    			case '/user-reminders': 
     				require_once 'resources/UserRemindersResource.class.php';
             		$this -> resource = new UserRemindersResource();
                 break;

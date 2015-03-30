@@ -157,6 +157,19 @@ class DAOFactory{
 	}
 
 	/**
+	 * @return RemindersDAO
+	 */
+	public static function getRemindersDAO(){
+
+		require_once('RemindersDAO.class.php');
+		require_once('models/Reminder.class.php');
+		require_once('mysql/RemindersMySqlDAO.class.php');
+		require_once('mysql/ext/RemindersMySqlExtDAO.class.php');
+
+		return new RemindersMySqlExtDAO();
+	}
+
+	/**
 	 * @return SkillsDAO
 	 */
 	public static function getSkillsDAO(){
