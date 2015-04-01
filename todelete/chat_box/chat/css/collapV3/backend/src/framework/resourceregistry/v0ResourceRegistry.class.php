@@ -18,12 +18,29 @@
             		require_once 'resources/UserResource.class.php';
             		$this -> resource = new UserResource();
                 break;
+
 //update /notifications to user/notifications
-                //done
                 case '/notifications': 
                     require_once 'resources/UserNotificationsResource.class.php';
                     $this -> resource = new UserNotificationsResource();
                 break;
+                //events, involve_in, reminders, links, projects, challenge, user_info, response, skill
+                //get
+
+
+//update /notifications to user/notifications
+                //done-- update endpoint
+                case 'user/all-notifications': 
+                    require_once 'resources/UserAllNotificationsResource.class.php';
+                    $this -> resource = new UserAllNotificationsResource();
+                break;
+
+                //only notification table
+
+
+
+
+
 //update /messages to user/messages
                 //done
                 case '/messages': 
@@ -42,6 +59,7 @@
             		require_once 'resources/UserLinksResource.class.php';
             		$this -> resource = new UserLinksResource();
                 break;
+                //get, post, put, delete
 
 //update /user-projects to user/projects
                 //done
@@ -49,17 +67,21 @@
             		require_once 'resources/UserProjectsResource.class.php';
             		$this -> resource = new UserProjectsResource();
                 break;
+                //get, put, delete
+
 //update /user-challenges to user/challenges
                 //done
                 case '/user-challenges': 
                     require_once 'resources/UserChallengesResource.class.php';
                     $this -> resource = new UserChallengesResource();
                 break;
-            	
+            	//get, put, delete
+
                 case '/user/recommendation': 
             		require_once 'resources/UserRecommendationResource.class.php';
             		$this -> resource = new UserRecommendationResource();
                 break;
+                //only get in recommendation
                 
                 // Resorce for challenge endpoint 
                 //done
@@ -75,8 +97,9 @@
                 break;
 
                 //response can be Answer to challenge or comment to any chall post
-
-                case '/challenge/keywords': 
+//update /challenge-keywords to challenge/keywords
+                //done
+                case '/challenge-keywords': 
                     require_once 'resources/ChallengeKeywordsResource.class.php';
                     $this -> resource = new ChallengeKeywordsResource();
                 break;
@@ -106,7 +129,7 @@
                     $this -> resource = new ProjectResponsesResource();
                 break;
 
-                case '/project/keywords': 
+                case '/project-keywords': 
                     require_once 'resources/ProjectKeywordsResource.class.php';
                     $this -> resource = new ProjectKeywordsResource();
                 break;

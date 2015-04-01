@@ -93,6 +93,12 @@ class DAOFactory{
 	 * @return KeywordsDAO
 	 */
 	public static function getKeywordsDAO(){
+
+		require_once('KeywordsDAO.class.php');
+		require_once('models/Keyword.class.php');
+		require_once('mysql/KeywordsMySqlDAO.class.php');
+		require_once('mysql/ext/KeywordsMySqlExtDAO.class.php');
+
 		return new KeywordsMySqlExtDAO();
 	}
 

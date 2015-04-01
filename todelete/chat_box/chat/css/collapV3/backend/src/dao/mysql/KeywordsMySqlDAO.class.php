@@ -60,14 +60,14 @@ class KeywordsMySqlDAO implements KeywordsDAO{
 		$sql = 'INSERT INTO keywords (u_p_c_id, type, words, relevence, time) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($keyword->uPCId);
-		$sqlQuery->setNumber($keyword->type);
-		$sqlQuery->set($keyword->words);
-		$sqlQuery->setNumber($keyword->relevence);
-		$sqlQuery->set($keyword->time);
+		$sqlQuery->setNumber($keyword->getUPCId());
+		$sqlQuery->setNumber($keyword->getType());
+		$sqlQuery->set($keyword->getWords());
+		$sqlQuery->setNumber($keyword->getRelevence());
+		$sqlQuery->set($keyword->getTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$keyword->id = $id;
+		$keyword -> setId($id);
 		return $id;
 	}
 	
