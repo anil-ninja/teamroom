@@ -28,7 +28,114 @@ class UserResource implements Resource {
     
     public function delete ($resourceVals, $data, $userId) {    }
 
-    public function put ($resourceVals, $data, $userId) {    }
+    public function put ($resourceVals, $data, $userId) {
+        global $logger, $warnings_payload;
+        $update = false;
+        
+        $userId = $resourceVals ['user'];
+
+        if (! isset($userId)) {
+            $warnings_payload [] = 'PUT call to /user must be succeeded ' . 
+                                    'by /userId i.e. PUT /user/userId';
+            throw new UnsupportedResourceMethodException();
+        }
+        if (! isset($data))
+            throw new MissingParametersException('No fields specified for updation');
+
+        $userObj = $this -> collapDAO -> load($userId);
+        
+        if(! is_object($userObj)) 
+            return array('code' => '2004');
+
+        $newFirstName= $data ['first_name'];
+        if (isset($newFirstName)) {
+            if ($newFirstName != $userObj -> getFirstName()) {
+                $update = true;
+                $userObj -> setFirstName($newFirstName);
+            }
+        }
+
+        $newLastName= $data ['last_name'];
+        if (isset($newLastName)) {
+            if ($newLastName != $userObj -> getLastName()) {
+                $update = true;
+                $userObj -> setLastName($newLastName);
+            }
+        }
+
+        $newPhone= $data ['phone'];
+        if (isset($newPhone)) {
+            if ($newPhone != $userObj -> getPhone()) {
+                $update = true;
+                $userObj -> setPhone($newPhone);
+            }
+        }
+
+        $newRank= $data ['rank'];
+        if (isset($newRank)) {
+            if ($newRank != $userObj -> getRank()) {
+                $update = true;
+                $userObj -> setRank($newRank);
+            }
+        }
+
+        $newCapital= $data ['capital'];
+        if (isset($newCapital)) {
+            if ($newCapital != $userObj -> getCapital()) {
+                $update = true;
+                $userObj -> setCapital($newCapital);
+            }
+        }
+
+        $newWorkingOrgName= $data ['working_org_name'];
+        if (isset($newWorkingOrgName)) {
+            if ($newWorkingOrgName != $userObj -> getWorkingOrgName()) {
+                $update = true;
+                $userObj -> setWorkingOrgName($newWorkingOrgName);
+            }
+        }
+
+        $newLivingTown= $data ['living_town'];
+        if (isset($newLivingTown)) {
+            if ($newLivingTown != $userObj -> getLivingTown()) {
+                $update = true;
+                $userObj -> setLivingTown($newLivingTown);
+            }
+        }
+
+        $newAboutUser= $data ['about_user'];
+        if (isset($newAboutUser)) {
+            if ($newAboutUser != $userObj -> getAboutUser()) {
+                $update = true;
+                $userObj -> setAboutUser($newAboutUser);
+            }
+        }
+
+        $newLastLoginTime = date('Y-m-d H:i:s');
+        if (isset($newLastLoginTime)) {
+            $update = true;
+            $userObj -> setLastlogintime($newLastLoginTime);
+        }
+
+
+        if ($update) {
+            $logger -> debug('PUT User object: ' . $userObj -> toString());
+            $result = $this -> collapDAO -> update($userObj);
+            $logger -> debug('Updated entry: ' . $result);
+        }
+
+        $user = $userObj -> toArray();
+        $this -> user [] = $user;
+
+        //if(! isset($user ['id'])) 
+        //    return array('code' => '2004');
+
+        return array('code' => '2002', 
+                        'data' => array(
+                            'Updated User Details' => $this -> user
+                        )
+        );
+    }
 
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
