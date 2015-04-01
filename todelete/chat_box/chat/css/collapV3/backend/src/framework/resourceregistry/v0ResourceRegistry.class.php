@@ -129,6 +129,8 @@
                     $this -> resource = new ProjectResponsesResource();
                 break;
 
+//update /project-keywords to project/keywords
+                //done
                 case '/project-keywords': 
                     require_once 'resources/ProjectKeywordsResource.class.php';
                     $this -> resource = new ProjectKeywordsResource();

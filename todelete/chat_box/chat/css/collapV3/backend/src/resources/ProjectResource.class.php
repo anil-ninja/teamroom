@@ -28,7 +28,98 @@ class ProjectResource implements Resource {
     
     public function delete ($resourceVals, $data, $userId) {    }
 
-    public function put ($resourceVals, $data, $userId) {    }
+    public function put ($resourceVals, $data, $userId) {
+        global $logger, $warnings_payload;
+        $update = false;
+        
+        $projectId = $resourceVals ['project'];
+
+        if (! isset($projectId)) {
+            $warnings_payload [] = 'PUT call to /project must be succeeded ' . 
+                                    'by /challengeId i.e. PUT /project/projectId';
+            throw new UnsupportedResourceMethodException();
+        }
+        if (! isset($data))
+            throw new MissingParametersException('No fields specified for updation');
+
+        $projectObj = $this -> collapDAO -> load($projectId);
+        
+        if(! is_object($projectObj)) 
+            return array('code' => '2004');
+
+        $newProjectTitle= $data ['project_title'];
+        if (isset($newProjectTitle)) {
+            if ($newProjectTitle != $projectObj -> getProjectTitle()) {
+                $update = true;
+                $projectObj -> setProjectTitle($newProjectTitle);
+            }
+        }
+
+        $newStmt= $data ['stmt'];
+        if (isset($newStmt)) {
+            if ($newStmt != $projectObj -> getStmt()) {
+                $update = true;
+                $projectObj -> setStmt($newStmt);
+            }
+        }
+
+        $newType= $data ['type'];
+        if (isset($newType)) {
+            if ($newType != $projectObj -> getType()) {
+                $update = true;
+                $projectObj -> setType($newType);
+            }
+        }
+
+        $newOrder= $data ['order'];
+        if (isset($newOrder)) {
+            if ($newOrder != $projectObj -> getOrder()) {
+                $update = true;
+                $projectObj -> setOrder($newOrder);
+            }
+        }
+
+        $newFundNeeded= $data ['fund_needed'];
+        if (isset($newFundNeeded)) {
+            if ($newFundNeeded != $projectObj -> getFundNeeded()) {
+                $update = true;
+                $projectObj -> setFundNeeded($newFundNeeded);
+            }
+        }
+
+        $newProjectValue= $data ['project_value'];
+        if (isset($newProjectValue)) {
+            if ($newProjectValue != $projectObj -> getProjectValue()) {
+                $update = true;
+                $projectObj -> setProjectValue($newProjectValue);
+            }
+        }
+
+        $newLastUpdateTime = date('Y-m-d H:i:s');
+        if (isset($newLastUpdateTime)) {
+            $update = true;
+            $projectObj -> setLastUpdateTime($newLastUpdateTime);
+        }
+
+
+        if ($update) {
+            $logger -> debug('PUT Project object: ' . $projectObj -> toString());
+            $result = $this -> collapDAO -> update($projectObj);
+            $logger -> debug('Updated entry: ' . $result);
+        }
+
+        $project = $projectObj -> toArray();
+        $this -> project [] = $project;
+
+        //if(! isset($project ['id'])) 
+        //    return array('code' => '2004');
+
+        return array('code' => '2002', 
+                        'data' => array(
+                            'Updated project' => $this -> project
+                        )
+        );
+    }
 
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
