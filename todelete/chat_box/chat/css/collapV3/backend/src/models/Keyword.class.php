@@ -8,78 +8,81 @@
 	class Keyword{
 		
 		private $id;
-		private $uPCId;
-		private $type;
-		private $words;
-		private $relevence;
-		private $time;
-		function __construct( $uPCId,$type,$words,$relevence,$Time
-		,$id = null)
-		{
-			$this->id = $id;
-			$this->uPCId= $uPCId;
-			$this->type= $type;
-			$this->words = $words;
-			$this->relevence = $relevence;
-			
-			$this->time=$time;}
-			function setId($id){
+		private $uPCId;
+		private $type;
+		private $words;
+		private $relevence;
+		private $time;
+		function __construct($uPCId, $type, $words, $relevence, $time, $id = null) {
+			$this -> id = $id;
+			$this -> uPCId= $uPCId;
+			$this -> type= $type;
+			$this -> words = $words;
+			$this -> relevence = $relevence;
+			$this -> time = $time;
+		}
+		
+		function setId($id){
 			$this -> id = $id;
 		}
 		function getId(){
-				return $this->id;
+			return $this -> id;
 		}
 
 		function setUPCId($uPCId){
 			$this -> uPCId = $uPCId;
 		}
 		function getUPCId(){
-				return $this-> uPCId;
-				}
-				
-				function setType($type){
-			$this -> type = $type;}
-			
-			function getType(){
-				return $this->type;
+			return $this -> uPCId;
 		}
-			function setWords($words){
-			$this -> $words= $words;
+				
+		function setType($type){
+ 			$this -> type = $type;
+ 		}	
+		function getType(){
+			return $this -> type;
+		}
+
+		function setWords($words){
+			$this -> words= $words;
 		}
 		function getWords(){
-				return $this-> $words;
-				}
+			return $this-> words;
+		}
 				
-				function setRelevence($relevence){
+		function setRelevence($relevence){
 			$this -> relevence = $relevence;
 		}
 		function getRelevence(){
-				return $this-> relevence;
+			return $this -> relevence;
+		}
+
+		function setTime($time){
+ 			$this -> time = $time;
+ 		}
+		function getTime(){
+			return $this -> time;
 		}
 		
 
+		function toString (){
+			return $this -> id . ", " . 
+					$this -> uPCId.",".
+					$this -> relevence.",".
+					$this -> words.".".
+					$this -> type.",".
+					$this -> time;
+		}
 
-	
-			function toString (){
-			return $this -> id . ", " . $this ->pUCId.",".$this->relevence.",".$this->words.".".$this->type;}
-			function toArray() {
+		function toArray() {
 			return array (
-						
-						
-						
-						
-			id => $this->id,
-			pUCId=>$this->pUCId,
-			relevence=> $this->relevence,
-			words => $this->words,
-			type =>$this->type
-			
-						);
-					}
-
-		
-
-		
-		
+						id => $this-> id,
+						uPCId=>$this-> uPCId,
+						relevence=> $this-> relevence,
+						words => $this-> words,
+						type =>$this-> type,
+						time =>$this-> time
+					);
+		}
 	}
 ?>

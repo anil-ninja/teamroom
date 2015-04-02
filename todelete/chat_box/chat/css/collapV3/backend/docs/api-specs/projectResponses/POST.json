@@ -1,0 +1,35 @@
+/prject/responses
+
+    POST ""
+
+    POST Data:
+
+    {
+        "root":{
+            "project_id" : 4,
+            "status" : 1,
+            "stmt" : "This is my first project response",
+            "creation_time" : ""
+        }
+    }
+
+    Response:
+
+        {
+            "internal_status": {
+                "code": "8001",
+                "message": "Project response Created"
+            },
+            "data": {
+                "projectResponseDetail": [
+                    {
+                        "id": 5,
+                        "userId": 2,
+                        "projectId": 4,
+                        "status": 1,
+                        "stmt": "This is my first project response",
+                        "creationTime": "2015-03-29 01:23:55"
+                    }
+                ]
+            }
+        }

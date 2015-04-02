@@ -1,20 +1,20 @@
 <?php
 /**
- * Class that operate on table 'project_responses'. Database Mysql.
+ * Class that operate on table 'reminders'. Database Mysql.
  *
  * @author: http://phpdao.com
- * @date: 2015-03-03 14:48
+ * @date: 2015-03-30 14:57
  */
-class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
+class RemindersMySqlDAO implements RemindersDAO{
 
 	/**
 	 * Get Domain object by primry key
 	 *
 	 * @param String $id primary key
-	 * @return ProjectResponsesMySql 
+	 * @return RemindersMySql 
 	 */
 	public function load($id){
-		$sql = 'SELECT * FROM project_responses WHERE id = ?';
+		$sql = 'SELECT * FROM reminders WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
 		return $this->getRow($sqlQuery);
@@ -24,7 +24,7 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
 	 * Get all records from table
 	 */
 	public function queryAll(){
-		$sql = 'SELECT * FROM project_responses';
+		$sql = 'SELECT * FROM reminders';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
 	}
@@ -35,17 +35,17 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
 	 * @param $orderColumn column name
 	 */
 	public function queryAllOrderBy($orderColumn){
-		$sql = 'SELECT * FROM project_responses ORDER BY '.$orderColumn;
+		$sql = 'SELECT * FROM reminders ORDER BY '.$orderColumn;
 		$sqlQuery = new SqlQuery($sql);
 		return $this->getList($sqlQuery);
 	}
 	
 	/**
  	 * Delete record from table
- 	 * @param projectResponse primary key
+ 	 * @param reminder primary key
  	 */
 	public function delete($id){
-		$sql = 'DELETE FROM project_responses WHERE id = ?';
+		$sql = 'DELETE FROM reminders WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
 		return $this->executeUpdate($sqlQuery);
@@ -54,39 +54,41 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
 	/**
  	 * Insert record to table
  	 *
- 	 * @param ProjectResponsesMySql projectResponse
+ 	 * @param RemindersMySql reminder
  	 */
-	public function insert($projectResponse){
-		$sql = 'INSERT INTO project_responses (user_id, project_id, status, stmt, creation_time) VALUES (?, ?, ?, ?, ?)';
+	public function insert($reminder){
+		$sql = 'INSERT INTO reminders (user_id, remind_to, message, display_on_time, status, creation_time) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($projectResponse->getUserId());
-		$sqlQuery->setNumber($projectResponse->getProjectId());
-		$sqlQuery->setNumber($projectResponse->getStatus());
-		$sqlQuery->set($projectResponse->getStmt());
-		$sqlQuery->set($projectResponse->getCreationTime());
+		$sqlQuery->setNumber($reminder->getUserId());
+		$sqlQuery->setNumber($reminder->getRemindTo());
+		$sqlQuery->set($reminder->getMessage());
+		$sqlQuery->set($reminder->getDisplayOnTime());
+		$sqlQuery->setNumber($reminder->getStatus());
+		$sqlQuery->set($reminder->getCreationTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$projectResponse-> setId($id);
+		$reminder-> setId($id);
 		return $id;
 	}
 	
 	/**
  	 * Update record in table
  	 *
- 	 * @param ProjectResponsesMySql projectResponse
+ 	 * @param RemindersMySql reminder
  	 */
-	public function update($projectResponse){
-		$sql = 'UPDATE project_responses SET user_id = ?, project_id = ?, status = ?, stmt = ?, creation_time = ? WHERE id = ?';
+	public function update($reminder){
+		$sql = 'UPDATE reminders SET user_id = ?, remind_to = ?, message = ?, display_on_time = ?, status = ?, creation_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($projectResponse->userId);
-		$sqlQuery->setNumber($projectResponse->projectId);
-		$sqlQuery->setNumber($projectResponse->status);
-		$sqlQuery->set($projectResponse->stmt);
-		$sqlQuery->set($projectResponse->creationTime);
+		$sqlQuery->setNumber($reminder->getUserId());
+		$sqlQuery->setNumber($reminder->getRemindTo());
+		$sqlQuery->set($reminder->getMessage());
+		$sqlQuery->set($reminder->getDisplayOnTime());
+		$sqlQuery->setNumber($reminder->getStatus());
+		$sqlQuery->set($reminder->getCreationTime());
 
-		$sqlQuery->setNumber($projectResponse->id);
+		$sqlQuery->setNumber($reminder->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 
@@ -94,41 +96,48 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
  	 * Delete all rows
  	 */
 	public function clean(){
-		$sql = 'DELETE FROM project_responses';
+		$sql = 'DELETE FROM reminders';
 		$sqlQuery = new SqlQuery($sql);
 		return $this->executeUpdate($sqlQuery);
 	}
 
 	public function queryByUserId($value){
-		$sql = 'SELECT * FROM project_responses WHERE user_id = ?';
+		$sql = 'SELECT * FROM reminders WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByProjectId($value){
-		$sql = 'SELECT * FROM project_responses WHERE project_id = ?';
+	public function queryByRemindTo($value){
+		$sql = 'SELECT * FROM reminders WHERE remind_to = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->getList($sqlQuery);
 	}
 
-	public function queryByStatus($value){
-		$sql = 'SELECT * FROM project_responses WHERE status = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->getList($sqlQuery);
-	}
-
-	public function queryByStmt($value){
-		$sql = 'SELECT * FROM project_responses WHERE stmt = ?';
+	public function queryByMessage($value){
+		$sql = 'SELECT * FROM reminders WHERE message = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
 	}
 
+	public function queryByDisplayOnTime($value){
+		$sql = 'SELECT * FROM reminders WHERE display_on_time = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->getList($sqlQuery);
+	}
+
+	public function queryByStatus($value){
+		$sql = 'SELECT * FROM reminders WHERE status = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->getList($sqlQuery);
+	}
+
 	public function queryByCreationTime($value){
-		$sql = 'SELECT * FROM project_responses WHERE creation_time = ?';
+		$sql = 'SELECT * FROM reminders WHERE creation_time = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->getList($sqlQuery);
@@ -136,35 +145,42 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
 
 
 	public function deleteByUserId($value){
-		$sql = 'DELETE FROM project_responses WHERE user_id = ?';
+		$sql = 'DELETE FROM reminders WHERE user_id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByProjectId($value){
-		$sql = 'DELETE FROM project_responses WHERE project_id = ?';
+	public function deleteByRemindTo($value){
+		$sql = 'DELETE FROM reminders WHERE remind_to = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
-	public function deleteByStatus($value){
-		$sql = 'DELETE FROM project_responses WHERE status = ?';
-		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($value);
-		return $this->executeUpdate($sqlQuery);
-	}
-
-	public function deleteByStmt($value){
-		$sql = 'DELETE FROM project_responses WHERE stmt = ?';
+	public function deleteByMessage($value){
+		$sql = 'DELETE FROM reminders WHERE message = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
 	}
 
+	public function deleteByDisplayOnTime($value){
+		$sql = 'DELETE FROM reminders WHERE display_on_time = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->set($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
+	public function deleteByStatus($value){
+		$sql = 'DELETE FROM reminders WHERE status = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($value);
+		return $this->executeUpdate($sqlQuery);
+	}
+
 	public function deleteByCreationTime($value){
-		$sql = 'DELETE FROM project_responses WHERE creation_time = ?';
+		$sql = 'DELETE FROM reminders WHERE creation_time = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->set($value);
 		return $this->executeUpdate($sqlQuery);
@@ -175,15 +191,22 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
 	/**
 	 * Read row
 	 *
-	 * @return ProjectResponsesMySql 
+	 * @return RemindersMySql 
 	 */
 	protected function readRow($row){
-		$projectResponse = new ProjectResponse($row['user_id'],$row['project_id'],$row['status'],$row['stmt'], $row['creation_time'],$row['id']);
+		$reminder = new Reminder();
 		
+		/*$reminder->id = $row['id'];
+		$reminder->userId = $row['user_id'];
+		$reminder->remindTo = $row['remind_to'];
+		$reminder->message = $row['message'];
+		$reminder->displayOnTime = $row['display_on_time'];
+		$reminder->status = $row['status'];
+		$reminder->creationTime = $row['creation_time'];
+*/
+		$reminder = new Reminder($row['user_id'], $row['remind_to'],$row['message'], $row['display_on_time'],$row['status'],$row['creation_time'], $row['id']);
 		
-		
-
-		return $projectResponse;
+		return $reminder;
 	}
 	
 	protected function getList($sqlQuery){
@@ -198,7 +221,7 @@ class ProjectResponsesMySqlDAO implements ProjectResponsesDAO{
 	/**
 	 * Get row
 	 *
-	 * @return ProjectResponsesMySql 
+	 * @return RemindersMySql 
 	 */
 	protected function getRow($sqlQuery){
 		$tab = QueryExecutor::execute($sqlQuery);

@@ -8,84 +8,91 @@
 	class ChallengeResponse{
 		
 		private $id;
-		private $userId;
-		private $challengeId;
-		private $blobId;
-		private $stmt;
-		private $status;
-		private $creationTime;
-function __construct( $userId,$challengeId,$blobId,$stmt,$status,$creationTime
-		,$id = null)
-		{
-			$this->id = $id;
-			$this->userId= $userId;
-			$this->challengeId= $challengeId;
-			$this->blobId = $blobId;
-			$this->stmt = $stmt;
-			$this->status = $status;
-			$this->creationTime=$creationTime;}
-			function setId($id){
+		private $userId;
+		private $challengeId;
+		private $blobId;
+		private $stmt;
+		private $status;
+		private $creationTime;
+		
+		function __construct( $userId,$challengeId,$blobId,$stmt,$status,$creationTime,$id = null)	{
+			$this -> id = $id;
+			$this -> userId= $userId;
+			$this -> challengeId= $challengeId;
+			$this -> blobId = $blobId;
+			$this -> stmt = $stmt;
+			$this -> status = $status;
+			$this -> creationTime=$creationTime;
+		}
+
+		function setId($id){
 			$this -> id = $id;
 		}
 		function getId(){
-				return $this->id;
+			return $this -> id;
 		}
 
 		function setUserID($userId){
 			$this -> userId = $userId;
 		}
 		function getUserId(){
-				return $this-> userId;
-				}
-				
-				function ChallengeId($challengeId){
-			$this -> challengeId = $challengeId;
-			function getChallengeId(){
-				return $this->challengeId;
+			return $this -> userId;
 		}
-			function setStmt($stmt){
-			$this -> $stmt= $stmt;
+				
+		function setChallengeId($challengeId){
+			$this -> challengeId = $challengeId;
+		}
+		function getChallengeId(){
+			return $this -> challengeId;
+		}
+
+		function setBlobId($blobId) {
+			$this -> blobId = $blobId;
+		}
+		function getBlobId() {
+			return $this -> blobId;
+		}
+
+		function setStmt($stmt){
+			$this -> stmt= $stmt;
 		}
 		function getStmt(){
-				return $this-> $stmt;
-				}
+			return $this -> stmt;
+		}
 				
-				function setStatus($status){
+		function setStatus($status){
 			$this -> status = $status;
 		}
 		function getStatus(){
-				return $this-> status;
+			return $this -> status;
 		}
+
 		function setCreationTime($creationTime){
-			$this -> to = $creationTime;
+			$this -> creationTime = $creationTime;
 		}
-		function CreationTime(){
-				return $this->creationTime;
+		function getCreationTime(){
+			return $this -> creationTime;
 		}
 
-
-	
-			function toString (){
-			return $this -> id . ", " . $this ->challengeId.",".$this->blobId.",".$this->stmt.".".$this->creationTime.",".$this->status;}
-			function toArray() {
-			return array (
-						
-						
-						
-						
-			id => $this->id,
-			challengeId=>$this->challengeId,
-			blobId=> $this->blobId,
-			stmt => $this->stmt,
-			creationTime =>$this->creationTime,
-			
-			status => $this->status
-			
-						);
-					}
-
+		function toString (){
+			return $this -> id . ", " . 
+					$this -> challengeId.",".
+					$this -> blobId.",".
+					$this -> stmt.".".
+					$this -> creationTime.",".
+					$this -> status;
+		}
 		
 
-				
+		function toArray() {
+			return array (
+							id => $this -> id,
+							challengeId => $this -> challengeId,
+							blobId=> $this -> blobId,
+							stmt => $this -> stmt,
+							creationTime => $this -> creationTime,
+							status => $this -> status			
+						);
+		}
 	}
 ?>

@@ -60,15 +60,15 @@ class ChallengeResponsesMySqlDAO implements ChallengeResponsesDAO{
 		$sql = 'INSERT INTO challenge_responses (user_id, challenge_id, blob_id, stmt, status, creation_time) VALUES (?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($challengeResponse->userId);
-		$sqlQuery->setNumber($challengeResponse->challengeId);
-		$sqlQuery->setNumber($challengeResponse->blobId);
-		$sqlQuery->set($challengeResponse->stmt);
-		$sqlQuery->setNumber($challengeResponse->status);
-		$sqlQuery->set($challengeResponse->creationTime);
+		$sqlQuery->setNumber($challengeResponse->getUserId());
+		$sqlQuery->setNumber($challengeResponse->getChallengeId());
+		$sqlQuery->setNumber($challengeResponse->getBlobId());
+		$sqlQuery->set($challengeResponse->getStmt());
+		$sqlQuery->setNumber($challengeResponse->getStatus());
+		$sqlQuery->set($challengeResponse->getCreationTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$challengeResponse->id = $id;
+		$challengeResponse -> setId($id);
 		return $id;
 	}
 	

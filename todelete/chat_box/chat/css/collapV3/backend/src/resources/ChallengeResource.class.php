@@ -26,9 +26,115 @@ class ChallengeResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data, $userId) {    }
+    public function delete ($resourceVals, $data, $userId) {
+        global $logger, $warnings_payload; 
+        
+        $userId = 2;
+        
+        $challengeId = $resourceVals ['challenges'];
 
-    public function put ($resourceVals, $data, $userId) {    }
+        if (! isset($challengeId)) {
+            $warnings_payload [] = 'DELETE call to /challenges must be succeeded ' .  
+                                        'by /challengeId i.e. DELETE /challenges/challengeId';
+            throw new UnsupportedResourceMethodException();
+        }
+        $logger -> debug ("Delete challenge with Id: " . $challengeId);-
+        
+        $result = $this -> collapDAO -> deleteChallenge($challengeId);
+        $logger -> debug ("Challenge Deleted? " . $result);
+
+        if ($result) 
+            $result = array('code' => '2003');
+        else 
+            $result = array('code' => '2004');
+
+        return $result;
+    }
+
+    public function put ($resourceVals, $data, $userId) {    
+        global $logger, $warnings_payload;
+        $update = false;
+        
+        $challengeId = $resourceVals ['challenge'];
+
+        if (! isset($challengeId)) {
+            $warnings_payload [] = 'PUT call to /challenge must be succeeded ' . 
+                                    'by /challengeId i.e. PUT /challenge/challengeId';
+            throw new UnsupportedResourceMethodException();
+        }
+        if (! isset($data))
+            throw new MissingParametersException('No fields specified for updation');
+
+        $challengeObj = $this -> collapDAO -> load($challengeId);
+        
+        if(! is_object($challengeObj)) 
+            return array('code' => '2004');
+
+        $newTitle= $data ['title'];
+        if (isset($newTitle)) {
+            if ($newTitle != $challengeObj -> getTitle()) {
+                $update = true;
+                $challengeObj -> setTitle($newTitle);
+            }
+        }
+
+        $newStmt = $data ['stmt'];
+        if (isset($newStmt)) {
+            if ($newStmt != $challengeObj -> getStmt()){
+                $update = true;
+                $challengeObj -> setStmt($newStmt);
+            }
+        }
+
+        $newStatus = $data ['status'];
+        if (isset($newStatus)) {
+            if ($newStmt != $challengeObj -> getStatus()){
+                $update = true;
+                $challengeObj -> setStatus($newStatus);
+            }
+        }
+
+        $newLikes= $data ['likes'];
+        if (isset($newLikes)) {
+            if ($newLikes != $challengeObj -> getLikes()) {
+                $update = true;
+                $challengeObj -> setLikes($newLikes);
+            }
+        }
+
+        $newDislikes= $data ['dislikes'];
+        if (isset($newDislikes)) {
+            if ($newDislikes != $challengeObj -> getDislikes()) {
+                $update = true;
+                $challengeObj -> setDislikes($newDislikes);
+            }
+        }
+
+        $newLastUpdateTime = date('Y-m-d H:i:s');
+        if (isset($newLastUpdateTime)) {
+            $update = true;
+            $challengeObj -> setLastUpdateTime($newLastUpdateTime);
+        }
+
+
+        if ($update) {
+            $logger -> debug('PUT Challenge object: ' . $challengeObj -> toString());
+            $result = $this -> collapDAO -> update($challengeObj);
+            $logger -> debug('Updated entry: ' . $result);
+        }
+
+        $challenge = $challengeObj -> toArray();
+        $this -> challenge [] = $challenge;
+
+        //if(! isset($challenge ['id'])) 
+        //    return array('code' => '2004');
+
+        return array('code' => '2002', 
+                        'data' => array(
+                            'Updated challenge' => $this -> challenge
+                        )
+        );
+    }
 
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
@@ -79,13 +185,13 @@ class ChallengeResource implements Resource {
     public function get($resourceVals, $data, $userId) {
         
     //$userId : to in table as userId
-        $userId = 2;
+        //$userId = 2;
 
         $challengeId = $resourceVals ['challenge'];
         if (isset($challengeId))
-            $result = $this->getchallenge($challengeId, $userId);
+            $result = $this->getchallenge($challengeId);
         else
-            $result = $this -> getListOfAllchallenges($userId);
+            $result = $this -> getListOfAllchallenges();
 
         if (!is_array($result)) {
             return array('code' => '2004');
@@ -94,14 +200,13 @@ class ChallengeResource implements Resource {
         return $result;
     }
 
-    private function getchallenge($challengeID, $userId) {
+    private function getchallenge($challengeID) {
     
         global $logger;
-        $logger->debug('Fetch message...');
+        $logger->debug('Fetch challenge...');
 
-        $userId = 2;
 
-        $challengeObj = $this -> collapDAO -> load($challengeID, $userId);
+        $challengeObj = $this -> collapDAO -> load($challengeID);
 
         if(empty($challengeObj)) 
                 return array('code' => '2004');        
@@ -117,14 +222,13 @@ class ChallengeResource implements Resource {
             );
     }
 
-    private function getListOfAllchallenges($userId) {
+    private function getListOfAllchallenges() {
     
         global $logger;
-        $logger->debug('Fetch list of all messages...');
+        $logger->debug('Fetch list of all challenges...');
 
-        $userId = 2;
 
-        $listOfchallengeObjs = $this -> collapDAO -> queryAll($userId);
+        $listOfchallengeObjs = $this -> collapDAO -> queryAll();
         
         if(empty($listOfchallengeObjs)) 
                 return array('code' => '2004');

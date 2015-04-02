@@ -13,21 +13,19 @@ class ChallengesMySqlDAO implements ChallengesDAO{
 	 * @param String $id primary key
 	 * @return ChallengesMySql 
 	 */
-	public function load($id, $userId){
-		$sql = 'SELECT * FROM challenges WHERE id = ? AND user_id = ?';
+	public function load($id){
+		$sql = 'SELECT * FROM challenges WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
-		$sqlQuery->setNumber($userId);
 		return $this->getRow($sqlQuery);
 	}
 
 	/**
 	 * Get all records from table
 	 */
-	public function queryAll($userId){
-		$sql = 'SELECT * FROM challenges WHERE user_id = ?';
+	public function queryAll(){
+		$sql = 'SELECT * FROM challenges';
 		$sqlQuery = new SqlQuery($sql);
-		$sqlQuery->setNumber($userId);
 		return $this->getList($sqlQuery);
 	}
 	
@@ -89,20 +87,21 @@ class ChallengesMySqlDAO implements ChallengesDAO{
 		$sql = 'UPDATE challenges SET user_id = ?, project_id = ?, blob_id = ?, org_id = ?, title = ?, stmt = ?, type = ?, status = ?, likes = ?, dislikes = ?, creation_time = ?, last_update_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($challenge->userId);
-		$sqlQuery->setNumber($challenge->projectId);
-		$sqlQuery->setNumber($challenge->blobId);
-		$sqlQuery->setNumber($challenge->orgId);
-		$sqlQuery->set($challenge->title);
-		$sqlQuery->set($challenge->stmt);
-		$sqlQuery->setNumber($challenge->type);
-		$sqlQuery->setNumber($challenge->status);
-		$sqlQuery->setNumber($challenge->likes);
-		$sqlQuery->setNumber($challenge->dislikes);
-		$sqlQuery->set($challenge->creationTime);
-		$sqlQuery->set($challenge->lastUpdateTime);
+		$sqlQuery->set($challenge->getUserId());
+		$sqlQuery->set($challenge->getProjectId());
+		$sqlQuery->set($challenge->getBlobId());
+		$sqlQuery->set($challenge->getOrgId());
+		$sqlQuery->set($challenge->getTitle());
+		$sqlQuery->set($challenge->getStmt());
+		$sqlQuery->set($challenge->getType());
+		$sqlQuery->set($challenge->getStatus());
+		$sqlQuery->set($challenge->getLikes());
+		$sqlQuery->set($challenge->getDislikes());
+		$sqlQuery->set($challenge->getCreationTime());
+		$sqlQuery->set($challenge->getLastUpdateTime());
 
-		$sqlQuery->setNumber($challenge->id);
+
+		$sqlQuery->setNumber($challenge->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 

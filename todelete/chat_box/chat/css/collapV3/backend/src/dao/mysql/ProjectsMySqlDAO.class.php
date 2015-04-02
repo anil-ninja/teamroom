@@ -57,23 +57,24 @@ class ProjectsMySqlDAO implements ProjectsDAO{
  	 * @param ProjectsMySql project
  	 */
 	public function insert($project){
-		$sql = 'INSERT INTO projects (user_id, blob_id, project_title, stmt, type, org_id, order, creation_time, project_value, fund_needed, last_update_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO projects (user_id, blob_id, project_title, stmt, type, org_id, `order`, creation_time, project_value, fund_needed, last_update_time) 
+							VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($project->userId);
-		$sqlQuery->setNumber($project->blobId);
-		$sqlQuery->set($project->projectTitle);
-		$sqlQuery->set($project->stmt);
-		$sqlQuery->setNumber($project->type);
-		$sqlQuery->setNumber($project->orgId);
-		$sqlQuery->setNumber($project->order);
-		$sqlQuery->set($project->creationTime);
-		$sqlQuery->setNumber($project->projectValue);
-		$sqlQuery->setNumber($project->fundNeeded);
-		$sqlQuery->set($project->lastUpdateTime);
+		$sqlQuery->setNumber($project->getUserId());
+		$sqlQuery->setNumber($project->getBlobId());
+		$sqlQuery->set($project->getProjectTitle());
+		$sqlQuery->set($project->getStmt());
+		$sqlQuery->setNumber($project->getType());
+		$sqlQuery->setNumber($project->getOrgId());
+		$sqlQuery->setNumber($project->getOrder());
+		$sqlQuery->set($project->getCreationTime());
+		$sqlQuery->setNumber($project->getProjectValue());
+		$sqlQuery->setNumber($project->getFundNeeded());
+		$sqlQuery->set($project->getLastUpdateTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$project->id = $id;
+		$project-> seTId ($id);
 		return $id;
 	}
 	
@@ -83,22 +84,22 @@ class ProjectsMySqlDAO implements ProjectsDAO{
  	 * @param ProjectsMySql project
  	 */
 	public function update($project){
-		$sql = 'UPDATE projects SET user_id = ?, blob_id = ?, project_title = ?, stmt = ?, type = ?, org_id = ?, order = ?, creation_time = ?, project_value = ?, fund_needed = ?, last_update_time = ? WHERE id = ?';
+		$sql = 'UPDATE projects SET user_id = ?, blob_id = ?, project_title = ?, stmt = ?, type = ?, org_id = ?, `order` = ?, creation_time = ?, project_value = ?, fund_needed = ?, last_update_time = ? WHERE id = ?';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($project->userId);
-		$sqlQuery->setNumber($project->blobId);
-		$sqlQuery->set($project->projectTitle);
-		$sqlQuery->set($project->stmt);
-		$sqlQuery->setNumber($project->type);
-		$sqlQuery->setNumber($project->orgId);
-		$sqlQuery->setNumber($project->order);
-		$sqlQuery->set($project->creationTime);
-		$sqlQuery->setNumber($project->projectValue);
-		$sqlQuery->setNumber($project->fundNeeded);
-		$sqlQuery->set($project->lastUpdateTime);
+		$sqlQuery->setNumber($project->getUserId());
+		$sqlQuery->setNumber($project->getBlobId());
+		$sqlQuery->set($project->getProjectTitle());
+		$sqlQuery->set($project->getStmt());
+		$sqlQuery->setNumber($project->getType());
+		$sqlQuery->setNumber($project->getOrgId());
+		$sqlQuery->setNumber($project->getOrder());
+		$sqlQuery->set($project->getCreationTime());
+		$sqlQuery->setNumber($project->getProjectValue());
+		$sqlQuery->setNumber($project->getFundNeeded());
+		$sqlQuery->set($project->getLastUpdateTime());
 
-		$sqlQuery->setNumber($project->id);
+		$sqlQuery->setNumber($project->getId());
 		return $this->executeUpdate($sqlQuery);
 	}
 

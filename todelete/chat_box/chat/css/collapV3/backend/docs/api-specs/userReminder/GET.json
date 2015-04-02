@@ -1,0 +1,34 @@
+/user/reminders
+
+	GET ""
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2000",
+	        "message": "Reminders Fetched"
+	    },
+	    "data": {
+	        "reminders": [
+	            {
+	                "id": "1",
+	                "userId": "2",
+	                "remindTo": "3",
+	                "message": "hello, reminder done",
+	                "displayOnTime": "2015-12-03 12:01:32",
+	                "status": "0",
+	                "creationTime": "2015-03-30 15:52:11"
+	            },
+	            {
+	                "id": "4",
+	                "userId": "2",
+	                "remindTo": "3",
+	                "message": "hello, reminder test for time before now",
+	                "displayOnTime": "2015-12-03 12:01:32",
+	                "status": "0",
+	                "creationTime": "2015-03-30 16:08:37"
+	            }
+	        ]
+	    }
+	}

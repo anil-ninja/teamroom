@@ -33,6 +33,12 @@ class DAOFactory{
 	 * @return ChallengeResponsesDAO
 	 */
 	public static function getChallengeResponsesDAO(){
+		
+		require_once('ChallengeResponsesDAO.class.php');
+		require_once('models/ChallengeResponse.class.php');
+		require_once('mysql/ChallengeResponsesMySqlDAO.class.php');
+		require_once('mysql/ext/ChallengeResponsesMySqlExtDAO.class.php');
+
 		return new ChallengeResponsesMySqlExtDAO();
 	}
 
@@ -87,6 +93,12 @@ class DAOFactory{
 	 * @return KeywordsDAO
 	 */
 	public static function getKeywordsDAO(){
+
+		require_once('KeywordsDAO.class.php');
+		require_once('models/Keyword.class.php');
+		require_once('mysql/KeywordsMySqlDAO.class.php');
+		require_once('mysql/ext/KeywordsMySqlExtDAO.class.php');
+
 		return new KeywordsMySqlExtDAO();
 	}
 
@@ -128,6 +140,12 @@ class DAOFactory{
 	 * @return ProjectResponsesDAO
 	 */
 	public static function getProjectResponsesDAO(){
+
+		require_once('ProjectResponsesDAO.class.php');
+		require_once('models/ProjectResponse.class.php');
+		require_once('mysql/ProjectResponsesMySqlDAO.class.php');
+		require_once('mysql/ext/ProjectResponsesMySqlExtDAO.class.php');
+
 		return new ProjectResponsesMySqlExtDAO();
 	}
 
@@ -135,7 +153,26 @@ class DAOFactory{
 	 * @return ProjectsDAO
 	 */
 	public static function getProjectsDAO(){
+		
+		require_once('ProjectsDAO.class.php');
+		require_once('models/Project.class.php');
+		require_once('mysql/ProjectsMySqlDAO.class.php');
+		require_once('mysql/ext/ProjectsMySqlExtDAO.class.php');
+
 		return new ProjectsMySqlExtDAO();
+	}
+
+	/**
+	 * @return RemindersDAO
+	 */
+	public static function getRemindersDAO(){
+
+		require_once('RemindersDAO.class.php');
+		require_once('models/Reminder.class.php');
+		require_once('mysql/RemindersMySqlDAO.class.php');
+		require_once('mysql/ext/RemindersMySqlExtDAO.class.php');
+
+		return new RemindersMySqlExtDAO();
 	}
 
 	/**

@@ -19,6 +19,9 @@
                             'message' => 'Invalid Attribute Type ', 'otherHeaders' => array()), 
 
 
+            '903' => array('httpStatusCode' => 400, 
+                            'message' => 'Invalid time for reminder ', 'otherHeaders' => array()),
+
             /* [1000 - 1004] - Authorization Exceptions  */
             '1000' => array('httpStatusCode' => 400, 
                             'message' => 'Authentication Required for Nucleus API Access; See http://nucleus.capillary.in/docs',
