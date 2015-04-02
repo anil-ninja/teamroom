@@ -37,10 +37,6 @@
 
                 //only notification table
 
-
-
-
-
 //update /messages to user/messages
                 //done
                 case '/messages': 
@@ -55,7 +51,7 @@
             		$this -> resource = new UserRemindersResource();
                 break;
 
-            	case '/user/links': 
+            	case '/user-links': 
             		require_once 'resources/UserLinksResource.class.php';
             		$this -> resource = new UserLinksResource();
                 break;
@@ -112,7 +108,7 @@
                     $this -> resource = new ProjectResource();
                 break;
 
-                case '/project/teams': 
+                case '/project-teams': 
                     require_once 'resources/ProjectTeamsResource.class.php';
                     $this -> resource = new ProjectTeamsResource();
                 break;

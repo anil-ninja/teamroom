@@ -61,22 +61,18 @@ class KnownPeoplesMySqlDAO implements KnownPeoplesDAO{
  	 * @param KnownPeoplesMySql knownPeople
  	 */
 	public function insert($knownPeople){
-		$sql = 'INSERT INTO known_peoples (id, status, requesting_time, last_action_time, requesting_id, knowing_id) VALUES (?, ?, ?, ?, ?, ?)';
+		$sql = 'INSERT INTO known_peoples (requesting_id, knowing_id, status, requesting_time, last_action_time) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($knownPeople->id);
-		$sqlQuery->setNumber($knownPeople->status);
-		$sqlQuery->set($knownPeople->requestingTime);
-		$sqlQuery->set($knownPeople->lastActionTime);
-
+		$sqlQuery->set($knownPeople->getRequestingId());
+		$sqlQuery->set($knownPeople->getKnowingId());
+		$sqlQuery->set($knownPeople->getStatus());
+		$sqlQuery->set($knownPeople->getRequsetingTime());
+		$sqlQuery->set($knownPeople->getLastActionTime());
 		
-		$sqlQuery->setNumber($knownPeople->requestingId);
-
-		$sqlQuery->setNumber($knownPeople->knowingId);
-
-		$this->executeInsert($sqlQuery);	
-		//$knownPeople->id = $id;
-		//return $id;
+		$id = $this->executeInsert($sqlQuery);
+		$knownPeople -> setId($id);
+		return $id;
 	}
 	
 	/**
