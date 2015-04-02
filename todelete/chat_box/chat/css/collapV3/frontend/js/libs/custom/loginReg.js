@@ -1,0 +1,55 @@
+function nospaces(t){
+	if(t.value.match(/\s/g)){
+		bootstrap_alert(".alert_placeholder", 'Sorry, you are not allowed to enter any spaces', 5000,"alert-success");
+		t.value=t.value.replace(/\s/g,'');
+	}
+}
+function bootstrap_alert(elem, message, timeout,type) {
+	$(elem).show().html('<div class="alert '+type+'" role="alert" style="overflow: hidden; position: fixed; right: 20%;transition: transform 0.3s ease-out 0s; width: auto;  z-index: 1050; top: 50px;  transition: left 0.6s ease-out 0s;"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button><span>'+message+'</span></div>');
+	if (timeout || timeout === 0) {
+		setTimeout(function() { 
+			$(elem).show().html('');
+		}, timeout);    
+	}
+}
+function emailCheck() {
+	var xmlhttp;
+	var email=document.getElementById("email");
+	if (email.value != ""){
+		if (window.XMLHttpRequest){
+			xmlhttp=new XMLHttpRequest();
+		} 
+		else {
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				document.getElementById("status_email").innerHTML=xmlhttp.responseText;
+			}
+		};
+		xmlhttp.open("GET","ajax/email_availability.php?email="+encodeURIComponent(email.value),true);
+		xmlhttp.send();
+	}
+}
+function aboutinvest(){
+	$(".totalcapital").toggle();
+}
+function usernameCheck() {
+	var xmlhttp;
+	var username=document.getElementById("usernameR");
+	if (username.value != ""){
+		if (window.XMLHttpRequest){
+			xmlhttp=new XMLHttpRequest();
+		} 
+		else {
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				document.getElementById("status").innerHTML=xmlhttp.responseText;
+			}
+		};
+		xmlhttp.open("GET","ajax/uname_availability.php?username="+encodeURIComponent(username.value),true);
+		xmlhttp.send();
+	}
+}

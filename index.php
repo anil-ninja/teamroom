@@ -73,7 +73,6 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
     <link href="styles/bootstrap.min.css" rel="stylesheet" />
     <link href="styles/bootstrap-responsive.min.css" rel="stylesheet" />
     <link href="css/preview.min.css" rel="stylesheet" />
-    <link href='../../fonts.googleapis.com/css%3Ffamily=PT+Sans:400,700.css' rel='stylesheet' type='text/css'>
     <link href="styles/font-awesome.min.css" rel="stylesheet" />
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Courgette' rel='stylesheet' type='text/css'>
@@ -106,84 +105,7 @@ if (isset($_POST['request_password']) && $_POST['email_forget_password']) {
 
                  </a>
                 <div class="nav-collapse collapse navbar-responsive-collapse">
-                    <?php
-                    /*<ul class="nav">
-
-                        <li class="dropdown">
-                            <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">Layout<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li class="nav-header">Align</li>
-                                <li><a href="index.html#demo-1">Top Align</a></li>
-                                <li><a href="index.html#demo-2">Left Align</a></li>
-                                <li><a href="index.html#demo-3">Right Align</a></li>
-                                <li><a href="index.html#demo-4">Bottom Align</a></li>
-                                <li><a href="index.html#demo-5">With Dropdown And Custom Content</a></li>
-                                <li><a href="index.html#demo-6">Papper Stack</a></li>
-                                <li><a href="index.html#demo-7">Tabs With Modal Popup</a></li>
-                                <li><a href="index.html#demo-8">Features</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="index.html#" class="dropdown-toggle" data-toggle="dropdown">Color Theme<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-
-                                <li><a href="index.html#color" data-class=" " data-body="light">Light (Default)</a></li>
-                                <li><a href="index.html#color" data-class="dark" data-body="">Dark</a></li>
-                                <li><a href="index.html#color" data-class="dark dark-input" data-body="">Dark(Including Input)</a></li>
-                                <li><a href="index.html#color" data-class="grey" data-color="">Grey </a></li>
-                                <li><a href="index.html#color" data-class="grey dark-input" data-body="">Grey (Including Input)</a></li>
-
-
-                            </ul>
-                        </li>
-
-                        <li class="dropdown">
-                            <a href="index.html#s" class="dropdown-toggle" data-toggle="dropdown">BG Color<b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li class="color-swatch">
-                                    <div data-color="#c69c6d" title="Pale Worm Brown" data-class=""></div>
-                                    <div data-color="#8c6239" title="Medium Warm Brown" data-class=""></div>
-                                    <div data-color="#c7b299" title="Pale Cool Brown" data-class=""></div>
-                                    <div data-color="rgb(102, 199, 235)" title="Pure Cyan" data-class=""></div>
-                                    <div data-color="#00a651" title="Pure Green" data-class=""></div>
-                                    <div data-color="#00a99d" title="Pure Green Cyan" data-class=""></div>
-                                    <div data-color="#8dc63f" title="Pure Pea Green" data-class=""></div>
-                                    <div data-color="rgb(241, 176, 72)" title="Orange" data-class=""></div>
-                                    <div data-color="rgb(219, 124, 128)" title="Light Red" data-class=""></div>
-                                    <div data-color="#A6A4CA" title="Light Violet" data-class=""></div>
-                                    <div data-color="rgb(245,245,245)" title="Grey 5%" data-class="light"></div>
-                                    <div data-color="rgb(215, 215, 215)" title="Grey 20%" data-class="light"></div>
-                                    <div data-color="rgb(172, 172, 172)" title="Grey 40%" data-class=""></div>
-                                    <div data-color="rgb(125, 125, 125)" title="Grey 60%" data-class=""></div>
-                                    <div data-color="rgb(99, 99, 99)" title="Grey 70%" data-class=""></div>
-                                    <div data-color="rgb(70, 70, 70)" title="Grey 80%" data-class=""></div>
-                                    <div data-color="rgb(54, 54, 54)" title="Grey 85%" data-class=""></div>
-                                    <div data-color="rgb(37, 37, 37)" title="Grey 90%" data-class=""></div>
-                                    <!--div[data-color="#"]*15-->
-
-                                </li>
-
-                            </ul>
-
-                        </li>
-                        <li>
-                            <a href="index.html#demo-6">Css3 Papper Stack</a>
-
-                        </li>
-                        <li style="padding-top: 8px; color: darkgray">
-                            <label class="checkbox">
-                                <a href="index.html#null" id="texture-check" data-toggle="button" class="btn btn-mini active"><i class="icon-ok"></i></a>
-                                Background-Texture
-                            </label>
-                        </li>
-                        <li></li>
-
-
-                    </ul>
-                    * */
-                    ?>
-                    <!--<a class='btn btn-default' style="font-size: 14px;" href="#tabSignIn" role="tab" data-toggle="tab">Sign In</a>-->             
-                </div>
+                   </div>
                 <!-- /.nav-collapse -->
             </div>
         </div>

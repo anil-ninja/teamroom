@@ -1,18 +1,54 @@
-<div class="col-md-2"></div>
-<div class="col-md-7">
-  <center><h2>Welcome to Collap</h2><br/>
-  <span class="c-logo-head">Collaborate, Grow and help Society</span></center><br/>
-  
-  <form class = "edit-login-form" type="POST">
-    <div class="input-group">
-      <span class="input-group-addon">Username</span>
-     	<input name="username" autofocus="" placeholder="Email or username"  autocapitalize="off" type="text" class="form-control">
-    </div><br/>
-  	<div class="input-group">
-      <span class="input-group-addon">Password</span>
-  			<input name="password" id="login__password" class="form-control" placeholder="password" autocomplete="off" type="password">
-        <input name="project" type="hidden" value="Mobac">
-  	</div><br/>
- 		<button  class="btn btn-success" id="login" type="submit">Log In</button>
-  </form>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-6">
+    Login <span class="pull-right">or <a href="#/register" style="color:#0CD85E"> create an account </a></span>
+    <form class="login-form" ><br/>
+      
+      <input type="text" class="input-block-level" id="username" placeholder="Email or Username"/>
+      
+      <input type="password" class="input-block-level" id="passwordlogin" placeholder="Password"/>
+
+      <input type="checkbox" class="btn btn-mini custom-checkbox"/> Remember Me
+      <input name="project" type="hidden" value="Collap"/>
+      <button class="btn btn-success pull-right" id="login"> Login </button>
+      <br/><br/>
+      <a href="#/forgetpassword" style="color:#0CD85E"> Forgot your Password? </a>
+                                       
+      <br/><br/><div class="line"> or </div>
+      <br/><br/>
+      <div class="socials">
+        <ul class="list-inline">
+          <li><a  href="https://www.facebook.com/pages/collapcom/739310236156746" target='_blank'>
+            <img class="media-object img-circle" src="imgs/facebook.png" style="width:50px;"/>
+          </a></li>
+          <li><a  href="https://twitter.com/CollapCom" target='_blank'>
+            <img class="media-object img-circle" src="imgs/Twitter.png" style="width:50px;"/>
+          </a></li>
+          <li><a  href="https://www.pinterest.com/collapcom/" target='_blank'>
+            <img class="media-object img-circle" src="imgs/pinterest.png" style="width:50px;"/>
+          </a></li>
+          <li><a  href="https://plus.google.com/117170233233281087141" rel="publisher" target='_blank'>
+            <img class="media-object img-circle" src="imgs/google.png" style="width:50px;"/>
+          </a></li>
+          <li><a  href="https://in.linkedin.com/" target='_blank'>
+            <img class="media-object img-circle" src="imgs/linkdin.png" style="width:50px;"/>
+          </a></li>
+          <li><a  href="https://github.com/collapcom" target='_blank'>
+            <img class="media-object img-circle" src="imgs/github.png" style="width:50px;"/>
+          </a></li>
+        </ul>
+      </div>
+    </form>
+    <div class="divider large visible-desktop"></div><br/>
+  </div>
 </div>
+<hr/>
+<ul class="list-inline">
+  <li><a href="#/about"> About </a></li>
+  <li><a href="#/blog"> Blog </a></li>
+  <li><a href="#/career"> Careers </a></li>
+  <li><a href="#/customer-speak"> Customer Speak </a></li>
+  <li><a href="#/contact"> Contact </a></li>
+  <li><a href="#/terms"> Term of Use </a></li>
+  <li><a href="#/privacy-policy"> Privacy Policy </a></li>
+</ul>

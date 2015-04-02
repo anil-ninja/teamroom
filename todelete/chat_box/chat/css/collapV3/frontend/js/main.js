@@ -10,9 +10,12 @@ require.config({
     backbone: 'libs/backbone/backbone-min',
     templates: '../templates',
     renderjson: 'libs/renderjson/renderjson',
-    datatable: 'libs/datatable/jquery-dataTables-min'
+    bootstrap: 'libs/bootstrap/bootstrap',
+    bootbox: 'libs/bootstrap/bootbox',
+    datatable: 'libs/datatable/jquery-dataTables-min',
+    tabs: 'libs/bootstrap/tabs-addon',
+    logReg: 'libs/custom/loginReg'
   }
-
 });
 
 require([
