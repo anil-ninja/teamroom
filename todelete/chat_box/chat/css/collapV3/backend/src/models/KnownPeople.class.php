@@ -14,7 +14,7 @@
 		private $requestingTime;
 		private $lastActionTime;
 
-		function function__construct($requestingId, $knowingId, $lastActionTime, $requestingTimet, $status, $id = null) {
+		function __construct($requestingId, $knowingId, $status, $lastActionTime, $requestingTime, $id = null) {
 			$this -> id = $id;
 			$this -> requestingId= $requestingId;
 			$this -> knowingId= $knowingId;
@@ -44,11 +44,11 @@
 			return $this-> knowingId;
 		}
 
-		function setRequsetingTme($requsetingTme){
-			$this -> requsetingTme= $requsetingTme;
+		function setRequsetingTime($requestingTime){
+			$this -> requestingTime= $requestingTime;
 		}
-		function getRequsetingTme(){
-			return $this-> requsetingTme;
+		function getRequsetingTime(){
+			return $this-> requestingTime;
 		}
 				
 		function setStatus($status){
@@ -69,7 +69,7 @@
 			return $this -> id . ", " . 
 					$this -> requestingId.",".
 					$this -> lastActionTime.",".
-					$this -> requestingId.".".
+					$this -> requestingTime.".".
 					$this -> knowingId.",".
 					$this -> status;
 		}

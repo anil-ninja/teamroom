@@ -1,0 +1,39 @@
+/project/team
+
+	POST "api.loc.collap.com/v0/project-teams"
+
+	Post Data: 
+
+		{
+			"root":{
+				"project_id" : 3,
+		        "team_name" : "myTeam",
+		   		"team_owner" : 1,
+		        "member_status" : 1,
+		        "status" : 1
+			}
+		}
+		
+	Response:
+
+		{
+		    "internal_status": {
+		        "code": "2001",
+		        "message": "Channel Created"
+		    },
+		    "data": {
+		        "teamDetail": [
+		            {
+		                "id": 4,
+		                "userId": 2,
+		                "projectId": 3,
+		                "teamName": "myTeam",
+		                "teamOwner": 1,
+		                "teamCreation": "2015-04-02 22:05:05",
+		                "memberStatus": 1,
+		                "leaveTeam": "0000-00-00 00:00:00",
+		                "status": 1
+		            }
+		        ]
+		    }
+		}

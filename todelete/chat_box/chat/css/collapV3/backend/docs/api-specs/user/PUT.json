@@ -1,0 +1,52 @@
+/user
+
+	PUT "api.loc.collap.com/v0/user/3"
+
+	Put Data:
+		{
+			"root":{
+		    	"first_name": "anilkumar",
+				"last_name" : "baldiya",
+				"username" : "anil",
+		        "email" : "kumar.anil8892@gmail.com",
+				"password" : "redhat",
+		        "user_type" : "collaborator",
+		        "capital" : "5000",
+	            "phone" : "1234567890",
+	            "living_town" : "bangalore",
+	            "about_user" : "software engineer",
+	            "working_org_name" : "Dpower4"
+			}
+		}
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2002",
+	        "message": "Channel Updated"
+	    },
+	    "data": {
+	        "Updated User Details": [
+	            {
+	                "id": "3",
+	                "firstName": "anilkumar",
+	                "lastName": "baldiya",
+	                "email": "rajnish_pawar90@yahoo.com",
+	                "phone": "1234567890",
+	                "username": "rajnish",
+	                "password": "******",
+	                "rank": "",
+	                "userType": "collaborator",
+	                "orgId": "0",
+	                "capital": "5000",
+	                "pageAccess": "0",
+	                "workingOrgName": "Dpower4",
+	                "livingTown": "bangalore",
+	                "aboutUser": "software engineer",
+	                "regTime": "0000-00-00 00:00:00",
+	                "lastLoginTime": "2015-04-02 03:50:52"
+	            }
+	        ]
+	    }
+	}

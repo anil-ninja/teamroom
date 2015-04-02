@@ -106,6 +106,12 @@ class DAOFactory{
 	 * @return KnownPeoplesDAO
 	 */
 	public static function getKnownPeoplesDAO(){
+
+		require_once('KnownPeoplesDAO.class.php');
+		require_once('models/KnownPeople.class.php');
+		require_once('mysql/KnownPeoplesMySqlDAO.class.php');
+		require_once('mysql/ext/KnownPeoplesMySqlExtDAO.class.php');
+
 		return new KnownPeoplesMySqlExtDAO();
 	}
 
@@ -207,6 +213,12 @@ class DAOFactory{
 	 * @return TeamsDAO
 	 */
 	public static function getTeamsDAO(){
+
+		require_once('TeamsDAO.class.php');
+		require_once('models/Team.class.php');
+		require_once('mysql/TeamsMySqlDAO.class.php');
+		require_once('mysql/ext/TeamsMySqlExtDAO.class.php');
+
 		return new TeamsMySqlExtDAO();
 	}
 
