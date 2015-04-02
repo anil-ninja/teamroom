@@ -13,7 +13,8 @@ define([
     'views/footertabsviews/termsView',
     'views/footertabsviews/policyView',
     'views/footertabsviews/contactView',
-    'views/forgetpassword/forgetpasswordView'
+    'views/forgetpassword/forgetpasswordView',
+    'views/project/projectView',
     
 ], function ($, _, Backbone,
         LoginView,
@@ -25,13 +26,15 @@ define([
         TermsView,
         PolicyView,
         ContactView,
-        ForgetpasswordView
+        ForgetpasswordView,
+        ProjectView
         ) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Define some URL routes
             'project/:id': 'project',
+            'project': 'project',
             'profile/:username': 'profile',
             'skills/:name': 'skill',
             'open/:id': 'open',
@@ -104,6 +107,11 @@ define([
         app_router.on('route:policy', function () {
             var policyView = new PolicyView();
             policyView.render();
+        });
+
+        app_router.on('route:project', function () {
+            var projectView = new ProjectView();
+            projectView.render();
         });
 
         Backbone.history.start();

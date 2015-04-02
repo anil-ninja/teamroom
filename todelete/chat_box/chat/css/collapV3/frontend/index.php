@@ -31,9 +31,9 @@
     <div id="navbar">  
       
     </div>
-    <div class="divider large visible-desktop"></div>
-    <div class="divider large visible-desktop"></div>
-    <div class="divider  hidden-desktop"></div>
+    <div id="divider" class="divider large visible-desktop"></div>
+    <div id="divider2" class="divider large visible-desktop"></div>
+    <div id="divider3" class="divider  hidden-desktop"></div>
     <div class="container">
       <div class='row'>
         <div class='col-md-1'>
