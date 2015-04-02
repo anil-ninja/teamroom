@@ -1,0 +1,33 @@
+/user/links
+
+	POST "api.loc.collap.com/v0/user-links"
+
+	Post Data:
+
+		{
+			"root":{
+				"knowing_id" : "3",
+		        "status" : "1"
+			}
+		}
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2001",
+	        "message": "Channel Created"
+	    },
+	    "data": {
+	        "linkDetail": [
+	            {
+	                "id": 1,
+	                "requestingId": 2,
+	                "requestingTime": "2015-04-02 19:25:26",
+	                "knowingId": "3",
+	                "lastActionTime": "2015-04-02 19:25:26",
+	                "status": "1"
+	            }
+	        ]
+	    }
+	}

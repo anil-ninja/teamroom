@@ -1,0 +1,44 @@
+/challenge
+
+	PUT "api.loc.collap.com/v0/challenge/9"
+
+	Put Data:
+
+		{
+			"root":{
+				"title" : "title for challenge: Updated title",
+		        "stmt" : "statment of challenge , Test for PUT method It can be of any type like article, idea, video etc",
+				"status" : 1,
+		        "likes" : 3,
+				"dislikes" : 2
+			}
+		}
+
+	Response:
+
+		{
+		    "internal_status": {
+		        "code": "2002",
+		        "message": "Channel Updated"
+		    },
+		    "data": {
+		        "Updated challenge": [
+		            {
+		                "id": "9",
+		                "userId": "2",
+		                "projectId": "0",
+		                "blobId": "0",
+		                "orgId": "1",
+		                "title": "title for challenge: Updated title",
+		                "stmt": "statment of challenge , Test for PUT method It can be of any type like article, idea, video etc",
+		                "type": "1",
+		                "status": 1,
+		                "likes": 3,
+		                "dislikes": 2,
+		                "creationTime": "2015-03-27 19:01:55",
+		                "lastUpdateTime": "2015-04-02 00:04:16"
+		            }
+		        ]
+		    }
+		}
+

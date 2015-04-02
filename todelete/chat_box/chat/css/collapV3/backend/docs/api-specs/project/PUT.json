@@ -1,0 +1,44 @@
+/project
+
+	PUT "api.loc.collap.com/v0/project/1"
+
+	Put Data: 
+
+		{
+			"root":{
+		    	"blob_id": 0,
+				"project_title" : "title of project test for update",
+				"stmt" : "This is statement of project test for update",
+		        "type" : 3,
+                "order" : 1,
+		        "project_value" : 44000,
+				"fund_needed" : 5400
+			}
+		}
+		
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2002",
+	        "message": "Channel Updated"
+	    },
+	    "data": {
+	        "Updated project": [
+	            {
+	                "id": "1",
+	                "userId": "2",
+	                "blobId": "0",
+	                "projectTitle": "title of project test for update",
+	                "stmt": "This is statement of project test for update",
+	                "type": 3,
+	                "orgId": "1",
+	                "order": 1,
+	                "creationTime": "2015-03-28 00:01:49",
+	                "projectValue": 44000,
+	                "fundNeeded": 5400,
+	                "lastUpdateTime": "2015-04-02 02:57:53"
+	            }
+	        ]
+	    }
+	}
