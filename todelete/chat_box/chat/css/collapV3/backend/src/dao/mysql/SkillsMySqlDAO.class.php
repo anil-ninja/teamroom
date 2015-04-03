@@ -60,10 +60,10 @@ class SkillsMySqlDAO implements SkillsDAO{
 		$sql = 'INSERT INTO skills (name) VALUES (?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($skill->name);
+		$sqlQuery->set($skill->getName());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$skill->id = $id;
+		$skill-> setId($id);
 		return $id;
 	}
 	

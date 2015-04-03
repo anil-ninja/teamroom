@@ -191,6 +191,11 @@ class DAOFactory{
 	 * @return SkillsDAO
 	 */
 	public static function getSkillsDAO(){
+
+		require_once('SkillsDAO.class.php');
+		require_once('models/Skill.class.php');
+		require_once('mysql/SkillsMySqlDAO.class.php');
+		require_once('mysql/ext/SkillsMySqlExtDAO.class.php');
 		return new SkillsMySqlExtDAO();
 	}
 
@@ -267,6 +272,7 @@ class DAOFactory{
 	 */
 	public static function getUserSkillsDAO(){
 		return new UserSkillsMySqlExtDAO();
+
 	}
 
 
