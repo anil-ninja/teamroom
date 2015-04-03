@@ -17,6 +17,7 @@ define([
       },*/
 
       initialize : function() {
+        $("#right-panel").html("");
         var that = this;
         that.bind("reset", that.clearView);
       },

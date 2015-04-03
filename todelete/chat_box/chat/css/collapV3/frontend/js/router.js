@@ -34,7 +34,6 @@ define([
         routes: {
             // Define some URL routes
             'project/:id': 'project',
-            'project': 'project',
             'profile/:username': 'profile',
             'skills/:name': 'skill',
             'open/:id': 'open',
@@ -109,7 +108,7 @@ define([
             policyView.render();
         });
 
-        app_router.on('route:project', function () {
+        app_router.on('route:project', function (name) {
             var projectView = new ProjectView();
             projectView.render();
         });
