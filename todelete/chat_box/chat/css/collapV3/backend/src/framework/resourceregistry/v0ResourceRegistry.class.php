@@ -78,6 +78,14 @@
             		$this -> resource = new UserRecommendationResource();
                 break;
                 //only get in recommendation
+
+//update /user-challenges to user/challenges
+                //done
+                case '/user-professions': 
+                    require_once 'resources/UserProfessionsResource.class.php';
+                    $this -> resource = new UserProfessionsResource();
+                break;
+
                 
                 // Resorce for challenge endpoint 
                 //done

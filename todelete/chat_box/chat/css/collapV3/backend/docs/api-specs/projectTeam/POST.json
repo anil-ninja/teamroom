@@ -6,6 +6,7 @@
 
 		{
 			"root":{
+				"user_id" : 2,
 				"project_id" : 3,
 		        "team_name" : "myTeam",
 		   		"team_owner" : 1,
