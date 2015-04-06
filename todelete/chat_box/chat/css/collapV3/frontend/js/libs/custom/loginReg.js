@@ -53,3 +53,58 @@ function usernameCheck() {
 		xmlhttp.send();
 	}
 }
+function trim(s){
+	return s.replace(/^\s+|\s+$/, '');
+}
+function validateEmail(fld) {
+	var error="";
+	var tfld = trim(fld);                        // value of field with whitespace trimmed off
+	var emailFilter = /^[^@]+@[^@.]+\.[^@]*\w\w$/ ;
+	if (!emailFilter.test(tfld)) {              //test email for illegal characters
+		//fld.style.background = 'Yellow';
+		//error = "Please enter a valid email address.\n";
+	} 
+	else {
+		//fld.style.background = 'White';
+		return true;
+	}
+	return false;
+}
+function validatePath(path) {
+	if(path == "" || path == null || path == undefined){
+		return false ;
+	}
+	else {
+		var filter = /^[a-zA-Z0-9.]*$/ ;
+		if (filter.test(path)) {
+			return true ;
+		}
+		else {
+			return false;
+		}
+	}
+}
+function validateUsername(path) {
+	if(path == "" || path == null || path == undefined){
+		return false ;
+	}
+	else {
+		var filter = /^[A-Za-z0-9\.\-@#$_]*$/ ;
+		if (filter.test(path)) {
+			return true ;
+		}
+		else {
+			return false;
+		}
+	}
+}
+function replaceAll(find, replace, str) {
+	return str.replace(new RegExp(find, 'g'), replace);
+}
+function IsNumeric(e) {
+	var specialKeys = new Array();
+	specialKeys.push(8); //Backspace
+    var keyCode = e.which ? e.which : e.keyCode
+    var ret = ((keyCode >= 48 && keyCode <= 57) || specialKeys.indexOf(keyCode) != -1);
+    return ret;
+}

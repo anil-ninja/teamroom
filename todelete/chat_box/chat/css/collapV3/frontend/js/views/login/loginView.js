@@ -18,13 +18,14 @@ define([
       },
 
       initialize : function() {
+        $("#right-panel").html("");
         var that = this;
         that.bind("reset", that.clearView);
       },
       login: function (ev) {
         var that = this;
         var username = ev.currentTarget.username.value;
-        var password = ev.currentTarget.password.value;
+        var password = ev.currentTarget.passwordlogin.value;
         if(username=="" || username==undefined || username==null){
           Bootbox.alert("Please enter username");
         }
@@ -33,7 +34,7 @@ define([
         }
         else {
           var loginDetails = {};
-          //console.log(ev.currentTarget);
+          /*//console.log(ev.currentTarget);
           loginDetails.root = $(ev.currentTarget).serializeObject1();
           var login = new LoginModel({id: null});
           login.save(loginDetails,{
@@ -42,7 +43,7 @@ define([
               //that.render({id: null});
               delete login;
               delete this.login;
-              document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
+              //document.getElementById("logout").innerHTML = '<a href="#/logout">Log Out </a>';
               var key = login.attributes.data["auth-key"];
               $.createCookie("auth-key", key, 2);
               window.app_router.navigate('#/messages', {trigger:true});
@@ -50,7 +51,7 @@ define([
             error: function (loginDetails,response) {
               Bootbox.alert("Please try again");
             }
-          });
+          });*/
         }
         /*that.bind("reset", that.clearView);
         return false;*/
