@@ -42,7 +42,7 @@ class UserProfessionsResource implements Resource {
         }
         $logger -> debug ("Delete profession with Id: " . $professionId);-
         
-        $result = $this -> collapDAO -> deleteProfession($professionId);
+        $result = $this -> collapDAO -> deleteUserProfession($professionId, $userId);
         $logger -> debug ("Profession Deleted? " . $result);
 
         if ($result) 
@@ -58,7 +58,7 @@ class UserProfessionsResource implements Resource {
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
-        $userId = 3;
+        $userId = 5;
 
         $professionId = $resourceVals ['user-professions'];
         if (isset($professionId)) {
@@ -70,12 +70,6 @@ class UserProfessionsResource implements Resource {
         if ($data['name'] != null) {
 
             $nameObj = $this -> collapDAO -> queryByName($data['name']);
-            //print_r($nameObj); exit;
-          
-
-            //$nameId -> set($nameObj -> getId());
-            //$nameObj[0]->getId();
-            //print_r($nameObj[0]); exit;
 
             if(empty($nameObj)) {
              
@@ -96,6 +90,19 @@ class UserProfessionsResource implements Resource {
                     $userProfessionDetail = $userProfessionObj -> toArray();
                 }            
             }
+            else {
+
+                $nameProf = $nameObj[0] -> toArray();
+                $userProfessionObj = new UserProfession(
+                                        $userId,
+                                        $nameProf['id']
+                                    );
+            
+                    $logger -> debug ("POSTed User Profession Detail: " . $userProfessionObj -> toString());
+            
+                    $this -> collapDAO -> insertUserProfession($userProfessionObj);
+                    $userProfessionDetail = $userProfessionObj -> toArray();
+            }
         }
         else {
             $userProfessionObj = new UserProfession(
@@ -109,8 +116,7 @@ class UserProfessionsResource implements Resource {
             
             $userProfessionDetail = $userProfessionObj -> toArray(); 
         }
-        
-    
+
         if(! isset($userProfessionDetail ['id'])) 
             return array('code' => '2011');
 
@@ -148,10 +154,12 @@ class UserProfessionsResource implements Resource {
 
         $listOfProfessionObj = $this -> collapDAO -> queryAllUserProfessions($userId);
         
+
         if(empty($listOfProfessionObj)) 
                 return array('code' => '2004');
 
         foreach ($listOfProfessionObj as $professionObj) {
+            
             $this -> professions [] = $professionObj -> toArray();
             
         }

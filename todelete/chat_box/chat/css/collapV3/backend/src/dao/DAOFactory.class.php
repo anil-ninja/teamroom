@@ -142,6 +142,7 @@ class DAOFactory{
 		
 		require_once('ProfessionsDAO.class.php');
 		require_once('models/Profession.class.php');
+		require_once('models/UserProfession.class.php');
 		require_once('mysql/ProfessionsMySqlDAO.class.php');
 		require_once('mysql/ext/ProfessionsMySqlExtDAO.class.php');
 
@@ -194,6 +195,7 @@ class DAOFactory{
 
 		require_once('SkillsDAO.class.php');
 		require_once('models/Skill.class.php');
+		require_once('models/UserSkill.class.php');
 		require_once('mysql/SkillsMySqlDAO.class.php');
 		require_once('mysql/ext/SkillsMySqlExtDAO.class.php');
 		return new SkillsMySqlExtDAO();

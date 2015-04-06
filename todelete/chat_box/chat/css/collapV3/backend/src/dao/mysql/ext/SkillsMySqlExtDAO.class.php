@@ -20,7 +20,7 @@ class SkillsMySqlExtDAO extends SkillsMySqlDAO{
 		$sqlQuery->setNumber($userSkill->getSkillId());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$userSkill-> getId($id);
+		$userSkill-> setId($id);
 		return $id;
 	}
 
@@ -28,7 +28,19 @@ class SkillsMySqlExtDAO extends SkillsMySqlDAO{
 		$sql = 'SELECT b.id, a.name FROM skills as a JOIN user_skills as b WHERE b.user_id = ? AND a.id = b.skill_id';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
-		return $this->getRow($sqlQuery);
+		return $this->getList($sqlQuery);
+	}
+
+	/**
+ 	 * Delete record from table
+ 	 * @param skill primary key
+ 	 */
+	public function deleteUserSkill($id, $userId){
+		$sql = 'DELETE FROM user_skills WHERE id = ? AND user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($id);
+		$sqlQuery->setNumber($userId);
+		return $this->executeUpdate($sqlQuery);
 	}
 }
 ?>

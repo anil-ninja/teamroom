@@ -42,7 +42,7 @@ class UserSkillsResource implements Resource {
         }
         $logger -> debug ("Delete skill with Id: " . $skillId);-
         
-        $result = $this -> collapDAO -> deleteSkill($skillId);
+        $result = $this -> collapDAO -> deleteUserSkill($skillId, $userId);
         $logger -> debug ("Skill Deleted? " . $result);
 
         if ($result) 
@@ -58,7 +58,7 @@ class UserSkillsResource implements Resource {
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
-        $userId = 2;
+        $userId = 5;
 
         $skillId = $resourceVals ['user-skills'];
         if (isset($skillId)) {
@@ -70,15 +70,9 @@ class UserSkillsResource implements Resource {
         if ($data['name'] != null) {
 
             $nameObj = $this -> collapDAO -> queryByName($data['name']);
-            //print_r($nameObj); exit;
-          
-
-            //$nameId -> set($nameObj -> getId());
-            //$nameObj[0]->getId();
-            //print_r($nameObj[0]); exit;
 
             if(empty($nameObj)) {
-             
+            
                 $skillObj = new Skill($data['name']);
                 $logger -> debug ("POSTed Skill Detail: " . $skillObj -> toString());
                 $this -> collapDAO -> insert($skillObj);
@@ -95,6 +89,19 @@ class UserSkillsResource implements Resource {
                     $this -> collapDAO -> insertUserSkill($userSkillObj);
                     $userSkillDetail = $userSkillObj -> toArray();
                 }            
+            }
+            else {
+
+                $nameSkill = $nameObj[0] -> toArray();
+                $userSkillObj = new UserSkill(
+                                        $userId,
+                                        $nameSkill['id']
+                                    );
+            
+                    $logger -> debug ("POSTed User Skill Detail: " . $userSkillObj -> toString());
+            
+                    $this -> collapDAO -> insertUserSkill($userSkillObj);
+                    $userSkillDetail = $userSkillObj -> toArray();
             }
         }
         else {

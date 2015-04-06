@@ -28,11 +28,19 @@ class ProfessionsMySqlExtDAO extends ProfessionsMySqlDAO{
 		$sql = 'SELECT b.id, a.name FROM professions as a JOIN user_professions as b WHERE b.user_id = ? AND a.id = b.profession_id';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
-		return $this->getRow($sqlQuery);
+		return $this->getList($sqlQuery);
 	}
 
-	
-
-
+	/**
+ 	 * Delete record from table
+ 	 * @param profession primary key
+ 	 */
+	public function deleteUserProfession($id, $userId){
+		$sql = 'DELETE FROM user_professions WHERE id = ? AND user_id = ?';
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($id);
+		$sqlQuery->setNumber($userId);
+		return $this->executeUpdate($sqlQuery);
+	}
 }
 ?>
