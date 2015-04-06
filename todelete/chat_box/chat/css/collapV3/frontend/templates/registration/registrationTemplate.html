@@ -1,45 +1,47 @@
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-6">
-    <center><h3>Welcome to Collap</h3>
-    <span class="c-logo-head">Collaborate, Grow and help Society</span></center><br/><br/>
-  
-    <form class = "registration-form" type="POST">
-      <input type="text" class="input-block-level" placeholder="Enter first name" id="firstname" onkeyup="nospaces(this)"/>
-      <input type="text" class="input-block-level" placeholder="Enter last name" id="lastname" onkeyup="nospaces(this)"/>       
-      <input type="email" class="input-block-level" placeholder="Enter email-id" id="email" 
-        onkeyup="nospaces(this)" onblur="emailCheck();"/>
-      <span id="status_email"></span>
-      <input type="text" class="input-block-level" placeholder="Enter username" id="usernameR" 
-        onkeyup="nospaces(this)" onblur="usernameCheck();"/>
-      <span id="status"></span>
-      <input type="password" class="input-block-level" placeholder="Enter password" onkeyup="nospaces(this)" id="passwordR"/>
-      <input type="password" class="input-block-level" placeholder="Confirm password" onkeyup="nospaces(this)" id="password2R"/>
-      <br/><br/>
-      <label>You are here for</label>
-      <input type="checkbox" class="btn btn-mini custom-checkbox" id='typeCol' /> Collaboration &nbsp;&nbsp;&nbsp;
-      <input type="checkbox" class="btn btn-mini custom-checkbox" onclick='aboutinvest()' id='typeInv'/> Invester &nbsp;&nbsp;&nbsp;
-      <input type="checkbox" class="btn btn-mini custom-checkbox" id='typeFun'/> Fund Searcher <br/><br/>
-      <label>
-      <div class='totalcapital'>
-        <label>How much amount you want to invest (in dollars)</label>
-        <input type="num" class="input-group" id="investment" onkeyup="nospaces(this)" min='10' onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Enter amount"/>
-        <span class="input-group-addon" style='font-size:20px;'>.00 $</span>
-      </div><br/>
-      <input type="checkbox" class="btn btn-mini custom-checkbox" id ='agree_tc' />&nbsp;&nbsp;&nbsp;I Aggree With  
-        <a href="#" data-toggle="modal">Terms &amp; Conditions</a>
-      </label><br />
-      <button type="submit" class="btn btn-success" id="request_reg" >Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></a>
-    </form>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+      <center><h3>Welcome to Collap</h3>
+      <span class="c-logo-head">Collaborate, Grow and help Society</span></center><br/><br/>
+    
+      <form class = "registration-form" type="POST">
+        <input type="text" class="input-block-level" placeholder="Enter first name" id="firstname" onkeyup="nospaces(this)"/>
+        <input type="text" class="input-block-level" placeholder="Enter last name" id="lastname" onkeyup="nospaces(this)"/>       
+        <input type="email" class="input-block-level" placeholder="Enter email-id" id="email" 
+          onkeyup="nospaces(this)" onblur="emailCheck();"/>
+        <span id="status_email"></span>
+        <input type="text" class="input-block-level" placeholder="Enter username" id="usernameR" 
+          onkeyup="nospaces(this)" onblur="usernameCheck();"/>
+        <span id="status"></span>
+        <input type="password" class="input-block-level" placeholder="Enter password" onkeyup="nospaces(this)" id="passwordR"/>
+        <input type="password" class="input-block-level" placeholder="Confirm password" onkeyup="nospaces(this)" id="password2R"/>
+        <br/><br/>
+        <label>You are here for</label>
+        <input type="checkbox" class="btn btn-mini custom-checkbox" id='typeCol' /> Collaboration &nbsp;&nbsp;&nbsp;
+        <input type="checkbox" class="btn btn-mini custom-checkbox" onclick='aboutinvest()' id='typeInv'/> Invester &nbsp;&nbsp;&nbsp;
+        <input type="checkbox" class="btn btn-mini custom-checkbox" id='typeFun'/> Fund Searcher <br/><br/>
+        <label>
+        <div class='totalcapital'>
+          <label>How much amount you want to invest (in dollars)</label>
+          <input type="num" class="input-group" id="investment" onkeyup="nospaces(this)" min='10' onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Enter amount"/>
+          <span class="input-group-addon" style='font-size:20px;'>.00 $</span>
+        </div><br/>
+        <input type="checkbox" class="btn btn-mini custom-checkbox" id ='agree_tc' />&nbsp;&nbsp;&nbsp;I Aggree With  
+          <a href="#" data-toggle="modal">Terms &amp; Conditions</a>
+        </label><br />
+        <button type="submit" class="btn btn-success" id="request_reg" >Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></button>
+      </form>
+    </div>
   </div>
+  <hr/>
+  <ul class="list-inline">
+    <li><a href="#/about"> About </a></li>
+    <li><a href="#/blog"> Blog </a></li>
+    <li><a href="#/career"> Careers </a></li>
+    <li><a href="#/customer-speak"> Customer Speak </a></li>
+    <li><a href="#/contact"> Contact </a></li>
+    <li><a href="#/terms"> Term of Use </a></li>
+    <li><a href="#/privacy-policy"> Privacy Policy </a></li>
+  </ul>
 </div>
-<hr/>
-<ul class="list-inline">
-  <li><a href="#/about"> About </a></li>
-  <li><a href="#/blog"> Blog </a></li>
-  <li><a href="#/career"> Careers </a></li>
-  <li><a href="#/customer-speak"> Customer Speak </a></li>
-  <li><a href="#/contact"> Contact </a></li>
-  <li><a href="#/terms"> Term of Use </a></li>
-  <li><a href="#/privacy-policy"> Privacy Policy </a></li>
-</ul>

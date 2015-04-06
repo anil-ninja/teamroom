@@ -8,22 +8,34 @@ define([
   'text!templates/project/projectTemplate.html',
   'text!templates/project/projectRPWLTemplate.html',
   'text!templates/navbar/navbarprojectWLTemplate.html',
-  'text!templates/navbar/navbarprojectTemplate.html'
-  ], function($, _, Backbone, ProjectCollection, ProjeclWLCollection, ProjectWithoutLoginTemplate, ProjectTemplate, ProjectRPWLTemplate, NavbarprojectWLTemplate, NavbarprojectTemplate){
+  'text!templates/navbar/navbarTemplate.html'
+  ], function($, _, Backbone, ProjectCollection, ProjeclWLCollection, ProjectWithoutLoginTemplate, ProjectTemplate, ProjectRPWLTemplate, NavbarprojectWLTemplate, NavbarTemplate){
     
     var ForgetpasswordView = Backbone.View.extend({
 
       el : $("#page"),
       navel : $("#navbar"),
       rightpanel : $("#right-panel"),
+      events: {
+        'click li': 'switchTab'
+      },
       initialize : function() {
         var that = this;
         that.bind("reset", that.clearView);
+      },
+      switchTab: function(ev) { 
+        var selectedTab = ev.currentTarget;
+        this.$('li.active').removeClass('active');
+        this.$(selectedTab).addClass('active');
       },
       render: function () {
         var that = this;
         $("#divider").removeClass('divider');
         $("#divider2").removeClass('divider');
+        $("#column2").removeClass('col-md-9');
+        $("#column3").removeClass('col-md-1');
+        $("#column2").addClass('col-md-8');
+        $("#column3").addClass('col-md-2');
         var template = _.template(ProjectWithoutLoginTemplate);
         var navtemplate = _.template(NavbarprojectWLTemplate);
         var RPtemplate = _.template(ProjectRPWLTemplate);

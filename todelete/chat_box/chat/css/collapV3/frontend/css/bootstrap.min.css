@@ -6097,6 +6097,7 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus
   .nav-pil.nav-justified > li {
     display: table-cell;
     width: 1%;
+    cursor:pointer;
   }
   .nav-pil.nav-justified > li > a {
     margin-bottom: 0;
@@ -6121,7 +6122,7 @@ a.label:hover,a.label:focus,a.badge:hover,a.badge:focus
     width: 1%;
   }
   .nav-pil.nav-justified > li > a {
-    
+    cursor:pointer;
     border-radius: 3px 3px 0 0;
   }
   .nav-pil.nav-justified > .active > a,
