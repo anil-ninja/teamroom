@@ -60,10 +60,10 @@ class ProfessionsMySqlDAO implements ProfessionsDAO{
 		$sql = 'INSERT INTO professions (name) VALUES (?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->set($profession->name);
+		$sqlQuery->set($profession->getName());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$profession->id = $id;
+		$profession -> setId ($id);
 		return $id;
 	}
 	

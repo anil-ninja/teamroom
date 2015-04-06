@@ -45,7 +45,7 @@ class ProjectTeamsResource implements Resource {
         $timeStamp = date('Y-m-d H:i:s');
         $leaveTime = date('0000-00-00 00:00:00');
         $teamObj = new Team(
-                            $userId,
+                            $data ['user_id'],
                             $data ['project_id'], 
                             $data ['team_name'],
                             $data ['team_owner'], 

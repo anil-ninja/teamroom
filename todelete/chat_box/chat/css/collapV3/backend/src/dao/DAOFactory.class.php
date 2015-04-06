@@ -2,7 +2,7 @@
 
 /**
  * DAOFactory
- * @author: http://phpdao.com
+ * @author: rajnish
  * @date: ${date}
  */
 require_once('utils/sql/Connection.class.php');
@@ -139,6 +139,12 @@ class DAOFactory{
 	 * @return ProfessionsDAO
 	 */
 	public static function getProfessionsDAO(){
+		
+		require_once('ProfessionsDAO.class.php');
+		require_once('models/Profession.class.php');
+		require_once('mysql/ProfessionsMySqlDAO.class.php');
+		require_once('mysql/ext/ProfessionsMySqlExtDAO.class.php');
+
 		return new ProfessionsMySqlExtDAO();
 	}
 
@@ -185,6 +191,11 @@ class DAOFactory{
 	 * @return SkillsDAO
 	 */
 	public static function getSkillsDAO(){
+
+		require_once('SkillsDAO.class.php');
+		require_once('models/Skill.class.php');
+		require_once('mysql/SkillsMySqlDAO.class.php');
+		require_once('mysql/ext/SkillsMySqlExtDAO.class.php');
 		return new SkillsMySqlExtDAO();
 	}
 
@@ -261,6 +272,7 @@ class DAOFactory{
 	 */
 	public static function getUserSkillsDAO(){
 		return new UserSkillsMySqlExtDAO();
+
 	}
 
 
