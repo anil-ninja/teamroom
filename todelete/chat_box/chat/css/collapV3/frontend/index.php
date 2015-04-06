@@ -34,22 +34,19 @@
     <div id="divider" class="divider large visible-desktop"></div>
     <div id="divider2" class="divider large visible-desktop"></div>
     <div id="divider3" class="divider  hidden-desktop"></div>
-    <div class="container">
-      <div class='row'>
-        <div class='col-md-1'>
-          
-        </div>
-        <div class='col-md-9'>
-          <div id="page">
-            Loading....
-          </div>
-        </div>
-        <div class="col-md-1">
-          <div id="right-panel"></div>
-        </div> 
+    <div class='row'>
+      <div id="column1" class='col-md-1'>
+        <div id="left-panel"></div>
       </div>
-      <div id="footer"></div>
+      <div  id="column2" class='col-md-9'>
+        <div id="page">
+          Loading....
+        </div>
+      </div>
+      <div  id="column3" class="col-md-1">
+        <div id="right-panel"></div>
+      </div> 
     </div>
-
+    <div id="footer"></div>
   </body>
 </html>
