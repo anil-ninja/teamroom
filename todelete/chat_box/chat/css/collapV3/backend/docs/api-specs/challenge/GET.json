@@ -5,65 +5,77 @@
 	Response:
 
 	{
-	    "internal_status": {
-	        "code": "2000",
-	        "message": "Challenge Fetched"
-	    },
-	    "data": {
-	        "challenges": [
-	            {
-	                "id": "3",
-	                "userId": "2",
-	                "projectId": "0",
-	                "blobId": "0",
-	                "orgId": "0",
-	                "title": "title od challenge with user id 2",
-	                "stmt": "statemetn od challenge with user id 2",
-	                "type": "1",
-	                "status": "0",
-	                "likes": "0",
-	                "dislikes": "0",
-	                "creationTime": "2015-03-27 05:21:02",
-	                "lastUpdateTime": "0000-00-00 00:00:00"
-	            },
-	            {
-	                "id": "8",
-	                "userId": "2",
-	                "projectId": "0",
-	                "blobId": "0",
-	                "orgId": "1",
-	                "title": "title for statement",
-	                "stmt": "statment of challenge",
-	                "type": "1",
-	                "status": "1",
-	                "likes": "1",
-	                "dislikes": "1",
-	                "creationTime": "2015-03-27 18:55:47",
-	                "lastUpdateTime": "0000-00-00 00:00:00"
-	            },
-	            {
-	                "id": "9",
-	                "userId": "2",
-	                "projectId": "0",
-	                "blobId": "0",
-	                "orgId": "1",
-	                "title": "title for challenge",
-	                "stmt": "statment of challenge , this challenge is a type of post. It can be of any type like article, idea, video etc",
-	                "type": "1",
-	                "status": "1",
-	                "likes": "1",
-	                "dislikes": "1",
-	                "creationTime": "2015-03-27 19:01:55",
-	                "lastUpdateTime": "0000-00-00 00:00:00"
-	            }
-	        ]
-	    }
-	}
+    "internal_status": {
+        "code": "2000",
+        "message": "Challenge Fetched"
+    },
+    "data": {
+        "challengesDetails": [
+            {
+                "id": "10",
+                "projectId": "0",
+                "title": "title for challenge",
+                "stmt": "statment of challenge , this challenge is a type of post. It can be of any type like article, idea, video etc",
+                "type": "1",
+                "status": "1",
+                "likes": "1",
+                "dislikes": "1",
+                "creationTime": "2015-03-27 19:14:57",
+                "firstName": "rajnish",
+                "lastName": "kumar",
+                "userName": "rajnish"
+            },
+            {
+                "id": "9",
+                "projectId": "0",
+                "title": "title for challenge: Updated title",
+                "stmt": "statment of challenge , Test for PUT method It can be of any type like article, idea, video etc",
+                "type": "1",
+                "status": "1",
+                "likes": "3",
+                "dislikes": "2",
+                "creationTime": "2015-03-27 19:01:55",
+                "firstName": "rajnish",
+                "lastName": "kumar",
+                "userName": "rajnish"
+            },
+            {
+                "id": "8",
+                "projectId": "0",
+                "title": "title for statement",
+                "stmt": "statment of challenge",
+                "type": "1",
+                "status": "1",
+                "likes": "1",
+                "dislikes": "1",
+                "creationTime": "2015-03-27 18:55:47",
+                "firstName": "rajnish",
+                "lastName": "kumar",
+                "userName": "rajnish"
+            },
+            {
+                "id": "3",
+                "projectId": "3",
+                "title": "title od challenge with user id 2",
+                "stmt": "statemetn od challenge with user id 2",
+                "type": "1",
+                "status": "5",
+                "likes": "0",
+                "dislikes": "0",
+                "creationTime": "2015-03-27 05:21:02",
+                "firstName": "rajnish",
+                "lastName": "kumar",
+                "userName": "rajnish"
+            }
+        ]
+    }
+}
+
 
 
 /challenge/<challenge_ID>
 
-	GET "api.loc.collap.com/v0/challenge/9"
+	GET "api.loc.collap.com/v0/challenge/3"
 
 	{
 		"internal_status": {
@@ -72,21 +84,20 @@
 		},
 		"data": {
 		    "challengeDetail": [
-		        {
-		            "id": "9",
-		            "userId": "2",
-		            "projectId": "0",
-		            "blobId": "0",
-		            "orgId": "1",
-		            "title": "title for challenge",
-		            "stmt": "statment of challenge , this challenge is a type of post. It can be of any type like article, idea, video etc",
-		            "type": "1",
-		            "status": "1",
-		            "likes": "1",
-		            "dislikes": "1",
-		            "creationTime": "2015-03-27 19:01:55",
-		            "lastUpdateTime": "0000-00-00 00:00:00"
-		        }
+                {
+	                "id": "3",
+	                "projectId": "3",
+	                "title": "title od challenge with user id 2",
+	                "stmt": "statemetn od challenge with user id 2",
+	                "type": "1",
+	                "status": "5",
+	                "likes": "0",
+	                "dislikes": "0",
+	                "creationTime": "2015-03-27 05:21:02",
+	                "firstName": "rajnish",
+	                "lastName": "kumar",
+	                "userName": "rajnish"
+	            }
 		    ]
 		}
 	}

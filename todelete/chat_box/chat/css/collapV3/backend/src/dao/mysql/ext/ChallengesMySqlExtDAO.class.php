@@ -26,9 +26,37 @@ class ChallengesMySqlExtDAO extends ChallengesMySqlDAO{
 	public function queryAllUserChallenges($userId){
 		$sql = 'SELECT challenge.id, challenge.project_id, challenge.title, challenge.stmt, challenge.creation_time, challenge.type, challenge.status, challenge.likes, challenge.dislikes, challenge.creation_time, user.first_name, user.last_name, user.username 
 				FROM challenges as challenge JOIN user_info as user 
-				WHERE challenge.user_id = ? AND challenge.status != 3 AND challenge.status != 7 AND user.id = challenge.user_id';
+				WHERE challenge.user_id = ? AND challenge.status != 3 AND challenge.status != 7 AND user.id = challenge.user_id ORDER BY creation_time DESC';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($userId);
+		return $this->getListUserChallenge($sqlQuery);
+	}
+
+	/**
+	 * Get challenge records from table
+	 */
+	public function loadChallenge($id){
+		$sql = "SELECT challenge.id, challenge.project_id, challenge.title, challenge.stmt, challenge.creation_time, challenge.type, challenge.status, challenge.likes, challenge.dislikes, challenge.creation_time, user.first_name, user.last_name, user.username 
+				FROM challenges as challenge JOIN user_info as user JOIN projects as project
+				WHERE challenge.id = ? AND challenge.status != 3 AND challenge.status != 7 
+					AND challenge.type != 2 AND challenge.type != 5 
+					AND project.type = 'Public' AND user.id = challenge.user_id";
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($id);
+		return $this->getRowUserChallenge($sqlQuery);
+	}
+
+	/**
+	 * Get all challenges records from table
+	 */
+	public function queryAllChallenges(){
+		$sql = "SELECT challenge.id, challenge.project_id, challenge.title, challenge.stmt, challenge.creation_time, challenge.type, challenge.status, challenge.likes, challenge.dislikes, challenge.creation_time, user.first_name, user.last_name, user.username 
+				FROM challenges as challenge JOIN user_info as user JOIN projects as project
+				WHERE challenge.status != 3 AND challenge.status != 7 
+					AND challenge.type != 2 AND challenge.type != 5 
+					AND project.type = 'Public' AND user.id = challenge.user_id ORDER BY creation_time DESC";
+
+		$sqlQuery = new SqlQuery($sql);
 		return $this->getListUserChallenge($sqlQuery);
 	}
 
