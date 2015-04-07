@@ -12,7 +12,6 @@ require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 class ChallengeResource implements Resource {
 
     private $collapDAO;
-    private $challenge;
 
     public function __construct() {
         $DAOFactory = new DAOFactory();
@@ -206,12 +205,12 @@ class ChallengeResource implements Resource {
         $logger->debug('Fetch challenge...');
 
 
-        $challengeObj = $this -> collapDAO -> load($challengeID);
+        $challengeObj = $this -> collapDAO -> loadChallenge($challengeID);
 
         if(empty($challengeObj)) 
                 return array('code' => '2004');        
         
-        $this -> challengeDetail [] = $challengeObj-> toArray();
+        $this -> challengeDetail [] = $challengeObj-> toArrayUserChallenges();
         
         $logger -> debug ('Fetched challenge: ' . json_encode($this -> challengeDetail));
 
@@ -228,20 +227,20 @@ class ChallengeResource implements Resource {
         $logger->debug('Fetch list of all challenges...');
 
 
-        $listOfchallengeObjs = $this -> collapDAO -> queryAll();
+        $listOfchallengeObjs = $this -> collapDAO -> queryAllChallenges();
         
         if(empty($listOfchallengeObjs)) 
                 return array('code' => '2004');
         
         foreach ($listOfchallengeObjs as $challengeObj) {
-            $this -> challenges [] = $challengeObj -> toArray();
+            $this -> challenges [] = $challengeObj -> toArrayUserChallenges();
         }
 
         $logger -> debug ('Fetched list of challenges: ' . json_encode($this -> challenges));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'challenges' => $this -> challenges
+                                'challengesDetails' => $this -> challenges
                             )
         );
     }

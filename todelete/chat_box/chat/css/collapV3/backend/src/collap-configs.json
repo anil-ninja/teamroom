@@ -2,7 +2,7 @@
     "mysql": {
         "host": "localhost", 
         "user": "root", 
-        "password": "redhat111111", 
+        "password": "redhat@11111p", 
         "database": "ninjasTeamRoom2",
     	"social": {
     		"host": "localhost", 
