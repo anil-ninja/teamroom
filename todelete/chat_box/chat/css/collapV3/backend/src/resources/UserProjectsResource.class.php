@@ -36,9 +36,9 @@ class UserProjectsResource implements Resource {
         
     //$userId : is to be updated
         $userId = 2;
-
+    
         $projectId = $resourceVals ['user-projects'];
-        
+
         if (isset($projectId))
             $result = $this->getUserProject($projectId, $userId);
         else
@@ -56,14 +56,12 @@ class UserProjectsResource implements Resource {
         global $logger;
         $logger->debug('Fetch project...');
 
-        $userId = 2;
-
-        $projectObj = $this -> collapDAO -> loadProject($projectId, $userId);
+        $projectObj = $this -> collapDAO -> loadUserProject($projectId, $userId);
 
         if(empty($projectObj)) 
                 return array('code' => '2004');        
         
-        $this -> projectDetail [] = $projectObj-> toArray();
+        $this -> projectDetail [] = $projectObj-> toArrayUserProjects();
         
         $logger -> debug ('Fetched project: ' . json_encode($this -> projectDetail));
 
@@ -81,20 +79,20 @@ class UserProjectsResource implements Resource {
 
         $userId = 2;
 
-        $listOfprojectObj = $this -> collapDAO -> queryAllProjects($userId);
+        $listOfprojectObj = $this -> collapDAO -> queryAllUserProjects($userId, $userId);
         
         if(empty($listOfprojectObj)) 
                 return array('code' => '2004');
         
         foreach ($listOfprojectObj as $projectObj) {
-            $this -> projects [] = $projectObj -> toArray();
+            $this -> projects [] = $projectObj -> toArrayUserProjects();
         }
 
         $logger -> debug ('Fetched list of projects: ' . json_encode($this -> projects));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'projects' => $this -> projects
+                                'projectDetail' => $this -> projects
                             )
         );
     }
