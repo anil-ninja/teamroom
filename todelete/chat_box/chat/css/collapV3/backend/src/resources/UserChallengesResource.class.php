@@ -85,7 +85,7 @@ class UserChallengesResource implements Resource {
         if(empty($challengeObj)) 
                 return array('code' => '2004');        
         
-        $this -> challengeDetail [] = $challengeObj-> toArray();
+        $this -> challengeDetail [] = $challengeObj-> toArrayUserChallenges();
         
         $logger -> debug ('Fetched challenge: ' . json_encode($this -> challengeDetail));
 
@@ -109,14 +109,14 @@ class UserChallengesResource implements Resource {
                 return array('code' => '2004');
         
         foreach ($listOfchallengeObjs as $challengeObj) {
-            $this -> challenges [] = $challengeObj -> toArray();
+            $this -> challenges [] = $challengeObj -> toArrayUserChallenges();
         }
 
         $logger -> debug ('Fetched list of challenges: ' . json_encode($this -> challenges));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'challenges' => $this -> challenges
+                                'challengesDetails' => $this -> challenges
                             )
         );
     }

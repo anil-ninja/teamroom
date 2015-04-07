@@ -20,9 +20,12 @@
 		private $dislikes;
 		private $creationTime;
 		private $lastUpdateTime;
+		private $firstName;
+		private $lastName;
+		private $userName;
 		
 		function __construct( $userId, $projectId, $blobId, $orgId, $title, $stmt, $type, $status, $likes
-		,$dislikes, $creationTime, $lastUpdateTime, $id = null)
+		,$dislikes, $creationTime, $lastUpdateTime, $firstName, $lastName, $userName, $id = null)
 		{
 			$this -> id = $id;
 			$this -> userId= $userId;
@@ -37,7 +40,9 @@
 			$this -> dislikes = $dislikes;
 			$this -> creationTime = $creationTime;
 			$this -> lastUpdateTime=$lastUpdateTime;
-			
+			$this -> firstName = $firstName;
+			$this -> lastName = $lastName;
+			$this -> userName = $userName;
 		}
 	
 		function setId($id){
@@ -130,6 +135,27 @@
 			return $this-> type;		
 		}
 
+		function setFirstName($firstName){
+			$this -> firstName = $firstName;
+		}
+		function getFirstName(){
+			return $this-> firstName;
+		}
+		
+		function setLastName($lastName){
+			$this -> lastName = $lastName;
+		}
+		function getLastName(){
+				return $this->lastName;
+		}
+
+		function setUsername($username){
+			$this -> username = $username;
+		}
+		function getUsername(){
+				return $this-> username;
+		}
+
 		function toString (){
 			return $this -> id . ", " . 
 					$this -> userId.",".
@@ -143,7 +169,10 @@
 					$this -> creationTime. ", " . 
 					$this -> stmt.",".
 					$this -> lastUpdateTime.",".
-					$this -> type;
+					$this -> type.",".
+					$this -> firstName.",".
+					$this -> lastName.",".
+					$this -> userName;
 		}
 
 		function toArray() {
@@ -161,6 +190,23 @@
 							dislikes => $this-> dislikes,
 							creationTime => $this-> creationTime,
 							lastUpdateTime => $this-> lastUpdateTime
+						);
+		}
+
+		function toArrayUserChallenges() {
+			return array (			
+							id => $this-> id,
+							projectId => $this-> projectId,
+							title => $this-> title,
+							stmt => $this-> stmt,
+							type => $this-> type,
+							status => $this-> status,
+							likes => $this-> likes,
+							dislikes => $this-> dislikes,
+							creationTime => $this-> creationTime,
+							firstName => $this-> firstName,
+							lastName => $this-> lastName,
+							userName => $this-> userName
 						);
 		}		
 	}

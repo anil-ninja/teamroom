@@ -68,7 +68,7 @@
 
 /user/projects/<project_Id>
 
-	GET "api.loc.collap.com/v0/user-projects/2"
+	GET "api.loc.collap.com/v0/user-projects/3"
 
 	Response:
 

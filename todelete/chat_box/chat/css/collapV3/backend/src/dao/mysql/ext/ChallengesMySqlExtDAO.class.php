@@ -11,21 +11,25 @@ class ChallengesMySqlExtDAO extends ChallengesMySqlDAO{
 	 * Get user challenge records from table
 	 */
 	public function loadUserChallenge($id, $userId){
-		$sql = 'SELECT * FROM challenges WHERE id = ? AND user_id = ? AND status != 3 AND status != 7';
+		$sql = 'SELECT challenge.id, challenge.project_id, challenge.title, challenge.stmt, challenge.creation_time, challenge.type, challenge.status, challenge.likes, challenge.dislikes, challenge.creation_time, user.first_name, user.last_name, user.username 
+				FROM challenges as challenge JOIN user_info as user 
+				WHERE challenge.id = ? AND challenge.user_id = ? AND challenge.status != 3 AND challenge.status != 7 AND user.id = challenge.user_id';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($id);
 		$sqlQuery->setNumber($userId);
-		return $this->getRow($sqlQuery);
+		return $this->getRowUserChallenge($sqlQuery);
 	}
 
 	/**
 	 * Get all user challenges records from table
 	 */
 	public function queryAllUserChallenges($userId){
-		$sql = 'SELECT * FROM challenges WHERE user_id = ? AND status != 3 AND status != 7';
+		$sql = 'SELECT challenge.id, challenge.project_id, challenge.title, challenge.stmt, challenge.creation_time, challenge.type, challenge.status, challenge.likes, challenge.dislikes, challenge.creation_time, user.first_name, user.last_name, user.username 
+				FROM challenges as challenge JOIN user_info as user 
+				WHERE challenge.user_id = ? AND challenge.status != 3 AND challenge.status != 7 AND user.id = challenge.user_id';
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($userId);
-		return $this->getList($sqlQuery);
+		return $this->getListUserChallenge($sqlQuery);
 	}
 
 
@@ -55,6 +59,39 @@ class ChallengesMySqlExtDAO extends ChallengesMySqlDAO{
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery->setNumber($challengeId);
 		return $this->executeUpdate($sqlQuery);
+	}
+
+	/**
+	 * Read row
+	 *
+	 * @return ChallengesMySql 
+	 */
+	protected function readRowUserChallenge($row){
+		$challenge = new Challenge(0,$row['project_id'],0,0,$row['title'], $row['stmt'],$row['type'],$row['status'],$row['likes'],$row['dislikes'],$row['creation_time'],0, $row['first_name'], $row['last_name'], $row['username'], $row['id']);
+	
+		return $challenge;
+	}
+
+	protected function getListUserChallenge($sqlQuery){
+		$tab = QueryExecutor::execute($sqlQuery);
+		$ret = array();
+		for($i=0;$i<count($tab);$i++){
+			$ret[$i] = $this->readRowUserChallenge($tab[$i]);
+		}
+		return $ret;
+	}
+	
+	/**
+	 * Get row
+	 *
+	 * @return ChallengesMySql 
+	 */
+	protected function getRowUserChallenge($sqlQuery){
+		$tab = QueryExecutor::execute($sqlQuery);
+		if(count($tab)==0){
+			return null;
+		}
+		return $this->readRowUserChallenge($tab[0]);		
 	}
 }
 ?>
