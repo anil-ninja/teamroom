@@ -19,8 +19,12 @@
 		private $projectValue;
 		private $fundNeeded;
 		private $lastUpdateTime;
+		private $firstName;
+		private $lastName;
+		private $userName;
+
 	
-		function __construct ($userId, $blobId, $projectTitle, $stmt, $type, $orgId, $order, $creationTime, $projectValue, $fundNeeded, $lastUpdateTime, $id = null) {
+		function __construct ($userId, $blobId, $projectTitle, $stmt, $type, $orgId, $order, $creationTime, $projectValue, $fundNeeded, $lastUpdateTime, $firstName, $lastName, $userName, $id = null) {
 			$this -> id = $id;
 			$this -> userId = $userId;
 			$this -> blobId = $blobId;
@@ -33,6 +37,9 @@
 			$this -> projectValue = $projectValue;
 			$this -> fundNeeded = $fundNeeded;
 			$this -> lastUpdateTime = $lastUpdateTime;
+			$this -> firstName = $firstName;
+			$this -> lastName = $lastName;
+			$this -> userName = $userName;
 		}
 
 		function setId ($id) {
@@ -119,6 +126,27 @@
 			return $this -> fundNeeded;
 		}
 
+		function setFirstName($firstName){
+			$this -> firstName = $firstName;
+		}
+		function getFirstName(){
+			return $this-> firstName;
+		}
+		
+		function setLastName($lastName){
+			$this -> lastName = $lastName;
+		}
+		function getLastName(){
+				return $this->lastName;
+		}
+
+		function setUsername($username){
+			$this -> username = $username;
+		}
+		function getUsername(){
+				return $this-> username;
+		}
+
 		function toString() {
 			return $this -> id . ", " . 
 					$this -> userId.",".
@@ -131,7 +159,10 @@
 					$this -> creationTime.".".
 					$this -> projectValue. ", " . 
 					$this -> fundNeeded.",".
-					$this -> lastUpdateTime;
+					$this -> lastUpdateTime.",".
+					$this -> firstName.",".
+					$this -> lastName.",".
+					$this -> userName;
 		}
 
 		function toArray() {
@@ -147,9 +178,24 @@
 							creationTime => $this-> creationTime,
 							projectValue => $this-> projectValue,
 							fundNeeded => $this-> fundNeeded,
-							lastUpdateTime => $this-> lastUpdateTime
+							lastUpdateTime => $this-> lastUpdateTime,
+							firstName => $this-> firstName,
+							lastName => $this-> lastName,
+							userName => $this-> userName
 						);
 		}
 
+		function toArrayUserProjects() {
+			return array (			
+							id => $this-> id,
+							projectTitle => $this-> projectTitle,
+							stmt => $this-> stmt,
+							type => $this-> type,
+							creationTime => $this-> creationTime,
+							firstName => $this-> firstName,
+							lastName => $this-> lastName,
+							userName => $this-> userName
+						);
+		}
 	}
 ?>
