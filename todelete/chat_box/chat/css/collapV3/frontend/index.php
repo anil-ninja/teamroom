@@ -35,7 +35,7 @@
     <div id="divider2" class="divider large visible-desktop"></div>
     <div id="divider3" class="divider  hidden-desktop"></div>
     <div class='row'>
-      <div id="column1" class='col-md-1'>
+      <div id="column1" class='col-md-1' style="margin-left:50px;">
         <div id="left-panel"></div>
       </div>
       <div  id="column2" class='col-md-9'>
