@@ -12,8 +12,7 @@ require_once 'exceptions/UnsupportedResourceMethodException.class.php';
 class ProjectTeamsResource implements Resource {
 
     private $collapDAO;
-    private $team;
-
+    
     public function __construct() {
         $DAOFactory = new DAOFactory();
         $this -> collapDAO = $DAOFactory -> getTeamsDAO();
@@ -74,14 +73,14 @@ class ProjectTeamsResource implements Resource {
 
     public function get($resourceVals, $data, $userId) {
         
-    //$userId : to in table as userId
         $userId = 2;
 
-        $projectId = $resourceVals ['project'];
-        if (isset($projectId))
-            $result = $this->getproject($projectId);
-        else
-            $result = $this -> getListOfAllprojects();
+        $projectId = (int)$data['project'];
+        $teamName = $data['team'];
+
+        //$projectId = $resourceVals ['project-teams'];
+        if (isset($projectId) AND isset($teamName))
+            $result = $this->getAllTeamNames($projectId, $teamName);
 
         if (!is_array($result)) {
             return array('code' => '2004');
@@ -90,48 +89,26 @@ class ProjectTeamsResource implements Resource {
         return $result;
     }
 
-    private function getproject($projectId) {
+    private function getAllTeamNames($projectId, $teamName) {
     
         global $logger;
-        $logger->debug('Fetch project...');
+        $logger->debug('Fetch teamNames...');
 
-        $projectObj = $this -> collapDAO -> load($projectId);
-
-        if(empty($projectObj)) 
+        $listOfAllteamsObj = $this -> collapDAO -> queryAllTeamNames($projectId, $teamName);
+//print_r($listOfAllteamsObj); exit;
+        if(empty($listOfAllteamsObj)) 
                 return array('code' => '2004');        
         
-        $this -> projectDetail [] = $projectObj-> toArray();
+        foreach ($listOfAllteamsObj as $teamObj) {
+            $this -> teamNames [] = $teamObj-> toArrayTeams();
+        }
         
-        $logger -> debug ('Fetched project: ' . json_encode($this -> projectDetail));
+        $logger -> debug ('Fetched teams: ' . json_encode($this -> teamNames));
 
         return array('code' => '2000', 
                      'data' => array(
-                                'projectDetail' => $this -> projectDetail
+                                'teamNames' => $this -> teamNames
                             )
             );
-    }
-
-    private function getListOfAllprojects() {
-    
-        global $logger;
-        $logger->debug('Fetch list of all projects...');
-
-
-        $listOfprojectObj = $this -> collapDAO -> queryAll();
-        
-        if(empty($listOfprojectObj)) 
-                return array('code' => '2004');
-        
-        foreach ($listOfprojectObj as $projectObj) {
-            $this -> projects [] = $projectObj -> toArray();
-        }
-
-        $logger -> debug ('Fetched list of projects: ' . json_encode($this -> projects));
-
-        return array('code' => '2000', 
-                     'data' => array(
-                                'projects' => $this -> projects
-                            )
-        );
     }
 }

@@ -182,7 +182,7 @@ class ChallengeResource implements Resource {
     }
 
     public function get($resourceVals, $data, $userId) {
-        
+        var_dump($data); exit;
     //$userId : to in table as userId
         //$userId = 2;
 

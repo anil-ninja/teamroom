@@ -2,7 +2,7 @@
 	/**
 	 * Object represents table 'teams'
 	 *
-     	 * @author: http://phpdao.com
+     	 * @author: rajnish
      	 * @date: 2015-03-03 14:48	 
 	 */
 	class Team{
@@ -16,8 +16,10 @@
 		private $memberStatus;
 		private $leaveTeam;
 		private $status;
+
+		private $userName;
 	
-		function __construct ($userId, $projectId, $teamName, $teamOwner, $teamCreation, $memberStatus, $leaveTeam, $status, $id = null) {
+		function __construct ($userId, $projectId, $teamName, $teamOwner, $teamCreation, $memberStatus, $leaveTeam, $status, $userName, $id = null) {
 			$this -> id = $id;
 			$this -> userId = $userId;
 			$this -> projectId = $projectId;
@@ -27,8 +29,8 @@
 			$this -> memberStatus = $memberStatus;
 			$this -> leaveTeam = $leaveTeam;
 			$this -> status = $status;
-		}	
-
+			$this -> userName = $userName;
+		}
 		function setId ($id) {
 			$this -> id = $id;
 		}
@@ -92,6 +94,13 @@
 			return $this -> status;
 		}
 
+		function setUserName ($userName) {
+			$this -> userName = $userName;
+		}
+		function getUserName () {
+			return $this -> userName;
+		}
+
 		function toString() {
 			return $this -> id . ", " . 
 					$this -> userId.",".
@@ -115,6 +124,14 @@
 							memberStatus => $this-> memberStatus,
 							leaveTeam => $this-> leaveTeam,
 							status => $this-> status
+						);
+		}
+
+		function toArrayTeams() {
+			return array (			
+							projectId => $this-> projectId,
+							teamName => $this-> teamName,
+							userName => $this-> userName
 						);
 		}
 	}
