@@ -15,7 +15,9 @@ define([
     'views/footertabsviews/contactView',
     'views/forgetpassword/forgetpasswordView',
     'views/project/projectView',
-    'views/ninja/ninjaView'
+    'views/ninja/ninjaView',
+    'views/profile/profileView',
+    'views/openchallenge/openView'
     
 ], function ($, _, Backbone,
         LoginView,
@@ -29,7 +31,9 @@ define([
         ContactView,
         ForgetpasswordView,
         ProjectView,
-        NinjaView
+        NinjaView,
+        ProfileView,
+        OpenView
         ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -118,6 +122,16 @@ define([
         app_router.on('route:home', function () {
             var ninjaView = new NinjaView();
             ninjaView.render();
+        });
+
+        app_router.on('route:profile', function (name) {
+            var profileView = new ProfileView();
+            profileView.render();
+        });
+
+        app_router.on('route:open', function (id) {
+            var openView = new OpenView();
+            openView.render();
         });
 
         Backbone.history.start();

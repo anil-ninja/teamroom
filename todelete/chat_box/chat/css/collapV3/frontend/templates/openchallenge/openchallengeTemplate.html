@@ -1,0 +1,106 @@
+<div class='list-group challenge'>
+	<div class='list-group-item'>
+		<input class='btn btn-primary pull-right' type='submit' onclick='accept_pub(\"".$chelangeid."\", 2)' value='Accept'/>
+		<span class='icon-question-sign'></span>display_fname_likes display_name_stmt
+		<hr/>
+		<div class='row-fluid'>
+			<div class='col-md-5'>
+	            <span id='demo11' class='icon-hand-up' style='cursor: pointer; float: none;' > <b>Push</b>
+	                <input type='submit' class='btn-link' id='likes_".$chelangeid ."' value='".$likes."'/> |
+	            </span> &nbsp;&nbsp;&nbsp;
+	            <span id='demo13' class='icon-hand-down' style='cursor: pointer; float: none;'> <b>Pull</b>
+	                <input type='submit' class='btn-link' id='dislikes_".$chelangeid ."' value='".$dislikes."'/>&nbsp;
+	            </span>
+	        </div>
+	    </div><hr/>
+	    <div id='commentscontainer'>
+	        <div class='comments clearfix' id='comment_".$comment_id."'>
+	            <div class='pull-left lh-fix'>
+	                <img onError=this.src='img/default.gif'>&nbsp;&nbsp;&nbsp;
+	            </div>
+	            <div class='comment-text'>
+	                <span class='pull-left color strong'>&nbsp;
+	                	<a href ='profile.php?username=" . $username_comment_ninjas . "'>first_name last_name</a>
+	                </span>&nbsp;&nbsp;
+	            </div>
+	        </div>
+	    </div>
+	    <div class='comments_".$chelangeid."'></div><div id='demo14' class='comments clearfix'>
+	        <div class='pull-left lh-fix'>
+	            <img onError=this.src='img/default.gif'>&nbsp;
+	        </div>
+	        <div class='comment-text'>
+	        	<input type='text' class='input-block-level' STYLE='width: 83.0%;' id='own_ch_response_".$chelangeid."' placeholder='Want to know your comment....'/>
+	            <button type='submit' class='btn btn-primary' onclick='comment(\"".$chelangeid."\", 1)' style='margin-bottom: 10px; padding-bottom: 6px; padding-top: 7px;'><i class='icon-chevron-right'></i></button>
+	        </div>
+	    </div>
+	</div>
+</div>
+<div class="list-group" style="margin: 20px 0px;">
+    <div class="list-group-item" style="padding: 0px;">
+    	<div id='demo10' class='row-fluid' style='height:auto;word-wrap: break-word;'>
+			<div class='span2' style='margin: 4px 4px 4px 4px;'>
+				<img style='width:150px; height:150px;' onError=this.src='img/default.gif' class='img-circle img-responsive'>
+			</div>
+			<div class='span9' style=' padding-left:5px;'>
+				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'> 
+					<span class='icon-user'></span>
+					<strong>
+						<a href='profile.php?username=".$usersUsername."' >&nbsp;usersFirstname usersLastname</a>
+					</strong>&nbsp;
+					<i>(&nbsp;usersRank&nbsp;)</i>
+				</div>
+				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+					<span class='icon-envelope' id='email_auth' style='cursor: pointer;'>&nbsp;&nbsp;usersEmail</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class='icon-phone' id='phone' style='cursor: pointer'>&nbsp;&nbsp;&nbsp;usersPhone</span>
+					<span class='btn-success'>
+						<a href='ninjaSkills.php?skill_id=".$usersSkillid."' style='color: #fff;font-size:14px;font-style: italic;font-family:verdana;'>&nbsp;&nbsp;usersSkillname</a>&nbsp;
+					</span>&nbsp;
+				</div>
+				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+					<span class='icon-briefcase'></span>&nbsp;&nbsp;&nbsp;organisation_name&nbsp;&nbsp;&nbsp;&nbsp;
+					<span class='icon-home'></span>&nbsp;&nbsp;&nbsp;living_town
+				</div><br/>
+				<div class='row-fluid' style ='text-align:justify;word-wrap: break-word;'>
+					<i class='icon-screenshot'></i>Skills &nbsp;: &nbsp; data
+				</div><br/>
+				<div class='row-fluid' style ='text-align:justify;font-size: 14px;word-wrap: break-word;'>
+					<span class='icon-comment'></span>&nbsp;&nbsp;&nbsp;about_user
+				</div>
+			</div>
+		</div><br/>
+	</div>
+</div>
+<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+	<ul class="nav nav-tabs">
+        <li class="active"><a href="#" data-toggle="tab" class="active ">About Collap :</a></li>
+    </ul>
+    <div class="tab-content">
+		<div class="box">
+			<p>Collap is a powerful online platform which enables you to take a dig at problems, big or small, and collaborate with like minded people to make the world a better place.</p>
+			<p>Identify any problem you want solved and let the world know about it. Assemble your team and have a go at it. Interested Collapers can join your quest and contribute which ever way they can. 
+			Collap provides you a wide range of helpful tools which enable hassle-free collaboration. Create and manage projects and be in control with our Project Dashboard all through the process. Share ideas freely and come up with innovative solutions.</p>
+			<p>Make your realm private and work on that secret project you’ve long been planning. 
+			Participate in projects and upgrade your Level. Earn a special place in Collap for each incremental step. Sharpen your skills while lending them to do good. </p>
+			<p> Challenges to solve your technical problems and help change the world! . Meet people,  allows everybody to share their ideas, views, challenges and achievements with the like minded for mutual benefits. In this collap v1 release, we are going to limit to some functionality due to technically liabilities and available resources.</p>
+		</div>
+	</div>
+</div><br/><br/>
+<div class="tabbable custom-tabs tabs-animated  flat flat-all hide-label-980 shadow track-url auto-scroll">
+	<ul class="nav nav-tabs">
+        <li class="active"><a href="#" data-toggle="tab" class="active ">Top Projects :</a></li>
+    </ul>
+    <div class="tab-content">
+		<div class="row-fluid">
+			<div class ='span6 box' style=' margin: 4px ;min-height: 200px;'>
+    		    <a href='project.php?project_id=".$project_id."'>
+                    <div class='panel-heading'>
+                        <b><p style=' font-size:14px;word-wrap: break-word;color:#3B5998;'>project_title_display</p></b>
+                    </div>
+                    <div class='panel-content'>
+                        <p style='word-wrap: break-word;'>project_title_stmt.....</p><br>
+                    </div>
+                </a>
+		    </div>
+		</div>
+	</div>
+</div>

@@ -2,21 +2,20 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'collections/ninja/ninjaCollection',
+  'collections/openchallenge/openchallengeCollection',
   'collections/userprojects/userprojectsCollection',
-  'text!templates/ninja/ninjaTemplate.html',
-  'text!templates/ninja/ninjaRPTemplate.html',
-  'text!templates/ninja/ninjaLPTemplate.html',
+  'text!templates/openchallenge/openchallengeTemplate.html',
+  'text!templates/openchallenge/openchallengeRPTemplate.html',
   'text!templates/userlinks/friendlist.html',
   'text!templates/navbar/navbarTemplate.html'
-  ], function($, _, Backbone, NinjalCollection, UserprojectsCollection, NinjaTemplate, NinjaRPTemplate, NinjaLPTemplate, Friendlist, NavbarTemplate){
+  ], function($, _, Backbone, OpenchallengelCollection, UserprojectsCollection, OpenchallengeTemplate, OpenchallengeRPTemplate, Friendlist, NavbarTemplate){
     
     var ForgetpasswordView = Backbone.View.extend({
 
       el : $("#page"),
       navel : $("#navbar"),
       rightpanel : $("#right-panel"),
-      leftpanel : $("#left-panel"),
+      
       events: {
         
       },
@@ -34,16 +33,16 @@ define([
       },*/
       render: function () {
         var that = this;
-        var userprojects = new UserprojectsCollection();
+        /*var userprojects = new UserprojectsCollection();
         userprojects.fetch({
         
-          /*beforeSend: function (xhr) {
+          beforeSend: function (xhr) {
               xhr.setRequestHeader('AUTH-KEY', key);
-          } ,*/
+          } ,
           success: function (userprojects) {  
             console.log(userprojects);
             projectsData = userprojects.models[0].attributes.data.projects;
-            var LPtemplate = _.template(NinjaLPTemplate, {projects : projectsData});
+            var LPtemplate = _.template(openchallengeLPTemplate, {projects : projectsData});
             that.leftpanel.html(LPtemplate);
             return that;
           },
@@ -58,19 +57,18 @@ define([
               alert("No data available");
             }
           }
-        });
+        });*/
         /*$("#divider").removeClass('divider');
         $("#divider2").removeClass('divider');*/
         $("#column2").removeClass('col-md-9');
         $("#column3").removeClass('col-md-1');
-        $("#column1").removeClass('col-md-1');
-        $("#column2").addClass('col-md-6');
+        $("#column2").addClass('col-md-8');
         $("#column3").addClass('col-md-2');
-        $("#column1").addClass('col-md-2');
-        document.getElementById("column1").style.width = "220px";
-        var template = _.template(NinjaTemplate);
+        
+        document.getElementById("column1").style.width = "20px";
+        var template = _.template(OpenchallengeTemplate);
         var navtemplate = _.template(NavbarTemplate);
-        var RPtemplate = _.template(NinjaRPTemplate);
+        var RPtemplate = _.template(OpenchallengeRPTemplate);
         that.$el.html(template);
         this.navel.html(navtemplate);
         this.rightpanel.html(RPtemplate);
