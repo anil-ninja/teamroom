@@ -29,7 +29,28 @@ class ProjectTeamMembersResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data, $userId) {    }
+    public function delete ($resourceVals, $data, $userId) {    
+    	global $logger, $warnings_payload; 
+                
+        $teamMemberId = $resourceVals ['project-team-members'];
+
+        if (! isset($teamMemberId)) {
+            $warnings_payload [] = 'DELETE call to /project-team-members must be succeeded ' .  
+                                        'by /teamMemberId i.e. DELETE /project-team-members/teamMemberId';
+            throw new UnsupportedResourceMethodException();
+        }
+        $logger -> debug ("Delete team member with Id: " . $teamMemberId);-
+        
+        $result = $this -> collapDAO -> deleteTeamMember($teamMemberId);
+        $logger -> debug ("Team Member Deleted? " . $result);
+
+        if ($result) 
+            $result = array('code' => '2003');
+        else 
+            $result = array('code' => '2004');
+
+        return $result;
+    }
 
     public function put ($resourceVals, $data, $userId) {    }
 

@@ -228,9 +228,6 @@ class TeamsMySqlDAO implements TeamsDAO{
 	protected function readRow($row){
 		$team = new Team($row['user_id'],$row['project_id'],$row['team_name'],$row['team_owner'],$row['team_creation'],$row['member_status'],$row['leave_team'],$row['status'],$row['id']);
 		
-		
-		
-
 		return $team;
 	}
 	

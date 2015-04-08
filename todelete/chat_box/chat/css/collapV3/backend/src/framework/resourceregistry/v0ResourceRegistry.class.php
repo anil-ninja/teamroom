@@ -128,12 +128,12 @@
                     $this -> resource = new ProjectTeamsResource();
                 break;
 
-                case '/project-team-Members': 
+                case '/project-team-members': 
                     require_once 'resources/ProjectTeamMembersResource.class.php';
                     $this -> resource = new ProjectTeamMembersResource();
                 break;
 
-                case '/project-teams-Name-Dashboard': 
+                case '/project-teams-name-dashboard': 
                     require_once 'resources/ProjectTeamsNameDashboardResource.class.php';
                     $this -> resource = new ProjectTeamsNameDashboardResource();
                 break;

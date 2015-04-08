@@ -25,7 +25,34 @@ class ProjectTeamsResource implements Resource {
     public function options() {    }
 
     
-    public function delete ($resourceVals, $data, $userId) {    }
+    public function delete ($resourceVals, $data, $userId) {    
+        global $logger, $warnings_payload; 
+                
+        $teamId = $resourceVals ['project-teams'];
+
+        if (! isset($teamId)) {
+            $warnings_payload [] = 'DELETE call to /project-teams must be succeeded ' .  
+                                        'by /teamId i.e. DELETE /project-teams/teamId';
+            throw new UnsupportedResourceMethodException();
+        }
+        
+        $teamDeleteObj = $this -> collapDAO -> load($teamId);
+
+        $projectId = (int)$teamDeleteObj -> getProjectId();
+        $teamName = $teamDeleteObj -> getTeamName();
+
+        $logger -> debug ("Delete team with Id: " . $teamId);-
+        
+        $result = $this -> collapDAO -> deleteTeam($projectId, $teamName);
+        $logger -> debug ("Team Deleted? " . $result);
+
+        if ($result) 
+            $result = array('code' => '2003');
+        else 
+            $result = array('code' => '2004');
+
+        return $result;
+    }
 
     public function put ($resourceVals, $data, $userId) {    }
 

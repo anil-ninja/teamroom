@@ -20,7 +20,7 @@
 		{
 		    "internal_status": {
 		        "code": "2001",
-		        "message": "Channel Created"
+		        "message": "team Created"
 		    },
 		    "data": {
 		        "teamDetail": [

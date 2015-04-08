@@ -7,28 +7,28 @@
 	 */
 	class TeamMembers{
 		
-		//private $id;
+		private $id;
 		//private $userId;
 		private $firstName;
 		private $lastName;
 		private $userName;
 		private $rank;
 
-		function __construct ($firstName, $lastName, $rank, $userName) {
-			//$this -> id = $id;
+		function __construct ($firstName, $lastName, $rank, $userName, $id) {
+			$this -> id = $id;
 			//$this -> userId = $userId;
 			$this -> firstName = $firstName;
 			$this -> lastName = $lastName;
 			$this -> rank = $rank;
 			$this -> userName = $userName;
 		}
-/*		function setId ($id) {
+		function setId ($id) {
 			$this -> id = $id;
 		}
 		function getId () {
 			return $this -> id;
 		}
-
+/*
 		function setUserId ($userId) {
 			$this -> userId = $userId;
 		}
@@ -65,14 +65,16 @@
 		}
 
 		function toString() {
-			return $this -> firstName.",".
+			return 	$this -> id.",".
+					$this -> firstName.",".
 					$this -> lastName. ", " . 
 					$this -> rank. ", " . 
 					$this -> userName;
 		}
 
 		function toArray() {
-			return array (			
+			return array (		
+							id => $this-> id,
 							firstName => $this-> firstName,
 							lastName => $this-> lastName,
 							rank => $this -> rank,

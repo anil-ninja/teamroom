@@ -123,12 +123,14 @@
 							teamCreation => $this-> teamCreation,
 							memberStatus => $this-> memberStatus,
 							leaveTeam => $this-> leaveTeam,
-							status => $this-> status
+							status => $this-> status,
+							userName => $this-> userName
 						);
 		}
 
 		function toArrayTeams() {
-			return array (			
+			return array (
+							id => $this-> id,
 							projectId => $this-> projectId,
 							teamName => $this-> teamName,
 							userName => $this-> userName
