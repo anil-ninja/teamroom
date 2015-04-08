@@ -1,0 +1,26 @@
+/project/teams
+
+	GET "api.loc.collap.com/v0/project-teams?project=3&team=defaultteam"
+
+	Response:
+
+	{
+		"internal_status": {
+		    "code": "2000",
+		    "message": "Teams Fetched"
+		},
+		"data": {
+		    "teamNames": [
+		        {
+		            "projectId": "3",
+		            "teamName": "myTeam",
+		            "userName": "rajnish"
+		        },
+		        {
+		            "projectId": "3",
+		            "teamName": "newteam",
+		            "userName": "rajnish"
+		        }
+		    ]
+		}
+	}
