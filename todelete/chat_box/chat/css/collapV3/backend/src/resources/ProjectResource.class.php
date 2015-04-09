@@ -124,7 +124,7 @@ class ProjectResource implements Resource {
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
-        $userId = 2;
+        $userId = 3;
 
         $projectId = $resourceVals ['project'];
         if (isset($projectId)) {

@@ -28,7 +28,7 @@ class ChallengeResource implements Resource {
     public function delete ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload; 
         
-        $userId = 2;
+        $userId = 4;
         
         $challengeId = $resourceVals ['challenges'];
 
@@ -138,7 +138,7 @@ class ChallengeResource implements Resource {
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
 
-        $userId = 2;
+        $userId = 5;
 
         $challengeId = $resourceVals ['challenge'];
         if (isset($challengeId)) {

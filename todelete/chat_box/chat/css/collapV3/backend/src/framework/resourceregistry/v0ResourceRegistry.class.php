@@ -122,20 +122,20 @@
                     require_once 'resources/ProjectResource.class.php';
                     $this -> resource = new ProjectResource();
                 break;
-
+                //done
                 case '/project-teams':
                     require_once 'resources/ProjectTeamsResource.class.php';
                     $this -> resource = new ProjectTeamsResource();
                 break;
-
+                //done
                 case '/project-team-members': 
                     require_once 'resources/ProjectTeamMembersResource.class.php';
                     $this -> resource = new ProjectTeamMembersResource();
                 break;
 
-                case '/project-teams-name-dashboard': 
-                    require_once 'resources/ProjectTeamsNameDashboardResource.class.php';
-                    $this -> resource = new ProjectTeamsNameDashboardResource();
+                case '/project-team-name-dashboard': 
+                    require_once 'resources/ProjectTeamNameDashboardResource.class.php';
+                    $this -> resource = new ProjectTeamNameDashboardResource();
                 break;
 
 //update /project-conversations to project/conversations
