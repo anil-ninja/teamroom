@@ -8,88 +8,82 @@
 	class ChallengeOwnership{
 		
 		private $id;
-		private $userId;
-		private $challengeId;
-		private $ownershipCreation;
-		private $status;
-		private $submissionTime;
-			function __construct( $userId,$to,$challengeId,$ownershipCreation,$submissionTime,$status
-		,$id = null)
-		{
+		private $userId;
+		private $challengeId;
+		private $ownershipCreation;
+		private $status;
+		private $submissionTime;
+	
+		function __construct( $userId,$challengeId,$ownershipCreation,$status,$submissionTime,$id = null) {
 			$this->id = $id;
 			$this->userId= $userId;
 			$this->challengeId = $challengeId;
-			$this->owenershipCreation = $ownershipCreation;
+			$this->ownershipCreation = $ownershipCreation;
 			$this->submissionTime = $submissionTime;
 			$this->status = $status;
-			
-			
-			}
-			function setId($id){
+		}
+		
+		function setId($id){
 			$this -> id = $id;
 		}
 		function getId(){
-				return $this->id;
+			return $this-> id;
 		}
 
 		function setUserId($userId){
 			$this -> userId = $userId;
 		}
 		function getUserId(){
-				return $this-> userId;
-				}
-				
-				function setChallengeId($challengeId){
-			$this -> challengeId = $challengeId;
-			function getChallengeId(){
-				return $this->challengeId;
+			return $this-> userId;
 		}
-			function setOwnershipCreation($ownershipCreation){
+				
+		function setChallengeId($challengeId){
+			$this -> challengeId = $challengeId;
+		}
+		function getChallengeId(){
+			return $this->challengeId;
+		}
+		
+		function setOwnershipCreation($ownershipCreation){
 			$this -> ownershipCreation= $ownershipCreation;
 		}
 		function getOwnershipCreation(){
-				return $this-> $ownershipCreation;
-				}
+			return $this-> ownershipCreation;
+		}
 				
-				function setStatus($status){
+		function setStatus($status){
 			$this -> status = $status;
 		}
 		function getStatus(){
-				return $this-> status;
+			return $this-> status;
 		}
+
 		function setSubmissionTime($submissionTime){
 			$this -> submissionTime = $submissionTime;
 		}
 		function getSubmissionTime(){
-				return $this->submissionTime;
+			return $this-> submissionTime;
 		}
 
 
-	
-			function toString (){
-			return $this -> id . ", " . $this ->userId.",".$this->challengeId.",".$this->ownershipCreation.".".$this->submissionTime.",".$this->status;}
-			function toArray() {
+		function toString (){
+			return $this -> id . ", " . 
+					$this-> userId.",".
+					$this-> challengeId.",".
+					$this-> ownershipCreation.",".
+					$this-> status.",".
+					$this-> submissionTime;
+		}
+		
+		function toArray() {
 			return array (
-						
-						
-						
-						
-			id => $this->id,
-			userId=>$this->userId,
-			challengeId=> $this->challengeId,
-			ownershipCreation => $this->ownershipCreation,
-			submissionTime =>$this->submissionTime,
-			
-			status => $this->status
-			
-						);
-					}
-
-		
-
-		
-	}
-		
-		
+						id => $this-> id,
+						userId=>$this-> userId,
+						challengeId=> $this-> challengeId,
+						ownershipCreation => $this-> ownershipCreation,
+						status => $this-> status,
+						submissionTime =>$this-> submissionTime			
+					);
+		}
 	}
 ?>

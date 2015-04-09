@@ -115,6 +115,11 @@
                     $this -> resource = new ChallengeKeywordsResource();
                 break;
 
+                case '/challengeOwnership': 
+                    require_once 'resources/ChallengeOwnershipResource.class.php';
+                    $this -> resource = new challengeOwnershipResource();
+                break;
+
 
                 // Resorce for project endpoint 
                 //done

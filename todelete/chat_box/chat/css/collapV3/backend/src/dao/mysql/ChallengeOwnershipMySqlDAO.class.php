@@ -60,14 +60,14 @@ class ChallengeOwnershipMySqlDAO implements ChallengeOwnershipDAO{
 		$sql = 'INSERT INTO challenge_ownership (user_id, challenge_id, ownership_creation, status, submission_time) VALUES (?, ?, ?, ?, ?)';
 		$sqlQuery = new SqlQuery($sql);
 		
-		$sqlQuery->setNumber($challengeOwnership->userId);
-		$sqlQuery->setNumber($challengeOwnership->challengeId);
-		$sqlQuery->set($challengeOwnership->ownershipCreation);
-		$sqlQuery->setNumber($challengeOwnership->status);
-		$sqlQuery->set($challengeOwnership->submissionTime);
+		$sqlQuery->setNumber($challengeOwnership->getUserId());
+		$sqlQuery->setNumber($challengeOwnership->getChallengeId());
+		$sqlQuery->set($challengeOwnership->getOwnershipCreation());
+		$sqlQuery->setNumber($challengeOwnership->getStatus());
+		$sqlQuery->set($challengeOwnership->getSubmissionTime());
 
 		$id = $this->executeInsert($sqlQuery);	
-		$challengeOwnership->id = $id;
+		$challengeOwnership->setId($id);
 		return $id;
 	}
 	
