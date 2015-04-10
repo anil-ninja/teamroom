@@ -60,7 +60,6 @@ class ChallengesMySqlExtDAO extends ChallengesMySqlDAO{
 		return $this->getListUserChallenge($sqlQuery);
 	}
 
-
 	/**
 	 * Get project challenge records from table
 	 */
@@ -90,12 +89,48 @@ class ChallengesMySqlExtDAO extends ChallengesMySqlDAO{
 	}
 
 	/**
+	 * Get project challenge records from table
+	 */
+	public function queryAllTasks($userId, $userId){
+		$sql = "(SELECT DISTINCT challenge.id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username 
+					FROM challenges AS challenge JOIN user_info AS user JOIN challenge_ownership AS owner 
+						WHERE owner.user_id = ? 
+							AND (challenge.type = '5' OR challenge.type = '1' OR challenge.type = '2' OR challenge.type = '3') 
+							AND challenge.user_id = user.id 
+							AND challenge.id = owner.challenge_id
+				)
+				UNION
+				(SELECT DISTINCT challenge.id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username 
+					FROM challenges AS challenge JOIN user_info AS user JOIN challenge_ownership AS owner 
+						WHERE challenge.user_id = ?
+							AND challenge.type = '5' 
+							AND owner.user_id = user.id 
+							AND challenge.id = owner.challenge_id
+				)";
+		$sqlQuery = new SqlQuery($sql);
+		$sqlQuery->setNumber($userId);
+		$sqlQuery->setNumber($userId);
+		return $this->getListUserTasks($sqlQuery);
+	}
+
+	/**
 	 * Read row
 	 *
 	 * @return ChallengesMySql 
 	 */
 	protected function readRowUserChallenge($row){
 		$challenge = new Challenge(0,$row['project_id'],0,0,$row['title'], $row['stmt'],$row['type'],$row['status'],$row['likes'],$row['dislikes'],$row['creation_time'],0, $row['first_name'], $row['last_name'], $row['username'], $row['id']);
+	
+		return $challenge;
+	}
+
+	/**
+	 * Read row
+	 *
+	 * @return ChallengesMySql 
+	 */
+	protected function readRowUserTasks($row){
+		$challenge = new Challenge(0,0,0,0,$row['title'],0,$row['type'],$row['status'],0,0,$row['creation_time'],0, $row['first_name'], $row['last_name'], $row['username'], $row['id']);
 	
 		return $challenge;
 	}
@@ -109,6 +144,15 @@ class ChallengesMySqlExtDAO extends ChallengesMySqlDAO{
 		return $ret;
 	}
 	
+	protected function getListUserTasks($sqlQuery){
+		$tab = QueryExecutor::execute($sqlQuery);
+		$ret = array();
+		for($i=0;$i<count($tab);$i++){
+			$ret[$i] = $this->readRowUserTasks($tab[$i]);
+		}
+		return $ret;
+	}
+
 	/**
 	 * Get row
 	 *

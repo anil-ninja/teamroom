@@ -80,17 +80,22 @@
                 //only get in recommendation
 
 //update /user-challenges to user/challenges
-                //pending
+                //done
                 case '/user-professions': 
                     require_once 'resources/UserProfessionsResource.class.php';
                     $this -> resource = new UserProfessionsResource();
                 break;
 
 //update /user-challenges to user/challenges
-                //pending
+                //done
                 case '/user-skills': 
                     require_once 'resources/UserSkillsResource.class.php';
                     $this -> resource = new UserSkillsResource();
+                break;
+                //done
+                case '/user-tasks': 
+                    require_once 'resources/UserTasksResource.class.php';
+                    $this -> resource = new UserTasksResource();
                 break;
 
                 
@@ -114,7 +119,7 @@
                     require_once 'resources/ChallengeKeywordsResource.class.php';
                     $this -> resource = new ChallengeKeywordsResource();
                 break;
-
+                //done
                 case '/challengeOwnership': 
                     require_once 'resources/ChallengeOwnershipResource.class.php';
                     $this -> resource = new challengeOwnershipResource();
@@ -137,7 +142,7 @@
                     require_once 'resources/ProjectTeamMembersResource.class.php';
                     $this -> resource = new ProjectTeamMembersResource();
                 break;
-
+                //done
                 case '/project-team-name-dashboard': 
                     require_once 'resources/ProjectTeamNameDashboardResource.class.php';
                     $this -> resource = new ProjectTeamNameDashboardResource();

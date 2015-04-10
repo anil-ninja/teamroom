@@ -60,38 +60,39 @@ class TeamsMySqlExtDAO extends TeamsMySqlDAO{
 	 * Get teal Dashboard records from table
 	 */
 	public function queryAllTeamDasboard($projectId,$projectId,$projectId, $teamName, $projectId, $teamName, $projectId, $teamName) {
-		//$logger -> debug ("POSTed team name and project id: " .$projectId." ".$projectId." ".$projectId." ".$teamName." ".$projectId." ".$teamName." ".$projectId." ".$teamName );
-		//echo $projectId." ".$projectId." ".$projectId." ".$teamName." ".$projectId." ".$teamName." ".$projectId." ".$teamName;
-		//exit;
-		$sql = "(SELECT challenge.id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username FROM challenges as challenge JOIN user_info as user 
-					WHERE challenge.project_id = ? 
-						AND (challenge.type = '1' OR challenge.type = '2') 
-						AND challenge.status = '1' 
-						AND challenge.status != '3' 
-						AND challenge.status != '7' 
-						AND challenge.user_id = user.id
-				)
-				UNION
-				(SELECT DISTINCT challenge.id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username FROM challenges as challenge JOIN user_info as user JOIN challenge_ownership as owner 
-                    WHERE challenge.project_id = ?
-                        AND challenge.id = owner.challenge_id 
-                        AND owner.user_id = user.id 
-                        AND challenge.status != '3' 
-                        AND challenge.status != '7'
-                        AND owner.user_id 
-                            IN (SELECT user_id FROM teams WHERE project_id = ? AND team_name = ? AND member_status = '1')
-                        AND challenge.id 
-                        	NOT IN (SELECT challenge_id FROM team_tasks WHERE project_id = ? AND team_name = ?)
-				)
-				UNION
+		
+		$sql = "(SELECT challenge.id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username 
+					FROM challenges as challenge JOIN user_info as user 
+						WHERE challenge.project_id = ? 
+							AND (challenge.type = '1' OR challenge.type = '2') 
+							AND challenge.status = '1' 
+							AND challenge.status != '3' 
+							AND challenge.status != '7' 
+							AND challenge.user_id = user.id
+					)
+					UNION
+					(SELECT DISTINCT challenge.id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username 
+						FROM challenges as challenge JOIN user_info as user JOIN challenge_ownership as owner 
+	                    WHERE challenge.project_id = ?
+	                        AND challenge.id = owner.challenge_id 
+	                        AND owner.user_id = user.id 
+	                        AND challenge.status != '3' 
+	                        AND challenge.status != '7'
+	                        AND owner.user_id 
+	                            IN (SELECT user_id FROM teams WHERE project_id = ? AND team_name = ? AND member_status = '1')
+	                        AND challenge.id 
+	                        	NOT IN (SELECT challenge_id FROM team_tasks WHERE project_id = ? AND team_name = ?)
+					)
+					UNION
 
-				(SELECT a.challenge_id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username FROM team_tasks as a join challenges as challenge JOIN user_info as user
-                    WHERE a.project_id = ? 
-                        AND a.team_name = ? 
-                        AND a.challenge_id = challenge.id
-					    AND challenge.user_id = user.id
-					    AND challenge.status != '3' 
-                        AND challenge.status != '7'
+					(SELECT a.challenge_id, challenge.title, challenge.type, challenge.status, challenge.creation_time, user.first_name, user.last_name, user.username 
+						FROM team_tasks as a join challenges as challenge JOIN user_info as user
+	                    WHERE a.project_id = ? 
+	                        AND a.team_name = ? 
+	                        AND a.challenge_id = challenge.id
+						    AND challenge.user_id = user.id
+						    AND challenge.status != '3' 
+	                        AND challenge.status != '7'
 				)";
 		$sqlQuery = new SqlQuery($sql);
 		$sqlQuery -> set($projectId);
