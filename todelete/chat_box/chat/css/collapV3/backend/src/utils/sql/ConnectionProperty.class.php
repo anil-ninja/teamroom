@@ -15,25 +15,25 @@ class ConnectionProperty{
 	public static function getHost(){
 		/*return ConnectionProperty::$host;*/
 		global $configs;
-		return $configs ['mysql'] ['host'];
+		return $configs ['collap'] ['mysql'] ['host'];
 	}
 
 	public static function getUser(){
 		/*return ConnectionProperty::$user;*/
 		global $configs;
-		return $configs ['mysql'] ['user'];
+		return $configs ['collap']['mysql'] ['user'];
 	}
 
 	public static function getPassword(){
 		/*return ConnectionProperty::$password;*/
 		global $configs; 
-		return $configs ['mysql'] ['password'];
+		return $configs ['collap']['mysql'] ['password'];
 	}
 
 	public static function getDatabase(){
 		/*return ConnectionProperty::$database;*/
 		global $configs; 
-		return $configs ['mysql'] ['database'];
+		return $configs ['collap'] ['mysql'] ['database'];
 	}
 }
 ?>

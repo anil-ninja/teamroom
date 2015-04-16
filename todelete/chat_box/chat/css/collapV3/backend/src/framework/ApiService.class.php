@@ -15,6 +15,8 @@
 	require_once 'framework/RequestHandler.class.php';
 	require_once 'framework/ResponseHandler.class.php';	
 
+	//require_once 'auth/Auth.class.php';	
+
 	class ApiService {
 
 		private static $pageTimer;
@@ -25,7 +27,7 @@
 			/* Setting up the app-configurations globally for use across classes */
 			global $configs;
 			$configs = json_decode (file_get_contents('collap-configs.json'), true);
-
+			//var_dump($configs); die();
 			/* Setting up the logger globally for use across classes */
 			global $logger;
 			$logger = new ShopbookLogger();
@@ -112,11 +114,6 @@
 		/* HTTP Basic authentication */
 		public static function authenticateRequest($server) {
 			global $logger;
-
-			// If no auth set, return 401
-			//if (! isset($server ['PHP_AUTH_USER'])) 
-			//	throw new UnauthorizedException();
-
-			return true;
+			
 		}
 	}

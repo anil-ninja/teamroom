@@ -13,6 +13,7 @@ require_once('utils/sql/Transaction.class.php');
 require_once('utils/sql/SqlQuery.class.php');
 require_once('utils/ArrayList.class.php');
 
+
 class DAOFactory{
 	
 	/**

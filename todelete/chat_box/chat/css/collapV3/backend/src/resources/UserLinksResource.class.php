@@ -51,81 +51,7 @@ class UserLinksResource implements Resource {
         return $result;
     }
 
-    public function put ($resourceVals, $data, $userId) {
-        global $logger, $warnings_payload;
-        $update = false;
-        
-        $reminderId = $resourceVals ['user-reminders'];
-
-        if (! isset($reminderId)) {
-            $warnings_payload [] = 'PUT call to /user-reminders must be succeeded ' . 
-                                    'by /reminderId i.e. PUT /user-reminders/reminderId';
-            throw new UnsupportedResourceMethodException();
-        }
-        if (! isset($data))
-            throw new MissingParametersException('No fields specified for updation');
-
-        $reminderObj = $this -> collapDAO -> load($reminderId);
-        
-        if(! is_object($reminderObj)) 
-            return array('code' => '2004');
-
-        $newRemindTo= $data ['remind_to'];
-        if (isset($newRemindTo)) {
-            if ($newRemindTo != $reminderObj -> getRemindTo()) {
-                $update = true;
-                $reminderObj -> setRemindTo($newRemindTo);
-            }
-        }
-
-        $newMessage = $data ['message'];
-        if (isset($newMessage)) {
-            if ($newTitle != $reminderObj -> getMessage()){
-                $update = true;
-                $reminderObj -> setMessage($newMessage);
-            }
-        }
-
-        
-        $newDisplayOnTime = $data ['display_on_time'];
-        if (isset($newDisplayOnTime)) {
-
-            $time = strtotime($data['display_on_time']);
-            $curtime = time();
-
-            if($curtime > $time) {
-                $update = false;
-                //return array('code' => '903');
-                //do stuff
-            } 
-
-            else {
-                if ($newDisplayOnTime != $reminderObj -> getDisplayOnTime()){
-                    $update = true;
-                    $reminderObj -> setDisplayOnTime($newDisplayOnTime);
-                }
-            }
-        }
-
-
-        if ($update) {
-            $logger -> debug('PUT Reminder object: ' . $reminderObj -> toString());
-            $result = $this -> collapDAO -> update($reminderObj);
-            $logger -> debug('Updated entry: ' . $result);
-        }
-
-        $reminder = $reminderObj -> toArray();
-        $this -> reminder [] = $reminder;
-
-        //if(! isset($reminder ['id'])) 
-        //    return array('code' => '2004');
-
-        return array('code' => '2002', 
-                        'data' => array(
-                            'reminder' => $this -> reminder
-                        )
-        );
-    }
+    public function put ($resourceVals, $data, $userId) {    }
 
     public function post ($resourceVals, $data, $userId) {
         global $logger, $warnings_payload;
@@ -168,12 +94,11 @@ class UserLinksResource implements Resource {
 
     public function get($resourceVals, $data, $userId) {
         
-    //$userId : is to be updated
         $userId = 2;
 
         $linkId = $resourceVals ['user-links'];
         if (isset($linkId))
-            //$result = $this->getLink($linkId, $userId);
+            $result = $this->getLink($linkId, $userId);
         else
             $result = $this -> getListOfAllLinks($userId);
 
@@ -189,14 +114,14 @@ class UserLinksResource implements Resource {
         global $logger;
         $logger->debug('Fetch list of all links...');
 
-
-        $listOfLinkObj = $this -> collapDAO -> queryAllLinks($userId);
+        $requestingId = 3;
+        $listOfLinkObj = $this -> collapDAO -> queryAllLinks($userId, $userId, $requestingId, $userId, $requestingId, $userId, $requestingId);
         
         if(empty($listOfLinkObj)) 
                 return array('code' => '2004');
         
         foreach ($listOfLinkObj as $linkObj) {
-            $this -> links [] = $linkObj -> toArray();
+            $this -> links [] = $linkObj -> toArrayLinks();
         }
 
         $logger -> debug ('Fetched list of links: ' . json_encode($this -> links));

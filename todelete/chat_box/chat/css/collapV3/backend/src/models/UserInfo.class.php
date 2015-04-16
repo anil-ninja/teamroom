@@ -87,11 +87,12 @@
 		function getUsername(){
 				return $this-> username;
 		}
-		function setPassword($password){
+
+		public function setPassword($password){
 			$this -> password = $password;
 		}
-		function getPassword(){
-				return $this->password;
+		public function getPassword(){
+				return $this -> password;
 		}
 
 		function setRank($rank){

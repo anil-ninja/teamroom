@@ -49,13 +49,14 @@ class UserTasksResource implements Resource {
         global $logger;
         $logger->debug('Fetch list of all tasks to do and get done ...');
 
-        $listOftasksObjs = $this -> collapDAO -> queryAllTasks($userId);
+        $listOftasksObjs = $this -> collapDAO -> queryAllTasks($userId, $userId);
         
         if(empty($listOftasksObjs)) 
                 return array('code' => '2004');
         
         foreach ($listOftasksObjs as $taskObj) {
             $this -> userTasks [] = $taskObj -> toArrayTeamDashboard();
+            //toArrayTeamDashboard() puts data as toArrayUserTasks also
         }
 
         $logger -> debug ('Fetched list of userTasks: ' . json_encode($this -> userTasks));

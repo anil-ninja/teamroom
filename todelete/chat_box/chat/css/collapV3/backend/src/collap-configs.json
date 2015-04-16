@@ -1,16 +1,22 @@
 {
-    "mysql": {
-        "host": "localhost", 
-        "user": "root", 
-        "password": "redhat@11111p", 
-        "database": "ninjasTeamRoom2",
-    	"social": {
-    		"host": "localhost", 
-    		"user": "root", 
-    		"password": "redhat11111p", 
-    		"database": "social3" 
-        	}  
-        }, 
+    "collap": {
+        "mysql": {
+        	"host": "localhost", 
+            "user": "root", 
+            "password": "redhat@11111p", 
+            "database": "ninjasTeamRoom2"
+    	}  
+    }, 
+
+    "mobac": {
+        "mysql": {
+            "host": "localhost", 
+            "user": "root", 
+            "password": "redhat@11111p", 
+            "database": "mobac"
+        }  
+    }, 
+
     "mongo": {    
         "server": "127.0.0.1", 
         "port": 27017, 
@@ -20,7 +26,8 @@
         "db_name": "nucleus", 
         "username": "",  
         "password": "" 
-    }, 
+    },
+
     "redis": {
         "client": {
             "scheme": "tcp",
@@ -29,6 +36,7 @@
         }, 
         "expiry": 86400
     },
+
     "collap_backend" : "/var/www/html/teamroom/backend/src/",
     "COLLAP_BASE_URL" : "http://api.collap.com/v0/",
     "COLLAP_VERSION"  : "v0",
