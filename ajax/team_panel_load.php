@@ -18,7 +18,6 @@ if ($_POST['team']) {
     $total_members = mysqli_num_rows($teams_member_display);
     $data_display .= "
         <div class='row-fluid'>
-            
                 <div class='tab-content'>
                     <div class='list-group-item'>
                         <div class='alert_placeholder'> </div>

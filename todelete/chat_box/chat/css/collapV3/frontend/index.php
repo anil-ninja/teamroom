@@ -28,8 +28,24 @@
   </head>
 
   <body id= "body" style="">
-    <div id="navbar">  
-      
+    <div class="alert_placeholder"></div>
+    <div class="navbar navbar-default navbar-fixed-top" style="background-color:#fff;">
+      <div class="navbar-header">
+        <a class="navbar-brand pull-left" style="font-size:16pt; color: #000; " href="index.php">
+            <img src ='imgs/collap.jpg' style="width:45px;padding-left:10px;"> Collap
+        </a>
+        <div class="navbar-search">
+          <gcse:searchbox></gcse:searchbox>
+        </div>
+        <ul class="nav navbar-nav navbar-right nav-tabs" id="nav-tabs">
+        </ul>
+        <a id='phoneOPt'></a>
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </a> 
+      </div>
     </div>
     <div id="divider" class="divider large visible-desktop"></div>
     <div id="divider2" class="divider large visible-desktop"></div>

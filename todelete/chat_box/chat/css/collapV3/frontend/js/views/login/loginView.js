@@ -5,18 +5,15 @@ define([
   'bootstrap',
   'bootbox',
   'text!templates/login/loginTemplate.html',
-  'text!templates/navbar/navbarlogin.html',
   'models/login/loginModal'
-  ], function($, _, Backbone, bootstrap, Bootbox, loginTemplate, navbarTemplate, LoginModel){
+  ], function($, _, Backbone, bootstrap, Bootbox, loginTemplate, LoginModel){
     
     var LoginView = Backbone.View.extend({
 
       el : $("#page"),
-      navel : $("#navbar"),
       events: {
         'submit .login-form': 'login'
       },
-
       initialize : function() {
         $("#right-panel").html("");
         var that = this;
@@ -56,26 +53,11 @@ define([
         /*that.bind("reset", that.clearView);
         return false;*/
       },
-      /*switchTab: function(ev) {
-        var data = this.$(ev.target).context.activeElement.attributes.href.value; 
-        var selectedTab = ev.currentTarget;
-        this.$('li.active').removeClass('active');
-        this.$('tab-pane.active').removeClass('active');
-        this.$(selectedTab).addClass('active');
-        var id = data.split(/#/)[1];
-        $("#panel1").removeClass('active');
-        $("#panel2").removeClass('active');
-        $("#panel3").removeClass('active');
-        $("#"+id+"").addClass('active');
-      },*/
-
       render: function () {
         var that = this;
-        var template = _.template(loginTemplate);
-        var navtemplate = _.template(navbarTemplate);
-        //$('#login-template').html(template); 
+        var template = _.template(loginTemplate); 
         that.$el.html(template);
-        this.navel.html(navtemplate);
+        $("#nav-tabs").html("<li id='loginNav'><a href='#/login' style='color: #000;'> Login </a></li><li id='registerNav'><a href='#/register' style='color: #000;'> Register </a></li>");
         $("#loginNav").addClass('active');
         document.getElementById("body").style.backgroundImage = "none";
         return that;

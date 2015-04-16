@@ -1,0 +1,125 @@
+<div class="list-group-item" style="margin-top: 20px;"><center> <h4> <strong> All Notices For You</strong></h4></center>
+    <div id="allnotices" style="margin-left: 0px; margin-right: 0px;">
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);'>
+			<i class='icon-plus'></i>
+			<a href ='profile.php?username=".$uname."'>".$fname."</a> Created 
+			<a class='btn-link' style='color:#3B5998;' href='project.php?project_id=".$project_id."' 
+			target='_blank'>". $title."</a> on ".$eventtime."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Created ".$created." In Project
+			<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id."' 
+			target='_blank'>".$project_title."</a>
+			<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id3."' 
+			target='_blank'>".$challenge_title3."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Accepted Challenge 
+			<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
+			target='_blank'>".$challenge_title4."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Submit Answer of 
+			<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
+			target='_blank'>".$challenge_title4."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Closed Challenge 
+			<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
+			target='_blank'>".$challenge_title4."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Spammed Challenge 
+			<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id4."' 
+			target='_blank'>".$challenge_title4."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Assigned Task 
+			<a class='btn-link' style='color:#3B6998;' href='challengesOpen.php?challenge_id=".$challenge_id5."' 
+			target='_blank'>".$challenge_title5."</a> In 
+			<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id5."' 
+			target='_blank'>".$project_title."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Commented On ".$commmented." 
+			<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id6."' 
+			target='_blank'>".$challenge_title6."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-share'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp;	Commented On 
+			<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id3."' 
+			target='_blank'>".$project_title3."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-plus'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp;	Add member in Team ".$team_name."
+			<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id3."' 
+			target='_blank'>".$project_title3."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Updated His Profile on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; ".$like."  
+			<a class='btn-link' style='color:#3B5998;' href='challengesOpen.php?challenge_id=".$challenge_id9."' 
+			target='_blank' >".$challenge_title9."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-plus'></i> 
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a>&nbsp; Send Link on  ".$eventtime2."<br/>
+			<input type='submit' class='btn-link inline-form' onclick='requestaccept(\"".$linkid."\");' value='Accept'/>
+			<input type='submit' class='btn-link inline-form' onclick='requestdelete(\"".$linkid."\");' value='Delete'/>
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-share' ></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Edited Project 
+			<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id4."' 
+			target='_blank'>".$project_title4."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-share'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Joined in 
+			<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id5."' 
+			target='_blank'>".$project_title5."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-star'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Changed His Organisation, Home Town and Informaton on
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-plus'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Added Skills to his profile on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-plus'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Added Profession to his profile on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-share'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a> wants to invest in your project 
+			<a class='btn-link' style='color:#3B6998;' href='project.php?project_id=".$pro_id6."' 
+			target='_blank'>".$project_title6."</a> on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-plus'></i> 
+			<a href ='profile.php?username=".$uname2."'>".$fname2."</a> Accepted Link on  ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);' onclick=".update($user_id,$db_handle).">
+			<i class='icon-plus'></i>
+			<a href ='profile.php?username=".$uname2."'>".$fname2."`s </a> Rank has been updated on ".$eventtime2."
+		</div>
+		<div class ='row-fluid' style='margin-top:10px;padding-left:5px; background : rgb(240, 241, 242);'>
+			<i class='icon-bullhorn'> ". $reminders."</i> By : ".$rname." on " .$eventtime3."
+		</div>
+	</div>
+</div>
