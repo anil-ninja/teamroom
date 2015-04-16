@@ -65,7 +65,7 @@ class ProjectsMySqlDAO implements ProjectsDAO{
 		$sqlQuery->setNumber($project->getBlobId());
 		$sqlQuery->set($project->getProjectTitle());
 		$sqlQuery->set($project->getStmt());
-		$sqlQuery->setNumber($project->getType());
+		$sqlQuery->set($project->getType());
 		$sqlQuery->setNumber($project->getOrgId());
 		$sqlQuery->setNumber($project->getOrder());
 		$sqlQuery->set($project->getCreationTime());

@@ -26,6 +26,12 @@ class DAOFactory{
 	 * @return ChallengeOwnershipDAO
 	 */
 	public static function getChallengeOwnershipDAO(){
+		
+		require_once('ChallengeOwnershipDAO.class.php');
+		require_once('models/ChallengeOwnership.class.php');
+		require_once('mysql/ChallengeOwnershipMySqlDAO.class.php');
+		require_once('mysql/ext/ChallengeOwnershipMySqlExtDAO.class.php');
+
 		return new ChallengeOwnershipMySqlExtDAO();
 	}
 

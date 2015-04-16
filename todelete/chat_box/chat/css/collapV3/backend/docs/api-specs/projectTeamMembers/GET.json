@@ -1,0 +1,28 @@
+/project/team/members
+
+	GET "api.loc.collap.com/v0/project-team-Members?project=3&team=newteam"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2000",
+	        "message": "TeamMembers Fetched"
+	    },
+	    "data": {
+	        "teamMembers": [
+	            {
+	                "firstName": "rajnish",
+	                "lastName": "kumar",
+	                "rank": "Dabbling",
+	                "userName": "rajnish"
+	            },
+	            {
+	                "firstName": "ani",
+	                "lastName": "kumar",
+	                "rank": "Dabbling",
+	                "userName": "anil"
+	            }
+	        ]
+	    }
+	}

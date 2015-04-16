@@ -1,0 +1,46 @@
+/user/tasks
+	
+	GET "api.loc.collap.com/v0/user-tasks"
+
+	Response:
+
+	{
+	    "internal_status": {
+	        "code": "2000",
+	        "message": "Channel Fetched"
+	    },
+	    "data": {
+	        "userTasks": [
+	            {
+	                "id": "2",
+	                "title": "title second challenge",
+	                "type": "5",
+	                "status": "2",
+	                "creationTime": "2015-04-09 15:56:12",
+	                "firstName": "anil",
+	                "lastName": "kumar",
+	                "userName": "anil"
+	            },
+	            {
+	                "id": "5",
+	                "title": "cha by user 4 another",
+	                "type": "1",
+	                "status": "4",
+	                "creationTime": "2015-04-09 15:59:40",
+	                "firstName": "neeraj",
+	                "lastName": "sharma",
+	                "userName": "neeraj"
+	            },
+	            {
+	                "id": "6",
+	                "title": "cha by one more 4",
+	                "type": "3",
+	                "status": "4",
+	                "creationTime": "2015-04-09 15:59:51",
+	                "firstName": "neeraj",
+	                "lastName": "sharma",
+	                "userName": "neeraj"
+	            }
+	        ]
+	    }
+	}

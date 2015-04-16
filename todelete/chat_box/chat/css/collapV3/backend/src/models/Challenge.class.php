@@ -208,6 +208,19 @@
 							lastName => $this-> lastName,
 							userName => $this-> userName
 						);
+		}
+
+		function toArrayTeamDashboard() {
+			return array (			
+							id => $this-> id,
+							title => $this-> title,
+							type => $this-> type,
+							status => $this-> status,
+							creationTime => $this-> creationTime,
+							firstName => $this-> firstName,
+							lastName => $this-> lastName,
+							userName => $this-> userName
+						);
 		}		
 	}
 ?>
