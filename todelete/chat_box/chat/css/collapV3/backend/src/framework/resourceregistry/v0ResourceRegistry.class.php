@@ -73,7 +73,7 @@
                 break;
             	//get, put, delete
 
-                case '/user/recommendation': 
+                case '/user-recommendation': 
             		require_once 'resources/UserRecommendationResource.class.php';
             		$this -> resource = new UserRecommendationResource();
                 break;

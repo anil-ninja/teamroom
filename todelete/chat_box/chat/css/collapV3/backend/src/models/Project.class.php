@@ -22,9 +22,10 @@
 		private $firstName;
 		private $lastName;
 		private $userName;
+		private $rank;
 
 	
-		function __construct ($userId, $blobId, $projectTitle, $stmt, $type, $orgId, $order, $creationTime, $projectValue, $fundNeeded, $lastUpdateTime, $firstName, $lastName, $userName, $id = null) {
+		function __construct ($userId, $blobId, $projectTitle, $stmt, $type, $orgId, $order, $creationTime, $projectValue, $fundNeeded, $lastUpdateTime, $firstName, $lastName, $userName, $rank, $id = null) {
 			$this -> id = $id;
 			$this -> userId = $userId;
 			$this -> blobId = $blobId;
@@ -40,6 +41,7 @@
 			$this -> firstName = $firstName;
 			$this -> lastName = $lastName;
 			$this -> userName = $userName;
+			$this -> rank = $rank;
 		}
 
 		function setId ($id) {
@@ -147,6 +149,13 @@
 				return $this-> username;
 		}
 
+		function setRank($rank){
+			$this -> rank = $rank;
+		}
+		function getRank(){
+				return $this-> rank;
+		}
+
 		function toString() {
 			return $this -> id . ", " . 
 					$this -> userId.",".
@@ -195,6 +204,15 @@
 							firstName => $this-> firstName,
 							lastName => $this-> lastName,
 							userName => $this-> userName
+						);
+		}
+
+		function toArrayRecommndedLinks() {
+			return array (			
+							firstName => $this-> firstName,
+							lastName => $this-> lastName,
+							userName => $this-> userName,
+							rank => $this-> rank
 						);
 		}
 	}

@@ -132,7 +132,7 @@ class UserSkillsResource implements Resource {
     public function get($resourceVals, $data, $userId) {
         
     //$userId : is to be updated
-        $userId = 2;
+        $userId = 4;
 
         $skillId = $resourceVals ['user-skills'];
         if (isset($skillId))
