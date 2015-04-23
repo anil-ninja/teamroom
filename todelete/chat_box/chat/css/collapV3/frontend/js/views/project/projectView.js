@@ -2,20 +2,18 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'search',
   'collections/project/ProjectCollection',
   'collections/project/ProjeclWLCollection',
   'text!templates/project/projectWithoutLoginTemplate.html',
   'text!templates/project/projectTemplate.html',
   'text!templates/project/projectRPWLTemplate.html',
-  'text!templates/navbar/navbarprojectWLTemplate.html',
-  'text!templates/navbar/navbarTemplate.html',
   'text!templates/ninja/ninjaLPTemplate.html'
-  ], function($, _, Backbone, ProjectCollection, ProjeclWLCollection, ProjectWithoutLoginTemplate, ProjectTemplate, ProjectRPWLTemplate, NavbarprojectWLTemplate, NavbarTemplate, LeftTemplate){
+  ], function($, _, Backbone, search, ProjectCollection, ProjeclWLCollection, ProjectWithoutLoginTemplate, ProjectTemplate, ProjectRPWLTemplate, LeftTemplate){
     
     var ForgetpasswordView = Backbone.View.extend({
 
       el : $("#page"),
-      navel : $("#navbar"),
       rightpanel : $("#right-panel"),
       leftpanel : $("#left-panel"),
       events: {
@@ -37,19 +35,16 @@ define([
         $("#column2").removeClass('col-md-9');
         $("#column3").removeClass('col-md-1');
         $("#column1").removeClass('col-md-1');
-        $("#column2").addClass('col-md-6');
+        $("#column2").addClass('col-md-7');
         $("#column3").addClass('col-md-2');
         $("#column1").addClass('col-md-2');
-        document.getElementById("column1").style.width = "220px";
         var template = _.template(ProjectWithoutLoginTemplate);
-        var navtemplate = _.template(NavbarprojectWLTemplate);
         var RPtemplate = _.template(ProjectRPWLTemplate);
         var LPtemplate = _.template(LeftTemplate);
         that.$el.html(template);
-        this.navel.html(navtemplate);
+        $("#nav-tabs").html("<li id='loginNav'><a href='#/login' class='btn btn-white' style='color: #0CD85E;'> Create Project </a></li><li id='loginNav'><a href='#/login' style='color: #000;'> Login </a></li><li id='registerNav'><a href='#/register' style='color: #000;'> Register </a></li>");
         this.rightpanel.html(RPtemplate);
         this.leftpanel.html(LPtemplate);
-        //$("#registerNav").addClass('active');
         document.getElementById("body").style.backgroundColor = "#FCFCFC";
         return that;
       }

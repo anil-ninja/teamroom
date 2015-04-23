@@ -17,7 +17,8 @@ define([
     'views/project/projectView',
     'views/ninja/ninjaView',
     'views/profile/profileView',
-    'views/openchallenge/openView'
+    'views/openchallenge/openView',
+    'views/notification/notificationView'
     
 ], function ($, _, Backbone,
         LoginView,
@@ -33,7 +34,8 @@ define([
         ProjectView,
         NinjaView,
         ProfileView,
-        OpenView
+        OpenView,
+        NotificationView
         ) {
 
     var AppRouter = Backbone.Router.extend({
@@ -132,6 +134,11 @@ define([
         app_router.on('route:open', function (id) {
             var openView = new OpenView();
             openView.render();
+        });
+
+        app_router.on('route:notification', function () {
+            var notificationView = new NotificationView();
+            notificationView.render();
         });
 
         Backbone.history.start();

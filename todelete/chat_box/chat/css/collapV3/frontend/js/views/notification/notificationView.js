@@ -2,18 +2,18 @@ define([
   'jquery',
   'underscore',
   'backbone',
-  'collections/profile/profileCollection',
   'collections/userprojects/userprojectsCollection',
-  'text!templates/profile/profileTemplate.html',
-  'text!templates/profile/profileRPTemplate.html',
-  'text!templates/profile/profileLPTemplate.html',
+  'text!templates/notification/notificationTemplate.html',
+  'text!templates/ninja/ninjaRPTemplate.html',
+  'text!templates/ninja/ninjaLPTemplate.html',
+  'text!templates/userlinks/friendlist.html',
   'text!templates/navbar/navbarTemplate.html'
-  ], function($, _, Backbone, ProfilelCollection, UserprojectsCollection, ProfileTemplate, ProfileRPTemplate, ProfileLPTemplate, NavbarTemplate){
+  ], function($, _, Backbone, UserprojectsCollection, NotificationTemplate, NinjaRPTemplate, NinjaLPTemplate, Friendlist, NavbarTemplate){
     
     var ForgetpasswordView = Backbone.View.extend({
 
       el : $("#page"),
-      navel : $("#nav-tabs"),
+      navel : $("#navbar"),
       rightpanel : $("#right-panel"),
       leftpanel : $("#left-panel"),
       events: {
@@ -33,16 +33,16 @@ define([
       },*/
       render: function () {
         var that = this;
-        /*var userprojects = new UserprojectsCollection();
+        var userprojects = new UserprojectsCollection();
         userprojects.fetch({
         
-          beforeSend: function (xhr) {
+          /*beforeSend: function (xhr) {
               xhr.setRequestHeader('AUTH-KEY', key);
-          } ,
+          } ,*/
           success: function (userprojects) {  
             console.log(userprojects);
             projectsData = userprojects.models[0].attributes.data.projects;
-            var LPtemplate = _.template(profileLPTemplate, {projects : projectsData});
+            var LPtemplate = _.template(NinjaLPTemplate, {projects : projectsData});
             that.leftpanel.html(LPtemplate);
             return that;
           },
@@ -57,24 +57,25 @@ define([
               alert("No data available");
             }
           }
-        });*/
+        });
         /*$("#divider").removeClass('divider');
         $("#divider2").removeClass('divider');*/
         $("#column2").removeClass('col-md-9');
         $("#column3").removeClass('col-md-1');
         $("#column1").removeClass('col-md-1');
-        $("#column2").addClass('col-md-7');
+        $("#column2").addClass('col-md-6');
         $("#column3").addClass('col-md-2');
         $("#column1").addClass('col-md-2');
-        var template = _.template(ProfileTemplate);
+        document.getElementById("column1").style.width = "220px";
+        var template = _.template(NotificationTemplate);
         var navtemplate = _.template(NavbarTemplate);
-        var RPtemplate = _.template(ProfileRPTemplate);
-        var LPtemplate = _.template(ProfileLPTemplate);
-        this.leftpanel.html(LPtemplate);
+        var RPtemplate = _.template(NinjaRPTemplate);
         that.$el.html(template);
         this.navel.html(navtemplate);
         this.rightpanel.html(RPtemplate);
+        //$("#registerNav").addClass('active');
         document.getElementById("body").style.backgroundColor = "#FCFCFC";
+        $(".row").append(Friendlist);
         return that;
       }
     });    

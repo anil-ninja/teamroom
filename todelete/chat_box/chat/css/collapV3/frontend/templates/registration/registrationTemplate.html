@@ -2,10 +2,10 @@
   <div class="row">
     <div class="col-md-3"></div>
     <div class="col-md-5">
-      <center><h3>Welcome to Collap</h3>
-      <span class="c-logo-head">Collaborate, Grow and help Society</span></center><br/><br/>
+      <span style="font-size:20px;"> Join Collap </span>
+      <span class="pull-right"><a href="#/login" style="color:#0CD85E"> Already have an account? </a></span>
     
-      <form class = "registration-form" type="POST">
+      <form class = "registration-form" type="POST"><br/>
         <input type="text" class="input-block-level" placeholder="Enter first name" id="firstname" onkeyup="nospaces(this)"/>
         <input type="text" class="input-block-level" placeholder="Enter last name" id="lastname" onkeyup="nospaces(this)"/>       
         <input type="email" class="input-block-level" placeholder="Enter email-id" id="email" 
@@ -27,21 +27,44 @@
           <input type="num" class="input-group" id="investment" onkeyup="nospaces(this)" min='10' onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" placeholder="Enter amount"/>
           <span class="input-group-addon" style='font-size:20px;'>.00 $</span>
         </div><br/>
-        <input type="checkbox" class="btn btn-mini custom-checkbox" id ='agree_tc' />&nbsp;&nbsp;&nbsp;I Aggree With  
+        <input type="checkbox" class="btn btn-mini custom-checkbox" id ='agree_tc' />&nbsp;&nbsp;&nbsp; Aggree to  
           <a href="#" data-toggle="modal">Terms &amp; Conditions</a>
         </label><br />
-        <button type="submit" class="btn btn-success" id="request_reg" >Register Now&nbsp;&nbsp;&nbsp;<i class="icon-chevron-sign-right"></i></button>
+        <button type="submit" class="btn btn-success" id="request_reg" style="width:100%;height:50px;font-size:22px;" >
+        <b>Register</b></button>
+        <br/><br/><div class="line"> or </div>
+        <br/>
+        <div class="socials">
+          <ul class="list-inline">
+            <li><a  href="https://www.facebook.com/pages/collapcom/739310236156746" target='_blank'>
+              <img class="media-object img-circle" src="imgs/facebook.png" style="width:50px;"/>
+            </a></li>
+            <li><a  href="https://twitter.com/CollapCom" target='_blank'>
+              <img class="media-object img-circle" src="imgs/Twitter.png" style="width:50px;"/>
+            </a></li>
+            <li><a  href="https://www.pinterest.com/collapcom/" target='_blank'>
+              <img class="media-object img-circle" src="imgs/pinterest.png" style="width:50px;"/>
+            </a></li>
+            <li><a  href="https://plus.google.com/117170233233281087141" rel="publisher" target='_blank'>
+              <img class="media-object img-circle" src="imgs/google.png" style="width:50px;"/>
+            </a></li>
+            <li><a  href="https://in.linkedin.com/" target='_blank'>
+              <img class="media-object img-circle" src="imgs/linkdin.png" style="width:50px;"/>
+            </a></li>
+            <li><a  href="https://github.com/collapcom" target='_blank'>
+              <img class="media-object img-circle" src="imgs/github.png" style="width:50px;"/>
+            </a></li>
+          </ul>
+        </div>
+        <p style="text-align:center;"> We'll never post anything anywhere without your permission </p>
       </form>
     </div>
   </div>
   <hr/>
-  <ul class="list-inline">
-    <li><a href="#/about"> About </a></li>
-    <li><a href="#/blog"> Blog </a></li>
-    <li><a href="#/career"> Careers </a></li>
-    <li><a href="#/customer-speak"> Customer Speak </a></li>
-    <li><a href="#/contact"> Contact </a></li>
-    <li><a href="#/terms"> Term of Use </a></li>
-    <li><a href="#/privacy-policy"> Privacy Policy </a></li>
-  </ul>
+  &#169;  2015 Collap, Inc.
+  <span class="pull-right">
+    <a href="#/about"> About </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#/terms"> Terms </a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="#/privacy-policy"> Privacy </a> &nbsp;&nbsp;&nbsp;
+  </span>
 </div>

@@ -14,7 +14,8 @@ require.config({
     bootbox: 'libs/bootstrap/bootbox',
     datatable: 'libs/datatable/jquery-dataTables-min',
     tabs: 'libs/bootstrap/tabs-addon',
-    logReg: 'libs/custom/loginReg'
+    logReg: 'libs/custom/loginReg',
+    search:'libs/google/googleSearch'
   }
 });
 
