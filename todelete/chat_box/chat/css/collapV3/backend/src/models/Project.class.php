@@ -171,7 +171,8 @@
 					$this -> lastUpdateTime.",".
 					$this -> firstName.",".
 					$this -> lastName.",".
-					$this -> userName;
+					$this -> userName.",".
+					$this -> rank;
 		}
 
 		function toArray() {
@@ -201,14 +202,6 @@
 							stmt => $this-> stmt,
 							type => $this-> type,
 							creationTime => $this-> creationTime,
-							firstName => $this-> firstName,
-							lastName => $this-> lastName,
-							userName => $this-> userName
-						);
-		}
-
-		function toArrayRecommndedLinks() {
-			return array (			
 							firstName => $this-> firstName,
 							lastName => $this-> lastName,
 							userName => $this-> userName,

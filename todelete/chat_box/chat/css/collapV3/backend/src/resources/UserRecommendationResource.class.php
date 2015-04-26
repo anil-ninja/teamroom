@@ -36,7 +36,7 @@ class UserRecommendationResource implements Resource {
         foreach ($data as $key => $value) {
             $link_project = $key;
         }
-        //var_dump($link_project); exit;
+ 
         if (isset($link_project)) {
             switch ($link_project) {
                 case 'links':
@@ -72,7 +72,7 @@ class UserRecommendationResource implements Resource {
                 return array('code' => '2004');
         
         foreach ($listOfLinksRecommendbjs as $linkObj) {
-            $this -> recommendedLinks [] = $linkObj -> toArrayRecommndedLinks();
+            $this -> recommendedLinks [] = $linkObj -> toArrayUserProjects();
         }
         
         $logger -> debug ('Fetched challenge: ' . json_encode($this -> recommendedLinks));
@@ -98,7 +98,7 @@ class UserRecommendationResource implements Resource {
         foreach ($listOfProjectsRecommendObjs as $projectObj) {
             $this -> recommendedProjects [] = $projectObj -> toArrayUserProjects();
         }
-
+//print_r($listOfProjectsRecommendObjs); exit;
         $logger -> debug ('Fetched list of recommendedProjects: ' . json_encode($this -> recommendedProjects));
 
         return array('code' => '2000', 

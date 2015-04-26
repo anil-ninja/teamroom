@@ -34,8 +34,8 @@ class ProjectsMySqlExtDAO extends ProjectsMySqlDAO{
 	 * Get all user recommendation links from table
 	 */
 	public function queryAllLinksRecommend($userId, $userId, $userId, $userId){
-		//echo $userId; exit;
-		$sql = "SELECT * FROM user_info 
+		
+		$sql = "SELECT user.first_name, user.last_name, user.username, user.rank FROM user_info 
 					WHERE id NOT IN (SELECT user.id FROM user_info as user 
 										JOIN (SELECT DISTINCT teamB.user_id as id FROM teams as teamA JOIN teams as teamB
 												WHERE teamA.user_id = ? and teamA.team_name = teamB.team_name 
@@ -63,7 +63,7 @@ class ProjectsMySqlExtDAO extends ProjectsMySqlDAO{
 	 * Get all user recommendation projects from table
 	 */
 	public function queryAllProjectsRecommend($userId, $userId){
-		$sql = "SELECT DISTINCT project.id, project.project_title as title, project.stmt as statement, project.type, project.creation_time, user.first_name, user.last_name, user.username 
+		$sql = "SELECT DISTINCT project.id, project.project_title as title, project.stmt as statement, project.type, project.creation_time, user.first_name, user.last_name, user.username, user.rank 
 					FROM projects as project JOIN user_info as user JOIN teams as team 
 					WHERE (project.user_id = ? OR team.user_id = ?) AND project.user_id = user.id AND project.type != 'Deleted' AND team.member_status = 1 ORDER BY creation_time DESC";
 		$sqlQuery = new SqlQuery($sql);
@@ -78,7 +78,7 @@ class ProjectsMySqlExtDAO extends ProjectsMySqlDAO{
 	 * @return ProjectsMySql 
 	 */
 	protected function readRowUserProjects($row){
-		$project = new Project(0, 0, $row['title'], $row['statement'],$row['type'],0,0, $row['creation_time'],0,0,0, $row['first_name'], $row['last_name'], $row['username'], $row['id']);
+		$project = new Project(0, 0, $row['title'], $row['statement'],$row['type'],0,0, $row['creation_time'],0,0,0, $row['first_name'], $row['last_name'], $row['username'], $row['rank'], $row['id']);
 		
 		return $project;
 	}

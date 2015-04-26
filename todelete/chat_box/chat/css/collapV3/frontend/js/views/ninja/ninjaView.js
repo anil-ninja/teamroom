@@ -8,7 +8,7 @@ define([
   'text!templates/ninja/ninjaRPTemplate.html',
   'text!templates/ninja/ninjaLPTemplate.html',
   'text!templates/userlinks/friendlist.html',
-  'text!templates/navbar/navbarTemplate.html'
+  'text!templates/components/navBar.html'
   ], function($, _, Backbone, NinjalCollection, UserprojectsCollection, NinjaTemplate, NinjaRPTemplate, NinjaLPTemplate, Friendlist, NavbarTemplate){
     
     var ForgetpasswordView = Backbone.View.extend({
